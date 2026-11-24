@@ -1,6 +1,412 @@
 {
  "videos": [
   {
+   "id": "20261124-194231-1",
+   "tag": "v-20261124-194231-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-194231-1/buzz-20261124-194231-1.mp4",
+   "titre": "Macron et l'A320 : un bond historique",
+   "accroche": "TOULOUSE BOOM AÉRONAUTIQUE",
+   "sujet_id": "67ccec0235",
+   "sujet": "Macron inaugure nouvelle ligne Airbus A320 Toulouse",
+   "buzz": {
+    "vues": 924000,
+    "jaime": 94100,
+    "commentaires": 1009,
+    "score": 147
+   },
+   "description": "Découvrez les annonces phares d'Emmanuel Macron chez Airbus à Toulouse ! 🛩️",
+   "question": "Tu savais que l’A320 était aussi révolutionnaire ? Dis-le en commentaire !",
+   "hashtags": [
+    "#airbusa320",
+    "#macrontoulouse",
+    "#macron",
+    "#lycee",
+    "#insolite",
+    "#actu"
+   ],
+   "duree": 84.4,
+   "sources": [
+    {
+     "media": "ladepeche.fr",
+     "titre": "REPORTAGE. Emmanuel Macron chez Airbus : innovations, échanges avec les ouvriers et selfies... dans les coulisses de la visite présidentielle à Toulouse",
+     "lien": "https://www.ladepeche.fr/2026/11/23/reportage-emmanuel-macron-chez-airbus-innovations-echanges-avec-les-ouvriers-et-selfies-dans-les-coulisses-de-la-visite-presidentielle-a-toulouse-13667208.php"
+    },
+    {
+     "media": "bfmtv.com",
+     "titre": "Chez Airbus, Emmanuel Macron encourage la filière aéronatique à \"aller plus vite\" pour produire plus et à \"ne pas attendre les résultats\" de la concurrence chinoise",
+     "lien": "https://www.bfmtv.com/economie/entreprises/aeronautique/chez-airbus-emmanuel-macron-encourage-la-filiere-aeronatique-a-aller-plus-vite-pour-produire-plus-et-a-ne-pas-attendre-les-resultats-de-la-concurrence-chinoise_AV-202611230463.html"
+    },
+    {
+     "media": "cnews.fr",
+     "titre": "«Il y a d'autres coups de pompe au pas ?» : Emmanuel Macron arrête son discours après le malaise d'une personne à Toulouse",
+     "lien": "https://www.cnews.fr/france/2026-11-23/il-y-dautres-coups-de-pompe-au-pas-emmanuel-macron-arrete-son-discours-apres-le"
+    },
+    {
+     "media": "lejournaltoulousain.fr",
+     "titre": "Emmanuel Macron à Toulouse : 350 millions d’euros, nouvelle ligne… Ce qu’il a annoncé chez Airbus",
+     "lien": "https://www.lejournaltoulousain.fr/occitanie/haute-garonne/toulouse/emmanuel-macron-toulouse-350-millions-deuros-nouvelle-ligne-airbus-404850/"
+    }
+   ],
+   "verification": {
+    "par": "groq:openai/gpt-oss-20b",
+    "corrigees": 2,
+    "retirees": 0,
+    "problemes": [
+     "exagération non confirmée",
+     "date non confirmée"
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "Carte : Natural Earth, OpenStreetMap",
+    "Titre : bfmtv.com",
+    "Titre : ladepeche.fr"
+   ],
+   "ecrans_illustres": 3,
+   "format": "buzz",
+   "voix": "chatterbox-bernard",
+   "lieu": "Toulouse, France",
+   "humeur": "joie",
+   "texte": [
+    "L’avion A320, le plus connu des Airbus, change tout dans les voyages en avion.",
+    "Macron inaugure une nouvelle ligne d’assemblage à Toulouse, ce 23 novembre.",
+    "Avec cette ligne, Airbus vise 75 avions par mois d’ici peu.",
+    "Un investissement de 350 millions d’euros pour la recherche aéronautique en 2026.",
+    "Les avions du futur consommeront 20 à 30 % de carburant en moins.",
+    "Macron a échangé avec des ouvriers, dont 1/3 a rejoint Airbus depuis le Covid.",
+    "Un tiers des effectifs vient de métiers comme la restauration ou le bâtiment.",
+    "La Chine accélère : Airbus doit produire plus vite sans attendre ses concurrents.",
+    "Le malaise d’une lycéenne a interrompu son discours… mais Macron en a fait une blague.",
+    "Il a même offert son verre d’eau à la jeune fille avant de reprendre son speech.",
+    "Airbus travaille aussi sur des avions électriques et à hydrogène.",
+    "La nouvelle usine à Blagnac va accélérer les livraisons d’A320 encore plus vite.",
+    "Macron visite aussi l’**A350F**, le cargo géant de **55 mètres** et **111 tonnes** de fret.",
+    "Airbus réduit le temps de création d’usine : **10 mois** aujourd’hui contre **17 avant**.",
+    "Macron salue **200 salariés et lycéens** : *« C’est ça, la réindustrialisation ! »*",
+    "L’A320 bat des records : **10 000 commandes** = **10 ans de travail** au rythme actuel.",
+    "Tu savais qu’un avion avec 250 sièges fait vraiment très forte impression ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-24T21:25:19+01:00",
+   "fabrication_s": 6166,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 1,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 2,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 3,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 4,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 11,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 12,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 0,
+      "gravite": "moyen",
+      "probleme": "accroche trop longue (plus de 15 mots) : on perd le spectateur",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 54 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "voix et sous-titres ne correspondent pas (57%)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 18,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 12,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "images",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "video",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre en bas chevauche le texte de l'article",
+      "corrige": true,
+      "essais": 4,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "le sous-titre chevauche le texte d'arrière-plan",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "chevauchement texte et article en fond",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre chevauche le texte de la source",
+      "corrige": true,
+      "essais": 4,
+      "solution": "titre retiré"
+     }
+    ],
+    "sautes": [],
+    "corriges": 34,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261124-190104-1",
    "tag": "v-20261124-190104-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-190104-1/buzz-20261124-190104-1.mp4",
