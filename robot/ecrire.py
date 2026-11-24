@@ -103,6 +103,32 @@ def ecrire(sujet, articles, journal=print, format_="buzz"):
     """Texte de la vidéo (dict) ; lève ia.AucuneIA si aucune IA ne répond."""
     texte = f"SUJET : {sujet['titre']}\nCE QU'ON SAIT : {sujet.get('resume', '')}\n\nARTICLES :\n{_articles_texte(articles)}"
     d, qui = ia.demander_json(CONSIGNE + FORMATS.get(format_, ""), texte, temperature=0.8, max_tokens=6000, journal=journal)
+    return normaliser(d, sujet, format_, qui, journal)
+
+
+CONSIGNE_REFAIRE = """
+VIDÉO À REFAIRE : l'ancienne version avait des problèmes (liste ci-dessous) et l'auteur a laissé une remarque. Corrige TOUS
+ces problèmes et tiens compte de la remarque. {mode}
+Réponds avec le même JSON complet (titre, accroche, description, question, hashtags, theme_image, lieu, coordonnees, humeur,
+phrases)."""
+
+
+def refaire_texte(sujet, articles, ancien, problemes, remarque, tout=False, journal=print, format_="buzz"):
+    """Nouveau texte qui CORRIGE l'ancien (jamais une copie à l'identique) : `tout` = version entièrement nouvelle (autre
+    accroche, autre ordre) ; sinon les phrases sans problème restent mot pour mot."""
+    mode = ("Écris une version ENTIÈREMENT NOUVELLE et différente (autre accroche, autre angle, autre ordre)." if tout else
+            "Garde mot pour mot les phrases qui n'ont pas de problème ; réécris celles qui en ont.")
+    texte = (f"SUJET : {sujet['titre']}\nCE QU'ON SAIT : {sujet.get('resume', '')}\n\nARTICLES :\n{_articles_texte(articles)}\n\n"
+             "ANCIEN TEXTE :\n" + "\n".join(f"{i + 1}. {p['ecrit']}" for i, p in enumerate(ancien["phrases"])) +
+             "\n\nPROBLÈMES RELEVÉS :\n" + ("\n".join(f"- {x}" for x in problemes) or "- (aucun noté)") +
+             f"\n\nREMARQUE DE L'AUTEUR : {remarque or '(aucune)'}")
+    d, qui = ia.demander_json(CONSIGNE + FORMATS.get(format_, "") + CONSIGNE_REFAIRE.format(mode=mode), texte,
+                              temperature=0.9 if tout else 0.5, max_tokens=6000, journal=journal)
+    return normaliser(d, sujet, format_, qui, journal)
+
+
+def normaliser(d, sujet, format_, qui, journal=print):
+    """Texte de l'IA mis au propre (champs de chaque phrase, réponse d'un vrai / faux, humeur, hashtags)."""
     phrases = [p for p in d.get("phrases") or [] if str(p.get("voix") or "").strip()]
     if len(phrases) < 8:
         raise ValueError(f"texte trop court ({len(phrases)} phrases)")

@@ -16,7 +16,7 @@ import threading
 import time
 import traceback
 
-from . import avancement, buzz, carte, controle, depot, ecrire, ia, images, montage, sources
+from . import refaire, avancement, buzz, carte, controle, depot, ecrire, ia, images, montage, sources
 from . import voix as V
 from .commun import MINIATURES, SORTIE, ecrire as ecrire_donnees, iso, lire, maintenant, noter, reglages, simulation
 
@@ -190,7 +190,9 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
         avancement.etape(pre + ETAPES[nom], pourcent, sujet["titre"] if nom == "articles" else "")
         for essai in range(3):
             try:
+                t_etape = time.time()
                 fonction()
+                E.setdefault("durees", {})[nom] = round(time.time() - t_etape)   # durée de chaque étape (page Santé)
                 E["faites"].append(nom)
                 return
             except Exception as e:
@@ -402,7 +404,12 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
     def rangement():
         os.makedirs(MINIATURES, exist_ok=True)
         montage.miniature(fichier, os.path.join(MINIATURES, f"{vid}.jpg"))
-        E["url"] = depot.publier_release(f"v-{vid}", script["titre"], [fichier])
+        try:                                                  # tout le travail, pour pouvoir REFAIRE en corrigeant
+            travail = [refaire.archiver(script, E["articles"], B.resume(), dossier, vid)]
+        except Exception as e:
+            journal(f"  travail non archivé ({str(e)[:80]}) : « refaire » repartira de zéro")
+            travail = []
+        E["url"] = depot.publier_release(f"v-{vid}", script["titre"], [fichier] + travail)
     etape("rangement", 95, rangement)
 
     mode = R["publication"]["mode"]
@@ -418,6 +425,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 humeur=script.get("humeur", ""), categorie=sujet.get("categorie", ""), texte=[p["ecrit"] for p in script["phrases"]],
                 essai=simulation(), cree_le=iso(), fabrication_s=round(time.time() - E["t0"]), controles=bulletin,
                 reprises=E.get("reprises", 0), preuves=preuves_licences(script), couverture_ms=couverture_ms(script),
+                durees=E.get("durees", {}), refaite=E.get("refaite"),
                 statut="a_verifier" if bulletin["graves_restants"] else
                        "a_publier" if (mode == "auto" and script.get("verifie")) else "nouvelle")
 
@@ -544,6 +552,56 @@ def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz", attend
     return faites
 
 
+def refaire_video(vid, etape="auto", remarque="", journal=print):
+    """Refait la vidéo `vid` EN CORRIGEANT ce qui n'allait pas (robot/refaire.py) ; la nouvelle remplace l'ancienne."""
+    import re
+    R = reglages()
+    file = lire("file.json") or {"videos": []}
+    v = next((x for x in file["videos"] if x["id"] == vid), None)
+    if not v:
+        noter(f"🔁 Vidéo {vid} introuvable : rien à refaire.", "erreur")
+        return None
+    base = re.sub(r"-r\d+$", "", vid)
+    n = 1 + max([int(m.group(1)) for x in file["videos"] for m in [re.match(re.escape(base) + r"-r(\d+)$", x["id"])] if m] or [0])
+    v["_nouvel_id"] = f"{base}-r{n}"
+    sujet = next((s for s in (lire("buzz.json") or {}).get("sujets") or [] if s["id"] == v.get("sujet_id")), None) or \
+        dict(id=v.get("sujet_id") or base, titre=v.get("sujet") or v["titre"], resume="", mots_cles=[], videos=[])
+    dossier = os.path.join(SORTIE, v["_nouvel_id"])
+    avancement.demarrer(v["_nouvel_id"], "video", f"On refait : {v['titre']}")
+    etat, etape = refaire.preparer(v, sujet, etape, remarque, dossier, depot.depot(), R, journal)
+    nv = None
+    for tentative in range(4):                                # comme une création : reprise à l'étape ratée
+        try:
+            nv = fabriquer(sujet, R, 1, 1, journal, v.get("format") or "buzz", secours=tentative == 3, etat=etat)
+            break
+        except Exception as e:
+            traceback.print_exc()
+            if tentative < 3:
+                noter(f"🔁 Refaire « {v['titre']} » : étape ratée ({str(e)[:120]}) — reprise {tentative + 2}/4", "attention")
+                time.sleep(20)
+    if nv is None:
+        avancement.finir(False, "Vidéo non refaite après 4 tentatives")
+        noter(f"❌ « {v['titre']} » n'a pas pu être refaite (l'ancienne est gardée).", "erreur")
+        return None
+    nv["refaite_de"] = vid
+
+    def appliquer():
+        F = lire("file.json") or {"videos": []}
+        k = next((i for i, x in enumerate(F["videos"]) if x["id"] == vid), 0)
+        F["videos"] = [x for x in F["videos"] if x["id"] != vid]
+        F["videos"].insert(k, nv)
+        ecrire_donnees("file.json", F)
+        vieille = os.path.join(MINIATURES, f"{vid}.jpg")
+        if os.path.exists(vieille):
+            os.remove(vieille)
+        noter(f"🔁 « {nv['titre']} » refaite ({etape}) : note {nv['controles']['note']}/100"
+              + (f", corrige : « {remarque} »" if remarque else "") + " — l'ancienne version est remplacée")
+    depot.enregistrer(appliquer, f"Vidéo refaite : {nv['titre']}")
+    depot.supprimer_release(v.get("tag"))
+    avancement.finir(True, f"Vidéo refaite : {nv['titre']}")
+    return nv
+
+
 def _marquer_sujet(sid, statut, video_id=None, ecrire_seul=False):
     def appliquer():
         B = lire("buzz.json") or {"sujets": []}
@@ -568,7 +626,19 @@ def main():
     a.add_argument("--auto", action="store_true", help="création automatique : seulement si activée dans les réglages")
     a.add_argument("--plan", action="store_true", help="répartir une série entre plusieurs machines (sortie GitHub « plan »)")
     a.add_argument("--paralleles", type=int, default=0)
+    a.add_argument("--refaire", default="", help="identifiant de la vidéo à refaire en corrigeant")
+    a.add_argument("--etape", default="auto", help="auto, texte, voix, images ou tout")
+    a.add_argument("--remarque", default="", help="ce qui ne va pas (écrit par l'auteur)")
     o = a.parse_args()
+    if o.refaire and o.plan:
+        if os.environ.get("GITHUB_OUTPUT"):
+            with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+                f.write('plan=[{"k": 1, "sujets": ""}]\nparalleles=1\n')
+        return
+    if o.refaire:
+        if not refaire_video(o.refaire, o.etape, o.remarque):
+            raise SystemExit(1)
+        return
     if o.plan:
         import json
         n_par = max(1, min(5, o.paralleles or int(reglages()["creation"].get("paralleles", 5))))

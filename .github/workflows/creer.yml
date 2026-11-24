@@ -1,5 +1,5 @@
 name: Créer des vidéos
-run-name: "Créer ${{ inputs.nombre || '1' }} vidéo(s) ${{ inputs.format }} ${{ inputs.origine }}"
+run-name: "${{ inputs.refaire && format('Refaire {0} ({1})', inputs.refaire, inputs.etape) || format('Créer {0} vidéo(s) {1} {2}', inputs.nombre || '1', inputs.format, inputs.origine) }}"
 
 on:
   workflow_dispatch:             # bouton « 🎬 Créer » du site, ou création automatique (garde.yml)
@@ -22,6 +22,15 @@ on:
       simulation:
         description: "1 = essai sans réseau ni IA"
         default: "0"
+      refaire:
+        description: "Identifiant d'une vidéo à REFAIRE en corrigeant (facultatif)"
+        default: ""
+      etape:
+        description: "Ce qu'on refait : auto, texte, voix, images ou tout"
+        default: "auto"
+      remarque:
+        description: "Ce qui ne va pas dans la vidéo à refaire (facultatif)"
+        default: ""
 
 permissions:
   contents: write                # données du site et Releases (adresse publique des vidéos pour Buffer)
@@ -47,7 +56,7 @@ jobs:
         id: plan
         env:
           LIBRE: ${{ inputs.libre }}
-        run: python -m robot.principal --plan --nombre "${{ inputs.nombre || '1' }}" --sujet "${{ inputs.sujet }}" --libre "$LIBRE" --format "${{ inputs.format || 'buzz' }}"
+        run: python -m robot.principal --plan --nombre "${{ inputs.nombre || '1' }}" --sujet "${{ inputs.sujet }}" --libre "$LIBRE" --format "${{ inputs.format || 'buzz' }}" --refaire "${{ inputs.refaire }}"
 
   creer:
     needs: plan
@@ -109,6 +118,9 @@ jobs:
           ~/venv-chatterbox/bin/pip install -q chatterbox-tts==0.1.7
           ~/venv-chatterbox/bin/python -c "from chatterbox.mtl_tts import ChatterboxMultilingualTTS as M; M.from_pretrained(device='cpu')"
       - name: Fabriquer (une vidéo par machine)
-        run: python -m robot.principal --nombre 1 --sujet "${{ matrix.machine.sujets }}" --libre "$LIBRE" --format "${{ inputs.format || 'buzz' }}"
+        run: python -m robot.principal --nombre 1 --sujet "${{ matrix.machine.sujets }}" --libre "$LIBRE" --format "${{ inputs.format || 'buzz' }}" --refaire "$REFAIRE" --etape "$ETAPE" --remarque "$REMARQUE"
         env:
           LIBRE: ${{ inputs.libre }}
+          REFAIRE: ${{ inputs.refaire }}
+          ETAPE: ${{ inputs.etape || 'auto' }}
+          REMARQUE: ${{ inputs.remarque }}

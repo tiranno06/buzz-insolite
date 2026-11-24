@@ -483,6 +483,13 @@ function carteVideo(v) {
         ${v.url ? `<a class="btn mini" href="${esc(v.url)}" target="_blank" rel="noopener">⬇️ Télécharger</a>` : ""}</div>
       ${v.echec_publication ? `<p class="petit" style="color:var(--accent)">❌ ${esc(v.echec_publication)}</p>` : ""}
       ${bulletin(v)}
+      ${v.essai ? "" : `<details style="margin-top:8px"><summary class="petit">🔁 Refaire en corrigeant</summary>
+        <p class="petit muted">Le robot reprend tout le travail de cette vidéo et ne refait que ce qui ne va pas, en le CORRIGEANT (jamais à l'identique). La nouvelle version remplace celle-ci.</p>
+        <label class="champ petit">Que refaire ? <select id="re-${v.id}"><option value="auto">🤖 Ce qui pose problème (choisi par le robot)</option>
+          <option value="images">🖼️ Les images</option><option value="voix">🎙️ La voix</option><option value="texte">✍️ Le texte</option><option value="tout">🔄 Toute la vidéo (nouvelle version)</option></select></label>
+        <label class="champ petit">Qu'est-ce qui ne va pas ? (facultatif, ex. « écran 3 hors sujet, accroche trop longue »)<input type="text" id="rm-${v.id}"></label>
+        <button class="btn mini primaire" data-a="refaire" data-id="${v.id}">🔁 Refaire</button></details>`}
+      ${v.refaite_de ? `<p class="petit muted">🔁 Version refaite (${esc(v.refaite?.etape || "")}${v.refaite?.remarque ? " : « " + esc(v.refaite.remarque) + " »" : ""})</p>` : ""}
       <details style="margin-top:8px"><summary class="petit">Sources, vérification, texte, modifier</summary>
         <p class="petit">${ver} · ${v.ecrans_illustres ?? "?"} écrans illustrés${(v.credits || []).length ? " · images : " + esc(v.credits.join(", ")) : ""}</p>
         <ul class="petit">${sources}</ul>
@@ -653,6 +660,11 @@ document.addEventListener("click", async e => {
   }
   if (a === "sujet_creer") return creer({ sujet: id }, "Vidéo lancée sur ce sujet (environ 7 minutes).");
   if (a === "sujet_ignorer" || a === "sujet_remettre") return commande(a, id);
+  if (a === "refaire") {
+    creer({ refaire: id, etape: $("#re-" + id).value, remarque: ($("#rm-" + id).value || "").trim().slice(0, 300), origine: "refaire" },
+      "Le robot refait la vidéo en corrigeant (environ 20 à 40 min).");
+    return;
+  }
   if (a === "lien") { const l = prompt("Lien de la vidéo sur TikTok :"); if (l) commande("publiee", id, l.trim()); return; }
   if (a === "texte") return commande("texte", id, JSON.stringify({ description: $("#d-" + id).value, question: $("#q-" + id).value, hashtags: $("#h-" + id).value }));
   if (a === "publier_maintenant" || a === "publier_force") { if (!arme(b, a + id)) return; return commande(a, id, "", "Contrôle puis envoi à TikTok par Buffer (1 à 2 min)."); }

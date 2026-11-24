@@ -129,6 +129,15 @@ de l'auteur corrigé. Une vidéo réservée aux adultes reste impossible à voir
   plusieurs sujets. Rotation automatique `publication_auto.format_auto` : vrai_faux 1/3, chiffre 1/5, region 1/7.
 - `principal.deja_traite` : jamais un sujet mis en vidéo ces 7 derniers jours (même id ou `buzz.meme_sujet`).
 
+## Refaire en corrigeant (demande de l'auteur du 24/11 : « ne pas recréer à l'identique une vidéo qui a un problème »)
+`robot/refaire.py` + `principal.refaire_video` (creer.yml : entrées `refaire`, `etape`, `remarque` ; site : « 🔁 Refaire en
+corrigeant » sur chaque vidéo). Chaque création range `travail-<id>.tar.gz` dans sa Release (texte complet, articles,
+bulletin, `memoire_voix`, images et passages ; images non gardées au-delà de 400 Mo). Étapes : images (écrans du bulletin ou
+« écran 3, 5 » de la remarque, sinon tous ; anciennes images INTERDITES via `deja`), voix (phrases signalées simplifiées,
+sinon nouvelle prise ; mémoire oubliée), texte (`ecrire.refaire_texte` avec problèmes + remarque, phrases inchangées gardent
+voix et image, contrôle des faits refait), tout (version nouvelle, autres images), auto (`etape_auto` d'après le bulletin).
+Nouvel id `<id>-r<n>` qui remplace l'ancien dans file.json (ancienne Release supprimée).
+
 ## Vraies images du sujet (demande de l'auteur du 24/11 : « pas de bouts de vidéos au hasard pour meubler »)
 Les vidéos des JT et agences (BFM, TF1, AFP…) ne sont JAMAIS reprises (droits, TikTok les reconnaît). À la place :
 champ "entite" de chaque phrase (titre de l'article Wikipédia de la personne / du lieu / de l'objet) → `images.wikipedia_media`

@@ -527,6 +527,36 @@ class TestFormatsEtSujets(unittest.TestCase):
         ecrire("stats.json", {})
 
 
+class TestRefaire(unittest.TestCase):
+    def test_refaire_les_images_corrige(self):
+        """Refaire « images » : seuls les écrans signalés changent, et leurs anciennes images sont interdites."""
+        from robot import refaire, commun
+        d1 = os.path.join(TMP, "travail1"); os.makedirs(d1, exist_ok=True)
+        for k in range(3):
+            with open(os.path.join(d1, f"media{k:02d}.jpg"), "wb") as f:
+                f.write(b"x")
+        script = {"titre": "t", "phrases": [dict(voix=f"phrase {k}", ecrit=f"phrase {k}", uid=k, mots=[["a", 0, 1]], son="s",
+                                                 media=dict(type="photo", id=f"wiki-{k}", chemin=os.path.join(d1, f"media{k:02d}.jpg")))
+                                            for k in range(3)] + [dict(voix="Et toi ?", ecrit="Et toi ?", uid=3)]}
+        bulletin = {"lignes": [dict(niveau="images", ecran=1, probleme="image hors sujet", corrige=False)]}
+        arch = refaire.archiver(script, [dict(media="a.fr", titre="t", texte="x")], bulletin, d1, "v1")
+        vrai = refaire.urllib.request.urlopen
+        refaire.urllib.request.urlopen = lambda req, timeout=0: open(arch, "rb")
+        try:
+            v = dict(id="v1", tag="v-v1", titre="t", _nouvel_id="v1-r1", controles=bulletin)
+            etat, etape = refaire.preparer(v, dict(id="s", titre="t"), "auto", "et l'écran 3 aussi", os.path.join(TMP, "r1"),
+                                           "x/y", commun.REGLAGES_DEFAUT, journal=lambda *a: None)
+        finally:
+            refaire.urllib.request.urlopen = vrai
+        ph = etat["script"]["phrases"]
+        self.assertEqual(etape, "images")
+        self.assertIn("media", ph[0]); self.assertNotIn("media", ph[1]); self.assertNotIn("media", ph[2])   # écrans 2 et 3
+        self.assertTrue({"wiki-1", "wiki-2"} <= etat["deja"]); self.assertNotIn("wiki-0", etat["deja"])
+        self.assertTrue(os.path.exists(ph[0]["media"]["chemin"]))                                       # fichier gardé
+        self.assertNotIn("mots", ph[0])                                                                  # voix : mémoire
+        self.assertEqual(refaire.ecrans_cites("écrans 2, 4 et 5", 6), {1, 3, 4})
+
+
 class TestParallele(unittest.TestCase):
     def test_sujets_differents_par_machine(self):
         from robot import principal
