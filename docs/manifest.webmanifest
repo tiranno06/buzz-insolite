@@ -1,0 +1,18 @@
+{
+ "name": "Buzz Insolite",
+ "short_name": "Buzz",
+ "lang": "fr",
+ "start_url": "./",
+ "scope": "./",
+ "id": "./?buzz-insolite",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#121110",
+ "theme_color": "#e8283c",
+ "description": "Repérer les actus qui buzzent, créer et publier les vidéos TikTok de la chaîne.",
+ "icons": [
+  {"src": "logo-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+  {"src": "logo-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+  {"src": "logo-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+ ]
+}

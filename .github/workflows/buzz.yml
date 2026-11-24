@@ -1,0 +1,32 @@
+name: Buzz du moment
+
+on:
+  schedule:
+    - cron: "41 */2 * * *"       # toutes les 2 heures
+  workflow_dispatch:             # bouton « 🔄 Chercher maintenant » de l'onglet Buzz
+
+permissions:
+  contents: write
+
+concurrency:
+  group: buzz
+  cancel-in-progress: false
+
+jobs:
+  buzz:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Installer yt-dlp (lecture des comptes TikTok)
+        run: pip install -q -U "yt-dlp[default,curl-cffi]" || pip install -q -U yt-dlp
+      - name: Relever le buzz
+        run: python -m robot.buzz

@@ -1,0 +1,63 @@
+name: Créer des vidéos
+run-name: "Créer ${{ inputs.nombre || '1' }} vidéo(s) ${{ inputs.origine }}"
+
+on:
+  workflow_dispatch:             # bouton « 🎬 Créer » du site, ou création automatique (garde.yml)
+    inputs:
+      nombre:
+        description: "Nombre de vidéos (1 à 10)"
+        default: "1"
+      sujet:
+        description: "Identifiant d'un sujet de l'onglet Buzz (facultatif)"
+        default: ""
+      libre:
+        description: "Sujet écrit à la main (facultatif)"
+        default: ""
+      origine:
+        description: "site, auto…"
+        default: "site"
+      simulation:
+        description: "1 = essai sans réseau ni IA"
+        default: "0"
+
+permissions:
+  contents: write                # données du site et Releases (adresse publique des vidéos pour Buffer)
+
+concurrency:
+  group: fabrication             # une fabrication à la fois ; les demandes suivantes attendent leur tour
+  cancel-in-progress: false
+
+jobs:
+  creer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      SIMULATION: ${{ inputs.simulation || '0' }}
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Retrouver ffmpeg, voix et Whisper déjà téléchargés
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/paquets-ffmpeg
+            ~/.cache/buzz-insolite
+          key: outils-v1-${{ hashFiles('requirements.txt') }}
+      - name: Installer ffmpeg
+        timeout-minutes: 25
+        run: bash outils/installer_ffmpeg.sh
+      - name: Installer les bibliothèques
+        run: pip install -q -r requirements.txt
+      - name: Fabriquer
+        run: python -m robot.principal --nombre "${{ inputs.nombre || '1' }}" --sujet "${{ inputs.sujet }}" --libre "$LIBRE"
+        env:
+          LIBRE: ${{ inputs.libre }}

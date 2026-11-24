@@ -1,0 +1,55 @@
+{
+ "buzz": {
+  "comptes": [
+   "hugodecrypte",
+   "brut",
+   "franceinfo",
+   "leparisien",
+   "20minutesfrance",
+   "euronews.fr",
+   "bfmtv",
+   "lemondefr",
+   "konbini",
+   "tf1info",
+   "loopsider",
+   "ouestfrance",
+   "lefigarofr",
+   "le.huffpost"
+  ],
+  "vues_min": 500000,
+  "jaime_min": 10000,
+  "commentaires_min": 1000,
+  "heures": 72
+ },
+ "video": {
+  "voix": "fr_FR-tom-medium",
+  "vitesse": 0.8,
+  "duree_min": 62,
+  "musique": true
+ },
+ "publication": {
+  "mode": "cocher",
+  "auto": true,
+  "heures": [
+   "12:30",
+   "19:00"
+  ],
+  "compte": ""
+ },
+ "creation": {
+  "auto": false,
+  "par_jour": 2,
+  "heures": [
+   "07:15",
+   "16:15"
+  ]
+ },
+ "hashtags": {
+  "fixes": [
+   "#insolite",
+   "#actu",
+   "#buzz"
+  ],
+  "nombre": 6
+ }
+}

@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Buzz Insolite</title>
+<meta name="theme-color" content="#e8283c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="logo-192.png">
+<link rel="apple-touch-icon" href="logo-apple.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Buzz Insolite">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Concept : une salle de rédaction « flash info ». Chaque sujet est une dépêche avec ses compteurs (vues, j'aime,
+   commentaires) ; chaque vidéo une « bande » avec son voyant (nouvelle, à publier, publiée, écartée). */
+:root {
+  --bg: #f1f0ee; --surface: #ffffff; --surface-2: #f7f6f4; --line: #dedad4;
+  --fg: #17140f; --muted: #6a645b; --accent: #e8283c; --accent-fg: #ffffff; --jaune: #ffd600;
+  --ok: #1f7f55; --warn: #a86f06; --off: #857e74;
+  --f-display: "Poppins", "Arial Black", system-ui, sans-serif;
+  --f-body: "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, monospace;
+  --r: 12px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121110; --surface: #1c1a18; --surface-2: #24211e; --line: #34302b;
+  --fg: #efebe5; --muted: #a39b90; --accent: #ff4d5e; --ok: #4cc08a; --warn: #e0a83a; --off: #7b746a; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #121110; --surface: #1c1a18; --surface-2: #24211e; --line: #34302b;
+  --fg: #efebe5; --muted: #a39b90; --accent: #ff4d5e; --ok: #4cc08a; --warn: #e0a83a; --off: #7b746a; color-scheme: dark; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font: 15px/1.5 var(--f-body); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.wrap { max-width: 780px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+a { color: inherit; }
+header.top { position: sticky; top: 0; z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); padding-top: env(safe-area-inset-top, 0px); }
+.top .wrap { padding-block: 12px 0; display: grid; gap: 8px; }
+.brand { display: flex; align-items: center; gap: 10px; }
+.pastille { font: 800 13px var(--f-display); background: var(--accent); color: #fff; border-radius: 8px; padding: 3px 9px; letter-spacing: .02em; }
+h1 { font: 800 20px/1.1 var(--f-display); margin: 0; }
+.brand small { margin-left: auto; color: var(--muted); font-size: 13px; text-align: right; }
+nav.tabs { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; margin-inline: -4px; }
+nav.tabs::-webkit-scrollbar { display: none; }
+nav.tabs button { background: none; border: 0; padding: 9px 11px 11px; color: var(--muted); font-weight: 700; font-size: 14px; border-bottom: 3px solid transparent; cursor: pointer; white-space: nowrap; }
+nav.tabs button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+.count { font: 500 11px var(--f-mono); background: var(--surface-2); border: 1px solid var(--line); border-radius: 99px; padding: 1px 6px; margin-left: 4px; }
+main { padding-block: 16px 64px; }
+h2 { font: 700 18px/1.2 var(--f-display); margin: 4px 0 12px; }
+h3 { font: 700 15px/1.3 var(--f-display); margin: 0 0 6px; }
+.muted { color: var(--muted); }
+.petit { font-size: 13px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; margin-bottom: 12px; }
+.bandeau { border-radius: var(--r); padding: 10px 14px; margin-bottom: 12px; border: 1px solid var(--line); background: var(--surface-2); }
+.bandeau.alerte { border-color: var(--accent); }
+.btn { border: 1px solid var(--line); background: var(--surface-2); border-radius: 10px; padding: 9px 13px; cursor: pointer; font-weight: 700; min-height: 42px; }
+.btn.primaire { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+.btn.ok { background: var(--ok); color: #fff; border-color: var(--ok); }
+.btn.mini { padding: 5px 10px; min-height: 34px; font-size: 13px; }
+.btn:disabled { opacity: .5; cursor: default; }
+.rang { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chiffres { display: flex; flex-wrap: wrap; gap: 6px 14px; font: 500 13px var(--f-mono); color: var(--muted); margin: 6px 0; }
+.chiffres b { color: var(--fg); }
+.tag { display: inline-block; font-size: 12px; font-weight: 700; border-radius: 99px; padding: 2px 9px; border: 1px solid var(--line); background: var(--surface-2); }
+.tag.nouvelle, .tag.nouveau { border-color: var(--warn); color: var(--warn); }
+.tag.a_publier { border-color: var(--ok); color: var(--ok); }
+.tag.publiee, .tag.utilise { background: var(--ok); color: #fff; border-color: var(--ok); }
+.tag.ecartee, .tag.ignore, .tag.echec, .tag.sans_source { color: var(--off); }
+.video { display: grid; grid-template-columns: 96px 1fr; gap: 12px; }
+.vignette { width: 96px; aspect-ratio: 9/16; border-radius: 9px; background: #000 center/cover; border: 0; cursor: pointer; position: relative; }
+.vignette::after { content: "▶"; position: absolute; inset: auto 6px 6px auto; color: #fff; font-size: 18px; text-shadow: 0 1px 4px #000; }
+.desc { white-space: pre-wrap; background: var(--surface-2); border-radius: 9px; padding: 8px 10px; font-size: 13px; margin: 8px 0; }
+details summary { cursor: pointer; font-weight: 700; }
+label.champ { display: grid; gap: 4px; margin-bottom: 10px; font-weight: 700; font-size: 14px; }
+label.champ span { font-weight: 400; color: var(--muted); font-size: 13px; }
+input[type=text], input[type=number], input[type=password], input[type=time], select, textarea { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-2); }
+textarea { min-height: 70px; }
+.case { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; font-weight: 700; }
+.case input { width: 20px; height: 20px; }
+.grille2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.barre { height: 10px; border-radius: 99px; background: var(--surface-2); border: 1px solid var(--line); overflow: hidden; margin: 8px 0 4px; }
+.barre > div { height: 100%; background: var(--accent); width: 0; transition: width .6s; }
+#avancement { border-color: var(--accent); }
+.journal li { margin-bottom: 6px; }
+.journal time { font: 500 12px var(--f-mono); color: var(--muted); margin-right: 6px; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 10px; z-index: 20; max-width: min(92vw, 520px); font-weight: 700; }
+dialog { border: 0; border-radius: 14px; padding: 0; background: #000; max-width: 96vw; }
+dialog video { display: block; max-height: 86vh; max-width: 96vw; }
+dialog form { position: absolute; top: 6px; right: 6px; }
+.filtres { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.filtres button { border: 1px solid var(--line); background: var(--surface); border-radius: 99px; padding: 5px 12px; cursor: pointer; font-weight: 700; font-size: 13px; }
+.filtres button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.creneau { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+.creneau:last-child { border-bottom: 0; }
+@media (max-width: 420px) { .video { grid-template-columns: 78px 1fr; } .vignette { width: 78px; } }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="brand"><span class="pastille">INSOLITE</span><h1>Buzz Insolite</h1><small id="etat">…</small></div>
+  <nav class="tabs" role="tablist">
+    <button data-tab="buzz" aria-selected="true">🔥 Buzz<span class="count" id="n-buzz"></span></button>
+    <button data-tab="videos">🎬 Vidéos<span class="count" id="n-videos"></span></button>
+    <button data-tab="creer">➕ Créer</button>
+    <button data-tab="publication">📅 Publication<span class="count" id="n-pub"></span></button>
+    <button data-tab="journal">📜 Journal</button>
+    <button data-tab="reglages">⚙️ Réglages</button>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <div class="bandeau alerte" id="demo" hidden>Mode démo : données d'exemple. Sur ton site GitHub, ce sont les vraies données du robot.</div>
+  <div class="bandeau alerte" id="nojeton" hidden>Pour que les boutons marchent, ajoute ta clé GitHub dans <a href="#reglages" data-go="reglages">⚙️ Réglages</a>.</div>
+  <div class="card" id="avancement" hidden>
+    <div class="rang"><b id="av-etape">…</b><span class="muted petit" id="av-temps"></span></div>
+    <div class="barre"><div id="av-barre"></div></div>
+    <div class="muted petit" id="av-detail"></div>
+  </div>
+
+  <!-- ================= BUZZ ================= -->
+  <section data-vue="buzz">
+    <h2>🔥 Ce qui buzze en ce moment</h2>
+    <p class="muted petit" id="buzz-info"></p>
+    <div class="rang" style="margin-bottom:12px">
+      <button class="btn" id="buzz-maj">🔄 Chercher maintenant</button>
+      <button class="btn primaire" id="buzz-meilleurs">🎬 Vidéos des 2 meilleurs sujets</button>
+    </div>
+    <div class="filtres" id="buzz-filtres">
+      <button data-f="nouveau" aria-pressed="true">Pas encore traités</button><button data-f="utilise">Déjà en vidéo</button>
+      <button data-f="ignore">Ignorés</button><button data-f="tous">Tous</button>
+    </div>
+    <div id="buzz-liste"></div>
+  </section>
+
+  <!-- ================= VIDÉOS ================= -->
+  <section data-vue="videos" hidden>
+    <h2>🎬 Mes vidéos</h2>
+    <div class="filtres" id="vid-filtres">
+      <button data-f="nouvelle" aria-pressed="true">À regarder</button><button data-f="a_publier">À publier</button>
+      <button data-f="publiee">Publiées</button><button data-f="autres">Écartées / échecs</button><button data-f="tous">Toutes</button>
+    </div>
+    <div id="vid-liste"></div>
+  </section>
+
+  <!-- ================= CRÉER ================= -->
+  <section data-vue="creer" hidden>
+    <h2>➕ Créer des vidéos</h2>
+    <div class="card">
+      <h3>🎲 Une série d'un seul bouton</h3>
+      <p class="muted petit">Le robot prend les meilleurs sujets de l'onglet 🔥 Buzz pas encore traités, cherche les articles, écrit,
+        fait vérifier les faits, enregistre la voix, trouve de vraies vidéos libres de droits et monte tout. Environ 6 à 8 minutes par vidéo.</p>
+      <label class="champ">Nombre de vidéos <input type="number" id="c-nombre" min="1" max="10" value="2"></label>
+      <button class="btn primaire" id="c-serie">🎬 Lancer la série</button>
+    </div>
+    <div class="card">
+      <h3>✍️ Un sujet de mon choix</h3>
+      <label class="champ">Le sujet <span>Ex. « Un village autrichien change de nom après des moqueries »</span>
+        <input type="text" id="c-libre" maxlength="200"></label>
+      <button class="btn primaire" id="c-un">🎬 Créer cette vidéo</button>
+    </div>
+    <div class="card">
+      <h3>🧪 Essai gratuit</h3>
+      <p class="muted petit">Fabrique une vidéo d'essai sans IA ni images (juste pour vérifier que le robot marche).</p>
+      <button class="btn" id="c-essai">Lancer un essai</button>
+    </div>
+  </section>
+
+  <!-- ================= PUBLICATION ================= -->
+  <section data-vue="publication" hidden>
+    <h2>📅 Publication sur TikTok</h2>
+    <div class="card" id="pub-resume"></div>
+    <div class="card"><h3>Prochains créneaux</h3><div id="pub-cal"></div></div>
+    <div class="card"><h3>File « À publier » (dans l'ordre)</h3><div id="pub-file"></div></div>
+  </section>
+
+  <!-- ================= JOURNAL ================= -->
+  <section data-vue="journal" hidden>
+    <h2>📜 Journal du robot</h2>
+    <ul class="journal" id="journal"></ul>
+  </section>
+
+  <!-- ================= RÉGLAGES ================= -->
+  <section data-vue="reglages" hidden>
+    <h2>⚙️ Réglages</h2>
+    <details class="card" id="aide"><summary>🚀 Mise en route (à faire une fois)</summary>
+      <ol class="petit">
+        <li>Crée une clé GitHub « fine-grained » (github.com → Settings → Developer settings → Personal access tokens) pour le
+          dépôt <b>buzz-insolite</b>, droits <b>Actions</b> et <b>Contents</b> en « Read and write ». Colle-la ci-dessous.</li>
+        <li>Dans Buffer, relie le compte TikTok de la chaîne, puis écris son nom dans « Compte TikTok » ci-dessous et touche « Tester Buffer ».</li>
+        <li>Choisis le mode de publication et les heures, puis « Enregistrer les réglages ».</li>
+      </ol>
+    </details>
+    <div class="card">
+      <h3>🔑 Connexion à GitHub (sur cet appareil)</h3>
+      <label class="champ">Dépôt <span>laisser vide sur le site GitHub (deviné tout seul)</span><input type="text" id="r-repo" placeholder="tiranno06/buzz-insolite"></label>
+      <label class="champ">Clé GitHub <input type="password" id="r-jeton" autocomplete="off"></label>
+      <div class="rang"><button class="btn primaire" id="r-cle">Enregistrer sur cet appareil</button>
+        <button class="btn" id="r-oublier">Oublier la clé</button></div>
+    </div>
+    <form id="form-reglages">
+      <div class="card">
+        <h3>📤 Publication</h3>
+        <label class="champ">Quand une vidéo est fabriquée…
+          <select id="r-mode"><option value="cocher">je la regarde puis je coche « À publier »</option>
+            <option value="auto">elle va directement dans la file « À publier » (si les faits sont vérifiés)</option></select></label>
+        <label class="case"><input type="checkbox" id="r-pub-auto"> Publication automatique aux heures ci-dessous</label>
+        <div class="grille2"><label class="champ">1re heure <input type="time" id="r-pub-h1"></label>
+          <label class="champ">2e heure <input type="time" id="r-pub-h2"></label></div>
+        <label class="champ">Compte TikTok dans Buffer <span>nom du compte de la chaîne (obligatoire si plusieurs comptes sont reliés)</span>
+          <input type="text" id="r-compte"></label>
+        <button class="btn" type="button" id="r-buffer">🔌 Tester Buffer</button>
+      </div>
+      <div class="card">
+        <h3>🤖 Création automatique</h3>
+        <label class="case"><input type="checkbox" id="r-cre-auto"> Créer une vidéo toute seule aux heures ci-dessous</label>
+        <div class="grille2"><label class="champ">1re heure <input type="time" id="r-cre-h1"></label>
+          <label class="champ">2e heure <input type="time" id="r-cre-h2"></label></div>
+      </div>
+      <div class="card">
+        <h3>🔥 Détection du buzz</h3>
+        <div class="grille2">
+          <label class="champ">Vues minimum <input type="number" id="r-vues" min="0" step="50000"></label>
+          <label class="champ">J'aime minimum <input type="number" id="r-jaime" min="0" step="1000"></label>
+          <label class="champ">Commentaires minimum <input type="number" id="r-com" min="0" step="100"></label>
+          <label class="champ">Vidéos de moins de (heures) <input type="number" id="r-heures" min="6" max="240"></label>
+        </div>
+        <label class="champ">Comptes TikTok d'actualité surveillés <span>un par ligne, sans @</span><textarea id="r-comptes" rows="6"></textarea></label>
+        <div class="petit muted" id="r-comptes-etat"></div>
+      </div>
+      <div class="card">
+        <h3>🎙️ Voix et description</h3>
+        <div class="grille2">
+          <label class="champ">Voix <select id="r-voix"><option value="fr_FR-tom-medium">Tom (homme)</option>
+            <option value="fr_FR-siwis-medium">Siwis (femme)</option><option value="fr_FR-upmc-medium">UPMC (femme)</option>
+            <option value="fr_FR-gilles-low">Gilles (homme)</option></select></label>
+          <label class="champ">Vitesse <span>0,80 = choisi le 24/11 ; plus petit = plus rapide</span><input type="number" id="r-vitesse" min="0.65" max="1.1" step="0.01"></label>
+        </div>
+        <div class="grille2">
+          <label class="champ">Hashtags de la chaîne <span>ajoutés à chaque vidéo</span><input type="text" id="r-tags"></label>
+          <label class="champ">Nombre de hashtags <input type="number" id="r-ntags" min="3" max="10"></label>
+        </div>
+      </div>
+      <button class="btn primaire" type="submit">💾 Enregistrer les réglages</button>
+    </form>
+  </section>
+</main>
+
+<dialog id="lecteur"><form method="dialog"><button class="btn mini">✕ Fermer</button></form><video id="lv" controls playsinline></video></dialog>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const store = { get(k, d) { try { return localStorage.getItem(k) ?? d; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch {} }, del(k) { try { localStorage.removeItem(k); } catch {} } };
+function repoDuSite() {
+  const m = location.hostname.match(/^([\w-]+)\.github\.io$/), d = location.pathname.split("/").filter(Boolean)[0];
+  return m && d ? `${m[1]}/${d}` : "";
+}
+const conn = () => ({ repo: store.get("bi_repo", "") || repoDuSite(), token: store.get("bi_jeton", ""), branch: "main" });
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const nb = n => (n || 0) >= 1e6 ? (n / 1e6).toLocaleString("fr-FR", { maximumFractionDigits: 1 }) + " M"
+  : (n || 0) >= 1e3 ? Math.round(n / 1e3).toLocaleString("fr-FR") + " k" : String(n || 0);
+const quand = iso => iso ? new Date(iso).toLocaleString("fr-FR", { timeZone: "Europe/Paris", weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "";
+const LIB = { nouvelle: "À regarder", a_publier: "À publier", publiee: "Publiée", ecartee: "Écartée", echec: "Échec de publication",
+  nouveau: "Nouveau", utilise: "En vidéo", ignore: "Ignoré", sans_source: "Sans article", echec_s: "Échec" };
+function toast(t) { $(".toast")?.remove(); const d = document.createElement("div"); d.className = "toast"; d.setAttribute("role", "status"); d.textContent = t; document.body.append(d); setTimeout(() => d.remove(), 4800); }
+
+// ---------------- données d'exemple (mode démo) ----------------
+const ilya = h => new Date(Date.now() - h * 3600e3).toISOString();
+const DEMO_DATA = {
+  "buzz.json": { maj: ilya(0.5), lues: 312, retenues: 9, comptes: { hugodecrypte: { ok: true, videos: 30 }, brut: { ok: true, videos: 30 }, bfmtv: { ok: false, videos: 0 } },
+    sujets: [
+      { id: "a1", titre: "Un village autrichien change de nom", resume: "Lassés des moqueries, les habitants ont voté.", vues: 4200000, jaime: 310000, commentaires: 12400, score: 9100, statut: "nouveau", insolite: 9,
+        videos: [{ compte: "hugodecrypte", url: "#", vues: 2600000, jaime: 190000, commentaires: 8100 }, { compte: "brut", url: "#", vues: 1600000, jaime: 120000, commentaires: 4300 }], hashtags_viraux: ["autriche", "insolite"] },
+      { id: "a2", titre: "Quatre volontaires sortent d'un an sur « Mars »", resume: "Fin de la mission CHAPEA 2 de la NASA.", vues: 1300000, jaime: 98000, commentaires: 3100, score: 4200, statut: "utilise", video_id: "20261124-131000", insolite: 8,
+        videos: [{ compte: "franceinfo", url: "#", vues: 1300000, jaime: 98000, commentaires: 3100 }] } ] },
+  "file.json": { videos: [
+    { id: "20261124-131000", titre: "1 an enfermés sur « Mars »", sujet: "Quatre volontaires sortent d'un an sur « Mars »", description: "Ils ont passé 378 jours dans une fausse base martienne 🚀",
+      question: "Tu tiendrais 1 an enfermé ?", hashtags: ["#nasa", "#mars", "#insolite", "#actu", "#buzz"], duree: 62.4, statut: "nouvelle", verifie: true, ecrans_illustres: 13,
+      verification: { par: "groq:llama-3.3-70b-versatile", corrigees: 1, retirees: 0 }, sources: [{ media: "Euronews", titre: "La NASA termine sa 2e mission martienne simulée", lien: "#" }], url: "", cree_le: ilya(2) } ] },
+  "journal.json": { evenements: [{ date: ilya(2), niveau: "info", texte: "🎬 Nouvelle vidéo « 1 an enfermés sur « Mars » » (62 s, 13 écrans illustrés)" },
+    { date: ilya(0.5), niveau: "info", texte: "🔥 Buzz : 1 sujet(s) au-dessus des seuils" }] },
+  "reglages.json": { buzz: { comptes: ["hugodecrypte", "brut", "bfmtv"], vues_min: 500000, jaime_min: 10000, commentaires_min: 1000, heures: 72 },
+    video: { voix: "fr_FR-tom-medium", vitesse: 0.8 }, publication: { mode: "cocher", auto: true, heures: ["12:30", "19:00"], compte: "" },
+    creation: { auto: false, par_jour: 2, heures: ["07:15", "16:15"] }, hashtags: { fixes: ["#insolite", "#actu", "#buzz"], nombre: 6 } },
+  "garde.json": {}
+};
+const NOMS = Object.keys(DEMO_DATA);
+let D = null, DEMO = false;
+
+async function lire(nom) {
+  const c = conn();
+  if (c.repo && c.token) {
+    try {
+      const r = await fetch(`https://api.github.com/repos/${c.repo}/contents/docs/donnees/${nom}?ref=${c.branch}&t=${Date.now()}`,
+        { headers: { Authorization: `Bearer ${c.token}`, Accept: "application/vnd.github.raw+json" } });
+      if (r.ok) return r.json();
+    } catch {}
+  }
+  const r = await fetch(`donnees/${nom}?t=${Date.now()}`);
+  if (!r.ok) throw new Error(nom);
+  return r.json();
+}
+async function charger() {
+  try {
+    const res = await Promise.all(NOMS.map(n => lire(n).catch(e => { if (n === "file.json") throw e; return null; })));
+    D = Object.fromEntries(NOMS.map((n, i) => [n, res[i] ?? structuredClone(DEMO_DATA[n])]));
+    DEMO = false;
+  } catch { D = structuredClone(DEMO_DATA); DEMO = true; }
+  $("#demo").hidden = !DEMO; $("#nojeton").hidden = DEMO || !!conn().token;
+  $("#etat").textContent = DEMO ? "démo" : "à jour " + new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+  rendre(); remplirReglages();
+}
+
+// ---------------- ordres au robot ----------------
+async function ordre(workflow, inputs, msg) {
+  if (DEMO) { toast("Démo : sur ton site GitHub, ce bouton enverra l'ordre au robot."); return false; }
+  const c = conn();
+  if (!c.repo || !c.token) { montrer("reglages"); toast("Ajoute d'abord ta clé GitHub."); return false; }
+  try {
+    const r = await fetch(`https://api.github.com/repos/${c.repo}/actions/workflows/${workflow}/dispatches`, {
+      method: "POST", headers: { Authorization: `Bearer ${c.token}`, Accept: "application/vnd.github+json" },
+      body: JSON.stringify({ ref: c.branch, inputs }) });
+    if (r.status === 204) { toast(msg); setTimeout(charger, 75e3); if (workflow === "creer.yml") suivre(true); return true; }
+    toast(r.status === 401 || r.status === 403 ? "Clé refusée : il faut le droit Actions en « Read and write »."
+      : r.status === 404 ? "Dépôt ou tâche introuvable : vérifie le nom du dépôt." : `GitHub a répondu ${r.status}. Réessaie dans un moment.`);
+  } catch { toast("Pas de connexion à GitHub. Réessaie quand le réseau revient."); }
+  return false;
+}
+const commande = (action, id, texte = "", msg = "Ordre envoyé au robot (1 à 2 min).") => ordre("commande.yml", { action, id: id || "", texte }, msg);
+const creer = (inputs, msg) => ordre("creer.yml", { nombre: "1", sujet: "", libre: "", origine: "site", simulation: "0", ...inputs }, msg);
+
+// ---------------- rendu ----------------
+let fBuzz = "nouveau", fVid = "nouvelle";
+function carteSujet(s) {
+  const comptes = [...new Set((s.videos || []).map(v => "@" + v.compte))].join(", ");
+  const statut = s.statut || "nouveau";
+  return `<div class="card">
+    <div class="rang"><span class="tag ${statut}">${LIB[statut] || statut}</span>${s.insolite >= 7 ? '<span class="tag">🤯 très insolite</span>' : ""}
+      ${s.presse ? '<span class="tag">📰 presse</span>' : ""}</div>
+    <h3 style="margin-top:8px">${esc(s.titre)}</h3>
+    <div class="chiffres"><span>👁️ <b>${nb(s.vues)}</b> vues</span><span>❤️ <b>${nb(s.jaime)}</b></span><span>💬 <b>${nb(s.commentaires)}</b></span><span>⚡ score ${nb(s.score)}</span></div>
+    <p class="petit" style="margin:4px 0">${esc(s.resume)}</p>
+    <p class="muted petit" style="margin:4px 0">Vu chez ${esc(comptes) || "—"}
+      ${(s.videos || []).map((v, i) => v.url && v.url !== "#" ? ` · <a href="${esc(v.url)}" target="_blank" rel="noopener">vidéo ${i + 1}</a>` : "").join("")}</p>
+    <div class="rang" style="margin-top:8px">
+      ${statut === "utilise" && s.video_id ? `<button class="btn mini" data-voir="${esc(s.video_id)}">🎬 Voir la vidéo</button>` : ""}
+      <button class="btn mini primaire" data-a="sujet_creer" data-id="${esc(s.id)}">🎬 En faire une vidéo</button>
+      ${statut === "ignore" ? `<button class="btn mini" data-a="sujet_remettre" data-id="${esc(s.id)}">↩️ Remettre</button>`
+        : `<button class="btn mini" data-a="sujet_ignorer" data-id="${esc(s.id)}">🙈 Ignorer</button>`}
+    </div></div>`;
+}
+function rendreBuzz() {
+  const B = D["buzz.json"] || {}, S = B.sujets || [];
+  const ok = Object.values(B.comptes || {}).filter(c => c.ok).length, tot = Object.keys(B.comptes || {}).length;
+  const R = D["reglages.json"]?.buzz || {};
+  $("#buzz-info").textContent = B.maj ? `Relevé ${quand(B.maj)} : ${B.lues || 0} vidéos lues sur ${ok}/${tot} comptes, ${B.retenues || 0} au-dessus des seuils `
+    + `(${nb(R.vues_min)} vues, ${nb(R.jaime_min)} j'aime, ${nb(R.commentaires_min)} commentaires). Nouveau relevé toutes les 2 heures.`
+    : "Pas encore de relevé : touche « Chercher maintenant ».";
+  const liste = S.filter(s => fBuzz === "tous" || (s.statut || "nouveau") === fBuzz || (fBuzz === "ignore" && ["sans_source", "echec"].includes(s.statut)));
+  $("#buzz-liste").innerHTML = liste.map(carteSujet).join("") || `<p class="muted">Rien ici pour l'instant.</p>`;
+  $("#n-buzz").textContent = S.filter(s => (s.statut || "nouveau") === "nouveau").length || "";
+}
+function carteVideo(v) {
+  const mini = DEMO ? "" : `miniatures/${v.id}.jpg`;
+  const ver = v.verification ? `vérifiée par ${esc(v.verification.par)} (${v.verification.corrigees} corrigée(s), ${v.verification.retirees} retirée(s))`
+    : v.verifie === false ? "⚠️ faits NON vérifiés (aucune 2e IA disponible)" : "";
+  const sources = (v.sources || []).map(s => `<li><a href="${esc(s.lien)}" target="_blank" rel="noopener">${esc(s.media)} — ${esc(s.titre)}</a></li>`).join("");
+  const boutons = {
+    nouvelle: `<button class="btn mini ok" data-a="a_publier" data-id="${v.id}">✅ À publier</button><button class="btn mini primaire" data-a="publier_maintenant" data-id="${v.id}">🚀 Publier maintenant</button><button class="btn mini" data-a="ecarter" data-id="${v.id}">🛑 Écarter</button>`,
+    a_publier: `<button class="btn mini primaire" data-a="publier_maintenant" data-id="${v.id}">🚀 Publier maintenant</button><button class="btn mini" data-a="retirer" data-id="${v.id}">↩️ Retirer de la file</button>`,
+    echec: `<button class="btn mini ok" data-a="a_publier" data-id="${v.id}">🔁 Remettre dans la file</button>`,
+    ecartee: `<button class="btn mini" data-a="retirer" data-id="${v.id}">↩️ Remettre à regarder</button>`,
+    publiee: `<button class="btn mini" data-a="lien" data-id="${v.id}">🔗 Ajouter le lien TikTok</button>`
+  }[v.statut] || "";
+  return `<div class="card video">
+    <button class="vignette" style="background-image:url('${mini}')" data-play="${esc(v.url)}" aria-label="Regarder"></button>
+    <div>
+      <div class="rang"><span class="tag ${v.statut}">${LIB[v.statut] || v.statut}</span><span class="muted petit">${quand(v.cree_le)} · ${Math.round(v.duree || 0)} s</span>
+        ${v.essai ? '<span class="tag">🧪 essai</span>' : ""}</div>
+      <h3 style="margin-top:6px">${esc(v.titre)}</h3>
+      <div class="muted petit">Sujet : ${esc(v.sujet)}${v.buzz?.vues ? ` · 👁️ ${nb(v.buzz.vues)} · 💬 ${nb(v.buzz.commentaires)}` : ""}</div>
+      <div class="desc">${esc(v.description)}\n\n${esc(v.question)}\n\n${esc((v.hashtags || []).join(" "))}</div>
+      <div class="rang">${boutons}<button class="btn mini" data-a="copier" data-id="${v.id}">📋 Copier la description</button>
+        ${v.url ? `<a class="btn mini" href="${esc(v.url)}" target="_blank" rel="noopener">⬇️ Télécharger</a>` : ""}</div>
+      ${v.echec_publication ? `<p class="petit" style="color:var(--accent)">❌ ${esc(v.echec_publication)}</p>` : ""}
+      <details style="margin-top:8px"><summary class="petit">Sources, vérification, texte, modifier</summary>
+        <p class="petit">${ver} · ${v.ecrans_illustres ?? "?"} écrans illustrés${(v.credits || []).length ? " · images : " + esc(v.credits.join(", ")) : ""}</p>
+        <ul class="petit">${sources}</ul>
+        <p class="petit muted">${esc((v.texte || []).join(" "))}</p>
+        <label class="champ petit">Description<textarea id="d-${v.id}">${esc(v.description)}</textarea></label>
+        <label class="champ petit">Question<input type="text" id="q-${v.id}" value="${esc(v.question)}"></label>
+        <label class="champ petit">Hashtags<input type="text" id="h-${v.id}" value="${esc((v.hashtags || []).join(" "))}"></label>
+        <div class="rang"><button class="btn mini" data-a="texte" data-id="${v.id}">💾 Enregistrer le texte</button>
+          <button class="btn mini" data-a="supprimer" data-id="${v.id}">🗑️ Supprimer</button></div>
+      </details>
+    </div></div>`;
+}
+function rendreVideos() {
+  const V = D["file.json"].videos || [];
+  const liste = V.filter(v => fVid === "tous" || v.statut === fVid || (fVid === "autres" && ["ecartee", "echec"].includes(v.statut)));
+  $("#vid-liste").innerHTML = liste.map(carteVideo).join("") || `<p class="muted">Aucune vidéo ici.</p>`;
+  $("#n-videos").textContent = V.filter(v => v.statut === "nouvelle").length || "";
+  $("#n-pub").textContent = V.filter(v => v.statut === "a_publier").length || "";
+}
+function creneauxAVenir(heures, jours = 4) {
+  const out = [], now = new Date();
+  for (let j = 0; j < jours; j++) for (const h of heures || []) {
+    const [hh, mm] = h.split(":").map(Number);
+    const d = new Date(now); d.setDate(d.getDate() + j);
+    const paris = new Date(d.toLocaleString("en-US", { timeZone: "Europe/Paris" }));
+    const ecart = d - paris; paris.setHours(hh, mm, 0, 0);
+    const t = new Date(paris.getTime() + ecart);
+    if (t > now) out.push(t);
+  }
+  return out.sort((a, b) => a - b);
+}
+function rendrePublication() {
+  const R = D["reglages.json"] || {}, P = R.publication || {}, V = D["file.json"].videos || [];
+  const file = V.filter(v => v.statut === "a_publier" && !v.essai).sort((a, b) => (a.coche_le || a.cree_le || "").localeCompare(b.coche_le || b.cree_le || ""));
+  const jours = (P.heures || []).length ? file.length / (P.heures || []).length : 0;
+  $("#pub-resume").innerHTML = `<p style="margin:0"><b>${P.auto ? "🟢 Publication automatique activée" : "⏸️ Publication automatique coupée"}</b>
+    · ${(P.heures || []).join(" et ")} (heure de Paris)<br><span class="muted petit">Mode : ${P.mode === "auto" ? "les vidéos vérifiées vont directement dans la file" : "tu coches « À publier » toi-même"}
+    · ${file.length} vidéo(s) en attente${jours ? `, de quoi tenir ${jours.toLocaleString("fr-FR", { maximumFractionDigits: 1 })} jour(s)` : ""}
+    ${file.length <= 2 ? " · 🔴 pense à lancer une série" : ""}${P.compte ? " · compte Buffer : " + esc(P.compte) : " · ⚠️ compte TikTok de Buffer non choisi"}</span></p>`;
+  const cr = creneauxAVenir(P.heures);
+  $("#pub-cal").innerHTML = cr.slice(0, 8).map((t, i) => `<div class="creneau"><span>${quand(t.toISOString())}</span><span class="${file[i] ? "" : "muted"}">${file[i] ? esc(file[i].titre) : "— rien à publier —"}</span></div>`).join("") || `<p class="muted">Aucune heure de publication réglée.</p>`;
+  $("#pub-file").innerHTML = file.map((v, i) => `<div class="creneau"><span>${i + 1}. ${esc(v.titre)}</span><span class="rang"><button class="btn mini primaire" data-a="publier_maintenant" data-id="${v.id}">🚀</button><button class="btn mini" data-a="retirer" data-id="${v.id}">↩️</button></span></div>`).join("") || `<p class="muted">Vide : coche des vidéos « À publier » dans 🎬 Vidéos.</p>`;
+}
+function rendreJournal() {
+  $("#journal").innerHTML = ((D["journal.json"] || {}).evenements || []).slice(0, 120).map(e =>
+    `<li><time>${quand(e.date)}</time>${e.niveau === "erreur" ? "⚠️ " : ""}${esc(e.texte)}</li>`).join("");
+}
+function rendre() { rendreBuzz(); rendreVideos(); rendrePublication(); rendreJournal(); }
+
+// ---------------- réglages ----------------
+function remplirReglages() {
+  const R = D["reglages.json"] || {};
+  $("#r-repo").value = store.get("bi_repo", ""); $("#r-jeton").value = "";
+  $("#r-jeton").placeholder = conn().token ? "clé enregistrée sur cet appareil ✓" : "github_pat_…";
+  const P = R.publication || {}, C = R.creation || {}, B = R.buzz || {}, V = R.video || {}, H = R.hashtags || {};
+  $("#r-mode").value = P.mode || "cocher"; $("#r-pub-auto").checked = !!P.auto;
+  $("#r-pub-h1").value = (P.heures || [])[0] || ""; $("#r-pub-h2").value = (P.heures || [])[1] || ""; $("#r-compte").value = P.compte || "";
+  $("#r-cre-auto").checked = !!C.auto; $("#r-cre-h1").value = (C.heures || [])[0] || ""; $("#r-cre-h2").value = (C.heures || [])[1] || "";
+  $("#r-vues").value = B.vues_min ?? 500000; $("#r-jaime").value = B.jaime_min ?? 10000; $("#r-com").value = B.commentaires_min ?? 1000;
+  $("#r-heures").value = B.heures ?? 72; $("#r-comptes").value = (B.comptes || []).join("\n");
+  const E = (D["buzz.json"] || {}).comptes || {};
+  $("#r-comptes-etat").textContent = Object.keys(E).length ? "Dernier relevé : " + Object.entries(E).map(([k, e]) => `${e.ok ? "🟢" : "🔴"} @${k}`).join("  ") : "";
+  $("#r-voix").value = V.voix || "fr_FR-tom-medium"; $("#r-vitesse").value = V.vitesse ?? 0.8;
+  $("#r-tags").value = (H.fixes || []).join(" "); $("#r-ntags").value = H.nombre ?? 6;
+}
+$("#form-reglages").onsubmit = e => {
+  e.preventDefault();
+  const heures = (...ids) => ids.map(i => $(i).value).filter(Boolean);
+  const R = {
+    publication: { mode: $("#r-mode").value, auto: $("#r-pub-auto").checked, heures: heures("#r-pub-h1", "#r-pub-h2"), compte: $("#r-compte").value.trim() },
+    creation: { auto: $("#r-cre-auto").checked, heures: heures("#r-cre-h1", "#r-cre-h2") },
+    buzz: { vues_min: +$("#r-vues").value, jaime_min: +$("#r-jaime").value, commentaires_min: +$("#r-com").value, heures: +$("#r-heures").value,
+      comptes: $("#r-comptes").value.split(/\s+/).map(x => x.replace(/^@/, "")).filter(Boolean) },
+    video: { voix: $("#r-voix").value, vitesse: +$("#r-vitesse").value },
+    hashtags: { fixes: $("#r-tags").value.split(/\s+/).filter(Boolean), nombre: +$("#r-ntags").value }
+  };
+  commande("reglages", "", JSON.stringify(R), "Réglages envoyés au robot (1 à 2 min).");
+};
+$("#r-cle").onclick = () => {
+  const t = $("#r-jeton").value.trim(), r = $("#r-repo").value.trim();
+  if (r) store.set("bi_repo", r); else store.del("bi_repo");
+  if (t) store.set("bi_jeton", t);
+  toast("Enregistré sur cet appareil."); charger();
+};
+$("#r-oublier").onclick = () => { store.del("bi_jeton"); toast("Clé oubliée sur cet appareil."); charger(); };
+$("#r-buffer").onclick = () => commande("buffer_test", "", "", "Test envoyé : le résultat arrive dans 📜 Journal (1 à 2 min).");
+
+// ---------------- avancement de la fabrication ----------------
+let suiviActif = false, demandeLe = 0;
+async function lireAvancement() {
+  const c = conn(); if (!c.repo) return null;
+  const url = c.token ? `https://api.github.com/repos/${c.repo}/contents/avancement.json?ref=avancement&t=${Date.now()}` : null;
+  if (!url) return null;
+  const r = await fetch(url, { headers: { Authorization: `Bearer ${c.token}`, Accept: "application/vnd.github.raw+json" } });
+  return r.ok ? r.json() : null;
+}
+async function suivre(nouvelle) {
+  if (nouvelle) demandeLe = Date.now();
+  if (suiviActif && !nouvelle) return;
+  suiviActif = true;
+  try {
+    const a = await lireAvancement().catch(() => null);
+    const recent = a && Date.now() - new Date(a.maj).getTime() < 15 * 60e3;
+    if (a && recent && a.etat === "en_cours") {
+      $("#avancement").hidden = false; $("#av-etape").textContent = "⏳ " + a.etape;
+      $("#av-barre").style.width = a.pourcent + "%"; $("#av-detail").textContent = [a.titre, a.detail].filter(Boolean).join(" — ");
+      $("#av-temps").textContent = `${Math.round(a.pourcent)} % · encore ~${Math.max(1, Math.round(a.reste_s / 60))} min`;
+      suiviActif = false; return setTimeout(suivre, 8000);
+    }
+    if (Date.now() - demandeLe < 4 * 60e3) {
+      $("#avancement").hidden = false; $("#av-etape").textContent = "📨 Commande envoyée, le robot démarre…";
+      $("#av-barre").style.width = "2%"; $("#av-detail").textContent = "Une fabrication déjà en cours passe d'abord."; $("#av-temps").textContent = "";
+      suiviActif = false; return setTimeout(suivre, 8000);
+    }
+    if (a && recent && a.etat !== "en_cours") { $("#avancement").hidden = false; $("#av-etape").textContent = (a.etat === "fini" ? "✅ " : "⚠️ ") + a.etape;
+      $("#av-barre").style.width = (a.pourcent || 0) + "%"; $("#av-detail").textContent = ""; $("#av-temps").textContent = ""; charger(); }
+    else $("#avancement").hidden = true;
+  } finally { suiviActif = false; }
+}
+
+// ---------------- navigation et boutons ----------------
+function montrer(v) {
+  $$("[data-vue]").forEach(s => s.hidden = s.dataset.vue !== v);
+  $$("nav.tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === v));
+  history.replaceState(null, "", "#" + v); window.scrollTo(0, 0);
+}
+$$("nav.tabs button").forEach(b => b.onclick = () => montrer(b.dataset.tab));
+$$("#buzz-filtres button").forEach(b => b.onclick = () => { fBuzz = b.dataset.f; $$("#buzz-filtres button").forEach(x => x.setAttribute("aria-pressed", x === b)); rendreBuzz(); });
+$$("#vid-filtres button").forEach(b => b.onclick = () => { fVid = b.dataset.f; $$("#vid-filtres button").forEach(x => x.setAttribute("aria-pressed", x === b)); rendreVideos(); });
+$("#buzz-maj").onclick = () => ordre("buzz.yml", {}, "Recherche lancée : nouveaux sujets dans 5 à 10 minutes.");
+$("#buzz-meilleurs").onclick = () => creer({ nombre: "2" }, "Série de 2 vidéos lancée (environ 15 minutes).");
+$("#c-serie").onclick = () => { const n = Math.max(1, Math.min(10, +$("#c-nombre").value || 1)); creer({ nombre: String(n) }, `Série de ${n} vidéo(s) lancée (environ ${n * 7} minutes).`); };
+$("#c-un").onclick = () => { const t = $("#c-libre").value.trim(); if (!t) return toast("Écris d'abord le sujet."); creer({ libre: t }, "Vidéo lancée (environ 7 minutes)."); };
+$("#c-essai").onclick = () => creer({ simulation: "1" }, "Essai lancé (environ 3 minutes).");
+
+const armes = new Set();
+function arme(b, cle) {
+  if (armes.has(cle)) { armes.delete(cle); return true; }
+  armes.add(cle); const old = b.textContent; b.textContent = "Confirmer ?";
+  setTimeout(() => { armes.delete(cle); b.textContent = old; }, 3500); return false;
+}
+document.addEventListener("click", async e => {
+  const go = e.target.closest("[data-go]"); if (go) { e.preventDefault(); return montrer(go.dataset.go); }
+  const voir = e.target.closest("[data-voir]"); if (voir) { fVid = "tous"; montrer("videos"); rendreVideos(); return; }
+  const play = e.target.closest("[data-play]");
+  if (play) { if (!play.dataset.play) return toast("Aperçu disponible sur ton site GitHub."); $("#lv").src = play.dataset.play; $("#lecteur").showModal(); $("#lv").play().catch(() => {}); return; }
+  const b = e.target.closest("[data-a]"); if (!b) return;
+  const { a, id } = b.dataset, v = (D["file.json"].videos || []).find(x => x.id === id);
+  if (a === "copier") {
+    try { await navigator.clipboard.writeText(`${v.description}\n\n${v.question}\n\n${(v.hashtags || []).join(" ")}`); toast("Description copiée ✓"); }
+    catch { toast("Copie impossible ici : sélectionne le texte à la main."); }
+    return;
+  }
+  if (a === "sujet_creer") return creer({ sujet: id }, "Vidéo lancée sur ce sujet (environ 7 minutes).");
+  if (a === "sujet_ignorer" || a === "sujet_remettre") return commande(a, id);
+  if (a === "lien") { const l = prompt("Lien de la vidéo sur TikTok :"); if (l) commande("publiee", id, l.trim()); return; }
+  if (a === "texte") return commande("texte", id, JSON.stringify({ description: $("#d-" + id).value, question: $("#q-" + id).value, hashtags: $("#h-" + id).value }));
+  if (a === "publier_maintenant") { if (!arme(b, a + id)) return; return commande(a, id, "", "Envoi à TikTok par Buffer (1 à 2 min)."); }
+  if (a === "supprimer") { if (!arme(b, a + id)) return; return commande(a, id); }
+  if (["a_publier", "retirer", "ecarter"].includes(a)) return commande(a, id);
+});
+$("#lecteur").addEventListener("close", () => { $("#lv").pause(); $("#lv").removeAttribute("src"); });
+
+(function () {           // clé transmise par un lien privé « #cle=… » (autre appareil)
+  const m = location.hash.match(/^#cle=([^&]+)/); if (!m) return;
+  store.set("bi_jeton", decodeURIComponent(m[1])); history.replaceState(null, "", location.pathname);
+  setTimeout(() => toast("Clé GitHub installée sur cet appareil ✓"), 400);
+})();
+const VUES = ["buzz", "videos", "creer", "publication", "journal", "reglages"];
+if (VUES.includes(location.hash.slice(1))) montrer(location.hash.slice(1));
+charger().then(() => suivre(false));
+setInterval(() => { if (!document.hidden) charger(); }, 120e3);
+if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+name: Garde (publication et création automatiques)
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"       # GitHub saute parfois des réveils : un créneau reste valable 3 heures
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write                 # lancer « Créer des vidéos » aux heures de création automatique
+
+concurrency:
+  group: garde
+  cancel-in-progress: false
+
+jobs:
+  garde:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Publier ou créer si c'est l'heure
+        run: python -m robot.publication_auto
