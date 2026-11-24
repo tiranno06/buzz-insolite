@@ -124,11 +124,16 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
     avancement.etape(pre + "Recherche des vraies images libres", 52)
     deja = set()
     for i, p in enumerate(script["phrases"][:-1]):
-        p["media"] = None if simulation() else images.trouver(p["image"], dossier, i, deja, journal)
+        p["media"] = None if simulation() else images.trouver(p["image"], dossier, i, deja, journal, script.get("theme_image", ""))
         avancement.progres(52 + 15 * (i + 1) / len(script["phrases"]))
     script["phrases"][-1]["media"] = None
     script["musique"] = R["video"].get("musique", True); script["bruitages"] = R["video"].get("bruitages", True)
     script["transitions"] = R["video"].get("transitions", False)
+    lieu_cite = str(script.get("lieu") or "").split(",")[0].split("(")[0].strip()
+    texte_articles = " ".join((a.get("texte") or "") + " " + a.get("titre", "") for a in articles).lower()
+    if lieu_cite and lieu_cite.lower() not in texte_articles:
+        journal(f"  carte écartée : « {lieu_cite} » n'est pas cité dans les articles")
+        script["lieu"] = ""
     if not simulation() and R["video"].get("carte", True) and format_ != "semaine" and script.get("lieu") and len(script["phrases"]) > 3:
         lieu = carte.trouver_lieu(script["lieu"], script.get("coordonnees"))
         if lieu:                                              # 2e écran : la carte qui zoome sur le lieu de l'actu

@@ -16,6 +16,7 @@ REGLES_SUJET = """Règles à respecter quel que soit le sujet :
 
 CONSIGNE = """Tu écris le texte d'une vidéo TikTok de 60 à 75 secondes pour la chaîne française « Buzz et insolite ».
 Public : francophones de 15 à 40 ans. Style : rythmé, phrases courtes, langage simple, effet « tu savais ? ».
+Reste centré sur le SUJET qui buzze : chaque phrase doit en parler (pas de digression sur un autre thème).
 Structure :
 1. Accroche choc dans la 1re phrase (moins de 12 mots) qui donne envie de rester.
 2. Les faits, du plus étonnant au plus précis (lieu, date, chiffres).
@@ -25,15 +26,19 @@ Structure :
 Donne 13 à 17 phrases (20 à 24 pour les 3 actus de la semaine). Pour chaque phrase :
 - "voix" : la phrase dite (nombres ÉCRITS EN LETTRES, sigles épelés avec des points, ex. « U.L.R. ») ;
 - "ecrit" : la même phrase pour les sous-titres, avec les nombres en chiffres ;
-- "ecran" : facultatif, un gros texte à afficher (3 mots max ou un chiffre avec son unité, ex. « 378 JOURS ») ;
-- "image" : ce qu'on doit voir, 2 à 5 mots en ANGLAIS pour chercher une vidéo libre de droits (ex. « storm waves lighthouse »).
+- "ecran" : SEULEMENT pour un chiffre fort, une date, un nom propre ou un mot-clé de la phrase (3 mots max, ex. « 378 JOURS »,
+  « LETO », « 99/100 ») ; sinon "" (jamais un mot abstrait comme « contradiction » ou « détails ») ;
+- "image" : ce qu'on VOIT à l'écran pendant cette phrase, en 2 à 4 mots ANGLAIS concrets et filmables, qui collent au sujet
+  (personnes, objets, lieux : « rapper microphone stage », « gamer playing console », « storm waves lighthouse ») ;
+  jamais de mot abstrait (controversy, details, contradiction, realism).
 Aussi :
 - "titre" : titre court de la vidéo (6 mots max) ;
 - "accroche" : texte de couverture (4 mots max, en majuscules) ;
 - "description" : 1 à 2 phrases pour la description TikTok, avec un émoji ;
 - "question" : la question à poser en commentaire ;
 - "hashtags" : 4 hashtags précis sur le sujet (sans #) ;
-- "lieu" : le lieu principal, le plus précis possible (« Saint-Malo, France ») ou "" ;
+- "theme_image" : 2 ou 3 mots ANGLAIS concrets qui illustrent tout le sujet (ex. « video game controller », « Mars habitat ») ;
+- "lieu" : le lieu où l'actu se PASSE, cité dans les articles (« Saint-Malo, France »), sinon "" (jamais un siège social) ;
 - "coordonnees" : [latitude, longitude] de ce lieu, ou [] ;
 - "humeur" : l'ambiance de la musique : "neutre", "tension" (mystère, danger, suspense) ou "joie" (drôle, heureux) ;
 - "sources" : les médias utilisés.

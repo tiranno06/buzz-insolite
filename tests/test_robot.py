@@ -109,6 +109,12 @@ class TestNouveautes(unittest.TestCase):
         self.assertEqual(noms.count("dun_dun.wav"), 1)
         self.assertIn("ding.wav", noms)
 
+    def test_images_pertinentes(self):
+        from robot import images
+        self.assertTrue(images.pertinent("rapper microphone stage", "microphone, music, singer"))
+        self.assertFalse(images.pertinent("rapper microphone stage", "thistle, flower, insect"))
+        self.assertFalse(images.pertinent("angry face", "emoji, green screen, angry"))
+
     def test_musique_existe(self):
         from robot import sons
         for h in sons.HUMEURS:

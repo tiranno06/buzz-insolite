@@ -41,7 +41,7 @@ def pexels_video(requete, deja):
     q = urllib.parse.urlencode({"query": requete, "per_page": 12, "size": "medium"})
     d = _json(f"{PEXELS}/videos/search?{q}", {"Authorization": cle})
     for v in d.get("videos") or []:
-        if f"pexels-v{v['id']}" in deja or (v.get("duration") or 0) < 4:
+        if f"pexels-v{v['id']}" in deja or (v.get("duration") or 0) < 4 or not pertinent(requete, v.get("url", "").replace("-", " ")):
             continue
         fichiers = [f for f in v.get("video_files") or [] if f.get("file_type") == "video/mp4" and (f.get("height") or 0) >= 720]
         if not fichiers:
@@ -65,6 +65,18 @@ def pexels_photo(requete, deja):
     return None
 
 
+A_EVITER = ("green screen", "greenscreen", "chroma", "emoji", "background", "abstract", "animation", "cartoon", "loop", "particles")
+
+
+def pertinent(requete, etiquettes):
+    """Le média parle-t-il de ce qu'on cherche ? (un mot de la recherche dans ses mots-clés, aucun mot « à éviter »)."""
+    e = str(etiquettes).lower()
+    if any(m in e for m in A_EVITER):
+        return False
+    mots = [m for m in re.findall(r"[a-z]+", requete.lower()) if len(m) > 3]
+    return not mots or any(m.rstrip("s") in e for m in mots)
+
+
 def pixabay_video(requete, deja):
     """Pixabay (clé gratuite PIXABAY_API_KEY ; usage commercial permis, vidéos téléchargées, jamais liées)."""
     cle = os.environ.get("PIXABAY_API_KEY", "").strip()
@@ -72,7 +84,7 @@ def pixabay_video(requete, deja):
         return None
     q = urllib.parse.urlencode({"key": cle, "q": requete[:100], "per_page": 12, "safesearch": "true"})
     for v in _json(f"https://pixabay.com/api/videos/?{q}").get("hits") or []:
-        if f"pixabay-v{v['id']}" in deja or (v.get("duration") or 0) < 4:
+        if f"pixabay-v{v['id']}" in deja or (v.get("duration") or 0) < 4 or not pertinent(requete, v.get("tags", "")):
             continue
         tailles = v.get("videos") or {}
         f = next((tailles[t] for t in ("medium", "large", "small") if (tailles.get(t) or {}).get("url")), None)
@@ -88,7 +100,7 @@ def pixabay_photo(requete, deja):
         return None
     q = urllib.parse.urlencode({"key": cle, "q": requete[:100], "per_page": 10, "image_type": "photo", "safesearch": "true"})
     for p in _json(f"https://pixabay.com/api/?{q}").get("hits") or []:
-        if f"pixabay-p{p['id']}" not in deja and p.get("largeImageURL"):
+        if f"pixabay-p{p['id']}" not in deja and p.get("largeImageURL") and pertinent(requete, p.get("tags", "")):
             return dict(type="photo", url=p["largeImageURL"], id=f"pixabay-p{p['id']}", credit=f"{p.get('user', 'Pixabay')} / Pixabay")
     return None
 
@@ -160,8 +172,16 @@ def _commons(requete, deja, video=False):
 CHERCHEURS = (pexels_video, pixabay_video, nasa_video, commons_video, pexels_photo, pixabay_photo, commons_photo)
 
 
-def trouver(requete, dossier, n, deja, journal=print):
-    """Télécharge un média pour la requête ; None = écran de texte. `deja` : identifiants déjà utilisés."""
+def trouver(requete, dossier, n, deja, journal=print, theme=""):
+    """Télécharge un média pour la requête (puis pour le thème de la vidéo) ; None = écran de texte, plutôt qu'une image
+    sans rapport. `deja` : identifiants déjà utilisés."""
+    m = _trouver(requete, dossier, n, deja, journal)
+    if not m and theme and theme.lower() != requete.lower():
+        m = _trouver(theme, dossier, n, deja, journal)
+    return m
+
+
+def _trouver(requete, dossier, n, deja, journal=print):
     for chercheur in CHERCHEURS:
         if chercheur is nasa_video and not any(m in requete.lower() for m in ("space", "nasa", "mars", "moon", "rocket",
                                                                                "astronaut", "planet", "satellite", "earth from")):
