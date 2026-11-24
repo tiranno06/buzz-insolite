@@ -1,7 +1,212 @@
 {
- "maj": "",
- "comptes": {},
- "lues": 0,
- "retenues": 0,
- "sujets": []
+ "maj": "2026-11-24T16:44:03+01:00",
+ "comptes": {
+  "hugodecrypte": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T16:42:37+01:00"
+  },
+  "brut": {
+   "ok": false,
+   "videos": 0,
+   "le": "2026-11-24T16:42:41+01:00"
+  },
+  "franceinfo": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T16:42:44+01:00"
+  },
+  "leparisien": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T16:42:48+01:00"
+  },
+  "20minutesfrance": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T16:42:52+01:00"
+  },
+  "euronews.fr": {
+   "ok": false,
+   "videos": 0,
+   "le": "2026-11-24T16:42:57+01:00"
+  },
+  "bfmtv": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T16:43:01+01:00"
+  },
+  "lemondefr": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T16:43:04+01:00"
+  },
+  "konbini": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T16:43:08+01:00"
+  },
+  "tf1info": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T16:43:11+01:00"
+  },
+  "loopsider": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T16:43:15+01:00"
+  },
+  "ouestfrance": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T16:43:18+01:00"
+  },
+  "lefigarofr": {
+   "ok": false,
+   "videos": 0,
+   "le": "2026-11-24T16:43:23+01:00"
+  },
+  "le.huffpost": {
+   "ok": true,
+   "videos": 22,
+   "le": "2026-11-24T16:43:27+01:00"
+  }
+ },
+ "lues": 322,
+ "retenues": 3,
+ "sujets": [
+  {
+   "titre": "Leto accusé de misogynie dans GTA VI",
+   "resume": "Le rappeur Leto est critiqué pour son refus de jouer le personnage Lucia dans GTA VI. Les accusations de misogynie relancent le débat sur la représentation dans les jeux vidéo.",
+   "mots_cles": [
+    "GTA VI",
+    "Leto",
+    "misogynie",
+    "jeux vidéo",
+    "représentation"
+   ],
+   "hashtags": [
+    "gta6",
+    "leto",
+    "misogynie",
+    "jeuxvideo",
+    "lucia"
+   ],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711443423324048662",
+     "compte": "bfmtv",
+     "url": "https://www.tiktok.com/@bfmtv/video/7711443423324048662",
+     "vues": 891100,
+     "jaime": 67000,
+     "commentaires": 2016,
+     "partages": 6316,
+     "date": 1795460341,
+     "texte": "GTA VI: le rappeur Leto est accusé de misogynie après avoir refusé de jouer Lucia #gta #gta6 #leto #lucia #anyme"
+    }
+   ],
+   "id": "87dc77c9fd",
+   "score": 182,
+   "derniere_vue": 1795535043.6691308,
+   "vues": 891100,
+   "jaime": 67000,
+   "commentaires": 2016,
+   "hashtags_viraux": [
+    "gta",
+    "gta6",
+    "leto",
+    "lucia",
+    "anyme"
+   ],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T16:44:03+01:00"
+  },
+  {
+   "titre": "Macron inaugure nouvelle ligne Airbus A320 Toulouse",
+   "resume": "Emmanuel Macron visite l'usine Airbus de Toulouse pour l'inauguration d'une nouvelle ligne d'assemblage de l'A320. Un événement marquant pour l'industrie aéronautique française.",
+   "mots_cles": [
+    "Airbus",
+    "A320",
+    "Macron",
+    "Toulouse",
+    "industrie"
+   ],
+   "hashtags": [
+    "airbus",
+    "a320",
+    "macron",
+    "toulouse",
+    "aéronautique"
+   ],
+   "insolite": 2,
+   "videos": [
+    {
+     "id": "7711327867719814423",
+     "compte": "bfmtv",
+     "url": "https://www.tiktok.com/@bfmtv/video/7711327867719814423",
+     "vues": 924000,
+     "jaime": 94100,
+     "commentaires": 1009,
+     "partages": 4489,
+     "date": 1795433441,
+     "texte": "Ce lundi, le président de la République s'est rendu dans l'usine d'Airbus à Toulouse dans le cadre de l'inauguration d'une nouvelle ligne d'assemblage de l'A320. #macron #lycee #airbus"
+    }
+   ],
+   "id": "67ccec0235",
+   "score": 147,
+   "derniere_vue": 1795535043.6691308,
+   "vues": 924000,
+   "jaime": 94100,
+   "commentaires": 1009,
+   "hashtags_viraux": [
+    "macron",
+    "lycee",
+    "airbus"
+   ],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T16:44:03+01:00"
+  },
+  {
+   "titre": "Policier vole vélo à cycliste à Toulouse",
+   "resume": "Un policier a pris le vélo d'une cycliste à Toulouse, déclenchant une polémique virale. La Dépêche du Midi et des images partagées sur les réseaux sociaux alimentent le débat.",
+   "mots_cles": [
+    "police",
+    "vol",
+    "vélo",
+    "Toulouse",
+    "polémique"
+   ],
+   "hashtags": [
+    "policevolvélo",
+    "toulouse",
+    "polémiquesociale",
+    "justice",
+    "cycliste"
+   ],
+   "insolite": 9,
+   "videos": [
+    {
+     "id": "7710976210918001952",
+     "compte": "leparisien",
+     "url": "https://www.tiktok.com/@leparisien/video/7710976210918001952",
+     "vues": 647800,
+     "jaime": 48500,
+     "commentaires": 1270,
+     "partages": 6469,
+     "date": 1795351553,
+     "texte": "À Toulouse, la scène fait le tour des réseaux sociaux depuis vendredi. Sur des images publiées par @le.media.toulousain, on voit un policier se jeter sur une cycliste en pleine rue, lui prendre son vélo puis pédaler tant bien que mal, la propriétaire courant derrière lui. Selon La Dépêche du Midi et ici Occitanie, l'agent poursuivait un lycéen soupçonné d'avoir lancé un projectile en marge d'une m"
+    }
+   ],
+   "id": "8446b43f08",
+   "score": 79,
+   "derniere_vue": 1795535043.6691308,
+   "vues": 647800,
+   "jaime": 48500,
+   "commentaires": 1270,
+   "hashtags_viraux": [],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T16:44:03+01:00"
+  }
+ ]
 }
