@@ -242,6 +242,38 @@ class TestControleQualite(unittest.TestCase):
         self.assertEqual(controle.ecrans_noirs(f, [0, 2]), {1})
 
 
+class TestAnalyseDesErreurs(unittest.TestCase):
+    def test_journal_garde_les_erreurs(self):
+        from robot import commun
+        commun.noter("⚠️ « Sujet » abandonné : essai", "erreur")
+        commun.ecrire("journal.json", {"evenements": []})          # comme un retour à la version en ligne
+        commun.rejouer_journal()
+        self.assertIn("abandonné", lire("journal.json")["evenements"][0]["texte"])
+        commun.A_ENVOYER.clear()
+
+    def test_verification_seulement_phrases_nouvelles(self):
+        from robot import ia
+        vu = {}
+        def fausse_ia(consigne, texte, **k):
+            vu["texte"] = texte
+            return {"problemes": [{"phrase": 0, "correction": ""}, {"phrase": 2, "correction": "Il y a 3 chats."}]}, "test:modele"
+        garde, ia.demander_json = ia.demander_json, fausse_ia
+        try:
+            s = {"phrases": [dict(voix="a", ecrit="Accroche."), dict(voix="b", ecrit="Fait vérifié."),
+                             dict(voix="c", ecrit="Nouvelle phrase."), dict(voix="d", ecrit="Question ?")]}
+            ecrire.verifier(s, [], seulement=[2])
+        finally:
+            ia.demander_json = garde
+        self.assertIn("[À JUGER] Nouvelle", vu["texte"]); self.assertNotIn("[À JUGER] Accroche", vu["texte"])
+        self.assertEqual(len(s["phrases"]), 4)                                  # la phrase 0 (non jugée) reste
+        self.assertEqual(s["phrases"][2]["voix"], "Il y a trois chats.")        # corrigée, nombres en lettres
+
+    def test_modele_retire_oublie(self):
+        from robot import ia
+        ia._mort("groq", "vieux-modele", 404, '{"message": "The model does not exist"}')
+        self.assertIn(("groq", "vieux-modele"), ia._MORTS)
+
+
 class TestParallele(unittest.TestCase):
     def test_sujets_differents_par_machine(self):
         from robot import principal

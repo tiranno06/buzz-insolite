@@ -146,11 +146,21 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
     if not simulation():
         script = ecrire.verifier(script, articles, journal)
         avancement.etape(pre + "Contrôle 1/4 : le texte", 26)
-        avant = [p["ecrit"] for p in script["phrases"]]
-        script = controle.controle_texte(script, articles, B, journal)
-        if [p["ecrit"] for p in script["phrases"]] != avant:          # phrases réécrites : faits revérifiés
-            script = ecrire.verifier(script, articles, journal)
-        if len(script["phrases"]) < 9:
+        # Compléter / corriger puis revérifier SEULEMENT les phrases nouvelles ou réécrites (une phrase déjà vérifiée ne
+        # repasse jamais : l'IA ne juge pas deux fois pareil), 3 allers-retours avant d'abandonner le sujet.
+        for tour in range(3):
+            deja_vues = {p["ecrit"] for p in script["phrases"]}
+            try:
+                script = controle.controle_texte(script, articles, B, journal)
+            except LookupError:
+                if tour == 2:
+                    raise
+            nouvelles = [i for i, p in enumerate(script["phrases"]) if p["ecrit"] not in deja_vues]
+            if nouvelles:
+                script = ecrire.verifier(script, articles, journal, seulement=nouvelles)
+            if len(script["phrases"]) >= 9 and controle.duree_estimee(script["phrases"]) >= 62 and not controle.regles_texte(script):
+                break
+        if len(script["phrases"]) < 9 or controle.duree_estimee(script["phrases"]) < 60:
             raise LookupError(f"seulement {len(script['phrases'])} phrases vérifiées : trop court pour une vidéo d'1 minute")
 
     avancement.etape(pre + "Voix et calage des mots", 30)

@@ -192,6 +192,7 @@ dialog form { position: absolute; top: 6px; right: 6px; }
   <!-- ================= JOURNAL ================= -->
   <section data-vue="journal" hidden>
     <h2>📜 Journal du robot</h2>
+    <label class="case"><input type="checkbox" id="j-erreurs"> ⚠️ Problèmes seulement (erreurs, sujets abandonnés, vidéos bloquées)</label>
     <ul class="journal" id="journal"></ul>
   </section>
 
@@ -521,7 +522,8 @@ function rendrePublication() {
   $("#pub-file").innerHTML = file.map((v, i) => `<div class="creneau"><span>${i + 1}. ${esc(v.titre)}</span><span class="rang"><button class="btn mini primaire" data-a="publier_maintenant" data-id="${v.id}">🚀</button><button class="btn mini" data-a="retirer" data-id="${v.id}">↩️</button></span></div>`).join("") || `<p class="muted">Vide : coche des vidéos « À publier » dans 🎬 Vidéos.</p>`;
 }
 function rendreJournal() {
-  $("#journal").innerHTML = ((D["journal.json"] || {}).evenements || []).slice(0, 120).map(e =>
+  const seulement = $("#j-erreurs").checked;
+  $("#journal").innerHTML = ((D["journal.json"] || {}).evenements || []).filter(e => !seulement || e.niveau !== "info").slice(0, 120).map(e =>
     `<li><time>${quand(e.date)}</time>${e.niveau === "erreur" ? "⚠️ " : ""}${esc(e.texte)}</li>`).join("");
 }
 function rendre() { rendreBuzz(); rendreVideos(); rendrePublication(); rendreStats(); rendreJournal(); }
@@ -649,6 +651,7 @@ document.addEventListener("click", async e => {
   if (a === "supprimer") { if (!arme(b, a + id)) return; return commande(a, id); }
   if (["a_publier", "retirer", "ecarter"].includes(a)) return commande(a, id);
 });
+$("#j-erreurs").onchange = rendreJournal;
 $("#lecteur").addEventListener("close", () => { $("#lv").pause(); $("#lv").removeAttribute("src"); });
 
 // ---------------- appli installable (Android) et connexion d'un autre appareil ----------------

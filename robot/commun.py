@@ -77,13 +77,27 @@ def reglages():
     return R
 
 
+A_ENVOYER = []          # lignes du journal pas encore enregistrées dans le dépôt (rejouées par depot.enregistrer)
+
+
 def noter(texte, niveau="info"):
-    """Ajoute une ligne au journal affiché sur le site (200 dernières gardées)."""
-    j = lire("journal.json", {"evenements": []})
-    j["evenements"].insert(0, {"date": iso(), "niveau": niveau, "texte": texte})
-    del j["evenements"][200:]
-    ecrire("journal.json", j)
+    """Ajoute une ligne au journal affiché sur le site (200 dernières gardées). La ligne est aussi gardée en mémoire jusqu'au
+    prochain enregistrement : sans cela, une erreur notée hors d'un enregistrement était effacée quand le robot repartait de
+    la version en ligne (les sujets abandonnés n'apparaissaient jamais sur le site)."""
+    e = {"date": iso(), "niveau": niveau, "texte": texte}
+    A_ENVOYER.append(e)
+    rejouer_journal()
     print(f"[{niveau}] {texte}", flush=True)
+
+
+def rejouer_journal():
+    """Remet dans journal.json les lignes en attente qui n'y sont pas (après un retour à la version en ligne)."""
+    j = lire("journal.json", {"evenements": []})
+    presentes = {(x["date"], x["texte"]) for x in j["evenements"]}
+    manquantes = [e for e in A_ENVOYER if (e["date"], e["texte"]) not in presentes]
+    if manquantes:
+        j["evenements"] = sorted(manquantes + j["evenements"], key=lambda x: x["date"], reverse=True)[:200]
+        ecrire("journal.json", j)
 
 
 def simulation():

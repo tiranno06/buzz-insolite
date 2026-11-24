@@ -48,9 +48,16 @@ Aussi :
 Réponds uniquement en JSON : {"titre":…, "accroche":…, "phrases":[{"voix":…,"ecrit":…,"ecran":…,"image":…}], …}"""
 
 CONSIGNE_VERIF = """Tu es vérificateur des faits. On te donne des articles de presse et le texte d'une vidéo TikTok.
-Pour chaque phrase du texte, dis si elle est confirmée par les articles. Signale aussi toute phrase qui ne respecte pas ces règles :
+Juge SEULEMENT les phrases marquées « À JUGER ». Une phrase est BONNE si :
+- son fait est confirmé par les articles (même dit autrement) ;
+- ou c'est une transition, une accroche, une question au spectateur, ou une explication générale évidente et sans risque
+  (« L'A320 est un avion d'Airbus », « Toulouse est la ville de l'aéronautique »).
+Une phrase est à CORRIGER si un fait est faux, exagéré ou absent des articles : donne alors une CORRECTION fidèle aux articles
+(même longueur, même style). Ne retire une phrase (correction "") que si aucune correction honnête n'est possible.
+Signale aussi toute phrase qui ne respecte pas ces règles :
 """ + REGLES_SUJET + """
-Réponds uniquement en JSON : {"ok": true/false, "problemes": [{"phrase": numéro, "raison": "…", "correction": "phrase corrigée ou vide pour la retirer"}]}"""
+Ne signale PAS les phrases bonnes. Réponds uniquement en JSON :
+{"problemes": [{"phrase": numéro, "raison": "…", "correction": "phrase corrigée (nombres en chiffres) ou vide pour la retirer"}]}"""
 
 
 def _articles_texte(articles):
@@ -108,10 +115,15 @@ def ecrire(sujet, articles, journal=print, format_="buzz"):
     return d
 
 
-def verifier(script, articles, journal=print):
-    """2e avis par une IA d'un autre fournisseur. Les phrases non confirmées sont corrigées ou retirées."""
+def verifier(script, articles, journal=print, seulement=None):
+    """2e avis par une IA d'un autre fournisseur. Les phrases non confirmées sont CORRIGÉES (retirées seulement si aucune
+    correction n'est possible). `seulement` : numéros des phrases à juger (les autres, déjà vérifiées, ne bougent plus)."""
+    from . import nombres
     fourn = script.get("auteur_ia", ":").split(":")[0]
-    lignes = "\n".join(f"{i}. {p['ecrit']}" for i, p in enumerate(script["phrases"]))
+    a_juger = set(range(len(script["phrases"]))) if seulement is None else set(seulement)
+    if not a_juger:
+        return script
+    lignes = "\n".join(f"{i}. {'[À JUGER] ' if i in a_juger else ''}{p['ecrit']}" for i, p in enumerate(script["phrases"]))
     try:
         d, qui = ia.demander_json(CONSIGNE_VERIF, f"ARTICLES :\n{_articles_texte(articles)}\n\nTEXTE :\n{lignes}",
                                   temperature=0.1, exclure=(fourn,), journal=journal)
@@ -125,16 +137,17 @@ def verifier(script, articles, journal=print):
             i = int(pb.get("phrase"))
         except (TypeError, ValueError):
             continue
-        if not 0 <= i < len(script["phrases"]):
+        if not 0 <= i < len(script["phrases"]) or i not in a_juger:
             continue
         corr = str(pb.get("correction") or "").strip()
         if corr and i != len(script["phrases"]) - 1:
-            script["phrases"][i].update(voix=corr, ecrit=corr); corrigees += 1
+            script["phrases"][i].update(voix=nombres.dire_les_nombres(corr), ecrit=corr); corrigees += 1
         elif i not in (0, len(script["phrases"]) - 1) and not script["phrases"][i].get("reponse"):
             script["phrases"].pop(i); retirees += 1
     script["verifie"] = True
-    script["verification"] = {"par": qui, "corrigees": corrigees, "retirees": retirees,
-                              "problemes": [str(p.get("raison", ""))[:160] for p in d.get("problemes") or []][:8]}
+    avant = script.get("verification") or {"corrigees": 0, "retirees": 0, "problemes": []}
+    script["verification"] = {"par": qui, "corrigees": avant["corrigees"] + corrigees, "retirees": avant["retirees"] + retirees,
+                              "problemes": (avant["problemes"] + [str(p.get("raison", ""))[:160] for p in d.get("problemes") or []])[:10]}
     journal(f"  vérifié par {qui} : {corrigees} phrase(s) corrigée(s), {retirees} retirée(s)")
     return script
 

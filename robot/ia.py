@@ -16,14 +16,21 @@ FOURNISSEURS = {
     "mistral": dict(cle="MISTRAL_API_KEY", url="https://api.mistral.ai/v1/chat/completions",
                     modeles=("mistral-small-latest", "ministral-14b-2512", "ministral-8b-latest")),
     "groq": dict(cle="GROQ_API_KEY", url="https://api.groq.com/openai/v1/chat/completions",
-                 modeles=("llama-3.3-70b-versatile", "openai/gpt-oss-120b", "llama-3.1-8b-instant")),
+                 modeles=("llama-3.3-70b-versatile", "openai/gpt-oss-120b", "openai/gpt-oss-20b")),
     "gemini": dict(cle="GEMINI_API_KEY", url="https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
-                   modeles=("gemini-flash-latest", "gemini-flash-lite-latest", "gemini-2.5-flash-lite")),
+                   modeles=("gemini-flash-latest", "gemini-flash-lite-latest", "gemini-2.5-flash")),
     "openrouter": dict(cle="OPENROUTER_API_KEY", url="https://openrouter.ai/api/v1/chat/completions", modeles=()),
 }
 ORDRE = ("mistral", "groq", "gemini", "openrouter")
 UTILISES = {}                          # fournisseur → nombre d'appels réussis (affiché dans le journal)
 _SAUTES = set()                        # fournisseurs à quota épuisé pendant ce passage du robot
+_MORTS = set()                         # (fournisseur, modèle) retirés par le fournisseur : plus jamais essayés pendant ce passage
+RETIRE = ("does not exist", "no longer available", "not found", "decommissioned", "deprecated", "is not supported")
+
+
+def _mort(fourn, modele, code, corps):
+    if code in (400, 404) and any(m in corps.lower() for m in RETIRE):
+        _MORTS.add((fourn, modele))
 
 
 class AucuneIA(Exception):
@@ -85,7 +92,7 @@ def demander_json(consigne, texte, temperature=0.7, max_tokens=4000, exclure=(),
     derniere = "aucune clé d'IA gratuite (secrets MISTRAL_API_KEY, GROQ_API_KEY, GEMINI_API_KEY, OPENROUTER_API_KEY)"
     for fourn in [f for f in disponibles() if f not in exclure]:
         modeles = _modeles_openrouter() if fourn == "openrouter" else FOURNISSEURS[fourn]["modeles"]
-        for modele in modeles:
+        for modele in [m for m in modeles if (fourn, m) not in _MORTS]:
             for essai in range(3):
                 try:
                     rep = _appel(fourn, modele, messages, temperature, max_tokens)
@@ -94,6 +101,7 @@ def demander_json(consigne, texte, temperature=0.7, max_tokens=4000, exclure=(),
                 except urllib.error.HTTPError as e:
                     corps = e.read()[:400].decode("utf-8", "ignore"); bas = corps.lower()
                     derniere = f"{fourn} {modele} {e.code} : {corps[:200]}"
+                    _mort(fourn, modele, e.code, corps)
                     if e.code == 429 and not any(m in bas for m in ("quota", "per day", "exhausted", "(tpd)", "(rpd)")) and essai < 2:
                         time.sleep(10 * (essai + 1)); continue               # trop de demandes à la minute : on patiente
                     if e.code in (500, 502, 503, 504) and essai < 2:
@@ -129,7 +137,7 @@ def regarder_json(consigne, texte, images, journal=print, exclure=()):
     derniere = "aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY)"
     for fourn in [f for f in ("gemini", "mistral", "groq") if os.environ.get(FOURNISSEURS[f]["cle"]) and f not in exclure
                   and f not in _SAUTES]:
-        for modele in VISION[fourn]:
+        for modele in [m for m in VISION[fourn] if (fourn, m) not in _MORTS]:
             for essai in range(2):
                 try:
                     rep = _appel(fourn, modele, messages, 0.1, 2500)
@@ -137,6 +145,7 @@ def regarder_json(consigne, texte, images, journal=print, exclure=()):
                     return lire_json(rep), f"{fourn}:{modele}"
                 except urllib.error.HTTPError as e:
                     corps = e.read()[:300].decode("utf-8", "ignore"); derniere = f"{fourn} {modele} {e.code} : {corps[:160]}"
+                    _mort(fourn, modele, e.code, corps)
                     if e.code in (429, 500, 502, 503, 504) and essai == 0 and "per day" not in corps.lower():
                         time.sleep(15); continue
                     break

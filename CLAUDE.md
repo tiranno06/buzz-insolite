@@ -96,6 +96,17 @@ demande) sur la branche avancement et partent dans l'ordre (revérifié toutes l
 récentes les plus vues juste en dessous (« sous_seuils », score divisé par 2) ; doublons fusionnés (`buzz.sans_doublons`,
 `meme_sujet` : 60 % des mots en commun) ; onglet Buzz : « 🏆 Les 5 sujets qui buzzent le plus » toujours visible (statut affiché).
 
+## Analyse des erreurs du 24/11 (demande de l'auteur) et corrections
+- Sujet abandonné « 8 phrases vérifiées » : la 2e IA retirait tout ce qui n'était pas mot pour mot dans les articles, et chaque
+  revérification de TOUT le texte retirait d'autres phrases → `ecrire.verifier` CORRIGE (retire seulement si impossible),
+  accepte transitions / questions / contexte évident, et `seulement=` : après une réécriture, seules les phrases nouvelles
+  sont jugées ; 3 allers-retours « compléter puis vérifier » avant d'abandonner (`principal.fabriquer`).
+- Plantage du contrôle des images (image d'une vidéo trop courte) → `controle._image_de` lit la 1re image, sinon écran fautif.
+- Erreurs absentes du journal du site (effacées par le retour à la version en ligne) → `commun.A_ENVOYER` + `rejouer_journal`
+  dans `depot.enregistrer` ; filtre « ⚠️ Problèmes seulement » dans l'onglet Journal.
+- Modèles d'IA retirés (404 « does not exist / no longer available ») → `ia._MORTS`, plus réessayés pendant le passage.
+- Préventif : Release créée en 3 essais (`depot.publier_release`), enregistrement en 10 essais, barre d'avancement 2 essais.
+
 ## Fonctionnement
 - `robot/buzz.py` (buzz.yml, toutes les 2 h) : yt-dlp lit les comptes d'actualité suivis (`buzz.comptes`), garde les vidéos
   au-dessus des seuils, l'IA les regroupe par sujet → `docs/donnees/buzz.json` (statut nouveau / utilise / ignore / sans_source).

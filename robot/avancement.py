@@ -85,7 +85,7 @@ def _envoyer(force=False):
         with open(os.path.join(SORTIE, "avancement.json"), "w", encoding="utf-8") as f:
             f.write(texte)
         if os.environ.get("GITHUB_ACTIONS") == "true":
-            _pousser(texte)
+            _pousser_sur(texte)
     except Exception as e:                              # l'avancement ne doit jamais gêner la création de la vidéo
         print(f"  (avancement non envoyé : {e})", flush=True)
 
@@ -180,3 +180,12 @@ def _pousser(texte):
     commit = subprocess.run(["git", "commit-tree", arbre, "-m", f"avancement {maintenant():%H:%M:%S}"], cwd=RACINE,
                             capture_output=True, text=True, check=True, env=env, timeout=30).stdout.strip()
     _git("push", "-q", "--force", "origin", f"{commit}:refs/heads/{BRANCHE}")
+
+
+def _pousser_sur(texte):
+    """Deux machines qui écrivent au même instant : un 2e essai après 2 s (au lieu de perdre la mise à jour)."""
+    try:
+        _pousser(texte)
+    except subprocess.CalledProcessError:
+        time.sleep(2)
+        _pousser(texte)
