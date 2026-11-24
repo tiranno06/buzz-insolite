@@ -27,7 +27,8 @@
   "duree_min": 62,
   "musique": true,
   "bruitages": true,
-  "carte": true
+  "carte": true,
+  "transitions": false
  },
  "publication": {
   "mode": "cocher",

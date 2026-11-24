@@ -23,11 +23,12 @@ def musique(humeur):
     return random.choice(choix) if choix else None
 
 
-def bruitages(phrases, debuts, format_=""):
-    """[(fichier, instant, volume)] à placer sur la vidéo."""
+def bruitages(phrases, debuts, format_="", transitions=False):
+    """[(fichier, instant, volume)] à placer sur la vidéo. Le « woosh » entre les écrans est coupé par défaut (l'auteur ne
+    l'aime pas, 24/11/2026 ; réglage video.transitions)."""
     out = []
     for i, p in enumerate(phrases):
-        if i and (p.get("media") or p.get("ecran")):
+        if transitions and i and (p.get("media") or p.get("ecran")):
             out.append(("woosh.wav", max(0.0, debuts[i] - 0.12), 0.35))
         if re.search(r"\d", p.get("ecran") or "") and not p.get("reponse"):
             out.append(("ding.wav", debuts[i] + 0.05, 0.30))
@@ -36,7 +37,7 @@ def bruitages(phrases, debuts, format_=""):
     return out
 
 
-def mixer(voix, phrases, debuts, total, humeur, sortie, avec_musique=True, format_="", avec_bruitages=True):
+def mixer(voix, phrases, debuts, total, humeur, sortie, avec_musique=True, format_="", avec_bruitages=True, transitions=False):
     """Fabrique la bande son complète (wav stéréo 44,1 kHz)."""
     entrees = ["-i", voix]
     filtres = ["[0:a]aformat=channel_layouts=stereo,aresample=44100,apad,volume=1.5,asplit=2[vx][cle]"]
@@ -51,7 +52,7 @@ def mixer(voix, phrases, debuts, total, humeur, sortie, avec_musique=True, forma
         melange.append("[mus]"); n += 1
     else:
         filtres[0] = filtres[0].replace(",asplit=2[vx][cle]", "[vx]")
-    for fichier, t, vol in (bruitages(phrases, debuts, format_) if avec_bruitages else []):
+    for fichier, t, vol in (bruitages(phrases, debuts, format_, transitions) if avec_bruitages else []):
         chemin = os.path.join(SONS, fichier)
         if not os.path.exists(chemin):
             continue

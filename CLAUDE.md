@@ -43,8 +43,8 @@ commentaires, commits, textes du site), explications simples, sans jargon.
   pays en rouge sombre, épingle ; frontières Natural Earth ; lieu trouvé par Photon puis Nominatim (qui répond 629 aux serveurs
   partagés), sinon "coordonnees" données par l'IA.
 - **Bande son** (`robot/sons.py`, `video.musique`, `video.bruitages`) : musique libre (sons/musique, ACE-Step Apache 2.0, humeur
-  « neutre / tension / joie » choisie par l'IA) très basse et qui s'efface sous la voix ; woosh à chaque écran, ding sur les
-  chiffres, « dun dun » sur la réponse d'un vrai / faux (sons/LICENCES.md).
+  « neutre / tension / joie » choisie par l'IA) très basse et qui s'efface sous la voix ; woosh entre les écrans COUPÉ (l'auteur ne l'aime pas, 24/11 ;
+  `video.transitions`), ding sur les chiffres, « dun dun » sur la réponse d'un vrai / faux (sons/LICENCES.md).
 - **Formats** (`ecrire.FORMATS`, entrée `format` de creer.yml) : « buzz », « vrai_faux » (affirmation, compte à rebours, réponse
   VRAI ! / FAUX ! en couleur, champ "reponse" jamais retiré par la vérification), « semaine » (3 meilleurs sujets des 7 jours,
   N°3 → N°1). Création automatique : 1 vidéo sur `creation.formats.vrai_faux` (3) en vrai / faux, « semaine » le dimanche au

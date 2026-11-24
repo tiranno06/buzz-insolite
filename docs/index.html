@@ -284,7 +284,8 @@ dialog form { position: absolute; top: 6px; right: 6px; }
           <label class="champ">Vitesse <span>0,80 = choisi le 24/11 ; plus petit = plus rapide</span><input type="number" id="r-vitesse" min="0.65" max="1.1" step="0.01"></label>
         </div>
         <label class="case"><input type="checkbox" id="r-musique"> Musique de fond (très discrète)</label>
-        <label class="case"><input type="checkbox" id="r-bruitages"> Bruitages (woosh, ding…)</label>
+        <label class="case"><input type="checkbox" id="r-bruitages"> Bruitages (ding sur les chiffres, « dun dun » du vrai / faux)</label>
+        <label class="case"><input type="checkbox" id="r-transitions"> « Woosh » entre les écrans</label>
         <label class="case"><input type="checkbox" id="r-carte"> Carte animée du lieu</label>
         <div class="grille2">
           <label class="champ">Hashtags de la chaîne <span>ajoutés à chaque vidéo</span><input type="text" id="r-tags"></label>
@@ -523,7 +524,7 @@ function remplirReglages() {
   const E = (D["buzz.json"] || {}).comptes || {};
   $("#r-comptes-etat").textContent = Object.keys(E).length ? "Dernier relevé : " + Object.entries(E).map(([k, e]) => `${e.ok ? "🟢" : "🔴"} @${k}`).join("  ") : "";
   $("#r-voix").value = V.voix || "chatterbox-bernard"; $("#r-vitesse").value = V.vitesse ?? 0.8;
-  $("#r-musique").checked = V.musique !== false; $("#r-bruitages").checked = V.bruitages !== false; $("#r-carte").checked = V.carte !== false;
+  $("#r-musique").checked = V.musique !== false; $("#r-bruitages").checked = V.bruitages !== false; $("#r-transitions").checked = !!V.transitions; $("#r-carte").checked = V.carte !== false;
   $("#r-chaine").value = P.chaine || ""; $("#r-heures-auto").checked = !!P.heures_auto;
   const MH = (D["stats.json"] || {}).meilleures_heures || [];
   $("#r-heures-stats").textContent = MH.length ? `Meilleures heures d'après tes vidéos : ${MH.join(" et ")}.` : "Les statistiques n'ont pas encore assez de vidéos (2 par heure au moins).";
@@ -539,7 +540,7 @@ $("#form-reglages").onsubmit = e => {
     creation: { auto: $("#r-cre-auto").checked, heures: heures("#r-cre-h1", "#r-cre-h2"), formats: { vrai_faux: +$("#r-vf").value, semaine: $("#r-semaine").checked } },
     buzz: { vues_min: +$("#r-vues").value, jaime_min: +$("#r-jaime").value, commentaires_min: +$("#r-com").value, heures: +$("#r-heures").value,
       comptes: $("#r-comptes").value.split(/\s+/).map(x => x.replace(/^@/, "")).filter(Boolean) },
-    video: { voix: $("#r-voix").value, vitesse: +$("#r-vitesse").value, musique: $("#r-musique").checked, bruitages: $("#r-bruitages").checked, carte: $("#r-carte").checked },
+    video: { voix: $("#r-voix").value, vitesse: +$("#r-vitesse").value, musique: $("#r-musique").checked, bruitages: $("#r-bruitages").checked, transitions: $("#r-transitions").checked, carte: $("#r-carte").checked },
     hashtags: { fixes: $("#r-tags").value.split(/\s+/).filter(Boolean), nombre: +$("#r-ntags").value }
   };
   commande("reglages", "", JSON.stringify(R), "Réglages envoyés au robot (1 à 2 min).");

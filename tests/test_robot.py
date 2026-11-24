@@ -104,7 +104,8 @@ class TestNouveautes(unittest.TestCase):
               {"ecran": "3… 2… 1…"}, {"ecran": "", "reponse": "faux"}]
         b = sons.bruitages(ph, [0, 2, 4, 6, 8])
         noms = [x[0] for x in b]
-        self.assertNotIn(("woosh.wav", 0), [(x[0], x[1]) for x in b])          # pas de woosh au tout début
+        self.assertNotIn("woosh.wav", noms)                                    # coupé par défaut (choix de l'auteur)
+        self.assertIn("woosh.wav", [x[0] for x in sons.bruitages(ph, [0, 2, 4, 6, 8], transitions=True)])
         self.assertEqual(noms.count("dun_dun.wav"), 1)
         self.assertIn("ding.wav", noms)
 

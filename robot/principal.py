@@ -128,6 +128,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
         avancement.progres(52 + 15 * (i + 1) / len(script["phrases"]))
     script["phrases"][-1]["media"] = None
     script["musique"] = R["video"].get("musique", True); script["bruitages"] = R["video"].get("bruitages", True)
+    script["transitions"] = R["video"].get("transitions", False)
     if not simulation() and R["video"].get("carte", True) and format_ != "semaine" and script.get("lieu") and len(script["phrases"]) > 3:
         lieu = carte.trouver_lieu(script["lieu"], script.get("coordonnees"))
         if lieu:                                              # 2e écran : la carte qui zoome sur le lieu de l'actu

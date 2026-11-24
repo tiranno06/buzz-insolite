@@ -54,7 +54,7 @@ REGLAGES_DEFAUT = {
         "vues_min": 500000, "jaime_min": 10000, "commentaires_min": 1000,
         "heures": 72,                                 # âge maximum d'une vidéo virale prise en compte
     },
-    "video": {"voix": "chatterbox-bernard", "vitesse": 0.80, "duree_min": 62, "musique": True, "bruitages": True, "carte": True},
+    "video": {"voix": "chatterbox-bernard", "vitesse": 0.80, "duree_min": 62, "musique": True, "bruitages": True, "transitions": False, "carte": True},
     "publication": {"mode": "cocher",                 # cocher = tu coches « À publier » ; auto = tout part sans toi
                     "auto": True, "heures": ["12:30", "19:00"], "compte": "",
                     "chaine": "",                     # pseudo TikTok de la chaîne (statistiques)

@@ -204,7 +204,8 @@ def monter(script, dossier, sortie, suivi=None):
     with open(ass, "w", encoding="utf-8") as f:
         f.write(karaoke(ph, debuts, texte_credits))
     bande = sons.mixer(voix, ph, debuts, total, script.get("humeur", "neutre"), os.path.join(dossier, "bande.wav"),
-                       script.get("musique", True), script.get("format", ""), script.get("bruitages", True))
+                       script.get("musique", True), script.get("format", ""), script.get("bruitages", True),
+                       script.get("transitions", False))
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", images, "-i", bande,
                     "-filter_complex", f"[0:v]subtitles={ass}:fontsdir={POLICES}[v]",
                     "-map", "[v]", "-map", "1:a", "-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "medium", "-crf", "21",
