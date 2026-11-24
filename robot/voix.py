@@ -124,7 +124,8 @@ def preparer(phrases, nom_voix, vitesse, journal=print, suivi=None):
                 p = phrases[i]
                 p["duree"] = dire(p["voix"], p["son"], nom_voix, vitesse, brut=b)
                 p["mots"] = mots_entendus(p["son"])
-                if ressemblance(p["voix"], p["mots"]) < 0.75:
+                # Whisper écrit « 31 » quand la voix dit « trente et un » : on compare aux deux versions du texte
+                if max(ressemblance(p["voix"], p["mots"]), ressemblance(p.get("ecrit", p["voix"]), p["mots"])) < 0.75:
                     refaire.append(i)
                 if suivi:
                     suivi(len([q for q in phrases if "mots" in q]), len(phrases))
