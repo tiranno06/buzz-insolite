@@ -316,7 +316,7 @@ const nb = n => (n || 0) >= 1e6 ? (n / 1e6).toLocaleString("fr-FR", { maximumFra
   : (n || 0) >= 1e3 ? Math.round(n / 1e3).toLocaleString("fr-FR") + " k" : String(n || 0);
 const quand = iso => iso ? new Date(iso).toLocaleString("fr-FR", { timeZone: "Europe/Paris", weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "";
 const LIB = { en_cours: "⏳ En fabrication", a_verifier: "⚠️ À vérifier", nouvelle: "À regarder", a_publier: "À publier", publiee: "Publiée", ecartee: "Écartée", echec: "Échec de publication",
-  nouveau: "Nouveau", utilise: "En vidéo", ignore: "Ignoré", sans_source: "Sans article", echec_s: "Échec" };
+  nouveau: "Nouveau", utilise: "En vidéo", ignore: "Ignoré", sans_source: "Pas assez d'articles", echec_s: "Échec" };
 function toast(t) { $(".toast")?.remove(); const d = document.createElement("div"); d.className = "toast"; d.setAttribute("role", "status"); d.textContent = t; document.body.append(d); setTimeout(() => d.remove(), 4800); }
 
 // ---------------- données d'exemple (mode démo) ----------------
@@ -417,7 +417,7 @@ function carteSujet(s) {
     <div class="rang"><span class="tag ${statut}">${LIB[statut] || statut}</span>${s.insolite >= 7 ? '<span class="tag">🤯 très insolite</span>' : ""}
       ${s.presse ? '<span class="tag">📰 presse</span>' : ""}${s.sous_seuils ? '<span class="tag" title="Moins de vues que tes seuils : ajouté pour avoir toujours 5 sujets">📉 sous les seuils</span>' : ""}</div>
     <h3 style="margin-top:8px">${esc(s.titre)}</h3>
-    <div class="chiffres"><span>👁️ <b>${nb(s.vues)}</b> vues</span><span>❤️ <b>${nb(s.jaime)}</b></span><span>💬 <b>${nb(s.commentaires)}</b></span><span>⚡ score ${nb(s.score)}</span></div>
+    <div class="chiffres"><span>👁️ <b>${nb(s.vues)}</b> vues</span><span>❤️ <b>${nb(s.jaime)}</b></span><span>💬 <b>${nb(s.commentaires)}</b></span><span>⚡ score ${nb(s.score)}</span>${s.medias != null ? `<span>📰 <b>${s.medias}</b> média(s)${s.medias < 3 ? " (peu)" : ""}</span>` : ""}</div>
     <p class="petit" style="margin:4px 0">${esc(s.resume)}</p>
     <p class="muted petit" style="margin:4px 0">Vu chez ${esc(comptes) || "—"}
       ${(s.videos || []).map((v, i) => v.url && v.url !== "#" ? ` · <a href="${esc(v.url)}" target="_blank" rel="noopener">vidéo ${i + 1}</a>` : "").join("")}</p>

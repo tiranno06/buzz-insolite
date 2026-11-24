@@ -134,7 +134,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
     d'une étape, ce qui est fait est gardé aussi (voix des phrases déjà dites, images déjà trouvées, écrans déjà montés).
     `secours` (dernière tentative) : voix Kokoro, pas de regard de l'IA sur les images."""
     E = etat if etat is not None else {}
-    if not E:
+    if "vid" not in E:
         vid = f"{maintenant():%Y%m%d-%H%M%S}" + (f"-{os.environ['MACHINE']}" if os.environ.get("MACHINE") else "")
         E.update(vid=vid, dossier=os.path.join(SORTIE, vid), t0=time.time(), B=controle.Bulletin(), faites=[])
         os.makedirs(E["dossier"], exist_ok=True)
@@ -160,9 +160,11 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 journal(f"  ⟳ étape « {ETAPES[nom]} » ratée ({str(e)[:120]}) : elle recommence (essai {essai + 2}/3)")
                 time.sleep(15)
 
-    # ---------- 1. articles
+    # ---------- 1. articles (déjà lus par creer quand la richesse du sujet a été vérifiée)
     def articles():
-        if simulation():
+        if E.get("articles") is not None:
+            pass
+        elif simulation():
             E["articles"] = []
         elif sujet.get("parties"):                            # 3 actus de la semaine : 2 articles par sujet
             E["articles"] = [a for s in sujet["parties"] for a in sources.chercher(s["titre"], s.get("mots_cles") or [], maxi=2,
@@ -228,7 +230,12 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
     def images_():
         deja = E.setdefault("deja", set())
         script["images_generiques"] = R["video"].get("images_generiques", False)
+        if "clips" not in E:                                  # VRAIES vidéos du sujet (licence libre), avant tout le reste
+            E["clips"] = [] if simulation() or format_ == "semaine" else \
+                images.videos_du_sujet(sujet["titre"], sujet.get("mots_cles") or [], dossier, journal, ecrans=len(script["phrases"]))
         for i, p in enumerate(script["phrases"][:-1]):
+            if "media" not in p and E["clips"]:
+                p["media"] = E["clips"].pop(0); deja.add(p["media"]["id"])
             if "media" not in p:
                 p["media"] = None if simulation() else images.trouver(
                     p["image"], dossier, p["uid"], deja, journal, script.get("theme_image", ""),
@@ -333,13 +340,34 @@ def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz"):
     if not sujets:
         noter("🎬 Aucun sujet à traiter (onglet Buzz vide).", "erreur")
         return []
-    faites, essais, traites = [], 0, set()
-    for s in sujets:
+    faites, essais, traites, maigres = [], 0, set(), []
+    a_faire = [(s, None) for s in sujets]
+    while a_faire:
+        s, etat = a_faire.pop(0)
         if len(faites) >= nombre or essais >= nombre + 3:
             break
-        essais += 1; traites.add(s["id"])
+        traites.add(s["id"])
         journal(f"▶ Sujet : {s['titre']}")
-        v, etat = None, {}
+        if etat is None:
+            etat = {}
+            if not (s.get("libre") or format_ == "semaine" or simulation()):
+                # Seulement des sujets SANS problème (demande de l'auteur du 24/11) : au moins 3 médias différents avec un
+                # vrai article, réunis dans une seule vidéo. Un sujet trop maigre n'est pas commencé : sujet suivant.
+                arts = sources.chercher_large(s["titre"], s.get("mots_cles") or [], s.get("videos") or [], journal)
+                nb, car = sources.richesse(arts)
+                if not sources.assez_riche(arts):
+                    journal(f"  ✗ sujet écarté : {nb} média(s), {car} caractères d'articles (il en faut 3 et 5 000)")
+                    maigres.append((nb, car, s, arts))
+                    _marquer_sujet(s["id"], "sans_source")
+                    if not a_faire and not faites and essais == 0:   # aucun sujet assez riche : le plus riche quand même
+                        nb, car, s2, arts2 = max(maigres, key=lambda x: (x[0], x[1]))
+                        journal(f"  aucun sujet assez riche : « {s2['titre']} » (le plus riche) est traité quand même")
+                        a_faire.append((s2, {"articles": arts2}))
+                    continue
+                journal(f"  ✓ {nb} médias différents, {car} caractères d'articles : réunis dans une seule vidéo")
+                etat["articles"] = arts
+        essais += 1
+        v = None
         for tentative in range(4):                            # une vidéo commencée va au bout : reprise à l'étape ratée
             secours = tentative == 3
             try:

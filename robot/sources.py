@@ -95,7 +95,7 @@ def bing(requete, n=12):
     return out
 
 
-def chercher(sujet, mots_cles=(), maxi=4, journal=print):
+def chercher(sujet, mots_cles=(), maxi=6, journal=print):
     """Articles qui parlent du sujet : [{media, titre, lien, resume, texte}] (les plus proches d'abord)."""
     voulus = _mots(sujet + " " + " ".join(mots_cles))
     candidats = []
@@ -199,3 +199,27 @@ def chercher_large(sujet, mots_cles=(), videos=(), journal=print, minimum=2500):
     if not articles:
         articles.append(dict(media="Sujet du buzz", titre=sujet, lien="", resume=sujet, texte=sujet))
     return articles
+
+
+def richesse(articles):
+    """(nombre de médias différents avec un vrai texte, nombre total de caractères) : un sujet trop maigre donne une vidéo
+    courte ou bancale (demande de l'auteur du 24/11 : seulement des sujets sans problème, plusieurs sources réunies)."""
+    vrais = [a for a in articles if len(a.get("texte") or "") >= 600 and a.get("media") not in
+             ("Google Actualités", "Wikipédia (contexte)", "Descriptions des vidéos TikTok virales", "Sujet du buzz")]
+    return len({a["media"] for a in vrais}), sum(len(a["texte"]) for a in vrais)
+
+
+def assez_riche(articles, medias=3, caracteres=5000):
+    m, c = richesse(articles)
+    return m >= medias and c >= caracteres
+
+
+def nombre_de_medias(sujet, mots_cles=()):
+    """Nombre de médias différents qui en parlent (Bing Actualités, titres seulement : rapide)."""
+    voulus = _mots(sujet + " " + " ".join(mots_cles))
+    try:
+        L = bing(" ".join(list(mots_cles)[:4]) or sujet, n=20)
+    except Exception:
+        return None
+    return len({urllib.parse.urlparse(l).netloc.replace("www.", "") for t, l, r in L if len(voulus & _mots(t + " " + r)) >= 2})
+

@@ -255,6 +255,85 @@ def carte_presse(article, chemin):
 
 
 
+# ------------------------------------------------------------------ vraies vidéos du sujet (demande de l'auteur du 24/11)
+YT_CC = "https://www.youtube.com/results?search_query={q}&sp=EgIwAQ%253D%253D"      # filtre « Creative Commons » de YouTube
+MOTS_VIDES = {"le", "la", "les", "un", "une", "des", "du", "de", "et", "en", "à", "au", "aux", "pour", "sur", "dans", "par", "avec",
+              "son", "sa", "ses", "qui", "que", "est", "ce", "cette", "plus", "après", "vidéo", "video", "fou", "folle", "choc"}
+
+
+def _mots_sujet(t):
+    t = re.sub(r"[^\wÀ-ÿ]+", " ", str(t).lower())
+    return {m for m in t.split() if len(m) > 2 and m not in MOTS_VIDES}
+
+
+def _ytdlp(args, timeout=120):
+    r = subprocess.run(["yt-dlp", "--no-warnings", "--js-runtimes", "deno", *args], capture_output=True, text=True, timeout=timeout)
+    if r.returncode != 0:
+        raise RuntimeError((r.stderr or r.stdout).strip().splitlines()[-1][:160] if (r.stderr or r.stdout).strip() else "yt-dlp")
+    return r.stdout
+
+
+def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=2, ecrans=8):
+    """VRAIES vidéos du sujet : celles que leur auteur a publiées sur YouTube sous licence Creative Commons BY (réutilisation
+    permise en citant l'auteur, ce que font les crédits). La licence est relue sur la page de chaque vidéo ; il faut au moins
+    2 mots du sujet dans son titre. Chaque vidéo est découpée en passages de 6 s (un par écran). YouTube qui refuse le serveur
+    = on s'en passe (jamais de contournement). Renvoie une liste de médias d'écran."""
+    if not shutil_which("yt-dlp"):
+        return []
+    voulus = _mots_sujet(sujet + " " + " ".join(mots_cles or []))
+    try:
+        d = json.loads(_ytdlp(["--flat-playlist", "-J", "--playlist-end", "20",
+                               YT_CC.format(q=urllib.parse.quote_plus(sujet[:80]))], 90))
+    except Exception as e:
+        journal(f"  vidéos du sujet (YouTube) : recherche impossible ({str(e)[:100]})")
+        return []
+    candidats = []
+    for e in d.get("entries") or []:
+        commun = len(voulus & _mots_sujet(e.get("title", "")))
+        if commun >= 2 and 15 <= (e.get("duration") or 0) <= 1800:
+            candidats.append((commun, e))
+    candidats.sort(key=lambda c: -c[0])
+    out = []
+    for _, e in candidats[:5]:
+        if len([m for m in out if m["id"].endswith("-0")]) >= maxi:
+            break
+        url = f"https://www.youtube.com/watch?v={e['id']}"
+        try:
+            info = json.loads(_ytdlp(["-J", url], 90))
+        except Exception as x:
+            journal(f"  vidéo YouTube {e['id']} illisible ({str(x)[:80]})")
+            if "429" in str(x) or "Sign in" in str(x) or "bot" in str(x):
+                break                                      # YouTube refuse ce serveur : on n'insiste pas
+            continue
+        if "creative commons" not in str(info.get("license") or "").lower():
+            continue                                       # licence non libre : jamais reprise
+        duree = float(info.get("duration") or 0)
+        debut = 3 if duree > 40 else 0
+        fin = min(duree, debut + 6 * ecrans + 2)
+        chemin = os.path.join(dossier, f"sujet-{e['id']}.mp4")
+        try:
+            _ytdlp(["-q", "-f", "bv*[height<=720][ext=mp4]/b[height<=720]/b", "--download-sections", f"*{debut}-{fin}",
+                    "--force-keyframes-at-cuts", "--merge-output-format", "mp4", "-o", chemin, url], 300)
+            reelle = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of",
+                                                    "csv=p=0", chemin]))
+        except Exception as x:
+            journal(f"  vidéo YouTube {e['id']} : téléchargement refusé ({str(x)[:80]})")
+            continue
+        auteur = info.get("channel") or info.get("uploader") or "auteur YouTube"
+        for k in range(max(1, int(reelle // 6))):
+            out.append(dict(type="video", chemin=chemin, debut=6 * k, duree=reelle, id=f"yt-{e['id']}-{k}",
+                            url=url, credit=f"Vidéo : {auteur} (YouTube, CC BY)", reelle=True))
+        journal(f"  vraie vidéo du sujet : « {info.get('title', '')[:70]} » de {auteur} (CC BY, {int(reelle // 6)} passages)")
+    if not out:
+        journal("  aucune vraie vidéo du sujet sous licence libre sur YouTube")
+    return out
+
+
+def shutil_which(nom):
+    import shutil
+    return shutil.which(nom)
+
+
 def trouver(requete, dossier, n, deja, journal=print, theme="", entite="", generiques=False):
     """Média de l'écran : d'abord une VRAIE photo de ce dont parle la phrase (`entite`, galerie Wikipédia), puis les sources
     publiques (NASA, Wikimedia) ; les banques d'images génériques seulement si l'auteur les a autorisées (`generiques`).

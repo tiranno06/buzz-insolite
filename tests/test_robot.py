@@ -332,6 +332,62 @@ class TestJamaisAbandonnee(unittest.TestCase):
             controle.ia.demander_json = garde
 
 
+class TestSujetsRiches(unittest.TestCase):
+    def test_richesse(self):
+        from robot import sources
+        arts = [dict(media=m, titre="t", texte="x" * 2000) for m in ("ladepeche.fr", "ici.fr", "leparisien.fr")]
+        self.assertTrue(sources.assez_riche(arts))
+        self.assertFalse(sources.assez_riche(arts[:2]))                                   # 2 médias seulement
+        self.assertFalse(sources.assez_riche(arts[:2] + [dict(media="Google Actualités", titre="t", texte="x" * 9000)]))
+
+    def test_sujet_maigre_ecarte(self):
+        """Un sujet trop maigre n'est jamais commencé : le robot passe au suivant, riche en articles."""
+        from robot import principal
+        from robot.commun import ecrire
+        ecrire("buzz.json", {"sujets": [{"id": "maigre", "titre": "Sujet maigre", "statut": "nouveau", "score": 9},
+                                        {"id": "riche", "titre": "Sujet riche", "statut": "nouveau", "score": 5}]})
+        riche = [dict(media=m, titre="t", lien="", texte="x" * 2000) for m in ("a.fr", "b.fr", "c.fr")]
+        faits = []
+        def fabrique(s, R, n, total, journal, format_, secours=False, etat=None):
+            faits.append((s["id"], len(etat.get("articles") or [])))
+            return dict(id="v-" + s["id"], titre="t", duree=70, ecrans_illustres=5, statut="nouveau")
+        garde = (principal.fabriquer, principal.sources.chercher_large)
+        principal.fabriquer = fabrique
+        principal.sources.chercher_large = lambda t, *a, **k: riche if "riche" in t else riche[:1]
+        try:
+            principal.creer(1)
+        finally:
+            principal.fabriquer, principal.sources.chercher_large = garde
+        self.assertEqual(faits, [("riche", 3)])                                          # articles déjà lus, gardés
+        self.assertEqual({s["id"]: s["statut"] for s in lire("buzz.json")["sujets"]}["maigre"], "sans_source")
+
+    def test_videos_du_sujet_licence(self):
+        """Seules les vidéos sous licence Creative Commons, avec au moins 2 mots du sujet dans le titre, sont reprises."""
+        from robot import images
+        import json as J
+        appels = []
+        def faux(args, timeout=120):
+            appels.append(args)
+            if "--flat-playlist" in args:
+                return J.dumps({"entries": [dict(id="A", title="Policier vole un vélo à Toulouse", duration=60),
+                                            dict(id="B", title="Policier vélo Toulouse caméra", duration=60),
+                                            dict(id="C", title="Recette de crêpes", duration=60)]})
+            if "-J" in args:
+                return J.dumps(dict(license="Creative Commons Attribution license (reuse allowed)" if "v=A" in args[-1]
+                                    else "", channel="Auteur", title="x", duration=60))
+            open(args[args.index("-o") + 1], "wb").close(); return ""
+        garde = (images._ytdlp, images.shutil_which, images.subprocess.check_output)
+        images._ytdlp, images.shutil_which = faux, lambda n: "/x"
+        images.subprocess.check_output = lambda *a, **k: b"30.0"
+        try:
+            clips = images.videos_du_sujet("Policier vole vélo cycliste Toulouse", [], TMP, journal=lambda *a: None)
+        finally:
+            images._ytdlp, images.shutil_which, images.subprocess.check_output = garde
+        self.assertEqual({c["id"].split("-")[1] for c in clips}, {"A"})                 # B : licence non libre ; C : hors sujet
+        self.assertEqual([c["debut"] for c in clips], [0, 6, 12, 18, 24])
+        self.assertIn("CC BY", clips[0]["credit"])
+
+
 class TestParallele(unittest.TestCase):
     def test_sujets_differents_par_machine(self):
         from robot import principal

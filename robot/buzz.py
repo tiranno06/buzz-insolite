@@ -17,7 +17,7 @@ import sys
 import time
 import unicodedata
 
-from . import ia
+from . import sources, ia
 from .commun import ecrire, iso, lire, maintenant, noter, reglages
 
 VARIANTES = (["--impersonate", "chrome"], ["--extractor-args", "tiktok:api_hostname=api16-normal-c-useast1a.tiktokv.com"], [])
@@ -204,6 +204,12 @@ def relever(journal=print):
         s["commentaires"] = sum(v["commentaires"] for v in s["videos"])
         tags = [h for v in s["videos"] for h in hashtags_de(v["texte"])]
         s["hashtags_viraux"] = [h for h, _ in sorted({h: tags.count(h) for h in tags}.items(), key=lambda x: -x[1])][:8]
+        # Combien de médias différents en parlent (Bing Actualités) : un sujet repris par 3 médias ou plus donne une vidéo
+        # sans problème ; les autres passent après (demande de l'auteur du 24/11).
+        s["medias"] = sources.nombre_de_medias(s["titre"], s.get("mots_cles") or [])
+        if s["medias"] is not None and s["medias"] < 3:
+            s["score"] //= 4
+        time.sleep(0.5)
     ancien = lire("buzz.json") or {}
     d = {"maj": iso(), "comptes": etat, "lues": len(toutes), "retenues": len(retenues),
          "sujets": fusionner(ancien.get("sujets") or [], sujets)}

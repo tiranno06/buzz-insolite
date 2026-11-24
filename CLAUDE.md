@@ -80,6 +80,20 @@ champ "entite" de chaque phrase (titre de l'article Wikipédia de la personne / 
 banques d'images génériques (Pixabay, Pexels) COUPÉES (`video.images_generiques` false) ; sinon écran de texte.
 L'IA qui contrôle les images refuse une image générique sans rapport réel.
 
+## Sujets riches et vraies vidéos du sujet (demande de l'auteur du 24/11)
+- **Seulement des sujets sans problème** : avant de commencer une vidéo, `principal.creer` lit les articles
+  (`sources.chercher_large`, jusqu'à 6 articles) et exige `sources.assez_riche` : 3 médias DIFFÉRENTS avec un vrai article
+  (≥ 600 caractères, hors Google / Wikipédia / descriptions TikTok) et 5 000 caractères en tout. Sinon le sujet n'est pas
+  commencé (statut `sans_source`, « Pas assez d'articles ») et le suivant est pris ; si aucun ne passe, le plus riche est fait
+  quand même. Les articles lus sont gardés (étape « articles » déjà faite) et réunis dans UNE vidéo.
+- Scan du buzz : `s["medias"]` = nombre de médias qui en parlent (`sources.nombre_de_medias`, Bing) ; moins de 3 = score ÷ 4 ;
+  affiché sur la carte du sujet (📰).
+- **Vraies vidéos du sujet** (`images.videos_du_sujet`) : vidéos YouTube publiées par leur auteur sous licence **Creative Commons
+  BY** (filtre CC de YouTube + licence relue sur la page de chaque vidéo, au moins 2 mots du sujet dans le titre), découpées
+  en passages de 6 s (`debut`), utilisées en PREMIER sur les écrans, crédit « Vidéo : auteur (YouTube, CC BY) ». yt-dlp + deno
+  installés dans creer.yml. YouTube qui refuse le serveur (429, « Sign in ») = on s'en passe, sans contournement. Les vidéos
+  des JT et agences (droits réservés) restent interdites, même si elles sont dans l'article.
+
 ## Plusieurs machines en même temps (demande de l'auteur du 24/11)
 creer.yml : job « plan » (`principal.planifier` : un sujet + des réserves PAR machine, réservés « en_cours » avec `reserve_le`,
 libres de nouveau après 3 h ; réserves non utilisées rendues à la fin de `creer`) puis job « creer » en matrice (une vidéo par

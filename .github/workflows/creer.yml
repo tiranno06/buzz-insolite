@@ -86,6 +86,11 @@ jobs:
         run: bash outils/installer_ffmpeg.sh
       - name: Installer les bibliothèques
         run: pip install -q -r requirements.txt
+      - name: Installer yt-dlp et deno (vraies vidéos du sujet sous licence libre, YouTube Creative Commons)
+        run: pip install -q -U "yt-dlp[default]" || pip install -q -U yt-dlp
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
       - name: Retrouver la voix d'homme déjà installée (Chatterbox et son modèle)
         id: cache-chatterbox
         uses: actions/cache@v4
