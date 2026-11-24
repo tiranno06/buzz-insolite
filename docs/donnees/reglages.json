@@ -36,9 +36,9 @@
    "12:30",
    "19:00"
   ],
-  "compte": "",
-  "chaine": "",
-  "heures_auto": false
+  "compte": "buzz.insolite",
+  "chaine": "buzz.insolite",
+  "heures_auto": true
  },
  "creation": {
   "auto": false,

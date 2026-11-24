@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-24T17:18:25+01:00",
+   "niveau": "info",
+   "texte": "⚙️ Réglages enregistrés."
+  },
+  {
    "date": "2026-11-24T17:18:01+01:00",
    "niveau": "info",
    "texte": "🔌 Buffer répond. Comptes TikTok reliés : buzz.insolite, petitsdramas"
