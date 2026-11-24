@@ -1,80 +1,132 @@
 {
- "maj": "2026-11-24T16:44:03+01:00",
+ "maj": "2026-11-24T18:19:59+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T16:42:37+01:00"
+   "le": "2026-11-24T18:18:21+01:00"
   },
-  "brut": {
-   "ok": false,
-   "videos": 0,
-   "le": "2026-11-24T16:42:41+01:00"
+  "brutofficiel": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T18:18:25+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T16:42:44+01:00"
+   "le": "2026-11-24T18:18:29+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T16:42:48+01:00"
+   "le": "2026-11-24T18:18:33+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T16:42:52+01:00"
+   "le": "2026-11-24T18:18:37+01:00"
   },
-  "euronews.fr": {
-   "ok": false,
-   "videos": 0,
-   "le": "2026-11-24T16:42:57+01:00"
+  "euronewsfr": {
+   "ok": true,
+   "videos": 7,
+   "le": "2026-11-24T18:18:41+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T16:43:01+01:00"
+   "le": "2026-11-24T18:18:46+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T16:43:04+01:00"
+   "le": "2026-11-24T18:18:51+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T16:43:08+01:00"
+   "le": "2026-11-24T18:18:55+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T16:43:11+01:00"
+   "le": "2026-11-24T18:18:59+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T16:43:15+01:00"
+   "le": "2026-11-24T18:19:04+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T16:43:18+01:00"
+   "le": "2026-11-24T18:19:08+01:00"
   },
-  "lefigarofr": {
-   "ok": false,
-   "videos": 0,
-   "le": "2026-11-24T16:43:23+01:00"
+  "lefigaro": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T18:19:14+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-24T16:43:27+01:00"
+   "le": "2026-11-24T18:19:19+01:00"
   }
  },
- "lues": 322,
- "retenues": 3,
+ "lues": 389,
+ "retenues": 7,
  "sujets": [
+  {
+   "titre": "CAN 2025 : Sénégal vainqueur après arbitrage TAS",
+   "resume": "Le Sénégal a été désigné vainqueur de la Coupe d’Afrique des Nations 2025 par le Tribunal Arbitral du Sport (TAS) après avoir perdu son titre initial. Le Maroc, initialement finaliste, a été déchu de sa victoire.",
+   "mots_cles": [
+    "CAN 2025",
+    "TAS",
+    "Sénégal",
+    "Maroc",
+    "football africain"
+   ],
+   "hashtags": [
+    "can2025",
+    "tasfootball",
+    "senegalvainqueur",
+    "marocdéchu",
+    "africacup"
+   ],
+   "insolite": 7,
+   "videos": [
+    {
+     "id": "7711746571976707361",
+     "compte": "hugodecrypte",
+     "url": "https://www.tiktok.com/@hugodecrypte/video/7711746571976707361",
+     "vues": 1300000,
+     "jaime": 177300,
+     "commentaires": 1503,
+     "partages": 23500,
+     "date": 1795530924,
+     "texte": "Le Tribunal Arbitral du Sport, la plus haute juridiction du sport mondial, a désigné ce mardi le Sénégal comme vainqueur de la Coupe d’Afrique des Nations 2025. Le Sénégal avait remporté le titre à l’issue de la finale dans un premier temps, avant de se le voir retirer par la Confédération Africaine de Football (CAF) sur tapis vert en mars. Il était reproché aux joueurs de l’équipe sénégalaise d’a"
+    },
+    {
+     "id": "7711749544022723873",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711749544022723873",
+     "vues": 1400000,
+     "jaime": 143500,
+     "commentaires": 3950,
+     "partages": 25300,
+     "date": 1795531617,
+     "texte": "Le Sénégal déclaré vainqueur de la CAn 2025, le Maroc déchu par le TAS"
+    }
+   ],
+   "id": "af2b8dfec2",
+   "score": 3718,
+   "derniere_vue": 1795540799.2517166,
+   "vues": 2700000,
+   "jaime": 320800,
+   "commentaires": 5453,
+   "hashtags_viraux": [],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:19:59+01:00"
+  },
   {
    "titre": "Leto accusé de misogynie dans GTA VI",
    "resume": "Le rappeur Leto est critiqué pour son refus de jouer le personnage Lucia dans GTA VI. Les accusations de misogynie relancent le débat sur la représentation dans les jeux vidéo.",
@@ -124,6 +176,46 @@
    "video_id": "20261124-170031"
   },
   {
+   "titre": "Malaise étudiant devant Macron à Toulouse",
+   "resume": "Une étudiante a fait un malaise en présence d’Emmanuel Macron lors d’une visite à Toulouse le 23 novembre 2026. L’incident a été filmé et partagé sur les réseaux sociaux.",
+   "mots_cles": [
+    "Macron",
+    "Toulouse",
+    "malaise",
+    "présidence",
+    "Airbus"
+   ],
+   "hashtags": [
+    "macrontoulouse",
+    "malaisepublique",
+    "presidentfrance",
+    "incident2026"
+   ],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711441451774758177",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711441451774758177",
+     "vues": 891500,
+     "jaime": 62300,
+     "commentaires": 1140,
+     "partages": 4383,
+     "date": 1795459881,
+     "texte": "Une étudiante fait un malaise devant Emmanuel Macron à Toulouse. Ce lundi 23 novembre 2026, Emmanuel Macron s'est rendu sur le site d'Airbus"
+    }
+   ],
+   "id": "ef38e151cf",
+   "score": 166,
+   "derniere_vue": 1795540799.2517166,
+   "vues": 891500,
+   "jaime": 62300,
+   "commentaires": 1140,
+   "hashtags_viraux": [],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:19:59+01:00"
+  },
+  {
    "titre": "Macron inaugure nouvelle ligne Airbus A320 Toulouse",
    "resume": "Emmanuel Macron visite l'usine Airbus de Toulouse pour l'inauguration d'une nouvelle ligne d'assemblage de l'A320. Un événement marquant pour l'industrie aéronautique française.",
    "mots_cles": [
@@ -170,6 +262,46 @@
    "video_id": "20261124-173417"
   },
   {
+   "titre": "Vandale statue Vierge Porto-Vecchio : 3 mois ferme",
+   "resume": "Deux jeunes ont été condamnés à trois mois de prison ferme pour avoir vandalisé une statue de la Vierge à Porto-Vecchio. L’affaire avait suscité une vive émotion locale.",
+   "mots_cles": [
+    "vandalisme",
+    "Porto-Vecchio",
+    "statue Vierge",
+    "condamnation",
+    "justice"
+   ],
+   "hashtags": [
+    "vandalismeportovecchio",
+    "statuevierge",
+    "condamnationferme",
+    "justicecorse"
+   ],
+   "insolite": 4,
+   "videos": [
+    {
+     "id": "7711399471346617622",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711399471346617622",
+     "vues": 512700,
+     "jaime": 38600,
+     "commentaires": 1202,
+     "partages": 2523,
+     "date": 1795450082,
+     "texte": "Les deux jeunes qui avaient vandalisé une statue de la Vierge à Porto-Vecchio ont été condamnés à 3 mois de prison ferme."
+    }
+   ],
+   "id": "d32fdd48a5",
+   "score": 88,
+   "derniere_vue": 1795540799.2517166,
+   "vues": 512700,
+   "jaime": 38600,
+   "commentaires": 1202,
+   "hashtags_viraux": [],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:19:59+01:00"
+  },
+  {
    "titre": "Policier vole vélo à cycliste à Toulouse",
    "resume": "Un policier a pris le vélo d'une cycliste à Toulouse, déclenchant une polémique virale. La Dépêche du Midi et des images partagées sur les réseaux sociaux alimentent le débat.",
    "mots_cles": [
@@ -209,6 +341,46 @@
    "hashtags_viraux": [],
    "statut": "nouveau",
    "vu_le": "2026-11-24T16:44:03+01:00"
+  },
+  {
+   "titre": "Policier vole vélo cycliste Toulouse : vidéo choque",
+   "resume": "Un policier a été filmé volant le vélo d’une cycliste à Toulouse, déclenchant une vague d’indignation sur les réseaux. L’incident a été largement partagé et commenté.",
+   "mots_cles": [
+    "police",
+    "vol vélo",
+    "Toulouse",
+    "réseaux sociaux",
+    "indignation"
+   ],
+   "hashtags": [
+    "policevolvelo",
+    "toulouseindignation",
+    "vidéochoc",
+    "abusdepouvoir"
+   ],
+   "insolite": 8,
+   "videos": [
+    {
+     "id": "7710976210918001952",
+     "compte": "leparisien",
+     "url": "https://www.tiktok.com/@leparisien/video/7710976210918001952",
+     "vues": 652100,
+     "jaime": 48700,
+     "commentaires": 1293,
+     "partages": 6527,
+     "date": 1795351553,
+     "texte": "À Toulouse, la scène fait le tour des réseaux sociaux depuis vendredi. Sur des images publiées par @le.media.toulousain, on voit un policier se jeter sur une cycliste en pleine rue, lui prendre son vélo puis pédaler tant bien que mal, la propriétaire courant derrière lui. Selon La Dépêche du Midi et ici Occitanie, l'agent poursuivait un lycéen soupçonné d'avoir lancé un projectile en marge d'une m"
+    }
+   ],
+   "id": "2a37a3968f",
+   "score": 76,
+   "derniere_vue": 1795540799.2517166,
+   "vues": 652100,
+   "jaime": 48700,
+   "commentaires": 1293,
+   "hashtags_viraux": [],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:19:59+01:00"
   }
  ]
 }
