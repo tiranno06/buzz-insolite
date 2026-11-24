@@ -127,141 +127,204 @@ def avec_ia(fonction, journal, attente_max_min=90):
             time.sleep(300)
 
 
-def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=False):
-    """Une vidéo complète. Renvoie l'entrée de la liste (file.json) ou lève une exception (creer la reprend alors sur le MÊME
-    sujet). `secours` (dernière tentative) : voix Kokoro, pas de regard de l'IA sur les images, attente si les IA sont saturées."""
-    vid = f"{maintenant():%Y%m%d-%H%M%S}" + (f"-{os.environ['MACHINE']}" if os.environ.get("MACHINE") else "")
-    dossier = os.path.join(SORTIE, vid); os.makedirs(dossier, exist_ok=True)
+def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=False, etat=None):
+    """Une vidéo complète, découpée en ÉTAPES qui se reprennent (demande de l'auteur du 24/11 : une étape qui plante recommence
+    à cette étape, jamais toute la vidéo). Chaque étape réussie est gardée dans `etat` ; une étape qui plante est refaite seule
+    (3 essais), et si elle échoue encore, creer rappelle fabriquer avec le même `etat` : on repart de cette étape. À l'intérieur
+    d'une étape, ce qui est fait est gardé aussi (voix des phrases déjà dites, images déjà trouvées, écrans déjà montés).
+    `secours` (dernière tentative) : voix Kokoro, pas de regard de l'IA sur les images."""
+    E = etat if etat is not None else {}
+    if not E:
+        vid = f"{maintenant():%Y%m%d-%H%M%S}" + (f"-{os.environ['MACHINE']}" if os.environ.get("MACHINE") else "")
+        E.update(vid=vid, dossier=os.path.join(SORTIE, vid), t0=time.time(), B=controle.Bulletin(), faites=[])
+        os.makedirs(E["dossier"], exist_ok=True)
+        avancement.demarrer(vid, "video", sujet["titre"])
+    else:
+        journal(f"  ↪ reprise à l'étape « {next((x for x in ETAPES if x not in E['faites']), 'fin')} » (le reste est gardé)")
+    vid, dossier, B = E["vid"], E["dossier"], E["B"]
     pre = f"Vidéo {n}/{total} — " if total > 1 else ""
-    avancement.demarrer(vid, "video", sujet["titre"])
-    t0 = time.time()
 
-    avancement.etape(pre + "Lecture des articles de presse", 5, sujet["titre"])
-    if simulation():
-        articles = []
-    elif sujet.get("parties"):                                # 3 actus de la semaine : 2 articles par sujet
-        articles = [a for s in sujet["parties"] for a in sources.chercher(s["titre"], s.get("mots_cles") or [], maxi=2,
-                                                                          journal=journal)]
-    else:                                                     # jamais d'abandon : la recherche s'élargit si besoin
-        articles = sources.chercher_large(sujet["titre"], sujet.get("mots_cles") or [], sujet.get("videos") or [], journal)
-    journal(f"  {len(articles)} source(s) : " + ", ".join(f"{a['media']} ({len(a.get('texte') or '')} car.)" for a in articles))
-    journal("  images : " + ", ".join(f"{n} {'✓' if os.environ.get(c) else '✗ (pas de clé)'}"
-                                     for n, c in (("Pexels", "PEXELS_API_KEY"), ("Pixabay", "PIXABAY_API_KEY")))
-            + ", NASA ✓, Wikimedia ✓")
+    def etape(nom, pourcent, fonction):
+        if nom in E["faites"]:
+            return
+        avancement.etape(pre + ETAPES[nom], pourcent, sujet["titre"] if nom == "articles" else "")
+        for essai in range(3):
+            try:
+                fonction()
+                E["faites"].append(nom)
+                return
+            except Exception as e:
+                traceback.print_exc()
+                if essai == 2:
+                    raise
+                journal(f"  ⟳ étape « {ETAPES[nom]} » ratée ({str(e)[:120]}) : elle recommence (essai {essai + 2}/3)")
+                time.sleep(15)
 
-    avancement.etape(pre + "Écriture du texte", 12)
-    script = script_simulation(sujet) if simulation() else avec_ia(lambda: ecrire.ecrire(sujet, articles, journal, format_), journal)
-    avancement.etape(pre + "Vérification des faits par une 2e IA", 22)
-    B = controle.Bulletin()
-    if not simulation():
-        script = ecrire.verifier(script, articles, journal)
-        avancement.etape(pre + "Contrôle 1/4 : le texte", 26)
-        # Compléter / corriger puis revérifier SEULEMENT les phrases nouvelles ou réécrites (une phrase déjà vérifiée ne
-        # repasse jamais : l'IA ne juge pas deux fois pareil), 3 allers-retours avant d'abandonner le sujet.
+    # ---------- 1. articles
+    def articles():
+        if simulation():
+            E["articles"] = []
+        elif sujet.get("parties"):                            # 3 actus de la semaine : 2 articles par sujet
+            E["articles"] = [a for s in sujet["parties"] for a in sources.chercher(s["titre"], s.get("mots_cles") or [], maxi=2,
+                                                                                    journal=journal)]
+        else:                                                 # jamais d'abandon : la recherche s'élargit si besoin
+            E["articles"] = sources.chercher_large(sujet["titre"], sujet.get("mots_cles") or [], sujet.get("videos") or [], journal)
+        journal(f"  {len(E['articles'])} source(s) : " + ", ".join(f"{a['media']} ({len(a.get('texte') or '')} car.)" for a in E["articles"]))
+    etape("articles", 5, articles)
+
+    # ---------- 2. texte (écriture, vérification des faits, contrôle 1/4)
+    def ecriture():
+        E["script"] = script_simulation(sujet) if simulation() else \
+            avec_ia(lambda: ecrire.ecrire(sujet, E["articles"], journal, format_), journal)
+    etape("ecriture", 12, ecriture)
+
+    def texte():
+        if simulation():
+            return
+        script, articles_ = E["script"], E["articles"]
+        if not script.get("verifie"):
+            E["script"] = script = ecrire.verifier(script, articles_, journal)
         for tour in range(5):
-            if tour == 3 and not any(a["media"] == "Wikipédia (contexte)" for a in articles):
-                articles += sources.contexte_wikipedia(sujet["titre"], journal=journal)    # plus de matière pour compléter
+            if tour == 3 and not any(a["media"] == "Wikipédia (contexte)" for a in articles_):
+                articles_ += sources.contexte_wikipedia(sujet["titre"], journal=journal)
             deja_vues = {p["ecrit"] for p in script["phrases"]}
-            script = controle.controle_texte(script, articles, B, journal)
+            script = controle.controle_texte(script, articles_, B, journal)
             nouvelles = [i for i, p in enumerate(script["phrases"]) if p["ecrit"] not in deja_vues]
-            if nouvelles:
-                script = ecrire.verifier(script, articles, journal, seulement=nouvelles)
+            if nouvelles:                                     # seules les phrases nouvelles ou réécrites sont revérifiées
+                script = ecrire.verifier(script, articles_, journal, seulement=nouvelles)
             if len(script["phrases"]) >= 9 and controle.duree_estimee(script["phrases"]) >= 62 and not controle.regles_texte(script):
                 break
-        if controle.duree_estimee(script["phrases"]) < 60:          # jamais d'abandon : signalé, la vidéo va au bout
+        if controle.duree_estimee(script["phrases"]) < 60:    # jamais d'abandon : signalé, la vidéo va au bout
             B.ouvrir("texte", f"texte un peu court (environ {controle.duree_estimee(script['phrases']):.0f} s)", None, "grave")
+        E["script"] = script
+    etape("texte", 22, texte)
+    script = E["script"]
+    for i in range(len(script["phrases"])):
+        controle.uid(script, i)                               # numéro fixe de chaque phrase (noms des fichiers)
 
-    avancement.etape(pre + "Voix et calage des mots", 30)
-    nom_voix, vitesse = ("kokoro-ff_siwis" if secours else R["video"]["voix"]), float(R["video"]["vitesse"])
-    for i, p in enumerate(script["phrases"]):
-        p["son"] = os.path.join(dossier, f"voix{i:02d}.wav")
-    if simulation():
-        for p in script["phrases"]:
-            p["duree"], p["mots"] = voix_simulation(p, p["son"])
-    else:
-        script["voix_utilisee"] = V.preparer(script["phrases"], nom_voix, vitesse, journal,
-                                             suivi=lambda k, n: avancement.progres(30 + 20 * k / n, f"phrase {k}/{n}"))
-        for i, p in enumerate(script["phrases"]):                    # contrôle 2/4 : la voix (déjà refaite une fois ;
-            if p.get("_voix_defaut"):                                 # ce qui reste est repris par la boucle de la vidéo finie)
-                B.ouvrir("voix", p["_voix_defaut"], controle.uid(script, i))
-    parole = sum(p["duree"] for p in script["phrases"]) + montage.PAUSE * len(script["phrases"]) + montage.FIN
-    if parole < 60:
-        journal(f"  ⚠️ vidéo de {parole:.0f} s : moins d'1 minute (TikTok ne paie qu'au-delà)")
+    # ---------- 3. voix (contrôle 2/4) : seules les phrases pas encore dites
+    def voix():
+        if secours and not E.get("voix_kokoro"):              # mode secours : toute la voix en Kokoro (jamais deux voix mêlées)
+            for p in script["phrases"]:
+                p.pop("mots", None)
+            E["voix_kokoro"] = True
+        E["nom_voix"] = "kokoro-ff_siwis" if E.get("voix_kokoro") else R["video"]["voix"]
+        E["vitesse"] = float(R["video"]["vitesse"])
+        a_dire = [p for p in script["phrases"] if not p.get("mots") or not os.path.exists(p.get("son", ""))]
+        for p in a_dire:
+            p["son"] = os.path.join(dossier, f"voix{p['uid']:03d}.wav")
+        if simulation():
+            for p in a_dire:
+                p["duree"], p["mots"] = voix_simulation(p, p["son"])
+        elif a_dire:
+            script["voix_utilisee"] = V.preparer(a_dire, E["nom_voix"], E["vitesse"], journal,
+                                                 suivi=lambda k, nb: avancement.progres(30 + 20 * k / nb, f"phrase {k}/{nb}"))
+        for i, p in enumerate(script["phrases"]):
+            if p.get("_voix_defaut"):                         # repris par la boucle de la vidéo finie
+                B.ouvrir("voix", p["_voix_defaut"], p["uid"])
+    etape("voix", 30, voix)
 
-    avancement.etape(pre + "Recherche des vraies images libres", 52)
-    deja = set()
-    script["images_generiques"] = R["video"].get("images_generiques", False)
-    for i, p in enumerate(script["phrases"][:-1]):
-        p["media"] = None if simulation() else images.trouver(p["image"], dossier, i, deja, journal, script.get("theme_image", ""),
-                                                              entite=p.get("entite", ""), generiques=script["images_generiques"])
-    # « La presse en parle » : les vrais titres des articles (avec leur média), sur des écrans restés sans vraie image
-    titres = [a for a in articles if a.get("titre") and a.get("media") and a["media"] != "Google Actualités"]
-    for k, i in enumerate([i for i, p in enumerate(script["phrases"][:-1]) if not p.get("media") and i > 0][:min(3, len(titres))]):
-        script["phrases"][i]["media"] = images.carte_presse(titres[k], os.path.join(dossier, f"presse{k}.png"))
-        avancement.progres(52 + 15 * (i + 1) / len(script["phrases"]))
-    script["phrases"][-1]["media"] = None
-    script["musique"] = R["video"].get("musique", True); script["bruitages"] = R["video"].get("bruitages", True)
-    script["transitions"] = R["video"].get("transitions", False)
-    lieu_cite = str(script.get("lieu") or "").split(",")[0].split("(")[0].strip()
-    texte_articles = " ".join((a.get("texte") or "") + " " + a.get("titre", "") for a in articles).lower()
-    if lieu_cite and lieu_cite.lower() not in texte_articles:
-        journal(f"  carte écartée : « {lieu_cite} » n'est pas cité dans les articles")
-        script["lieu"] = ""
-    if not simulation() and R["video"].get("carte", True) and format_ != "semaine" and script.get("lieu") and len(script["phrases"]) > 3:
-        lieu = carte.trouver_lieu(script["lieu"], script.get("coordonnees"))
-        if lieu:                                              # 2e écran : la carte qui zoome sur le lieu de l'actu
-            script["phrases"][1]["media"] = dict(type="carte", credit="Carte : Natural Earth, OpenStreetMap", **lieu)
-            if not script["phrases"][1].get("ecran"):
-                script["phrases"][1]["ecran"] = str(script["lieu"]).split(",")[0][:22]
-            journal(f"  carte : {lieu['nom']}")
-    if not simulation():
-        avancement.etape(pre + "Contrôle 3/4 : les images", 62)
-        script = controle.controle_images(script, dossier, B, journal, deja, sujet["titre"], sans_ia=secours)
+    # ---------- 4. images : seules les phrases sans image cherchée
+    def images_():
+        deja = E.setdefault("deja", set())
+        script["images_generiques"] = R["video"].get("images_generiques", False)
+        for i, p in enumerate(script["phrases"][:-1]):
+            if "media" not in p:
+                p["media"] = None if simulation() else images.trouver(
+                    p["image"], dossier, p["uid"], deja, journal, script.get("theme_image", ""),
+                    entite=p.get("entite", ""), generiques=script["images_generiques"])
+                avancement.progres(52 + 10 * (i + 1) / len(script["phrases"]))
+        if not E.get("presse_faite"):                         # « La presse en parle » : vrais titres sur des écrans sans image
+            titres = [a for a in E["articles"] if a.get("titre") and a.get("media") and a["media"] not in
+                      ("Google Actualités", "Wikipédia (contexte)", "Descriptions des vidéos TikTok virales", "Sujet du buzz")]
+            libres = [i for i, p in enumerate(script["phrases"][:-1]) if not p.get("media") and i > 0][:min(3, len(titres))]
+            for k, i in enumerate(libres):
+                script["phrases"][i]["media"] = images.carte_presse(titres[k], os.path.join(dossier, f"presse{k}.png"))
+            E["presse_faite"] = True
+        script["phrases"][-1]["media"] = None
+        script["musique"] = R["video"].get("musique", True); script["bruitages"] = R["video"].get("bruitages", True)
+        script["transitions"] = R["video"].get("transitions", False)
+        if not E.get("carte_faite"):
+            lieu_cite = str(script.get("lieu") or "").split(",")[0].split("(")[0].strip()
+            texte_articles = " ".join((a.get("texte") or "") + " " + a.get("titre", "") for a in E["articles"]).lower()
+            if lieu_cite and lieu_cite.lower() not in texte_articles:
+                journal(f"  carte écartée : « {lieu_cite} » n'est pas cité dans les articles")
+                script["lieu"] = ""
+            if not simulation() and R["video"].get("carte", True) and format_ != "semaine" and script.get("lieu") \
+                    and len(script["phrases"]) > 3:
+                lieu = carte.trouver_lieu(script["lieu"], script.get("coordonnees"))
+                if lieu:                                      # 2e écran : la carte qui zoome sur le lieu de l'actu
+                    script["phrases"][1]["media"] = dict(type="carte", credit="Carte : Natural Earth, OpenStreetMap", **lieu)
+                    if not script["phrases"][1].get("ecran"):
+                        script["phrases"][1]["ecran"] = str(script["lieu"]).split(",")[0][:22]
+                    journal(f"  carte : {lieu['nom']}")
+            E["carte_faite"] = True
+    etape("images", 52, images_)
+
+    def controle_images():
+        if not simulation():
+            controle.controle_images(script, dossier, B, journal, E.setdefault("deja", set()), sujet["titre"], sans_ia=secours)
+    etape("controle_images", 62, controle_images)
     trouves = sum(1 for p in script["phrases"] if p.get("media"))
-    journal(f"  images : {trouves} écran(s) illustré(s) sur {len(script['phrases'])}")
 
-    avancement.etape(pre + "Montage", 68)
-    fichier = os.path.join(dossier, f"buzz-{vid}.mp4")
-    duree = montage.monter(script, dossier, fichier,
-                           suivi=lambda k, nb: avancement.progres(68 + 18 * k / nb, f"écran {k}/{nb}"))
-    # Contrôle 4/4 : la vidéo finie. Tant qu'un problème est trouvé, seuls les passages fautifs sont corrigés (échelle de
-    # solutions dont la dernière marche à coup sûr), puis TOUTE la vidéo est recontrôlée. Zéro problème restant exigé.
-    for tour in range(12):
-        avancement.etape(pre + f"Contrôle 4/4 : la vidéo finie (tour {tour + 1})", min(94, 87 + tour))
-        fautifs = controle.controle_video(fichier, script, dossier, B, journal, leger=simulation(), sans_ia=secours)
-        trouves_ici = {(("voix" if a == "voix" else "video"), (None if i is None else controle.uid(script, i)))
-                       for i, (_, a) in fautifs.items()}
-        for l in B.ouverts():                                         # revérifié : passage réglé
-            if l["niveau"] in ("video", "voix") and (l["niveau"], l["ecran"]) not in trouves_ici:
-                B.fermer(l["niveau"], l["ecran"])
-        if not fautifs:
-            break
-        journal(f"  vidéo finie (tour {tour + 1}) : {len(fautifs)} passage(s) à corriger : "
-                + ", ".join(f"{'vidéo' if i is None else f'écran {i + 1}'} ({p})" for i, (p, _) in fautifs.items()))
-        controle.corriger_ecrans(script, fautifs, dossier, B, journal, nom_voix, vitesse, articles)
-        duree = montage.monter(script, dossier, fichier)
-        journal(f"  {script.get('_ecrans_refaits', 0)} écran(s) refait(s), le reste de la vidéo est inchangé")
+    # ---------- 5. montage (les écrans déjà fabriqués sont gardés)
+    E["fichier"] = fichier = os.path.join(dossier, f"buzz-{vid}.mp4")
+    def montage_():
+        E["duree"] = montage.monter(script, dossier, fichier, suivi=lambda k, nb: avancement.progres(68 + 18 * k / nb, f"écran {k}/{nb}"))
+    etape("montage", 68, montage_)
+
+    # ---------- 6. contrôle 4/4 : la vidéo finie (boucle jusqu'à zéro problème ; le tour en cours est gardé)
+    def controle_final():
+        for tour in range(E.get("tour_video", 0), 12):
+            E["tour_video"] = tour
+            avancement.etape(pre + f"Contrôle 4/4 : la vidéo finie (tour {tour + 1})", min(94, 87 + tour))
+            fautifs = controle.controle_video(fichier, script, dossier, B, journal, leger=simulation(), sans_ia=secours)
+            trouves_ici = {(("voix" if a == "voix" else "video"), (None if i is None else controle.uid(script, i)))
+                           for i, (_, a) in fautifs.items()}
+            for l in B.ouverts():                             # revérifié : passage réglé
+                if l["niveau"] in ("video", "voix") and (l["niveau"], l["ecran"]) not in trouves_ici:
+                    B.fermer(l["niveau"], l["ecran"])
+            if not fautifs:
+                return
+            journal(f"  vidéo finie (tour {tour + 1}) : {len(fautifs)} passage(s) à corriger : "
+                    + ", ".join(f"{'vidéo' if i is None else f'écran {i + 1}'} ({p})" for i, (p, _) in fautifs.items()))
+            controle.corriger_ecrans(script, fautifs, dossier, B, journal, E.get("nom_voix", R["video"]["voix"]),
+                                     E.get("vitesse", 0.8), E["articles"])
+            E["duree"] = montage.monter(script, dossier, fichier)
+            journal(f"  {script.get('_ecrans_refaits', 0)} écran(s) refait(s), le reste de la vidéo est inchangé")
+    etape("controle_final", 87, controle_final)
     bulletin = B.resume()
     journal(f"  bulletin : note {bulletin['note']}/100, {bulletin['corriges']} correction(s), "
-            f"{bulletin['graves_restants']} défaut(s) grave(s) restant(s)")
+            f"{bulletin['restants']} problème(s) restant(s), {len(bulletin['sautes'])} contrôle(s) non fait(s)")
 
-    avancement.etape(pre + "Rangement de la vidéo", 95)
-    os.makedirs(MINIATURES, exist_ok=True)
-    montage.miniature(fichier, os.path.join(MINIATURES, f"{vid}.jpg"))
-    tag = f"v-{vid}"
-    url = depot.publier_release(tag, script["titre"], [fichier])
+    # ---------- 7. rangement (Release GitHub = adresse publique pour Buffer)
+    def rangement():
+        os.makedirs(MINIATURES, exist_ok=True)
+        montage.miniature(fichier, os.path.join(MINIATURES, f"{vid}.jpg"))
+        E["url"] = depot.publier_release(f"v-{vid}", script["titre"], [fichier])
+    etape("rangement", 95, rangement)
+
     mode = R["publication"]["mode"]
-    return dict(id=vid, tag=tag, url=url, titre=script["titre"], accroche=script.get("accroche", ""),
+    articles_ = E["articles"]
+    return dict(id=vid, tag=f"v-{vid}", url=E["url"], titre=script["titre"], accroche=script.get("accroche", ""),
                 sujet_id=sujet["id"], sujet=sujet["titre"], buzz={k: sujet.get(k) for k in ("vues", "jaime", "commentaires", "score")},
                 description=script.get("description", ""), question=script.get("question", ""),
-                hashtags=ecrire.hashtags(script, sujet, R), duree=round(duree, 1),
-                sources=[dict(media=a["media"], titre=a["titre"], lien=a["lien"]) for a in articles],
+                hashtags=ecrire.hashtags(script, sujet, R), duree=round(E["duree"], 1),
+                sources=[dict(media=a["media"], titre=a["titre"], lien=a["lien"]) for a in articles_],
                 verification=script.get("verification"), verifie=script.get("verifie", False),
                 credits=sorted({p["media"]["credit"] for p in script["phrases"] if p.get("media")}),
-                ecrans_illustres=trouves, format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""), humeur=script.get("humeur", ""), texte=[p["ecrit"] for p in script["phrases"]],
-                essai=simulation(), cree_le=iso(), fabrication_s=round(time.time() - t0), controles=bulletin,
+                ecrans_illustres=trouves, format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""),
+                humeur=script.get("humeur", ""), texte=[p["ecrit"] for p in script["phrases"]],
+                essai=simulation(), cree_le=iso(), fabrication_s=round(time.time() - E["t0"]), controles=bulletin,
+                reprises=E.get("reprises", 0),
                 statut="a_verifier" if bulletin["graves_restants"] else
                        "a_publier" if (mode == "auto" and script.get("verifie")) else "nouvelle")
+
+
+ETAPES = {"articles": "Lecture des articles de presse", "ecriture": "Écriture du texte",
+          "texte": "Contrôle 1/4 : vérification des faits et du texte", "voix": "Voix et calage des mots (contrôle 2/4)",
+          "images": "Recherche des vraies images", "controle_images": "Contrôle 3/4 : les images", "montage": "Montage",
+          "controle_final": "Contrôle 4/4 : la vidéo finie", "rangement": "Rangement de la vidéo"}
 
 
 def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz"):
@@ -276,16 +339,17 @@ def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz"):
             break
         essais += 1; traites.add(s["id"])
         journal(f"▶ Sujet : {s['titre']}")
-        v = None
-        for tentative in range(4):                            # une vidéo commencée va au bout : reprise sur le MÊME sujet
+        v, etat = None, {}
+        for tentative in range(4):                            # une vidéo commencée va au bout : reprise à l'étape ratée
             secours = tentative == 3
             try:
-                v = fabriquer(s, R, len(faites) + 1, nombre, journal, format_, secours=secours)
+                v = fabriquer(s, R, len(faites) + 1, nombre, journal, format_, secours=secours, etat=etat)
                 break
             except Exception as e:
                 traceback.print_exc()
                 if tentative < 3:
-                    noter(f"🔁 « {s['titre']} » : étape ratée ({str(e)[:140]}) — reprise {tentative + 2}/4"
+                    etat["reprises"] = etat.get("reprises", 0) + 1
+                    noter(f"🔁 « {s['titre']} » : étape ratée ({str(e)[:140]}) — reprise {tentative + 2}/4 à cette étape"
                           + (" en mode secours" if tentative == 2 else ""), "attention")
                     time.sleep(20)
         if v is None:

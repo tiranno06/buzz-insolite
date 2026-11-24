@@ -111,8 +111,12 @@ récentes les plus vues juste en dessous (« sous_seuils », score divisé par 2
 - Plus aucune LookupError : articles trop maigres → `sources.chercher_large` (autres recherches, contexte Wikipédia, descriptions
   des vidéos TikTok virales) ; texte trop court → contexte Wikipédia ajouté puis phrases ajoutées (5 tours) ; vidéo toujours
   courte → problème ouvert (« à vérifier »), la vidéo va au bout.
-- Étape qui plante → `principal.creer` reprend la vidéo sur le MÊME sujet (4 tentatives, 20 s entre deux ; la 4e en mode
-  secours : voix Kokoro, pas de regard de l'IA sur les images) ; IA gratuites saturées → `avec_ia` attend 5 min (90 min max).
+- **Étape qui plante = seule cette étape recommence** (demande de l'auteur du 24/11) : `principal.fabriquer` est découpée en
+  étapes (`ETAPES` : articles, écriture, texte, voix, images, contrôle des images, montage, contrôle final, rangement) ; ce qui
+  est fait est gardé dans `etat` (même identifiant de vidéo, même dossier). Une étape ratée est refaite seule (3 essais, 15 s),
+  puis `creer` rappelle `fabriquer` avec le même `etat` (4 tentatives, 20 s ; la 4e en mode secours pour les étapes restantes :
+  voix Kokoro, pas de regard de l'IA sur les images). Dans une étape : voix des phrases déjà dites, images déjà trouvées,
+  écrans déjà montés et tour du contrôle final gardés ; `reprises` dans la fiche de la vidéo ; IA gratuites saturées → `avec_ia` attend 5 min (90 min max).
 - La vidéo est toujours enregistrée sur le site ; un problème restant = statut « a_verifier » (publication automatique bloquée).
 
 ## Fonctionnement

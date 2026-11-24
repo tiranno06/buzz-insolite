@@ -278,7 +278,7 @@ class TestJamaisAbandonnee(unittest.TestCase):
     def test_reprise_sur_le_meme_sujet(self):
         from robot import principal
         appels = []
-        def fausse_fabrique(s, R, n, total, journal, format_, secours=False):
+        def fausse_fabrique(s, R, n, total, journal, format_, secours=False, etat=None):
             appels.append(secours)
             if len(appels) < 3:
                 raise RuntimeError("panne passagère")
@@ -291,6 +291,35 @@ class TestJamaisAbandonnee(unittest.TestCase):
             principal.fabriquer = garde; principal.time.sleep = dort
         self.assertEqual(len(faites), 1); self.assertEqual(appels, [False, False, False])   # même sujet, 3e essai réussi
         self.assertEqual(lire("file.json")["videos"][0]["id"], "v1")                        # et sur le site
+
+    def test_etape_ratee_reprise_seule(self):
+        """Une étape qui plante recommence seule : les étapes d'avant ne sont jamais refaites."""
+        from robot import principal, montage
+        os.environ["SIMULATION"] = "1"
+        comptes = {"ecrire": 0, "monter": 0}
+        vrai_script, vrai_monter = principal.script_simulation, montage.monter
+        def script(s):
+            comptes["ecrire"] += 1; return vrai_script(s)
+        def monter(*a, **k):
+            comptes["monter"] += 1
+            if comptes["monter"] <= 4:                    # 3 essais dans l'étape + 1 dans la 1re reprise : puis ça passe
+                raise RuntimeError("montage planté")
+            return 70.0
+        principal.script_simulation, montage.monter = script, monter
+        dort, principal.time.sleep = principal.time.sleep, lambda s: None
+        verif = principal.controle.controle_video
+        principal.controle.controle_video = lambda *a, **k: {}
+        mini, principal.montage.miniature = principal.montage.miniature, lambda *a: None
+        try:
+            faites = principal.creer(1, libre="Un sujet qui plante au montage")
+        finally:
+            principal.script_simulation, montage.monter, principal.time.sleep = vrai_script, vrai_monter, dort
+            principal.controle.controle_video, principal.montage.miniature = verif, mini
+            os.environ.pop("SIMULATION", None)
+        self.assertEqual(len(faites), 1)
+        self.assertEqual(comptes["ecrire"], 1)            # le texte n'a été écrit qu'une fois
+        self.assertEqual(comptes["monter"], 5)
+        self.assertEqual(faites[0]["reprises"], 1)
 
     def test_texte_court_ne_bloque_pas(self):
         from robot import controle
