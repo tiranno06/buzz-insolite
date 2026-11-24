@@ -67,6 +67,7 @@ jobs:
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
       PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
       PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+      VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}         # facultatif : vidéos Vimeo sous licence libre
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4

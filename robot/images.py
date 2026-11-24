@@ -323,7 +323,27 @@ def _cand_archive(sujet, journal):
     return out
 
 
-SOURCES_VIDEO = (("YouTube (Creative Commons)", _cand_youtube), ("PeerTube", _cand_peertube), ("Internet Archive", _cand_archive))
+def _cand_vimeo(sujet, journal):
+    """Vimeo : seules les vidéos que l'auteur a mises sous CC BY, CC BY-SA ou CC0 (clé gratuite facultative VIMEO_TOKEN)."""
+    jeton = os.environ.get("VIMEO_TOKEN")
+    if not jeton:
+        return []
+    out = []
+    for filtre in ("CC-BY", "CC-BY-SA", "CC0"):
+        q = urllib.parse.urlencode({"query": sujet[:80], "filter": filtre, "per_page": 15,
+                                    "fields": "link,name,duration,user.name,license"})
+        d = _json(f"https://api.vimeo.com/videos?{q}", {"Authorization": f"bearer {jeton}",
+                                                       "Accept": "application/vnd.vimeo.*+json;version=3.4"})
+        for v in d.get("data") or []:
+            lic = {"by": "CC BY", "by-sa": "CC BY-SA", "cc0": "CC0"}.get(str(v.get("license") or "").lower())
+            if lic:
+                out.append(dict(source="Vimeo", page=v["link"], cle=f"vm-{v['link'].rstrip('/').rsplit('/', 1)[-1]}",
+                                titre=v.get("name", ""), auteur=(v.get("user") or {}).get("name", ""),
+                                duree=v.get("duration") or 0, licence=lic))
+    return out
+
+
+SOURCES_VIDEO = (("YouTube (Creative Commons)", _cand_youtube), ("PeerTube", _cand_peertube), ("Internet Archive", _cand_archive), ("Vimeo", _cand_vimeo))
 
 
 CONSIGNE_LOGO = """On te montre 3 images d'une vidéo. Dis si on y voit le logo ou le nom d'une chaîne de télévision, d'une agence

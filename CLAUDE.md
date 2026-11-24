@@ -90,7 +90,9 @@ L'IA qui contrôle les images refuse une image générique sans rapport réel.
   affiché sur la carte du sujet (📰).
 - **Vraies vidéos du sujet** (`images.videos_du_sujet`, `SOURCES_VIDEO`) : vidéos publiées par leur auteur sous licence libre
   permettant l'usage commercial et le montage (`licence_ok` : CC BY, CC BY-SA, CC0, domaine public ; jamais NC ni ND) sur
-  YouTube (filtre CC + licence relue), PeerTube (Sepia Search), Internet Archive et Wikimedia Commons ; au moins 2 mots du sujet
+  YouTube (filtre CC + licence relue), PeerTube (Sepia Search), Internet Archive, Vimeo (clé gratuite facultative
+  `VIMEO_TOKEN`, filtres CC-BY / CC-BY-SA / CC0) et Wikimedia Commons ; Dailymotion, Rumble, TikTok, Instagram : aucune
+  licence libre possible, jamais repris ; au moins 2 mots du sujet
   dans le titre ; télés / agences / médias écartés par le nom (`MEDIAS_INTERDITS`) ET par l'image (`sans_logo_media` : une IA
   qui voit regarde 3 images ; logo de télé, de média, de TikTok ou d'Instagram = vidéo écartée ; IA indisponible = écartée :
   essai du 24/11, une vidéo PeerTube « CC BY » était un reportage France 24). Découpées en passages de 6 s (`debut`),
@@ -153,7 +155,7 @@ récentes les plus vues juste en dessous (« sous_seuils », score divisé par 2
 - Site `docs/index.html` (GitHub Pages, main /docs) : onglets Buzz, Vidéos, Créer, Publication, Journal, Réglages ; clé
   GitHub fine-grained du navigateur (`bi_jeton`, droits Actions + Contents) ; mode démo sans données.
 - **Réglages GitHub interdits depuis une session Claude** (proxy) : activer Pages et écrire les secrets se font à la main par
-  l'auteur. Secrets : `BUFFER_API_KEY`, `PEXELS_API_KEY` (facultatif), `PIXABAY_API_KEY`, `MISTRAL_API_KEY`, `GROQ_API_KEY`, `GEMINI_API_KEY`, `OPENROUTER_API_KEY`.
+  l'auteur. Secrets : `BUFFER_API_KEY`, `PEXELS_API_KEY` (facultatif), `PIXABAY_API_KEY`, `MISTRAL_API_KEY`, `GROQ_API_KEY`, `GEMINI_API_KEY`, `OPENROUTER_API_KEY`, `VIMEO_TOKEN` (facultatif).
 
 ## Avant d'envoyer
 `python -m unittest discover -s tests` (aucun appel réseau ni IA ; ffmpeg nécessaire pour l'essai complet). Essai sans IA :

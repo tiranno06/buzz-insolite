@@ -400,6 +400,21 @@ class TestSujetsRiches(unittest.TestCase):
         self.assertEqual([c["debut"] for c in clips], [0, 6, 12, 18, 24])
         self.assertIn("CC BY", clips[0]["credit"])
 
+    def test_vimeo_licences_libres(self):
+        from robot import images
+        def faux(url, entetes=None, *a):
+            self.assertIn("bearer", entetes["Authorization"])
+            return {"data": [dict(link="https://vimeo.com/1", name="n", duration=30, user={"name": "A"}, license="by"),
+                             dict(link="https://vimeo.com/2", name="n", duration=30, user={"name": "B"}, license="by-nc")]}
+        garde = images._json; images._json = faux
+        os.environ["VIMEO_TOKEN"] = "essai"
+        try:
+            c = images._cand_vimeo("Sujet", print)
+        finally:
+            images._json = garde; os.environ.pop("VIMEO_TOKEN")
+        self.assertEqual({x["page"] for x in c}, {"https://vimeo.com/1"})               # « by-nc » jamais repris
+        self.assertEqual(images._cand_vimeo("Sujet", print), [])                          # sans clé : Vimeo sauté
+
     def test_licences(self):
         from robot import images
         self.assertTrue(images.licence_ok("https://creativecommons.org/licenses/by/3.0/"))
