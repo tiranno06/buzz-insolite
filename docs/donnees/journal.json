@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-24T18:38:52+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 10 sujet(s) au-dessus des seuils — en tête : « Son mystérieux naissance étoiles captivant internautes »"
+  },
+  {
    "date": "2026-11-24T18:19:59+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 5 sujet(s) au-dessus des seuils — en tête : « CAN 2025 : Sénégal vainqueur après arbitrage TAS »"

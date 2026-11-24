@@ -1,79 +1,79 @@
 {
- "maj": "2026-11-24T18:19:59+01:00",
+ "maj": "2026-11-24T18:38:52+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:18:21+01:00"
+   "le": "2026-11-24T18:37:09+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:18:25+01:00"
+   "le": "2026-11-24T18:37:13+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:18:29+01:00"
+   "le": "2026-11-24T18:37:18+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:18:33+01:00"
+   "le": "2026-11-24T18:37:22+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:18:37+01:00"
+   "le": "2026-11-24T18:37:26+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-24T18:18:41+01:00"
+   "le": "2026-11-24T18:37:29+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:18:46+01:00"
+   "le": "2026-11-24T18:37:34+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:18:51+01:00"
+   "le": "2026-11-24T18:37:38+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:18:55+01:00"
+   "le": "2026-11-24T18:37:43+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:18:59+01:00"
+   "le": "2026-11-24T18:37:47+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:19:04+01:00"
+   "le": "2026-11-24T18:37:52+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:19:08+01:00"
+   "le": "2026-11-24T18:37:56+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:19:14+01:00"
+   "le": "2026-11-24T18:38:00+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-24T18:19:19+01:00"
+   "le": "2026-11-24T18:38:04+01:00"
   }
  },
  "lues": 389,
- "retenues": 7,
+ "retenues": 8,
  "sujets": [
   {
    "titre": "CAN 2025 : Sénégal vainqueur après arbitrage TAS",
@@ -129,6 +129,48 @@
    "reserve_le": "2026-11-24T18:21:43+01:00"
   },
   {
+   "titre": "Son mystérieux naissance étoiles captivant internautes",
+   "resume": "Une vidéo du son émis lors de la naissance d’étoiles fascine les internautes. Ce phénomène rare, capté par des télescopes, offre un aperçu des mécanismes cosmiques.",
+   "mots_cles": [
+    "naissance étoiles",
+    "son spatial",
+    "télescope",
+    "cosmos",
+    "NASA"
+   ],
+   "hashtags": [
+    "",
+    "s",
+    "o",
+    "n",
+    "é"
+   ],
+   "insolite": 9,
+   "videos": [
+    {
+     "id": "7711334506657090838",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711334506657090838",
+     "vues": 1200000,
+     "jaime": 151200,
+     "commentaires": 1691,
+     "partages": 17900,
+     "date": 1795434961,
+     "texte": "Voici le son de la naissance d'étoiles."
+    }
+   ],
+   "sous_seuils": false,
+   "id": "be48919887",
+   "score": 252,
+   "derniere_vue": 1795541932.2769299,
+   "vues": 1200000,
+   "jaime": 151200,
+   "commentaires": 1691,
+   "hashtags_viraux": [],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
    "titre": "Leto accusé de misogynie dans GTA VI",
    "resume": "Le rappeur Leto est critiqué pour son refus de jouer le personnage Lucia dans GTA VI. Les accusations de misogynie relancent le débat sur la représentation dans les jeux vidéo.",
    "mots_cles": [
@@ -177,6 +219,54 @@
    "video_id": "20261124-170031"
   },
   {
+   "titre": "Polémique Leto et personnage Lucia GTA VI",
+   "resume": "Le rappeur Leto est accusé de misogynie après avoir refusé de jouer le personnage Lucia dans *GTA VI*. La polémique s’intensifie autour des choix de représentation dans les jeux vidéo.",
+   "mots_cles": [
+    "GTA VI",
+    "Leto",
+    "misogynie",
+    "Lucia",
+    "jeux vidéo"
+   ],
+   "hashtags": [
+    "",
+    "g",
+    "t",
+    "a",
+    "v"
+   ],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711443423324048662",
+     "compte": "bfmtv",
+     "url": "https://www.tiktok.com/@bfmtv/video/7711443423324048662",
+     "vues": 936100,
+     "jaime": 71000,
+     "commentaires": 2142,
+     "partages": 6563,
+     "date": 1795460341,
+     "texte": "GTA VI: le rappeur Leto est accusé de misogynie après avoir refusé de jouer Lucia #gta #gta6 #leto #lucia #anyme"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "17df3c92a2",
+   "score": 180,
+   "derniere_vue": 1795541932.2769299,
+   "vues": 936100,
+   "jaime": 71000,
+   "commentaires": 2142,
+   "hashtags_viraux": [
+    "gta",
+    "gta6",
+    "leto",
+    "lucia",
+    "anyme"
+   ],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
    "titre": "Malaise étudiant devant Macron à Toulouse",
    "resume": "Une étudiante a fait un malaise en présence d’Emmanuel Macron lors d’une visite à Toulouse le 23 novembre 2026. L’incident a été filmé et partagé sur les réseaux sociaux.",
    "mots_cles": [
@@ -216,6 +306,49 @@
    "statut": "en_cours",
    "vu_le": "2026-11-24T18:19:59+01:00",
    "reserve_le": "2026-11-24T18:21:43+01:00"
+  },
+  {
+   "titre": "Rumeur galet compression mode hiver infondée",
+   "resume": "Une fausse rumeur affirme qu’un galet de compression sur les fenêtres PVC permettrait de passer en mode hiver. Les experts démentent cette allégation, mais le phénomène viral persiste.",
+   "mots_cles": [
+    "galet compression",
+    "fenêtre PVC",
+    "mode hiver",
+    "infox",
+    "énergie"
+   ],
+   "hashtags": [
+    "",
+    "g",
+    "a",
+    "l",
+    "e"
+   ],
+   "insolite": 4,
+   "videos": [
+    {
+     "id": "7711361843385732354",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7711361843385732354",
+     "vues": 2100000,
+     "jaime": 117700,
+     "commentaires": 418,
+     "partages": 17100,
+     "date": 1795441349,
+     "texte": "🪟 INFO/INFOX : Tourner le galet de compression suffirait-il à passer du mode été au mode hiver ? ➡️ Les internautes ont découvert une toute petite pièce, le galet de compression, qui se trouve sur les fenêtres en PVC. Certains affirment qu'elle permettrait de passer en \"mode hiver\" et, donc, de faire baisser la facture de chauffage. Cette pièce ne sert pas du tout à régler vos fenêtres en fonction",
+     "sous_seuils": true
+    }
+   ],
+   "sous_seuils": true,
+   "id": "eb7c11305e",
+   "score": 152,
+   "derniere_vue": 1795541932.2769299,
+   "vues": 2100000,
+   "jaime": 117700,
+   "commentaires": 418,
+   "hashtags_viraux": [],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
    "titre": "Macron inaugure nouvelle ligne Airbus A320 Toulouse",
@@ -264,20 +397,106 @@
    "video_id": "20261124-173417"
   },
   {
-   "titre": "Vandale statue Vierge Porto-Vecchio : 3 mois ferme",
-   "resume": "Deux jeunes ont été condamnés à trois mois de prison ferme pour avoir vandalisé une statue de la Vierge à Porto-Vecchio. L’affaire avait suscité une vive émotion locale.",
+   "titre": "Interview ratée Cristina Córdula sur RMC",
+   "resume": "Cristina Córdula a participé à l’émission *Pire Interview* sur RMC, où son comportement a suscité des réactions mitigées. L’incident a été largement commenté sur les réseaux sociaux.",
+   "mots_cles": [
+    "Cristina Córdula",
+    "pire interview",
+    "RMC",
+    "réactions",
+    "médias"
+   ],
+   "hashtags": [
+    "",
+    "c",
+    "r",
+    "i",
+    "s"
+   ],
+   "insolite": 6,
+   "videos": [
+    {
+     "id": "7711415634198039831",
+     "compte": "konbini",
+     "url": "https://www.tiktok.com/@konbini/video/7711415634198039831",
+     "vues": 1100000,
+     "jaime": 211400,
+     "commentaires": 560,
+     "partages": 39500,
+     "date": 1795455481,
+     "texte": "Cristina Córdula s’est prêtée au jeu de la Pire interview et elle n’aurait peut-être pas dû 👀 Cristina Córdula est sur RMC avec son émission : Shopping Illimité mais également sur sa chaine YouTube : Métamorphose | Pire Interview",
+     "sous_seuils": true
+    }
+   ],
+   "sous_seuils": true,
+   "id": "e519099a13",
+   "score": 145,
+   "derniere_vue": 1795541932.2769299,
+   "vues": 1100000,
+   "jaime": 211400,
+   "commentaires": 560,
+   "hashtags_viraux": [],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Rassemblement fasciste célébrant Franco en Espagne",
+   "resume": "Des centaines de militants fascistes se sont réunis en Espagne pour commémorer le dictateur Francisco Franco. L’événement a provoqué des débats sur la résurgence des extrémismes politiques.",
+   "mots_cles": [
+    "Franco",
+    "fascistes",
+    "Espagne",
+    "extrémisme",
+    "commémoration"
+   ],
+   "hashtags": [
+    "",
+    "f",
+    "r",
+    "a",
+    "n"
+   ],
+   "insolite": 7,
+   "videos": [
+    {
+     "id": "7711432495048183062",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711432495048183062",
+     "vues": 554300,
+     "jaime": 52500,
+     "commentaires": 1016,
+     "partages": 9963,
+     "date": 1795457761,
+     "texte": "Des centaines de militants fascistes se sont rassemblés en Espagne pour célébrer Franco."
+    }
+   ],
+   "sous_seuils": false,
+   "id": "97a197f1f5",
+   "score": 118,
+   "derniere_vue": 1795541932.2769299,
+   "vues": 554300,
+   "jaime": 52500,
+   "commentaires": 1016,
+   "hashtags_viraux": [],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Condamnation pour vandalisme statue Vierge Porto-Vecchio",
+   "resume": "Deux jeunes ont été condamnés à trois mois de prison ferme pour avoir vandalisé une statue de la Vierge à Porto-Vecchio. L’affaire a relancé le débat sur le respect des symboles religieux.",
    "mots_cles": [
     "vandalisme",
-    "Porto-Vecchio",
     "statue Vierge",
+    "Porto-Vecchio",
     "condamnation",
     "justice"
    ],
    "hashtags": [
-    "vandalismeportovecchio",
-    "statuevierge",
-    "condamnationferme",
-    "justicecorse"
+    "",
+    "v",
+    "a",
+    "n",
+    "d"
    ],
    "insolite": 4,
    "videos": [
@@ -285,24 +504,24 @@
      "id": "7711399471346617622",
      "compte": "brutofficiel",
      "url": "https://www.tiktok.com/@brutofficiel/video/7711399471346617622",
-     "vues": 512700,
-     "jaime": 38600,
-     "commentaires": 1202,
-     "partages": 2523,
+     "vues": 516800,
+     "jaime": 39000,
+     "commentaires": 1203,
+     "partages": 2557,
      "date": 1795450082,
      "texte": "Les deux jeunes qui avaient vandalisé une statue de la Vierge à Porto-Vecchio ont été condamnés à 3 mois de prison ferme."
     }
    ],
-   "id": "d32fdd48a5",
+   "sous_seuils": false,
+   "id": "cdc02173dc",
    "score": 88,
-   "derniere_vue": 1795540799.2517166,
-   "vues": 512700,
-   "jaime": 38600,
-   "commentaires": 1202,
+   "derniere_vue": 1795541932.2769299,
+   "vues": 516800,
+   "jaime": 39000,
+   "commentaires": 1203,
    "hashtags_viraux": [],
    "statut": "en_cours",
-   "vu_le": "2026-11-24T18:19:59+01:00",
-   "reserve_le": "2026-11-24T18:21:43+01:00"
+   "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
    "titre": "Policier vole vélo à cycliste à Toulouse",
@@ -347,45 +566,229 @@
    "reserve_le": "2026-11-24T18:21:43+01:00"
   },
   {
-   "titre": "Policier vole vélo cycliste Toulouse : vidéo choque",
-   "resume": "Un policier a été filmé volant le vélo d’une cycliste à Toulouse, déclenchant une vague d’indignation sur les réseaux. L’incident a été largement partagé et commenté.",
+   "titre": "Arrêt baron drogue El Chapo Isidro Mexique",
+   "resume": "Le Mexique a arrêté Fausto Isidro Meza, alias *El Chapo Isidro*, l’un des criminels les plus recherchés par le FBI. Son interpellation a provoqué des affrontements dans l’État de Sinaloa.",
    "mots_cles": [
-    "police",
-    "vol vélo",
-    "Toulouse",
-    "réseaux sociaux",
-    "indignation"
+    "El Chapo Isidro",
+    "FBI",
+    "Mexique",
+    "drogue",
+    "arrestation"
    ],
    "hashtags": [
-    "policevolvelo",
-    "toulouseindignation",
-    "vidéochoc",
-    "abusdepouvoir"
+    "",
+    "e",
+    "l",
+    "c",
+    "h"
    ],
    "insolite": 8,
    "videos": [
     {
-     "id": "7710976210918001952",
-     "compte": "leparisien",
-     "url": "https://www.tiktok.com/@leparisien/video/7710976210918001952",
-     "vues": 652100,
-     "jaime": 48700,
-     "commentaires": 1293,
-     "partages": 6527,
-     "date": 1795351553,
-     "texte": "À Toulouse, la scène fait le tour des réseaux sociaux depuis vendredi. Sur des images publiées par @le.media.toulousain, on voit un policier se jeter sur une cycliste en pleine rue, lui prendre son vélo puis pédaler tant bien que mal, la propriétaire courant derrière lui. Selon La Dépêche du Midi et ici Occitanie, l'agent poursuivait un lycéen soupçonné d'avoir lancé un projectile en marge d'une m"
+     "id": "7711365169900735766",
+     "compte": "bfmtv",
+     "url": "https://www.tiktok.com/@bfmtv/video/7711365169900735766",
+     "vues": 715600,
+     "jaime": 65200,
+     "commentaires": 108,
+     "partages": 2971,
+     "date": 1795442124,
+     "texte": "Il était l'un des dix criminels en fuite les plus recherchés par le FBI. Le Mexique a arrêté ce vendredi 20 novembre le baron de la drogue Fausto Isidro Meza, alias \"El Chapo Isidro\". Cette interpellation a déclenché de violents affrontements dans l'État de Sinaloa, dans le nord-ouest du pays, où il opérait et a coûté la vie à quatre militaires et sept criminels présumés. #mexique #police #fbi #et",
+     "sous_seuils": true
     }
    ],
-   "id": "2a37a3968f",
-   "score": 76,
-   "derniere_vue": 1795540799.2517166,
-   "vues": 652100,
-   "jaime": 48700,
-   "commentaires": 1293,
+   "sous_seuils": true,
+   "id": "31c6205653",
+   "score": 67,
+   "derniere_vue": 1795541932.2769299,
+   "vues": 715600,
+   "jaime": 65200,
+   "commentaires": 108,
+   "hashtags_viraux": [
+    "mexique",
+    "police",
+    "fbi",
+    "et"
+   ],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Jensen Huang revient diriger Nvidia après scandale",
+   "resume": "Jensen Huang, PDG de Nvidia, est revenu à la tête de l’entreprise après sa démission liée à un scandale impliquant adultère, espionnage et contrebande. Son retour relance les débats éthiques dans la tech.",
+   "mots_cles": [
+    "Nvidia",
+    "Jensen Huang",
+    "scandale",
+    "IA",
+    "technologie"
+   ],
+   "hashtags": [
+    "",
+    "n",
+    "v",
+    "i",
+    "d"
+   ],
+   "insolite": 6,
+   "videos": [
+    {
+     "id": "7711464729171987734",
+     "compte": "bfmtv",
+     "url": "https://www.tiktok.com/@bfmtv/video/7711464729171987734",
+     "vues": 543500,
+     "jaime": 53000,
+     "commentaires": 370,
+     "partages": 2848,
+     "date": 1795465302,
+     "texte": "Jensen Huang redevient le directeur général et président de Nvidia, géant américain des puces, onze jours après sa démission liée à un scandale mêlant adultère, espionnage et contrebande. #nvidia#jensen#jensenhuang#ia",
+     "sous_seuils": true
+    }
+   ],
+   "sous_seuils": true,
+   "id": "3edf5b66a4",
+   "score": 59,
+   "derniere_vue": 1795541932.2769299,
+   "vues": 543500,
+   "jaime": 53000,
+   "commentaires": 370,
+   "hashtags_viraux": [
+    "nvidia",
+    "jensen",
+    "jensenhuang",
+    "ia"
+   ],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Joan revisite In Ze Boîte 20 ans après",
+   "resume": "L’animateur Joan revient sur l’émission culte *In Ze Boîte* diffusée sur Gulli il y a 20 ans. Il évoque son nostalgie et les critiques actuelles autour de ce programme.",
+   "mots_cles": [
+    "In Ze Boîte",
+    "Joan",
+    "Gulli",
+    "nostalgie",
+    "médias"
+   ],
+   "hashtags": [
+    "",
+    "i",
+    "n",
+    "z",
+    "e"
+   ],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7710288799200333078",
+     "compte": "konbini",
+     "url": "https://www.tiktok.com/@konbini/video/7710288799200333078",
+     "vues": 913600,
+     "jaime": 115300,
+     "commentaires": 375,
+     "partages": 6001,
+     "date": 1795298400,
+     "texte": "Vous vous souvenez d'In Ze Boîte ? On a ramené l'animateur de Gulli, @joan , pour qu'il revienne sur cette émission culte pour toute une génération : la boîte noire, son envie de la faire revenir pour les 20 ans de la chaîne, mais aussi les répercussions et les commentaires qu'il reçoit sur son In Ze Boîte, mais pas que… | Remember",
+     "sous_seuils": true
+    }
+   ],
+   "sous_seuils": true,
+   "id": "28d0e74aa1",
+   "score": 47,
+   "derniere_vue": 1795541932.2769299,
+   "vues": 913600,
+   "jaime": 115300,
+   "commentaires": 375,
    "hashtags_viraux": [],
-   "statut": "en_cours",
-   "vu_le": "2026-11-24T18:19:59+01:00",
-   "reserve_le": "2026-11-24T18:21:43+01:00"
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Anthropic entre en bourse historique marché tech",
+   "resume": "Anthropic, entreprise spécialisée en IA, a réalisé une entrée en bourse record, marquant un tournant pour le secteur technologique. L’opération a suscité un vif intérêt des investisseurs.",
+   "mots_cles": [
+    "Anthropic",
+    "entrée en bourse",
+    "IA",
+    "technologie",
+    "marché"
+   ],
+   "hashtags": [
+    "",
+    "a",
+    "n",
+    "t",
+    "h"
+   ],
+   "insolite": 7,
+   "videos": [
+    {
+     "id": "7711305060277292321",
+     "compte": "hugodecrypte",
+     "url": "https://www.tiktok.com/@hugodecrypte/video/7711305060277292321",
+     "vues": 572300,
+     "jaime": 49800,
+     "commentaires": 145,
+     "partages": 1567,
+     "date": 1795428126,
+     "texte": "(21/11) 🚨Entrée en bourse historique d’Anthropic.",
+     "sous_seuils": true
+    }
+   ],
+   "sous_seuils": true,
+   "id": "7b4736815b",
+   "score": 47,
+   "derniere_vue": 1795541932.2769299,
+   "vues": 572300,
+   "jaime": 49800,
+   "commentaires": 145,
+   "hashtags_viraux": [],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Leandro Paredes s’effondre après victoire Copa Sudamericana",
+   "resume": "Leandro Paredes, champion de la Copa Sudamericana avec Boca Juniors, s’est effondré lors d’une interview après le match. Son malaise a été rapidement pris en charge par les secours.",
+   "mots_cles": [
+    "Leandro Paredes",
+    "Copa Sudamericana",
+    "malaise",
+    "Boca Juniors",
+    "football"
+   ],
+   "hashtags": [
+    "",
+    "p",
+    "a",
+    "r",
+    "e"
+   ],
+   "insolite": 4,
+   "videos": [
+    {
+     "id": "7710919532759600416",
+     "compte": "leparisien",
+     "url": "https://www.tiktok.com/@leparisien/video/7710919532759600416",
+     "vues": 783200,
+     "jaime": 66900,
+     "commentaires": 510,
+     "partages": 3618,
+     "date": 1795338360,
+     "texte": "Tout juste sacré champion de la Copa Sudamericana avec Boca Juniors ce samedi, Leandro Paredes a vécu une fin de soirée pour le moins inquiétante. En pleine interview d'après-match, l'ancien milieu du PSG s'est effondré devant les caméras, perdant connaissance quelques instants avant d'être rapidement pris en charge par les secours. Plus de peur que de mal toutefois puisque l'international argenti",
+     "sous_seuils": true
+    }
+   ],
+   "sous_seuils": true,
+   "id": "616fc74340",
+   "score": 39,
+   "derniere_vue": 1795541932.2769299,
+   "vues": 783200,
+   "jaime": 66900,
+   "commentaires": 510,
+   "hashtags_viraux": [],
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T18:38:52+01:00"
   }
  ]
 }
