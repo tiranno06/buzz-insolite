@@ -240,8 +240,10 @@ def mesures_image(chemin):
 
 CONSIGNE_IMAGES = """Tu contrôles les images d'une vidéo TikTok d'actualité. Pour chaque image numérotée, on te donne la phrase
 dite pendant qu'elle s'affiche et le sujet de la vidéo. Réponds pour CHAQUE image :
-- "colle" : true si l'image montre ce dont parle la phrase (la personne, le lieu, l'objet nommé) ou au moins le sujet réel de
-  l'actualité ; false si c'est une image générique sans rapport réel (paysage, fleur, objet au hasard) ;
+- "colle" : true si l'image montre ce dont parle la phrase OU simplement le sujet de la vidéo ou son domaine (ex. : n'importe
+  quelle vraie image d'étoiles, de nébuleuse ou de télescope pour un sujet d'astronomie ; un avion pour un sujet d'Airbus ;
+  la ville pour une actu qui s'y passe). Une image n'a PAS besoin d'illustrer mot pour mot la phrase. false SEULEMENT si
+  l'image n'a aucun rapport avec le sujet (paysage, fleur, objet au hasard, autre pays, autre événement) ;
 - "texte_etranger" : true si un texte incrusté en langue étrangère ou des sous-titres sont visibles ;
 - un logo ou un filigrane visible n'est PAS un problème : ne le signale pas ;
 - "probleme" : en quelques mots, sinon "" ;
@@ -274,19 +276,69 @@ def uid(script, i):
     return p["uid"]
 
 
+def _image_deja_bonne(script, i):
+    """Un média déjà accepté sur un autre écran, repris avec un autre moment (vidéo) : jamais d'écran vide tant qu'au moins
+    une vraie image existe dans la vidéo."""
+    bons = [q["media"] for k, q in enumerate(script["phrases"][:-1]) if k != i and q.get("media")
+            and q["media"].get("type") in ("video", "photo") and not q.get("_essais_image")]
+    if not bons:
+        return None
+    m = dict(bons[i % len(bons)])
+    if m["type"] == "video":
+        m["debut"] = round((m.get("debut", 0) + 3 + 2 * i) % max(1.0, (m.get("duree") or 12) - 6), 1)
+    m["id"] = f"{m.get('id', 'media')}-bis{i}"
+    return m
+
+
 def nouvelle_image(script, i, dossier, deja, journal, recherche=""):
-    """Échelle de solutions pour une image fautive : 1) nouvelle recherche (celle proposée par l'IA, sinon la phrase),
-    2) le thème général du sujet, 3) écran de texte — qui ne peut pas être hors sujet : le problème est réglé à coup sûr."""
+    """Échelle de solutions pour une image fautive (demande de l'auteur du 24/11 : plus jamais une vidéo sans images) :
+    1) recherche proposée par l'IA ; 2) vraies vidéos libres de ce dont parle la phrase ; 3) passages de réserve des vidéos du
+    sujet ; 4) le thème général du sujet ; 5) une vraie image déjà acceptée sur un autre écran (autre moment de la vidéo) ;
+    6) écran de texte, seulement s'il n'existe vraiment aucune image dans toute la vidéo."""
     p = script["phrases"][i]
     p["_essais_image"] = p.get("_essais_image", 0) + 1
     n = p["_essais_image"]
-    if n >= 3:
+    m = None
+    try:
+        if n == 1:
+            requete = recherche or p.get("image", "")
+            m = images.trouver(requete, dossier, 50 + i, deja, journal, "", entite=p.get("entite", ""),
+                               generiques=script.get("images_generiques", False)) if (requete or p.get("entite")) else None
+            quoi = f"nouvelle image (« {requete} »)"
+        elif n == 2:
+            cible = p.get("entite") or script.get("titre", "")
+            clips = images.videos_du_sujet(cible, [], dossier, journal, maxi=1, ecrans=2, prefixe=f"remplace{i}", deja=deja)
+            m = clips[0] if clips else None
+            script.setdefault("_reserve", []).extend(clips[1:])
+            quoi = f"vraie vidéo de « {cible} »"
+        elif n == 3:
+            reserve = script.get("_reserve") or []
+            m = reserve.pop(0) if reserve else None
+            quoi = "autre passage d'une vraie vidéo du sujet"
+        elif n == 4:
+            requete = script.get("theme_image") or p.get("image", "")
+            m = images.trouver(requete, dossier, 80 + i, deja, journal, "", entite=script.get("entite_sujet", ""),
+                               generiques=script.get("images_generiques", False)) if requete else None
+            quoi = f"image du thème (« {requete} »)"
+        else:
+            m = _image_deja_bonne(script, i)
+            quoi = "vraie image d'un autre écran, à un autre moment"
+    except Exception as e:
+        journal(f"    écran {i + 1} : solution {n} impossible ({str(e)[:80]})")
+    if m:
+        deja.add(m.get("id", ""))
+        p["media"] = m
+        return quoi
+    if n >= 5:
         p["media"] = None
-        return "écran de texte à la place de l'image"
-    requete = (recherche or p.get("image", "")) if n == 1 else (script.get("theme_image") or p.get("image", ""))
-    p["media"] = images.trouver(requete, dossier, 50 + 10 * n + i % 10, deja, journal, "", entite=p.get("entite", ""),
-                                generiques=script.get("images_generiques", False)) if (requete or p.get("entite")) else None
-    return f"nouvelle image (« {requete} »)" if p["media"] else "écran de texte à la place de l'image"
+        return "écran de texte (aucune image dans toute la vidéo)"
+    return nouvelle_image(script, i, dossier, deja, journal, recherche)       # solution suivante tout de suite
+
+
+def part_illustree(script):
+    """(écrans avec une vraie image ou vidéo, écrans à illustrer) : la dernière question et la carte ne comptent pas."""
+    ecrans = [p for p in script["phrases"][:-1] if not (p.get("media") or {}).get("type") == "carte"]
+    return sum(1 for p in ecrans if p.get("media")), len(ecrans)
 
 
 def controle_images(script, dossier, B, journal=print, deja=None, sujet="", sans_ia=False):
@@ -329,11 +381,18 @@ def controle_images(script, dossier, B, journal=print, deja=None, sujet="", sans
             if l["ecran"] not in regles:
                 B.fermer("images", l["ecran"])
         if not fautifs:
-            return script
-        journal(f"  contrôle des images (tour {tour + 1}) : {len(fautifs)} écran(s) à changer")
+            break
+        journal(f"  contrôle des images (tour {tour + 1}) : {len(fautifs)} écran(s) à changer : "
+                + ", ".join(f"écran {i + 1} ({str(pb)[:50]})" for i, (pb, _) in fautifs.items()))
         for i, (probleme, recherche) in fautifs.items():
             l = B.ouvrir("images", probleme, uid(script, i))
             l["solution"] = nouvelle_image(script, i, dossier, deja, journal, recherche)
+    illustres, total = part_illustree(script)              # une vidéo presque sans images n'a JAMAIS 100/100
+    journal(f"  écrans illustrés : {illustres}/{total}")
+    if total and illustres < 0.7 * total:
+        B.ouvrir("images", f"trop peu d'images : {illustres} écran(s) illustré(s) sur {total}", None, "grave")
+    else:
+        B.fermer("images", None)
     return script
 
 

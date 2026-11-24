@@ -212,6 +212,37 @@ class TestControleQualite(unittest.TestCase):
         self.assertTrue(s["phrases"][-1]["ecrit"].endswith("?") or "?" in s["phrases"][-1]["ecrit"])
         self.assertEqual(len(s["phrases"]), 5)                                              # coupée en deux + question ajoutée
 
+    def test_jamais_une_video_sans_images(self):
+        """Cas de la vidéo des étoiles du 24/11 : toutes les recherches échouent. Les écrans gardent une vraie image (prise
+        sur un autre écran, à un autre moment) au lieu de devenir des écrans de texte."""
+        from robot import controle
+        video = dict(type="video", chemin="x.mp4", debut=0, duree=40, id="yt-A-0", credit="c")
+        s = {"titre": "Étoiles", "phrases": [dict(ecrit=f"phrase {k}", image="stars", entite="") for k in range(6)]}
+        s["phrases"][0]["media"] = video
+        garde = (controle.images.trouver, controle.images.videos_du_sujet)
+        controle.images.trouver = lambda *a, **k: None
+        controle.images.videos_du_sujet = lambda *a, **k: []
+        try:
+            for i in range(1, 5):
+                controle.nouvelle_image(s, i, TMP, set(), lambda *a: None)
+        finally:
+            controle.images.trouver, controle.images.videos_du_sujet = garde
+        self.assertTrue(all(p.get("media") for p in s["phrases"][:5]))
+        self.assertEqual(len({p["media"]["id"] for p in s["phrases"][:5]}), 5)          # chacun son passage
+        self.assertEqual(controle.part_illustree(s), (5, 5))
+
+    def test_peu_d_images_jamais_100(self):
+        from robot import controle
+        s = {"phrases": [dict(ecrit=f"p{k}", media=None) for k in range(8)]}
+        B = controle.Bulletin()
+        garde = controle.juger_images; controle.juger_images = lambda *a, **k: {}
+        try:
+            controle.controle_images(s, TMP, B, lambda *a: None, set(), "Sujet")
+        finally:
+            controle.juger_images = garde
+        r = B.resume()
+        self.assertLess(r["note"], 100); self.assertTrue(r["graves_restants"])            # « à vérifier », jamais publiée seule
+
     def test_image_noire(self):
         from robot import controle
         from PIL import Image

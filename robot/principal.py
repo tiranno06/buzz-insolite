@@ -256,6 +256,9 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                     p["image"], dossier, p["uid"], deja, journal, script.get("theme_image", ""),
                     entite=p.get("entite", ""), generiques=script["images_generiques"])
                 avancement.progres(52 + 10 * (i + 1) / len(script["phrases"]))
+        script.setdefault("_reserve", []).extend(E["clips"]); E["clips"] = []   # passages de réserve pour le contrôle
+        noms = [p.get("entite") for p in script["phrases"] if p.get("entite")]
+        script["entite_sujet"] = max(set(noms), key=noms.count) if noms else ""
         if not E.get("presse_faite"):                         # « La presse en parle » : vrais titres sur des écrans sans image
             titres = [a for a in E["articles"] if a.get("titre") and a.get("media") and a["media"] not in
                       ("Google Actualités", "Wikipédia (contexte)", "Descriptions des vidéos TikTok virales", "Sujet du buzz")]

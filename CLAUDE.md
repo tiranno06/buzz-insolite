@@ -72,6 +72,16 @@ recherche → thème → écran de texte ; titre → raccourci → retiré ; voi
 courte → phrases ajoutées, sinon sujet abandonné (LookupError). Note = 100 sans problème restant ; un contrôle impossible
 (IA en panne après 3 essais espacés d'1 min) = « a_verifier ».
 
+## Plus jamais une vidéo sans images (analyse de la vidéo des étoiles du 24/11)
+Vidéo « Écoutez la naissance des étoiles ! » : 1 écran illustré sur 15, le reste en écrans de texte (fond bleu-violet), et
+pourtant 100/100. Causes : l'IA des images rejetait de vraies images de nébuleuse (« ne colle pas à la phrase ») ; après 2
+recherches ratées, l'échelle passait à l'écran de texte ; l'écran de texte comptait comme « réglé ». Corrections :
+`CONSIGNE_IMAGES` accepte toute vraie image du sujet ou de son domaine ; `nouvelle_image` : recherche de l'IA → vraies vidéos
+de l'entité → passages de réserve (`script["_reserve"]`, vidéos du sujet non utilisées) → thème (`entite_sujet`) → vraie image
+d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte seulement si la vidéo n'a AUCUNE image ;
+`part_illustree` : moins de 70 % d'écrans illustrés = problème grave (« à vérifier », jamais 100/100) ; raisons de chaque
+écran refusé écrites dans le journal.
+
 ## Vraies images du sujet (demande de l'auteur du 24/11 : « pas de bouts de vidéos au hasard pour meubler »)
 Les vidéos des JT et agences (BFM, TF1, AFP…) ne sont JAMAIS reprises (droits, TikTok les reconnaît). À la place :
 champ "entite" de chaque phrase (titre de l'article Wikipédia de la personne / du lieu / de l'objet) → `images.wikipedia_media`
