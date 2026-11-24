@@ -97,6 +97,9 @@ L'IA qui contrôle les images refuse une image générique sans rapport réel.
   qui voit regarde 3 images ; logo de télé, de média, de TikTok ou d'Instagram = vidéo écartée ; IA indisponible = écartée :
   essai du 24/11, une vidéo PeerTube « CC BY » était un reportage France 24). Découpées en passages de 6 s (`debut`),
   alternés entre vidéos, utilisées en PREMIER sur les écrans, crédit « Vidéo : auteur (source, licence) ».
+  Ensuite, pour les écrans restants : vidéos libres de CHAQUE `entite` citée (6 au plus, `entites_faites`, `prefixe`, `deja` :
+  jamais deux fois la même vidéo). Photos Wikipédia / Commons seulement en dernier recours (choix de l'auteur du 24/11 : des
+  bouts de vraies vidéos collés l'un après l'autre).
 - **Jamais repris** : vidéos TikTok et Instagram d'autres comptes (droits de leurs auteurs, contenu « non original » pour
   TikTok), vidéos des médias même citées (la courte citation ne couvre pas une vidéo qui illustre sans analyser). yt-dlp + deno
   installés dans creer.yml. YouTube qui refuse le serveur (429, « Sign in ») = on s'en passe, sans contournement. Les vidéos

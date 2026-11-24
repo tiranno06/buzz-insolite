@@ -236,6 +236,21 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
         for i, p in enumerate(script["phrases"][:-1]):
             if "media" not in p and E["clips"]:
                 p["media"] = E["clips"].pop(0); deja.add(p["media"]["id"])
+        # Puis des vidéos libres de CHAQUE personne / lieu / objet cité (demande de l'auteur du 24/11 : des bouts de vraies
+        # vidéos collés l'un après l'autre ; les photos ne servent qu'en dernier recours).
+        if not simulation() and format_ != "semaine":
+            entites = E.setdefault("entites_faites", [])
+            restantes = [p for p in script["phrases"][:-1] if "media" not in p and p.get("entite")]
+            for k, nom in enumerate(dict.fromkeys(p["entite"] for p in restantes)):
+                if nom in entites or len(entites) >= 6:
+                    continue
+                besoin = [p for p in restantes if p["entite"] == nom and "media" not in p]
+                clips = images.videos_du_sujet(nom, [], dossier, journal, maxi=1, ecrans=len(besoin),
+                                               prefixe=f"entite{len(entites)}", deja=deja)
+                entites.append(nom)
+                for p in besoin:
+                    if clips:
+                        p["media"] = clips.pop(0); deja.add(p["media"]["id"])
             if "media" not in p:
                 p["media"] = None if simulation() else images.trouver(
                     p["image"], dossier, p["uid"], deja, journal, script.get("theme_image", ""),

@@ -375,12 +375,14 @@ def sans_logo_media(chemin, duree, journal=print):
     return True
 
 
-def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8):
+def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, prefixe="sujet", deja=None):
     """VRAIES vidéos du sujet, publiées par leur auteur sous licence libre (CC BY, CC BY-SA, CC0, domaine public) : YouTube
     (filtre Creative Commons, licence relue sur la page), PeerTube (Sepia Search), Internet Archive, Wikimedia Commons.
     Au moins 2 mots du sujet dans le titre ; télé et agences écartées ; auteur et licence crédités. Chaque vidéo est découpée
     en passages de 6 s (un par écran). Un site qui refuse le serveur = on s'en passe (jamais de contournement)."""
     voulus = _mots_sujet(sujet + " " + " ".join(mots_cles or []))
+    seuil = min(2, len(voulus)) or 1                    # « Toulouse » seul : 1 mot suffit ; sinon 2 mots du sujet
+    vus = {d.rsplit("-", 1)[0] for d in (deja or ())}    # vidéos déjà prises pour cette vidéo : jamais deux fois
     candidats = []
     for nom, chercher in SOURCES_VIDEO:
         if chercher is _cand_youtube and not shutil_which("yt-dlp"):
@@ -393,7 +395,7 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8):
         bons = 0
         for c in trouves:
             commun = len(voulus & _mots_sujet(c["titre"]))
-            if commun >= 2 and (not c["duree"] or 10 <= c["duree"] <= 3600) and not _interdit(c["titre"], c["auteur"]):
+            if commun >= seuil and c["cle"] not in vus and (not c["duree"] or 10 <= c["duree"] <= 3600) and not _interdit(c["titre"], c["auteur"]):
                 candidats.append((commun, c)); bons += 1
         journal(f"  vidéos du sujet ({nom}) : {len(trouves)} trouvée(s), {bons} sur le sujet")
     candidats.sort(key=lambda x: -x[0])
@@ -419,7 +421,7 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8):
         duree = float(c["duree"] or 0)
         debut = 3 if duree > 40 else 0
         fin = debut + 6 * ecrans + 2 if not duree else min(duree, debut + 6 * ecrans + 2)
-        chemin = os.path.join(dossier, f"sujet-{prises}.mp4")
+        chemin = os.path.join(dossier, f"{prefixe}-{prises}.mp4")
         try:
             try:
                 _ytdlp(["-q", "-f", "bv*[height<=720][ext=mp4]/b[height<=720]/b", "--download-sections", f"*{debut}-{fin}",
@@ -448,9 +450,9 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8):
                             credit=f"Vidéo : {auteur} ({c['source']}, {c['licence']})", reelle=True))
         journal(f"  vraie vidéo du sujet : « {c['titre'][:70]} » de {auteur} ({c['source']}, {c['licence']}, {int(reelle // 6)} passages)")
     try:                                                   # Wikimedia Commons : vidéos libres, recherche en français
-        m = commons_video(" ".join(sorted(voulus, key=len, reverse=True)[:3]), set())
-        if m:
-            chemin = os.path.join(dossier, "sujet-commons.webm")
+        m = commons_video(" ".join(sorted(voulus, key=len, reverse=True)[:3]), set(deja or ()))
+        if m and m["id"] not in vus:
+            chemin = os.path.join(dossier, f"{prefixe}-commons.webm")
             try:
                 _telecharger(m["url"], chemin)
             except Exception:
