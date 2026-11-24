@@ -1,6 +1,369 @@
 {
  "videos": [
   {
+   "id": "20261124-211029-1",
+   "tag": "v-20261124-211029-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-211029-1/buzz-20261124-211029-1.mp4",
+   "titre": "Franco célébré : le retour du fascisme en Espagne",
+   "accroche": "FRANCO REVIENT EN ESPAGNE",
+   "sujet_id": "97a197f1f5",
+   "sujet": "Rassemblement fasciste célébrant Franco en Espagne",
+   "buzz": {
+    "vues": 554300,
+    "jaime": 52500,
+    "commentaires": 1016,
+    "score": 118
+   },
+   "description": "Des centaines de nostalgiques célèbrent encore Franco aujourd’hui. 😱",
+   "question": "Tu penses que ces rassemblements devraient être interdits ?",
+   "hashtags": [
+    "#fascisme",
+    "#histoire",
+    "#f",
+    "#r",
+    "#insolite",
+    "#actu"
+   ],
+   "duree": 101.3,
+   "sources": [
+    {
+     "media": "charliehebdo.fr",
+     "titre": "Reportage. « Nous n’avons pas à avoir honte » : en Espagne avec les fanas de Franco",
+     "lien": "https://charliehebdo.fr/2026/11/international/europe/reportage-nous-navons-pas-a-avoir-honte-en-espagne-avec-les-fanas-de-franco/"
+    },
+    {
+     "media": "lopinion.fr",
+     "titre": "Espagne : 17 interpellations après des violences entre pro et anti-Franco",
+     "lien": "https://www.lopinion.fr/international/espagne-17-interpellations-apres-des-violences-entre-pro-et-anti-franco"
+    },
+    {
+     "media": "sudouest.fr",
+     "titre": "Espagne : 17 personnes interpellées à Vitoria après des heurts entre pro et anti-Franco",
+     "lien": "https://www.sudouest.fr/international/europe/espagne/espagne-17-personnes-interpellees-a-vitoria-apres-des-heurts-entre-pro-et-anti-franco-26303603.php"
+    },
+    {
+     "media": "20minutes.fr",
+     "titre": "Espagne : Des violences éclatent entre pro et anti-Franco, dix-sept interpellations",
+     "lien": "https://www.20minutes.fr/monde/4178755-20251012-espagne-violences-eclatent-entre-pro-anti-franco-dix-sept-interpellations"
+    },
+    {
+     "media": "estrepublicain.fr",
+     "titre": "Accueil Vidéos Des rassemblements fascistes dans plusieurs villes d'Espagne en hommage à Franco",
+     "lien": "https://www.estrepublicain.fr/videos/des-rassemblements-fascistes-dans-plusieurs-villes-d-espagne-en-hommage-a-franco-3p3lrrq"
+    },
+    {
+     "media": "humanite.fr",
+     "titre": "Hommage à Franco : les nostalgiques du Caudillo et tout ce que l'Europe compte de néofascistes réunis à Madrid",
+     "lien": "https://www.humanite.fr/monde/espagne/hommage-a-franco-les-nostalgiques-du-caudillo-et-tout-ce-que-leurope-compte-de-neofascistes-reunis-a-madrid"
+    },
+    {
+     "media": "rfi.fr",
+     "titre": "Espagne: 50 ans après la disparition de Franco, son ombre plane toujours sur la péninsule",
+     "lien": "https://www.rfi.fr/fr/europe/20251120-espagne-50-ans-mort-franco-extreme-droite-vox-pp-abascal-reseaux-sociaux-education"
+    },
+    {
+     "media": "france24.com",
+     "titre": "La guerre d'Espagne : prologue de la Seconde Guerre mondiale ? (1/4)",
+     "lien": "https://www.france24.com/fr/europe/20260803-guerre-espagne-prologue-seconde-mondiale-republicains-franco-histoire"
+    }
+   ],
+   "verification": {
+    "par": "groq:openai/gpt-oss-20b",
+    "corrigees": 3,
+    "retirees": 0,
+    "problemes": [
+     "La phrase affirme que Franco et Primo de Rivera étaient enterrés jusqu’en 2019, alors que seul Franco a été exhumé en 2019, la dépouille de Primo de Rivera deva",
+     "Les articles ne mentionnent pas de « saluts nazis », mais uniquement des saluts fascistes.",
+     "La partie « le pire reste à venir » est une opinion, pas un fait confirmé par les articles."
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "Carte : Natural Earth, OpenStreetMap"
+   ],
+   "ecrans_illustres": 1,
+   "format": "buzz",
+   "voix": "chatterbox-bernard",
+   "lieu": "Valle de Los Caídos, Espagne / Vitoria, Espagne / Madrid, Espagne",
+   "humeur": "tension",
+   "texte": [
+    "En Espagne, des centaines célèbrent encore Franco aujourd’hui.",
+    "Le 20 novembre, date de sa mort, c’est leur fête nationale.",
+    "À la vallée des Tombeaux, un endroit triste où sont enterrés 38 000 corps sans nom.",
+    "En deux mille dix-neuf, Franco a été déterré. Son maître, Primo de Rivera, est toujours dans sa tombe. On va le déterrer aussi en deux mille vingt-trois.",
+    "Mais aujourd’hui, les gens qui aiment le passé continuent de venir ici.",
+    "À Vitoria, 17 personnes ont été interpellées après des violences entre pro et anti-Franco.",
+    "Des saluts fascistes, des drapeaux brandis, et des affrontements avec des contre-manifestants.",
+    "Un ancien parti de l’ancienne époque dure veut toujours que le pays reste uni et entier.",
+    "Des chaises lancées, des incendies, et même des tirs de mortiers ont eu lieu.",
+    "20 policiers ont été légèrement blessés, et l’événement survient à quelques semaines du 50e anniversaire de sa mort.",
+    "À Madrid, des centaines de néofascistes européens se sont aussi réunis pour célébrer Franco.",
+    "Un sommet fasciste européen a même été organisé dans la foulée.",
+    "À Vitoria, des militants de la Phalange ont brandi des drapeaux espagnols et fait des saluts fascistes. Des contre-manifestants encagoulés ont riposté en lançant des chaises et en incendiant des déchets.",
+    "Dans la basilique du Valle de Los Caídos, des nostalgiques se recueillent encore devant l’emplacement vide de la tombe de Franco, malgré son exhumation en deux mille dix-neuf.",
+    "Le gouvernement espagnol a classé ce monument comme patrimoine national, mais les nostalgiques continuent d’en faire un lieu de pèlerinage fasciste.",
+    "À Madrid, des néofascistes européens ont organisé un rassemblement pour célébrer Franco, marquant une convergence inquiétante des extrêmes en Europe.",
+    "Alors, tu penses que ces rassemblements devraient être interdits ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-24T22:29:02+01:00",
+   "fabrication_s": 4713,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 1,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 2,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 5,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 3,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 59 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "voix et sous-titres ne correspondent pas (60%)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 2,
+      "solution": "voix refaite"
+     },
+     {
+      "niveau": "images",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "video",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     }
+    ],
+    "sautes": [],
+    "corriges": 27,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261124-203224-1",
    "tag": "v-20261124-203224-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-203224-1/buzz-20261124-203224-1.mp4",
