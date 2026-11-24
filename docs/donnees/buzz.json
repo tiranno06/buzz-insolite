@@ -1,107 +1,184 @@
 {
- "maj": "2026-11-24T18:38:52+01:00",
+ "maj": "2026-11-24T20:46:45+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:37:09+01:00"
+   "le": "2026-11-24T20:43:22+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:37:13+01:00"
+   "le": "2026-11-24T20:43:26+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:37:18+01:00"
+   "le": "2026-11-24T20:43:31+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:37:22+01:00"
+   "le": "2026-11-24T20:43:35+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:37:26+01:00"
+   "le": "2026-11-24T20:43:39+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-24T18:37:29+01:00"
+   "le": "2026-11-24T20:43:44+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:37:34+01:00"
+   "le": "2026-11-24T20:43:48+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:37:38+01:00"
+   "le": "2026-11-24T20:43:53+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:37:43+01:00"
+   "le": "2026-11-24T20:43:58+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:37:47+01:00"
+   "le": "2026-11-24T20:44:01+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:37:52+01:00"
+   "le": "2026-11-24T20:44:06+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:37:56+01:00"
+   "le": "2026-11-24T20:44:10+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T18:38:00+01:00"
+   "le": "2026-11-24T20:44:14+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-24T18:38:04+01:00"
+   "le": "2026-11-24T20:44:17+01:00"
+  },
+  "bbcnews": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:44:21+01:00"
+  },
+  "cnn": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:44:27+01:00"
+  },
+  "dailymail": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:44:33+01:00"
+  },
+  "unilad": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:44:38+01:00"
+  },
+  "ladbible": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:44:42+01:00"
+  },
+  "washingtonpost": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:44:45+01:00"
+  },
+  "nytimes": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:44:49+01:00"
+  },
+  "cbsnews": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:44:54+01:00"
+  },
+  "skynews": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:44:58+01:00"
+  },
+  "abcnews": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:45:02+01:00"
+  },
+  "insider": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:45:07+01:00"
+  },
+  "aljazeeraenglish": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:45:11+01:00"
+  },
+  "reuters": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:45:15+01:00"
+  },
+  "foxnews": {
+   "ok": true,
+   "videos": 30,
+   "le": "2026-11-24T20:45:19+01:00"
   }
  },
- "lues": 389,
- "retenues": 8,
+ "lues": 809,
+ "retenues": 23,
  "sujets": [
   {
    "titre": "CAN 2025 : Sénégal vainqueur après arbitrage TAS",
-   "resume": "Le Sénégal a été désigné vainqueur de la Coupe d’Afrique des Nations 2025 par le Tribunal Arbitral du Sport (TAS) après avoir perdu son titre initial. Le Maroc, initialement finaliste, a été déchu de sa victoire.",
+   "resume": "Le Sénégal a été désigné vainqueur de la Coupe d’Afrique des Nations 2025 par le Tribunal Arbitral du Sport (TAS) après avoir perdu son titre initial. Le Maroc, initialement finaliste, a été disqualifié pour des raisons non précisées.",
    "mots_cles": [
     "CAN 2025",
-    "TAS",
     "Sénégal",
-    "Maroc",
-    "football africain"
+    "TAS",
+    "football africain",
+    "arbitrage"
+   ],
+   "mots_cles_en": [
+    "CAN 2025",
+    "Senegal",
+    "CAS",
+    "African football",
+    "arbitration"
    ],
    "hashtags": [
-    "can2025",
-    "tasfootball",
-    "senegalvainqueur",
-    "marocdéchu",
-    "africacup"
+    "",
+    "c",
+    "a",
+    "n",
+    "2"
    ],
-   "insolite": 7,
+   "insolite": 5,
    "videos": [
     {
      "id": "7711746571976707361",
      "compte": "hugodecrypte",
      "url": "https://www.tiktok.com/@hugodecrypte/video/7711746571976707361",
-     "vues": 1300000,
-     "jaime": 177300,
-     "commentaires": 1503,
-     "partages": 23500,
+     "vues": 1700000,
+     "jaime": 234300,
+     "commentaires": 1961,
+     "partages": 28700,
      "date": 1795530924,
      "texte": "Le Tribunal Arbitral du Sport, la plus haute juridiction du sport mondial, a désigné ce mardi le Sénégal comme vainqueur de la Coupe d’Afrique des Nations 2025. Le Sénégal avait remporté le titre à l’issue de la finale dans un premier temps, avant de se le voir retirer par la Confédération Africaine de Football (CAF) sur tapis vert en mars. Il était reproché aux joueurs de l’équipe sénégalaise d’a"
     },
@@ -109,24 +186,621 @@
      "id": "7711749544022723873",
      "compte": "brutofficiel",
      "url": "https://www.tiktok.com/@brutofficiel/video/7711749544022723873",
-     "vues": 1400000,
-     "jaime": 143500,
-     "commentaires": 3950,
-     "partages": 25300,
+     "vues": 1900000,
+     "jaime": 202800,
+     "commentaires": 5235,
+     "partages": 34700,
      "date": 1795531617,
      "texte": "Le Sénégal déclaré vainqueur de la CAn 2025, le Maroc déchu par le TAS"
     }
    ],
+   "sous_seuils": false,
    "id": "af2b8dfec2",
-   "score": 3718,
-   "derniere_vue": 1795540799.2517166,
-   "vues": 2700000,
-   "jaime": 320800,
-   "commentaires": 5453,
+   "score": 2963,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 3600000,
+   "jaime": 437100,
+   "commentaires": 7196,
    "hashtags_viraux": [],
+   "medias": 14,
    "statut": "en_cours",
-   "vu_le": "2026-11-24T18:19:59+01:00",
-   "reserve_le": "2026-11-24T19:50:48+01:00"
+   "vu_le": "2026-11-24T18:19:59+01:00"
+  },
+  {
+   "titre": "Brésil : golden retriever sauve enfant noyé",
+   "resume": "Un golden retriever a maintenu un enfant en vie dans une piscine jusqu’à ce que des secouristes arrivent. Cette histoire touchante illustre le courage des animaux dans les situations d’urgence.",
+   "mots_cles": [
+    "chien",
+    "sauvetage",
+    "Brésil",
+    "noyade",
+    "golden retriever"
+   ],
+   "mots_cles_en": [
+    "dog",
+    "rescue",
+    "Brazil",
+    "drowning",
+    "golden retriever"
+   ],
+   "hashtags": [
+    "",
+    "c",
+    "h",
+    "i",
+    "e"
+   ],
+   "insolite": 8,
+   "videos": [
+    {
+     "id": "7711547130019613966",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7711547130019613966",
+     "vues": 3500000,
+     "jaime": 336900,
+     "commentaires": 2740,
+     "partages": 12300,
+     "date": 1795484499,
+     "texte": "A golden retriever leapt into action after a toddler jumped into a pool and began drowning in Chapada dos Guimarães, Brazil. The dog was able to help keep the child afloat until two women rescued her. #news #rescue #dog #animals "
+    }
+   ],
+   "sous_seuils": false,
+   "id": "c1c8e4bedd",
+   "score": 912,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 3500000,
+   "jaime": 336900,
+   "commentaires": 2740,
+   "hashtags_viraux": [
+    "news",
+    "rescue",
+    "dog",
+    "animals"
+   ],
+   "medias": 3,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "États-Unis : arrestation passagers à l’aéroport de Seattle",
+   "resume": "Deux passagers ont été arrêtés à l’aéroport de Seattle avant leur vol, provoquant l’indignation des autorités locales. L’incident soulève des questions sur les politiques migratoires américaines.",
+   "mots_cles": [
+    "États-Unis",
+    "aéroport",
+    "arrestation",
+    "migration",
+    "Seattle"
+   ],
+   "mots_cles_en": [
+    "USA",
+    "airport",
+    "arrest",
+    "immigration",
+    "Seattle"
+   ],
+   "hashtags": [
+    "",
+    "u",
+    "s",
+    "a",
+    ""
+   ],
+   "insolite": 4,
+   "videos": [
+    {
+     "id": "7711127723879582989",
+     "compte": "nytimes",
+     "url": "https://www.tiktok.com/@nytimes/video/7711127723879582989",
+     "vues": 9500000,
+     "jaime": 133000,
+     "commentaires": 3669,
+     "partages": 7850,
+     "date": 1795386861,
+     "texte": "Federal immigration officers on Saturday arrested two passengers at Seattle-Tacoma International Airport as they were boarding an Alaska Airlines flight, prompting criticism from Washington’s governor and airport officials, who called the incident “distressing.” The Port of Seattle, which operates the airport, and Alaska Airlines said they did not have advance knowledge of the immigration enforcem"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "575a12c120",
+   "score": 824,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 9500000,
+   "jaime": 133000,
+   "commentaires": 3669,
+   "hashtags_viraux": [],
+   "medias": 15,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "GTA VI : polémique autour de Leto et Lucia",
+   "resume": "Le rappeur Leto est accusé de misogynie après avoir refusé de jouer le personnage féminin Lucia dans *GTA VI*. La controverse divise les joueurs et relance le débat sur la représentation dans les jeux vidéo.",
+   "mots_cles": [
+    "GTA VI",
+    "Leto",
+    "misogynie",
+    "jeux vidéo",
+    "polémique"
+   ],
+   "mots_cles_en": [
+    "GTA VI",
+    "Leto",
+    "misogyny",
+    "video games",
+    "controversy"
+   ],
+   "hashtags": [
+    "",
+    "g",
+    "t",
+    "a",
+    "v"
+   ],
+   "insolite": 7,
+   "videos": [
+    {
+     "id": "7711443423324048662",
+     "compte": "bfmtv",
+     "url": "https://www.tiktok.com/@bfmtv/video/7711443423324048662",
+     "vues": 1000000,
+     "jaime": 75600,
+     "commentaires": 2271,
+     "partages": 6854,
+     "date": 1795460341,
+     "texte": "GTA VI: le rappeur Leto est accusé de misogynie après avoir refusé de jouer Lucia #gta #gta6 #leto #lucia #anyme"
+    },
+    {
+     "id": "7711497591934029078",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7711497591934029078",
+     "vues": 1100000,
+     "jaime": 54500,
+     "commentaires": 1004,
+     "partages": 5304,
+     "date": 1795472936,
+     "texte": "Arion Kurtaj tried to extort GTA 6-maker Rockstar Games in 2022 but has now been released from custody with the judge warning him, \"don't let this happen again\". #GTAVI #GTA6 #RockstarGames #Hacker #BBCNews"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "3df3587aba",
+   "score": 523,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 2100000,
+   "jaime": 130100,
+   "commentaires": 3275,
+   "hashtags_viraux": [
+    "gta6",
+    "gta",
+    "leto",
+    "lucia",
+    "anyme",
+    "gtavi",
+    "rockstargames",
+    "hacker"
+   ],
+   "medias": 4,
+   "statut": "en_cours",
+   "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Son TikTok pour arrêter les pensées intrusives",
+   "resume": "Un son viral sur TikTok, utilisant des ondes theta binaurales, serait efficace pour calmer l’esprit et réduire l’anxiété. Cette technique suscite l’intérêt des neurosciences et des utilisateurs.",
+   "mots_cles": [
+    "TikTok",
+    "ondes theta",
+    "anxiété",
+    "relaxation",
+    "neurosciences"
+   ],
+   "mots_cles_en": [
+    "TikTok",
+    "theta waves",
+    "anxiety",
+    "relaxation",
+    "neuroscience"
+   ],
+   "hashtags": [
+    "",
+    "t",
+    "i",
+    "k",
+    "t"
+   ],
+   "insolite": 7,
+   "videos": [
+    {
+     "id": "7711696996100263182",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711696996100263182",
+     "vues": 1100000,
+     "jaime": 92300,
+     "commentaires": 1476,
+     "partages": 9483,
+     "date": 1795519475,
+     "texte": "Struggling to switch off a racing mind? A viral TikTok sound is gaining attention for its supposed ability to help quiet overthinking and encourage relaxation. The audio uses a 5Hz theta binaural beat, alongside alternating sounds that move between the left and right ears, a technique known as bilateral stimulation that is also used in EMDR therapy. #overthinking #audio #viral #science #anxiety "
+    }
+   ],
+   "sous_seuils": false,
+   "id": "6ae6098158",
+   "score": 460,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 1100000,
+   "jaime": 92300,
+   "commentaires": 1476,
+   "hashtags_viraux": [
+    "overthinking",
+    "audio",
+    "viral",
+    "science",
+    "anxiety"
+   ],
+   "medias": 5,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Trump signe ordre pour peine de mort accélérée",
+   "resume": "Donald Trump a signé un décret ordonnant au département de la Justice d’accélérer les exécutions fédérales pour meurtres d’enfants, viols et trafic humain. Cette décision divise l’opinion publique américaine.",
+   "mots_cles": [
+    "Trump",
+    "peine de mort",
+    "États-Unis",
+    "justice",
+    "décret"
+   ],
+   "mots_cles_en": [
+    "Trump",
+    "death penalty",
+    "USA",
+    "justice",
+    "executive order"
+   ],
+   "hashtags": [
+    "",
+    "t",
+    "r",
+    "u",
+    "m"
+   ],
+   "insolite": 4,
+   "videos": [
+    {
+     "id": "7711508210296884493",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7711508210296884493",
+     "vues": 1600000,
+     "jaime": 168000,
+     "commentaires": 9398,
+     "partages": 19500,
+     "date": 1795475436,
+     "texte": "President Trump signed an executive order Monday directing the Justice Department to seek the death penalty for child murderers, as well as rapists and human traffickers who kill their victims, and to expedite federal executions. “Once juries have spoken, capital punishment will be swift and certain,” Trump said. The directive comes in response to California Gov. Gavin Newsom commuting the death s"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "569fb914b4",
+   "score": 367,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 1600000,
+   "jaime": 168000,
+   "commentaires": 9398,
+   "hashtags_viraux": [],
+   "medias": 18,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Iran : flagellation pour performance sans hijab obligatoire",
+   "resume": "Une chanteuse iranienne et quatre membres de son équipe ont été flagellés pour avoir refusé de porter le hijab lors d’un concert. Cette décision renforce les tensions autour des lois sur les vêtements en Iran.",
+   "mots_cles": [
+    "Iran",
+    "hijab",
+    "flagellation",
+    "musique",
+    "droits humains"
+   ],
+   "mots_cles_en": [
+    "Iran",
+    "hijab",
+    "flogging",
+    "music",
+    "human rights"
+   ],
+   "hashtags": [
+    "",
+    "i",
+    "r",
+    "a",
+    "n"
+   ],
+   "insolite": 8,
+   "videos": [
+    {
+     "id": "7711730013971680526",
+     "compte": "cnn",
+     "url": "https://www.tiktok.com/@cnn/video/7711730013971680526",
+     "vues": 638900,
+     "jaime": 57500,
+     "commentaires": 3705,
+     "partages": 4287,
+     "date": 1795527102,
+     "texte": "The Iranian regime flogged a woman singer and four members of her concert team over her performance without wearing the mandatory hijab, according to defense attorney Mostafa Nili, cited by the Norway-based Iran Human Rights (IHRNGO). CNN's Jomana Karadsheh reports."
+    }
+   ],
+   "sous_seuils": false,
+   "id": "d08608b6cc",
+   "score": 366,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 638900,
+   "jaime": 57500,
+   "commentaires": 3705,
+   "hashtags_viraux": [],
+   "medias": 7,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Recherche Ark biblique : bois datés 4300 ans",
+   "resume": "Des chercheurs en Turquie affirment avoir trouvé des morceaux de bois de l’Arche de Noé, datés d’environ 4300 ans. Cette découverte relance les débats entre science et religion.",
+   "mots_cles": [
+    "Arche de Noé",
+    "Turquie",
+    "bois",
+    "bible",
+    "archéologie"
+   ],
+   "mots_cles_en": [
+    "Noah's Ark",
+    "Turkey",
+    "wood",
+    "bible",
+    "archaeology"
+   ],
+   "hashtags": [
+    "",
+    "a",
+    "r",
+    "c",
+    "h"
+   ],
+   "insolite": 8,
+   "videos": [
+    {
+     "id": "7711679808245075214",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711679808245075214",
+     "vues": 720800,
+     "jaime": 69000,
+     "commentaires": 5292,
+     "partages": 3392,
+     "date": 1795515420,
+     "texte": "Researchers searching for the remains of Noah’s Ark in Turkey say new laboratory tests have dated two pieces of buried wood to around 4,300 years ago, overlapping with dates traditionally associated with the biblical Flood. The samples were recovered more than 30 feet beneath the surface of the boat-shaped Durupınar formation near Mount Ararat, which the research team believes could conceal traces"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "072f38e62b",
+   "score": 320,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 720800,
+   "jaime": 69000,
+   "commentaires": 5292,
+   "hashtags_viraux": [],
+   "medias": 11,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Toulouse : malaise étudiant devant Macron et polémique policière",
+   "resume": "Une étudiante a fait un malaise lors d’une visite d’Emmanuel Macron à Toulouse. Parallèlement, une vidéo montre un policier volant le vélo d’une cycliste, déclenchant une vive polémique.",
+   "mots_cles": [
+    "Macron",
+    "Toulouse",
+    "police",
+    "malaise",
+    "Airbus"
+   ],
+   "mots_cles_en": [
+    "Macron",
+    "Toulouse",
+    "police",
+    "fainting",
+    "controversy"
+   ],
+   "hashtags": [
+    "",
+    "m",
+    "a",
+    "c",
+    "r"
+   ],
+   "insolite": 4,
+   "videos": [
+    {
+     "id": "7711441451774758177",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711441451774758177",
+     "vues": 1000000,
+     "jaime": 67400,
+     "commentaires": 1218,
+     "partages": 4737,
+     "date": 1795459881,
+     "texte": "Une étudiante fait un malaise devant Emmanuel Macron à Toulouse. Ce lundi 23 novembre 2026, Emmanuel Macron s'est rendu sur le site d'Airbus"
+    },
+    {
+     "id": "7710976210918001952",
+     "compte": "leparisien",
+     "url": "https://www.tiktok.com/@leparisien/video/7710976210918001952",
+     "vues": 657100,
+     "jaime": 48900,
+     "commentaires": 1304,
+     "partages": 6571,
+     "date": 1795351553,
+     "texte": "À Toulouse, la scène fait le tour des réseaux sociaux depuis vendredi. Sur des images publiées par @le.media.toulousain, on voit un policier se jeter sur une cycliste en pleine rue, lui prendre son vélo puis pédaler tant bien que mal, la propriétaire courant derrière lui. Selon La Dépêche du Midi et ici Occitanie, l'agent poursuivait un lycéen soupçonné d'avoir lancé un projectile en marge d'une m"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "fe33716a10",
+   "score": 301,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 1657100,
+   "jaime": 116300,
+   "commentaires": 2522,
+   "hashtags_viraux": [],
+   "medias": 7,
+   "statut": "en_cours",
+   "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Ventes drogues illégales dans stations-service américaines",
+   "resume": "Des produits contenant des substances illégales sont vendus ouvertement dans des stations-service et magasins aux États-Unis. Une enquête du *New York Times* révèle des risques sanitaires majeurs pour les consommateurs.",
+   "mots_cles": [
+    "drogues",
+    "stations-service",
+    "États-Unis",
+    "santé",
+    "enquête"
+   ],
+   "mots_cles_en": [
+    "drugs",
+    "gas stations",
+    "USA",
+    "health",
+    "investigation"
+   ],
+   "hashtags": [
+    "",
+    "d",
+    "r",
+    "o",
+    "g"
+   ],
+   "insolite": 6,
+   "videos": [
+    {
+     "id": "7711424511110843661",
+     "compte": "nytimes",
+     "url": "https://www.tiktok.com/@nytimes/video/7711424511110843661",
+     "vues": 1500000,
+     "jaime": 137200,
+     "commentaires": 1790,
+     "partages": 19900,
+     "date": 1795455960,
+     "texte": "A new generation of drugs is for sale inside gas station convenience stores and smoke shops across the country. It can be difficult to know what’s actually inside these items. To better understand this phenomenon, The New York Times purchased and lab-tested 28 products. #gasstation #vape #hallucinogens"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "0d13d1583a",
+   "score": 282,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 1500000,
+   "jaime": 137200,
+   "commentaires": 1790,
+   "hashtags_viraux": [
+    "gasstation",
+    "vape",
+    "hallucinogens"
+   ],
+   "medias": 7,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Leçon antiraciste de Jane Elliott en 1968 toujours pertinente",
+   "resume": "Jane Elliott, professeure ayant mené une expérience sur le racisme en 1968, revient sur son impact durable. Son exercice « Blue Eyes, Brown Eyes » reste une référence pour lutter contre les discriminations.",
+   "mots_cles": [
+    "racisme",
+    "éducation",
+    "Jane Elliott",
+    "discrimination",
+    "histoire"
+   ],
+   "mots_cles_en": [
+    "racism",
+    "education",
+    "Jane Elliott",
+    "discrimination",
+    "history"
+   ],
+   "hashtags": [
+    "",
+    "r",
+    "a",
+    "c",
+    "i"
+   ],
+   "insolite": 6,
+   "videos": [
+    {
+     "id": "7711554120955596062",
+     "compte": "abcnews",
+     "url": "https://www.tiktok.com/@abcnews/video/7711554120955596062",
+     "vues": 691500,
+     "jaime": 185200,
+     "commentaires": 2345,
+     "partages": 12300,
+     "date": 1795486124,
+     "texte": "In 1968, teacher Jane Elliott introduced her “Blue Eyes, Brown Eyes” exercise to teach students about prejudice, discrimination and racism. She joined ABC News Live to reflect on the lesson and her decades of challenging people to confront discrimination."
+    }
+   ],
+   "sous_seuils": false,
+   "id": "808e47fa72",
+   "score": 277,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 691500,
+   "jaime": 185200,
+   "commentaires": 2345,
+   "hashtags_viraux": [],
+   "medias": 11,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Naissance des étoiles : son capturé par la NASA",
+   "resume": "La NASA a enregistré le son de la formation d’étoiles, un phénomène cosmique fascinant. Ces ondes, transformées en audio, révèlent les mystères de l’univers et attirent l’attention des scientifiques.",
+   "mots_cles": [
+    "étoiles",
+    "NASA",
+    "son cosmique",
+    "univers",
+    "astronomie"
+   ],
+   "mots_cles_en": [
+    "stars",
+    "NASA",
+    "cosmic sound",
+    "universe",
+    "astronomy"
+   ],
+   "hashtags": [
+    "",
+    "n",
+    "a",
+    "s",
+    "a"
+   ],
+   "insolite": 9,
+   "videos": [
+    {
+     "id": "7711334506657090838",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711334506657090838",
+     "vues": 1300000,
+     "jaime": 157900,
+     "commentaires": 1735,
+     "partages": 18500,
+     "date": 1795434961,
+     "texte": "Voici le son de la naissance d'étoiles."
+    }
+   ],
+   "sous_seuils": false,
+   "id": "44b99938f9",
+   "score": 256,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 1300000,
+   "jaime": 157900,
+   "commentaires": 1735,
+   "hashtags_viraux": [],
+   "medias": 8,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
    "titre": "Son mystérieux naissance étoiles captivant internautes",
@@ -221,94 +895,54 @@
    "video_id": "20261124-190104-1"
   },
   {
-   "titre": "Polémique Leto et personnage Lucia GTA VI",
-   "resume": "Le rappeur Leto est accusé de misogynie après avoir refusé de jouer le personnage Lucia dans *GTA VI*. La polémique s’intensifie autour des choix de représentation dans les jeux vidéo.",
+   "titre": "Disney : accident scooter blesse enfant en Floride",
+   "resume": "Une vidéo montre une femme sur un scooter écrasant accidentellement la jambe d’un enfant à Disney. L’incident, survenu en 2025, a été rendu public récemment et soulève des questions sur la sécurité dans les parcs.",
    "mots_cles": [
-    "GTA VI",
-    "Leto",
-    "misogynie",
-    "Lucia",
-    "jeux vidéo"
+    "Disney",
+    "accident",
+    "enfant",
+    "Floride",
+    "sécurité"
+   ],
+   "mots_cles_en": [
+    "Disney",
+    "accident",
+    "child",
+    "Florida",
+    "safety"
    ],
    "hashtags": [
     "",
-    "g",
-    "t",
-    "a",
-    "v"
+    "d",
+    "i",
+    "s",
+    "n"
    ],
-   "insolite": 5,
+   "insolite": 6,
    "videos": [
     {
-     "id": "7711443423324048662",
-     "compte": "bfmtv",
-     "url": "https://www.tiktok.com/@bfmtv/video/7711443423324048662",
-     "vues": 936100,
-     "jaime": 71000,
-     "commentaires": 2142,
-     "partages": 6563,
-     "date": 1795460341,
-     "texte": "GTA VI: le rappeur Leto est accusé de misogynie après avoir refusé de jouer Lucia #gta #gta6 #leto #lucia #anyme"
+     "id": "7711718692718972190",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7711718692718972190",
+     "vues": 1500000,
+     "jaime": 76000,
+     "commentaires": 2332,
+     "partages": 4500,
+     "date": 1795524457,
+     "texte": "Recently obtained footage shows a frightening moment at Disney’s Hollywood Studios as a woman on a mobility scooter drives into a young boy, briefly trapping his leg beneath the wheel. The incident occurred in February 2025 at the Florida theme park, but the video has only recently surfaced. Thankfully, the boy was uninjured, according to the man who recorded the incident."
     }
    ],
    "sous_seuils": false,
-   "id": "17df3c92a2",
-   "score": 180,
-   "derniere_vue": 1795541932.2769299,
-   "vues": 936100,
-   "jaime": 71000,
-   "commentaires": 2142,
-   "hashtags_viraux": [
-    "gta",
-    "gta6",
-    "leto",
-    "lucia",
-    "anyme"
-   ],
-   "statut": "en_cours",
-   "vu_le": "2026-11-24T18:38:52+01:00",
-   "reserve_le": "2026-11-24T19:50:48+01:00"
-  },
-  {
-   "titre": "Malaise étudiant devant Macron à Toulouse",
-   "resume": "Une étudiante a fait un malaise en présence d’Emmanuel Macron lors d’une visite à Toulouse le 23 novembre 2026. L’incident a été filmé et partagé sur les réseaux sociaux.",
-   "mots_cles": [
-    "Macron",
-    "Toulouse",
-    "malaise",
-    "présidence",
-    "Airbus"
-   ],
-   "hashtags": [
-    "macrontoulouse",
-    "malaisepublique",
-    "presidentfrance",
-    "incident2026"
-   ],
-   "insolite": 5,
-   "videos": [
-    {
-     "id": "7711441451774758177",
-     "compte": "brutofficiel",
-     "url": "https://www.tiktok.com/@brutofficiel/video/7711441451774758177",
-     "vues": 891500,
-     "jaime": 62300,
-     "commentaires": 1140,
-     "partages": 4383,
-     "date": 1795459881,
-     "texte": "Une étudiante fait un malaise devant Emmanuel Macron à Toulouse. Ce lundi 23 novembre 2026, Emmanuel Macron s'est rendu sur le site d'Airbus"
-    }
-   ],
-   "id": "ef38e151cf",
-   "score": 166,
-   "derniere_vue": 1795540799.2517166,
-   "vues": 891500,
-   "jaime": 62300,
-   "commentaires": 1140,
+   "id": "67a0481bb8",
+   "score": 153,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 1500000,
+   "jaime": 76000,
+   "commentaires": 2332,
    "hashtags_viraux": [],
-   "statut": "en_cours",
-   "vu_le": "2026-11-24T18:19:59+01:00",
-   "reserve_le": "2026-11-24T20:36:12+01:00"
+   "medias": 0,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
    "titre": "Rumeur galet compression mode hiver infondée",
@@ -353,6 +987,56 @@
    "statut": "en_cours",
    "vu_le": "2026-11-24T18:38:52+01:00",
    "reserve_le": "2026-11-24T19:50:48+01:00"
+  },
+  {
+   "titre": "Miami : policier frappe suspect cinq fois",
+   "resume": "Une vidéo montre un policier de Miami frappant un suspect cinq fois après avoir été mordu. La police affirme qu’il se défendait, mais l’incident relance les débats sur l’usage de la force.",
+   "mots_cles": [
+    "police",
+    "violence",
+    "Miami",
+    "usage de la force",
+    "vidéo"
+   ],
+   "mots_cles_en": [
+    "police",
+    "violence",
+    "Miami",
+    "use of force",
+    "video"
+   ],
+   "hashtags": [
+    "",
+    "p",
+    "o",
+    "l",
+    "i"
+   ],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711734713055972621",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7711734713055972621",
+     "vues": 959100,
+     "jaime": 133300,
+     "commentaires": 4789,
+     "partages": 7961,
+     "date": 1795528200,
+     "texte": "A cell phone video posted on social media shows a Miami Police officer punching a suspect in the face five times before being pulled away by a fellow officer. Police say the officer was defending himself after being bitten in the inner thigh. The incident occurred during Halloween weekend after police responded early Sunday morning to a complaint that the suspect had grabbed his girlfriend’s backs"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "6361d4425f",
+   "score": 148,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 959100,
+   "jaime": 133300,
+   "commentaires": 4789,
+   "hashtags_viraux": [],
+   "medias": 2,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
    "titre": "Macron inaugure nouvelle ligne Airbus A320 Toulouse",
@@ -445,57 +1129,277 @@
    "reserve_le": "2026-11-24T20:36:12+01:00"
   },
   {
-   "titre": "Rassemblement fasciste célébrant Franco en Espagne",
-   "resume": "Des centaines de militants fascistes se sont réunis en Espagne pour commémorer le dictateur Francisco Franco. L’événement a provoqué des débats sur la résurgence des extrémismes politiques.",
+   "titre": "Massachusetts : femme poursuivie par des dindes sauvages",
+   "resume": "Une femme a été poursuivie par des dindes sauvages avant de se réfugier dans une voiture. Les autorités rappellent que ces animaux, bien que sauvages, peuvent être agressifs.",
    "mots_cles": [
-    "Franco",
+    "dindes",
+    "Massachusetts",
+    "animaux sauvages",
+    "humour",
+    "sécurité"
+   ],
+   "mots_cles_en": [
+    "turkeys",
+    "Massachusetts",
+    "wild animals",
+    "humor",
+    "safety"
+   ],
+   "hashtags": [
+    "",
+    "d",
+    "i",
+    "n",
+    "d"
+   ],
+   "insolite": 7,
+   "videos": [
+    {
+     "id": "7711484027240254733",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7711484027240254733",
+     "vues": 568200,
+     "jaime": 58500,
+     "commentaires": 2785,
+     "partages": 12500,
+     "date": 1795469815,
+     "texte": "A woman was chased by several turkeys in Newton, Massachusetts, on Saturday, before taking refuge in a car. Wild turkeys are common in the state, and officials have previously warned residents about encounters with the birds."
+    }
+   ],
+   "sous_seuils": false,
+   "id": "373ed139de",
+   "score": 134,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 568200,
+   "jaime": 58500,
+   "commentaires": 2785,
+   "hashtags_viraux": [],
+   "medias": 3,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Espagne : rassemblement fasciste célébrant Franco",
+   "resume": "Des centaines de militants fascistes se sont réunis en Espagne pour commémorer le dictateur Francisco Franco. L’événement a suscité des réactions indignées et des débats sur la mémoire historique.",
+   "mots_cles": [
     "fascistes",
     "Espagne",
-    "extrémisme",
-    "commémoration"
+    "Franco",
+    "commémoration",
+    "extrême droite"
+   ],
+   "mots_cles_en": [
+    "fascists",
+    "Spain",
+    "Franco",
+    "commemoration",
+    "far-right"
    ],
    "hashtags": [
     "",
     "f",
-    "r",
     "a",
-    "n"
+    "s",
+    "c"
    ],
-   "insolite": 7,
+   "insolite": 6,
    "videos": [
     {
      "id": "7711432495048183062",
      "compte": "brutofficiel",
      "url": "https://www.tiktok.com/@brutofficiel/video/7711432495048183062",
-     "vues": 554300,
-     "jaime": 52500,
-     "commentaires": 1016,
-     "partages": 9963,
+     "vues": 642700,
+     "jaime": 58000,
+     "commentaires": 1095,
+     "partages": 11200,
      "date": 1795457761,
      "texte": "Des centaines de militants fascistes se sont rassemblés en Espagne pour célébrer Franco."
     }
    ],
    "sous_seuils": false,
    "id": "97a197f1f5",
-   "score": 118,
-   "derniere_vue": 1795541932.2769299,
-   "vues": 554300,
-   "jaime": 52500,
-   "commentaires": 1016,
+   "score": 123,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 642700,
+   "jaime": 58000,
+   "commentaires": 1095,
    "hashtags_viraux": [],
+   "medias": 11,
    "statut": "en_cours",
-   "vu_le": "2026-11-24T18:38:52+01:00",
-   "reserve_le": "2026-11-24T19:59:18+01:00"
+   "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Impersonnateur Trump moque Carney au Canada",
+   "resume": "Un imitateur de Donald Trump a parodié le Premier ministre canadien Mark Carney lors d’un dîner de presse. La vidéo, devenue virale, a suscité des réactions mitigées.",
+   "mots_cles": [
+    "Trump",
+    "Carney",
+    "Canada",
+    "imitation",
+    "humour politique"
+   ],
+   "mots_cles_en": [
+    "Trump",
+    "Carney",
+    "Canada",
+    "impersonation",
+    "political humor"
+   ],
+   "hashtags": [
+    "",
+    "t",
+    "r",
+    "u",
+    "m"
+   ],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711220739503836447",
+     "compte": "reuters",
+     "url": "https://www.tiktok.com/@reuters/video/7711220739503836447",
+     "vues": 851000,
+     "jaime": 60700,
+     "commentaires": 1491,
+     "partages": 3004,
+     "date": 1795408507,
+     "texte": "A Donald Trump impersonator took to the stage at Ottawa's annual Parliamentary Press Gallery Dinner on November 21, poking fun at Canadian Prime Minister Mark Carney. ⠀ #markcarney #trump #impersonator #pressgallerydinner #canada"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "f4fbfcc60d",
+   "score": 109,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 851000,
+   "jaime": 60700,
+   "commentaires": 1491,
+   "hashtags_viraux": [
+    "markcarney",
+    "trump",
+    "impersonator",
+    "pressgallerydinner",
+    "canada"
+   ],
+   "medias": 22,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Chine : homme tombe dans piscine transparente",
+   "resume": "Un homme en Chine a accidentellement chuté dans une piscine en confondant sa surface avec du sol. Les images virales montrent sa chute et sa remontée avec l’aide de témoins.",
+   "mots_cles": [
+    "Chine",
+    "piscine",
+    "accident",
+    "vidéo virale",
+    "humour noir"
+   ],
+   "mots_cles_en": [
+    "China",
+    "pool",
+    "accident",
+    "viral video",
+    "dark humor"
+   ],
+   "hashtags": [
+    "",
+    "c",
+    "h",
+    "i",
+    "n"
+   ],
+   "insolite": 9,
+   "videos": [
+    {
+     "id": "7711403366508793102",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711403366508793102",
+     "vues": 2300000,
+     "jaime": 154200,
+     "commentaires": 2856,
+     "partages": 13400,
+     "date": 1795451051,
+     "texte": "A businessman in China accidentally plunged into a swimming pool after mistaking its crystal-clear surface for solid ground. CCTV footage captured the man falling into the water while walking past the pool at a property sales office in Hefei, before managing to pull himself to safety with help from a staff member. The sales office has since announced plans to install prominent warning signs after "
+    }
+   ],
+   "sous_seuils": false,
+   "id": "55fd01ba0d",
+   "score": 104,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 2300000,
+   "jaime": 154200,
+   "commentaires": 2856,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Psychologie : les hommes qui roulent vite plus attractifs",
+   "resume": "Des psychologues suggèrent que les hommes qui enfreignent les règles de conduite pourraient être perçus comme plus attractifs à long terme. Cette étude explore les traits de personnalité liés à ce comportement.",
+   "mots_cles": [
+    "psychologie",
+    "conduite",
+    "attractivité",
+    "hommes",
+    "études"
+   ],
+   "mots_cles_en": [
+    "psychology",
+    "driving",
+    "attractiveness",
+    "men",
+    "study"
+   ],
+   "hashtags": [
+    "",
+    "p",
+    "s",
+    "y",
+    "c"
+   ],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711706139641105678",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711706139641105678",
+     "vues": 927100,
+     "jaime": 86800,
+     "commentaires": 1094,
+     "partages": 43200,
+     "date": 1795521576,
+     "texte": "Psychologists suggest men who bend or break traffic rules may possess personality traits that make them more attractive as long-term partners, including confidence, assertiveness and a willingness to take risks. Experts say rule-breaking behavior can create an impression of power and high social status, potentially contributing to the appeal of the so-called ‘bad boy’ type. However, this doesn’t m"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "973af4fcb6",
+   "score": 98,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 927100,
+   "jaime": 86800,
+   "commentaires": 1094,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
    "titre": "Condamnation pour vandalisme statue Vierge Porto-Vecchio",
-   "resume": "Deux jeunes ont été condamnés à trois mois de prison ferme pour avoir vandalisé une statue de la Vierge à Porto-Vecchio. L’affaire a relancé le débat sur le respect des symboles religieux.",
+   "resume": "Deux jeunes ont été condamnés à trois mois de prison ferme pour avoir vandalisé une statue de la Vierge à Porto-Vecchio. L’affaire relance le débat sur la liberté d’expression et le respect des symboles religieux.",
    "mots_cles": [
     "vandalisme",
     "statue Vierge",
     "Porto-Vecchio",
     "condamnation",
     "justice"
+   ],
+   "mots_cles_en": [
+    "vandalism",
+    "statue",
+    "Porto-Vecchio",
+    "sentencing",
+    "court"
    ],
    "hashtags": [
     "",
@@ -504,28 +1408,29 @@
     "n",
     "d"
    ],
-   "insolite": 4,
+   "insolite": 3,
    "videos": [
     {
      "id": "7711399471346617622",
      "compte": "brutofficiel",
      "url": "https://www.tiktok.com/@brutofficiel/video/7711399471346617622",
-     "vues": 516800,
-     "jaime": 39000,
-     "commentaires": 1203,
-     "partages": 2557,
+     "vues": 540200,
+     "jaime": 40800,
+     "commentaires": 1249,
+     "partages": 2657,
      "date": 1795450082,
      "texte": "Les deux jeunes qui avaient vandalisé une statue de la Vierge à Porto-Vecchio ont été condamnés à 3 mois de prison ferme."
     }
    ],
    "sous_seuils": false,
    "id": "cdc02173dc",
-   "score": 88,
-   "derniere_vue": 1795541932.2769299,
-   "vues": 516800,
-   "jaime": 39000,
-   "commentaires": 1203,
+   "score": 84,
+   "derniere_vue": 1795549585.0168877,
+   "vues": 540200,
+   "jaime": 40800,
+   "commentaires": 1249,
    "hashtags_viraux": [],
+   "medias": 9,
    "statut": "en_cours",
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
