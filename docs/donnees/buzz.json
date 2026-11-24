@@ -124,8 +124,9 @@
    "jaime": 320800,
    "commentaires": 5453,
    "hashtags_viraux": [],
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T18:19:59+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-24T18:19:59+01:00",
+   "reserve_le": "2026-11-24T18:21:43+01:00"
   },
   {
    "titre": "Leto accusé de misogynie dans GTA VI",
@@ -212,8 +213,9 @@
    "jaime": 62300,
    "commentaires": 1140,
    "hashtags_viraux": [],
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T18:19:59+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-24T18:19:59+01:00",
+   "reserve_le": "2026-11-24T18:21:43+01:00"
   },
   {
    "titre": "Macron inaugure nouvelle ligne Airbus A320 Toulouse",
@@ -298,8 +300,9 @@
    "jaime": 38600,
    "commentaires": 1202,
    "hashtags_viraux": [],
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T18:19:59+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-24T18:19:59+01:00",
+   "reserve_le": "2026-11-24T18:21:43+01:00"
   },
   {
    "titre": "Policier vole vélo à cycliste à Toulouse",
@@ -339,8 +342,9 @@
    "jaime": 48500,
    "commentaires": 1270,
    "hashtags_viraux": [],
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T16:44:03+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-24T16:44:03+01:00",
+   "reserve_le": "2026-11-24T18:21:43+01:00"
   },
   {
    "titre": "Policier vole vélo cycliste Toulouse : vidéo choque",
@@ -379,8 +383,9 @@
    "jaime": 48700,
    "commentaires": 1293,
    "hashtags_viraux": [],
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T18:19:59+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-24T18:19:59+01:00",
+   "reserve_le": "2026-11-24T18:21:43+01:00"
   }
  ]
 }
