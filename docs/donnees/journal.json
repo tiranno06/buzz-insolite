@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-24T17:30:38+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Leto et le scandale Lucia dans GTA VI » (81 s, 13 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-24T17:18:25+01:00",
    "niveau": "info",
    "texte": "⚙️ Réglages enregistrés."

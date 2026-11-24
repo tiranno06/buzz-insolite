@@ -1,6 +1,107 @@
 {
  "videos": [
   {
+   "id": "20261124-170031",
+   "tag": "v-20261124-170031",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-170031/buzz-20261124-170031.mp4",
+   "titre": "Leto et le scandale Lucia dans GTA VI",
+   "accroche": "UN REFUS QUI DÉCLENCHE",
+   "sujet_id": "87dc77c9fd",
+   "sujet": "Leto accusé de misogynie dans GTA VI",
+   "buzz": {
+    "vues": 891100,
+    "jaime": 67000,
+    "commentaires": 2016,
+    "score": 182
+   },
+   "description": "Un malaise en direct qui relance le débat sur la représentation féminine dans les jeux vidéo ! 🎮💥",
+   "question": "Avez-vous déjà boycotté un jeu ou une marque à cause d’un manque de représentation féminine ?",
+   "hashtags": [
+    "#gtavi",
+    "#misogyniejeuxvideo",
+    "#gta",
+    "#gta6",
+    "#insolite",
+    "#actu"
+   ],
+   "duree": 80.6,
+   "sources": [
+    {
+     "media": "franceinfo.fr",
+     "titre": "\"Je n'ai jamais joué à un jeu aussi marquant\" : le jeu vidéo \"GTA VI\" reçoit les éloges de la presse spécialisée du monde entier",
+     "lien": "https://www.franceinfo.fr/culture/jeux-video/gta-vi/je-n-ai-jamais-joue-a-un-jeu-aussi-marquant-le-jeu-video-gta-vi-recoit-les-eloges-de-la-presse-specialisee-du-monde-entier_8289947.html"
+    },
+    {
+     "media": "actu.orange.fr",
+     "titre": "GTA VI: le rappeur Leto est accusé de misogynie après avoir refusé de jouer Lucia",
+     "lien": "https://actu.orange.fr/videos/societe/gta-vi-le-rappeur-leto-est-accuse-de-misogynie-apres-avoir-refuse-de-jouer-lucia-CNT000002u153Q.html"
+    },
+    {
+     "media": "diverto.tv",
+     "titre": "GTA VI : gros malaise avec le rappeur Leto dans un live d'Anyme",
+     "lien": "https://www.diverto.tv/actualites/divertissements-et-loisirs/gta-vi-gros-malaise-avec-le-rappeur-leto-dans-un-live-d-anyme"
+    },
+    {
+     "media": "Google Actualités",
+     "titre": "GTA VI: le rappeur Leto est accusé de misogynie après avoir refusé de jouer Lucia - BFM",
+     "lien": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPenJYU0NXZE1FamZyTVJHU1V3ZnprRDAtVmZYMGU1dnQzaDk4ZmJpVTFUVnlzcldDV2sxTS1GNXJEeHVqZVd0dlo0U005NjZsZXd6bm5qVERLdmh5RWVaemp3ZGhZU1FzSUszaFdTWWhtUHRqQm1hLXZJSG5BTl9CR3hJYm5iRHVHTmp3S1V3anFEd19MZXQxS1ZmWktxOEliTHVDNHZ5eUFDdmlKX2JTSExmN19EM01YeDBaRGpBR1JXUWh6NlF2MmFQRV8xX2c?oc=5"
+    },
+    {
+     "media": "Google Actualités",
+     "titre": "Leto accusé de misogynie après avoir refusé de jouer Lucia dans GTA 6 : Anyme reprend la parole - revolutionmagazine.com",
+     "lien": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNRmdGUzNKZ0ZDNFdqQUIxVE8wNjRqVWFHTjdBRlVJaXFBVmFOaXAtbWNvOTdsdVdjUWd1bEpxZTJZTjRTeWE3ZUpFR2R1NzkxVk5wandmSlFicWhZakxmdWJwWW1iU0VMWHRUWl9ocjRCRWZHYmVDZTVFd18tTkw4eVZad0tBdw?oc=5"
+    }
+   ],
+   "verification": {
+    "par": "openrouter:nvidia/nemotron-3.5-super-vl:free",
+    "corrigees": 2,
+    "retirees": 0,
+    "problemes": [
+     "Les articles ne précisent pas que Leto avait accepté de participer à la promotion du jeu ; ils mentionnent seulement sa présence dans un live avec Anyme pour cé",
+     "L'expression « chef-d’œuvre » n'est pas un fait directement attesté dans les articles ; ils rapportent des éloges sans utiliser ce terme.",
+     "Cette phrase demande un avis sur ce que Leto aurait dû faire ; ce n'est pas un fait issu des articles et elle porte un jugement sur une personne réelle."
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "Carte : Natural Earth, OpenStreetMap",
+    "Eartvideos / Pixabay",
+    "JoshuaWoroniecki / Pixabay",
+    "Matthias_Groeneveld / Pixabay",
+    "PIRO4D / Pixabay",
+    "Vimeo-Free-Videos / Pixabay",
+    "adege / Pixabay",
+    "doktorkleinmusic / Pixabay",
+    "thesumersinghrajput / Pixabay",
+    "yeracastelan / Pixabay"
+   ],
+   "ecrans_illustres": 13,
+   "format": "buzz",
+   "voix": "chatterbox-bernard",
+   "lieu": "Los Angeles, États-Unis (siège de Rockstar Games)",
+   "humeur": "tension",
+   "texte": [
+    "Saviez-vous que le rappeur Leto a déclenché une polémique en refusant de jouer Lucia dans GTA VI ?",
+    "Lors d’un live avec le streameur Anyme, il a refusé de prêter sa voix à ce personnage féminin principal.",
+    "Ce refus a immédiatement enflammé les réseaux sociaux, avec des accusations de misogynie.",
+    "Lucia, personnage central de GTA VI, est célébrée pour son humanité et sa relation profonde avec Jason.",
+    "Le jeu a reçu une note exceptionnelle de 99/100 sur Metacritic, un record depuis 28 ans.",
+    "Les critiques soulignent que Lucia et Jason sont les premiers personnages GTA à montrer une vraie maturité et une relation crédible.",
+    "Le jeu propose même des interactions comme se tenir la main, manger ou dormir, avec des conséquences sur l’histoire.",
+    "Les joueurs peuvent explorer un monde ouvert 2 fois plus grand que dans GTA V, avec des PNJ ultra-détaillés.",
+    "Saviez-vous qu’on peut même caresser un chat ou faire du jet-ski avec un chien dans le jeu ?",
+    "Le rappeur Leto a participé à un live avec le streameur Anyme pour célébrer la sortie du jeu, mais son refus de jouer Lucia a choqué.",
+    "Les joueurs attendaient GTA VI depuis 13 ans, et les critiques saluent ses qualités techniques et narratives.",
+    "Un détail surprenant : les PNJ ont des routines uniques, comme fumer, danser ou bronzer, pour un réalisme inégalé.",
+    "Le jeu est si détaillé que les joueurs rapportent avoir vu des effets réalistes comme de la mousse s’accumuler sous des tongs.",
+    "Et vous, pensez-vous que Leto aurait dû accepter de jouer Lucia pour éviter ce scandale ?"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-24T17:30:37+01:00",
+   "fabrication_s": 1805,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261124-164752",
    "tag": "v-20261124-164752",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-164752/buzz-20261124-164752.mp4",
