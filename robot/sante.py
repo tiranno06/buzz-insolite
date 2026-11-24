@@ -44,7 +44,8 @@ def verifier_ia():
         F = ia.FOURNISSEURS[f]
         if not os.environ.get(F["cle"]):
             out.append({"nom": f, "ok": False, "detail": "pas de clé"}); continue
-        out.append(_ok(f, lambda f=f: ia.demander_json('Réponds {"ok": true}', "test", max_tokens=20,
+        out.append(_ok(f, lambda f=f: ia.demander_json('Réponds uniquement en JSON : {"ok": true}', "Petit test, réponds en json.",
+                                                       max_tokens=300,
                                                        exclure=[x for x in ia.ORDRE if x != f], journal=lambda *a: None)[1]))
     return out
 
