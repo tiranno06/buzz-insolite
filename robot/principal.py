@@ -92,13 +92,20 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
         articles = sources.chercher(sujet["titre"], sujet.get("mots_cles") or [], journal=journal)
     if not simulation() and not articles:
         raise LookupError("aucun article de presse trouvé sur ce sujet")
-    journal(f"  {len(articles)} article(s) : " + ", ".join(a["media"] for a in articles))
+    journal(f"  {len(articles)} article(s) : " + ", ".join(f"{a['media']} ({len(a.get('texte') or '')} car.)" for a in articles))
+    if not simulation() and sum(len(a.get("texte") or "") for a in articles) < 1200:
+        raise LookupError("pas assez d'articles complets pour vérifier les faits")
+    journal("  images : " + ", ".join(f"{n} {'✓' if os.environ.get(c) else '✗ (pas de clé)'}"
+                                     for n, c in (("Pexels", "PEXELS_API_KEY"), ("Pixabay", "PIXABAY_API_KEY")))
+            + ", NASA ✓, Wikimedia ✓")
 
     avancement.etape(pre + "Écriture du texte", 12)
     script = script_simulation(sujet) if simulation() else ecrire.ecrire(sujet, articles, journal, format_)
     avancement.etape(pre + "Vérification des faits par une 2e IA", 22)
     if not simulation():
         script = ecrire.verifier(script, articles, journal)
+        if len(script["phrases"]) < 9:
+            raise LookupError(f"seulement {len(script['phrases'])} phrases vérifiées : trop court pour une vidéo d'1 minute")
 
     avancement.etape(pre + "Voix et calage des mots", 30)
     nom_voix, vitesse = R["video"]["voix"], float(R["video"]["vitesse"])

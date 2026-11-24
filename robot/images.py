@@ -143,12 +143,15 @@ def _commons(requete, deja, video=False):
         if f"commons-{p['pageid']}" in deja or not any(x in lic for x in ("CC BY", "CC0", "Public domain", "domaine public")) \
                 or "NC" in lic or "ND" in lic:
             continue
+        nom = re.sub(r"[^a-z]", " ", p["title"].lower())
+        if not any(len(m) > 3 and m in nom for m in requete.lower().split()):
+            continue                                     # nom du fichier sans rapport avec la recherche : écarté
         auteur = re.sub("<[^>]+>", "", (m.get("Artist") or {}).get("value", "")).strip()[:40] or "Wikimedia Commons"
         if video:                                    # version transcodée en 480p (plus légère que l'original)
             url = ii["url"]
             nom = url.rsplit("/", 1)[1]
             url = url.replace("/commons/", "/commons/transcoded/", 1) + f"/{nom}.480p.vp9.webm"
-            return dict(type="video", url=url, id=f"commons-{p['pageid']}", credit=f"{auteur} / Wikimedia Commons, {lic}")
+            return dict(type="video", url=url, secours=ii["url"], id=f"commons-{p['pageid']}", credit=f"{auteur} / Wikimedia Commons, {lic}")
         return dict(type="photo", url=ii.get("thumburl") or ii["url"], id=f"commons-{p['pageid']}",
                     credit=f"{auteur} / Wikimedia Commons, {lic}")
     return None
@@ -175,8 +178,14 @@ def trouver(requete, dossier, n, deja, journal=print):
         try:
             _telecharger(m["url"], chemin)
         except Exception as e:
-            journal(f"    téléchargement refusé ({str(e)[:60]})")
-            continue
+            try:
+                if not m.get("secours"):
+                    raise
+                chemin = chemin.rsplit(".", 1)[0] + "." + m["secours"].rsplit(".", 1)[-1].lower()
+                _telecharger(m["secours"], chemin)             # Wikimedia : fichier d'origine
+            except Exception:
+                journal(f"    téléchargement refusé ({str(e)[:60]})")
+                continue
         deja.add(m["id"]); m["chemin"] = chemin
         if m["type"] == "video":
             try:

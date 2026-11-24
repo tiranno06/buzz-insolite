@@ -85,6 +85,16 @@ def texte_article(url, maxi=6000):
     return "\n".join(p.morceaux)[:maxi]
 
 
+def bing(requete, n=12):
+    """[(titre, adresse réelle de l'article, résumé)] de Bing Actualités (le lien du flux contient l'adresse de l'article)."""
+    q = urllib.parse.quote(requete)
+    out = []
+    for titre, lien, resume in lire_flux(f"https://www.bing.com/news/search?q={q}&format=rss&setlang=fr&cc=FR")[:n]:
+        reel = urllib.parse.parse_qs(urllib.parse.urlparse(lien).query).get("url", [lien])[0]
+        out.append((titre, reel, resume))
+    return out
+
+
 def chercher(sujet, mots_cles=(), maxi=4, journal=print):
     """Articles qui parlent du sujet : [{media, titre, lien, resume, texte}] (les plus proches d'abord)."""
     voulus = _mots(sujet + " " + " ".join(mots_cles))
@@ -106,7 +116,15 @@ def chercher(sujet, mots_cles=(), maxi=4, journal=print):
                 candidats.append((commun - 0.5, "Google Actualités", titre, lien, resume))
     except Exception as e:
         journal(f"  Google Actualités illisible ({str(e)[:80]})")
-    candidats.sort(key=lambda c: -c[0])
+    # Bing Actualités : toute la presse, avec l'adresse réelle de chaque article (donc son texte complet)
+    try:
+        for titre, lien, resume in bing(" ".join(list(mots_cles)[:4]) or sujet):
+            commun = len(voulus & _mots(titre + " " + resume))
+            if commun >= 1:
+                candidats.append((commun + 0.5, urllib.parse.urlparse(lien).netloc.replace("www.", ""), titre, lien, resume))
+    except Exception as e:
+        journal(f"  Bing Actualités illisible ({str(e)[:80]})")
+    candidats.sort(key=lambda c: (c[1] == "Google Actualités", -c[0]))   # vrais articles d'abord, Google (titres seuls) en dernier
     out, vus = [], set()
     for _, media, titre, lien, resume in candidats:
         if titre in vus:
@@ -119,9 +137,10 @@ def chercher(sujet, mots_cles=(), maxi=4, journal=print):
             except Exception as e:
                 journal(f"  article de {media} illisible ({str(e)[:60]}) : son résumé seulement")
         out.append(dict(media=media, titre=titre, lien=lien, resume=resume, texte=texte))
-        if len(out) >= maxi:
+        if sum(1 for a in out if len(a["texte"]) > 400) >= maxi or len(out) >= maxi + 8:
             break
-    return out
+    out.sort(key=lambda a: -len(a["texte"]))                 # articles complets d'abord
+    return out[:maxi + 2]
 
 
 def a_la_une(n=12, journal=print):
