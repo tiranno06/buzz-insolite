@@ -144,9 +144,27 @@ def audit_video(v, journal=print):
         return problemes if len(problemes) >= 2 else []
 
 
+def deja_en_refaire():
+    """Identifiants des vidéos qu'une création « Refaire <id> » est déjà en train de refaire (jamais deux fois en même temps :
+    le 24/11, la santé lancée à la main a refait une vidéo déjà en cours de refaire)."""
+    ids = set()
+    for statut in ("in_progress", "queued"):
+        try:
+            r = subprocess.run(["gh", "api", f"repos/{depot.depot()}/actions/workflows/creer.yml/runs?status={statut}&per_page=50"],
+                               capture_output=True, text=True, timeout=60)
+            for x in json.loads(r.stdout).get("workflow_runs") or []:
+                titre = str(x.get("display_title") or "")
+                if titre.startswith("Refaire "):
+                    ids.add(titre.split()[1])
+        except Exception:
+            pass
+    return ids
+
+
 def reparer(journal=print):
     """Vidéos pas encore publiées qui ont un problème → refaites en corrigeant (sans l'aide de l'auteur)."""
     file = lire("file.json") or {"videos": []}
+    occupees = deja_en_refaire()
     limite = maintenant() - datetime.timedelta(days=7)
     faites = []
     for v in file["videos"]:
@@ -159,7 +177,7 @@ def reparer(journal=print):
                 continue
         except ValueError:
             continue
-        if int(v.get("reparations", 0)) >= REPARATIONS_PAR_VIDEO:
+        if int(v.get("reparations", 0)) >= REPARATIONS_PAR_VIDEO or v["id"] in occupees:
             continue
         raisons = []
         if v.get("statut") == "a_verifier":
