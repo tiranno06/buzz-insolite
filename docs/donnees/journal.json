@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-24T22:40:02+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Macron et le malaise qui buzz » (70 s, 3 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-24T22:29:03+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Franco célébré : le retour du fascisme en Espagne » (101 s, 1 écrans illustrés) — à regarder puis cocher « À publier »"
