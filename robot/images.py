@@ -273,60 +273,181 @@ def _ytdlp(args, timeout=120):
     return r.stdout
 
 
-def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=2, ecrans=8):
-    """VRAIES vidéos du sujet : celles que leur auteur a publiées sur YouTube sous licence Creative Commons BY (réutilisation
-    permise en citant l'auteur, ce que font les crédits). La licence est relue sur la page de chaque vidéo ; il faut au moins
-    2 mots du sujet dans son titre. Chaque vidéo est découpée en passages de 6 s (un par écran). YouTube qui refuse le serveur
-    = on s'en passe (jamais de contournement). Renvoie une liste de médias d'écran."""
-    if not shutil_which("yt-dlp"):
-        return []
-    voulus = _mots_sujet(sujet + " " + " ".join(mots_cles or []))
-    try:
-        d = json.loads(_ytdlp(["--flat-playlist", "-J", "--playlist-end", "20",
-                               YT_CC.format(q=urllib.parse.quote_plus(sujet[:80]))], 90))
-    except Exception as e:
-        journal(f"  vidéos du sujet (YouTube) : recherche impossible ({str(e)[:100]})")
-        return []
-    candidats = []
-    for e in d.get("entries") or []:
-        commun = len(voulus & _mots_sujet(e.get("title", "")))
-        if commun >= 2 and 15 <= (e.get("duration") or 0) <= 1800:
-            candidats.append((commun, e))
-    candidats.sort(key=lambda c: -c[0])
+# Licences qui permettent de reprendre et de monter la vidéo sur une chaîne monétisée : CC BY, CC BY-SA, CC0, domaine public.
+# Jamais NC (pas d'usage commercial) ni ND (pas de modification). Une vidéo de télé ou d'agence est écartée même si elle porte
+# une licence libre (souvent remise en ligne par quelqu'un qui n'en a pas le droit).
+MEDIAS_INTERDITS = ("bfm", "bfmtv", "bfm tv", "tf1", "france 2", "france 3", "france 24", "france24", "franceinfo", "france info", "m6", "cnews",
+                    "lci", "afp", "reuters", "associated press", "euronews", "arte", "canal+", "rmc", "c8", "tmc", "le monde",
+                    "le figaro", "le parisien", "brut", "konbini", "hugodécrypte", "hugo décrypte", "20 minutes", "ouest-france")
+
+
+def licence_ok(texte):
+    t = str(texte or "").lower()
+    if "-nc" in t or "noncommercial" in t or "non commercial" in t or "-nd" in t or "noderiv" in t:
+        return False
+    return any(x in t for x in ("creative commons attribution", "licenses/by/", "licenses/by-sa/", "publicdomain", "cc0",
+                                "public domain", "domaine public", "attribution", "cc by"))
+
+
+def _interdit(*textes):
+    t = " ".join(str(x or "") for x in textes).lower()
+    return any(re.search(r"(^|\W)" + re.escape(m) + r"(\W|$)", t) for m in MEDIAS_INTERDITS)
+
+
+def _cand_youtube(sujet, journal):
+    d = json.loads(_ytdlp(["--flat-playlist", "-J", "--playlist-end", "20", YT_CC.format(q=urllib.parse.quote_plus(sujet[:80]))], 90))
+    return [dict(source="YouTube", page=f"https://www.youtube.com/watch?v={e['id']}", cle=f"yt-{e['id']}", titre=e.get("title", ""),
+                 auteur=e.get("channel") or "", duree=e.get("duration") or 0, licence=None) for e in d.get("entries") or []]
+
+
+def _cand_peertube(sujet, journal):
+    q = urllib.parse.urlencode([("search", sujet[:80]), ("count", 20), ("licenceOneOf", 1), ("licenceOneOf", 2), ("licenceOneOf", 7)])
+    d = _json(f"https://sepiasearch.org/api/v1/search/videos?{q}")
+    lic = {1: "CC BY", 2: "CC BY-SA", 7: "domaine public"}
+    return [dict(source="PeerTube", page=v["url"], cle=f"pt-{v.get('uuid') or v['url'][-12:]}", titre=v.get("name", ""),
+                 auteur=(v.get("account") or {}).get("displayName", ""), duree=v.get("duration") or 0,
+                 licence=lic.get((v.get("licence") or {}).get("id"))) for v in d.get("data") or [] if not v.get("isLive")]
+
+
+def _cand_archive(sujet, journal):
+    q = urllib.parse.urlencode([("q", f"({sujet[:80]}) AND mediatype:movies AND licenseurl:[* TO *]"), ("fl[]", "identifier"),
+                                ("fl[]", "title"), ("fl[]", "licenseurl"), ("fl[]", "creator"), ("rows", 20), ("output", "json")])
+    d = _json(f"https://archive.org/advancedsearch.php?{q}")
     out = []
-    for _, e in candidats[:5]:
-        if len([m for m in out if m["id"].endswith("-0")]) >= maxi:
-            break
-        url = f"https://www.youtube.com/watch?v={e['id']}"
-        try:
-            info = json.loads(_ytdlp(["-J", url], 90))
-        except Exception as x:
-            journal(f"  vidéo YouTube {e['id']} illisible ({str(x)[:80]})")
-            if "429" in str(x) or "Sign in" in str(x) or "bot" in str(x):
-                break                                      # YouTube refuse ce serveur : on n'insiste pas
+    for v in (d.get("response") or {}).get("docs") or []:
+        if licence_ok(v.get("licenseurl")):
+            out.append(dict(source="Internet Archive", page=f"https://archive.org/details/{v['identifier']}", cle=f"ia-{v['identifier']}",
+                            titre=v.get("title", ""), auteur=v.get("creator") if isinstance(v.get("creator"), str) else "",
+                            duree=0, licence=v["licenseurl"].rstrip("/").split("/licenses/")[-1].replace("/", " ").upper()
+                            if "/licenses/" in v["licenseurl"] else "domaine public"))
+    return out
+
+
+SOURCES_VIDEO = (("YouTube (Creative Commons)", _cand_youtube), ("PeerTube", _cand_peertube), ("Internet Archive", _cand_archive))
+
+
+CONSIGNE_LOGO = """On te montre 3 images d'une vidéo. Dis si on y voit le logo ou le nom d'une chaîne de télévision, d'une agence
+de presse ou d'un média (BFM, TF1, France 24, franceinfo, AFP, Reuters, Euronews, Brut, Konbini…), ou le filigrane d'un réseau
+social (TikTok, Instagram, Snapchat) ou d'un autre compte. Réponds uniquement en JSON : {"logo": true/false, "lequel": "…"}"""
+
+
+def sans_logo_media(chemin, duree, journal=print):
+    """True seulement si une IA qui voit confirme qu'aucune image ne porte le logo d'une télé, d'un média ou d'un réseau social :
+    une vidéo « libre » qui en porte un a été remise en ligne par quelqu'un qui n'en avait pas le droit. IA indisponible = refus."""
+    from . import ia
+    images_ = []
+    for k, t in enumerate((0.15, 0.5, 0.85)):
+        img = f"{chemin}.logo{k}.jpg"
+        r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{max(0.0, duree * t):.2f}", "-i", chemin, "-frames:v", "1",
+                            "-vf", "scale=640:-2", img])
+        if r.returncode == 0 and os.path.exists(img):
+            images_.append(img)
+    if not images_:
+        return False
+    try:
+        d, _ = ia.regarder_json(CONSIGNE_LOGO, "Ces images portent-elles un logo de média ou de réseau social ?", images_, journal=journal)
+    except Exception as e:
+        journal(f"  contrôle des logos impossible ({str(e)[:60]}) : vidéo écartée par prudence")
+        return False
+    if d.get("logo") is True or str(d.get("logo")).lower() == "true":
+        journal(f"  logo vu : {str(d.get('lequel', ''))[:60]}")
+        return False
+    return True
+
+
+def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8):
+    """VRAIES vidéos du sujet, publiées par leur auteur sous licence libre (CC BY, CC BY-SA, CC0, domaine public) : YouTube
+    (filtre Creative Commons, licence relue sur la page), PeerTube (Sepia Search), Internet Archive, Wikimedia Commons.
+    Au moins 2 mots du sujet dans le titre ; télé et agences écartées ; auteur et licence crédités. Chaque vidéo est découpée
+    en passages de 6 s (un par écran). Un site qui refuse le serveur = on s'en passe (jamais de contournement)."""
+    voulus = _mots_sujet(sujet + " " + " ".join(mots_cles or []))
+    candidats = []
+    for nom, chercher in SOURCES_VIDEO:
+        if chercher is _cand_youtube and not shutil_which("yt-dlp"):
             continue
-        if "creative commons" not in str(info.get("license") or "").lower():
-            continue                                       # licence non libre : jamais reprise
-        duree = float(info.get("duration") or 0)
-        debut = 3 if duree > 40 else 0
-        fin = min(duree, debut + 6 * ecrans + 2)
-        chemin = os.path.join(dossier, f"sujet-{e['id']}.mp4")
         try:
-            _ytdlp(["-q", "-f", "bv*[height<=720][ext=mp4]/b[height<=720]/b", "--download-sections", f"*{debut}-{fin}",
-                    "--force-keyframes-at-cuts", "--merge-output-format", "mp4", "-o", chemin, url], 300)
+            trouves = chercher(sujet, journal)
+        except Exception as e:
+            journal(f"  vidéos du sujet ({nom}) : recherche impossible ({str(e)[:90]})")
+            continue
+        bons = 0
+        for c in trouves:
+            commun = len(voulus & _mots_sujet(c["titre"]))
+            if commun >= 2 and (not c["duree"] or 10 <= c["duree"] <= 3600) and not _interdit(c["titre"], c["auteur"]):
+                candidats.append((commun, c)); bons += 1
+        journal(f"  vidéos du sujet ({nom}) : {len(trouves)} trouvée(s), {bons} sur le sujet")
+    candidats.sort(key=lambda x: -x[0])
+    out, prises, youtube_refuse = [], 0, False
+    for _, c in candidats[:8]:
+        if prises >= maxi:
+            break
+        if c["source"] == "YouTube":
+            if youtube_refuse:
+                continue
+            try:
+                info = json.loads(_ytdlp(["-J", c["page"]], 90))
+            except Exception as x:
+                journal(f"  vidéo YouTube illisible ({str(x)[:80]})")
+                youtube_refuse = any(m in str(x) for m in ("429", "Sign in", "bot"))   # refus du serveur : on n'insiste pas
+                continue
+            if "creative commons" not in str(info.get("license") or "").lower():
+                continue                                   # licence relue : non libre = jamais reprise
+            c["licence"] = "CC BY"; c["duree"] = info.get("duration") or c["duree"]
+            c["auteur"] = info.get("channel") or c["auteur"]
+        if not c.get("licence"):
+            continue
+        duree = float(c["duree"] or 0)
+        debut = 3 if duree > 40 else 0
+        fin = debut + 6 * ecrans + 2 if not duree else min(duree, debut + 6 * ecrans + 2)
+        chemin = os.path.join(dossier, f"sujet-{prises}.mp4")
+        try:
+            try:
+                _ytdlp(["-q", "-f", "bv*[height<=720][ext=mp4]/b[height<=720]/b", "--download-sections", f"*{debut}-{fin}",
+                        "--force-keyframes-at-cuts", "--merge-output-format", "mp4", "-o", chemin, c["page"]], 300)
+            except Exception:                              # découpe refusée : vidéo entière (si courte), coupée par ffmpeg
+                if duree > 900:
+                    raise
+                entier = chemin[:-4] + "-entier.mp4"
+                _ytdlp(["-q", "-f", "b[height<=720]/bv*[height<=720]+ba/b", "--merge-output-format", "mp4", "-o", entier,
+                        c["page"]], 400)
+                subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(debut), "-t", str(fin - debut), "-i", entier,
+                                "-c:v", "libx264", "-preset", "veryfast", "-an", chemin], check=True, timeout=300)
+                os.remove(entier)
             reelle = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of",
                                                     "csv=p=0", chemin]))
         except Exception as x:
-            journal(f"  vidéo YouTube {e['id']} : téléchargement refusé ({str(x)[:80]})")
+            journal(f"  vidéo {c['source']} : téléchargement refusé ({str(x)[:80]})")
             continue
-        auteur = info.get("channel") or info.get("uploader") or "auteur YouTube"
+        if not sans_logo_media(chemin, reelle, journal):
+            journal(f"  vidéo {c['source']} « {c['titre'][:50]} » écartée : logo d'une télé, d'un média ou d'un réseau social")
+            continue
+        prises += 1
+        auteur = (c["auteur"] or c["source"])[:40]
         for k in range(max(1, int(reelle // 6))):
-            out.append(dict(type="video", chemin=chemin, debut=6 * k, duree=reelle, id=f"yt-{e['id']}-{k}",
-                            url=url, credit=f"Vidéo : {auteur} (YouTube, CC BY)", reelle=True))
-        journal(f"  vraie vidéo du sujet : « {info.get('title', '')[:70]} » de {auteur} (CC BY, {int(reelle // 6)} passages)")
+            out.append(dict(type="video", chemin=chemin, debut=6 * k, duree=reelle, id=f"{c['cle']}-{k}", url=c["page"],
+                            credit=f"Vidéo : {auteur} ({c['source']}, {c['licence']})", reelle=True))
+        journal(f"  vraie vidéo du sujet : « {c['titre'][:70]} » de {auteur} ({c['source']}, {c['licence']}, {int(reelle // 6)} passages)")
+    try:                                                   # Wikimedia Commons : vidéos libres, recherche en français
+        m = commons_video(" ".join(sorted(voulus, key=len, reverse=True)[:3]), set())
+        if m:
+            chemin = os.path.join(dossier, "sujet-commons.webm")
+            try:
+                _telecharger(m["url"], chemin)
+            except Exception:
+                chemin = chemin[:-5] + "." + m["secours"].rsplit(".", 1)[-1].lower(); _telecharger(m["secours"], chemin)
+            reelle = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", chemin]))
+            for k in range(max(1, min(4, int(reelle // 6)))):
+                out.append(dict(m, chemin=chemin, debut=6 * k, duree=reelle, id=f"{m['id']}-{k}", reelle=True))
+            journal(f"  vraie vidéo du sujet : Wikimedia Commons ({m['credit'][:60]})")
+    except Exception as e:
+        journal(f"  vidéos du sujet (Wikimedia Commons) : {str(e)[:80]}")
     if not out:
-        journal("  aucune vraie vidéo du sujet sous licence libre sur YouTube")
-    return out
+        journal("  aucune vraie vidéo du sujet sous licence libre (photos Wikipédia à la place)")
+    par_video = {}
+    for m in out:                                          # passages alternés entre les vidéos (plus varié à l'écran)
+        par_video.setdefault(m["chemin"], []).append(m)
+    listes = list(par_video.values())
+    return [L[k] for k in range(max(map(len, listes), default=0)) for L in listes if k < len(L)]
 
 
 def shutil_which(nom):

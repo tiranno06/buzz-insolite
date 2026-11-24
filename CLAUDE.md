@@ -88,9 +88,15 @@ L'IA qui contrôle les images refuse une image générique sans rapport réel.
   quand même. Les articles lus sont gardés (étape « articles » déjà faite) et réunis dans UNE vidéo.
 - Scan du buzz : `s["medias"]` = nombre de médias qui en parlent (`sources.nombre_de_medias`, Bing) ; moins de 3 = score ÷ 4 ;
   affiché sur la carte du sujet (📰).
-- **Vraies vidéos du sujet** (`images.videos_du_sujet`) : vidéos YouTube publiées par leur auteur sous licence **Creative Commons
-  BY** (filtre CC de YouTube + licence relue sur la page de chaque vidéo, au moins 2 mots du sujet dans le titre), découpées
-  en passages de 6 s (`debut`), utilisées en PREMIER sur les écrans, crédit « Vidéo : auteur (YouTube, CC BY) ». yt-dlp + deno
+- **Vraies vidéos du sujet** (`images.videos_du_sujet`, `SOURCES_VIDEO`) : vidéos publiées par leur auteur sous licence libre
+  permettant l'usage commercial et le montage (`licence_ok` : CC BY, CC BY-SA, CC0, domaine public ; jamais NC ni ND) sur
+  YouTube (filtre CC + licence relue), PeerTube (Sepia Search), Internet Archive et Wikimedia Commons ; au moins 2 mots du sujet
+  dans le titre ; télés / agences / médias écartés par le nom (`MEDIAS_INTERDITS`) ET par l'image (`sans_logo_media` : une IA
+  qui voit regarde 3 images ; logo de télé, de média, de TikTok ou d'Instagram = vidéo écartée ; IA indisponible = écartée :
+  essai du 24/11, une vidéo PeerTube « CC BY » était un reportage France 24). Découpées en passages de 6 s (`debut`),
+  alternés entre vidéos, utilisées en PREMIER sur les écrans, crédit « Vidéo : auteur (source, licence) ».
+- **Jamais repris** : vidéos TikTok et Instagram d'autres comptes (droits de leurs auteurs, contenu « non original » pour
+  TikTok), vidéos des médias même citées (la courte citation ne couvre pas une vidéo qui illustre sans analyser). yt-dlp + deno
   installés dans creer.yml. YouTube qui refuse le serveur (429, « Sign in ») = on s'en passe, sans contournement. Les vidéos
   des JT et agences (droits réservés) restent interdites, même si elles sont dans l'article.
 

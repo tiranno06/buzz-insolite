@@ -376,16 +376,37 @@ class TestSujetsRiches(unittest.TestCase):
                 return J.dumps(dict(license="Creative Commons Attribution license (reuse allowed)" if "v=A" in args[-1]
                                     else "", channel="Auteur", title="x", duration=60))
             open(args[args.index("-o") + 1], "wb").close(); return ""
-        garde = (images._ytdlp, images.shutil_which, images.subprocess.check_output)
-        images._ytdlp, images.shutil_which = faux, lambda n: "/x"
+        def faux_json(url, *a, **k):
+            if "sepiasearch" in url:
+                return {"data": [dict(url="https://pt.fr/w/1", uuid="P1", name="Toulouse : le policier et le vélo volé",
+                                      duration=40, licence={"id": 1}, account={"displayName": "Témoin"}),
+                                 dict(url="https://pt.fr/w/2", uuid="P2", name="BFM : policier vélo Toulouse",
+                                      duration=40, licence={"id": 1}, account={"displayName": "BFMTV"})]}
+            raise OSError("hors ligne")
+        garde = (images._ytdlp, images.shutil_which, images.subprocess.check_output, images._json, images.commons_video)
+        images._ytdlp, images.shutil_which, images._json = faux, lambda n: "/x", faux_json
         images.subprocess.check_output = lambda *a, **k: b"30.0"
+        images.commons_video = lambda *a: None
+        logo, images.sans_logo_media = images.sans_logo_media, lambda *a: True
         try:
             clips = images.videos_du_sujet("Policier vole vélo cycliste Toulouse", [], TMP, journal=lambda *a: None)
         finally:
-            images._ytdlp, images.shutil_which, images.subprocess.check_output = garde
-        self.assertEqual({c["id"].split("-")[1] for c in clips}, {"A"})                 # B : licence non libre ; C : hors sujet
+            (images._ytdlp, images.shutil_which, images.subprocess.check_output, images._json, images.commons_video) = garde
+            images.sans_logo_media = logo
+        self.assertEqual({c["id"].split("-")[1] for c in clips}, {"A", "P1"})          # B : licence non libre ; C : hors
+        self.assertTrue(any("PeerTube" in c["credit"] for c in clips))                  # sujet ; P2 : chaîne de télé
+        self.assertEqual(clips[0]["id"].split("-")[0] != clips[1]["id"].split("-")[0], True)   # passages alternés
+        clips = [c for c in clips if c["id"].startswith("yt-")]
         self.assertEqual([c["debut"] for c in clips], [0, 6, 12, 18, 24])
         self.assertIn("CC BY", clips[0]["credit"])
+
+    def test_licences(self):
+        from robot import images
+        self.assertTrue(images.licence_ok("https://creativecommons.org/licenses/by/3.0/"))
+        self.assertTrue(images.licence_ok("https://creativecommons.org/publicdomain/zero/1.0/"))
+        self.assertFalse(images.licence_ok("http://creativecommons.org/licenses/by-nc-sa/2.0/"))
+        self.assertFalse(images.licence_ok("https://creativecommons.org/licenses/by-nd/4.0/"))
+        self.assertTrue(images._interdit("Reportage BFMTV", "") or images._interdit("reportage BFM", ""))
 
 
 class TestParallele(unittest.TestCase):
