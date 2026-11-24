@@ -18,7 +18,7 @@ FOURNISSEURS = {
     "groq": dict(cle="GROQ_API_KEY", url="https://api.groq.com/openai/v1/chat/completions",
                  modeles=("llama-3.3-70b-versatile", "openai/gpt-oss-120b", "openai/gpt-oss-20b")),
     "gemini": dict(cle="GEMINI_API_KEY", url="https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
-                   modeles=("gemini-flash-latest", "gemini-flash-lite-latest", "gemini-2.5-flash")),
+                   modeles=("gemini-flash-latest", "gemini-flash-lite-latest")),
     "openrouter": dict(cle="OPENROUTER_API_KEY", url="https://openrouter.ai/api/v1/chat/completions", modeles=()),
 }
 ORDRE = ("mistral", "groq", "gemini", "openrouter")
@@ -119,7 +119,7 @@ def demander_json(consigne, texte, temperature=0.7, max_tokens=4000, exclure=(),
 
 
 # ------------------------------------------------------------------ IA qui voit les images (contrôle qualité)
-VISION = {"gemini": ("gemini-flash-latest", "gemini-2.5-flash", "gemini-flash-lite-latest"),
+VISION = {"gemini": ("gemini-flash-latest", "gemini-flash-lite-latest"),
           "mistral": ("mistral-small-latest", "ministral-14b-2512"),
           "groq": ("meta-llama/llama-4-scout-17b-16e-instruct", "meta-llama/llama-4-maverick-17b-128e-instruct")}
 
