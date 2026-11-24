@@ -13,6 +13,7 @@ import os
 import shutil
 import subprocess
 import threading
+import urllib.error
 import time
 import traceback
 
@@ -579,7 +580,13 @@ def refaire_video(vid, etape="auto", remarque="", journal=print):
         dict(id=v.get("sujet_id") or base, titre=v.get("sujet") or v["titre"], resume="", mots_cles=[], videos=[])
     dossier = os.path.join(SORTIE, v["_nouvel_id"])
     avancement.demarrer(v["_nouvel_id"], "video", f"On refait : {v['titre']}")
-    etat, etape = refaire.preparer(v, sujet, etape, remarque, dossier, depot.depot(), R, journal)
+    try:
+        etat, etape = refaire.preparer(v, sujet, etape, remarque, dossier, depot.depot(), R, journal)
+    except urllib.error.HTTPError as e:                       # vidéo de l'ancien code : pas d'archive de travail
+        if e.code != 404:
+            raise
+        journal("  pas d'archive de travail (vidéo faite avant le 24/11 au soir) : le sujet est refait en entier")
+        etat, etape = {}, "tout"
     nv = None
     for tentative in range(4):                                # comme une création : reprise à l'étape ratée
         try:
