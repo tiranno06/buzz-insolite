@@ -1,7 +1,7 @@
 // Application installable (Android : Chrome → Installer l'application). La page s'ouvre même hors connexion
 // (dernière version gardée). Les données du robot sont toujours lues en direct quand le réseau répond ; les vidéos et les
 // appels à GitHub ne sont jamais gardés.
-const CACHE = "buzz-insolite-v1";
+const CACHE = "buzz-insolite-v2";
 const COQUILLE = ["./", "manifest.webmanifest", "logo-192.png", "logo-512.png", "logo-apple.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(COQUILLE))); self.skipWaiting(); });
 self.addEventListener("activate", e => {

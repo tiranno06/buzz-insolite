@@ -102,6 +102,7 @@ dialog form { position: absolute; top: 6px; right: 6px; }
 <body>
 <header class="top"><div class="wrap">
   <div class="brand"><span class="pastille">INSOLITE</span><h1>Buzz Insolite</h1><small id="etat">…</small></div>
+  <button class="btn mini primaire" id="installer" hidden style="justify-self:start">📲 Installer l'application</button>
   <nav class="tabs" role="tablist">
     <button data-tab="buzz" aria-selected="true">🔥 Buzz<span class="count" id="n-buzz"></span></button>
     <button data-tab="videos">🎬 Vidéos<span class="count" id="n-videos"></span></button>
@@ -212,6 +213,19 @@ dialog form { position: absolute; top: 6px; right: 6px; }
       <label class="champ">Clé GitHub <input type="password" id="r-jeton" autocomplete="off"></label>
       <div class="rang"><button class="btn primaire" id="r-cle">Enregistrer sur cet appareil</button>
         <button class="btn" id="r-oublier">Oublier la clé</button></div>
+    </div>
+    <div class="card">
+      <h3>📲 Appli sur le téléphone (Android)</h3>
+      <ol class="petit">
+        <li>Sur le téléphone, ouvre <b>tiranno06.github.io/buzz-insolite</b> dans <b>Chrome</b>.</li>
+        <li>Touche « 📲 Installer l'application » en haut (ou menu ⋮ → « Installer l'application » / « Ajouter à l'écran d'accueil »).</li>
+        <li>Pour ne pas retaper la clé GitHub : touche ci-dessous « Montrer le code », puis scanne-le avec l'appareil photo du téléphone.</li>
+      </ol>
+      <p class="petit muted">Appui long sur l'icône : raccourcis 🔥 Buzz, ➕ Créer, 🎬 Vidéos. L'appli s'ouvre même sans réseau (dernières données gardées).</p>
+      <div class="rang"><button class="btn" id="qr_montrer">📷 Montrer le code</button><button class="btn" id="qr_copier">🔗 Copier le lien</button></div>
+      <div id="qr" hidden style="margin-top:10px"><div id="qr_img"></div>
+        <p class="petit muted">Ce code contient ta clé : ne le montre à personne. Il se cache tout seul au bout de 2 minutes.</p>
+        <button class="btn mini" id="qr_cacher">Cacher</button></div>
     </div>
     <form id="form-reglages">
       <div class="card">
@@ -607,9 +621,37 @@ document.addEventListener("click", async e => {
 });
 $("#lecteur").addEventListener("close", () => { $("#lv").pause(); $("#lv").removeAttribute("src"); });
 
+// ---------------- appli installable (Android) et connexion d'un autre appareil ----------------
+let invite = null;
+window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); invite = e; $("#installer").hidden = false; });
+window.addEventListener("appinstalled", () => { $("#installer").hidden = true; toast("Application installée ✓"); });
+$("#installer").onclick = async () => { if (!invite) return; invite.prompt(); await invite.userChoice.catch(() => {}); invite = null; $("#installer").hidden = true; };
+function lienConnexion() {
+  const autre = store.get("bi_repo", "");
+  return location.origin + location.pathname + "#cle=" + encodeURIComponent(conn().token) + (autre ? "&depot=" + encodeURIComponent(autre) : "");
+}
+$("#qr_montrer").onclick = async () => {
+  if (!conn().token) return toast("Cet appareil n'a pas encore de clé : enregistre-la d'abord ci-dessus.");
+  if (typeof qrcode === "undefined") await new Promise(ok => { const sc = document.createElement("script");
+    sc.src = "https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"; sc.onload = sc.onerror = ok; document.head.append(sc); });
+  if (typeof qrcode === "undefined") { $("#qr_img").textContent = "Code indisponible : utilise « Copier le lien »."; }
+  else { const q = qrcode(0, "M"); q.addData(lienConnexion()); q.make();
+    $("#qr_img").innerHTML = q.createSvgTag({ cellSize: 6, margin: 2, scalable: true });
+    const svg = $("#qr_img svg"); svg.style.width = "min(240px, 70vw)"; svg.style.height = "auto"; svg.style.background = "#fff"; }
+  $("#qr").hidden = false; $("#qr_montrer").hidden = true;
+  clearTimeout(window._qrT); window._qrT = setTimeout(() => $("#qr_cacher").click(), 120000);
+};
+$("#qr_cacher").onclick = () => { $("#qr").hidden = true; $("#qr_img").innerHTML = ""; $("#qr_montrer").hidden = false; };
+$("#qr_copier").onclick = async () => {
+  if (!conn().token) return toast("Cet appareil n'a pas encore de clé : enregistre-la d'abord ci-dessus.");
+  try { await navigator.clipboard.writeText(lienConnexion()); toast("Lien copié : ouvre-le sur le téléphone (envoie-le-toi en privé)."); }
+  catch { toast("Copie impossible ici : scanne plutôt le code."); }
+};
+
 (function () {           // clé transmise par un lien privé « #cle=… » (autre appareil)
-  const m = location.hash.match(/^#cle=([^&]+)/); if (!m) return;
-  store.set("bi_jeton", decodeURIComponent(m[1])); history.replaceState(null, "", location.pathname);
+  const m = location.hash.match(/^#cle=([^&]+)(?:&depot=(.+))?$/); if (!m) return;
+  store.set("bi_jeton", decodeURIComponent(m[1])); if (m[2]) store.set("bi_repo", decodeURIComponent(m[2]));
+  history.replaceState(null, "", location.pathname);
   setTimeout(() => toast("Clé GitHub installée sur cet appareil ✓"), 400);
 })();
 const VUES = ["buzz", "videos", "creer", "publication", "stats", "journal", "reglages"];

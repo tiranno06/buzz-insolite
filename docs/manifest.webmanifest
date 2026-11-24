@@ -11,8 +11,63 @@
  "theme_color": "#e8283c",
  "description": "Repérer les actus qui buzzent, créer et publier les vidéos TikTok de la chaîne.",
  "icons": [
-  {"src": "logo-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-  {"src": "logo-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
-  {"src": "logo-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  {
+   "src": "logo-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "logo-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "logo-512-maskable.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "Ce qui buzze",
+   "short_name": "Buzz",
+   "url": "./#buzz",
+   "icons": [
+    {
+     "src": "logo-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Créer des vidéos",
+   "short_name": "Créer",
+   "url": "./#creer",
+   "icons": [
+    {
+     "src": "logo-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Mes vidéos",
+   "short_name": "Vidéos",
+   "url": "./#videos",
+   "icons": [
+    {
+     "src": "logo-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  }
+ ],
+ "categories": [
+  "news",
+  "entertainment",
+  "productivity"
  ]
 }
