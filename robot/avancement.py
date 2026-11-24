@@ -151,28 +151,30 @@ def _age_min(d):
 
 
 def attendre_son_tour(limite, journal=print, attente_max_min=200):
-    """File d'attente commune à TOUTES les séries (demande de l'auteur du 24/11) : au plus `limite` vidéos fabriquées en même
-    temps. Une machine en trop s'inscrit « en_attente » (avec l'heure de sa demande) et attend son tour, dans l'ordre des
-    demandes, en revérifiant toutes les 30 s. Une machine muette depuis 30 min (en cours) ou 3 min (en attente) ne compte plus
-    (plantée). Au-delà de `attente_max_min`, elle part quand même (jamais bloquée pour toujours)."""
-    if os.environ.get("GITHUB_ACTIONS") != "true":
+    """File d'attente commune à TOUTES les séries : au plus `limite` vidéos dans la partie lourde (voix, images, montage) en
+    même temps. Appelée APRÈS l'écriture du texte (préparé pendant l'attente). Une machine qui attend porte file="attente"
+    (avec l'heure de sa demande) ; celles qui fabriquent portent file="active". Une machine muette depuis 30 min (active) ou
+    3 min (en attente) ne compte plus. Au-delà de `attente_max_min`, elle part quand même (jamais bloquée pour toujours)."""
+    if os.environ.get("GITHUB_ACTIONS") != "true" or not _etat:
         return
     moi = _nom(); debut = time.time()
-    _etat.clear()
-    _etat.update(id=moi, format="video", titre="", etat="en_attente", etape="En file d'attente", detail="", pourcent=0,
-                 machine=os.environ.get("MACHINE", "1"), debut=iso(), demande=iso(), debut_s=time.time(),
-                 run=os.environ.get("GITHUB_RUN_ID", ""))
+    _etat.update(file="attente", demande=_etat.get("debut") or iso())
+    etape_avant = (_etat.get("etape"), _etat.get("detail"))
     deja_dit = None
     while True:
         autres = {f: d for f, (_, d) in _lire_branche().items() if f != moi}
-        actifs = [d for d in autres.values() if d.get("etat") == "en_cours" and _age_min(d) < 30]
-        attente = [d for d in autres.values() if d.get("etat") == "en_attente" and _age_min(d) < 3] + [dict(_etat, nom=moi)]
+        actifs = [d for d in autres.values() if d.get("etat") == "en_cours" and _age_min(d) < 30
+                  and d.get("file", "active") == "active"]                     # (anciennes versions : sans « file »)
+        attente = [d for d in autres.values() if d.get("file") == "attente" and _age_min(d) < 3] + [dict(_etat, nom=moi)]
         attente.sort(key=lambda d: (d.get("demande", ""), d.get("run", ""), str(d.get("machine", ""))))
         rang = next(k for k, d in enumerate(attente) if d.get("nom") == moi)
         places = limite - len(actifs)
         if rang < places or time.time() - debut > attente_max_min * 60:
+            _etat.update(file="active", etape=etape_avant[0], detail=etape_avant[1] or "")
+            _envoyer(force=True)
             return
-        avant = rang - places + 1                          # places qui doivent se libérer avant notre tour
+        avant = rang - places + 1
+        _etat["etape"] = "En file d'attente (texte prêt)"
         _etat["detail"] = f"{avant} vidéo(s) avant celle-ci ({len(actifs)} en fabrication, {limite} au plus en même temps)"
         if _etat["detail"] != deja_dit:
             journal(f"⏳ File d'attente : {_etat['detail']}")

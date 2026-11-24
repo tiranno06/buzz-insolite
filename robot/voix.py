@@ -9,6 +9,7 @@ import re
 import subprocess
 import sys
 import unicodedata
+import urllib.error
 import urllib.request
 
 from .commun import CACHE
@@ -106,7 +107,62 @@ def ressemblance(texte, entendus):
     return difflib.SequenceMatcher(None, A, E, autojunk=False).ratio() if A else 1.0
 
 
-def preparer(phrases, nom_voix, vitesse, journal=print, suivi=None):
+def _cle_voix(texte, nom_voix, vitesse):
+    import hashlib
+    return hashlib.sha1(f"{nom_voix}|{float(vitesse):.3f}|{texte.strip()}".encode()).hexdigest()[:20]
+
+
+def depuis_memoire(p, nom_voix, vitesse, memoire):
+    """Phrase déjà dite à l'identique ET réussie (même voix, même vitesse) : reprise telle quelle, jamais recalculée."""
+    import json
+    import shutil
+    if not memoire:
+        return False
+    base = os.path.join(memoire, _cle_voix(p["voix"], nom_voix, vitesse))
+    if not (os.path.exists(base + ".wav") and os.path.exists(base + ".json")):
+        return False
+    with open(base + ".json", encoding="utf-8") as f:
+        d = json.load(f)
+    shutil.copyfile(base + ".wav", p["son"])
+    p["duree"], p["mots"], p["_voix_defaut"] = d["duree"], [tuple(m) for m in d["mots"]], ""
+    return True
+
+
+def oublier(p, nom_voix, vitesse, memoire):
+    """Phrase jugée mauvaise par le contrôle final : sa voix en mémoire est effacée (sinon on la reprendrait à l'identique)."""
+    if memoire:
+        base = os.path.join(memoire, _cle_voix(p["voix"], nom_voix, vitesse))
+        for ext in (".wav", ".json"):
+            if os.path.exists(base + ext):
+                os.remove(base + ext)
+
+
+def en_memoire(p, nom_voix, vitesse, memoire):
+    import json
+    import shutil
+    if not memoire or p.get("_voix_defaut") or not p.get("mots"):
+        return
+    os.makedirs(memoire, exist_ok=True)
+    base = os.path.join(memoire, _cle_voix(p["voix"], nom_voix, vitesse))
+    shutil.copyfile(p["son"], base + ".wav")
+    with open(base + ".json", "w", encoding="utf-8") as f:
+        json.dump({"duree": p["duree"], "mots": p["mots"], "texte": p["voix"]}, f, ensure_ascii=False)
+
+
+def preparer(phrases, nom_voix, vitesse, journal=print, suivi=None, memoire=None):
+    """`memoire` : dossier des voix déjà réussies (même texte, même voix) : jamais refaites (demande de l'auteur du 24/11)."""
+    gardees = [p for p in phrases if depuis_memoire(p, nom_voix, vitesse, memoire)]
+    if gardees:
+        journal(f"  {len(gardees)} phrase(s) déjà dite(s) à l'identique : voix reprise sans la refaire")
+    reste = [p for p in phrases if p not in gardees]
+    if reste:
+        nom_voix = _preparer(reste, nom_voix, vitesse, journal, suivi)
+        for p in reste:
+            en_memoire(p, nom_voix, vitesse, memoire)
+    return nom_voix
+
+
+def _preparer(phrases, nom_voix, vitesse, journal=print, suivi=None):
     """Voix de toutes les phrases : p["son"] doit être donné ; remplit p["duree"] et p["mots"].
     Chatterbox (un peu au hasard d'un essai à l'autre) : une phrase mal comprise par Whisper (< 75 % des mots) est refaite
     une fois. Si Chatterbox est en panne, la voix Kokoro (femme) prend le relais pour toute la vidéo."""
@@ -118,7 +174,7 @@ def preparer(phrases, nom_voix, vitesse, journal=print, suivi=None):
                 _chatterbox([phrases[i]["voix"] for i in a_faire], bruts)
             except Exception as e:
                 journal(f"  ⚠️ voix Chatterbox en panne ({str(e)[:120]}) : voix Kokoro à la place")
-                return preparer(phrases, "kokoro-ff_siwis", vitesse, journal, suivi)
+                return _preparer(phrases, "kokoro-ff_siwis", vitesse, journal, suivi)
             refaire = []
             for i, b in zip(a_faire, bruts):
                 p = phrases[i]
@@ -163,8 +219,48 @@ def norm(m):
     return re.sub(r"[^a-z0-9]", "", m)
 
 
+GROQ_WHISPER = {"refus": 0}
+
+
+def _groq_mots(chemin):
+    """Whisper de Groq (gratuit, clé GROQ_API_KEY déjà utilisée par les IA) : quelques secondes au lieu de plusieurs minutes
+    sur le processeur de GitHub. None si indisponible (quota, panne) : Whisper local prend le relais."""
+    import json
+    import time
+    import uuid
+    cle = os.environ.get("GROQ_API_KEY")
+    if not cle or GROQ_WHISPER["refus"] >= 3:
+        return None
+    son = subprocess.check_output(["ffmpeg", "-v", "error", "-i", chemin, "-ac", "1", "-ar", "16000", "-f", "flac", "-"])
+    borne = uuid.uuid4().hex
+    champs = [("model", "whisper-large-v3-turbo"), ("language", "fr"), ("response_format", "verbose_json"),
+              ("timestamp_granularities[]", "word"), ("temperature", "0")]
+    corps = b"".join(f"--{borne}\r\nContent-Disposition: form-data; name=\"{k}\"\r\n\r\n{v}\r\n".encode() for k, v in champs)
+    corps += (f"--{borne}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"voix.flac\"\r\n"
+              "Content-Type: audio/flac\r\n\r\n").encode() + son + f"\r\n--{borne}--\r\n".encode()
+    for essai in range(2):
+        try:
+            req = urllib.request.Request("https://api.groq.com/openai/v1/audio/transcriptions", data=corps, method="POST",
+                                         headers={"Authorization": f"Bearer {cle}", "User-Agent": "buzz-insolite-robot",
+                                                  "Content-Type": f"multipart/form-data; boundary={borne}"})
+            d = json.loads(urllib.request.urlopen(req, timeout=60).read())
+            return [(str(w["word"]).strip(), float(w["start"]), float(w["end"])) for w in d.get("words") or []]
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and essai == 0:
+                time.sleep(8); continue
+            GROQ_WHISPER["refus"] += 1
+            return None
+        except Exception:
+            GROQ_WHISPER["refus"] += 1
+            return None
+    return None
+
+
 def mots_entendus(chemin):
-    """[(mot, début, fin)] réellement prononcés dans le fichier."""
+    """[(mot, début, fin)] réellement prononcés dans le fichier : Whisper de Groq d'abord (rapide), sinon Whisper local."""
+    mots = _groq_mots(chemin)
+    if mots is not None and (mots or os.path.getsize(chemin) < 20000):
+        return mots
     import numpy as np
     brut = subprocess.check_output(["ffmpeg", "-v", "error", "-i", chemin, "-f", "f32le", "-ac", "1", "-ar", "16000", "-"])
     segs, _ = _whisper().transcribe(np.frombuffer(brut, np.float32), language="fr", word_timestamps=True, beam_size=5)

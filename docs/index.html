@@ -546,7 +546,7 @@ function remplirReglages() {
   $("#r-chaine").value = P.chaine || ""; $("#r-heures-auto").checked = !!P.heures_auto;
   const MH = (D["stats.json"] || {}).meilleures_heures || [];
   $("#r-heures-stats").textContent = MH.length ? `Meilleures heures d'après tes vidéos : ${MH.join(" et ")}.` : "Les statistiques n'ont pas encore assez de vidéos (2 par heure au moins).";
-  $("#r-paralleles").value = C.paralleles ?? 3;
+  $("#r-paralleles").value = C.paralleles ?? 5;
   const F = C.formats || {}; $("#r-vf").value = String(F.vrai_faux ?? 3); $("#r-semaine").checked = F.semaine !== false;
   $("#r-tags").value = (H.fixes || []).join(" "); $("#r-ntags").value = H.nombre ?? 6;
 }
@@ -556,7 +556,7 @@ $("#form-reglages").onsubmit = e => {
   const R = {
     publication: { mode: $("#r-mode").value, auto: $("#r-pub-auto").checked, heures: heures("#r-pub-h1", "#r-pub-h2"), compte: $("#r-compte").value.trim(),
       chaine: $("#r-chaine").value.trim(), heures_auto: $("#r-heures-auto").checked },
-    creation: { paralleles: +$("#r-paralleles").value || 3, auto: $("#r-cre-auto").checked, heures: heures("#r-cre-h1", "#r-cre-h2"), formats: { vrai_faux: +$("#r-vf").value, semaine: $("#r-semaine").checked } },
+    creation: { paralleles: +$("#r-paralleles").value || 5, auto: $("#r-cre-auto").checked, heures: heures("#r-cre-h1", "#r-cre-h2"), formats: { vrai_faux: +$("#r-vf").value, semaine: $("#r-semaine").checked } },
     buzz: { vues_min: +$("#r-vues").value, jaime_min: +$("#r-jaime").value, commentaires_min: +$("#r-com").value, heures: +$("#r-heures").value,
       comptes: $("#r-comptes").value.split(/\s+/).map(x => x.replace(/^@/, "")).filter(Boolean) },
     video: { voix: $("#r-voix").value, vitesse: +$("#r-vitesse").value, musique: $("#r-musique").checked, bruitages: $("#r-bruitages").checked, transitions: $("#r-transitions").checked, carte: $("#r-carte").checked, images_generiques: $("#r-generiques").checked },
@@ -586,7 +586,7 @@ async function lireAvancements() {
   return out.filter(a => a && Date.now() - new Date(a.maj).getTime() < (a.etat === "en_cours" ? 30 : 5) * 60e3).sort((a, b) => (a.debut || "").localeCompare(b.debut || ""));
 }
 function barre(a) {
-  if (a.etat === "en_attente") return `<div style="margin-bottom:10px"><b>⏳ En file d'attente</b> <span class="muted petit">${esc(a.detail || "")}</span>
+  if (a.etat === "en_attente" || a.file === "attente") return `<div style="margin-bottom:10px"><b>⏳ En file d'attente</b> <span class="muted petit">${esc(a.detail || "")}</span>
     <div class="muted petit">🤖 machine ${esc(a.machine || "1")} · elle démarrera dès qu'une place se libère</div></div>`;
   const fini = a.etat !== "en_cours";
   return `<div style="margin-bottom:10px"><div class="rang"><b>${fini ? (a.etat === "fini" ? "✅ " : "⚠️ ") : "⏳ "}${esc(a.etape)}</b>
@@ -600,7 +600,7 @@ async function suivre(nouvelle) {
   try {
     const A = await lireAvancements().catch(() => []);
     const actives = A.filter(a => a.etat === "en_cours" || a.etat === "en_attente");
-    if (A.length) $("#avancement").innerHTML = (actives.length > 1 ? `<p class="petit" style="margin:0 0 8px"><b>${A.filter(a => a.etat === "en_cours").length} vidéo(s) en fabrication, ${A.filter(a => a.etat === "en_attente").length} en file d'attente</b></p>` : "") + A.map(barre).join("");
+    if (A.length) $("#avancement").innerHTML = (actives.length > 1 ? `<p class="petit" style="margin:0 0 8px"><b>${A.filter(a => a.etat === "en_cours" && a.file !== "attente").length} vidéo(s) en fabrication, ${A.filter(a => a.etat === "en_attente" || a.file === "attente").length} en file d'attente</b></p>` : "") + A.map(barre).join("");
     else if (Date.now() - demandeLe < 5 * 60e3) $("#avancement").innerHTML = `<b>📨 Commande envoyée : les machines démarrent…</b><div class="barre"><div style="width:2%"></div></div>`;
     $("#avancement").hidden = !A.length && Date.now() - demandeLe >= 5 * 60e3;
     const finies = A.filter(a => a.etat !== "en_cours" && !vuesFinies.has(a.id));      // une vidéo vient de finir : liste relue

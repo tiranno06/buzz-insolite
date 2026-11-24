@@ -309,7 +309,7 @@ class TestJamaisAbandonnee(unittest.TestCase):
     def test_reprise_sur_le_meme_sujet(self):
         from robot import principal
         appels = []
-        def fausse_fabrique(s, R, n, total, journal, format_, secours=False, etat=None):
+        def fausse_fabrique(s, R, n, total, journal, format_, secours=False, etat=None, attendre=None):
             appels.append(secours)
             if len(appels) < 3:
                 raise RuntimeError("panne passagère")
@@ -395,7 +395,7 @@ class TestSujetsRiches(unittest.TestCase):
                                         {"id": "riche", "titre": "Sujet riche", "statut": "nouveau", "score": 5}]})
         riche = [dict(media=m, titre="t", lien="", texte="x" * 2000) for m in ("a.fr", "b.fr", "c.fr")]
         faits = []
-        def fabrique(s, R, n, total, journal, format_, secours=False, etat=None):
+        def fabrique(s, R, n, total, journal, format_, secours=False, etat=None, attendre=None):
             faits.append((s["id"], len(etat.get("articles") or [])))
             return dict(id="v-" + s["id"], titre="t", duree=70, ecrans_illustres=5, statut="nouveau")
         garde = (principal.fabriquer, principal.sources.chercher_large)

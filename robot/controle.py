@@ -523,7 +523,7 @@ def corriger_ecrans(script, fautifs, dossier, B, journal=print, nom_voix="", vit
                 for k in range(len(ph)):
                     if "duree" not in ph[k]:                # phrases ajoutées : voix et image
                         ph[k]["son"] = os.path.join(dossier, f"voix_ajout{uid(script, k):02d}.wav")
-                        V.preparer([ph[k]], nom_voix, vitesse, journal)
+                        V.preparer([ph[k]], nom_voix, vitesse, journal, memoire=os.path.join(dossier, "memoire_voix"))
                         ph[k]["media"] = images.trouver(ph[k].get("image", ""), dossier, 70 + k, deja, journal,
                                                         script.get("theme_image", ""), entite=ph[k].get("entite", ""),
                                                         generiques=script.get("images_generiques", False))
@@ -558,7 +558,8 @@ def corriger_ecrans(script, fautifs, dossier, B, journal=print, nom_voix="", vit
                 l.update(solution="phrase retirée", corrige=True)
                 continue
             p.pop("mots", None); p.pop("_voix_defaut", None)
-            V.preparer([p], nom_voix, vitesse, journal)
+            V.oublier(p, nom_voix, vitesse, os.path.join(dossier, "memoire_voix"))
+            V.preparer([p], nom_voix, vitesse, journal, memoire=os.path.join(dossier, "memoire_voix"))
             l.setdefault("solution", "voix refaite")
 
 

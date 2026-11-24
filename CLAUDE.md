@@ -93,6 +93,17 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
 - Contrôle final arrêté après 70 min de fabrication (2 tours au moins) : problèmes restants dans le bulletin, « à vérifier ».
 - File commune : 3 vidéos en même temps au plus (`creation.paralleles`) ; les autres attendent leur tour.
 
+## Vitesse, suite (demande de l'auteur du 24/11)
+- Calage des mots : Whisper de **Groq** d'abord (`voix._groq_mots`, whisper-large-v3-turbo, clé GROQ_API_KEY), Whisper local
+  si Groq refuse (3 refus = local pour le reste du passage).
+- **Mémoire des voix** (`voix.preparer(memoire=)`, dossier `memoire_voix` de la vidéo) : une phrase déjà dite à l'identique ET
+  réussie n'est jamais refaite ; une phrase jugée mauvaise est oubliée (`voix.oublier`) avant d'être refaite.
+- **Voix et images en même temps** (fil `fil_images` dans `fabriquer`) ; médias pris par les autres vidéos en construction
+  écartés (`avancement.publier_medias` / `medias_des_autres`) : jamais deux vidéos avec les mêmes passages.
+- **File après le texte** : toutes les machines d'une série démarrent (articles + texte), `attendre_son_tour` (champ `file` :
+  attente / active) limite la partie lourde à `creation.paralleles` (5 par défaut) vidéos en même temps.
+- Caches GitHub (pip, ffmpeg, voix, Whisper, Chatterbox) : **tout nouvel outil lourd doit avoir son cache** dans creer.yml.
+
 ## Vraies images du sujet (demande de l'auteur du 24/11 : « pas de bouts de vidéos au hasard pour meubler »)
 Les vidéos des JT et agences (BFM, TF1, AFP…) ne sont JAMAIS reprises (droits, TikTok les reconnaît). À la place :
 champ "entite" de chaque phrase (titre de l'article Wikipédia de la personne / du lieu / de l'objet) → `images.wikipedia_media`

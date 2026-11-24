@@ -66,7 +66,8 @@
   "formats": {
    "vrai_faux": 3,
    "semaine": true
-  }
+  },
+  "paralleles": 5
  },
  "hashtags": {
   "fixes": [

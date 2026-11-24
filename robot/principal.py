@@ -12,6 +12,7 @@ import argparse
 import os
 import shutil
 import subprocess
+import threading
 import time
 import traceback
 
@@ -127,7 +128,7 @@ def avec_ia(fonction, journal, attente_max_min=90):
             time.sleep(300)
 
 
-def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=False, etat=None):
+def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=False, etat=None, attendre=None):
     """Une vidéo complète, découpée en ÉTAPES qui se reprennent (demande de l'auteur du 24/11 : une étape qui plante recommence
     à cette étape, jamais toute la vidéo). Chaque étape réussie est gardée dans `etat` ; une étape qui plante est refaite seule
     (3 essais), et si elle échoue encore, creer rappelle fabriquer avec le même `etat` : on repart de cette étape. À l'intérieur
@@ -221,15 +222,16 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 p["duree"], p["mots"] = voix_simulation(p, p["son"])
         elif a_dire:
             script["voix_utilisee"] = V.preparer(a_dire, E["nom_voix"], E["vitesse"], journal,
-                                                 suivi=lambda k, nb: avancement.progres(30 + 20 * k / nb, f"phrase {k}/{nb}"))
+                                                 suivi=lambda k, nb: avancement.progres(30 + 20 * k / nb, f"phrase {k}/{nb}"),
+                                                 memoire=os.path.join(dossier, "memoire_voix"))
         for i, p in enumerate(script["phrases"]):
             if p.get("_voix_defaut"):                         # repris par la boucle de la vidéo finie
                 B.ouvrir("voix", p["_voix_defaut"], p["uid"])
-    etape("voix", 30, voix)
 
     # ---------- 4. images : seules les phrases sans image cherchée
     def images_():
         deja = E.setdefault("deja", set())
+        deja |= avancement.medias_des_autres()               # jamais les mêmes passages que les autres vidéos en construction
         script["images_generiques"] = R["video"].get("images_generiques", False)
         if "clips" not in E:                                  # VRAIES vidéos du sujet (licence libre), avant tout le reste
             E["clips"] = [] if simulation() or format_ == "semaine" else \
@@ -286,12 +288,34 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                         script["phrases"][1]["ecran"] = str(script["lieu"]).split(",")[0][:22]
                     journal(f"  carte : {lieu['nom']}")
             E["carte_faite"] = True
-    etape("images", 52, images_)
-
     def controle_images():
         if not simulation():
             controle.controle_images(script, dossier, B, journal, E.setdefault("deja", set()), sujet["titre"], sans_ia=secours)
-    etape("controle_images", 62, controle_images)
+        avancement.publier_medias(E.get("deja") or ())
+
+    # File d'attente APRÈS le texte (demande de l'auteur du 24/11) : articles et texte se préparent pendant l'attente, la partie
+    # lourde (voix, images, montage) démarre dès que la place se libère.
+    if attendre and not E.get("file_passee"):
+        attendre()
+        E["file_passee"] = True
+    # Voix (processeur) et images (réseau) EN MÊME TEMPS : chaque vidéo a son propre dossier, et les médias pris par les autres
+    # vidéos en construction sont écartés (aucun chevauchement).
+    erreurs = []
+
+    def fil_images():
+        try:
+            etape("images", 52, images_)
+            etape("controle_images", 62, controle_images)
+        except Exception as e:
+            erreurs.append(e)
+    fil = threading.Thread(target=fil_images, daemon=True)
+    fil.start()
+    try:
+        etape("voix", 30, voix)
+    finally:
+        fil.join()
+    if erreurs:
+        raise erreurs[0]
     trouves = sum(1 for p in script["phrases"] if p.get("media"))
 
     # ---------- 5. montage (les écrans déjà fabriqués sont gardés)
@@ -375,7 +399,7 @@ ETAPES = {"articles": "Lecture des articles de presse", "ecriture": "Écriture d
           "controle_final": "Contrôle 4/4 : la vidéo finie", "rangement": "Rangement de la vidéo"}
 
 
-def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz"):
+def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz", attendre=None):
     R = reglages()
     sujets = choisir_sujets(nombre, sujet_id, libre, journal, format_)
     if not sujets:
@@ -413,7 +437,7 @@ def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz"):
         for tentative in range(4):                            # une vidéo commencée va au bout : reprise à l'étape ratée
             secours = tentative == 3
             try:
-                v = fabriquer(s, R, len(faites) + 1, nombre, journal, format_, secours=secours, etat=etat)
+                v = fabriquer(s, R, len(faites) + 1, nombre, journal, format_, secours=secours, etat=etat, attendre=attendre)
                 break
             except Exception as e:
                 traceback.print_exc()
@@ -479,19 +503,21 @@ def main():
     o = a.parse_args()
     if o.plan:
         import json
-        n_par = max(1, min(5, o.paralleles or int(reglages()["creation"].get("paralleles", 3))))
+        n_par = max(1, min(5, o.paralleles or int(reglages()["creation"].get("paralleles", 5))))
         plan = planifier(max(1, min(10, o.nombre)), o.format, o.sujet, o.libre, n_par)
         print(f"Plan : {len(plan)} vidéo(s), {n_par} machine(s) en même temps : {plan}")
         if os.environ.get("GITHUB_OUTPUT"):
             with open(os.environ["GITHUB_OUTPUT"], "a") as f:
-                f.write(f"plan={json.dumps(plan)}\nparalleles={n_par}\n")
+                # toutes les machines démarrent (articles et texte préparés pendant l'attente) ; la file commune limite
+                # la partie lourde à `n_par` vidéos en même temps
+                f.write(f"plan={json.dumps(plan)}\nparalleles={min(10, max(n_par, len(plan)))}\n")
         return
     if o.auto and not reglages()["creation"].get("auto"):
         print("Création automatique coupée dans les réglages : rien à faire.")
         return
-    if not simulation():                                      # file d'attente commune à toutes les séries
-        avancement.attendre_son_tour(max(1, min(5, int(reglages()["creation"].get("paralleles", 3)))))
-    faites = creer(max(1, min(10, o.nombre)), o.sujet, o.libre, format_=o.format)
+    limite = max(1, min(5, int(reglages()["creation"].get("paralleles", 5))))
+    attendre = None if simulation() else (lambda: avancement.attendre_son_tour(limite))   # file commune, après le texte
+    faites = creer(max(1, min(10, o.nombre)), o.sujet, o.libre, format_=o.format, attendre=attendre)
     if not faites:
         raise SystemExit(1)
 
