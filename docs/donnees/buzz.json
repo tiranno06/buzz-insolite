@@ -482,8 +482,9 @@
    "jaime": 52500,
    "commentaires": 1016,
    "hashtags_viraux": [],
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T18:38:52+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-24T18:38:52+01:00",
+   "reserve_le": "2026-11-24T19:59:18+01:00"
   },
   {
    "titre": "Condamnation pour vandalisme statue Vierge Porto-Vecchio",
@@ -565,9 +566,9 @@
    "jaime": 48500,
    "commentaires": 1270,
    "hashtags_viraux": [],
-   "statut": "nouveau",
+   "statut": "en_cours",
    "vu_le": "2026-11-24T16:44:03+01:00",
-   "reserve_le": "2026-11-24T18:21:43+01:00"
+   "reserve_le": "2026-11-24T19:59:18+01:00"
   },
   {
    "titre": "Arrêt baron drogue El Chapo Isidro Mexique",
@@ -614,8 +615,9 @@
     "fbi",
     "et"
    ],
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T18:38:52+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-24T18:38:52+01:00",
+   "reserve_le": "2026-11-24T19:59:18+01:00"
   },
   {
    "titre": "Jensen Huang revient diriger Nvidia après scandale",
