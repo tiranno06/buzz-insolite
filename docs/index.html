@@ -215,6 +215,15 @@ dialog form { position: absolute; top: 6px; right: 6px; }
         <button class="btn" id="r-oublier">Oublier la clé</button></div>
     </div>
     <div class="card">
+      <h3>🏪 Ma chaîne : logos et descriptif</h3>
+      <p class="petit muted">Photo de profil TikTok (appuie longuement sur une image pour l'enregistrer) :</p>
+      <div class="rang"><a href="marque/logo-a.png" target="_blank"><img src="marque/logo-a.png" alt="Logo A" width="90" height="90" style="border-radius:50%"></a>
+        <a href="marque/logo-b.png" target="_blank"><img src="marque/logo-b.png" alt="Logo B" width="90" height="90" style="border-radius:50%"></a>
+        <a href="marque/logo-c.png" target="_blank"><img src="marque/logo-c.png" alt="Logo C" width="90" height="90" style="border-radius:50%"></a></div>
+      <p class="petit"><b>Nom :</b> Buzz Insolite<br><b>Bio :</b> <span id="bio">🔥 Les actus qui font le buzz en France et en Europe, expliquées en 1 minute ⚡</span>
+        <button class="btn mini" type="button" id="bio-copier">📋 Copier</button></p>
+    </div>
+    <div class="card">
       <h3>📲 Appli sur le téléphone (Android)</h3>
       <ol class="petit">
         <li>Sur le téléphone, ouvre <b>tiranno06.github.io/buzz-insolite</b> dans <b>Chrome</b>.</li>
@@ -641,6 +650,7 @@ $("#qr_montrer").onclick = async () => {
   $("#qr").hidden = false; $("#qr_montrer").hidden = true;
   clearTimeout(window._qrT); window._qrT = setTimeout(() => $("#qr_cacher").click(), 120000);
 };
+$("#bio-copier").onclick = async () => { try { await navigator.clipboard.writeText($("#bio").textContent); toast("Bio copiée ✓"); } catch { toast("Copie impossible : sélectionne le texte."); } };
 $("#qr_cacher").onclick = () => { $("#qr").hidden = true; $("#qr_img").innerHTML = ""; $("#qr_montrer").hidden = false; };
 $("#qr_copier").onclick = async () => {
   if (!conn().token) return toast("Cet appareil n'a pas encore de clé : enregistre-la d'abord ci-dessus.");
