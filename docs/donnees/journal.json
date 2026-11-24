@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-24T23:48:43+01:00",
+   "niveau": "info",
+   "texte": "🔁 « CAN 2025 : Le Sénégal récupère son titre » refaite (tout) : note 75/100, corrige : « Vidéo de l'ancien code : presque aucune image » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-24T23:36:45+01:00",
    "niveau": "info",
    "texte": "🗑️ « Leto et le débat sur Lucia » supprimée."

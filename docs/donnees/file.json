@@ -1,3 +1,315 @@
 {
- "videos": []
+ "videos": [
+  {
+   "id": "20261124-233239-1",
+   "tag": "v-20261124-233239-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1/buzz-20261124-233239-1.mp4",
+   "titre": "CAN 2025 : Le Sénégal récupère son titre",
+   "accroche": "LE TAS REND LA JUSTICE",
+   "sujet_id": "af2b8dfec2",
+   "sujet": "CAN 2025 : Sénégal vainqueur après arbitrage TAS",
+   "buzz": {
+    "vues": 3600000,
+    "jaime": 437100,
+    "commentaires": 7196,
+    "score": 2963
+   },
+   "description": "Le Sénégal remporte enfin la CAN 2025 après un arbitrage historique ! 🏆 Découvrez comment tout s'est joué...",
+   "question": "ET VOUS, QUI AURIEZ GAGNÉ ?",
+   "hashtags": [
+    "#c",
+    "#a",
+    "#n",
+    "#2",
+    "#insolite",
+    "#actu"
+   ],
+   "duree": 73.1,
+   "sources": [
+    {
+     "media": "linternaute.com",
+     "titre": "CAN 2025 : le Sénégal récupère le titre, le Maroc dénonce un incident, la décision finale du TAS et les recours",
+     "lien": "https://www.linternaute.com/sport/foot/11315951-can-2025/"
+    },
+    {
+     "media": "franceinfo",
+     "titre": "Victoire du Sénégal à la CAN : la Confédération africaine de football déclare \"respecter la décision\" du Tribunal arbitral du sport",
+     "lien": "https://www.franceinfo.fr/sports/foot/can/direct-senegal-vainqueur-de-la-can-le-tribunal-arbitral-du-sport-a-rendu-justice-au-sport-estime-le-president-de-la-federation-senegalaise_8298138.html#xtor=RSS-3-[lestitres]"
+    },
+    {
+     "media": "seneweb.com",
+     "titre": "AFCON 2025: Abdoulaye Fall savors Senegal's victory before the CAS and dedicates the second star to Aïda Faye Samb",
+     "lien": "https://www.seneweb.com/en/news/Sport/can-2025-abdoulaye-fall-savoure-la-victoire-du-senegal-devant-le-tas-et-dedie-la-deuxieme-etoile-a-aida-faye-samb_n_999004559.html"
+    },
+    {
+     "media": "afriquesports.net",
+     "titre": "Senegal–Morocco: CAS restores Senegal as 2025 African champions",
+     "lien": "https://www.afriquesports.net/en/afrique/senegal-morocco-cas-restores-senegal-as-2025-african-champions"
+    },
+    {
+     "media": "seneweb.com",
+     "titre": "2025 AFCON Final: Why the CAS overturned the CAF decision and reinstated Senegal as African champions",
+     "lien": "https://www.seneweb.com/en/news/Sport/finale-can-2025-pourquoi-le-tas-a-annule-la-decision-de-la-caf-et-retabli-le-senegal-dans-son-titre-de-champion-dafrique_n_999004529.html"
+    },
+    {
+     "media": "afriquesports.net",
+     "titre": "AFCON 2025: CAF accepts CAS ruling and confirms Senegal as champions",
+     "lien": "https://www.afriquesports.net/en/afrique/afcon-2025-caf-accepts-cas-ruling-and-confirms-senegal-as-champions"
+    },
+    {
+     "media": "msn.com",
+     "titre": "CAN 2025: la CAF se range derrière la décision du TAS et déclare le Sénégal vainqueur du tournoi",
+     "lien": "https://www.msn.com/fr-fr/actualite/other/can-2025-la-caf-se-range-derri%C3%A8re-la-d%C3%A9cision-du-tas-et-d%C3%A9clare-le-s%C3%A9n%C3%A9gal-vainqueur-du-tournoi/ar-AA2i8vDh"
+    },
+    {
+     "media": "Le Parisien",
+     "titre": "Le Sénégal vainqueur de la CAN 2025 face au Maroc : « Le football a gagné », estime El-Hadji Diouf",
+     "lien": "https://www.leparisien.fr/sports/football/le-senegal-vainqueur-de-la-can-face-au-maroc-2025-le-football-a-gagne-estime-el-hadji-diouf-24-11-2026-MVE7JLGR2ZDQ3PIWNFBLPFFNYI.php"
+    }
+   ],
+   "verification": {
+    "par": "groq:openai/gpt-oss-20b",
+    "corrigees": 0,
+    "retirees": 0,
+    "problemes": []
+   },
+   "verifie": true,
+   "credits": [
+    "Carte : Natural Earth, OpenStreetMap",
+    "Wikipédia, article « Coupe d'Afrique des nations de football »"
+   ],
+   "ecrans_illustres": 1,
+   "ecrans_total": 12,
+   "format": "buzz",
+   "voix": "chatterbox-bernard",
+   "lieu": "Lausanne, Suisse",
+   "humeur": "joie",
+   "categorie": "",
+   "texte": [
+    "Imaginez un titre de champion d’Afrique volé, puis rendu après des mois d’attente.",
+    "Le Sénégal a remporté la CAN 2025 sur le terrain, mais la CAF lui a retiré le titre en mars 2026.",
+    "Pourquoi ? À cause d’une finale chaotique à Rabat le 18 janvier 2026.",
+    "Des joueurs sénégalais ont quitté le terrain pour protester contre un penalty accordé au Maroc.",
+    "Le Maroc a marqué un but en prolongation, mais le Sénégal a obtenu la victoire grâce à Pape Gueye.",
+    "La CAF a annulé cette victoire et donné un 3-0 au Maroc, comme si le Sénégal avait abandonné.",
+    "Le Sénégal a porté l’affaire devant le TAS, qui a rendu sa décision le 24 novembre 2026.",
+    "Résultat : le Sénégal est officiellement champion d’Afrique à nouveau, avec une victoire 1-0 validée.",
+    "Le Maroc a dénoncé un 'incident' avant le verdict, mais le Sénégal le rejette.",
+    "Le Maroc peut encore faire appel, mais il perd déjà 18 points au classement FIFA.",
+    "Sadio Mané a réagi : « Nous sommes remplis de joie, merci au peuple sénégalais pour son soutien ! »",
+    "Et le président sénégalais Abdoulaye Fall a dédié ce titre à Aïda Faye Samb, une supporteuse décédée.",
+    "Le Sénégal a enfin sa deuxième étoile en CAN, après des mois de bataille juridique.",
+    "Alors, qui aurait dû gagner selon vous ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-24T23:48:43+01:00",
+   "fabrication_s": 964,
+   "controles": {
+    "note": 75,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 1,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 2,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 5,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 6,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 7,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 9,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "images",
+      "ecran": 14,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 16,
+      "gravite": "moyen",
+      "probleme": "Montre une conférence sur la tech et les réseaux sociaux au lieu du football ou du Maroc",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "Carte géographique hors sujet (Afrique de l'Ouest/Nord-Ouest mise en avant mais pas en lien direct avec le match)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 18,
+      "gravite": "moyen",
+      "probleme": "Montre un aquarium avec des poissons",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "Montre un homme qui parle face caméra",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "Carte géographique montrant l'Afrique de l'Est au lieu du Sénégal ou du Tribunal Arbitral du Sport",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "Conférence sans rapport avec le football",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "Aquarium sans rapport avec le sujet",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "Homme qui parle sans rapport avec Sadio Mané",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "montre un panel de conférence avec des écrans en anglais sur la tech",
+      "corrige": true,
+      "essais": 1,
+      "solution": "nouvelle image (« African Cup of Nations trophy Senegal »)"
+     },
+     {
+      "niveau": "images",
+      "ecran": null,
+      "gravite": "grave",
+      "probleme": "trop peu d'images : 1 écran(s) illustré(s) sur 12",
+      "corrige": false,
+      "essais": 1
+     }
+    ],
+    "sautes": [],
+    "corriges": 18,
+    "restants": 1,
+    "graves_restants": 1
+   },
+   "reprises": 0,
+   "preuves": [
+    {
+     "ecran": 13,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ACAN_-_Fr_-_Full_Colour.png",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Coupe d'Afrique des nations de football »",
+     "releve_le": "2026-11-24T23:48:43+01:00"
+    }
+   ],
+   "couverture_ms": 64414,
+   "durees": {
+    "articles": 4,
+    "ecriture": 79,
+    "texte": 42,
+    "images": 233,
+    "controle_images": 338,
+    "voix": 598,
+    "montage": 58,
+    "controle_final": 165,
+    "rangement": 6
+   },
+   "refaite": null,
+   "statut": "a_verifier",
+   "refaite_de": "20261124-203224-1"
+  }
+ ]
 }
