@@ -1,0 +1,38 @@
+name: Analyser un profil TikTok
+
+on:
+  workflow_dispatch:
+    inputs:
+      profil:
+        description: "Pseudo TikTok (sans @)"
+        default: "storynewsfm"
+      combien:
+        description: "Nombre de vidéos regardées"
+        default: "3"
+
+permissions:
+  contents: read
+
+jobs:
+  analyser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Installer ffmpeg
+        timeout-minutes: 25
+        run: bash outils/installer_ffmpeg.sh
+      - name: Installer les outils
+        run: |
+          pip install -q -U "yt-dlp[default,curl-cffi]" || pip install -q -U yt-dlp
+          pip install -q faster-whisper==1.2.1 "numpy<3" "Pillow>=11,<14"
+      - name: Analyser (texte seulement, vidéos effacées)
+        run: python outils/analyser_profil.py "${{ inputs.profil }}" "${{ inputs.combien }}"
