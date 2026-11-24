@@ -321,6 +321,13 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
     # ---------- 5. montage (les écrans déjà fabriqués sont gardés)
     E["fichier"] = fichier = os.path.join(dossier, f"buzz-{vid}.mp4")
     def montage_():
+        if not E.get("accroche_faite"):
+            accroche(script)                                  # la plus belle vraie vidéo sur les 2 premières secondes
+            noms = [a["media"] for a in E["articles"] if a.get("media") and len(a.get("texte") or "") >= 400 and a["media"] not in
+                    ("Google Actualités", "Wikipédia (contexte)", "Descriptions des vidéos TikTok virales", "Sujet du buzz")]
+            noms = list(dict.fromkeys(noms))[:4]
+            script["sources_ecran"] = ("Sources : " + ", ".join(noms)) if noms else ""
+            E["accroche_faite"] = True
         E["duree"] = montage.monter(script, dossier, fichier, suivi=lambda k, nb: avancement.progres(68 + 18 * k / nb, f"écran {k}/{nb}"))
     etape("montage", 68, montage_)
 
@@ -371,9 +378,31 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 ecrans_illustres=trouves, format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""),
                 humeur=script.get("humeur", ""), texte=[p["ecrit"] for p in script["phrases"]],
                 essai=simulation(), cree_le=iso(), fabrication_s=round(time.time() - E["t0"]), controles=bulletin,
-                reprises=E.get("reprises", 0), preuves=preuves_licences(script),
+                reprises=E.get("reprises", 0), preuves=preuves_licences(script), couverture_ms=couverture_ms(script),
                 statut="a_verifier" if bulletin["graves_restants"] else
                        "a_publier" if (mode == "auto" and script.get("verifie")) else "nouvelle")
+
+
+def accroche(script):
+    """Accroche (2 premières secondes) : si le 1er écran n'a pas de vraie vidéo, il prend celle d'un autre écran (échange)."""
+    ph = script["phrases"]
+    m0 = ph[0].get("media") or {}
+    if m0.get("type") == "video" and m0.get("reelle"):
+        return
+    for k in range(2, len(ph) - 1):                           # l'écran 2 est souvent la carte : on ne la déplace pas
+        mk = ph[k].get("media") or {}
+        if mk.get("type") == "video" and (mk.get("reelle") or not m0):
+            ph[0]["media"], ph[k]["media"] = mk, (m0 or None)
+            return
+
+
+def couverture_ms(script):
+    """Instant de la couverture TikTok : le 1er écran avec une vraie image ET un gros titre (sinon le début)."""
+    debuts, _ = montage.debuts_et_total(script["phrases"])
+    for i, p in enumerate(script["phrases"][:-1]):
+        if p.get("media") and (p["media"].get("type") in ("video", "photo")) and p.get("ecran"):
+            return int((debuts[i] + 0.8) * 1000)
+    return 800
 
 
 def preuves_licences(script):

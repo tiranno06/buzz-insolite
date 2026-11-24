@@ -37,7 +37,10 @@ def _ajuste(d, texte, depart, largeur):
 
 
 LOGO = os.path.join(os.path.dirname(POLICES), "docs", "marque", "logo-a.png")   # logo de la chaîne choisi par l'auteur (24/11)
-LOGO_TAILLE, LOGO_XY = 130, (W - 60 - 130, 95)       # en haut à droite : zone libre sur TikTok
+# Zones libres de TikTok (1080×1920) : en haut, la barre « Pour toi » et la loupe (jusqu'à ~160 px) ; à droite, la colonne
+# des boutons (x > ~940, de y ~700 à ~1600) ; en bas, le pseudo et la description (y > ~1540). Rien d'important n'y va.
+ZONE_HAUT, ZONE_DROITE, ZONE_BAS, MARGE_COTES = 160, 140, 1540, 130
+LOGO_TAILLE, LOGO_XY = 130, (W - 60 - 130, 175)      # en haut à droite, SOUS la loupe de TikTok
 _logo = []
 
 
@@ -55,22 +58,25 @@ def logo_rond():
     return _logo[0]
 
 
-def calque(chemin, titre="", grand="", petit="", etiquette="INSOLITE", coul=JAUNE):
+def calque(chemin, titre="", grand="", petit="", etiquette="INSOLITE", coul=JAUNE, bas=""):
     """Textes posés sur l'image (fond transparent), et le logo de la chaîne en haut à droite."""
     im = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im); f = police(46)
     lg = logo_rond()
     if lg:
         im.alpha_composite(lg, LOGO_XY)
     if etiquette:
-        d.rounded_rectangle([60, 120, 60 + d.textlength(etiquette, font=f) + 60, 200], 22, fill=ROUGE, outline=BLANC, width=3)
-        d.text((90, 124), etiquette, font=f, fill=BLANC)
+        d.rounded_rectangle([60, 185, 60 + d.textlength(etiquette, font=f) + 60, 265], 22, fill=ROUGE, outline=BLANC, width=3)
+        d.text((90, 189), etiquette, font=f, fill=BLANC)
+    larg = W - 2 * MARGE_COTES                         # jamais sous la colonne de boutons de TikTok
     if titre:
-        _centre(d, 290, titre, police(_ajuste(d, titre, 104, W - 100)), coul)
+        _centre(d, 330, titre, police(_ajuste(d, titre, 104, larg)), coul)
     if grand:
-        t = _ajuste(d, grand, 230, W - 120)
+        t = _ajuste(d, grand, 230, larg)
         _centre(d, 560, grand, police(t), coul)
         if petit:
-            _centre(d, 600 + t, petit, police(_ajuste(d, petit, 72, W - 100)))
+            _centre(d, 600 + t, petit, police(_ajuste(d, petit, 72, larg)))
+    if bas:                                            # sources de l'actu, sur le dernier écran
+        _centre(d, 1080, bas, police(_ajuste(d, bas, 40, larg), gras=False), (230, 230, 230))
     im.save(chemin)
     return chemin
 
@@ -126,8 +132,11 @@ def karaoke(phrases, debuts, credits_texte):
     ass = ["[Script Info]", "ScriptType: v4.00+", f"PlayResX: {W}", f"PlayResY: {H}", "", "[V4+ Styles]",
            "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, "
            "StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
-           f"Style: S,Poppins,100,&H00FFFFFF,&H00FFFFFF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,9,4,2,60,60,{SOUS_TITRES_MARGE},1",
-           "Style: C,Poppins,28,&H00DDDDDD,&H00DDDDDD,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,2,0,2,40,40,40,1", "",
+           f"Style: S,Poppins,100,&H00FFFFFF,&H00FFFFFF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,9,4,2,"
+           f"{MARGE_COTES},{MARGE_COTES + 10},{SOUS_TITRES_MARGE},1",
+           # crédits juste sous les sous-titres, AU-DESSUS de la description de TikTok (sinon cachés : licence CC BY)
+           f"Style: C,Poppins,26,&H00DDDDDD,&H00DDDDDD,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,2,0,2,"
+           f"{MARGE_COTES},{MARGE_COTES + 10},{H - ZONE_BAS + 8},1", "",
            "[Events]", "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"]
     for i, p in enumerate(phrases):
         aff = V.mots_affiches(p["ecrit"]); tm = V.caler(aff, p["mots"], p["duree"])
@@ -139,7 +148,7 @@ def karaoke(phrases, debuts, credits_texte):
         if cur:
             paquets.append(cur)
         for j, paq in enumerate(paquets):
-            fin_p = tm[paquets[j + 1][0]][0] if j + 1 < len(paquets) else p["duree"] + PAUSE
+            fin_p = tm[paquets[j + 1][0]][0] if j + 1 < len(paquets) else p["duree"] + p.get("_pause", PAUSE)
             for q, k in enumerate(paq):
                 a = 0.0 if (q == 0 and j == 0) else tm[k][0]
                 b = tm[paq[q + 1]][0] if q + 1 < len(paq) else fin_p
@@ -147,7 +156,7 @@ def karaoke(phrases, debuts, credits_texte):
                                if x == k else aff[x].upper() for x in paq)
                 if b > a:
                     ass.append(f"Dialogue: 0,{_hms(debuts[i] + a)},{_hms(debuts[i] + b)},S,,0,0,0,,{txt}")
-    total = debuts[-1] + phrases[-1]["duree"] + PAUSE + FIN
+    total = debuts[-1] + phrases[-1]["duree"] + phrases[-1].get("_pause", PAUSE) + FIN
     if credits_texte:
         ass.append(f"Dialogue: 0,{_hms(0)},{_hms(total)},C,,0,0,0,,{credits_texte}")
     return "\n".join(ass) + "\n"
@@ -161,7 +170,7 @@ def miniature(chemin_video, chemin_jpg, instant=1.0):
 def debuts_et_total(ph):
     debuts, t = [], 0.0
     for p in ph:
-        debuts.append(t); t += p["duree"] + PAUSE
+        debuts.append(t); t += p["duree"] + p.get("_pause", PAUSE)
     return debuts, t + FIN
 
 
@@ -179,7 +188,7 @@ def faire_ecran(script, i, d, dossier):
     else:
         grand = "ET TOI ?" if derniere else (p.get("ecran") or "").upper()
         petit = "dis-le en commentaire" if derniere else ""
-        calque(png, grand=grand, petit=petit)
+        calque(png, grand=grand, petit=petit, bas=script.get("sources_ecran", "") if derniere else "")
     m = os.path.join(dossier, f"ecran{i:02d}.mp4")
     ecran(p.get("media"), d, png, m, dossier)
     return m
@@ -195,11 +204,21 @@ def monter(script, dossier, sortie, suivi=None):
     Un écran déjà fabriqué dont rien n'a changé (durée, image, titre) est gardé tel quel : une correction ne refait que les
     écrans touchés, puis la vidéo est réassemblée (voix, sous-titres et musique sont refaits en entier, c'est rapide)."""
     ph = script["phrases"]
+    if script.get("musique", True) and not script.get("_musique"):     # une seule musique par vidéo (même après corrections)
+        script["_musique"] = sons.musique(script.get("humeur", "neutre")) or ""
+    # coupes d'écran PILE sur le rythme de la musique : le silence entre deux phrases varie de 0,08 à 0,45 s
+    sons.caler_pauses(ph, sons.battements(script["_musique"]) if script.get("_musique") else [], PAUSE)
     debuts, total = debuts_et_total(ph)
-    pause = os.path.join(dossier, "pause.wav")
-    subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", str(PAUSE), pause], check=True)
+    silences = {}
+    for p in ph:
+        cle = f"{p['_pause']:.3f}"
+        if cle not in silences:
+            silences[cle] = os.path.join(dossier, f"pause{cle}.wav")
+            subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", cle,
+                            silences[cle]], check=True)
     with open(os.path.join(dossier, "voix.txt"), "w") as f:
-        f.write("".join(f"file '{p['son']}'\nfile '{pause}'\n" for p in ph))
+        for p in ph:
+            f.write(f"file '{p['son']}'\nfile '{silences[format(p['_pause'], '.3f')]}'\n")
     voix = os.path.join(dossier, "voix.wav")
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0", "-i", os.path.join(dossier, "voix.txt"), voix], check=True)
 
@@ -226,7 +245,8 @@ def monter(script, dossier, sortie, suivi=None):
     with open(ass, "w", encoding="utf-8") as f:
         f.write(karaoke(ph, debuts, texte_credits))
     bande = sons.mixer(voix, ph, debuts, total, script.get("humeur", "neutre"), os.path.join(dossier, "bande.wav"),
-                       script.get("musique", True), script.get("format", ""), script.get("bruitages", True),
+                       (script.get("_musique") or False) if script.get("musique", True) else False, script.get("format", ""),
+                       script.get("bruitages", True),
                        script.get("transitions", False))
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", images, "-i", bande,
                     "-filter_complex", f"[0:v]subtitles={ass}:fontsdir={POLICES}[v]",

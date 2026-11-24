@@ -78,8 +78,13 @@ MENTION_IA = "🤖 Voix et texte générés par IA, faits vérifiés dans la pre
 def texte(v, mention_ia=False):
     """Description TikTok : texte + question + hashtags (2 200 caractères au plus). `mention_ia` : quand Buffer ne peut pas
     poser l'étiquette « contenu généré par IA » de TikTok, la description le dit (règle de TikTok)."""
+    sources = list(dict.fromkeys(x.get("media", "") for x in v.get("sources") or [] if x.get("media") not in
+                                 ("Google Actualités", "Wikipédia (contexte)", "Descriptions des vidéos TikTok virales", "Sujet du buzz")))[:4]
+    pied = ("📰 Sources : " + ", ".join(sources)) if sources else ""
+    if v.get("credits"):                                      # licences CC BY : l'auteur est cité aussi dans la description
+        pied += ("\n" if pied else "") + "🎞️ Images : " + " · ".join(v["credits"])[:600]
     corps = "\n\n".join(x for x in (v.get("description", "").strip(), v.get("question", "").strip(),
-                                      MENTION_IA if mention_ia else "") if x)
+                                      MENTION_IA if mention_ia else "", pied) if x)
     return f"{corps}\n\n{' '.join(v.get('hashtags') or [])}".strip()[:2200]
 
 

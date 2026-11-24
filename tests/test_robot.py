@@ -479,6 +479,34 @@ class TestSujetsRiches(unittest.TestCase):
         self.assertTrue(images._interdit("Reportage BFMTV", "") or images._interdit("reportage BFM", ""))
 
 
+class TestQualite(unittest.TestCase):
+    def test_coupes_sur_le_rythme(self):
+        from robot import sons
+        temps = sons.battements(sorted(glob.glob(os.path.join(RACINE, "sons", "musique", "neutre_*.mp3")))[0])
+        self.assertGreater(len(temps), 20)
+        ph = [dict(duree=2.37), dict(duree=3.11), dict(duree=1.9)]
+        sons.caler_pauses(ph, temps)
+        t = 0.0
+        for p in ph[:-1]:
+            t += p["duree"] + p["_pause"]
+            self.assertTrue(0.08 <= p["_pause"] <= 0.45)
+            self.assertLess(min(abs(b - t) for b in temps), 0.002)                 # l'écran suivant tombe sur un temps
+
+    def test_zones_libres_tiktok(self):
+        from robot import montage
+        x, y = montage.LOGO_XY
+        self.assertGreaterEqual(y, montage.ZONE_HAUT)                               # sous la loupe et « Pour toi »
+        self.assertLess(montage.H - montage.SOUS_TITRES_MARGE, montage.ZONE_BAS)   # sous-titres au-dessus de la description
+
+    def test_accroche_et_couverture(self):
+        from robot import principal
+        s = {"phrases": [dict(duree=2, media=dict(type="photo", id="p")), dict(duree=2, media=dict(type="carte")),
+                         dict(duree=2, ecran="378 JOURS", media=dict(type="video", id="v", reelle=True)), dict(duree=2)]}
+        principal.accroche(s)
+        self.assertEqual(s["phrases"][0]["media"]["id"], "v"); self.assertEqual(s["phrases"][2]["media"]["id"], "p")
+        self.assertGreater(principal.couverture_ms(s), 4000)                       # écran 3 : vraie image + gros titre
+
+
 class TestParallele(unittest.TestCase):
     def test_sujets_differents_par_machine(self):
         from robot import principal

@@ -111,6 +111,16 @@ de l'auteur corrigé. Une vidéo réservée aux adultes reste impossible à voir
   attente / active) limite la partie lourde à `creation.paralleles` (5 par défaut) vidéos en même temps.
 - Caches GitHub (pip, ffmpeg, voix, Whisper, Chatterbox) : **tout nouvel outil lourd doit avoir son cache** dans creer.yml.
 
+## Qualité, suite (demande de l'auteur du 24/11)
+- Son : -14 LUFS en DEUX passages (`sons.niveau`, mesure puis réglage linéaire) ; une seule musique par vidéo (`_musique`).
+- **Coupes sur le rythme** : `sons.battements` (tempo par autocorrélation, temps et demi-temps) + `sons.caler_pauses` : le
+  silence après chaque phrase (0,08 à 0,45 s, `p["_pause"]`) fait tomber l'écran suivant sur un temps de la musique.
+- **Zones libres de TikTok** (`montage.ZONE_*`, `MARGE_COTES`) : logo et étiquette sous la loupe (y ≥ 160), textes à 130 px des
+  bords, sous-titres au-dessus de la description (y < 1540), crédits juste sous les sous-titres (visibles : licences CC BY).
+- **Accroche** (`principal.accroche`) : le 1er écran prend une vraie vidéo s'il n'en a pas. **Couverture** (`couverture_ms`,
+  `thumbnailOffset` de Buffer) : 1er écran avec vraie image + gros titre. **Sources** : « Sources : … » sur le dernier écran
+  (`sources_ecran`) et dans la description, avec les crédits des images (`publier.texte`).
+
 ## Vraies images du sujet (demande de l'auteur du 24/11 : « pas de bouts de vidéos au hasard pour meubler »)
 Les vidéos des JT et agences (BFM, TF1, AFP…) ne sont JAMAIS reprises (droits, TikTok les reconnaît). À la place :
 champ "entite" de chaque phrase (titre de l'article Wikipédia de la personne / du lieu / de l'objet) → `images.wikipedia_media`

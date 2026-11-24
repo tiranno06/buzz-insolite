@@ -23,6 +23,51 @@ def musique(humeur):
     return random.choice(choix) if choix else None
 
 
+_BATTEMENTS = {}
+
+
+def battements(fichier):
+    """Instants des temps forts de la musique (et des demi-temps) : tempo trouvé par autocorrélation de l'énergie (musique à
+    tempo régulier). Sert à couper les écrans PILE sur le rythme (demande de l'auteur du 24/11). [] si illisible."""
+    if fichier in _BATTEMENTS:
+        return _BATTEMENTS[fichier]
+    try:
+        import numpy as np
+        brut = subprocess.check_output(["ffmpeg", "-v", "error", "-i", fichier, "-t", "120", "-f", "f32le", "-ac", "1",
+                                        "-ar", "11025", "-"])
+        x = np.frombuffer(brut, np.float32)
+        pas = 256                                             # ~23 ms
+        e = np.sqrt(np.add.reduceat(x[: len(x) // pas * pas] ** 2, np.arange(0, len(x) // pas * pas, pas)) / pas)
+        o = np.maximum(0, np.diff(e, prepend=e[0]))           # montée d'énergie = attaque d'une note
+        o = o - o.mean()
+        hz = 11025 / pas
+        ac = np.correlate(o, o, "full")[len(o) - 1:]
+        lo, hi = int(0.33 * hz), int(1.0 * hz)                # 60 à 180 battements par minute
+        periode = (lo + int(np.argmax(ac[lo:hi]))) / hz
+        phases = np.arange(0, periode, 1 / hz)
+        score = [o[np.clip((np.arange(ph, len(o) / hz, periode) * hz).astype(int), 0, len(o) - 1)].sum() for ph in phases]
+        depart = phases[int(np.argmax(score))]
+        temps = np.arange(depart, len(o) / hz, periode / 2)   # temps et demi-temps
+        _BATTEMENTS[fichier] = [round(float(t), 3) for t in temps]
+    except Exception:
+        _BATTEMENTS[fichier] = []
+    return _BATTEMENTS[fichier]
+
+
+def caler_pauses(phrases, temps, pause=0.18, mini=0.08, maxi=0.45):
+    """Durée du silence après chaque phrase pour que l'écran suivant commence sur un temps de la musique (entre `mini` et
+    `maxi` s de silence ; sinon la pause habituelle). Écrit p["_pause"]."""
+    t = 0.0
+    for p in phrases:
+        fin = t + p["duree"]
+        p["_pause"] = pause
+        if temps:
+            bons = [b - fin for b in temps if mini <= b - fin <= maxi]
+            if bons:
+                p["_pause"] = round(min(bons, key=lambda x: abs(x - pause)), 3)
+        t = fin + p["_pause"]
+
+
 def bruitages(phrases, debuts, format_="", transitions=False):
     """[(fichier, instant, volume)] à placer sur la vidéo. Le « woosh » entre les écrans est coupé par défaut (l'auteur ne
     l'aime pas, 24/11/2026 ; réglage video.transitions)."""
@@ -43,7 +88,7 @@ def mixer(voix, phrases, debuts, total, humeur, sortie, avec_musique=True, forma
     filtres = ["[0:a]aformat=channel_layouts=stereo,aresample=44100,apad,volume=1.5,asplit=2[vx][cle]"]
     melange = ["[vx]"]
     n = 1
-    m = musique(humeur) if avec_musique else None
+    m = (avec_musique if isinstance(avec_musique, str) else musique(humeur)) if avec_musique else None
     if m:
         entrees += ["-stream_loop", "-1", "-i", m]
         filtres.append(f"[{n}:a]aformat=channel_layouts=stereo,aresample=44100,volume=0.10,"
@@ -60,8 +105,25 @@ def mixer(voix, phrases, debuts, total, humeur, sortie, avec_musique=True, forma
         ms = int(t * 1000)
         filtres.append(f"[{n}:a]aformat=channel_layouts=stereo,aresample=44100,volume={vol},adelay={ms}|{ms}[b{n}]")
         melange.append(f"[b{n}]"); n += 1
-    filtres.append(f"{''.join(melange)}amix=inputs={len(melange)}:duration=first:normalize=0,"
-                   f"atrim=0:{total:.3f},loudnorm=I=-14:TP=-1.5[a]")
+    filtres.append(f"{''.join(melange)}amix=inputs={len(melange)}:duration=first:normalize=0,atrim=0:{total:.3f}[a]")
+    brut = sortie + ".brut.wav"
     subprocess.run(["ffmpeg", "-y", "-v", "error", *entrees, "-filter_complex", ";".join(filtres), "-map", "[a]",
-                    "-ar", "44100", "-ac", "2", sortie], check=True)
+                    "-ar", "44100", "-ac", "2", brut], check=True)
+    niveau(brut, sortie)
+    os.remove(brut)
     return sortie
+
+
+def niveau(entree, sortie, cible=-14.0):
+    """Volume réglé comme TikTok le conseille (-14 LUFS, crêtes à -1,5 dB) en DEUX passages : mesure, puis réglage exact et
+    sans « pompage » (le même volume pour toutes nos vidéos)."""
+    import json
+    r = subprocess.run(["ffmpeg", "-hide_banner", "-i", entree, "-af", f"loudnorm=I={cible}:TP=-1.5:LRA=11:print_format=json",
+                        "-f", "null", "-"], capture_output=True, text=True)
+    try:
+        m = json.loads(r.stderr[r.stderr.rindex("{"):r.stderr.rindex("}") + 1])
+        filtre = (f"loudnorm=I={cible}:TP=-1.5:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:"
+                  f"measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true")
+    except (ValueError, KeyError):
+        filtre = f"loudnorm=I={cible}:TP=-1.5:LRA=11"
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", entree, "-af", filtre, "-ar", "44100", "-ac", "2", sortie], check=True)
