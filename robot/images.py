@@ -65,6 +65,34 @@ def pexels_photo(requete, deja):
     return None
 
 
+def pixabay_video(requete, deja):
+    """Pixabay (clé gratuite PIXABAY_API_KEY ; usage commercial permis, vidéos téléchargées, jamais liées)."""
+    cle = os.environ.get("PIXABAY_API_KEY", "").strip()
+    if not cle:
+        return None
+    q = urllib.parse.urlencode({"key": cle, "q": requete[:100], "per_page": 12, "safesearch": "true"})
+    for v in _json(f"https://pixabay.com/api/videos/?{q}").get("hits") or []:
+        if f"pixabay-v{v['id']}" in deja or (v.get("duration") or 0) < 4:
+            continue
+        tailles = v.get("videos") or {}
+        f = next((tailles[t] for t in ("medium", "large", "small") if (tailles.get(t) or {}).get("url")), None)
+        if f:
+            return dict(type="video", url=f["url"], id=f"pixabay-v{v['id']}", duree=v.get("duration"),
+                        credit=f"{v.get('user', 'Pixabay')} / Pixabay")
+    return None
+
+
+def pixabay_photo(requete, deja):
+    cle = os.environ.get("PIXABAY_API_KEY", "").strip()
+    if not cle:
+        return None
+    q = urllib.parse.urlencode({"key": cle, "q": requete[:100], "per_page": 10, "image_type": "photo", "safesearch": "true"})
+    for p in _json(f"https://pixabay.com/api/?{q}").get("hits") or []:
+        if f"pixabay-p{p['id']}" not in deja and p.get("largeImageURL"):
+            return dict(type="photo", url=p["largeImageURL"], id=f"pixabay-p{p['id']}", credit=f"{p.get('user', 'Pixabay')} / Pixabay")
+    return None
+
+
 def nasa_video(requete, deja):
     q = urllib.parse.urlencode({"q": requete, "media_type": "video", "page_size": 10})
     d = _json(f"https://images-api.nasa.gov/search?{q}")
@@ -83,7 +111,12 @@ def nasa_video(requete, deja):
 _COMMONS = {"refus": 0, "dernier": 0.0}
 
 
-def commons_photo(requete, deja):
+def commons_video(requete, deja):
+    """Vraies vidéos de Wikimedia Commons (sans clé) : licences libres seulement, auteur crédité."""
+    return commons_photo(requete, deja, video=True)
+
+
+def commons_photo(requete, deja, video=False):
     """Wikimedia limite les demandes rapides (erreur 429) : 4 s entre deux recherches, arrêt après 2 refus."""
     if _COMMONS["refus"] >= 2:
         return None
@@ -92,16 +125,16 @@ def commons_photo(requete, deja):
         time.sleep(attente)
     _COMMONS["dernier"] = time.time()
     try:
-        return _commons(requete, deja)
+        return _commons(requete, deja, video)
     except urllib.error.HTTPError as e:
         if e.code == 429:
             _COMMONS["refus"] += 1
         raise
 
 
-def _commons(requete, deja):
+def _commons(requete, deja, video=False):
     q = urllib.parse.urlencode({"action": "query", "format": "json", "generator": "search", "gsrnamespace": 6, "gsrlimit": 8,
-                                "gsrsearch": f"filetype:bitmap {requete}", "prop": "imageinfo",
+                                "gsrsearch": f"filetype:{'video' if video else 'bitmap'} {requete}", "prop": "imageinfo",
                                 "iiprop": "url|extmetadata", "iiurlwidth": 1280, "iiextmetadatafilter": "Artist|LicenseShortName"})
     d = _json(f"https://commons.wikimedia.org/w/api.php?{q}")
     for p in (d.get("query") or {}).get("pages", {}).values():
@@ -111,12 +144,17 @@ def _commons(requete, deja):
                 or "NC" in lic or "ND" in lic:
             continue
         auteur = re.sub("<[^>]+>", "", (m.get("Artist") or {}).get("value", "")).strip()[:40] or "Wikimedia Commons"
+        if video:                                    # version transcodée en 480p (plus légère que l'original)
+            url = ii["url"]
+            nom = url.rsplit("/", 1)[1]
+            url = url.replace("/commons/", "/commons/transcoded/", 1) + f"/{nom}.480p.vp9.webm"
+            return dict(type="video", url=url, id=f"commons-{p['pageid']}", credit=f"{auteur} / Wikimedia Commons, {lic}")
         return dict(type="photo", url=ii.get("thumburl") or ii["url"], id=f"commons-{p['pageid']}",
                     credit=f"{auteur} / Wikimedia Commons, {lic}")
     return None
 
 
-CHERCHEURS = (pexels_video, pexels_photo, nasa_video, commons_photo)
+CHERCHEURS = (pexels_video, pixabay_video, nasa_video, commons_video, pexels_photo, pixabay_photo, commons_photo)
 
 
 def trouver(requete, dossier, n, deja, journal=print):
@@ -132,7 +170,7 @@ def trouver(requete, dossier, n, deja, journal=print):
             continue
         if not m:
             continue
-        ext = ".mp4" if m["type"] == "video" else ".jpg"
+        ext = (".webm" if m["url"].endswith(".webm") else ".mp4") if m["type"] == "video" else ".jpg"
         chemin = os.path.join(dossier, f"media{n:02d}{ext}")
         try:
             _telecharger(m["url"], chemin)
