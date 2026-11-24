@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-24T23:35:33+01:00",
+   "niveau": "info",
+   "texte": "🗑️ « Franco célébré : le retour du fascisme en Espagne » supprimée."
+  },
+  {
    "date": "2026-11-24T22:40:02+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Macron et le malaise qui buzz » (70 s, 3 écrans illustrés) — à regarder puis cocher « À publier »"
