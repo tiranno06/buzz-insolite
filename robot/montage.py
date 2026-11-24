@@ -36,9 +36,31 @@ def _ajuste(d, texte, depart, largeur):
     return t
 
 
+LOGO = os.path.join(os.path.dirname(POLICES), "docs", "marque", "logo-a.png")   # logo de la chaîne choisi par l'auteur (24/11)
+LOGO_TAILLE, LOGO_XY = 130, (W - 60 - 130, 95)       # en haut à droite : zone libre sur TikTok
+_logo = []
+
+
+def logo_rond():
+    """Logo A en petit, rond, avec un liseré blanc (préparé une seule fois)."""
+    if not _logo:
+        t = LOGO_TAILLE
+        if not os.path.exists(LOGO):
+            _logo.append(None); return None
+        im = Image.open(LOGO).convert("RGBA").resize((t, t), Image.LANCZOS)
+        masque = Image.new("L", (t, t), 0); ImageDraw.Draw(masque).ellipse([0, 0, t - 1, t - 1], fill=255)
+        rond = Image.new("RGBA", (t + 8, t + 8), (0, 0, 0, 0)); ImageDraw.Draw(rond).ellipse([0, 0, t + 7, t + 7], fill=BLANC)
+        rond.paste(im, (4, 4), masque)
+        _logo.append(rond)
+    return _logo[0]
+
+
 def calque(chemin, titre="", grand="", petit="", etiquette="INSOLITE", coul=JAUNE):
-    """Textes posés sur l'image (fond transparent)."""
+    """Textes posés sur l'image (fond transparent), et le logo de la chaîne en haut à droite."""
     im = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im); f = police(46)
+    lg = logo_rond()
+    if lg:
+        im.alpha_composite(lg, LOGO_XY)
     if etiquette:
         d.rounded_rectangle([60, 120, 60 + d.textlength(etiquette, font=f) + 60, 200], 22, fill=ROUGE, outline=BLANC, width=3)
         d.text((90, 124), etiquette, font=f, fill=BLANC)
