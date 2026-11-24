@@ -60,9 +60,17 @@ commentaires, commits, textes du site), explications simples, sans jargon.
 Whisper + voix qui traîne, phrase refaite) ; 3. images (`controle_images` : noir / flou mesurés, IA qui voit `ia.regarder_json`
 Gemini → Mistral → Groq par paquets de 5 ; écran fautif = nouvelle image, sinon écran de texte) ; 4. vidéo finie
 (`controle_video` : format, durée, son, écrans noirs, réécoute Whisper phrase par phrase, IA sur une image de chaque écran ;
-`corriger_ecrans` + `montage.monter` qui ne refait que les écrans dont la signature a changé, 2 tours) ; 5. avant publication
+`corriger_ecrans` + `montage.monter` qui ne refait que les écrans dont la signature a changé) ; 5. avant publication
 (`verifier_et_envoyer`, `Refusee`). Bulletin + note /100 dans `controles` de chaque vidéo ; défaut grave restant = statut
 « a_verifier » (jamais publiée automatiquement ; bouton « Publier quand même » = action `publier_force`).
+
+**ZÉRO problème restant (exigence de l'auteur du 24/11)** : chaque problème reste « ouvert » dans le `Bulletin` jusqu'à ce que
+la revérification du passage le trouve réglé (`ouvrir` / `fermer`, phrases repérées par `uid`) ; boucles jusqu'à zéro (texte
+4 tours, images 5, vidéo finie 12) avec une échelle de solutions dont la dernière marche à coup sûr : image → nouvelle
+recherche → thème → écran de texte ; titre → raccourci → retiré ; voix → refaite → phrase simplifiée par l'IA → phrase retirée
+(si la vidéo reste ≥ 62 s) ; phrase / accroche trop longue → coupée en deux ; question finale → question type ; vidéo trop
+courte → phrases ajoutées, sinon sujet abandonné (LookupError). Note = 100 sans problème restant ; un contrôle impossible
+(IA en panne après 3 essais espacés d'1 min) = « a_verifier ».
 
 ## Plusieurs machines en même temps (demande de l'auteur du 24/11)
 creer.yml : job « plan » (`principal.planifier` : un sujet + des réserves PAR machine, réservés « en_cours » avec `reserve_le`,

@@ -163,9 +163,9 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
     else:
         script["voix_utilisee"] = V.preparer(script["phrases"], nom_voix, vitesse, journal,
                                              suivi=lambda k, n: avancement.progres(30 + 20 * k / n, f"phrase {k}/{n}"))
-        for i, p in enumerate(script["phrases"]):                    # contrôle 2/4 : la voix (déjà refaite une fois)
-            if p.get("_voix_defaut"):
-                B.ajouter("voix", p["_voix_defaut"], i, "moyen")
+        for i, p in enumerate(script["phrases"]):                    # contrôle 2/4 : la voix (déjà refaite une fois ;
+            if p.get("_voix_defaut"):                                 # ce qui reste est repris par la boucle de la vidéo finie)
+                B.ouvrir("voix", p["_voix_defaut"], controle.uid(script, i))
     parole = sum(p["duree"] for p in script["phrases"]) + montage.PAUSE * len(script["phrases"]) + montage.FIN
     if parole < 60:
         journal(f"  ⚠️ vidéo de {parole:.0f} s : moins d'1 minute (TikTok ne paie qu'au-delà)")
@@ -200,19 +200,23 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
     fichier = os.path.join(dossier, f"buzz-{vid}.mp4")
     duree = montage.monter(script, dossier, fichier,
                            suivi=lambda k, nb: avancement.progres(68 + 18 * k / nb, f"écran {k}/{nb}"))
-    for tour in range(2):                                             # contrôle 4/4 : la vidéo finie
-        avancement.etape(pre + f"Contrôle 4/4 : la vidéo finie (tour {tour + 1})", 87 + 3 * tour)
+    # Contrôle 4/4 : la vidéo finie. Tant qu'un problème est trouvé, seuls les passages fautifs sont corrigés (échelle de
+    # solutions dont la dernière marche à coup sûr), puis TOUTE la vidéo est recontrôlée. Zéro problème restant exigé.
+    for tour in range(12):
+        avancement.etape(pre + f"Contrôle 4/4 : la vidéo finie (tour {tour + 1})", min(94, 87 + tour))
         fautifs = controle.controle_video(fichier, script, dossier, B, journal, leger=simulation())
+        trouves_ici = {(("voix" if a == "voix" else "video"), (None if i is None else controle.uid(script, i)))
+                       for i, (_, a) in fautifs.items()}
+        for l in B.ouverts():                                         # revérifié : passage réglé
+            if l["niveau"] in ("video", "voix") and (l["niveau"], l["ecran"]) not in trouves_ici:
+                B.fermer(l["niveau"], l["ecran"])
         if not fautifs:
             break
-        journal(f"  vidéo finie : {len(fautifs)} écran(s) à corriger : " + ", ".join(f"n°{i} ({p})" for i, (p, _) in fautifs.items()))
-        controle.corriger_ecrans(script, fautifs, dossier, B, journal, nom_voix, vitesse)
+        journal(f"  vidéo finie (tour {tour + 1}) : {len(fautifs)} passage(s) à corriger : "
+                + ", ".join(f"{'vidéo' if i is None else f'écran {i + 1}'} ({p})" for i, (p, _) in fautifs.items()))
+        controle.corriger_ecrans(script, fautifs, dossier, B, journal, nom_voix, vitesse, articles)
         duree = montage.monter(script, dossier, fichier)
         journal(f"  {script.get('_ecrans_refaits', 0)} écran(s) refait(s), le reste de la vidéo est inchangé")
-    else:
-        fautifs = controle.controle_video(fichier, script, dossier, controle.Bulletin(), journal, leger=simulation())
-        for i, (p, _) in fautifs.items():
-            B.ajouter("video", p, i, "grave")
     bulletin = B.resume()
     journal(f"  bulletin : note {bulletin['note']}/100, {bulletin['corriges']} correction(s), "
             f"{bulletin['graves_restants']} défaut(s) grave(s) restant(s)")

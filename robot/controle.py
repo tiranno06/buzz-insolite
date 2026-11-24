@@ -28,28 +28,48 @@ NIVEAUX = ("texte", "voix", "images", "video", "publication")
 
 
 class Bulletin:
+    """Problèmes trouvés. Un problème reste OUVERT jusqu'à ce que la revérification du passage le trouve réglé ;
+    la vidéo n'est gardée qu'avec zéro problème ouvert (consigne de l'auteur du 24/11)."""
     def __init__(self):
         self.lignes = []; self.sautes = []
 
-    def ajouter(self, niveau, probleme, ecran=None, gravite="moyen", corrige=False):
-        self.lignes.append(dict(niveau=niveau, ecran=ecran, gravite=gravite, probleme=str(probleme)[:200], corrige=corrige))
+    def ouvrir(self, niveau, probleme, ecran=None, gravite="moyen"):
+        for l in self.lignes:                         # même passage, même niveau : on compte un essai de plus
+            if not l["corrige"] and l["niveau"] == niveau and l["ecran"] == ecran:
+                l.update(probleme=str(probleme)[:200], essais=l.get("essais", 1) + 1)
+                return l
+        l = dict(niveau=niveau, ecran=ecran, gravite=gravite, probleme=str(probleme)[:200], corrige=False, essais=1)
+        self.lignes.append(l)
+        return l
+
+    def fermer(self, niveau, ecran, solution=""):
+        for l in self.lignes:
+            if not l["corrige"] and l["niveau"] == niveau and l["ecran"] == ecran:
+                l.update(corrige=True, solution=solution or l.get("solution", ""))
+
+    def ajouter(self, niveau, probleme, ecran=None, gravite="moyen", corrige=False, solution=""):
+        """Problème trouvé et (si corrige) déjà réglé sur place."""
+        self.lignes.append(dict(niveau=niveau, ecran=ecran, gravite=gravite, probleme=str(probleme)[:200], corrige=corrige,
+                                essais=1, solution=solution))
+
+    def ouverts(self, niveau=None):
+        return [l for l in self.lignes if not l["corrige"] and (niveau is None or l["niveau"] == niveau)]
 
     def saute(self, controle):
-        self.sautes.append(controle)
+        if controle not in self.sautes:
+            self.sautes.append(controle)
 
     def restants(self, gravite=None):
-        return [l for l in self.lignes if not l["corrige"] and (gravite is None or l["gravite"] == gravite)]
+        return [l for l in self.ouverts() if gravite is None or l["gravite"] == gravite]
 
     def note(self):
-        n = 100
-        for l in self.lignes:
-            n -= 1 if l["corrige"] else {"grave": 25, "moyen": 7, "info": 1}[l["gravite"]]
-        return max(0, n - 5 * len(self.sautes))
+        """100 = aucun problème restant et tous les contrôles faits."""
+        return max(0, 100 - sum(25 if l["gravite"] == "grave" else 10 for l in self.ouverts()) - 10 * len(self.sautes))
 
     def resume(self):
         return dict(note=self.note(), lignes=self.lignes, sautes=self.sautes,
-                    corriges=sum(1 for l in self.lignes if l["corrige"]),
-                    graves_restants=len(self.restants("grave")))
+                    corriges=sum(1 for l in self.lignes if l["corrige"]), restants=len(self.ouverts()),
+                    graves_restants=len(self.ouverts()) + len(self.sautes))     # tout reste bloque la publication auto
 
 
 # ------------------------------------------------------------------ 1. texte
@@ -106,18 +126,53 @@ def corriger_sans_ia(script, pb):
             ph.pop(i)
 
 
-def controle_texte(script, articles, B, journal=print, tours=2):
-    """Niveau 1. Corrige le texte sur place ; seules les phrases en défaut sont réécrites."""
-    for tour in range(tours):
+def couper_en_deux(phrase):
+    """Coupe une phrase trop longue à la virgule la plus proche du milieu (sinon au milieu) : deux phrases."""
+    mots = phrase["voix"].split(); ecrits = phrase["ecrit"].split()
+    def coupe(m):
+        virgules = [k for k, x in enumerate(m[:-1]) if x.endswith(",")]
+        k = min(virgules, key=lambda k: abs(k - len(m) / 2)) + 1 if virgules else len(m) // 2
+        return " ".join(m[:k]).rstrip(",") + ".", " ".join(m[k:])
+    v1, v2 = coupe(mots); e1, e2 = coupe(ecrits)
+    return [dict(phrase, voix=v1, ecrit=e1), dict(phrase, voix=v2[:1].upper() + v2[1:], ecrit=e2[:1].upper() + e2[1:], ecran="")]
+
+
+QUESTION_TYPE = "Et toi, tu en penses quoi ? Dis-le en commentaire !"
+
+
+def solutions_garanties(script, pb):
+    """Dernier recours sans IA, qui règle à coup sûr chaque problème (sauf « trop court »)."""
+    ph = script["phrases"]
+    for i, probleme, _ in sorted(pb, key=lambda x: -(x[0] if x[0] is not None else -1)):
+        if i is None:
+            continue
+        if probleme.startswith("la dernière phrase"):
+            q = str(script.get("question") or "").strip()
+            q = q if q.endswith("?") else QUESTION_TYPE
+            ph.append(dict(voix=nombres.dire_les_nombres(q), ecrit=q, ecran="", image=ph[-1].get("image", "")))
+        elif probleme.startswith(("phrase trop longue", "accroche trop longue")) and i < len(ph):
+            ph[i:i + 1] = couper_en_deux(ph[i])
+
+
+def controle_texte(script, articles, B, journal=print, tours=3):
+    """Niveau 1. Corrige le texte sur place jusqu'à ce qu'AUCUNE règle ne soit enfreinte : d'abord les corrections simples,
+    puis l'IA réécrit seulement les phrases en défaut, puis des solutions sans IA qui marchent toujours. Un texte qui reste
+    trop court (pas assez de faits dans les articles) : LookupError = sujet abandonné, jamais une vidéo trop courte."""
+    for tour in range(tours + 1):
         pb = regles_texte(script)
         if not pb:
-            return script
+            break
         corriger_sans_ia(script, pb)
         for i, probleme, simple in pb:
             if simple:
-                B.ajouter("texte", probleme, i, "info", corrige=True)
+                B.ajouter("texte", probleme, i, "info", corrige=True, solution="corrigé automatiquement")
         dur = [x for x in pb if not x[2]]
         if not dur:
+            continue
+        for i, probleme, _ in dur:
+            B.ouvrir("texte", probleme, i)
+        if tour == tours:                                  # l'IA n'a pas suffi : solutions qui marchent à coup sûr
+            solutions_garanties(script, dur)
             continue
         ph = script["phrases"]
         texte = "TEXTE :\n" + "\n".join(f"{k}. {p['ecrit']}" for k, p in enumerate(ph))
@@ -128,10 +183,9 @@ def controle_texte(script, articles, B, journal=print, tours=2):
         try:
             d, qui = ia.demander_json(CONSIGNE_REECRIRE, texte, temperature=0.5, journal=journal)
         except ia.AucuneIA:
-            for i, probleme, _ in dur:
-                B.ajouter("texte", probleme, i, "grave" if i is None else "moyen")
-            B.saute("réécriture du texte (aucune IA)")
-            return script
+            B.saute("réécriture du texte par l'IA (aucune IA disponible)")
+            solutions_garanties(script, dur)
+            continue
         refaites = 0
         for k, nouv in (d.get("phrases") or {}).items():
             try:
@@ -148,11 +202,12 @@ def controle_texte(script, articles, B, journal=print, tours=2):
                 ph.insert(len(ph) - 1, dict(voix=nombres.dire_les_nombres(str(a["voix"])), ecrit=str(a.get("ecrit") or a["voix"]),
                                             ecran=str(a.get("ecran") or "")[:24], image=str(a.get("image") or script.get("theme_image", ""))))
                 refaites += 1
-        for i, probleme, _ in dur:
-            B.ajouter("texte", probleme, i, "moyen", corrige=refaites > 0)
         journal(f"  contrôle du texte (tour {tour + 1}) : {len(pb)} problème(s), {refaites} phrase(s) réécrite(s) par {qui}")
-    for i, probleme, _ in regles_texte(script):
-        B.ajouter("texte", probleme, i, "grave" if i is None else "moyen")
+    restant = regles_texte(script)
+    if any(i is None for i, _, _ in restant):
+        raise LookupError("pas assez de faits pour une vidéo d'1 minute, même après ajouts : sujet abandonné")
+    for l in B.ouverts("texte"):                            # tout est réglé : les problèmes ouverts sont fermés
+        B.fermer("texte", l["ecran"], "phrase réécrite et revérifiée")
     return script
 
 
@@ -203,10 +258,32 @@ def juger_images(lots, sujet, journal=print):
     return avis
 
 
+def uid(script, i):
+    """Numéro fixe d'une phrase (il ne change pas quand une phrase est ajoutée ou retirée) : sert au suivi des problèmes."""
+    p = script["phrases"][i]
+    if "uid" not in p:
+        p["uid"] = max([q.get("uid", -1) for q in script["phrases"]] + [len(script["phrases"]) - 1]) + 1
+    return p["uid"]
+
+
+def nouvelle_image(script, i, dossier, deja, journal, recherche=""):
+    """Échelle de solutions pour une image fautive : 1) nouvelle recherche (celle proposée par l'IA, sinon la phrase),
+    2) le thème général du sujet, 3) écran de texte — qui ne peut pas être hors sujet : le problème est réglé à coup sûr."""
+    p = script["phrases"][i]
+    p["_essais_image"] = p.get("_essais_image", 0) + 1
+    n = p["_essais_image"]
+    if n >= 3:
+        p["media"] = None
+        return "écran de texte à la place de l'image"
+    requete = (recherche or p.get("image", "")) if n == 1 else (script.get("theme_image") or p.get("image", ""))
+    p["media"] = images.trouver(requete, dossier, 50 + 10 * n + i % 10, deja, journal, "") if requete else None
+    return f"nouvelle image (« {requete} »)" if p["media"] else "écran de texte à la place de l'image"
+
+
 def controle_images(script, dossier, B, journal=print, deja=None, sujet=""):
-    """Niveau 3. Remplace uniquement les images fautives (2 essais, sinon écran de texte)."""
+    """Niveau 3. Boucle jusqu'à ce qu'AUCUNE image ne pose problème ; seuls les écrans fautifs changent d'image."""
     deja = deja if deja is not None else {p["media"]["id"] for p in script["phrases"] if p.get("media") and p["media"].get("id")}
-    for tour in range(2):
+    for tour in range(5):
         lots, fautifs = [], {}
         for i, p in enumerate(script["phrases"]):
             m = p.get("media")
@@ -223,24 +300,29 @@ def controle_images(script, dossier, B, journal=print, deja=None, sujet=""):
                 fautifs[i] = ("image unie ou floue", "")
             else:
                 lots.append((i, img, p["ecrit"]))
-        try:
-            avis = juger_images(lots, sujet, journal) if lots else {}
-        except ia.AucuneIA:
-            if tour == 0:
-                B.saute("regard de l'IA sur les images")
-            avis = {}
+        avis = {}
+        for essai in range(3):                            # IA occupée : on attend et on réessaie avant d'abandonner
+            try:
+                avis = juger_images(lots, sujet, journal) if lots else {}
+                break
+            except ia.AucuneIA:
+                if essai == 2:
+                    B.saute("regard de l'IA sur les images (IA indisponible)")
+                else:
+                    import time; time.sleep(60)
         for i, a in avis.items():
             if not a.get("colle", True) or a.get("texte_etranger") or a.get("logo"):
                 fautifs[i] = (a.get("probleme") or "image qui ne colle pas", a.get("recherche") or "")
+        regles = {uid(script, i) for i in fautifs}
+        for l in B.ouverts("images"):                      # revérifié : plus de problème sur ce passage
+            if l["ecran"] not in regles:
+                B.fermer("images", l["ecran"])
         if not fautifs:
             return script
         journal(f"  contrôle des images (tour {tour + 1}) : {len(fautifs)} écran(s) à changer")
         for i, (probleme, recherche) in fautifs.items():
-            p = script["phrases"][i]
-            nouv = images.trouver(recherche or p.get("image", ""), dossier, 50 + 10 * tour + i % 10, deja, journal,
-                                  script.get("theme_image", "")) if (recherche or p.get("image")) else None
-            p["media"] = nouv                       # None = écran de texte (jamais une image hors sujet)
-            B.ajouter("images", probleme, i, "moyen", corrige=True)
+            l = B.ouvrir("images", probleme, uid(script, i))
+            l["solution"] = nouvelle_image(script, i, dossier, deja, journal, recherche)
     return script
 
 
@@ -283,20 +365,22 @@ Réponds uniquement en JSON : {"images": [{"n": numéro, "titre_coupe": …, "ch
 
 
 def controle_video(fichier, script, dossier, B, journal=print, leger=False):
-    """Niveau 4. Renvoie {n° d'écran: (problème, action)} ; action = "image", "titre" ou "voix"."""
+    """Niveau 4. Renvoie {n° d'écran (ou None = toute la vidéo): (problème, action)} ;
+    action = "image", "titre", "voix", "allonger" (trop court) ou "refaire" (format, son)."""
     from . import montage
     ph = script["phrases"]; debuts, total = montage.debuts_et_total(ph)
     fautifs = {}
     duree, w, h, son = _probe(fichier)
-    if (w, h) != (1080, 1920):
-        B.ajouter("video", f"format {w}×{h} au lieu de 1080×1920", None, "grave")
-    if not son:
-        B.ajouter("video", "pas de son", None, "grave")
-    if duree < 60:
-        B.ajouter("video", f"vidéo de {duree:.0f} s : moins d'1 minute (pas payée par TikTok)", None, "grave")
+    if (w, h) != (1080, 1920) or not son:
+        fautifs[None] = (f"format {w}×{h}" + ("" if son else ", pas de son"), "refaire")
+    if duree < 60 and not leger:                          # (l'essai sans réseau est volontairement court)
+        fautifs[None] = (f"vidéo de {duree:.0f} s : moins d'1 minute (pas payée par TikTok)", "allonger")
     for i in ecrans_noirs(fichier, debuts):
         if ph[i].get("media"):
             fautifs[i] = ("écran noir dans la vidéo finie", "image")
+    for i, p in enumerate(ph):
+        if p.get("_voix_defaut"):
+            fautifs[i] = (p["_voix_defaut"], "voix")
     if leger:                                             # essai sans réseau : contrôles techniques seulement
         return fautifs
     try:
@@ -313,36 +397,97 @@ def controle_video(fichier, script, dossier, B, journal=print, leger=False):
         subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.2f}", "-i", fichier, "-frames:v", "1", "-vf", "scale=540:-2",
                         "-q:v", "4", img], check=True)
         lots.append((i, img))
-    try:
-        for k in range(0, len(lots), 5):
-            paquet = lots[k:k + 5]
-            d, _ = ia.regarder_json(CONSIGNE_FINALE, "\n".join(f"Image {j + 1} = écran {n}" for j, (n, _) in enumerate(paquet)),
-                                    [c for _, c in paquet], journal=journal)
-            for r in d.get("images") or []:
-                try:
-                    n = paquet[int(r.get("n")) - 1][0]
-                except (TypeError, ValueError, IndexError):
-                    continue
-                if r.get("titre_coupe") or r.get("chevauchement") or r.get("illisible"):
-                    fautifs[n] = (r.get("probleme") or "texte mal placé", "titre")
-    except ia.AucuneIA:
-        B.saute("regard de l'IA sur la vidéo finie")
+    for essai in range(3):
+        try:
+            for k in range(0, len(lots), 5):
+                paquet = lots[k:k + 5]
+                d, _ = ia.regarder_json(CONSIGNE_FINALE, "\n".join(f"Image {j + 1} = écran {n}" for j, (n, _) in enumerate(paquet)),
+                                        [c for _, c in paquet], journal=journal)
+                for r in d.get("images") or []:
+                    try:
+                        n = paquet[int(r.get("n")) - 1][0]
+                    except (TypeError, ValueError, IndexError):
+                        continue
+                    if r.get("titre_coupe") or r.get("chevauchement") or r.get("illisible"):
+                        fautifs[n] = (r.get("probleme") or "texte mal placé", "titre")
+            break
+        except ia.AucuneIA:
+            if essai == 2:
+                B.saute("regard de l'IA sur la vidéo finie (IA indisponible)")
+            else:
+                import time; time.sleep(60)
     return fautifs
 
 
-def corriger_ecrans(script, fautifs, dossier, B, journal=print, nom_voix="", vitesse=0.8):
-    """Applique les corrections aux seuls écrans fautifs (le montage ne refera que ceux-là)."""
+CONSIGNE_SIMPLIFIER = """Réécris cette phrase d'une vidéo TikTok avec des mots plus simples et plus courts, faciles à prononcer
+pour une voix de synthèse (pas de sigle, pas de nom étranger difficile si on peut l'éviter), en gardant exactement le même fait.
+Réponds uniquement en JSON : {"voix": "nombres en lettres", "ecrit": "nombres en chiffres"}"""
+
+
+def corriger_ecrans(script, fautifs, dossier, B, journal=print, nom_voix="", vitesse=0.8, articles=()):
+    """Corrige les seuls passages fautifs, avec une échelle de solutions (la dernière marche à coup sûr) ; le montage ne
+    refera que ces écrans. Lève LookupError si la vidéo reste trop courte (sujet abandonné, jamais de vidéo trop courte)."""
     deja = {p["media"]["id"] for p in script["phrases"] if p.get("media") and p["media"].get("id")}
-    for i, (probleme, action) in fautifs.items():
-        p = script["phrases"][i]
+    ph = script["phrases"]
+    for i, (probleme, action) in sorted(fautifs.items(), key=lambda x: -(x[0] if x[0] is not None else -1)):
+        if i is None:
+            l = B.ouvrir("video", probleme, None, "grave")
+            if action == "allonger":
+                if l["essais"] > 2:
+                    raise LookupError("vidéo trop courte même après ajouts : sujet abandonné")
+                avant = len(ph)
+                controle_texte_ajout(script, articles, journal)
+                for k in range(len(ph)):
+                    if "duree" not in ph[k]:                # phrases ajoutées : voix et image
+                        ph[k]["son"] = os.path.join(dossier, f"voix_ajout{uid(script, k):02d}.wav")
+                        V.preparer([ph[k]], nom_voix, vitesse, journal)
+                        ph[k]["media"] = images.trouver(ph[k].get("image", ""), dossier, 70 + k, deja, journal,
+                                                        script.get("theme_image", ""))
+                l["solution"] = f"{len(ph) - avant} phrase(s) de faits ajoutée(s)"
+            else:
+                for q in ph:
+                    q.pop("_sig", None)                     # tout l'écran est refait
+                l["solution"] = "vidéo refaite"
+            continue
+        p = ph[i]; cle = uid(script, i)
+        niveau = "voix" if action == "voix" else "video"
+        l = B.ouvrir(niveau, probleme, cle, "grave" if action == "voix" else "moyen")
         if action == "image":
-            p["media"] = images.trouver(p.get("image", ""), dossier, 80 + i, deja, journal, script.get("theme_image", ""))
+            l["solution"] = nouvelle_image(script, i, dossier, deja, journal)
         elif action == "titre":
-            p["ecran"] = " ".join((p.get("ecran") or "").split()[:2])[:14]
+            p["ecran"] = " ".join((p.get("ecran") or "").split()[:2])[:14] if l["essais"] == 1 else ""
+            l["solution"] = "titre raccourci" if p["ecran"] else "titre retiré"
         elif action == "voix":
-            p.pop("mots", None)
+            n = l["essais"]
+            if n in (3, 6) or n > 7:                      # refaite plusieurs fois sans succès : mots plus simples
+                try:
+                    d, _ = ia.demander_json(CONSIGNE_SIMPLIFIER, p["ecrit"], temperature=0.6, journal=journal)
+                    if str(d.get("voix") or "").strip():
+                        p["voix"] = nombres.dire_les_nombres(str(d["voix"])); p["ecrit"] = str(d.get("ecrit") or d["voix"])
+                        l["solution"] = "phrase simplifiée puis refaite"
+                except ia.AucuneIA:
+                    pass
+            if n >= 5 and 0 < i < len(ph) - 1 and duree_estimee(ph[:i] + ph[i + 1:]) >= 62:
+                ph.pop(i)                                  # dernier recours : la phrase est retirée (vidéo assez longue)
+                l.update(solution="phrase retirée", corrige=True)
+                continue
+            p.pop("mots", None); p.pop("_voix_defaut", None)
             V.preparer([p], nom_voix, vitesse, journal)
-        B.ajouter("video", probleme, i, "grave" if action == "voix" else "moyen", corrige=True)
+            l.setdefault("solution", "voix refaite")
+
+
+def controle_texte_ajout(script, articles, journal=print):
+    """Ajoute 2 à 4 phrases de faits (pour une vidéo trop courte), sans toucher aux autres."""
+    ph = script["phrases"]
+    texte = "TEXTE :\n" + "\n".join(f"{k}. {p['ecrit']}" for k, p in enumerate(ph))
+    texte += "\n\nÀ CORRIGER :\n- AJOUTER 2 à 4 phrases de faits : la vidéo fait moins d'1 minute"
+    texte += "\n\nARTICLES :\n" + "\n\n".join(f"[{a['media']}] {a['titre']}\n{a.get('texte') or a.get('resume')}"
+                                              for a in articles)[:12000]
+    d, _ = ia.demander_json(CONSIGNE_REECRIRE, texte, temperature=0.5, journal=journal)
+    for a in d.get("ajouts") or []:
+        if str(a.get("voix") or "").strip():
+            ph.insert(len(ph) - 1, dict(voix=nombres.dire_les_nombres(str(a["voix"])), ecrit=str(a.get("ecrit") or a["voix"]),
+                                        ecran=str(a.get("ecran") or "")[:24], image=str(a.get("image") or script.get("theme_image", ""))))
 
 
 # ------------------------------------------------------------------ 5. avant publication

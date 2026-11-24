@@ -182,8 +182,25 @@ class TestControleQualite(unittest.TestCase):
 
     def test_note(self):
         from robot import controle
-        B = controle.Bulletin(); B.ajouter("images", "hors sujet", 2, corrige=True); B.ajouter("video", "trop court", None, "grave")
-        self.assertEqual(B.note(), 74); self.assertEqual(B.resume()["graves_restants"], 1)
+        B = controle.Bulletin()
+        B.ouvrir("images", "hors sujet", 2); B.ouvrir("images", "toujours hors sujet", 2)   # même passage : un 2e essai
+        self.assertEqual(len(B.ouverts()), 1); self.assertEqual(B.ouverts()[0]["essais"], 2)
+        self.assertEqual(B.note(), 90)
+        B.fermer("images", 2, "écran de texte")
+        self.assertEqual(B.note(), 100); self.assertEqual(B.resume()["graves_restants"], 0)
+        B.saute("regard de l'IA")
+        self.assertEqual(B.resume()["graves_restants"], 1)                                 # contrôle non fait : pas publiée seule
+
+    def test_solutions_garanties(self):
+        from robot import controle
+        s = {"phrases": [dict(voix="Accroche.", ecrit="Accroche.", ecran="", image="x"),
+                         dict(voix="un, " * 20 + "deux trois quatre cinq six sept huit neuf dix onze douze treize.",
+                              ecrit="phrase longue", ecran="", image="x"),
+                         dict(voix="Fin.", ecrit="Fin.", ecran="", image="x")]}
+        pb = [(1, "phrase trop longue (plus de 32 mots)", False), (2, "la dernière phrase n'est pas une question au spectateur", False)]
+        controle.solutions_garanties(s, pb)
+        self.assertTrue(s["phrases"][-1]["ecrit"].endswith("?") or "?" in s["phrases"][-1]["ecrit"])
+        self.assertEqual(len(s["phrases"]), 5)                                              # coupée en deux + question ajoutée
 
     def test_image_noire(self):
         from robot import controle
