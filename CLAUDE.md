@@ -87,6 +87,11 @@ machine, `MACHINE` = n°, `max-parallel` = `creation.paralleles`, 3 par défaut,
 vidéo suffixé par le n° de machine. Avancement : un fichier par machine `av-<run>-<machine>.json` sur la branche « avancement »
 (`avancement._pousser` garde ceux des autres machines < 2 h) ; le site affiche une barre par vidéo.
 
+**File d'attente commune** (demande de l'auteur du 24/11) : `avancement.attendre_son_tour` au début de chaque machine (toutes
+séries confondues) : au plus `creation.paralleles` vidéos en même temps ; les autres s'inscrivent « en_attente » (heure de la
+demande) sur la branche avancement et partent dans l'ordre (revérifié toutes les 30 s) ; machine muette 30 min (en cours) ou
+3 min (en attente) = plantée, ignorée ; départ forcé après 200 min (job de 350 min). Le site affiche la file.
+
 ## Fonctionnement
 - `robot/buzz.py` (buzz.yml, toutes les 2 h) : yt-dlp lit les comptes d'actualité suivis (`buzz.comptes`), garde les vidéos
   au-dessus des seuils, l'IA les regroupe par sujet → `docs/donnees/buzz.json` (statut nouveau / utilise / ignore / sans_source).

@@ -574,9 +574,11 @@ async function lireAvancements() {
   const fichiers = (await r.json()).filter(f => f.name.endsWith(".json"));
   const out = await Promise.all(fichiers.map(f => fetch(`https://api.github.com/repos/${c.repo}/contents/${f.name}?ref=avancement&t=${Date.now()}`,
     { headers: { ...h, Accept: "application/vnd.github.raw+json" } }).then(x => x.ok ? x.json() : null).catch(() => null)));
-  return out.filter(a => a && Date.now() - new Date(a.maj).getTime() < 15 * 60e3).sort((a, b) => (a.debut || "").localeCompare(b.debut || ""));
+  return out.filter(a => a && Date.now() - new Date(a.maj).getTime() < (a.etat === "en_cours" ? 30 : 5) * 60e3).sort((a, b) => (a.debut || "").localeCompare(b.debut || ""));
 }
 function barre(a) {
+  if (a.etat === "en_attente") return `<div style="margin-bottom:10px"><b>⏳ En file d'attente</b> <span class="muted petit">${esc(a.detail || "")}</span>
+    <div class="muted petit">🤖 machine ${esc(a.machine || "1")} · elle démarrera dès qu'une place se libère</div></div>`;
   const fini = a.etat !== "en_cours";
   return `<div style="margin-bottom:10px"><div class="rang"><b>${fini ? (a.etat === "fini" ? "✅ " : "⚠️ ") : "⏳ "}${esc(a.etape)}</b>
     <span class="muted petit">${fini ? "" : `${Math.round(a.pourcent)} % · encore ~${Math.max(1, Math.round(a.reste_s / 60))} min`}</span></div>
@@ -588,8 +590,8 @@ async function suivre(nouvelle) {
   suiviActif = true;
   try {
     const A = await lireAvancements().catch(() => []);
-    const actives = A.filter(a => a.etat === "en_cours");
-    if (A.length) $("#avancement").innerHTML = (actives.length > 1 ? `<p class="petit" style="margin:0 0 8px"><b>${actives.length} vidéos en fabrication en même temps</b></p>` : "") + A.map(barre).join("");
+    const actives = A.filter(a => a.etat === "en_cours" || a.etat === "en_attente");
+    if (A.length) $("#avancement").innerHTML = (actives.length > 1 ? `<p class="petit" style="margin:0 0 8px"><b>${A.filter(a => a.etat === "en_cours").length} vidéo(s) en fabrication, ${A.filter(a => a.etat === "en_attente").length} en file d'attente</b></p>` : "") + A.map(barre).join("");
     else if (Date.now() - demandeLe < 5 * 60e3) $("#avancement").innerHTML = `<b>📨 Commande envoyée : les machines démarrent…</b><div class="barre"><div style="width:2%"></div></div>`;
     $("#avancement").hidden = !A.length && Date.now() - demandeLe >= 5 * 60e3;
     const finies = A.filter(a => a.etat !== "en_cours" && !vuesFinies.has(a.id));      // une vidéo vient de finir : liste relue

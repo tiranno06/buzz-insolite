@@ -61,7 +61,9 @@ def contenu():
     ecoule = time.time() - _etat["debut_s"]
     p = _etat["pourcent"]
     typique = TYPIQUE.get(_etat["format"], 15 * 60)
-    if _etat["etat"] != "en_cours":
+    if _etat["etat"] == "en_attente":
+        reste = typique
+    elif _etat["etat"] != "en_cours":
         reste = 0
     elif p < 12:                                        # début : on se fie à la durée habituelle
         reste = max(60, typique - ecoule)
@@ -96,6 +98,61 @@ def _git(*args, entree=None):
 def _nom():
     """Un fichier par machine (séries en parallèle) : av-<run>-<machine>.json."""
     return f"av-{os.environ.get('GITHUB_RUN_ID', 'local')}-{os.environ.get('MACHINE', '1')}.json"
+
+
+def _lire_branche():
+    """{fichier: (sha, contenu)} des fichiers d'avancement de toutes les machines ({} si la branche n'existe pas)."""
+    out = {}
+    if subprocess.run(["git", "fetch", "-q", "origin", BRANCHE], cwd=RACINE, capture_output=True, timeout=30).returncode != 0:
+        return out
+    for ligne in _git("ls-tree", "FETCH_HEAD").splitlines():
+        mode_type_sha, fichier = ligne.split("\t", 1)
+        if fichier.endswith(".json"):
+            sha = mode_type_sha.split()[2]
+            try:
+                out[fichier] = (sha, json.loads(_git("cat-file", "-p", sha)))
+            except Exception:
+                pass
+    return out
+
+
+def _age_min(d):
+    import datetime
+    try:
+        return (maintenant() - datetime.datetime.fromisoformat(d["maj"])).total_seconds() / 60
+    except Exception:
+        return 1e9
+
+
+def attendre_son_tour(limite, journal=print, attente_max_min=200):
+    """File d'attente commune à TOUTES les séries (demande de l'auteur du 24/11) : au plus `limite` vidéos fabriquées en même
+    temps. Une machine en trop s'inscrit « en_attente » (avec l'heure de sa demande) et attend son tour, dans l'ordre des
+    demandes, en revérifiant toutes les 30 s. Une machine muette depuis 30 min (en cours) ou 3 min (en attente) ne compte plus
+    (plantée). Au-delà de `attente_max_min`, elle part quand même (jamais bloquée pour toujours)."""
+    if os.environ.get("GITHUB_ACTIONS") != "true":
+        return
+    moi = _nom(); debut = time.time()
+    _etat.clear()
+    _etat.update(id=moi, format="video", titre="", etat="en_attente", etape="En file d'attente", detail="", pourcent=0,
+                 machine=os.environ.get("MACHINE", "1"), debut=iso(), demande=iso(), debut_s=time.time(),
+                 run=os.environ.get("GITHUB_RUN_ID", ""))
+    deja_dit = None
+    while True:
+        autres = {f: d for f, (_, d) in _lire_branche().items() if f != moi}
+        actifs = [d for d in autres.values() if d.get("etat") == "en_cours" and _age_min(d) < 30]
+        attente = [d for d in autres.values() if d.get("etat") == "en_attente" and _age_min(d) < 3] + [dict(_etat, nom=moi)]
+        attente.sort(key=lambda d: (d.get("demande", ""), d.get("run", ""), str(d.get("machine", ""))))
+        rang = next(k for k, d in enumerate(attente) if d.get("nom") == moi)
+        places = limite - len(actifs)
+        if rang < places or time.time() - debut > attente_max_min * 60:
+            return
+        avant = rang - places + 1                          # places qui doivent se libérer avant notre tour
+        _etat["detail"] = f"{avant} vidéo(s) avant celle-ci ({len(actifs)} en fabrication, {limite} au plus en même temps)"
+        if _etat["detail"] != deja_dit:
+            journal(f"⏳ File d'attente : {_etat['detail']}")
+            deja_dit = _etat["detail"]
+        _envoyer(force=True)
+        time.sleep(30)
 
 
 def _pousser(texte):

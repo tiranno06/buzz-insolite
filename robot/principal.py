@@ -328,6 +328,8 @@ def main():
     if o.auto and not reglages()["creation"].get("auto"):
         print("Création automatique coupée dans les réglages : rien à faire.")
         return
+    if not simulation():                                      # file d'attente commune à toutes les séries
+        avancement.attendre_son_tour(max(1, min(5, int(reglages()["creation"].get("paralleles", 3)))))
     faites = creer(max(1, min(10, o.nombre)), o.sujet, o.libre, format_=o.format)
     if not faites:
         raise SystemExit(1)

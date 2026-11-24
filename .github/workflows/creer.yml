@@ -52,7 +52,7 @@ jobs:
   creer:
     needs: plan
     runs-on: ubuntu-24.04
-    timeout-minutes: 240
+    timeout-minutes: 350              # dont l'attente éventuelle dans la file (200 min au plus)
     strategy:
       fail-fast: false               # une vidéo ratée n'arrête jamais les autres
       max-parallel: ${{ fromJSON(needs.plan.outputs.paralleles) }}
