@@ -50,7 +50,10 @@ def ecrire(nom, contenu):
 REGLAGES_DEFAUT = {
     "buzz": {
         "comptes": ["hugodecrypte", "brutofficiel", "franceinfo", "leparisien", "20minutesfrance", "euronewsfr", "bfmtv",
-                    "lemondefr", "konbini", "tf1info", "loopsider", "ouestfrance", "lefigaro", "le.huffpost"],
+                    "lemondefr", "konbini", "tf1info", "loopsider", "ouestfrance", "lefigaro", "le.huffpost",
+                    # actu du monde entier (demande de l'auteur du 24/11) : comptes internationaux lus par yt-dlp (essai du 24/11)
+                    "bbcnews", "cnn", "dailymail", "unilad", "ladbible", "washingtonpost", "nytimes", "cbsnews", "skynews",
+                    "abcnews", "insider", "aljazeeraenglish", "reuters", "foxnews"],
         "vues_min": 500000, "jaime_min": 10000, "commentaires_min": 1000,
         "heures": 72,                                 # âge maximum d'une vidéo virale prise en compte
     },

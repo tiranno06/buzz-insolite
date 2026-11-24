@@ -1,6 +1,6 @@
 """Articles de presse sur un sujet : c'est de là que viennent les faits de la vidéo (jamais de la vidéo TikTok d'un autre).
 
-Flux RSS publics de médias français et européens + recherche Google Actualités (titres et résumés). Les sites qui refusent les
+Flux RSS publics de médias français et européens + Bing Actualités (français, et anglais pour l'actu du monde) + Google Actualités (titres et résumés). Les sites qui refusent les
 robots (erreur 401/403) sont simplement laissés de côté : on ne contourne jamais un refus.
 """
 import html
@@ -85,17 +85,19 @@ def texte_article(url, maxi=6000):
     return "\n".join(p.morceaux)[:maxi]
 
 
-def bing(requete, n=12):
-    """[(titre, adresse réelle de l'article, résumé)] de Bing Actualités (le lien du flux contient l'adresse de l'article)."""
+def bing(requete, n=12, langue="fr"):
+    """[(titre, adresse réelle de l'article, résumé)] de Bing Actualités (le lien du flux contient l'adresse de l'article).
+    langue "en" : presse internationale en anglais (actus du monde entier)."""
     q = urllib.parse.quote(requete)
+    pays = "setlang=en&cc=US" if langue == "en" else "setlang=fr&cc=FR"
     out = []
-    for titre, lien, resume in lire_flux(f"https://www.bing.com/news/search?q={q}&format=rss&setlang=fr&cc=FR")[:n]:
+    for titre, lien, resume in lire_flux(f"https://www.bing.com/news/search?q={q}&format=rss&{pays}")[:n]:
         reel = urllib.parse.parse_qs(urllib.parse.urlparse(lien).query).get("url", [lien])[0]
         out.append((titre, reel, resume))
     return out
 
 
-def chercher(sujet, mots_cles=(), maxi=6, journal=print):
+def chercher(sujet, mots_cles=(), maxi=6, journal=print, mots_en=()):
     """Articles qui parlent du sujet : [{media, titre, lien, resume, texte}] (les plus proches d'abord)."""
     voulus = _mots(sujet + " " + " ".join(mots_cles))
     candidats = []
@@ -124,6 +126,15 @@ def chercher(sujet, mots_cles=(), maxi=6, journal=print):
                 candidats.append((commun + 0.5, urllib.parse.urlparse(lien).netloc.replace("www.", ""), titre, lien, resume))
     except Exception as e:
         journal(f"  Bing Actualités illisible ({str(e)[:80]})")
+    if mots_en:                                           # actu du monde : la presse internationale en anglais aussi
+        voulus_en = _mots(" ".join(mots_en))
+        try:
+            for titre, lien, resume in bing(" ".join(list(mots_en)[:4]), langue="en"):
+                commun = len(voulus_en & _mots(titre + " " + resume))
+                if commun >= 2:
+                    candidats.append((commun, urllib.parse.urlparse(lien).netloc.replace("www.", ""), titre, lien, resume))
+        except Exception as e:
+            journal(f"  Bing (anglais) illisible ({str(e)[:80]})")
     candidats.sort(key=lambda c: (c[1] == "Google Actualités", -c[0]))   # vrais articles d'abord, Google (titres seuls) en dernier
     out, vus = [], set()
     for _, media, titre, lien, resume in candidats:
@@ -178,12 +189,12 @@ def contexte_wikipedia(requete, n=2, journal=print):
     return out
 
 
-def chercher_large(sujet, mots_cles=(), videos=(), journal=print, minimum=2500):
+def chercher_large(sujet, mots_cles=(), videos=(), journal=print, minimum=2500, mots_en=()):
     """Comme `chercher`, mais n'abandonne jamais (demande de l'auteur du 24/11 : une vidéo commencée va jusqu'au bout) :
     si les articles sont trop maigres, autres recherches (titre seul, mots-clés deux par deux), puis contexte Wikipédia, puis
     descriptions des vidéos TikTok virales du sujet (présentées comme telles)."""
     total = lambda L: sum(len(a.get("texte") or a.get("resume") or "") for a in L)
-    articles = chercher(sujet, mots_cles, journal=journal)
+    articles = chercher(sujet, mots_cles, journal=journal, mots_en=mots_en)
     essais = [[]] + [list(mots_cles)[k:k + 2] for k in range(0, len(mots_cles), 2)]
     for mots in essais:
         if total(articles) >= minimum:
@@ -214,12 +225,17 @@ def assez_riche(articles, medias=3, caracteres=5000):
     return m >= medias and c >= caracteres
 
 
-def nombre_de_medias(sujet, mots_cles=()):
-    """Nombre de médias différents qui en parlent (Bing Actualités, titres seulement : rapide)."""
-    voulus = _mots(sujet + " " + " ".join(mots_cles))
-    try:
-        L = bing(" ".join(list(mots_cles)[:4]) or sujet, n=20)
-    except Exception:
-        return None
-    return len({urllib.parse.urlparse(l).netloc.replace("www.", "") for t, l, r in L if len(voulus & _mots(t + " " + r)) >= 2})
+def nombre_de_medias(sujet, mots_cles=(), mots_en=()):
+    """Nombre de médias différents qui en parlent (Bing Actualités en français, et en anglais pour l'actu du monde)."""
+    vus, lu = set(), False
+    for mots, langue in ((list(mots_cles) or [sujet], "fr"), (list(mots_en), "en")):
+        if not mots:
+            continue
+        voulus = _mots(" ".join(mots) + (" " + sujet if langue == "fr" else ""))
+        try:
+            L = bing(" ".join(mots[:4]), n=20, langue=langue); lu = True
+        except Exception:
+            continue
+        vus |= {urllib.parse.urlparse(l).netloc.replace("www.", "") for t, l, r in L if len(voulus & _mots(t + " " + r)) >= 2}
+    return len(vus) if lu else None
 

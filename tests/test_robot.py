@@ -364,6 +364,22 @@ class TestJamaisAbandonnee(unittest.TestCase):
 
 
 class TestSujetsRiches(unittest.TestCase):
+    def test_presse_anglaise(self):
+        """Actu du monde : la presse en anglais est cherchée quand l'IA a donné des mots-clés anglais."""
+        from robot import sources
+        demandes = []
+        def faux_bing(q, n=12, langue="fr"):
+            demandes.append(langue)
+            return [("Tokyo robot waiter goes viral", "https://www.bbc.com/news/1", "A robot waiter in Tokyo")] if langue == "en" else []
+        garde = (sources.bing, sources.lire_flux, sources.texte_article)
+        sources.bing, sources.lire_flux, sources.texte_article = faux_bing, lambda u: [], lambda u: "x" * 900
+        try:
+            arts = sources.chercher("Tokyo : un robot serveur", ["robot", "Tokyo"], mots_en=["Tokyo", "robot", "waiter"])
+            nb = sources.nombre_de_medias("Tokyo : un robot serveur", ["robot", "Tokyo"], ["Tokyo", "robot", "waiter"])
+        finally:
+            sources.bing, sources.lire_flux, sources.texte_article = garde
+        self.assertIn("en", demandes); self.assertEqual(arts[0]["media"], "bbc.com"); self.assertEqual(nb, 1)
+
     def test_richesse(self):
         from robot import sources
         arts = [dict(media=m, titre="t", texte="x" * 2000) for m in ("ladepeche.fr", "ici.fr", "leparisien.fr")]

@@ -1,4 +1,4 @@
-"""Repérage des actualités françaises et européennes qui buzzent sur TikTok.
+"""Repérage des actualités du MONDE ENTIER qui buzzent sur TikTok (comptes d'actualité français et internationaux).
 
 Le robot lit les dernières vidéos des comptes d'actualité suivis (Réglages → Buzz) et ne garde que celles qui dépassent les
 seuils (par défaut 500 000 vues, 10 000 j'aime, 1 000 commentaires, publiées ces 72 dernières heures). Une IA gratuite les
@@ -76,11 +76,14 @@ def identifiant(titre):
 
 
 CONSIGNE = """Tu es rédacteur en chef d'une chaîne TikTok française « Buzz et insolite ».
-On te donne des vidéos TikTok d'actualité qui font énormément de vues (France et Europe). Regroupe-les par SUJET d'actualité
-(plusieurs vidéos peuvent parler du même événement). Pour chaque sujet, donne :
-- "titre" : le sujet en 8 mots maximum, factuel (ex. « Tempête Ciarán : rafales record en Bretagne ») ;
+On te donne des vidéos TikTok d'actualité du MONDE ENTIER (en français, en anglais ou autre) qui font énormément de vues.
+Regroupe-les par SUJET d'actualité (plusieurs vidéos, même dans des langues différentes, peuvent parler du même événement).
+Pour chaque sujet, donne (toujours EN FRANÇAIS, sauf "mots_cles_en") :
+- "titre" : le sujet en 8 mots maximum, factuel (ex. « Tempête Ciarán : rafales record en Bretagne », « Tokyo : un robot
+  serveur fait le tour du web ») ;
 - "resume" : 2 phrases neutres sur ce qu'on sait ;
-- "mots_cles" : 3 à 6 mots-clés pour chercher des articles de presse sur ce sujet ;
+- "mots_cles" : 3 à 6 mots-clés en français pour chercher des articles de presse sur ce sujet ;
+- "mots_cles_en" : les mêmes 3 à 6 mots-clés en anglais (presse et vidéos internationales) ;
 - "hashtags" : 3 à 5 hashtags sans espace, en minuscules, qui décrivent ce sujet ;
 - "insolite" : note de 0 à 10 (10 = très surprenant / étonnant, 0 = actualité ordinaire) ;
 - "videos" : la liste des numéros des vidéos qui parlent de ce sujet.
@@ -100,6 +103,7 @@ def grouper(liste, journal=print):
             if nums and str(s.get("titre") or "").strip():
                 sujets.append(dict(titre=str(s["titre"]).strip()[:90], resume=str(s.get("resume") or "")[:400],
                                    mots_cles=[str(m) for m in s.get("mots_cles") or []][:6],
+                                   mots_cles_en=[str(m) for m in s.get("mots_cles_en") or []][:6],
                                    hashtags=[re.sub(r"[^\wÀ-ÿ]", "", str(h)).lower() for h in s.get("hashtags") or []][:5],
                                    insolite=max(0, min(10, int(s.get("insolite") or 0))),
                                    videos=[liste[n] for n in dict.fromkeys(nums)]))
@@ -206,7 +210,7 @@ def relever(journal=print):
         s["hashtags_viraux"] = [h for h, _ in sorted({h: tags.count(h) for h in tags}.items(), key=lambda x: -x[1])][:8]
         # Combien de médias différents en parlent (Bing Actualités) : un sujet repris par 3 médias ou plus donne une vidéo
         # sans problème ; les autres passent après (demande de l'auteur du 24/11).
-        s["medias"] = sources.nombre_de_medias(s["titre"], s.get("mots_cles") or [])
+        s["medias"] = sources.nombre_de_medias(s["titre"], s.get("mots_cles") or [], s.get("mots_cles_en") or [])
         if s["medias"] is not None and s["medias"] < 3:
             s["score"] //= 4
         time.sleep(0.5)

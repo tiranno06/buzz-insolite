@@ -170,7 +170,8 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
             E["articles"] = [a for s in sujet["parties"] for a in sources.chercher(s["titre"], s.get("mots_cles") or [], maxi=2,
                                                                                     journal=journal)]
         else:                                                 # jamais d'abandon : la recherche s'élargit si besoin
-            E["articles"] = sources.chercher_large(sujet["titre"], sujet.get("mots_cles") or [], sujet.get("videos") or [], journal)
+            E["articles"] = sources.chercher_large(sujet["titre"], sujet.get("mots_cles") or [], sujet.get("videos") or [], journal,
+                                                   mots_en=sujet.get("mots_cles_en") or [])
         journal(f"  {len(E['articles'])} source(s) : " + ", ".join(f"{a['media']} ({len(a.get('texte') or '')} car.)" for a in E["articles"]))
     etape("articles", 5, articles)
 
@@ -232,7 +233,8 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
         script["images_generiques"] = R["video"].get("images_generiques", False)
         if "clips" not in E:                                  # VRAIES vidéos du sujet (licence libre), avant tout le reste
             E["clips"] = [] if simulation() or format_ == "semaine" else \
-                images.videos_du_sujet(sujet["titre"], sujet.get("mots_cles") or [], dossier, journal, ecrans=len(script["phrases"]))
+                images.videos_du_sujet(sujet["titre"], sujet.get("mots_cles") or [], dossier, journal, ecrans=len(script["phrases"]),
+                                       mots_en=sujet.get("mots_cles_en") or [])
         for i, p in enumerate(script["phrases"][:-1]):
             if "media" not in p and E["clips"]:
                 p["media"] = E["clips"].pop(0); deja.add(p["media"]["id"])
@@ -371,7 +373,8 @@ def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz"):
             if not (s.get("libre") or format_ == "semaine" or simulation()):
                 # Seulement des sujets SANS problème (demande de l'auteur du 24/11) : au moins 3 médias différents avec un
                 # vrai article, réunis dans une seule vidéo. Un sujet trop maigre n'est pas commencé : sujet suivant.
-                arts = sources.chercher_large(s["titre"], s.get("mots_cles") or [], s.get("videos") or [], journal)
+                arts = sources.chercher_large(s["titre"], s.get("mots_cles") or [], s.get("videos") or [], journal,
+                                              mots_en=s.get("mots_cles_en") or [])
                 nb, car = sources.richesse(arts)
                 if not sources.assez_riche(arts):
                     journal(f"  ✗ sujet écarté : {nb} média(s), {car} caractères d'articles (il en faut 3 et 5 000)")

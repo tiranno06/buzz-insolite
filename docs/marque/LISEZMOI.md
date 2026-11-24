@@ -8,7 +8,7 @@
 **Buzz Insolite** (le pseudo reste @buzz.insolite)
 
 ## Bio (80 caractères au plus)
-1. 🔥 Les actus qui font le buzz en France et en Europe, expliquées en 1 minute ⚡
+1. 🔥 Les actus du monde entier qui font le buzz, expliquées en 1 minute ⚡
 2. Tu l'as vu passer ? On t'explique tout en 1 min ⚡ Actu insolite 🇫🇷🇪🇺
 3. L'actu la plus folle du jour, vérifiée et racontée en 60 secondes 🔥
 4. 2 actus insolites par jour ⚡ Vrai ou faux ? Abonne-toi pour ne rien rater 👇

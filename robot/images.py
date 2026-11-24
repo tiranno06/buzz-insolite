@@ -278,7 +278,9 @@ def _ytdlp(args, timeout=120):
 # une licence libre (souvent remise en ligne par quelqu'un qui n'en a pas le droit).
 MEDIAS_INTERDITS = ("bfm", "bfmtv", "bfm tv", "tf1", "france 2", "france 3", "france 24", "france24", "franceinfo", "france info", "m6", "cnews",
                     "lci", "afp", "reuters", "associated press", "euronews", "arte", "canal+", "rmc", "c8", "tmc", "le monde",
-                    "le figaro", "le parisien", "brut", "konbini", "hugodécrypte", "hugo décrypte", "20 minutes", "ouest-france")
+                    "le figaro", "le parisien", "brut", "konbini", "hugodécrypte", "hugo décrypte", "20 minutes", "ouest-france",
+                    "bbc", "cnn", "nbc", "abc news", "cbs", "sky news", "fox news", "al jazeera", "new york times", "nytimes",
+                    "washington post", "daily mail", "unilad", "ladbible", "insider", "dw news", "usa today", "ny post")
 
 
 def licence_ok(texte):
@@ -346,27 +348,28 @@ def _cand_vimeo(sujet, journal):
 SOURCES_VIDEO = (("YouTube (Creative Commons)", _cand_youtube), ("PeerTube", _cand_peertube), ("Internet Archive", _cand_archive), ("Vimeo", _cand_vimeo))
 
 
-def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, prefixe="sujet", deja=None):
+def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, prefixe="sujet", deja=None, mots_en=()):
     """VRAIES vidéos du sujet, publiées par leur auteur sous licence libre (CC BY, CC BY-SA, CC0, domaine public) : YouTube
     (filtre Creative Commons, licence relue sur la page), PeerTube (Sepia Search), Internet Archive, Wikimedia Commons.
     Au moins 2 mots du sujet dans le titre ; télé et agences écartées ; auteur et licence crédités. Chaque vidéo est découpée
     en passages de 6 s (un par écran). Un site qui refuse le serveur = on s'en passe (jamais de contournement)."""
-    voulus = _mots_sujet(sujet + " " + " ".join(mots_cles or []))
+    voulus = _mots_sujet(sujet + " " + " ".join(mots_cles or []) + " " + " ".join(mots_en or []))
     seuil = min(2, len(voulus)) or 1                    # « Toulouse » seul : 1 mot suffit ; sinon 2 mots du sujet
     vus = {d.rsplit("-", 1)[0] for d in (deja or ())}    # vidéos déjà prises pour cette vidéo : jamais deux fois
     candidats = []
     for nom, chercher in SOURCES_VIDEO:
         if chercher is _cand_youtube and not shutil_which("yt-dlp"):
             continue
-        try:
-            trouves = chercher(sujet, journal)
-        except Exception as e:
-            journal(f"  vidéos du sujet ({nom}) : recherche impossible ({str(e)[:90]})")
-            continue
+        trouves = []
+        for requete in [sujet] + ([" ".join(list(mots_en)[:4])] if mots_en else []):   # en français, puis en anglais
+            try:
+                trouves += chercher(requete, journal)
+            except Exception as e:
+                journal(f"  vidéos du sujet ({nom}) : recherche impossible ({str(e)[:90]})")
         bons = 0
         for c in trouves:
             commun = len(voulus & _mots_sujet(c["titre"]))
-            if commun >= seuil and c["cle"] not in vus and (not c["duree"] or 10 <= c["duree"] <= 3600) and not _interdit(c["titre"], c["auteur"]):
+            if commun >= seuil and c["cle"] not in vus and not vus.add(c["cle"]) and (not c["duree"] or 10 <= c["duree"] <= 3600) and not _interdit(c["titre"], c["auteur"]):
                 candidats.append((commun, c)); bons += 1
         journal(f"  vidéos du sujet ({nom}) : {len(trouves)} trouvée(s), {bons} sur le sujet")
     candidats.sort(key=lambda x: -x[0])

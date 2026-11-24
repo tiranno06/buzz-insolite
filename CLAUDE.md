@@ -1,6 +1,6 @@
 # Buzz Insolite (buzz-insolite)
 
-Robot de vidéos TikTok « Buzz et insolite » : il repère les actualités françaises et européennes qui buzzent sur TikTok, écrit
+Robot de vidéos TikTok « Buzz et insolite » : il repère les actualités du monde entier qui buzzent sur TikTok, écrit
 une vidéo ORIGINALE sur le sujet (articles de presse + vraies images libres de droits + voix de synthèse) et la publie par Buffer.
 Projet frère de `jt-auto` (@petitsdramas) et `grok-tiktok`. Le propriétaire est débutant : tout en français (code,
 commentaires, commits, textes du site), explications simples, sans jargon.
@@ -9,7 +9,10 @@ commentaires, commits, textes du site), explications simples, sans jargon.
 - **Tout gratuit** : GitHub Actions (dépôt public = minutes illimitées), IA gratuites (Mistral, Groq, Gemini, OpenRouter,
   mêmes clés que jt-auto), Piper (voix), Whisper (calage des mots), Pexels / NASA / Wikimedia (images), ffmpeg, Buffer gratuit.
   Ne jamais brancher un service payant.
-- **Thème** : buzz et actualité insolite, France et Europe. Seuils du buzz : ≥ 500 000 vues, ≥ 10 000 j'aime, ≥ 1 000
+- **Thème** : buzz et actualité insolite du MONDE ENTIER (demande de l'auteur du 24/11 ; avant : France et Europe). 14 comptes
+  internationaux ajoutés (bbcnews, cnn, dailymail, unilad, ladbible, washingtonpost, nytimes, cbsnews, skynews, abcnews, insider,
+  aljazeeraenglish, reuters, foxnews ; theguardian illisible) ; l'IA donne titres en français + `mots_cles_en` ; presse en anglais
+  (`sources.bing(langue="en")`) et vidéos libres cherchées aussi en anglais ; la vidéo reste en français. Seuils du buzz : ≥ 500 000 vues, ≥ 10 000 j'aime, ≥ 1 000
   commentaires (réglables sur le site). « Rien à éviter » comme sujet, mais les règles légales restent (pas de nom de victime
   ni de mineur, présomption d'innocence, faits vérifiés) : `ecrire.REGLES_SUJET`.
 - **Jamais la vidéo d'un autre compte** : on ne garde que le SUJET et les chiffres d'une vidéo virale ; les faits viennent de
