@@ -274,6 +274,35 @@ class TestAnalyseDesErreurs(unittest.TestCase):
         self.assertIn(("groq", "vieux-modele"), ia._MORTS)
 
 
+class TestJamaisAbandonnee(unittest.TestCase):
+    def test_reprise_sur_le_meme_sujet(self):
+        from robot import principal
+        appels = []
+        def fausse_fabrique(s, R, n, total, journal, format_, secours=False):
+            appels.append(secours)
+            if len(appels) < 3:
+                raise RuntimeError("panne passagère")
+            return dict(id="v1", titre="t", duree=70, ecrans_illustres=5, statut="nouvelle")
+        garde, principal.fabriquer = principal.fabriquer, fausse_fabrique
+        dort, principal.time.sleep = principal.time.sleep, lambda s: None
+        try:
+            faites = principal.creer(1, libre="Un sujet libre")
+        finally:
+            principal.fabriquer = garde; principal.time.sleep = dort
+        self.assertEqual(len(faites), 1); self.assertEqual(appels, [False, False, False])   # même sujet, 3e essai réussi
+        self.assertEqual(lire("file.json")["videos"][0]["id"], "v1")                        # et sur le site
+
+    def test_texte_court_ne_bloque_pas(self):
+        from robot import controle
+        s = {"phrases": [dict(voix="Accroche courte.", ecrit="Accroche courte.", ecran="", image="x"),
+                         dict(voix="Et toi ?", ecrit="Et toi ?", ecran="", image="x")]}
+        garde, controle.ia.demander_json = controle.ia.demander_json, lambda *a, **k: (_ for _ in ()).throw(controle.ia.AucuneIA("x"))
+        try:
+            controle.controle_texte(s, [], controle.Bulletin())                                # plus de LookupError
+        finally:
+            controle.ia.demander_json = garde
+
+
 class TestParallele(unittest.TestCase):
     def test_sujets_differents_par_machine(self):
         from robot import principal

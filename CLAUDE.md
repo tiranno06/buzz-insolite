@@ -107,6 +107,14 @@ récentes les plus vues juste en dessous (« sous_seuils », score divisé par 2
 - Modèles d'IA retirés (404 « does not exist / no longer available ») → `ia._MORTS`, plus réessayés pendant le passage.
 - Préventif : Release créée en 3 essais (`depot.publier_release`), enregistrement en 10 essais, barre d'avancement 2 essais.
 
+## Jamais d'abandon (exigence de l'auteur du 24/11 : « une vidéo en construction doit arriver à son terme et être sur le site »)
+- Plus aucune LookupError : articles trop maigres → `sources.chercher_large` (autres recherches, contexte Wikipédia, descriptions
+  des vidéos TikTok virales) ; texte trop court → contexte Wikipédia ajouté puis phrases ajoutées (5 tours) ; vidéo toujours
+  courte → problème ouvert (« à vérifier »), la vidéo va au bout.
+- Étape qui plante → `principal.creer` reprend la vidéo sur le MÊME sujet (4 tentatives, 20 s entre deux ; la 4e en mode
+  secours : voix Kokoro, pas de regard de l'IA sur les images) ; IA gratuites saturées → `avec_ia` attend 5 min (90 min max).
+- La vidéo est toujours enregistrée sur le site ; un problème restant = statut « a_verifier » (publication automatique bloquée).
+
 ## Fonctionnement
 - `robot/buzz.py` (buzz.yml, toutes les 2 h) : yt-dlp lit les comptes d'actualité suivis (`buzz.comptes`), garde les vidéos
   au-dessus des seuils, l'IA les regroupe par sujet → `docs/donnees/buzz.json` (statut nouveau / utilise / ignore / sans_source).

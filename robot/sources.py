@@ -152,3 +152,50 @@ def a_la_une(n=12, journal=print):
         except Exception as e:
             journal(f"  flux {media} illisible ({str(e)[:80]})")
     return out[:n]
+
+
+def contexte_wikipedia(requete, n=2, journal=print):
+    """Résumés Wikipédia (en français) des pages qui correspondent au sujet : contexte vérifiable quand la presse ne suffit pas."""
+    import json, time
+    out = []
+    try:
+        q = urllib.parse.urlencode({"action": "query", "list": "search", "srsearch": requete, "srlimit": n, "format": "json"})
+        for k in range(3):
+            try:
+                pages = json.loads(_ouvrir(f"https://fr.wikipedia.org/w/api.php?{q}"))["query"]["search"]; break
+            except urllib.error.HTTPError as e:
+                if e.code != 429 or k == 2: raise
+                time.sleep(3 * (k + 1))
+        for p in pages:
+            q2 = urllib.parse.urlencode({"action": "query", "prop": "extracts", "explaintext": 1, "exintro": 1,
+                                         "titles": p["title"], "format": "json"})
+            ext = next(iter(json.loads(_ouvrir(f"https://fr.wikipedia.org/w/api.php?{q2}"))["query"]["pages"].values())).get("extract", "")
+            if len(ext) > 200:
+                out.append(dict(media="Wikipédia (contexte)", titre=p["title"], lien=f"https://fr.wikipedia.org/wiki/{urllib.parse.quote(p['title'])}",
+                                resume=ext[:300], texte=ext[:4000]))
+    except Exception as e:
+        journal(f"  contexte Wikipédia illisible ({str(e)[:80]})")
+    return out
+
+
+def chercher_large(sujet, mots_cles=(), videos=(), journal=print, minimum=2500):
+    """Comme `chercher`, mais n'abandonne jamais (demande de l'auteur du 24/11 : une vidéo commencée va jusqu'au bout) :
+    si les articles sont trop maigres, autres recherches (titre seul, mots-clés deux par deux), puis contexte Wikipédia, puis
+    descriptions des vidéos TikTok virales du sujet (présentées comme telles)."""
+    total = lambda L: sum(len(a.get("texte") or a.get("resume") or "") for a in L)
+    articles = chercher(sujet, mots_cles, journal=journal)
+    essais = [[]] + [list(mots_cles)[k:k + 2] for k in range(0, len(mots_cles), 2)]
+    for mots in essais:
+        if total(articles) >= minimum:
+            break
+        vus = {a["titre"] for a in articles}
+        articles += [a for a in chercher(sujet, mots, maxi=3, journal=journal) if a["titre"] not in vus]
+    if total(articles) < minimum:
+        articles += contexte_wikipedia(" ".join(list(mots_cles)[:3]) or sujet, journal=journal)
+    descriptions = [f"@{v.get('compte', '')} : {v.get('texte', '')}" for v in videos if v.get("texte")]
+    if total(articles) < minimum and descriptions:
+        articles.append(dict(media="Descriptions des vidéos TikTok virales", titre=sujet, lien="", resume=descriptions[0][:300],
+                             texte="\n".join(descriptions)[:3000]))
+    if not articles:
+        articles.append(dict(media="Sujet du buzz", titre=sujet, lien="", resume=sujet, texte=sujet))
+    return articles

@@ -15,7 +15,7 @@ import subprocess
 import time
 import traceback
 
-from . import avancement, buzz, carte, controle, depot, ecrire, images, montage, sources
+from . import avancement, buzz, carte, controle, depot, ecrire, ia, images, montage, sources
 from . import voix as V
 from .commun import MINIATURES, SORTIE, ecrire as ecrire_donnees, iso, lire, maintenant, noter, reglages, simulation
 
@@ -114,8 +114,22 @@ def voix_simulation(p, chemin):
     return d, [(m, k * pas, (k + 1) * pas) for k, m in enumerate(mots)]
 
 
-def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
-    """Une vidéo complète. Renvoie l'entrée de la liste (file.json) ou lève une exception."""
+def avec_ia(fonction, journal, attente_max_min=90):
+    """Appelle une étape qui a besoin d'une IA gratuite ; si toutes sont saturées, attend 5 min et réessaie (jamais d'abandon)."""
+    debut = time.time()
+    while True:
+        try:
+            return fonction()
+        except ia.AucuneIA as e:
+            if time.time() - debut > attente_max_min * 60:
+                raise
+            journal(f"  IA gratuites saturées ({str(e)[:80]}) : nouvel essai dans 5 minutes")
+            time.sleep(300)
+
+
+def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=False):
+    """Une vidéo complète. Renvoie l'entrée de la liste (file.json) ou lève une exception (creer la reprend alors sur le MÊME
+    sujet). `secours` (dernière tentative) : voix Kokoro, pas de regard de l'IA sur les images, attente si les IA sont saturées."""
     vid = f"{maintenant():%Y%m%d-%H%M%S}" + (f"-{os.environ['MACHINE']}" if os.environ.get("MACHINE") else "")
     dossier = os.path.join(SORTIE, vid); os.makedirs(dossier, exist_ok=True)
     pre = f"Vidéo {n}/{total} — " if total > 1 else ""
@@ -128,19 +142,15 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
     elif sujet.get("parties"):                                # 3 actus de la semaine : 2 articles par sujet
         articles = [a for s in sujet["parties"] for a in sources.chercher(s["titre"], s.get("mots_cles") or [], maxi=2,
                                                                           journal=journal)]
-    else:
-        articles = sources.chercher(sujet["titre"], sujet.get("mots_cles") or [], journal=journal)
-    if not simulation() and not articles:
-        raise LookupError("aucun article de presse trouvé sur ce sujet")
-    journal(f"  {len(articles)} article(s) : " + ", ".join(f"{a['media']} ({len(a.get('texte') or '')} car.)" for a in articles))
-    if not simulation() and sum(len(a.get("texte") or "") for a in articles) < 1200:
-        raise LookupError("pas assez d'articles complets pour vérifier les faits")
+    else:                                                     # jamais d'abandon : la recherche s'élargit si besoin
+        articles = sources.chercher_large(sujet["titre"], sujet.get("mots_cles") or [], sujet.get("videos") or [], journal)
+    journal(f"  {len(articles)} source(s) : " + ", ".join(f"{a['media']} ({len(a.get('texte') or '')} car.)" for a in articles))
     journal("  images : " + ", ".join(f"{n} {'✓' if os.environ.get(c) else '✗ (pas de clé)'}"
                                      for n, c in (("Pexels", "PEXELS_API_KEY"), ("Pixabay", "PIXABAY_API_KEY")))
             + ", NASA ✓, Wikimedia ✓")
 
     avancement.etape(pre + "Écriture du texte", 12)
-    script = script_simulation(sujet) if simulation() else ecrire.ecrire(sujet, articles, journal, format_)
+    script = script_simulation(sujet) if simulation() else avec_ia(lambda: ecrire.ecrire(sujet, articles, journal, format_), journal)
     avancement.etape(pre + "Vérification des faits par une 2e IA", 22)
     B = controle.Bulletin()
     if not simulation():
@@ -148,23 +158,21 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
         avancement.etape(pre + "Contrôle 1/4 : le texte", 26)
         # Compléter / corriger puis revérifier SEULEMENT les phrases nouvelles ou réécrites (une phrase déjà vérifiée ne
         # repasse jamais : l'IA ne juge pas deux fois pareil), 3 allers-retours avant d'abandonner le sujet.
-        for tour in range(3):
+        for tour in range(5):
+            if tour == 3 and not any(a["media"] == "Wikipédia (contexte)" for a in articles):
+                articles += sources.contexte_wikipedia(sujet["titre"], journal=journal)    # plus de matière pour compléter
             deja_vues = {p["ecrit"] for p in script["phrases"]}
-            try:
-                script = controle.controle_texte(script, articles, B, journal)
-            except LookupError:
-                if tour == 2:
-                    raise
+            script = controle.controle_texte(script, articles, B, journal)
             nouvelles = [i for i, p in enumerate(script["phrases"]) if p["ecrit"] not in deja_vues]
             if nouvelles:
                 script = ecrire.verifier(script, articles, journal, seulement=nouvelles)
             if len(script["phrases"]) >= 9 and controle.duree_estimee(script["phrases"]) >= 62 and not controle.regles_texte(script):
                 break
-        if len(script["phrases"]) < 9 or controle.duree_estimee(script["phrases"]) < 60:
-            raise LookupError(f"seulement {len(script['phrases'])} phrases vérifiées : trop court pour une vidéo d'1 minute")
+        if controle.duree_estimee(script["phrases"]) < 60:          # jamais d'abandon : signalé, la vidéo va au bout
+            B.ouvrir("texte", f"texte un peu court (environ {controle.duree_estimee(script['phrases']):.0f} s)", None, "grave")
 
     avancement.etape(pre + "Voix et calage des mots", 30)
-    nom_voix, vitesse = R["video"]["voix"], float(R["video"]["vitesse"])
+    nom_voix, vitesse = ("kokoro-ff_siwis" if secours else R["video"]["voix"]), float(R["video"]["vitesse"])
     for i, p in enumerate(script["phrases"]):
         p["son"] = os.path.join(dossier, f"voix{i:02d}.wav")
     if simulation():
@@ -208,7 +216,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
             journal(f"  carte : {lieu['nom']}")
     if not simulation():
         avancement.etape(pre + "Contrôle 3/4 : les images", 62)
-        script = controle.controle_images(script, dossier, B, journal, deja, sujet["titre"])
+        script = controle.controle_images(script, dossier, B, journal, deja, sujet["titre"], sans_ia=secours)
     trouves = sum(1 for p in script["phrases"] if p.get("media"))
     journal(f"  images : {trouves} écran(s) illustré(s) sur {len(script['phrases'])}")
 
@@ -220,7 +228,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
     # solutions dont la dernière marche à coup sûr), puis TOUTE la vidéo est recontrôlée. Zéro problème restant exigé.
     for tour in range(12):
         avancement.etape(pre + f"Contrôle 4/4 : la vidéo finie (tour {tour + 1})", min(94, 87 + tour))
-        fautifs = controle.controle_video(fichier, script, dossier, B, journal, leger=simulation())
+        fautifs = controle.controle_video(fichier, script, dossier, B, journal, leger=simulation(), sans_ia=secours)
         trouves_ici = {(("voix" if a == "voix" else "video"), (None if i is None else controle.uid(script, i)))
                        for i, (_, a) in fautifs.items()}
         for l in B.ouverts():                                         # revérifié : passage réglé
@@ -268,13 +276,22 @@ def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz"):
             break
         essais += 1; traites.add(s["id"])
         journal(f"▶ Sujet : {s['titre']}")
-        try:
-            v = fabriquer(s, R, len(faites) + 1, nombre, journal, format_)
-        except Exception as e:
-            traceback.print_exc()
-            avancement.finir(False, f"Sujet abandonné : {str(e)[:120]}")
-            noter(f"⚠️ « {s['titre']} » abandonné : {str(e)[:160]}", "erreur")
-            _marquer_sujet(s["id"], "sans_source" if isinstance(e, LookupError) else "echec")
+        v = None
+        for tentative in range(4):                            # une vidéo commencée va au bout : reprise sur le MÊME sujet
+            secours = tentative == 3
+            try:
+                v = fabriquer(s, R, len(faites) + 1, nombre, journal, format_, secours=secours)
+                break
+            except Exception as e:
+                traceback.print_exc()
+                if tentative < 3:
+                    noter(f"🔁 « {s['titre']} » : étape ratée ({str(e)[:140]}) — reprise {tentative + 2}/4"
+                          + (" en mode secours" if tentative == 2 else ""), "attention")
+                    time.sleep(20)
+        if v is None:
+            avancement.finir(False, "Vidéo impossible après 4 tentatives")
+            noter(f"❌ « {s['titre']} » : vidéo impossible après 4 tentatives (sujet suivant)", "erreur")
+            _marquer_sujet(s["id"], "echec")
             continue
 
         def appliquer(v=v, s=s):
