@@ -93,6 +93,13 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
 - Contrôle final arrêté après 70 min de fabrication (2 tours au moins) : problèmes restants dans le bulletin, « à vérifier ».
 - File commune : 3 vidéos en même temps au plus (`creation.paralleles`) ; les autres attendent leur tour.
 
+## Liens des vidéos d'origine (24/11 : « vidéo indisponible » sur TikTok)
+Les liens étaient bons (34/34 vérifiés) : TikTok affiche « vidéo indisponible » sur téléphone hors de l'appli, sans compte,
+ou pour une vidéo supprimée / réservée aux adultes. Le site ouvre maintenant la vidéo dans le LECTEUR OFFICIEL de TikTok
+(`player/v1/<id>`, fenêtre `#lecteur`, sans appli ni compte), lien direct « Ouvrir dans TikTok » en secours ;
+`buzz.verifier_liens` (chaque relevé, anciens sujets compris) : oEmbed 400/403/404 = `indisponible` (lien retiré), pseudo
+de l'auteur corrigé. Une vidéo réservée aux adultes reste impossible à voir sans compte TikTok.
+
 ## Vitesse, suite (demande de l'auteur du 24/11)
 - Calage des mots : Whisper de **Groq** d'abord (`voix._groq_mots`, whisper-large-v3-turbo, clé GROQ_API_KEY), Whisper local
   si Groq refuse (3 refus = local pour le reste du passage).

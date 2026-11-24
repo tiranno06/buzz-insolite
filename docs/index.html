@@ -420,7 +420,7 @@ function carteSujet(s) {
     <div class="chiffres"><span>👁️ <b>${nb(s.vues)}</b> vues</span><span>❤️ <b>${nb(s.jaime)}</b></span><span>💬 <b>${nb(s.commentaires)}</b></span><span>⚡ score ${nb(s.score)}</span>${s.medias != null ? `<span>📰 <b>${s.medias}</b> média(s)${s.medias < 3 ? " (peu)" : ""}</span>` : ""}</div>
     <p class="petit" style="margin:4px 0">${esc(s.resume)}</p>
     <p class="muted petit" style="margin:4px 0">Vu chez ${esc(comptes) || "—"}
-      ${(s.videos || []).map((v, i) => v.url && v.url !== "#" ? ` · <a href="${esc(v.url)}" target="_blank" rel="noopener">vidéo ${i + 1}</a>` : "").join("")}</p>
+      ${(s.videos || []).filter(v => v.url && v.url !== "#" && !v.indisponible).map((v, i) => ` · <a href="${esc(v.url)}" target="_blank" rel="noopener" data-lecteur="${esc(v.lecteur || ("https://www.tiktok.com/player/v1/" + (v.id || "")))}">▶️ vidéo ${i + 1}</a>`).join("")}</p>
     <div class="rang" style="margin-top:8px">
       ${statut === "utilise" && s.video_id ? `<button class="btn mini" data-voir="${esc(s.video_id)}">🎬 Voir la vidéo</button>` : ""}
       <button class="btn mini primaire" data-a="sujet_creer" data-id="${esc(s.id)}">🎬 En faire une vidéo</button>
@@ -693,6 +693,24 @@ if (VUES.includes(location.hash.slice(1))) montrer(location.hash.slice(1));
 charger().then(() => suivre(false));
 setInterval(() => { if (!document.hidden) charger(); }, 120e3);
 if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
+</script>
+<div id="lecteur" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:99;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:16px">
+  <iframe id="lecteur-cadre" title="Vidéo TikTok" allow="autoplay; encrypted-media; fullscreen" style="border:0;border-radius:12px;background:#000;width:min(360px,92vw);height:min(640px,78vh)"></iframe>
+  <div class="rang"><a id="lecteur-lien" class="btn mini" target="_blank" rel="noopener">Ouvrir dans TikTok</a><button class="btn mini" id="lecteur-fermer">✖ Fermer</button></div>
+</div>
+<script>
+// Vidéos d'origine : lecteur officiel de TikTok dans la page (marche sans l'appli ni compte ; le lien direct reste en secours)
+document.addEventListener("click", e => {
+  const a = e.target.closest("a[data-lecteur]");
+  if (!a) return;
+  e.preventDefault();
+  document.getElementById("lecteur-cadre").src = a.dataset.lecteur;
+  document.getElementById("lecteur-lien").href = a.href;
+  document.getElementById("lecteur").style.display = "flex";
+});
+document.getElementById("lecteur-fermer").onclick = () => {
+  document.getElementById("lecteur").style.display = "none"; document.getElementById("lecteur-cadre").src = "about:blank";
+};
 </script>
 </body>
 </html>

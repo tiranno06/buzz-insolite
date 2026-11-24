@@ -173,6 +173,41 @@ def fusionner(anciens, nouveaux):
     return sans_doublons(sorted(out.values(), key=lambda s: -s["score"]))
 
 
+def verifier_liens(sujets, journal=print):
+    """Chaque lien de vidéo TikTok est vérifié auprès du service officiel de TikTok (oEmbed) : une vidéo supprimée, privée ou
+    réservée est marquée « indisponible » (le site ne la propose plus) ; le pseudo de l'auteur est corrigé s'il a changé ; le
+    lecteur officiel (`lecteur`) permet de la voir sur le site sans l'appli ni compte TikTok."""
+    import urllib.error
+    import urllib.parse
+    import urllib.request
+    from concurrent.futures import ThreadPoolExecutor
+
+    def un(v):
+        if not v.get("id") or not str(v.get("url", "")).startswith("https://www.tiktok.com/"):
+            return
+        try:
+            r = urllib.request.urlopen(urllib.request.Request(
+                "https://www.tiktok.com/oembed?url=" + urllib.parse.quote(v["url"], safe=""), headers={"User-Agent": "Mozilla/5.0"}),
+                timeout=20)
+            d = json.loads(r.read())
+            v["indisponible"] = False
+            auteur = str(d.get("author_unique_id") or "").strip()
+            if auteur and auteur != v.get("compte"):
+                v["url"] = f"https://www.tiktok.com/@{auteur}/video/{v['id']}"
+        except urllib.error.HTTPError as e:
+            if e.code in (400, 403, 404):
+                v["indisponible"] = True                          # supprimée, privée ou réservée
+        except Exception:
+            pass                                                  # TikTok injoignable : on ne conclut rien
+        v["lecteur"] = f"https://www.tiktok.com/player/v1/{v['id']}?description=1&music_info=1"
+    toutes = [v for s in sujets for v in s.get("videos") or []]
+    with ThreadPoolExecutor(6) as ex:
+        list(ex.map(un, toutes))
+    morts = sum(1 for v in toutes if v.get("indisponible"))
+    if morts:
+        journal(f"  {morts} vidéo(s) TikTok devenue(s) indisponible(s) : retirée(s) des liens du site")
+
+
 def relever(journal=print):
     R = reglages(); B = R["buzz"]
     toutes, etat = [], {}
@@ -217,6 +252,7 @@ def relever(journal=print):
     ancien = lire("buzz.json") or {}
     d = {"maj": iso(), "comptes": etat, "lues": len(toutes), "retenues": len(retenues),
          "sujets": fusionner(ancien.get("sujets") or [], sujets)}
+    verifier_liens(d["sujets"], journal)                    # anciens sujets compris (vidéos supprimées depuis)
     return d, (len(toutes) == 0 and len(etat) >= 3)
 
 
