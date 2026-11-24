@@ -226,6 +226,14 @@ class TestControleQualite(unittest.TestCase):
         self.assertFalse(any("grave" in p for p in controle.avant_publication(v, {"publication": {"compte": "x"}}, forcer=True)))
 
     @unittest.skipUnless(shutil.which("ffmpeg"), "ffmpeg absent")
+    def test_image_d_une_video_trop_courte(self):
+        from robot import controle
+        f = os.path.join(TMP, "court.mp4")
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", "color=c=gray:s=320x240:d=1", f], check=True)
+        img = controle._image_de({"type": "video", "chemin": f, "debut": 5}, TMP, "court.jpg")    # 5 s demandées sur 1 s
+        self.assertTrue(os.path.getsize(img) > 0)
+
+    @unittest.skipUnless(shutil.which("ffmpeg"), "ffmpeg absent")
     def test_ecran_noir_detecte(self):
         from robot import controle
         f = os.path.join(TMP, "noir.mp4")

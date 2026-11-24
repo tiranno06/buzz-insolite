@@ -188,12 +188,13 @@ def controle_texte(script, articles, B, journal=print, tours=3):
             solutions_garanties(script, dur)
             continue
         refaites = 0
+        signalees = {i for i, _, _ in dur if i is not None}
         for k, nouv in (d.get("phrases") or {}).items():
             try:
                 k = int(k)
             except ValueError:
                 continue
-            if 0 <= k < len(ph) and str(nouv.get("voix") or "").strip():
+            if k in signalees and 0 <= k < len(ph) and str(nouv.get("voix") or "").strip():   # jamais une phrase saine
                 garde = {c: ph[k][c] for c in ("reponse",) if ph[k].get(c)}
                 ph[k] = dict(voix=nombres.dire_les_nombres(str(nouv["voix"])), ecrit=str(nouv.get("ecrit") or nouv["voix"]),
                              ecran=str(nouv.get("ecran") or "")[:24], image=str(nouv.get("image") or ph[k].get("image", "")), **garde)
@@ -218,9 +219,14 @@ def _image_de(media, dossier, nom, instant=1.0):
     sortie = os.path.join(dossier, nom)
     entree = media["chemin"]
     t = media.get("debut", 0) + instant if media["type"] == "video" else 0
-    subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(t), "-i", entree, "-frames:v", "1", "-vf", "scale=512:-2",
-                    "-q:v", "4", sortie], check=True)
-    return sortie
+    for essai_t in (t, 0):                               # vidéo plus courte que prévu : on prend sa toute première image
+        if os.path.exists(sortie):
+            os.remove(sortie)
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(essai_t), "-i", entree, "-frames:v", "1", "-vf", "scale=512:-2",
+                        "-q:v", "4", sortie], check=False)
+        if os.path.exists(sortie) and os.path.getsize(sortie) > 0:
+            return sortie
+    raise OSError("aucune image lisible dans ce média")
 
 
 def mesures_image(chemin):
@@ -294,9 +300,9 @@ def controle_images(script, dossier, B, journal=print, deja=None, sujet=""):
                 continue
             try:
                 img = _image_de(m, dossier, f"controle{i:02d}.jpg")
+                lum, net = mesures_image(img)
             except Exception:
                 fautifs[i] = ("image illisible", ""); continue
-            lum, net = mesures_image(img)
             if lum < 20:
                 fautifs[i] = ("écran presque noir", "")
             elif net < 6:
@@ -398,8 +404,9 @@ def controle_video(fichier, script, dossier, B, journal=print, leger=False):
         img = os.path.join(dossier, f"final{i:02d}.jpg")
         t = debuts[i] + min(1.2, ph[i]["duree"] / 2)
         subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.2f}", "-i", fichier, "-frames:v", "1", "-vf", "scale=540:-2",
-                        "-q:v", "4", img], check=True)
-        lots.append((i, img))
+                        "-q:v", "4", img], check=False)
+        if os.path.exists(img) and os.path.getsize(img) > 0:
+            lots.append((i, img))
     for essai in range(3):
         try:
             for k in range(0, len(lots), 5):
