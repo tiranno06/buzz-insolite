@@ -1,6 +1,481 @@
 {
  "videos": [
   {
+   "id": "20261124-203224-1",
+   "tag": "v-20261124-203224-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-203224-1/buzz-20261124-203224-1.mp4",
+   "titre": "Sénégal champion CAN 2025 !",
+   "accroche": "LE TAS A PARLÉ",
+   "sujet_id": "af2b8dfec2",
+   "sujet": "CAN 2025 : Sénégal vainqueur après arbitrage TAS",
+   "buzz": {
+    "vues": 2700000,
+    "jaime": 320800,
+    "commentaires": 5453,
+    "score": 3718
+   },
+   "description": "Le Sénégal récupère son titre après un rebondissement fou ! 🏆 Qui a raison ?",
+   "question": "Tu penses que le TAS a fait le bon choix ?",
+   "hashtags": [
+    "#can2025",
+    "#sénégalmaroc",
+    "#tasfootball",
+    "#senegalvainqueur",
+    "#insolite",
+    "#actu"
+   ],
+   "duree": 116.1,
+   "sources": [
+    {
+     "media": "linternaute.com",
+     "titre": "CAN 2025 : le Sénégal récupère le titre, le Maroc dénonce un incident, la décision finale du TAS et les recours",
+     "lien": "https://www.linternaute.com/sport/foot/11315951-can-2025/"
+    },
+    {
+     "media": "franceinfo",
+     "titre": "Victoire du Sénégal à la CAN : la Confédération africaine de football déclare \"respecter la décision\" du Tribunal arbitral du sport",
+     "lien": "https://www.franceinfo.fr/sports/foot/can/direct-senegal-vainqueur-de-la-can-le-tribunal-arbitral-du-sport-a-rendu-justice-au-sport-estime-le-president-de-la-federation-senegalaise_8298138.html#xtor=RSS-3-[lestitres]"
+    },
+    {
+     "media": "football.fr",
+     "titre": "CAN 2025: Sénégal-Maroc, le TAS justifie sa décision",
+     "lien": "https://www.football.fr/can/can-2025-senegal-maroc-le-tas-justifie-sa-decision-845551.html"
+    },
+    {
+     "media": "football.fr",
+     "titre": "CAN 2025: Sénégal-Maroc, énorme coup de théâtre après le verdict du TAS !",
+     "lien": "https://www.football.fr/can/can-2025-senegal-maroc-enorme-coup-de-theatre-apres-le-verdict-du-tas-845561.html"
+    },
+    {
+     "media": "msn.com",
+     "titre": "Le TAS a tranché: le Sénégal déclaré vainqueur de la CAN 2025, le Maroc déchu",
+     "lien": "https://www.msn.com/fr-fr/actualite/other/le-tas-a-tranch%C3%A9-le-s%C3%A9n%C3%A9gal-d%C3%A9clar%C3%A9-vainqueur-de-la-can-2025-le-maroc-d%C3%A9chu/ar-AA2i7SlZ"
+    },
+    {
+     "media": "msn.com",
+     "titre": "Le Sénégal vainqueur de la CAN 2025: le Maroc dénonce la décision du TAS et annonce un nouveau recours devant la justice",
+     "lien": "https://www.msn.com/fr-fr/actualite/other/le-s%C3%A9n%C3%A9gal-vainqueur-de-la-can-2025-le-maroc-d%C3%A9nonce-la-d%C3%A9cision-du-tas-et-annonce-un-nouveau-recours-devant-la-justice/ar-AA2i8ntp"
+    }
+   ],
+   "verification": {
+    "par": "groq:openai/gpt-oss-20b",
+    "corrigees": 1,
+    "retirees": 0,
+    "problemes": [
+     "Le terme 'illégal' n'est pas confirmé par les articles, qui mentionnent seulement un contact téléphonique."
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "Carte : Natural Earth, OpenStreetMap",
+    "Titre : football.fr",
+    "Titre : franceinfo",
+    "Titre : linternaute.com"
+   ],
+   "ecrans_illustres": 4,
+   "format": "buzz",
+   "voix": "chatterbox-bernard",
+   "lieu": "Lausanne, Suisse",
+   "humeur": "tension",
+   "texte": [
+    "Le Sénégal est CHAMPION CAN 2025 !",
+    "Mais comment ? Tout a basculé après un arbitrage historique du TAS.",
+    "La finale contre le Maroc, le 18 janvier à Rabat, s’est terminée 1-0 pour les Lions de la Teranga.",
+    "Sauf que... après un penalty litigieux, 15 minutes de chaos et des joueurs sénégalais quittant le terrain, le match a repris.",
+    "Brahim Diaz a raté le penalty, puis Pape Gueye a marqué en prolongation.",
+    "La CAF a d’abord donné le titre au Maroc sur tapis vert, 3-0.",
+    "Le Sénégal a fait appel au TAS, et ce mardi 24 novembre, le verdict est tombé : le titre leur revient !",
+    "Le jury officiel a dit que l'arbitre n'avait pas fait de faute en relançant le match.",
+    "Le Maroc dénonce un contact entre un arbitre du TAS et le président de la FSF.",
+    "Le Maroc a 30 jours pour faire appel devant le Tribunal fédéral suisse.",
+    "Le Sénégal a répondu avec tranquillité : « Toujours les meilleurs d’Afrique, encore une fois. »",
+    "La CAF a déclaré respecter la décision, mais le Maroc promet des recours.",
+    "Le 18 janvier à Rabat.",
+    "La finale CAN 2025 a basculé après un **penalty litigieux**. **Quinze minutes** de chaos ont suivi : les joueurs sénégalais ont quitté le terrain en protestation.",
+    "En mars, la CAF a retiré le titre au Sénégal.",
+    "Le déclarant forfait selon ses **articles 82 et 84**. Résultat : le Maroc a été sacré **3-0** sur tapis vert.",
+    "Le TAS, présidé par **Gérald Simon**, a auditionné les parties à **Lausanne** en octobre. Il a estimé que l'arbitre n'avait pas eu tort de **reprendre le match**.",
+    "Le Maroc dit que Ulrich Haas, un responsable, a parlé avec Abdoulaye Fall, un autre responsable, deux jours avant la décision. La fédération marocaine promet de faire des plaintes.",
+    "Brahim Diaz a manqué le penalty litigieux, puis **Pape Gueye** a marqué en prolongation pour offrir la victoire au Sénégal.",
+    "Le Maroc a **30 jours** pour contester la décision devant le **Tribunal fédéral suisse**.",
+    "Un rebondissement fou ! Et toi, tu trouves ça juste ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-24T21:28:37+01:00",
+   "fabrication_s": 3373,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 0,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 2,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 3,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 5,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 6,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 9,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 58 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 12,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 13,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 14,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 15,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 2,
+      "solution": "voix refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 38,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "images",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "Wrong event (Russia World Cup 2021 beach soccer), unrelated to CAN 2025 final",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "Generic football training scene, unrelated to CAN 2025 controversy",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "Generic map of West Africa, not related to CAN 2025 penalty or TAS decision",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "Generic map of Central/East Africa, unrelated to CAN 2025 final",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "No visual related to CAF or TAS decision",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 33,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 34,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 35,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 36,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "video",
+      "ecran": 33,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 3,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 3,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 3,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "La carte montre la Suisse au lieu du Maroc",
+      "corrige": true,
+      "essais": 3,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 3,
+      "solution": "titre retiré"
+     }
+    ],
+    "sautes": [],
+    "corriges": 40,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261124-194231-1",
    "tag": "v-20261124-194231-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-194231-1/buzz-20261124-194231-1.mp4",
