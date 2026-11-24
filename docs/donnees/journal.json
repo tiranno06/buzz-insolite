@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-24T20:46:43+01:00",
+   "niveau": "info",
+   "texte": "🛑 « Leto et GTA VI : un buzz explosif » écartée (ne sera pas publiée)."
+  },
+  {
    "date": "2026-11-24T20:40:00+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Leto et GTA VI : un buzz explosif » (102 s, 3 écrans illustrés) — à regarder puis cocher « À publier »"
