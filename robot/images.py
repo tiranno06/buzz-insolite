@@ -346,35 +346,6 @@ def _cand_vimeo(sujet, journal):
 SOURCES_VIDEO = (("YouTube (Creative Commons)", _cand_youtube), ("PeerTube", _cand_peertube), ("Internet Archive", _cand_archive), ("Vimeo", _cand_vimeo))
 
 
-CONSIGNE_LOGO = """On te montre 3 images d'une vidéo. Dis si on y voit le logo ou le nom d'une chaîne de télévision, d'une agence
-de presse ou d'un média (BFM, TF1, France 24, franceinfo, AFP, Reuters, Euronews, Brut, Konbini…), ou le filigrane d'un réseau
-social (TikTok, Instagram, Snapchat) ou d'un autre compte. Réponds uniquement en JSON : {"logo": true/false, "lequel": "…"}"""
-
-
-def sans_logo_media(chemin, duree, journal=print):
-    """True seulement si une IA qui voit confirme qu'aucune image ne porte le logo d'une télé, d'un média ou d'un réseau social :
-    une vidéo « libre » qui en porte un a été remise en ligne par quelqu'un qui n'en avait pas le droit. IA indisponible = refus."""
-    from . import ia
-    images_ = []
-    for k, t in enumerate((0.15, 0.5, 0.85)):
-        img = f"{chemin}.logo{k}.jpg"
-        r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{max(0.0, duree * t):.2f}", "-i", chemin, "-frames:v", "1",
-                            "-vf", "scale=640:-2", img])
-        if r.returncode == 0 and os.path.exists(img):
-            images_.append(img)
-    if not images_:
-        return False
-    try:
-        d, _ = ia.regarder_json(CONSIGNE_LOGO, "Ces images portent-elles un logo de média ou de réseau social ?", images_, journal=journal)
-    except Exception as e:
-        journal(f"  contrôle des logos impossible ({str(e)[:60]}) : vidéo écartée par prudence")
-        return False
-    if d.get("logo") is True or str(d.get("logo")).lower() == "true":
-        journal(f"  logo vu : {str(d.get('lequel', ''))[:60]}")
-        return False
-    return True
-
-
 def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, prefixe="sujet", deja=None):
     """VRAIES vidéos du sujet, publiées par leur auteur sous licence libre (CC BY, CC BY-SA, CC0, domaine public) : YouTube
     (filtre Creative Commons, licence relue sur la page), PeerTube (Sepia Search), Internet Archive, Wikimedia Commons.
@@ -439,9 +410,6 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, 
                                                     "csv=p=0", chemin]))
         except Exception as x:
             journal(f"  vidéo {c['source']} : téléchargement refusé ({str(x)[:80]})")
-            continue
-        if not sans_logo_media(chemin, reelle, journal):
-            journal(f"  vidéo {c['source']} « {c['titre'][:50]} » écartée : logo d'une télé, d'un média ou d'un réseau social")
             continue
         prises += 1
         auteur = (c["auteur"] or c["source"])[:40]

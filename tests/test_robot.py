@@ -387,12 +387,10 @@ class TestSujetsRiches(unittest.TestCase):
         images._ytdlp, images.shutil_which, images._json = faux, lambda n: "/x", faux_json
         images.subprocess.check_output = lambda *a, **k: b"30.0"
         images.commons_video = lambda *a: None
-        logo, images.sans_logo_media = images.sans_logo_media, lambda *a: True
         try:
             clips = images.videos_du_sujet("Policier vole vélo cycliste Toulouse", [], TMP, journal=lambda *a: None)
         finally:
             (images._ytdlp, images.shutil_which, images.subprocess.check_output, images._json, images.commons_video) = garde
-            images.sans_logo_media = logo
         self.assertEqual({c["id"].split("-")[1] for c in clips}, {"A", "P1"})          # B : licence non libre ; C : hors
         self.assertTrue(any("PeerTube" in c["credit"] for c in clips))                  # sujet ; P2 : chaîne de télé
         self.assertEqual(clips[0]["id"].split("-")[0] != clips[1]["id"].split("-")[0], True)   # passages alternés

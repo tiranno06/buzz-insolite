@@ -6,7 +6,7 @@
 2. VOIX (phrase par phrase, voix.preparer) : mots compris par Whisper, durée normale pour le nombre de mots (une voix qui
    « bafouille » parle trop longtemps). Seule la phrase fautive est refaite.
 3. IMAGES (écran par écran) : écran noir, uni ou flou (mesuré), puis une IA qui VOIT l'image juge si elle colle à la phrase,
-   sans texte incrusté, logo ni filigrane. Seul l'écran fautif reçoit une nouvelle image (sinon un écran de texte).
+   sans texte incrusté en langue étrangère (un logo n'est pas un défaut : choix de l'auteur du 24/11). Seul l'écran fautif reçoit une nouvelle image (sinon un écran de texte).
 4. VIDÉO FINIE : format, durée, son, écrans noirs ; sous-titres réécoutés (Whisper sur la vidéo finie, phrase par phrase) ;
    l'IA regarde une image de chaque écran terminé (titres coupés, textes qui se chevauchent, image hors sujet). Seuls les
    écrans fautifs sont refaits (montage.monter garde les autres), puis la vidéo est réassemblée et recontrôlée (2 tours).
@@ -243,10 +243,10 @@ dite pendant qu'elle s'affiche et le sujet de la vidéo. Réponds pour CHAQUE im
 - "colle" : true si l'image montre ce dont parle la phrase (la personne, le lieu, l'objet nommé) ou au moins le sujet réel de
   l'actualité ; false si c'est une image générique sans rapport réel (paysage, fleur, objet au hasard) ;
 - "texte_etranger" : true si un texte incrusté en langue étrangère ou des sous-titres sont visibles ;
-- "logo" : true si un logo de marque, de chaîne télé ou un filigrane est visible ;
+- un logo ou un filigrane visible n'est PAS un problème : ne le signale pas ;
 - "probleme" : en quelques mots, sinon "" ;
 - "recherche" : si l'image ne va pas, 2 à 4 mots ANGLAIS concrets pour trouver une meilleure vidéo, sinon "".
-Réponds uniquement en JSON : {"images": [{"n": numéro, "colle": …, "texte_etranger": …, "logo": …, "probleme": "…", "recherche": "…"}]}"""
+Réponds uniquement en JSON : {"images": [{"n": numéro, "colle": …, "texte_etranger": …, "probleme": "…", "recherche": "…"}]}"""
 
 
 def juger_images(lots, sujet, journal=print):
@@ -322,7 +322,7 @@ def controle_images(script, dossier, B, journal=print, deja=None, sujet="", sans
                 else:
                     import time; time.sleep(60)
         for i, a in avis.items():
-            if not a.get("colle", True) or a.get("texte_etranger") or a.get("logo"):
+            if not a.get("colle", True) or a.get("texte_etranger"):
                 fautifs[i] = (a.get("probleme") or "image qui ne colle pas", a.get("recherche") or "")
         regles = {uid(script, i) for i in fautifs}
         for l in B.ouverts("images"):                      # revérifié : plus de problème sur ce passage

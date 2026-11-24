@@ -93,9 +93,9 @@ L'IA qui contrôle les images refuse une image générique sans rapport réel.
   YouTube (filtre CC + licence relue), PeerTube (Sepia Search), Internet Archive, Vimeo (clé gratuite facultative
   `VIMEO_TOKEN`, filtres CC-BY / CC-BY-SA / CC0) et Wikimedia Commons ; Dailymotion, Rumble, TikTok, Instagram : aucune
   licence libre possible, jamais repris ; au moins 2 mots du sujet
-  dans le titre ; télés / agences / médias écartés par le nom (`MEDIAS_INTERDITS`) ET par l'image (`sans_logo_media` : une IA
-  qui voit regarde 3 images ; logo de télé, de média, de TikTok ou d'Instagram = vidéo écartée ; IA indisponible = écartée :
-  essai du 24/11, une vidéo PeerTube « CC BY » était un reportage France 24). Découpées en passages de 6 s (`debut`),
+  dans le titre ; télés / agences / médias écartés par le nom (`MEDIAS_INTERDITS`). **Aucun refus pour un logo visible** (choix de l'auteur du
+  24/11, après l'avertissement : une vidéo PeerTube « CC BY » de l'essai était un reportage France 24 remis en ligne ; ni
+  contrôle des logos sur les vidéos, ni dans le contrôle des images). Découpées en passages de 6 s (`debut`),
   alternés entre vidéos, utilisées en PREMIER sur les écrans, crédit « Vidéo : auteur (source, licence) ».
   Ensuite, pour les écrans restants : vidéos libres de CHAQUE `entite` citée (6 au plus, `entites_faites`, `prefixe`, `deja` :
   jamais deux fois la même vidéo). Photos Wikipédia / Commons seulement en dernier recours (choix de l'auteur du 24/11 : des
