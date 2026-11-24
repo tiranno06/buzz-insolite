@@ -92,6 +92,10 @@ séries confondues) : au plus `creation.paralleles` vidéos en même temps ; les
 demande) sur la branche avancement et partent dans l'ordre (revérifié toutes les 30 s) ; machine muette 30 min (en cours) ou
 3 min (en attente) = plantée, ignorée ; départ forcé après 200 min (job de 350 min). Le site affiche la file.
 
+**Toujours 5 sujets** (demande de l'auteur du 24/11) : si les seuils en donnent moins, `buzz.relever` complète avec les vidéos
+récentes les plus vues juste en dessous (« sous_seuils », score divisé par 2) ; doublons fusionnés (`buzz.sans_doublons`,
+`meme_sujet` : 60 % des mots en commun) ; onglet Buzz : « 🏆 Les 5 sujets qui buzzent le plus » toujours visible (statut affiché).
+
 ## Fonctionnement
 - `robot/buzz.py` (buzz.yml, toutes les 2 h) : yt-dlp lit les comptes d'actualité suivis (`buzz.comptes`), garde les vidéos
   au-dessus des seuils, l'IA les regroupe par sujet → `docs/donnees/buzz.json` (statut nouveau / utilise / ignore / sans_source).

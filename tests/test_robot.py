@@ -57,6 +57,16 @@ class TestBuzz(unittest.TestCase):
     def test_identifiant_stable(self):
         self.assertEqual(buzz.identifiant("Tempête : rafales record !"), buzz.identifiant("rafales record tempête"))
 
+    def test_doublons_fusionnes(self):
+        S = [{"id": "a", "titre": "Policier vole vélo à cycliste à Toulouse", "score": 79, "statut": "nouveau",
+              "videos": [{"id": "1", "vues": 10, "jaime": 1, "commentaires": 1}]},
+             {"id": "b", "titre": "Policier vole vélo cycliste Toulouse : vidéo choque", "score": 76, "statut": "utilise",
+              "videos": [{"id": "2", "vues": 20, "jaime": 2, "commentaires": 2}]},
+             {"id": "c", "titre": "Macron inaugure une ligne Airbus à Toulouse", "score": 50, "statut": "nouveau", "videos": []}]
+        out = buzz.sans_doublons(S)
+        self.assertEqual(len(out), 2); self.assertEqual(out[0]["vues"], 30)
+        self.assertEqual(out[0]["statut"], "utilise")                  # déjà traité sous l'autre titre : pas refait
+
     def test_statut_garde(self):
         anciens = [{"id": "x", "statut": "utilise", "score": 1, "derniere_vue": time.time()}]
         nouveaux = [{"id": "x", "score": 5, "titre": "t"}]

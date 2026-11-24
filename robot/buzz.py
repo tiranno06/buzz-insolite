@@ -123,6 +123,33 @@ def score(s, now=None):
     return round(total / 1000 * (1 + 0.3 * (comptes - 1)) * (1 + 0.04 * s.get("insolite", 5)))
 
 
+def mots_cles(titre):
+    vides = {"avec", "pour", "dans", "apres", "après", "devant", "sans", "sous", "contre", "entre", "chez", "plus", "video", "vidéo"}
+    return {m for m in re.findall(r"[a-z0-9]{4,}", _sans_accents(titre)) if m not in vides}
+
+
+def meme_sujet(a, b):
+    """Deux titres qui parlent du même sujet (« Policier vole vélo à cycliste à Toulouse » / « … vidéo choque »)."""
+    A, B = mots_cles(a), mots_cles(b)
+    return bool(A and B) and len(A & B) / min(len(A), len(B)) >= 0.6
+
+
+def sans_doublons(sujets):
+    """Fusionne les sujets en double : le plus fort garde son titre et reçoit les vidéos de l'autre."""
+    out = []
+    for s in sorted(sujets, key=lambda s: -s.get("score", 0)):
+        double = next((o for o in out if o["id"] == s["id"] or meme_sujet(o["titre"], s["titre"])), None)
+        if not double:
+            out.append(s); continue
+        connues = {v.get("id") for v in double.get("videos") or []}
+        double.setdefault("videos", []).extend(v for v in s.get("videos") or [] if v.get("id") not in connues)
+        for k in ("vues", "jaime", "commentaires"):
+            double[k] = sum(v.get(k, 0) for v in double["videos"])
+        if s.get("statut") not in (None, "nouveau") and double.get("statut") == "nouveau":
+            double["statut"] = s["statut"]                     # déjà traité sous l'autre titre : on ne le refait pas
+    return out
+
+
 def fusionner(anciens, nouveaux):
     """Garde l'état (déjà utilisé, ignoré) des sujets déjà connus ; les sujets de plus de 4 jours partent."""
     connus = {s["id"]: s for s in anciens}
@@ -139,7 +166,7 @@ def fusionner(anciens, nouveaux):
     for sid, s in connus.items():
         if sid not in out and s.get("derniere_vue", 0) >= limite:
             out[sid] = s                                  # sujet encore récent mais sorti des listes : gardé quelques jours
-    return sorted(out.values(), key=lambda s: -s["score"])
+    return sans_doublons(sorted(out.values(), key=lambda s: -s["score"]))
 
 
 def relever(journal=print):
@@ -157,11 +184,20 @@ def relever(journal=print):
     retenues = virales(toutes, B)
     journal(f"{len(toutes)} vidéos lues, {len(retenues)} au-dessus des seuils "
             f"({B['vues_min']:,} vues, {B['jaime_min']:,} j'aime, {B['commentaires_min']:,} commentaires)")
-    sujets = grouper(retenues, journal) if retenues else []
+    # Toujours au moins 5 sujets (demande de l'auteur du 24/11) : si les seuils en donnent trop peu, les vidéos récentes les
+    # plus vues juste en dessous complètent la liste (marquées « sous les seuils »).
+    ids = {v["id"] for v in retenues}
+    recentes = [v for v in toutes if v["id"] not in ids and (not v["date"] or time.time() - v["date"] <= float(B.get("heures", 72)) * 3600)]
+    complement = sorted(recentes, key=lambda v: -(v["vues"] + 20 * v["commentaires"]))[:max(0, 15 - len(retenues))]
+    for v in complement:
+        v["sous_seuils"] = True
+    sujets = grouper(retenues + complement, journal) if retenues or complement else []
+    for s in sujets:
+        s["sous_seuils"] = all(v.get("sous_seuils") for v in s["videos"])
     now = time.time()
     for s in sujets:
         s["id"] = identifiant(s["titre"])
-        s["score"] = score(s, now)
+        s["score"] = score(s, now) // (2 if s.get("sous_seuils") else 1)     # les vrais gros buzz d'abord
         s["derniere_vue"] = now
         s["vues"] = sum(v["vues"] for v in s["videos"])
         s["jaime"] = sum(v["jaime"] for v in s["videos"])

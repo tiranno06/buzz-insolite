@@ -127,6 +127,9 @@ dialog form { position: absolute; top: 6px; right: 6px; }
       <button class="btn" id="buzz-maj">🔄 Chercher maintenant</button>
       <button class="btn primaire" id="buzz-meilleurs">🎬 Vidéos des 2 meilleurs sujets</button>
     </div>
+    <h3>🏆 Les 5 sujets qui buzzent le plus</h3>
+    <div id="buzz-top"></div>
+    <h3 style="margin-top:18px">Tous les sujets</h3>
     <div class="filtres" id="buzz-filtres">
       <button data-f="nouveau" aria-pressed="true">Pas encore traités</button><button data-f="utilise">Déjà en vidéo</button>
       <button data-f="ignore">Ignorés</button><button data-f="tous">Tous</button>
@@ -311,7 +314,7 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&l
 const nb = n => (n || 0) >= 1e6 ? (n / 1e6).toLocaleString("fr-FR", { maximumFractionDigits: 1 }) + " M"
   : (n || 0) >= 1e3 ? Math.round(n / 1e3).toLocaleString("fr-FR") + " k" : String(n || 0);
 const quand = iso => iso ? new Date(iso).toLocaleString("fr-FR", { timeZone: "Europe/Paris", weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "";
-const LIB = { a_verifier: "⚠️ À vérifier", nouvelle: "À regarder", a_publier: "À publier", publiee: "Publiée", ecartee: "Écartée", echec: "Échec de publication",
+const LIB = { en_cours: "⏳ En fabrication", a_verifier: "⚠️ À vérifier", nouvelle: "À regarder", a_publier: "À publier", publiee: "Publiée", ecartee: "Écartée", echec: "Échec de publication",
   nouveau: "Nouveau", utilise: "En vidéo", ignore: "Ignoré", sans_source: "Sans article", echec_s: "Échec" };
 function toast(t) { $(".toast")?.remove(); const d = document.createElement("div"); d.className = "toast"; d.setAttribute("role", "status"); d.textContent = t; document.body.append(d); setTimeout(() => d.remove(), 4800); }
 
@@ -411,7 +414,7 @@ function carteSujet(s) {
   const statut = s.statut || "nouveau";
   return `<div class="card">
     <div class="rang"><span class="tag ${statut}">${LIB[statut] || statut}</span>${s.insolite >= 7 ? '<span class="tag">🤯 très insolite</span>' : ""}
-      ${s.presse ? '<span class="tag">📰 presse</span>' : ""}</div>
+      ${s.presse ? '<span class="tag">📰 presse</span>' : ""}${s.sous_seuils ? '<span class="tag" title="Moins de vues que tes seuils : ajouté pour avoir toujours 5 sujets">📉 sous les seuils</span>' : ""}</div>
     <h3 style="margin-top:8px">${esc(s.titre)}</h3>
     <div class="chiffres"><span>👁️ <b>${nb(s.vues)}</b> vues</span><span>❤️ <b>${nb(s.jaime)}</b></span><span>💬 <b>${nb(s.commentaires)}</b></span><span>⚡ score ${nb(s.score)}</span></div>
     <p class="petit" style="margin:4px 0">${esc(s.resume)}</p>
@@ -431,7 +434,11 @@ function rendreBuzz() {
   $("#buzz-info").textContent = B.maj ? `Relevé ${quand(B.maj)} : ${B.lues || 0} vidéos lues sur ${ok}/${tot} comptes, ${B.retenues || 0} au-dessus des seuils `
     + `(${nb(R.vues_min)} vues, ${nb(R.jaime_min)} j'aime, ${nb(R.commentaires_min)} commentaires). Nouveau relevé toutes les 2 heures.`
     : "Pas encore de relevé : touche « Chercher maintenant ».";
-  const liste = S.filter(s => fBuzz === "tous" || (s.statut || "nouveau") === fBuzz || (fBuzz === "ignore" && ["sans_source", "echec"].includes(s.statut)));
+  const top = S.filter(s => !["ignore", "sans_source"].includes(s.statut)).sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 5);
+  $("#buzz-top").innerHTML = top.map((s, k) => carteSujet(s).replace('<div class="card">', `<div class="card"><div class="tag" style="float:right">N° ${k + 1}</div>`)).join("")
+    || `<p class="muted">Pas encore de sujet : touche « Chercher maintenant ».</p>`;
+  const liste = S.filter(s => fBuzz === "tous" || (s.statut || "nouveau") === fBuzz || (fBuzz === "nouveau" && s.statut === "en_cours")
+    || (fBuzz === "ignore" && ["sans_source", "echec"].includes(s.statut)));
   $("#buzz-liste").innerHTML = liste.map(carteSujet).join("") || `<p class="muted">Rien ici pour l'instant.</p>`;
   $("#n-buzz").textContent = S.filter(s => (s.statut || "nouveau") === "nouveau").length || "";
 }
