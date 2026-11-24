@@ -2,18 +2,18 @@
  "buzz": {
   "comptes": [
    "hugodecrypte",
-   "brut",
+   "brutofficiel",
    "franceinfo",
    "leparisien",
    "20minutesfrance",
-   "euronews.fr",
+   "euronewsfr",
    "bfmtv",
    "lemondefr",
    "konbini",
    "tf1info",
    "loopsider",
    "ouestfrance",
-   "lefigarofr",
+   "lefigaro",
    "le.huffpost"
   ],
   "vues_min": 500000,
