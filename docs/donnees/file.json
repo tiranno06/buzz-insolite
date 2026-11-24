@@ -571,7 +571,7 @@
    "cree_le": "2026-11-24T20:31:57+01:00",
    "fabrication_s": 2363,
    "controles": {
-    "note": 100,
+    "note": 40,
     "lignes": [
      {
       "niveau": "texte",
@@ -824,15 +824,23 @@
       "corrige": true,
       "essais": 1,
       "solution": "titre raccourci"
+     },
+     {
+      "niveau": "images",
+      "ecran": null,
+      "gravite": "grave",
+      "probleme": "trop peu d'images : 1 écran illustré sur 15 (vidéo faite avant la correction du 24/11)",
+      "corrige": false,
+      "essais": 1
      }
     ],
     "sautes": [],
     "corriges": 28,
-    "restants": 0,
-    "graves_restants": 0
+    "restants": 1,
+    "graves_restants": 1
    },
    "reprises": 0,
-   "statut": "nouvelle"
+   "statut": "a_verifier"
   },
   {
    "id": "20261124-173417",
