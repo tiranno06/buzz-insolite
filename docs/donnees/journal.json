@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-24T20:31:57+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Écoutez la naissance des étoiles ! » (77 s, 1 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-24T18:38:52+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 10 sujet(s) au-dessus des seuils — en tête : « Son mystérieux naissance étoiles captivant internautes »"
