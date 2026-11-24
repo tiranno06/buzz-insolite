@@ -1,6 +1,16 @@
 {
  "evenements": [
   {
+   "date": "2026-11-24T23:35:39+01:00",
+   "niveau": "info",
+   "texte": "🗑️ « Sénégal champion CAN 2025 ! » supprimée."
+  },
+  {
+   "date": "2026-11-24T23:35:35+01:00",
+   "niveau": "info",
+   "texte": "🗑️ « Sénégal champion CAN 2025 ! » supprimée."
+  },
+  {
    "date": "2026-11-24T23:35:33+01:00",
    "niveau": "info",
    "texte": "🗑️ « Franco célébré : le retour du fascisme en Espagne » supprimée."
