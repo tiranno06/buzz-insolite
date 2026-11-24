@@ -21,13 +21,21 @@ def _mots(t):
     return set(re.findall(r"[a-zà-ÿ0-9]{4,}", (t or "").lower()))
 
 
+def en_ligne_le(v):
+    """Heure de mise en ligne prévue : celle de la programmation Buffer (UTC) si la vidéo a été programmée, sinon l'envoi."""
+    quand = (v.get("buffer") or {}).get("quand") if isinstance(v.get("buffer"), dict) else None
+    if quand:
+        return datetime.datetime.fromisoformat(quand.replace("Z", "+00:00"))
+    return datetime.datetime.fromisoformat(v["publiee_le"])
+
+
 def rapprocher(nos, tiktok):
     """Pour chacune de nos vidéos publiées, la vidéo TikTok correspondante (heure ±3 h et texte commun), ou rien."""
     paires, prises = {}, set()
     for v in nos:
         if v.get("statut") != "publiee" or not v.get("publiee_le"):
             continue
-        t = datetime.datetime.fromisoformat(v["publiee_le"]).timestamp()
+        t = en_ligne_le(v).timestamp()
         mots = _mots(v.get("description", "") + " " + " ".join(v.get("hashtags") or []))
         meilleur, note = None, 0
         for x in tiktok:
@@ -42,7 +50,7 @@ def rapprocher(nos, tiktok):
 
 
 def _heure(v):
-    return datetime.datetime.fromisoformat(v["publiee_le"]).astimezone(PARIS).strftime("%H:00")
+    return en_ligne_le(v).astimezone(PARIS).strftime("%H:00")
 
 
 def analyser(videos, now=None):
@@ -70,7 +78,8 @@ def analyser(videos, now=None):
     return {"maj": iso(now), "videos_mesurees": len(mures), "vues_total": sum(v["stats"]["vues"] for v in videos if v.get("stats")),
             "vues_mediane": round(statistics.median(toutes)) if toutes else 0,
             "heures": heures, "meilleures_heures": sorted(meilleures) if len(meilleures) == 2 else [],
-            "formats": groupe(lambda v: [v.get("format") or "buzz"]), "humeurs": groupe(lambda v: [v.get("humeur") or "neutre"]),
+            "formats": groupe(lambda v: [v.get("format") or "buzz"]),
+            "categories": groupe(lambda v: [v.get("categorie") or ""]), "humeurs": groupe(lambda v: [v.get("humeur") or "neutre"]),
             "hashtags": groupe(lambda v: [h.lower() for h in v.get("hashtags") or []])[:15],
             "top": [{"id": v["id"], "titre": v["titre"], **v["stats"]} for v in sorted(mures, key=lambda v: -v["stats"]["vues"])[:5]]}
 
@@ -98,6 +107,12 @@ def main():
             v["lien_tiktok"] = x["url"]
             hist = v.setdefault("stats_hist", [])
             hist.append([iso(), x["vues"]]); del hist[:-60]
+        for v in file["videos"]:                          # envoyée mais introuvable sur TikTok 2 h après l'heure prévue
+            if v.get("statut") == "publiee" and v.get("publiee_le") and v["id"] not in paires and not v.get("lien_tiktok") \
+                    and not v.get("non_vue_sur_tiktok") and maintenant() - en_ligne_le(v) > datetime.timedelta(hours=2):
+                v["non_vue_sur_tiktok"] = iso()
+                noter(f"⚠️ « {v['titre']} » : envoyée à Buffer mais introuvable sur TikTok 2 h après l'heure prévue. "
+                      "Regarde dans Buffer (publication refusée ?) et sur l'appli TikTok (brouillons, notifications).", "erreur")
         S = analyser(file["videos"])
         S["chaine"] = pseudo; S["lues"] = len(tiktok); S["retrouvees"] = len(paires)
         ecrire("file.json", file); ecrire("stats.json", S)

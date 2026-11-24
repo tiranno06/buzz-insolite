@@ -163,9 +163,11 @@ def _commons(requete, deja, video=False):
             url = ii["url"]
             nom = url.rsplit("/", 1)[1]
             url = url.replace("/commons/", "/commons/transcoded/", 1) + f"/{nom}.480p.vp9.webm"
-            return dict(type="video", url=url, secours=ii["url"], id=f"commons-{p['pageid']}", credit=f"{auteur} / Wikimedia Commons, {lic}")
+            return dict(type="video", url=url, secours=ii["url"], id=f"commons-{p['pageid']}", credit=f"{auteur} / Wikimedia Commons, {lic}",
+                        page=f"https://commons.wikimedia.org/?curid={p['pageid']}", licence=lic, auteur=auteur)
         return dict(type="photo", url=ii.get("thumburl") or ii["url"], id=f"commons-{p['pageid']}",
-                    credit=f"{auteur} / Wikimedia Commons, {lic}")
+                    credit=f"{auteur} / Wikimedia Commons, {lic}", page=f"https://commons.wikimedia.org/?curid={p['pageid']}",
+                    licence=lic, auteur=auteur)
     return None
 
 
@@ -205,7 +207,8 @@ def wikipedia_media(entite, deja):
         if not src:
             continue
         return dict(type="photo", url=("https:" + src) if src.startswith("//") else src, id=cle, entite=titre,
-                    credit=credit_commons(nom) or f"Wikipédia, article « {titre} »")
+                    credit=credit_commons(nom) or f"Wikipédia, article « {titre} »",
+                    page="https://commons.wikimedia.org/wiki/" + urllib.parse.quote(nom.replace(" ", "_")))
     return None
 
 
@@ -418,6 +421,7 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, 
         auteur = (c["auteur"] or c["source"])[:40]
         for k in range(max(1, int(reelle // 6))):
             out.append(dict(type="video", chemin=chemin, debut=6 * k, duree=reelle, id=f"{c['cle']}-{k}", url=c["page"],
+                            page=c["page"], licence=c["licence"], auteur=auteur, titre_source=c["titre"][:120],
                             credit=f"Vidéo : {auteur} ({c['source']}, {c['licence']})", reelle=True))
         journal(f"  vraie vidéo du sujet : « {c['titre'][:70]} » de {auteur} ({c['source']}, {c['licence']}, {int(reelle // 6)} passages)")
     try:                                                   # Wikimedia Commons : vidéos libres, recherche en français

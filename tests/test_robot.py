@@ -460,6 +460,16 @@ class TestSujetsRiches(unittest.TestCase):
         self.assertEqual({x["page"] for x in c}, {"https://vimeo.com/1"})               # « by-nc » jamais repris
         self.assertEqual(images._cand_vimeo("Sujet", print), [])                          # sans clé : Vimeo sauté
 
+    def test_preuves_et_mention_ia(self):
+        from robot import principal, publier
+        s = {"phrases": [dict(media=dict(type="video", id="yt-A-0", page="https://y/A", licence="CC BY", auteur="X", credit="c")),
+                         dict(media=dict(type="video", id="yt-A-0-bis1", page="https://y/A", licence="CC BY", auteur="X", credit="c")),
+                         dict(media=dict(type="carte")), dict(media=None)]}
+        p = principal.preuves_licences(s)
+        self.assertEqual(len(p), 1); self.assertEqual(p[0]["page"], "https://y/A")
+        v = dict(description="d", question="q", hashtags=["#a"])
+        self.assertIn("IA", publier.texte(v, mention_ia=True)); self.assertNotIn("IA", publier.texte(v))
+
     def test_licences(self):
         from robot import images
         self.assertTrue(images.licence_ok("https://creativecommons.org/licenses/by/3.0/"))

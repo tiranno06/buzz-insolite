@@ -72,9 +72,14 @@ def compte(R):
     return liste[0]
 
 
-def texte(v):
-    """Description TikTok : texte + question + hashtags (2 200 caractères au plus)."""
-    corps = "\n\n".join(x for x in (v.get("description", "").strip(), v.get("question", "").strip()) if x)
+MENTION_IA = "🤖 Voix et texte générés par IA, faits vérifiés dans la presse."
+
+
+def texte(v, mention_ia=False):
+    """Description TikTok : texte + question + hashtags (2 200 caractères au plus). `mention_ia` : quand Buffer ne peut pas
+    poser l'étiquette « contenu généré par IA » de TikTok, la description le dit (règle de TikTok)."""
+    corps = "\n\n".join(x for x in (v.get("description", "").strip(), v.get("question", "").strip(),
+                                      MENTION_IA if mention_ia else "") if x)
     return f"{corps}\n\n{' '.join(v.get('hashtags') or [])}".strip()[:2200]
 
 
@@ -99,12 +104,12 @@ def envoyer(v, R, quand_iso=None):
         meta = "metadata: { tiktok: { isAiGenerated: true } }" if ia else ""
         req = f"""mutation {{
   createPost(input: {{
-      text: {json.dumps(texte(v), ensure_ascii=False)}
+      text: {json.dumps(texte(v, mention_ia=not ia), ensure_ascii=False)}
       channelId: {json.dumps(c["id"])}
       schedulingType: automatic
       {planif}
       {meta}
-      assets: [{{ video: {{ url: {json.dumps(v["url"])}, metadata: {{ thumbnailOffset: 1500 }} }} }}]
+      assets: [{{ video: {{ url: {json.dumps(v["url"])}, metadata: {{ thumbnailOffset: {int(v.get("couverture_ms") or 1500)} }} }} }}]
   }}) {{
     ... on PostActionSuccess {{ post {{ id }} }}
     ... on MutationError {{ message }}

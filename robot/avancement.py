@@ -7,6 +7,7 @@ une mise à jour toutes les 10 s environ. Le site relit ce fichier toutes les 8 
 import json
 import os
 import subprocess
+import threading
 import time
 
 from .commun import RACINE, SORTIE, iso, maintenant
@@ -74,7 +75,32 @@ def contenu():
     return d
 
 
+_VERROU = threading.Lock()                      # voix et images avancent en même temps (deux fils d'exécution)
+
+
+def publier_medias(ids):
+    """Vidéos et images déjà prises par CETTE vidéo : les autres machines ne les reprennent pas (jamais deux vidéos en
+    construction avec les mêmes passages)."""
+    if _etat:
+        _etat["medias"] = sorted({str(i).rsplit("-", 1)[0] for i in ids if i})[-300:]
+        _envoyer(force=True)
+
+
+def medias_des_autres():
+    """Médias pris par les autres vidéos en construction en ce moment."""
+    if os.environ.get("GITHUB_ACTIONS") != "true":
+        return set()
+    moi = _nom()
+    return {m for f, (_, d) in _lire_branche().items() if f != moi and d.get("etat") == "en_cours" and _age_min(d) < 30
+            for m in d.get("medias") or []}
+
+
 def _envoyer(force=False):
+    with _VERROU:
+        _envoyer_seul(force)
+
+
+def _envoyer_seul(force=False):
     global _dernier_envoi
     if not force and time.time() - _dernier_envoi < INTERVALLE:
         return
@@ -168,8 +194,11 @@ def _pousser(texte):
             if fichier == nom or not fichier.endswith(".json"):
                 continue
             try:
-                maj = datetime.datetime.fromisoformat(json.loads(_git("cat-file", "-p", sha))["maj"])
-                if maintenant() - maj < datetime.timedelta(hours=2):
+                d = json.loads(_git("cat-file", "-p", sha))
+                maj = datetime.datetime.fromisoformat(d["maj"])
+                # vidéo finie ou en erreur : affichée 30 min puis effacée ; en cours / en attente : 2 h sans nouvelles = plantée
+                duree = datetime.timedelta(minutes=30) if d.get("etat") in ("fini", "erreur") else datetime.timedelta(hours=2)
+                if maintenant() - maj < duree:
                     garde.append(f"100644 blob {sha}\t{fichier}")
             except Exception:
                 pass

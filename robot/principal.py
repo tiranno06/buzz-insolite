@@ -347,9 +347,26 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 ecrans_illustres=trouves, format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""),
                 humeur=script.get("humeur", ""), texte=[p["ecrit"] for p in script["phrases"]],
                 essai=simulation(), cree_le=iso(), fabrication_s=round(time.time() - E["t0"]), controles=bulletin,
-                reprises=E.get("reprises", 0),
+                reprises=E.get("reprises", 0), preuves=preuves_licences(script),
                 statut="a_verifier" if bulletin["graves_restants"] else
                        "a_publier" if (mode == "auto" and script.get("verifie")) else "nouvelle")
+
+
+def preuves_licences(script):
+    """Preuve de chaque vraie vidéo ou image reprise (page d'origine, licence, auteur, date) : à montrer en cas de réclamation."""
+    out, vus = [], set()
+    for i, p in enumerate(script["phrases"]):
+        m = p.get("media") or {}
+        if m.get("type") not in ("video", "photo") or m.get("presse"):
+            continue
+        cle = str(m.get("id", "")).rsplit("-bis", 1)[0]
+        page = m.get("page") or m.get("url") or ""
+        if (page, cle) in vus:
+            continue
+        vus.add((page, cle))
+        out.append(dict(ecran=i + 1, page=page, licence=m.get("licence", ""), auteur=m.get("auteur", ""),
+                        titre=m.get("titre_source", ""), credit=m.get("credit", ""), releve_le=iso()))
+    return out
 
 
 ETAPES = {"articles": "Lecture des articles de presse", "ecriture": "Écriture du texte",
