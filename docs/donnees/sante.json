@@ -1,25 +1,25 @@
 {
- "maj": "2026-11-24T23:36:39+01:00",
+ "maj": "2026-11-24T23:53:29+01:00",
  "ia": [
   {
    "nom": "mistral",
-   "ok": false,
-   "detail": "mistral ministral-8b-latest : pas de JSON dans la réponse"
+   "ok": true,
+   "detail": "mistral:ministral-14b-2512"
   },
   {
    "nom": "groq",
-   "ok": false,
-   "detail": "groq openai/gpt-oss-20b 400 : {\"error\":{\"message\":\"'messages' must contain the word 'json' in some form, to use 'response_format' of type 'json_object'.\",\"type\""
+   "ok": true,
+   "detail": "groq:openai/gpt-oss-120b"
   },
   {
    "nom": "gemini",
-   "ok": true,
-   "detail": "gemini:gemini-flash-lite-latest"
+   "ok": false,
+   "detail": "gemini gemini-2.5-flash 404 : [{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash is no longer available to new users. Please up"
   },
   {
    "nom": "openrouter",
-   "ok": false,
-   "detail": "openrouter nvidia/nemotron-3-ultra-550b-a55b:free : pas de JSON dans la réponse"
+   "ok": true,
+   "detail": "openrouter:inclusionai/ling-3.2-flash:free"
   }
  ],
  "sources": [
@@ -36,7 +36,7 @@
   {
    "nom": "Internet Archive (vidéos libres)",
    "ok": true,
-   "detail": "9 vidéos"
+   "detail": "4 vidéos"
   },
   {
    "nom": "Wikimedia Commons",
@@ -47,6 +47,11 @@
    "nom": "YouTube Creative Commons",
    "ok": true,
    "detail": "20 vidéos"
+  },
+  {
+   "nom": "Vimeo (vidéos libres)",
+   "ok": true,
+   "detail": "45 vidéos"
   }
  ],
  "buffer": {
@@ -89,13 +94,31 @@
   "reuters": 0,
   "foxnews": 0
  },
- "durees": {},
+ "durees": {
+  "ecriture": 79,
+  "images": 233,
+  "voix": 598,
+  "rangement": 6,
+  "controle_final": 165,
+  "montage": 58,
+  "articles": 4,
+  "texte": 42,
+  "controle_images": 338,
+  "total": 964
+ },
  "creations_24h": {
-  "reussies": 8,
+  "reussies": 9,
   "ratees": 5,
   "en_cours": 4
  },
  "reparations": [
+  {
+   "id": "20261124-233239-1",
+   "titre": "CAN 2025 : Le Sénégal récupère son titre",
+   "etape": "auto",
+   "raison": "Réparation automatique : trop peu d'images : 1 écran(s) illustré(s) sur 12",
+   "le": "2026-11-24T23:53:29+01:00"
+  },
   {
    "id": "20261124-212611-1",
    "titre": "Macron et le malaise qui buzz",
@@ -105,5 +128,5 @@
   }
  ],
  "sujets_remis": 0,
- "resume": "⚠️ En panne : mistral, groq, openrouter"
+ "resume": "⚠️ En panne : gemini"
 }

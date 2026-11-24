@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-24T23:53:30+01:00",
+   "niveau": "attention",
+   "texte": "🩺 Santé du robot : ⚠️ En panne : gemini ; 1 vidéo(s) en réparation"
+  },
+  {
    "date": "2026-11-24T23:48:43+01:00",
    "niveau": "info",
    "texte": "🔁 « CAN 2025 : Le Sénégal récupère son titre » refaite (tout) : note 75/100, corrige : « Vidéo de l'ancien code : presque aucune image » — l'ancienne version est remplacée"
