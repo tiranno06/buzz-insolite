@@ -85,6 +85,14 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
 `part_illustree` : moins de 70 % d'écrans illustrés = problème grave (« à vérifier », jamais 100/100) ; raisons de chaque
 écran refusé écrites dans le journal.
 
+## Vitesse (analyse du 24/11 : vidéo GTA en 99 min, dont 86 min de voix Chatterbox)
+- Voix refaite par le contrôle final : la phrase a déjà eu 2 essais à l'étape voix, donc mots simplifiés DÈS le 1er essai,
+  phrase retirée au 3e (si la vidéo reste ≥ 62 s) ; avant : jusqu'à 7 essais identiques (~1 min de Chatterbox chacun).
+- `CONSIGNE_FINALE` : le texte DANS l'image de fond (article, panneau) n'est pas un chevauchement ; titre déjà retiré et
+  toujours un problème = l'image est changée (avant : 7 tours sans fin sur une carte « La presse en parle »).
+- Contrôle final arrêté après 70 min de fabrication (2 tours au moins) : problèmes restants dans le bulletin, « à vérifier ».
+- File commune : 3 vidéos en même temps au plus (`creation.paralleles`) ; les autres attendent leur tour.
+
 ## Vraies images du sujet (demande de l'auteur du 24/11 : « pas de bouts de vidéos au hasard pour meubler »)
 Les vidéos des JT et agences (BFM, TF1, AFP…) ne sont JAMAIS reprises (droits, TikTok les reconnaît). À la place :
 champ "entite" de chaque phrase (titre de l'article Wikipédia de la personne / du lieu / de l'objet) → `images.wikipedia_media`

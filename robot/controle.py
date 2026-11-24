@@ -429,8 +429,10 @@ def sous_titres_ecoutes(fichier, phrases, debuts):
 
 
 CONSIGNE_FINALE = """Tu contrôles des images d'une vidéo TikTok TERMINÉE (textes et sous-titres incrustés compris). Pour chaque
-image, réponds : "titre_coupe" (un texte coupé au bord ou qui dépasse), "chevauchement" (deux textes l'un sur l'autre ou un texte
-sur un visage), "illisible" (texte illisible), "probleme" (quelques mots, sinon "").
+image, réponds : "titre_coupe" (un texte coupé au bord ou qui dépasse), "chevauchement" (deux textes AJOUTÉS l'un sur l'autre :
+gros titre, étiquette, sous-titres ; ou un texte sur un visage), "illisible" (sous-titre ou titre impossible à lire),
+"probleme" (quelques mots, sinon ""). Un texte qui fait partie de l'IMAGE de fond (article de presse, panneau, affiche) n'est
+PAS un chevauchement tant que les sous-titres restent lisibles.
 Réponds uniquement en JSON : {"images": [{"n": numéro, "titre_coupe": …, "chevauchement": …, "illisible": …, "probleme": "…"}]}"""
 
 
@@ -482,7 +484,11 @@ def controle_video(fichier, script, dossier, B, journal=print, leger=False, sans
                     except (TypeError, ValueError, IndexError):
                         continue
                     if r.get("titre_coupe") or r.get("chevauchement") or r.get("illisible"):
-                        fautifs[n] = (r.get("probleme") or "texte mal placé", "titre")
+                        # titre déjà raccourci puis retiré et toujours un problème : c'est l'IMAGE qui gêne, on la change
+                        # (la vidéo du GTA du 24/11 a tourné 7 tours de suite sur un titre déjà retiré)
+                        deja_vu = next((l for l in B.ouverts("video") if l["ecran"] == uid(script, n)), None)
+                        action = "image" if deja_vu and deja_vu.get("essais", 1) >= 2 else "titre"
+                        fautifs[n] = (r.get("probleme") or "texte mal placé", action)
             break
         except ia.AucuneIA:
             if essai == 2:
@@ -537,7 +543,9 @@ def corriger_ecrans(script, fautifs, dossier, B, journal=print, nom_voix="", vit
             l["solution"] = "titre raccourci" if p["ecran"] else "titre retiré"
         elif action == "voix":
             n = l["essais"]
-            if n in (3, 6) or n > 7:                      # refaite plusieurs fois sans succès : mots plus simples
+            # Chatterbox coûte ~1 min par phrase : la phrase a DÉJÀ été refaite 2 fois à l'étape de la voix, donc on passe tout de
+            # suite à des mots plus simples (avant : 2 essais de plus à l'identique, puis encore 2… la vidéo GTA a pris 99 min).
+            if n in (1, 3) or n > 4:
                 try:
                     d, _ = ia.demander_json(CONSIGNE_SIMPLIFIER, p["ecrit"], temperature=0.6, journal=journal)
                     if str(d.get("voix") or "").strip():
@@ -545,7 +553,7 @@ def corriger_ecrans(script, fautifs, dossier, B, journal=print, nom_voix="", vit
                         l["solution"] = "phrase simplifiée puis refaite"
                 except ia.AucuneIA:
                     pass
-            if n >= 5 and 0 < i < len(ph) - 1 and duree_estimee(ph[:i] + ph[i + 1:]) >= 62:
+            if n >= 3 and 0 < i < len(ph) - 1 and duree_estimee(ph[:i] + ph[i + 1:]) >= 62:
                 ph.pop(i)                                  # dernier recours : la phrase est retirée (vidéo assez longue)
                 l.update(solution="phrase retirée", corrige=True)
                 continue

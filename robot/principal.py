@@ -304,6 +304,10 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
     def controle_final():
         for tour in range(E.get("tour_video", 0), 12):
             E["tour_video"] = tour
+            if tour >= 2 and time.time() - E["t0"] > 70 * 60:  # limite de temps : la vidéo arrive sur le site, « à vérifier »
+                journal(f"  contrôle de la vidéo finie arrêté après {tour} tours (plus de 70 min de fabrication) : "
+                        "les problèmes restants sont signalés dans le bulletin")
+                return
             avancement.etape(pre + f"Contrôle 4/4 : la vidéo finie (tour {tour + 1})", min(94, 87 + tour))
             fautifs = controle.controle_video(fichier, script, dossier, B, journal, leger=simulation(), sans_ia=secours)
             trouves_ici = {(("voix" if a == "voix" else "video"), (None if i is None else controle.uid(script, i)))
