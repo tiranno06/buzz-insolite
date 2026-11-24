@@ -1,6 +1,480 @@
 {
  "videos": [
   {
+   "id": "20261124-190104-1",
+   "tag": "v-20261124-190104-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-190104-1/buzz-20261124-190104-1.mp4",
+   "titre": "Leto et GTA VI : un buzz explosif",
+   "accroche": "LETO EN PLEIN DÉBAT",
+   "sujet_id": "87dc77c9fd",
+   "sujet": "Leto accusé de misogynie dans GTA VI",
+   "buzz": {
+    "vues": 891100,
+    "jaime": 67000,
+    "commentaires": 2016,
+    "score": 182
+   },
+   "description": "Découvrez pourquoi le rappeur Leto est au cœur d'une polémique sur GTA VI ! 🎮 #GTAVI #Misogynie",
+   "question": "Tu penses que Leto aurait dû accepter le rôle de Lucia ?",
+   "hashtags": [
+    "#gtavi",
+    "#misogyniejeuxvideo",
+    "#gta",
+    "#gta6",
+    "#insolite",
+    "#actu"
+   ],
+   "duree": 102.3,
+   "sources": [
+    {
+     "media": "midilibre.fr",
+     "titre": "Sortie de GTA VI : immersion, transgression, satire de l’Amérique… Comment le jeu vidéo de gangsters est devenu un phénomène culturel mondial",
+     "lien": "https://www.midilibre.fr/2026/11/18/sortie-de-gta-vi-immersion-transgression-satire-de-lamerique-comment-le-jeu-video-de-gangsters-est-devenu-un-phenomene-culturel-mondial-13659348.php"
+    },
+    {
+     "media": "nicematin.com",
+     "titre": "Summer Game Fest : dans l’ombre de GTA VI le monde du jeu vidéo s’organise",
+     "lien": "https://www.nicematin.com/loisirs/jeux-videos/summer-game-fest-dans-l-ombre-de-gta-vi-le-monde-du-jeu-video-s-organise-10683909"
+    },
+    {
+     "media": "Le Figaro",
+     "titre": "Simulateur de vies, détails hyperréalistes, mécanismes cachés : pourquoi GTA 6 est considéré comme un «miracle créatif et technologique»",
+     "lien": "https://www.lefigaro.fr/secteur/high-tech/simulateur-de-vies-details-hyperrealistes-mecanismes-caches-pourquoi-gta-6-est-considere-comme-un-miracle-creatif-et-technologique-20261124"
+    },
+    {
+     "media": "actu.orange.fr",
+     "titre": "GTA VI: le rappeur Leto est accusé de misogynie après avoir refusé de jouer Lucia",
+     "lien": "https://actu.orange.fr/videos/societe/gta-vi-le-rappeur-leto-est-accuse-de-misogynie-apres-avoir-refuse-de-jouer-lucia-CNT000002u153Q.html"
+    },
+    {
+     "media": "ouest-france.fr",
+     "titre": "Comment GTA VI relance le débat sur le sexisme dans les jeux vidéo… et agace les masculinistes",
+     "lien": "https://www.ouest-france.fr/leditiondusoir/2026-11-24/comment-gta-vi-relance-le-debat-sur-le-sexisme-dans-les-jeux-video-et-agace-les-masculinistes-1c03161c-2e13-4f71-8db2-09aaf103ba4e"
+    },
+    {
+     "media": "diverto.tv",
+     "titre": "GTA VI : gros malaise avec le rappeur Leto dans un live d'Anyme",
+     "lien": "https://www.diverto.tv/actualites/divertissements-et-loisirs/gta-vi-gros-malaise-avec-le-rappeur-leto-dans-un-live-d-anyme"
+    }
+   ],
+   "verification": {
+    "par": "gemini:gemini-flash-lite-latest",
+    "corrigees": 0,
+    "retirees": 0,
+    "problemes": [
+     "Mention de Leto, non présent dans les articles.",
+     "Mention de Leto, non présent dans les articles."
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "Titre : midilibre.fr"
+   ],
+   "ecrans_illustres": 3,
+   "format": "buzz",
+   "voix": "chatterbox-bernard",
+   "lieu": "",
+   "humeur": "tension",
+   "texte": [
+    "Leto est dans une grosse histoire. Le jeu Grand Theft Auto six a un gros problème.",
+    "Lucia, c’est l’un des deux personnages principaux de GTA VI, dont les déboires se déroulent dans l’État fictif de Leonida, inspiré de la Floride.",
+    "L’État fictif de **Leonida**, inspiré de la **Floride**, critique la corruption politique et les inégalités sociales.",
+    "Le jeu propose un grand monde très détaillé, avec des gens qui vivent comme dans la vraie vie, des affaires à gérer et des questions importantes sur la vie.",
+    "Rockstar évite les bugs, contrairement à *Cyberpunk 2077*, sorti en version défaillante.",
+    "Dans *GTA VI*, on peut tout faire : cultiver, livrer des autostoppeurs ou même faire du yoga !",
+    "Treize ans après GTA V, Rockstar Games sort **le 19 novembre 2025** le jeu le plus attendu de la décennie. Avec **plus de huit ans de développement** et un budget estimé entre **un et un milliard et demi de dollars**.",
+    "GTA 6, c’est aussi une critique qui fait rire sur les États-Unis et les pays riches. Rockstar montre les politiciens qui trompent.",
+    "Les inégalités sociales et même la culture de consommation, avec des références à Starbucks, McDonald’s ou Facebook.",
+    "Avant sa sortie, GTA VI a déjà **17 millions de précommandes numériques**.",
+    "Générant **1,65 milliard de dollars** avant même son lancement. Un record qui dépasse même celui de GTA V, qui avait atteint le milliard en seulement trois jours.",
+    "Contrairement à des jeux comme *Cyberpunk 2077*, sorti en version buguée, Rockstar a bâti sa réputation sur des **expériences abouties**. Le studio a utilisé une stratégie marketing unique.",
+    "Avec des bandes-annonces diffusées même sur Netflix pour alimenter l’attente.",
+    "Et toi, tu penses que Leto aurait dû jouer Lucia ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-24T20:40:00+01:00",
+   "fabrication_s": 5935,
+   "controles": {
+    "note": 60,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 52 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 2,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 2,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 3,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 4,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 5,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 8,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 9,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 10,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 11,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 6,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 18,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 2,
+      "solution": "voix refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 5,
+      "solution": "phrase retirée"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 5,
+      "solution": "phrase retirée"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 5,
+      "solution": "phrase retirée"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "voix et sous-titres ne correspondent pas (55%)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 2,
+      "solution": "voix refaite"
+     },
+     {
+      "niveau": "video",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "Présence d'astérisques markdown dans les sous-titres (*GTA VI*).",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "Présence d'astérisques markdown dans les sous-titres (**LEONIDA**).",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 18,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "Astérisque indésirable visible (*CYBERPUNK)",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "Astérisques indésirables visibles (**1,65)",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre chevauche la mention source.",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre chevauche le texte de l'article source.",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 18,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre chevauche le texte d'arrière-plan",
+      "corrige": false,
+      "essais": 7,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre chevauche la mention source.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "Astérisque indésirable visible (*CYBERPUNK)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "Astérisques indésirables visibles (**1,65)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre chevauche la ligne de source",
+      "corrige": false,
+      "essais": 4,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre chevauche la ligne de source",
+      "corrige": false,
+      "essais": 4,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre chevauche le texte d'arrière-plan",
+      "corrige": false,
+      "essais": 4,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     }
+    ],
+    "sautes": [],
+    "corriges": 37,
+    "restants": 4,
+    "graves_restants": 4
+   },
+   "statut": "a_verifier"
+  },
+  {
    "id": "20261124-195233-2",
    "tag": "v-20261124-195233-2",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-195233-2/buzz-20261124-195233-2.mp4",
