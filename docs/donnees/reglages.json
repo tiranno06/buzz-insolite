@@ -33,7 +33,8 @@
   "vues_min": 500000,
   "jaime_min": 10000,
   "commentaires_min": 5000,
-  "heures": 72
+  "heures": 72,
+  "en_pause": {}
  },
  "video": {
   "voix": "chatterbox-bernard",

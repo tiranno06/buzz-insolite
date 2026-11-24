@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-24T23:36:39+01:00",
+   "niveau": "attention",
+   "texte": "🩺 Santé du robot : ⚠️ En panne : mistral, groq, openrouter ; 1 vidéo(s) en réparation"
+  },
+  {
    "date": "2026-11-24T23:36:33+01:00",
    "niveau": "info",
    "texte": "🗑️ « Leto et GTA VI : un buzz explosif » supprimée."

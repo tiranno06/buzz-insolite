@@ -1,0 +1,109 @@
+{
+ "maj": "2026-11-24T23:36:39+01:00",
+ "ia": [
+  {
+   "nom": "mistral",
+   "ok": false,
+   "detail": "mistral ministral-8b-latest : pas de JSON dans la réponse"
+  },
+  {
+   "nom": "groq",
+   "ok": false,
+   "detail": "groq openai/gpt-oss-20b 400 : {\"error\":{\"message\":\"'messages' must contain the word 'json' in some form, to use 'response_format' of type 'json_object'.\",\"type\""
+  },
+  {
+   "nom": "gemini",
+   "ok": true,
+   "detail": "gemini:gemini-flash-lite-latest"
+  },
+  {
+   "nom": "openrouter",
+   "ok": false,
+   "detail": "openrouter nvidia/nemotron-3-ultra-550b-a55b:free : pas de JSON dans la réponse"
+  }
+ ],
+ "sources": [
+  {
+   "nom": "Presse (Bing Actualités)",
+   "ok": true,
+   "detail": "5 articles"
+  },
+  {
+   "nom": "PeerTube (vidéos libres)",
+   "ok": true,
+   "detail": "20 vidéos"
+  },
+  {
+   "nom": "Internet Archive (vidéos libres)",
+   "ok": true,
+   "detail": "9 vidéos"
+  },
+  {
+   "nom": "Wikimedia Commons",
+   "ok": true,
+   "detail": "Paris"
+  },
+  {
+   "nom": "YouTube Creative Commons",
+   "ok": true,
+   "detail": "20 vidéos"
+  }
+ ],
+ "buffer": {
+  "nom": "Buffer",
+  "ok": true,
+  "detail": "buzz.insolite, petitsdramas"
+ },
+ "comptes": {
+  "lus": 28,
+  "total": 28,
+  "en_pause": []
+ },
+ "comptes_muets": {
+  "hugodecrypte": 0,
+  "brutofficiel": 0,
+  "franceinfo": 0,
+  "leparisien": 0,
+  "20minutesfrance": 0,
+  "euronewsfr": 0,
+  "bfmtv": 0,
+  "lemondefr": 0,
+  "konbini": 0,
+  "tf1info": 0,
+  "loopsider": 0,
+  "ouestfrance": 0,
+  "lefigaro": 0,
+  "le.huffpost": 0,
+  "bbcnews": 0,
+  "cnn": 0,
+  "dailymail": 0,
+  "unilad": 0,
+  "ladbible": 0,
+  "washingtonpost": 0,
+  "nytimes": 0,
+  "cbsnews": 0,
+  "skynews": 0,
+  "abcnews": 0,
+  "insider": 0,
+  "aljazeeraenglish": 0,
+  "reuters": 0,
+  "foxnews": 0
+ },
+ "durees": {},
+ "creations_24h": {
+  "reussies": 8,
+  "ratees": 5,
+  "en_cours": 4
+ },
+ "reparations": [
+  {
+   "id": "20261124-212611-1",
+   "titre": "Macron et le malaise qui buzz",
+   "etape": "auto",
+   "raison": "Réparation automatique : texte mal placé",
+   "le": "2026-11-24T23:33:25+01:00"
+  }
+ ],
+ "sujets_remis": 0,
+ "resume": "⚠️ En panne : mistral, groq, openrouter"
+}
