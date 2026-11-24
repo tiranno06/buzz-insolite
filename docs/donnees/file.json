@@ -1,6 +1,1146 @@
 {
  "videos": [
   {
+   "id": "20261124-212611-1",
+   "tag": "v-20261124-212611-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-212611-1/buzz-20261124-212611-1.mp4",
+   "titre": "Macron et le malaise qui buzz",
+   "accroche": "UNE LYCÉENNE S'EFFONDRE",
+   "sujet_id": "ef38e151cf",
+   "sujet": "Malaise étudiant devant Macron à Toulouse",
+   "buzz": {
+    "vues": 891500,
+    "jaime": 62300,
+    "commentaires": 1140,
+    "score": 166
+   },
+   "description": "😱 Quand un malaise interrompt le discours du président ! Découvrez les détails insolites de cet incident à Toulouse.",
+   "question": "Tu as déjà vu un malaise en public ?",
+   "hashtags": [
+    "#emmanuelmacron",
+    "#malaisetoulouse",
+    "#macrontoulouse",
+    "#malaisepublique",
+    "#insolite",
+    "#actu"
+   ],
+   "duree": 70.0,
+   "sources": [
+    {
+     "media": "Le Figaro",
+     "titre": "« Il est déjà élu à l’applaudimètre »: dans les coulisses du match entre David Lisnard et Philippe Laurent pour la présidence de l’AMF",
+     "lien": "https://www.lefigaro.fr/elections/presidentielles/il-est-deja-elu-a-l-applaudimetre-dans-les-coulisses-du-match-entre-david-lisnard-et-philippe-laurent-pour-la-presidence-de-l-amf-20261124"
+    },
+    {
+     "media": "ladepeche.fr",
+     "titre": "DÉCRYPTAGE. \"Aucune alerte, aucun signalement du bazar\" : Le déplacement du président Emmanuel Macron a-t-il entraîné la fermeture du périphérique de Toulouse ?",
+     "lien": "https://www.ladepeche.fr/2026/11/24/decryptage-aucune-alerte-aucun-signalement-du-bazar-le-deplacement-du-president-emmanuel-macron-a-t-il-entraine-la-fermeture-du-peripherique-de-13668839.php"
+    },
+    {
+     "media": "closermag.fr",
+     "titre": "Malaise face à Emmanuel Macron : \"Je te file mon verre d'eau\", une lycéenne \"restée trop longtemps debout\" au bord de l'évanouissement sur le site d'Airbus à Toulouse",
+     "lien": "https://www.closermag.fr/politique/malaise-face-a-emmanuel-macron-je-te-file-mon-verre-deau-une-lyceenne-restee-trop-longtemps-debout-au-bord-de-levanouissement-sur-le-site-dairbus-a-toulouse-3670945"
+    },
+    {
+     "media": "cnews.fr",
+     "titre": "«Il y a d'autres coups de pompe au pas ?» : Emmanuel Macron arrête son discours après le malaise d'une personne à Toulouse",
+     "lien": "https://www.cnews.fr/france/2026-11-23/il-y-dautres-coups-de-pompe-au-pas-emmanuel-macron-arrete-son-discours-apres-le"
+    },
+    {
+     "media": "20minutes.fr",
+     "titre": "Toulouse : « C’est très classique »… Une lycéenne fait un malaise devant Emmanuel Macron chez Airbus",
+     "lien": "https://www.20minutes.fr/societe/4265293-20261124-toulouse-tres-classique-lyceenne-fait-malaise-devant-emmanuel-macron-chez-airbus"
+    },
+    {
+     "media": "actu.orange.fr",
+     "titre": "Une lycéenne fait un malaise devant Emmanuel Macron lors de sa visite sur le site d'Airbus",
+     "lien": "https://actu.orange.fr/videos/politique/une-lyceenne-fait-un-malaise-devant-emmanuel-macron-lors-de-sa-visite-sur-le-site-d-airbus-CNT000002u0Rtx.html"
+    },
+    {
+     "media": "fr.news.yahoo.com",
+     "titre": "Une lycéenne fait un malaise devant Emmanuel Macron lors de son déplacement à Toulouse",
+     "lien": "https://fr.news.yahoo.com/sport/lyc%C3%A9enne-fait-malaise-devant-emmanuel-182449528.html"
+    },
+    {
+     "media": "lanouvelletribune.info",
+     "titre": "Douze jours après deux gardes à l'Élysée, une lycéenne fait un malaise devant Emmanuel Macron",
+     "lien": "https://lanouvelletribune.info/2026/11/douze-jours-apres-deux-gardes-a-lelysee-une-lyceenne-fait-un-malaise-devant-emmanuel-macron/"
+    }
+   ],
+   "verification": {
+    "par": "groq:openai/gpt-oss-20b",
+    "corrigees": 2,
+    "retirees": 1,
+    "problemes": [
+     "Phrase exprimant une opinion (« montre Macron sous un autre jour ») au lieu d’un fait vérifiable",
+     "Le texte affirme que les 3 000 participants sont maires, mais l’article ne précise pas qu’ils sont tous maires.",
+     "Il n’est pas confirmé que Macron souhaite renforcer la décentralisation ; c’est les maires qui le demandent."
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "Carte : Natural Earth, OpenStreetMap",
+    "Titre : closermag.fr",
+    "Titre : ladepeche.fr"
+   ],
+   "ecrans_illustres": 3,
+   "format": "buzz",
+   "voix": "chatterbox-bernard",
+   "lieu": "Toulouse, France",
+   "humeur": "neutre",
+   "texte": [
+    "Une élève du lycée tombe par terre devant le président.",
+    "23/11/2026, à Toulouse, dans une usine où on construit des avions.",
+    "Macron parle de l’industrie aéronautique.",
+    "Une lycéenne fait un malaise en direct.",
+    "Macron stoppe son discours pour la secourir.",
+    "Macron propose son verre d’eau à la lycéenne.",
+    "Macron évoque un malaise par station debout.",
+    "Deux gardes malaises à l’Élysée il y a 12 jours.",
+    "Macron a déjà aidé une personne en 2023.",
+    "Le président fait sourire les gens avec ses blagues.",
+    "La lycéenne est évacuée rapidement.",
+    "Macron reprend son discours après pause.",
+    "Pendant ce temps, **le périphérique de Toulouse est paralysé** à cause de la **fermeture de l’A64** et de la **M902** pour sécuriser son passage",
+    "3000 personnes sont au grand rassemblement où David Lisnard et Philippe Laurent se disputent le poste de président.",
+    "Les **collectivités locales** dénoncent **la baisse des impôts fonciers** pour les entreprises, **aggravant leur crise financière**",
+    "Les maires souhaitent renforcer la décentralisation pour soutenir les communes face à la crise économique",
+    "Toi, tu aurais fait quoi ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-24T22:40:02+01:00",
+   "fabrication_s": 4431,
+   "controles": {
+    "note": 90,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 1,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 7,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 8,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 41 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 2,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "voix et sous-titres ne correspondent pas (50%)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 18,
+      "gravite": "moyen",
+      "probleme": "voix et sous-titres ne correspondent pas (58%)",
+      "corrige": true,
+      "essais": 6,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "voix et sous-titres ne correspondent pas (56%)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "images",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "video",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 4,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre jaune chevauche le texte en arrière-plan",
+      "corrige": true,
+      "essais": 3,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre jaune chevauche le texte en arrière-plan",
+      "corrige": true,
+      "essais": 3,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": false,
+      "essais": 7,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "Texte jaune superposé sur l'arrière-plan flouté",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     }
+    ],
+    "sautes": [],
+    "corriges": 19,
+    "restants": 1,
+    "graves_restants": 1
+   },
+   "reprises": 0,
+   "statut": "a_verifier"
+  },
+  {
+   "id": "20261124-211029-1",
+   "tag": "v-20261124-211029-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-211029-1/buzz-20261124-211029-1.mp4",
+   "titre": "Franco célébré : le retour du fascisme en Espagne",
+   "accroche": "FRANCO REVIENT EN ESPAGNE",
+   "sujet_id": "97a197f1f5",
+   "sujet": "Rassemblement fasciste célébrant Franco en Espagne",
+   "buzz": {
+    "vues": 554300,
+    "jaime": 52500,
+    "commentaires": 1016,
+    "score": 118
+   },
+   "description": "Des centaines de nostalgiques célèbrent encore Franco aujourd’hui. 😱",
+   "question": "Tu penses que ces rassemblements devraient être interdits ?",
+   "hashtags": [
+    "#fascisme",
+    "#histoire",
+    "#f",
+    "#r",
+    "#insolite",
+    "#actu"
+   ],
+   "duree": 101.3,
+   "sources": [
+    {
+     "media": "charliehebdo.fr",
+     "titre": "Reportage. « Nous n’avons pas à avoir honte » : en Espagne avec les fanas de Franco",
+     "lien": "https://charliehebdo.fr/2026/11/international/europe/reportage-nous-navons-pas-a-avoir-honte-en-espagne-avec-les-fanas-de-franco/"
+    },
+    {
+     "media": "lopinion.fr",
+     "titre": "Espagne : 17 interpellations après des violences entre pro et anti-Franco",
+     "lien": "https://www.lopinion.fr/international/espagne-17-interpellations-apres-des-violences-entre-pro-et-anti-franco"
+    },
+    {
+     "media": "sudouest.fr",
+     "titre": "Espagne : 17 personnes interpellées à Vitoria après des heurts entre pro et anti-Franco",
+     "lien": "https://www.sudouest.fr/international/europe/espagne/espagne-17-personnes-interpellees-a-vitoria-apres-des-heurts-entre-pro-et-anti-franco-26303603.php"
+    },
+    {
+     "media": "20minutes.fr",
+     "titre": "Espagne : Des violences éclatent entre pro et anti-Franco, dix-sept interpellations",
+     "lien": "https://www.20minutes.fr/monde/4178755-20251012-espagne-violences-eclatent-entre-pro-anti-franco-dix-sept-interpellations"
+    },
+    {
+     "media": "estrepublicain.fr",
+     "titre": "Accueil Vidéos Des rassemblements fascistes dans plusieurs villes d'Espagne en hommage à Franco",
+     "lien": "https://www.estrepublicain.fr/videos/des-rassemblements-fascistes-dans-plusieurs-villes-d-espagne-en-hommage-a-franco-3p3lrrq"
+    },
+    {
+     "media": "humanite.fr",
+     "titre": "Hommage à Franco : les nostalgiques du Caudillo et tout ce que l'Europe compte de néofascistes réunis à Madrid",
+     "lien": "https://www.humanite.fr/monde/espagne/hommage-a-franco-les-nostalgiques-du-caudillo-et-tout-ce-que-leurope-compte-de-neofascistes-reunis-a-madrid"
+    },
+    {
+     "media": "rfi.fr",
+     "titre": "Espagne: 50 ans après la disparition de Franco, son ombre plane toujours sur la péninsule",
+     "lien": "https://www.rfi.fr/fr/europe/20251120-espagne-50-ans-mort-franco-extreme-droite-vox-pp-abascal-reseaux-sociaux-education"
+    },
+    {
+     "media": "france24.com",
+     "titre": "La guerre d'Espagne : prologue de la Seconde Guerre mondiale ? (1/4)",
+     "lien": "https://www.france24.com/fr/europe/20260803-guerre-espagne-prologue-seconde-mondiale-republicains-franco-histoire"
+    }
+   ],
+   "verification": {
+    "par": "groq:openai/gpt-oss-20b",
+    "corrigees": 3,
+    "retirees": 0,
+    "problemes": [
+     "La phrase affirme que Franco et Primo de Rivera étaient enterrés jusqu’en 2019, alors que seul Franco a été exhumé en 2019, la dépouille de Primo de Rivera deva",
+     "Les articles ne mentionnent pas de « saluts nazis », mais uniquement des saluts fascistes.",
+     "La partie « le pire reste à venir » est une opinion, pas un fait confirmé par les articles."
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "Carte : Natural Earth, OpenStreetMap"
+   ],
+   "ecrans_illustres": 1,
+   "format": "buzz",
+   "voix": "chatterbox-bernard",
+   "lieu": "Valle de Los Caídos, Espagne / Vitoria, Espagne / Madrid, Espagne",
+   "humeur": "tension",
+   "texte": [
+    "En Espagne, des centaines célèbrent encore Franco aujourd’hui.",
+    "Le 20 novembre, date de sa mort, c’est leur fête nationale.",
+    "À la vallée des Tombeaux, un endroit triste où sont enterrés 38 000 corps sans nom.",
+    "En deux mille dix-neuf, Franco a été déterré. Son maître, Primo de Rivera, est toujours dans sa tombe. On va le déterrer aussi en deux mille vingt-trois.",
+    "Mais aujourd’hui, les gens qui aiment le passé continuent de venir ici.",
+    "À Vitoria, 17 personnes ont été interpellées après des violences entre pro et anti-Franco.",
+    "Des saluts fascistes, des drapeaux brandis, et des affrontements avec des contre-manifestants.",
+    "Un ancien parti de l’ancienne époque dure veut toujours que le pays reste uni et entier.",
+    "Des chaises lancées, des incendies, et même des tirs de mortiers ont eu lieu.",
+    "20 policiers ont été légèrement blessés, et l’événement survient à quelques semaines du 50e anniversaire de sa mort.",
+    "À Madrid, des centaines de néofascistes européens se sont aussi réunis pour célébrer Franco.",
+    "Un sommet fasciste européen a même été organisé dans la foulée.",
+    "À Vitoria, des militants de la Phalange ont brandi des drapeaux espagnols et fait des saluts fascistes. Des contre-manifestants encagoulés ont riposté en lançant des chaises et en incendiant des déchets.",
+    "Dans la basilique du Valle de Los Caídos, des nostalgiques se recueillent encore devant l’emplacement vide de la tombe de Franco, malgré son exhumation en deux mille dix-neuf.",
+    "Le gouvernement espagnol a classé ce monument comme patrimoine national, mais les nostalgiques continuent d’en faire un lieu de pèlerinage fasciste.",
+    "À Madrid, des néofascistes européens ont organisé un rassemblement pour célébrer Franco, marquant une convergence inquiétante des extrêmes en Europe.",
+    "Alors, tu penses que ces rassemblements devraient être interdits ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-24T22:29:02+01:00",
+   "fabrication_s": 4713,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 1,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 2,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 5,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 3,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 59 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "voix et sous-titres ne correspondent pas (60%)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 2,
+      "solution": "voix refaite"
+     },
+     {
+      "niveau": "images",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "video",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     }
+    ],
+    "sautes": [],
+    "corriges": 27,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "statut": "nouvelle"
+  },
+  {
+   "id": "20261124-203224-1",
+   "tag": "v-20261124-203224-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-203224-1/buzz-20261124-203224-1.mp4",
+   "titre": "Sénégal champion CAN 2025 !",
+   "accroche": "LE TAS A PARLÉ",
+   "sujet_id": "af2b8dfec2",
+   "sujet": "CAN 2025 : Sénégal vainqueur après arbitrage TAS",
+   "buzz": {
+    "vues": 2700000,
+    "jaime": 320800,
+    "commentaires": 5453,
+    "score": 3718
+   },
+   "description": "Le Sénégal récupère son titre après un rebondissement fou ! 🏆 Qui a raison ?",
+   "question": "Tu penses que le TAS a fait le bon choix ?",
+   "hashtags": [
+    "#can2025",
+    "#sénégalmaroc",
+    "#tasfootball",
+    "#senegalvainqueur",
+    "#insolite",
+    "#actu"
+   ],
+   "duree": 116.1,
+   "sources": [
+    {
+     "media": "linternaute.com",
+     "titre": "CAN 2025 : le Sénégal récupère le titre, le Maroc dénonce un incident, la décision finale du TAS et les recours",
+     "lien": "https://www.linternaute.com/sport/foot/11315951-can-2025/"
+    },
+    {
+     "media": "franceinfo",
+     "titre": "Victoire du Sénégal à la CAN : la Confédération africaine de football déclare \"respecter la décision\" du Tribunal arbitral du sport",
+     "lien": "https://www.franceinfo.fr/sports/foot/can/direct-senegal-vainqueur-de-la-can-le-tribunal-arbitral-du-sport-a-rendu-justice-au-sport-estime-le-president-de-la-federation-senegalaise_8298138.html#xtor=RSS-3-[lestitres]"
+    },
+    {
+     "media": "football.fr",
+     "titre": "CAN 2025: Sénégal-Maroc, le TAS justifie sa décision",
+     "lien": "https://www.football.fr/can/can-2025-senegal-maroc-le-tas-justifie-sa-decision-845551.html"
+    },
+    {
+     "media": "football.fr",
+     "titre": "CAN 2025: Sénégal-Maroc, énorme coup de théâtre après le verdict du TAS !",
+     "lien": "https://www.football.fr/can/can-2025-senegal-maroc-enorme-coup-de-theatre-apres-le-verdict-du-tas-845561.html"
+    },
+    {
+     "media": "msn.com",
+     "titre": "Le TAS a tranché: le Sénégal déclaré vainqueur de la CAN 2025, le Maroc déchu",
+     "lien": "https://www.msn.com/fr-fr/actualite/other/le-tas-a-tranch%C3%A9-le-s%C3%A9n%C3%A9gal-d%C3%A9clar%C3%A9-vainqueur-de-la-can-2025-le-maroc-d%C3%A9chu/ar-AA2i7SlZ"
+    },
+    {
+     "media": "msn.com",
+     "titre": "Le Sénégal vainqueur de la CAN 2025: le Maroc dénonce la décision du TAS et annonce un nouveau recours devant la justice",
+     "lien": "https://www.msn.com/fr-fr/actualite/other/le-s%C3%A9n%C3%A9gal-vainqueur-de-la-can-2025-le-maroc-d%C3%A9nonce-la-d%C3%A9cision-du-tas-et-annonce-un-nouveau-recours-devant-la-justice/ar-AA2i8ntp"
+    }
+   ],
+   "verification": {
+    "par": "groq:openai/gpt-oss-20b",
+    "corrigees": 1,
+    "retirees": 0,
+    "problemes": [
+     "Le terme 'illégal' n'est pas confirmé par les articles, qui mentionnent seulement un contact téléphonique."
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "Carte : Natural Earth, OpenStreetMap",
+    "Titre : football.fr",
+    "Titre : franceinfo",
+    "Titre : linternaute.com"
+   ],
+   "ecrans_illustres": 4,
+   "format": "buzz",
+   "voix": "chatterbox-bernard",
+   "lieu": "Lausanne, Suisse",
+   "humeur": "tension",
+   "texte": [
+    "Le Sénégal est CHAMPION CAN 2025 !",
+    "Mais comment ? Tout a basculé après un arbitrage historique du TAS.",
+    "La finale contre le Maroc, le 18 janvier à Rabat, s’est terminée 1-0 pour les Lions de la Teranga.",
+    "Sauf que... après un penalty litigieux, 15 minutes de chaos et des joueurs sénégalais quittant le terrain, le match a repris.",
+    "Brahim Diaz a raté le penalty, puis Pape Gueye a marqué en prolongation.",
+    "La CAF a d’abord donné le titre au Maroc sur tapis vert, 3-0.",
+    "Le Sénégal a fait appel au TAS, et ce mardi 24 novembre, le verdict est tombé : le titre leur revient !",
+    "Le jury officiel a dit que l'arbitre n'avait pas fait de faute en relançant le match.",
+    "Le Maroc dénonce un contact entre un arbitre du TAS et le président de la FSF.",
+    "Le Maroc a 30 jours pour faire appel devant le Tribunal fédéral suisse.",
+    "Le Sénégal a répondu avec tranquillité : « Toujours les meilleurs d’Afrique, encore une fois. »",
+    "La CAF a déclaré respecter la décision, mais le Maroc promet des recours.",
+    "Le 18 janvier à Rabat.",
+    "La finale CAN 2025 a basculé après un **penalty litigieux**. **Quinze minutes** de chaos ont suivi : les joueurs sénégalais ont quitté le terrain en protestation.",
+    "En mars, la CAF a retiré le titre au Sénégal.",
+    "Le déclarant forfait selon ses **articles 82 et 84**. Résultat : le Maroc a été sacré **3-0** sur tapis vert.",
+    "Le TAS, présidé par **Gérald Simon**, a auditionné les parties à **Lausanne** en octobre. Il a estimé que l'arbitre n'avait pas eu tort de **reprendre le match**.",
+    "Le Maroc dit que Ulrich Haas, un responsable, a parlé avec Abdoulaye Fall, un autre responsable, deux jours avant la décision. La fédération marocaine promet de faire des plaintes.",
+    "Brahim Diaz a manqué le penalty litigieux, puis **Pape Gueye** a marqué en prolongation pour offrir la victoire au Sénégal.",
+    "Le Maroc a **30 jours** pour contester la décision devant le **Tribunal fédéral suisse**.",
+    "Un rebondissement fou ! Et toi, tu trouves ça juste ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-24T21:28:37+01:00",
+   "fabrication_s": 3373,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 0,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 2,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 3,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 5,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 6,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 9,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 58 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 12,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 13,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 14,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 15,
+      "gravite": "moyen",
+      "probleme": "phrase trop longue (plus de 32 mots)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 2,
+      "solution": "voix refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 38,
+      "gravite": "moyen",
+      "probleme": "mots mal prononcés",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "images",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "Wrong event (Russia World Cup 2021 beach soccer), unrelated to CAN 2025 final",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "Generic football training scene, unrelated to CAN 2025 controversy",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "Generic map of West Africa, not related to CAN 2025 penalty or TAS decision",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "Generic map of Central/East Africa, unrelated to CAN 2025 final",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "No visual related to CAF or TAS decision",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 33,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 34,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 35,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "images",
+      "ecran": 36,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte à la place de l'image"
+     },
+     {
+      "niveau": "video",
+      "ecran": 33,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 3,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 3,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 3,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "La carte montre la Suisse au lieu du Maroc",
+      "corrige": true,
+      "essais": 3,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 3,
+      "solution": "titre retiré"
+     }
+    ],
+    "sautes": [],
+    "corriges": 40,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261124-194231-1",
    "tag": "v-20261124-194231-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-194231-1/buzz-20261124-194231-1.mp4",

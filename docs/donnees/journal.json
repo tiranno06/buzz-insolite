@@ -1,6 +1,26 @@
 {
  "evenements": [
   {
+   "date": "2026-11-24T22:40:02+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Macron et le malaise qui buzz » (70 s, 3 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
+   "date": "2026-11-24T22:29:03+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Franco célébré : le retour du fascisme en Espagne » (101 s, 1 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
+   "date": "2026-11-24T21:40:22+01:00",
+   "niveau": "info",
+   "texte": "⚙️ Réglages enregistrés."
+  },
+  {
+   "date": "2026-11-24T21:28:37+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Sénégal champion CAN 2025 ! » (116 s, 4 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-24T21:25:19+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Macron et l'A320 : un bond historique » (84 s, 3 écrans illustrés) — à regarder puis cocher « À publier »"
