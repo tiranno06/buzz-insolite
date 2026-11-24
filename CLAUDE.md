@@ -43,7 +43,7 @@ commentaires, commits, textes du site), explications simples, sans jargon.
   pays en rouge sombre, épingle ; frontières Natural Earth ; lieu trouvé par Photon puis Nominatim (qui répond 629 aux serveurs
   partagés), sinon "coordonnees" données par l'IA.
 - **Bande son** (`robot/sons.py`, `video.musique`, `video.bruitages`) : musique libre (sons/musique, ACE-Step Apache 2.0, humeur
-  « neutre / tension / joie » choisie par l'IA) très basse et qui s'efface sous la voix ; woosh entre les écrans COUPÉ (l'auteur ne l'aime pas, 24/11 ;
+  « neutre / tension / joie » choisie par l'IA) très basse et qui s'efface sous la voix ; TOUS les bruitages COUPÉS par défaut le 24/11 (15 essais écoutés, aucun retenu : `video.bruitages` false) ; woosh entre les écrans COUPÉ (l'auteur ne l'aime pas, 24/11 ;
   `video.transitions`), ding sur les chiffres, « dun dun » sur la réponse d'un vrai / faux (sons/LICENCES.md).
 - **Formats** (`ecrire.FORMATS`, entrée `format` de creer.yml) : « buzz », « vrai_faux » (affirmation, compte à rebours, réponse
   VRAI ! / FAUX ! en couleur, champ "reponse" jamais retiré par la vérification), « semaine » (3 meilleurs sujets des 7 jours,
@@ -63,6 +63,13 @@ Gemini → Mistral → Groq par paquets de 5 ; écran fautif = nouvelle image, s
 `corriger_ecrans` + `montage.monter` qui ne refait que les écrans dont la signature a changé, 2 tours) ; 5. avant publication
 (`verifier_et_envoyer`, `Refusee`). Bulletin + note /100 dans `controles` de chaque vidéo ; défaut grave restant = statut
 « a_verifier » (jamais publiée automatiquement ; bouton « Publier quand même » = action `publier_force`).
+
+## Plusieurs machines en même temps (demande de l'auteur du 24/11)
+creer.yml : job « plan » (`principal.planifier` : un sujet + des réserves PAR machine, réservés « en_cours » avec `reserve_le`,
+libres de nouveau après 3 h ; réserves non utilisées rendues à la fin de `creer`) puis job « creer » en matrice (une vidéo par
+machine, `MACHINE` = n°, `max-parallel` = `creation.paralleles`, 3 par défaut, 1 à 5 ; `fail-fast: false`). Identifiant de
+vidéo suffixé par le n° de machine. Avancement : un fichier par machine `av-<run>-<machine>.json` sur la branche « avancement »
+(`avancement._pousser` garde ceux des autres machines < 2 h) ; le site affiche une barre par vidéo.
 
 ## Fonctionnement
 - `robot/buzz.py` (buzz.yml, toutes les 2 h) : yt-dlp lit les comptes d'actualité suivis (`buzz.comptes`), garde les vidéos

@@ -207,6 +207,21 @@ class TestControleQualite(unittest.TestCase):
         self.assertEqual(controle.ecrans_noirs(f, [0, 2]), {1})
 
 
+class TestParallele(unittest.TestCase):
+    def test_sujets_differents_par_machine(self):
+        from robot import principal
+        from robot.commun import ecrire
+        ecrire("buzz.json", {"sujets": [{"id": f"s{k}", "titre": f"Sujet {k}", "statut": "nouveau", "score": 10 - k} for k in range(8)]})
+        plan = principal.planifier(3)
+        ids = [i for m in plan for i in m["sujets"].split(",")]
+        self.assertEqual(len(plan), 3); self.assertEqual(len(ids), len(set(ids)))       # jamais deux fois le même sujet
+        self.assertEqual([m["sujets"].split(",")[0] for m in plan], ["s0", "s1", "s2"])
+        B = lire("buzz.json")
+        self.assertEqual({s["id"] for s in B["sujets"] if s["statut"] == "en_cours"}, set(ids))
+        deuxieme = {i for m in principal.planifier(3) for i in m["sujets"].split(",") if i}
+        self.assertFalse(deuxieme & set(ids))                                            # une 2e série ne reprend pas les mêmes
+
+
 @unittest.skipUnless(shutil.which("ffmpeg"), "ffmpeg absent")
 class TestVideoComplete(unittest.TestCase):
     def test_essai_sans_reseau(self):

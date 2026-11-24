@@ -117,11 +117,7 @@ dialog form { position: absolute; top: 6px; right: 6px; }
 <main class="wrap">
   <div class="bandeau alerte" id="demo" hidden>Mode démo : données d'exemple. Sur ton site GitHub, ce sont les vraies données du robot.</div>
   <div class="bandeau alerte" id="nojeton" hidden>Pour que les boutons marchent, ajoute ta clé GitHub dans <a href="#reglages" data-go="reglages">⚙️ Réglages</a>.</div>
-  <div class="card" id="avancement" hidden>
-    <div class="rang"><b id="av-etape">…</b><span class="muted petit" id="av-temps"></span></div>
-    <div class="barre"><div id="av-barre"></div></div>
-    <div class="muted petit" id="av-detail"></div>
-  </div>
+  <div class="card" id="avancement" hidden></div>
 
   <!-- ================= BUZZ ================= -->
   <section data-vue="buzz">
@@ -254,6 +250,8 @@ dialog form { position: absolute; top: 6px; right: 6px; }
       </div>
       <div class="card">
         <h3>🤖 Création automatique</h3>
+        <label class="champ">Machines qui fabriquent en même temps <span>une série de 6 vidéos avec 3 machines prend environ 2 fois 30 minutes</span>
+          <input type="number" id="r-paralleles" min="1" max="5"></label>
         <label class="case"><input type="checkbox" id="r-cre-auto"> Créer une vidéo toute seule aux heures ci-dessous</label>
         <div class="grille2"><label class="champ">1re heure <input type="time" id="r-cre-h1"></label>
           <label class="champ">2e heure <input type="time" id="r-cre-h2"></label></div>
@@ -538,6 +536,7 @@ function remplirReglages() {
   $("#r-chaine").value = P.chaine || ""; $("#r-heures-auto").checked = !!P.heures_auto;
   const MH = (D["stats.json"] || {}).meilleures_heures || [];
   $("#r-heures-stats").textContent = MH.length ? `Meilleures heures d'après tes vidéos : ${MH.join(" et ")}.` : "Les statistiques n'ont pas encore assez de vidéos (2 par heure au moins).";
+  $("#r-paralleles").value = C.paralleles ?? 3;
   const F = C.formats || {}; $("#r-vf").value = String(F.vrai_faux ?? 3); $("#r-semaine").checked = F.semaine !== false;
   $("#r-tags").value = (H.fixes || []).join(" "); $("#r-ntags").value = H.nombre ?? 6;
 }
@@ -547,7 +546,7 @@ $("#form-reglages").onsubmit = e => {
   const R = {
     publication: { mode: $("#r-mode").value, auto: $("#r-pub-auto").checked, heures: heures("#r-pub-h1", "#r-pub-h2"), compte: $("#r-compte").value.trim(),
       chaine: $("#r-chaine").value.trim(), heures_auto: $("#r-heures-auto").checked },
-    creation: { auto: $("#r-cre-auto").checked, heures: heures("#r-cre-h1", "#r-cre-h2"), formats: { vrai_faux: +$("#r-vf").value, semaine: $("#r-semaine").checked } },
+    creation: { paralleles: +$("#r-paralleles").value || 3, auto: $("#r-cre-auto").checked, heures: heures("#r-cre-h1", "#r-cre-h2"), formats: { vrai_faux: +$("#r-vf").value, semaine: $("#r-semaine").checked } },
     buzz: { vues_min: +$("#r-vues").value, jaime_min: +$("#r-jaime").value, commentaires_min: +$("#r-com").value, heures: +$("#r-heures").value,
       comptes: $("#r-comptes").value.split(/\s+/).map(x => x.replace(/^@/, "")).filter(Boolean) },
     video: { voix: $("#r-voix").value, vitesse: +$("#r-vitesse").value, musique: $("#r-musique").checked, bruitages: $("#r-bruitages").checked, transitions: $("#r-transitions").checked, carte: $("#r-carte").checked },
@@ -564,36 +563,37 @@ $("#r-cle").onclick = () => {
 $("#r-oublier").onclick = () => { store.del("bi_jeton"); toast("Clé oubliée sur cet appareil."); charger(); };
 $("#r-buffer").onclick = () => commande("buffer_test", "", "", "Test envoyé : le résultat arrive dans 📜 Journal (1 à 2 min).");
 
-// ---------------- avancement de la fabrication ----------------
-let suiviActif = false, demandeLe = 0;
-async function lireAvancement() {
-  const c = conn(); if (!c.repo) return null;
-  const url = c.token ? `https://api.github.com/repos/${c.repo}/contents/avancement.json?ref=avancement&t=${Date.now()}` : null;
-  if (!url) return null;
-  const r = await fetch(url, { headers: { Authorization: `Bearer ${c.token}`, Accept: "application/vnd.github.raw+json" } });
-  return r.ok ? r.json() : null;
+// ---------------- avancement de la fabrication (une barre par machine) ----------------
+let suiviActif = false, demandeLe = 0; const vuesFinies = new Set();
+async function lireAvancements() {
+  const c = conn(); if (!c.repo || !c.token) return [];
+  const h = { Authorization: `Bearer ${c.token}` };
+  const r = await fetch(`https://api.github.com/repos/${c.repo}/contents/?ref=avancement&t=${Date.now()}`, { headers: { ...h, Accept: "application/vnd.github+json" } });
+  if (!r.ok) return [];
+  const fichiers = (await r.json()).filter(f => f.name.endsWith(".json"));
+  const out = await Promise.all(fichiers.map(f => fetch(`https://api.github.com/repos/${c.repo}/contents/${f.name}?ref=avancement&t=${Date.now()}`,
+    { headers: { ...h, Accept: "application/vnd.github.raw+json" } }).then(x => x.ok ? x.json() : null).catch(() => null)));
+  return out.filter(a => a && Date.now() - new Date(a.maj).getTime() < 15 * 60e3).sort((a, b) => (a.debut || "").localeCompare(b.debut || ""));
+}
+function barre(a) {
+  const fini = a.etat !== "en_cours";
+  return `<div style="margin-bottom:10px"><div class="rang"><b>${fini ? (a.etat === "fini" ? "✅ " : "⚠️ ") : "⏳ "}${esc(a.etape)}</b>
+    <span class="muted petit">${fini ? "" : `${Math.round(a.pourcent)} % · encore ~${Math.max(1, Math.round(a.reste_s / 60))} min`}</span></div>
+    <div class="barre"><div style="width:${a.pourcent || 0}%"></div></div><div class="muted petit">🤖 machine ${esc(a.machine || "1")} · ${esc(a.titre || "")}</div></div>`;
 }
 async function suivre(nouvelle) {
   if (nouvelle) demandeLe = Date.now();
   if (suiviActif && !nouvelle) return;
   suiviActif = true;
   try {
-    const a = await lireAvancement().catch(() => null);
-    const recent = a && Date.now() - new Date(a.maj).getTime() < 15 * 60e3;
-    if (a && recent && a.etat === "en_cours") {
-      $("#avancement").hidden = false; $("#av-etape").textContent = "⏳ " + a.etape;
-      $("#av-barre").style.width = a.pourcent + "%"; $("#av-detail").textContent = [a.titre, a.detail].filter(Boolean).join(" — ");
-      $("#av-temps").textContent = `${Math.round(a.pourcent)} % · encore ~${Math.max(1, Math.round(a.reste_s / 60))} min`;
-      suiviActif = false; return setTimeout(suivre, 8000);
-    }
-    if (Date.now() - demandeLe < 4 * 60e3) {
-      $("#avancement").hidden = false; $("#av-etape").textContent = "📨 Commande envoyée, le robot démarre…";
-      $("#av-barre").style.width = "2%"; $("#av-detail").textContent = "Une fabrication déjà en cours passe d'abord."; $("#av-temps").textContent = "";
-      suiviActif = false; return setTimeout(suivre, 8000);
-    }
-    if (a && recent && a.etat !== "en_cours") { $("#avancement").hidden = false; $("#av-etape").textContent = (a.etat === "fini" ? "✅ " : "⚠️ ") + a.etape;
-      $("#av-barre").style.width = (a.pourcent || 0) + "%"; $("#av-detail").textContent = ""; $("#av-temps").textContent = ""; charger(); }
-    else $("#avancement").hidden = true;
+    const A = await lireAvancements().catch(() => []);
+    const actives = A.filter(a => a.etat === "en_cours");
+    if (A.length) $("#avancement").innerHTML = (actives.length > 1 ? `<p class="petit" style="margin:0 0 8px"><b>${actives.length} vidéos en fabrication en même temps</b></p>` : "") + A.map(barre).join("");
+    else if (Date.now() - demandeLe < 5 * 60e3) $("#avancement").innerHTML = `<b>📨 Commande envoyée : les machines démarrent…</b><div class="barre"><div style="width:2%"></div></div>`;
+    $("#avancement").hidden = !A.length && Date.now() - demandeLe >= 5 * 60e3;
+    const finies = A.filter(a => a.etat !== "en_cours" && !vuesFinies.has(a.id));      // une vidéo vient de finir : liste relue
+    if (finies.length) { finies.forEach(a => vuesFinies.add(a.id)); charger(); }
+    if (actives.length || Date.now() - demandeLe < 5 * 60e3) { suiviActif = false; return setTimeout(suivre, 8000); }
   } finally { suiviActif = false; }
 }
 

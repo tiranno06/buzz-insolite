@@ -36,6 +36,42 @@ def sujet_semaine(journal=print):
                  vues=sum(s.get("vues", 0) for s in trois), commentaires=sum(s.get("commentaires", 0) for s in trois))]
 
 
+def libre_pour_moi(s):
+    """Sujet pas encore traité (un sujet réservé par une série depuis plus de 3 h est de nouveau libre)."""
+    if s.get("statut", "nouveau") == "nouveau":
+        return True
+    if s.get("statut") == "en_cours" and s.get("reserve_le"):
+        import datetime
+        return maintenant() - datetime.datetime.fromisoformat(s["reserve_le"]) > datetime.timedelta(hours=3)
+    return False
+
+
+def planifier(nombre, format_="buzz", sujet="", libre="", paralleles=3, journal=print):
+    """Répartit une série entre plusieurs machines qui travaillent en même temps (creer.yml, job « plan »).
+    Chaque machine reçoit SON sujet + des sujets de réserve à elle seule ; les sujets sont réservés (« en_cours ») pour
+    qu'une autre série ne les prenne pas. Renvoie [{"k": n° de machine, "sujets": "id,id,…"}]."""
+    if libre.strip() or sujet or format_ == "semaine":
+        return [{"k": 1, "sujets": sujet}]
+    S = [s for s in (lire("buzz.json") or {}).get("sujets") or [] if libre_pour_moi(s)]
+    if not S:
+        journal("Aucun sujet du buzz libre : chaque machine prendra un titre à la une de la presse")
+        return [{"k": k + 1, "sujets": ""} for k in range(min(nombre, 3))]
+    nombre = min(nombre, len(S))
+    lots = [[S[k]["id"]] for k in range(nombre)]
+    for j, s in enumerate(S[nombre:nombre * 3]):        # réserves, chacune à une seule machine
+        lots[j % nombre].append(s["id"])
+    reserves = {i for lot in lots for i in lot}
+
+    def appliquer():
+        B = lire("buzz.json") or {"sujets": []}
+        for s in B.get("sujets", []):
+            if s["id"] in reserves and libre_pour_moi(s):
+                s.update(statut="en_cours", reserve_le=iso())
+        ecrire_donnees("buzz.json", B)
+    depot.enregistrer(appliquer, f"Série de {nombre} vidéo(s) : sujets réservés")
+    return [{"k": k + 1, "sujets": ",".join(lot)} for k, lot in enumerate(lots)]
+
+
 def choisir_sujets(n, sujet_id="", libre="", journal=print, format_="buzz"):
     """Sujets à traiter, du meilleur au moins bon. Sans buzz mesuré : titres à la une de la presse."""
     if format_ == "semaine":
@@ -45,14 +81,18 @@ def choisir_sujets(n, sujet_id="", libre="", journal=print, format_="buzz"):
                      videos=[], libre=True)]
     B = lire("buzz.json") or {}
     sujets = B.get("sujets") or []
-    if sujet_id:
-        return [s for s in sujets if s["id"] == sujet_id][:1]
-    frais = [s for s in sujets if s.get("statut", "nouveau") == "nouveau"]
+    if sujet_id:                                          # un ou plusieurs sujets imposés (« id1,id2 » : réserves d'une machine)
+        ids = [x for x in sujet_id.split(",") if x]
+        return [s for i in ids for s in sujets if s["id"] == i]
+    frais = [s for s in sujets if libre_pour_moi(s)]
     if frais:
         return frais[:n + 3]                               # quelques sujets en réserve si l'un n'a pas d'article
     journal("Aucun sujet du buzz disponible : titres à la une de la presse à la place")
+    une = sources.a_la_une(journal=journal)
+    k = (int(os.environ.get("MACHINE", "1")) - 1) * 4 % max(1, len(une))      # chaque machine part d'un titre différent
+    une = une[k:] + une[:k]
     return [dict(id=buzz.identifiant(a["titre"]), titre=a["titre"], resume=a["resume"], mots_cles=[], hashtags=[], videos=[],
-                 presse=True) for a in sources.a_la_une(journal=journal)][:n + 3]
+                 presse=True) for a in une][:n + 3]
 
 
 def script_simulation(sujet):
@@ -76,7 +116,7 @@ def voix_simulation(p, chemin):
 
 def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
     """Une vidéo complète. Renvoie l'entrée de la liste (file.json) ou lève une exception."""
-    vid = f"{maintenant():%Y%m%d-%H%M%S}"
+    vid = f"{maintenant():%Y%m%d-%H%M%S}" + (f"-{os.environ['MACHINE']}" if os.environ.get("MACHINE") else "")
     dossier = os.path.join(SORTIE, vid); os.makedirs(dossier, exist_ok=True)
     pre = f"Vidéo {n}/{total} — " if total > 1 else ""
     avancement.demarrer(vid, "video", sujet["titre"])
@@ -202,11 +242,11 @@ def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz"):
     if not sujets:
         noter("🎬 Aucun sujet à traiter (onglet Buzz vide).", "erreur")
         return []
-    faites, essais = [], 0
+    faites, essais, traites = [], 0, set()
     for s in sujets:
         if len(faites) >= nombre or essais >= nombre + 3:
             break
-        essais += 1
+        essais += 1; traites.add(s["id"])
         journal(f"▶ Sujet : {s['titre']}")
         try:
             v = fabriquer(s, R, len(faites) + 1, nombre, journal, format_)
@@ -229,6 +269,15 @@ def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz"):
         faites.append(v)
         if depot.en_ligne():                                  # sur GitHub : place libérée (la vidéo est dans la Release)
             shutil.rmtree(os.path.join(SORTIE, v["id"]), ignore_errors=True)
+    rendre = {x["id"] for x in sujets} - traites               # réserves pas utilisées : rendues aux autres séries
+    if rendre and not libre.strip():
+        def liberer():
+            B = lire("buzz.json") or {"sujets": []}
+            for x in B.get("sujets", []):
+                if x["id"] in rendre and x.get("statut") == "en_cours":
+                    x["statut"] = "nouveau"; x.pop("reserve_le", None)
+            ecrire_donnees("buzz.json", B)
+        depot.enregistrer(liberer, "Sujets de réserve rendus")
     return faites
 
 
@@ -254,7 +303,18 @@ def main():
     a.add_argument("--libre", default="")
     a.add_argument("--format", default="buzz", choices=("buzz", "vrai_faux", "semaine"))
     a.add_argument("--auto", action="store_true", help="création automatique : seulement si activée dans les réglages")
+    a.add_argument("--plan", action="store_true", help="répartir une série entre plusieurs machines (sortie GitHub « plan »)")
+    a.add_argument("--paralleles", type=int, default=0)
     o = a.parse_args()
+    if o.plan:
+        import json
+        n_par = max(1, min(5, o.paralleles or int(reglages()["creation"].get("paralleles", 3))))
+        plan = planifier(max(1, min(10, o.nombre)), o.format, o.sujet, o.libre, n_par)
+        print(f"Plan : {len(plan)} vidéo(s), {n_par} machine(s) en même temps : {plan}")
+        if os.environ.get("GITHUB_OUTPUT"):
+            with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+                f.write(f"plan={json.dumps(plan)}\nparalleles={n_par}\n")
+        return
     if o.auto and not reglages()["creation"].get("auto"):
         print("Création automatique coupée dans les réglages : rien à faire.")
         return

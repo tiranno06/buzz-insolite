@@ -26,15 +26,38 @@ on:
 permissions:
   contents: write                # données du site et Releases (adresse publique des vidéos pour Buffer)
 
-concurrency:
-  group: fabrication             # une fabrication à la fois ; les demandes suivantes attendent leur tour
-  cancel-in-progress: false
-
+# Plusieurs machines en même temps (demande de l'auteur du 24/11) : le job « plan » répartit les sujets (un sujet + des
+# réserves par machine, réservés dans buzz.json), puis « fabriquer » lance une machine par vidéo, N à la fois au plus
+# (Réglages → creation.paralleles, 3 par défaut ; dépôt public = machines gratuites).
 jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      plan: ${{ steps.plan.outputs.plan }}
+      paralleles: ${{ steps.plan.outputs.paralleles }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Répartir les vidéos entre les machines
+        id: plan
+        env:
+          LIBRE: ${{ inputs.libre }}
+        run: python -m robot.principal --plan --nombre "${{ inputs.nombre || '1' }}" --sujet "${{ inputs.sujet }}" --libre "$LIBRE" --format "${{ inputs.format || 'buzz' }}"
+
   creer:
+    needs: plan
     runs-on: ubuntu-24.04
     timeout-minutes: 240
+    strategy:
+      fail-fast: false               # une vidéo ratée n'arrête jamais les autres
+      max-parallel: ${{ fromJSON(needs.plan.outputs.paralleles) }}
+      matrix:
+        machine: ${{ fromJSON(needs.plan.outputs.plan) }}
     env:
+      MACHINE: ${{ matrix.machine.k }}
       SIMULATION: ${{ inputs.simulation || '0' }}
       MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
       GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -77,7 +100,7 @@ jobs:
           ~/venv-chatterbox/bin/pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
           ~/venv-chatterbox/bin/pip install -q chatterbox-tts==0.1.7
           ~/venv-chatterbox/bin/python -c "from chatterbox.mtl_tts import ChatterboxMultilingualTTS as M; M.from_pretrained(device='cpu')"
-      - name: Fabriquer
-        run: python -m robot.principal --nombre "${{ inputs.nombre || '1' }}" --sujet "${{ inputs.sujet }}" --libre "$LIBRE" --format "${{ inputs.format || 'buzz' }}"
+      - name: Fabriquer (une vidéo par machine)
+        run: python -m robot.principal --nombre 1 --sujet "${{ matrix.machine.sujets }}" --libre "$LIBRE" --format "${{ inputs.format || 'buzz' }}"
         env:
           LIBRE: ${{ inputs.libre }}

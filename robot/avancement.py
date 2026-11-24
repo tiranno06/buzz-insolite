@@ -23,6 +23,7 @@ def demarrer(vid, format_, titre=""):
     global _dernier_envoi
     _etat.clear()
     _etat.update(id=vid, format=format_, titre=titre, etat="en_cours", etape="Démarrage du robot", detail="", pourcent=1,
+                 machine=os.environ.get("MACHINE", "1"),
                  debut=iso(), debut_s=time.time(), run=os.environ.get("GITHUB_RUN_ID", ""))
     _dernier_envoi = 0.0
     _envoyer(force=True)
@@ -92,10 +93,31 @@ def _git(*args, entree=None):
                           timeout=30).stdout.strip()
 
 
+def _nom():
+    """Un fichier par machine (séries en parallèle) : av-<run>-<machine>.json."""
+    return f"av-{os.environ.get('GITHUB_RUN_ID', 'local')}-{os.environ.get('MACHINE', '1')}.json"
+
+
 def _pousser(texte):
-    """Remplace la branche « avancement » par un seul commit contenant avancement.json (sans toucher au dossier de travail)."""
+    """Remplace la branche « avancement » par un seul commit : notre fichier + ceux des autres machines encore actives
+    (mis à jour il y a moins de 2 h). Deux machines qui envoient en même temps : l'une perd sa mise à jour pour 10 s."""
+    import datetime
+    nom = _nom()
+    garde = []
+    if subprocess.run(["git", "fetch", "-q", "origin", BRANCHE], cwd=RACINE, capture_output=True, timeout=30).returncode == 0:
+        for ligne in _git("ls-tree", "FETCH_HEAD").splitlines():
+            mode_type_sha, fichier = ligne.split("\t", 1)
+            sha = mode_type_sha.split()[2]
+            if fichier == nom or not fichier.endswith(".json"):
+                continue
+            try:
+                maj = datetime.datetime.fromisoformat(json.loads(_git("cat-file", "-p", sha))["maj"])
+                if maintenant() - maj < datetime.timedelta(hours=2):
+                    garde.append(f"100644 blob {sha}\t{fichier}")
+            except Exception:
+                pass
     blob = _git("hash-object", "-w", "--stdin", entree=texte)
-    arbre = _git("mktree", entree=f"100644 blob {blob}\tavancement.json\n")
+    arbre = _git("mktree", entree="\n".join(garde + [f"100644 blob {blob}\t{nom}"]) + "\n")
     env = dict(os.environ, GIT_AUTHOR_NAME="robot-buzz", GIT_AUTHOR_EMAIL="robot-buzz@users.noreply.github.com",
                GIT_COMMITTER_NAME="robot-buzz", GIT_COMMITTER_EMAIL="robot-buzz@users.noreply.github.com")
     commit = subprocess.run(["git", "commit-tree", arbre, "-m", f"avancement {maintenant():%H:%M:%S}"], cwd=RACINE,

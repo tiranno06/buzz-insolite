@@ -56,6 +56,8 @@ def appliquer_reglages(d):
     for k in ("musique", "bruitages", "transitions", "carte"):
         if k in Vd:
             R["video"][k] = bool(Vd[k])
+    if "paralleles" in C:
+        R["creation"]["paralleles"] = max(1, min(5, int(C["paralleles"])))
     F = C.get("formats") or {}
     if "vrai_faux" in F:
         R["creation"]["formats"]["vrai_faux"] = max(0, min(10, int(F["vrai_faux"])))

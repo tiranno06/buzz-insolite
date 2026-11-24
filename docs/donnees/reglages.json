@@ -26,7 +26,7 @@
   "vitesse": 0.8,
   "duree_min": 62,
   "musique": true,
-  "bruitages": true,
+  "bruitages": false,
   "carte": true,
   "transitions": false
  },
