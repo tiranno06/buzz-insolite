@@ -109,6 +109,7 @@ dialog form { position: absolute; top: 6px; right: 6px; }
     <button data-tab="creer">➕ Créer</button>
     <button data-tab="publication">📅 Publication<span class="count" id="n-pub"></span></button>
     <button data-tab="stats">📊 Stats</button>
+    <button data-tab="sante">🩺 Santé</button>
     <button data-tab="journal">📜 Journal</button>
     <button data-tab="reglages">⚙️ Réglages</button>
   </nav>
@@ -189,6 +190,15 @@ dialog form { position: absolute; top: 6px; right: 6px; }
   <section data-vue="stats" hidden>
     <h2>📊 Ce qui marche sur ta chaîne</h2>
     <div id="stats"></div>
+  </section>
+
+  <!-- ================= SANTÉ ================= -->
+  <section data-vue="sante" hidden>
+    <h2>🩺 Santé du robot</h2>
+    <p class="petit muted">Vérifiée chaque nuit : IA, sources de vidéos, Buffer, comptes TikTok, créations. Le robot répare seul ce
+      qu'il peut (vidéos refaites en corrigeant, comptes muets mis en pause, sujets bloqués remis en jeu).</p>
+    <button class="btn mini" id="sante-maintenant">🩺 Vérifier maintenant</button>
+    <div id="sante" style="margin-top:10px"></div>
   </section>
 
   <!-- ================= JOURNAL ================= -->
@@ -349,7 +359,11 @@ const DEMO_DATA = {
     meilleures_heures: ["12:00", "19:00"], heures: [{ nom: "19:00", videos: 4, vues_mediane: 26000, vues_moyennes: 41000 }, { nom: "12:00", videos: 4, vues_mediane: 15000, vues_moyennes: 19000 }],
     formats: [{ nom: "vrai_faux", videos: 3, vues_mediane: 31000, vues_moyennes: 44000 }, { nom: "buzz", videos: 5, vues_mediane: 14000, vues_moyennes: 21000 }],
     humeurs: [], hashtags: [{ nom: "#insolite", videos: 8, vues_mediane: 18000, vues_moyennes: 30000 }, { nom: "#espace", videos: 2, vues_mediane: 52000, vues_moyennes: 52000 }],
-    top: [{ id: "20261124-131000", titre: "1 an enfermés sur « Mars »", vues: 98000, jaime: 7100, commentaires: 640 }] }
+    top: [{ id: "20261124-131000", titre: "1 an enfermés sur « Mars »", vues: 98000, jaime: 7100, commentaires: 640 }] },
+  "sante.json": { maj: ilya(5), resume: "✅ Tout fonctionne", ia: [{ nom: "mistral", ok: true }, { nom: "groq", ok: true }],
+    sources: [{ nom: "PeerTube (vidéos libres)", ok: true, detail: "14 vidéos" }], buffer: { nom: "Buffer", ok: true, detail: "buzz.insolite" },
+    comptes: { lus: 27, total: 28, en_pause: [] }, durees: { voix: 420, images: 300, montage: 180, total: 1800 },
+    creations_24h: { reussies: 4, ratees: 0, en_cours: 1 }, reparations: [], sujets_remis: 0 }
 };
 const NOMS = Object.keys(DEMO_DATA);
 let D = null, DEMO = false;
@@ -540,7 +554,25 @@ function rendreJournal() {
   $("#journal").innerHTML = ((D["journal.json"] || {}).evenements || []).filter(e => !seulement || e.niveau !== "info").slice(0, 120).map(e =>
     `<li><time>${quand(e.date)}</time>${e.niveau === "erreur" ? "⚠️ " : ""}${esc(e.texte)}</li>`).join("");
 }
-function rendre() { rendreBuzz(); rendreVideos(); rendrePublication(); rendreStats(); rendreJournal(); }
+const NOMS_ETAPES = { articles: "Articles", ecriture: "Écriture", texte: "Vérification du texte", voix: "Voix", images: "Images",
+  controle_images: "Contrôle des images", montage: "Montage", controle_final: "Contrôle final", rangement: "Rangement", total: "⏱️ Vidéo entière" };
+function rendreSante() {
+  const S = D["sante.json"] || {};
+  if (!S.maj) { $("#sante").innerHTML = `<p class="muted">Pas encore de bilan : il arrive après la première nuit (ou « Vérifier maintenant »).</p>`; return; }
+  const ligne = x => `<div class="creneau"><span>${x.ok ? "✅" : "❌"} ${esc(x.nom)}</span><span class="muted petit">${esc(x.detail || "")}</span></div>`;
+  const min = s => s >= 60 ? `${Math.round(s / 60)} min` : `${s} s`;
+  const C = S.creations_24h || {}, K = S.comptes || {};
+  $("#sante").innerHTML = `<div class="card"><h3>${esc(S.resume || "")}</h3><p class="petit muted">Bilan du ${quand(S.maj)}</p></div>
+    <div class="card"><h3>🤖 IA gratuites</h3>${(S.ia || []).map(ligne).join("")}</div>
+    <div class="card"><h3>🎞️ Sources de vidéos et presse</h3>${(S.sources || []).map(ligne).join("")}</div>
+    <div class="card"><h3>📤 Publication</h3>${S.buffer ? ligne(S.buffer) : ""}</div>
+    <div class="card"><h3>👀 Comptes TikTok suivis</h3><p class="petit">${K.lus ?? "?"} lus sur ${K.total ?? "?"}${(K.en_pause || []).length ? " · en pause 7 jours : " + K.en_pause.map(p => "@" + esc(p)).join(", ") : ""}</p></div>
+    <div class="card"><h3>🎬 Créations des dernières 24 h</h3><p class="petit">✅ ${C.reussies ?? 0} réussie(s) · ❌ ${C.ratees ?? 0} ratée(s) · ⏳ ${C.en_cours ?? 0} en cours</p></div>
+    <div class="card"><h3>⏱️ Temps moyen de chaque étape (10 dernières vidéos)</h3>${Object.entries(S.durees || {}).map(([k, v]) => `<div class="creneau"><span>${esc(NOMS_ETAPES[k] || k)}</span><b>${min(v)}</b></div>`).join("") || '<p class="petit muted">Pas encore mesuré.</p>'}</div>
+    <div class="card"><h3>🔧 Réparations automatiques</h3>${(S.reparations || []).map(r => `<p class="petit">${quand(r.le)} · « ${esc(r.titre)} » refaite (${esc(r.etape)}) : ${esc(r.raison)}</p>`).join("") || '<p class="petit muted">Aucune pour l\'instant.</p>'}
+      ${S.sujets_remis ? `<p class="petit">${S.sujets_remis} sujet(s) bloqué(s) remis en jeu.</p>` : ""}</div>`;
+}
+function rendre() { rendreBuzz(); rendreVideos(); rendrePublication(); rendreStats(); rendreSante(); rendreJournal(); }
 
 // ---------------- réglages ----------------
 function remplirReglages() {
@@ -635,6 +667,7 @@ $$("#buzz-filtres button").forEach(b => b.onclick = () => { fBuzz = b.dataset.f;
 $$("#vid-filtres button").forEach(b => b.onclick = () => { fVid = b.dataset.f; $$("#vid-filtres button").forEach(x => x.setAttribute("aria-pressed", x === b)); rendreVideos(); });
 $("#buzz-maj").onclick = () => ordre("buzz.yml", {}, "Recherche lancée : nouveaux sujets dans 5 à 10 minutes.");
 $("#buzz-meilleurs").onclick = () => creer({ nombre: "2" }, "Série de 2 vidéos lancée (environ 15 minutes).");
+$("#sante-maintenant").onclick = () => ordre("sante.yml", {}, "Vérification lancée (environ 10 min).");
 $("#c-serie").onclick = () => { const f = $("#c-format").value, n = (f === "semaine" || f === "monde60") ? 1 : Math.max(1, Math.min(10, +$("#c-nombre").value || 1));
   creer({ nombre: String(n), format: f }, `${n} vidéo(s) lancée(s) (environ ${n * 14} minutes).`); };
 $("#c-un").onclick = () => { const t = $("#c-libre").value.trim(); if (!t) return toast("Écris d'abord le sujet."); creer({ libre: t }, "Vidéo lancée (environ 7 minutes)."); };

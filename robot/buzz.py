@@ -227,9 +227,10 @@ def facteur_categorie(categorie):
 def relever(journal=print):
     R = reglages(); B = R["buzz"]
     toutes, etat = [], {}
+    pauses = B.get("en_pause") or {}                        # comptes muets mis en pause par la santé du robot
     for pseudo in B["comptes"]:
         p = str(pseudo).strip().lstrip("@")
-        if not p:
+        if not p or p in pauses:
             continue
         vids = videos_du_compte(p)
         etat[p] = {"ok": bool(vids), "videos": len(vids), "le": iso()}

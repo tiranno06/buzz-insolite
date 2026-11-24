@@ -1,0 +1,50 @@
+name: Santé du robot et réparations
+
+on:
+  schedule:
+    - cron: "17 3 * * *"         # chaque nuit (04 h 17 à Paris l'hiver)
+  workflow_dispatch:             # bouton « 🩺 Vérifier maintenant » du site
+
+permissions:
+  contents: write                # sante.json, réglages, sujets débloqués
+  actions: write                 # relancer une vidéo à refaire (creer.yml)
+
+concurrency:
+  group: sante
+  cancel-in-progress: false
+
+jobs:
+  sante:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+      VIMEO_TOKEN: ${{ secrets.VIMEO_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Retrouver ffmpeg déjà téléchargé
+        uses: actions/cache@v4
+        with:
+          path: ~/paquets-ffmpeg
+          key: ffmpeg-sante-v1
+      - name: Installer ffmpeg
+        timeout-minutes: 25
+        run: bash outils/installer_ffmpeg.sh
+      - name: Installer les outils
+        run: |
+          pip install -q "Pillow>=11,<14" "numpy<3"
+          pip install -q -U "yt-dlp[default]" || pip install -q -U yt-dlp
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Vérifier, réparer, écrire la santé
+        run: python -m robot.sante

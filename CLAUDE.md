@@ -138,6 +138,13 @@ sinon nouvelle prise ; mémoire oubliée), texte (`ecrire.refaire_texte` avec pr
 voix et image, contrôle des faits refait), tout (version nouvelle, autres images), auto (`etape_auto` d'après le bulletin).
 Nouvel id `<id>-r<n>` qui remplace l'ancien dans file.json (ancienne Release supprimée).
 
+## Santé du robot et réparations automatiques (demande de l'auteur du 24/11 : « s'autorépare sans mon aide »)
+`robot/sante.py` (sante.yml : chaque nuit 03 h 17 UTC + bouton « 🩺 Vérifier maintenant » ; onglet 🩺 Santé, sante.json) :
+IA, sources de vidéos libres, presse, Buffer, comptes TikTok, créations des 24 h, durée moyenne de chaque étape (`durees` de
+chaque vidéo). Répare seul : comptes muets 3 contrôles de suite → pause 7 jours (`buzz.en_pause`) ; sujets réservés > 6 h ou en
+échec → remis en jeu (échec : une fois) ; vidéos non publiées « à vérifier » ou dont l'IA trouve ≥ 2 images hors sujet sur 8
+(`audit_video`) → REFAITES en corrigeant (`gh workflow run creer.yml -f refaire=…`), 2 fois au plus par vidéo, 3 par nuit.
+
 ## Vraies images du sujet (demande de l'auteur du 24/11 : « pas de bouts de vidéos au hasard pour meubler »)
 Les vidéos des JT et agences (BFM, TF1, AFP…) ne sont JAMAIS reprises (droits, TikTok les reconnaît). À la place :
 champ "entite" de chaque phrase (titre de l'article Wikipédia de la personne / du lieu / de l'objet) → `images.wikipedia_media`
