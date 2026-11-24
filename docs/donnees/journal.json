@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-24T21:40:22+01:00",
+   "niveau": "info",
+   "texte": "⚙️ Réglages enregistrés."
+  },
+  {
    "date": "2026-11-24T21:28:37+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Sénégal champion CAN 2025 ! » (116 s, 4 écrans illustrés) — à regarder puis cocher « À publier »"
