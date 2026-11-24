@@ -306,8 +306,9 @@
    "jaime": 62300,
    "commentaires": 1140,
    "hashtags_viraux": [],
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T18:19:59+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-24T18:19:59+01:00",
+   "reserve_le": "2026-11-24T20:36:12+01:00"
   },
   {
    "titre": "Rumeur galet compression mode hiver infondée",
@@ -439,8 +440,9 @@
    "jaime": 211400,
    "commentaires": 560,
    "hashtags_viraux": [],
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T18:38:52+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-24T18:38:52+01:00",
+   "reserve_le": "2026-11-24T20:36:12+01:00"
   },
   {
    "titre": "Rassemblement fasciste célébrant Franco en Espagne",
@@ -663,8 +665,9 @@
     "jensenhuang",
     "ia"
    ],
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T18:38:52+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-24T18:38:52+01:00",
+   "reserve_le": "2026-11-24T20:36:12+01:00"
   },
   {
    "titre": "Joan revisite In Ze Boîte 20 ans après",
