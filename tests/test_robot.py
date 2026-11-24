@@ -507,6 +507,26 @@ class TestQualite(unittest.TestCase):
         self.assertGreater(principal.couverture_ms(s), 4000)                       # écran 3 : vraie image + gros titre
 
 
+class TestFormatsEtSujets(unittest.TestCase):
+    def test_sujet_deja_traite_dans_la_semaine(self):
+        from robot import principal
+        from robot.commun import ecrire, iso
+        ecrire("file.json", {"videos": [dict(id="v", sujet="Policier vole vélo à cycliste à Toulouse", titre="t", cree_le=iso(),
+                                             statut="publiee")]})
+        self.assertTrue(principal.deja_traite(dict(id="x", titre="Policier vole vélo cycliste Toulouse : vidéo choque")))
+        self.assertFalse(principal.deja_traite(dict(id="y", titre="Golden retriever sauve un enfant au Brésil")))
+        ecrire("file.json", {"videos": []})
+
+    def test_formats_et_categories(self):
+        from robot import ecrire as E, publication_auto, buzz
+        from robot.commun import ecrire
+        for f in ("chiffre", "monde60", "region"):
+            self.assertIn(f, E.FORMATS)
+        ecrire("stats.json", {"vues_mediane": 1000, "categories": [{"nom": "animaux", "vues_mediane": 3000}]})
+        self.assertEqual(buzz.facteur_categorie("animaux"), 1.8); self.assertEqual(buzz.facteur_categorie("sport"), 1.0)
+        ecrire("stats.json", {})
+
+
 class TestParallele(unittest.TestCase):
     def test_sujets_differents_par_machine(self):
         from robot import principal

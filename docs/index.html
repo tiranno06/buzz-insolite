@@ -158,7 +158,9 @@ dialog form { position: absolute; top: 6px; right: 6px; }
       <div class="grille2">
         <label class="champ">Nombre de vidéos <input type="number" id="c-nombre" min="1" max="10" value="2"></label>
         <label class="champ">Format <select id="c-format"><option value="buzz">🔥 Le buzz du jour</option>
-          <option value="vrai_faux">❓ Vrai ou faux ?</option><option value="semaine">🏆 Les 3 actus folles de la semaine (1 vidéo)</option></select></label>
+          <option value="vrai_faux">❓ Vrai ou faux ?</option><option value="semaine">🏆 Les 3 actus folles de la semaine (1 vidéo)</option>
+          <option value="chiffre">🔢 Le chiffre fou du jour</option><option value="monde60">🌍 Le monde en 60 secondes (1 vidéo)</option>
+          <option value="region">📍 Ça s'est passé près de chez toi</option></select></label>
       </div>
       <button class="btn primaire" id="c-serie">🎬 Lancer la série</button>
     </div>
@@ -262,6 +264,11 @@ dialog form { position: absolute; top: 6px; right: 6px; }
         <label class="champ">« Vrai ou faux ? » <select id="r-vf"><option value="0">jamais</option><option value="2">1 vidéo sur 2</option>
           <option value="3">1 vidéo sur 3</option><option value="5">1 vidéo sur 5</option></select></label>
         <label class="case"><input type="checkbox" id="r-semaine"> « Les 3 actus folles de la semaine » le dimanche (dernier créneau)</label>
+        <label class="champ">« Le chiffre fou du jour » <select id="r-chiffre"><option value="0">jamais</option><option value="4">1 vidéo sur 4</option>
+          <option value="5">1 vidéo sur 5</option><option value="7">1 vidéo sur 7</option></select></label>
+        <label class="champ">« Ça s'est passé près de chez toi » <select id="r-region"><option value="0">jamais</option><option value="5">1 vidéo sur 5</option>
+          <option value="7">1 vidéo sur 7</option><option value="10">1 vidéo sur 10</option></select></label>
+        <label class="case"><input type="checkbox" id="r-monde60"> « Le monde en 60 secondes » le samedi (dernier créneau)</label>
       </div>
       <div class="card">
         <h3>🔥 Détection du buzz</h3>
@@ -391,8 +398,8 @@ const creer = (inputs, msg) => ordre("creer.yml", { nombre: "1", sujet: "", libr
 
 // ---------------- rendu ----------------
 let fBuzz = "nouveau", fVid = "nouvelle";
-const FMT = { vrai_faux: "❓ Vrai ou faux", semaine: "🏆 3 actus de la semaine" };
-const NOM_GROUPE = n => ({ buzz: "🔥 Buzz du jour", vrai_faux: "❓ Vrai ou faux", semaine: "🏆 3 actus", neutre: "🎵 neutre", tension: "🎵 suspense", joie: "🎵 joyeuse" }[n] || n);
+const FMT = { vrai_faux: "❓ Vrai ou faux", semaine: "🏆 3 actus de la semaine", chiffre: "🔢 Chiffre fou", monde60: "🌍 Le monde en 60 s", region: "📍 Près de chez toi" };
+const NOM_GROUPE = n => ({ buzz: "🔥 Buzz du jour", vrai_faux: "❓ Vrai ou faux", semaine: "🏆 3 actus", chiffre: "🔢 Chiffre fou", monde60: "🌍 Monde en 60 s", region: "📍 Près de chez toi", neutre: "🎵 neutre", tension: "🎵 suspense", joie: "🎵 joyeuse" }[n] || n);
 function tableau(titre, liste) {
   if (!(liste || []).length) return "";
   const max = Math.max(...liste.map(e => e.vues_mediane), 1);
@@ -548,6 +555,7 @@ function remplirReglages() {
   $("#r-heures-stats").textContent = MH.length ? `Meilleures heures d'après tes vidéos : ${MH.join(" et ")}.` : "Les statistiques n'ont pas encore assez de vidéos (2 par heure au moins).";
   $("#r-paralleles").value = C.paralleles ?? 5;
   const F = C.formats || {}; $("#r-vf").value = String(F.vrai_faux ?? 3); $("#r-semaine").checked = F.semaine !== false;
+  $("#r-chiffre").value = String(F.chiffre ?? 5); $("#r-region").value = String(F.region ?? 7); $("#r-monde60").checked = F.monde60 !== false;
   $("#r-tags").value = (H.fixes || []).join(" "); $("#r-ntags").value = H.nombre ?? 6;
 }
 $("#form-reglages").onsubmit = e => {
@@ -556,7 +564,7 @@ $("#form-reglages").onsubmit = e => {
   const R = {
     publication: { mode: $("#r-mode").value, auto: $("#r-pub-auto").checked, heures: heures("#r-pub-h1", "#r-pub-h2"), compte: $("#r-compte").value.trim(),
       chaine: $("#r-chaine").value.trim(), heures_auto: $("#r-heures-auto").checked },
-    creation: { paralleles: +$("#r-paralleles").value || 5, auto: $("#r-cre-auto").checked, heures: heures("#r-cre-h1", "#r-cre-h2"), formats: { vrai_faux: +$("#r-vf").value, semaine: $("#r-semaine").checked } },
+    creation: { paralleles: +$("#r-paralleles").value || 5, auto: $("#r-cre-auto").checked, heures: heures("#r-cre-h1", "#r-cre-h2"), formats: { vrai_faux: +$("#r-vf").value, semaine: $("#r-semaine").checked, chiffre: +$("#r-chiffre").value, region: +$("#r-region").value, monde60: $("#r-monde60").checked } },
     buzz: { vues_min: +$("#r-vues").value, jaime_min: +$("#r-jaime").value, commentaires_min: +$("#r-com").value, heures: +$("#r-heures").value,
       comptes: $("#r-comptes").value.split(/\s+/).map(x => x.replace(/^@/, "")).filter(Boolean) },
     video: { voix: $("#r-voix").value, vitesse: +$("#r-vitesse").value, musique: $("#r-musique").checked, bruitages: $("#r-bruitages").checked, transitions: $("#r-transitions").checked, carte: $("#r-carte").checked, images_generiques: $("#r-generiques").checked },
@@ -620,7 +628,7 @@ $$("#buzz-filtres button").forEach(b => b.onclick = () => { fBuzz = b.dataset.f;
 $$("#vid-filtres button").forEach(b => b.onclick = () => { fVid = b.dataset.f; $$("#vid-filtres button").forEach(x => x.setAttribute("aria-pressed", x === b)); rendreVideos(); });
 $("#buzz-maj").onclick = () => ordre("buzz.yml", {}, "Recherche lancée : nouveaux sujets dans 5 à 10 minutes.");
 $("#buzz-meilleurs").onclick = () => creer({ nombre: "2" }, "Série de 2 vidéos lancée (environ 15 minutes).");
-$("#c-serie").onclick = () => { const f = $("#c-format").value, n = f === "semaine" ? 1 : Math.max(1, Math.min(10, +$("#c-nombre").value || 1));
+$("#c-serie").onclick = () => { const f = $("#c-format").value, n = (f === "semaine" || f === "monde60") ? 1 : Math.max(1, Math.min(10, +$("#c-nombre").value || 1));
   creer({ nombre: String(n), format: f }, `${n} vidéo(s) lancée(s) (environ ${n * 14} minutes).`); };
 $("#c-un").onclick = () => { const t = $("#c-libre").value.trim(); if (!t) return toast("Écris d'abord le sujet."); creer({ libre: t }, "Vidéo lancée (environ 7 minutes)."); };
 $("#c-essai").onclick = () => creer({ simulation: "1" }, "Essai lancé (environ 3 minutes).");

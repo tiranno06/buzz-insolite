@@ -65,7 +65,10 @@
   ],
   "formats": {
    "vrai_faux": 3,
-   "semaine": true
+   "semaine": true,
+   "chiffre": 5,
+   "region": 7,
+   "monde60": true
   },
   "paralleles": 5
  },

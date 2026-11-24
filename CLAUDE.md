@@ -121,6 +121,14 @@ de l'auteur corrigé. Une vidéo réservée aux adultes reste impossible à voir
   `thumbnailOffset` de Buffer) : 1er écran avec vraie image + gros titre. **Sources** : « Sources : … » sur le dernier écran
   (`sources_ecran`) et dans la description, avec les crédits des images (`publier.texte`).
 
+## Thèmes, formats, sujets déjà traités (demande de l'auteur du 24/11)
+- L'IA du buzz donne `categorie` (faits_divers, animaux, insolite…) et `ville_france` ; stats.json → `categories` ;
+  `buzz.facteur_categorie` : score × (vues médianes du thème ÷ vues médianes de la chaîne), entre 0,6 et 1,8.
+- Nouveaux formats (`ecrire.FORMATS`) : « chiffre » (le chiffre fou du jour), « monde60 » (4 actus du jour, `sujet_monde60`,
+  samedi soir en automatique), « region » (près de chez toi : sujets avec `ville_france` d'abord). `MULTI` = formats à
+  plusieurs sujets. Rotation automatique `publication_auto.format_auto` : vrai_faux 1/3, chiffre 1/5, region 1/7.
+- `principal.deja_traite` : jamais un sujet mis en vidéo ces 7 derniers jours (même id ou `buzz.meme_sujet`).
+
 ## Vraies images du sujet (demande de l'auteur du 24/11 : « pas de bouts de vidéos au hasard pour meubler »)
 Les vidéos des JT et agences (BFM, TF1, AFP…) ne sont JAMAIS reprises (droits, TikTok les reconnaît). À la place :
 champ "entite" de chaque phrase (titre de l'article Wikipédia de la personne / du lieu / de l'objet) → `images.wikipedia_media`

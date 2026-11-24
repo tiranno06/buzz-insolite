@@ -14,7 +14,7 @@ on:
         description: "Sujet écrit à la main (facultatif)"
         default: ""
       format:
-        description: "buzz, vrai_faux (Vrai ou faux ?) ou semaine (3 actus de la semaine)"
+        description: "buzz, vrai_faux, semaine (3 actus de la semaine), chiffre (chiffre fou), monde60 (monde en 60 s), region (près de chez toi)"
         default: "buzz"
       origine:
         description: "site, auto…"

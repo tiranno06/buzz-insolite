@@ -78,6 +78,20 @@ FORMAT « VRAI OU FAUX ? » (il fait énormément commenter) :
 - puis LA RÉPONSE : une phrase « C'est vrai ! » ou « C'est faux ! » avec le champ "reponse" : "vrai" ou "faux" (une seule phrase
   porte ce champ) ;
 - puis l'explication avec les faits, et la question finale habituelle.""",
+    "chiffre": """
+FORMAT « LE CHIFFRE FOU DU JOUR » : toute la vidéo tourne autour du chiffre le plus étonnant du sujet (pris dans les articles).
+- 1re phrase : le chiffre seul, choc (ecran : le chiffre en gros, ex. « 3,2 MILLIONS ») ;
+- puis : à quoi il correspond, d'où il vient, une comparaison qui le rend concret (« c'est comme… ») ;
+- question finale sur ce chiffre.""",
+    "monde60": """
+FORMAT « LE MONDE EN 60 SECONDES » : on te donne QUATRE actus du jour venues de pays différents. 3 à 4 phrases chacune, la
+1re phrase de chaque actu commence par le pays et a pour "ecran" le nom du pays en majuscules (« JAPON », « BRÉSIL »).
+Accroche du début : « Le monde en 60 secondes, c'est parti ! ». Question finale : laquelle t'a le plus surpris ?""",
+    "region": """
+FORMAT « ÇA S'EST PASSÉ PRÈS DE CHEZ TOI » : une actu insolite d'une ville ou d'une région de France.
+- 1re phrase : « Ça s'est passé près de chez toi… » + la ville (ecran : la ville en majuscules) ;
+- les faits, avec des détails locaux (quartier, département) cités dans les articles ;
+- question finale : « Et chez toi, ça pourrait arriver ? Dis-le en commentaire ! ».""",
     "semaine": """
 FORMAT « LES 3 ACTUS LES PLUS FOLLES DE LA SEMAINE » : on te donne TROIS sujets. Présente-les du 3e au 1er (le plus fou en
 dernier), 4 à 5 phrases chacun ; la 1re phrase de chaque sujet a pour "ecran" « N°3 », « N°2 » puis « N°1 ». Accroche du

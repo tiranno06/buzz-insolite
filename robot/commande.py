@@ -61,8 +61,12 @@ def appliquer_reglages(d):
     F = C.get("formats") or {}
     if "vrai_faux" in F:
         R["creation"]["formats"]["vrai_faux"] = max(0, min(10, int(F["vrai_faux"])))
-    if "semaine" in F:
-        R["creation"]["formats"]["semaine"] = bool(F["semaine"])
+    for k in ("semaine", "monde60"):
+        if k in F:
+            R["creation"]["formats"][k] = bool(F[k])
+    for k in ("chiffre", "region"):
+        if k in F:
+            R["creation"]["formats"][k] = max(0, min(10, int(F[k])))
     if "fixes" in Hs:
         R["hashtags"]["fixes"] = ["#" + h.lstrip("#") for h in _liste_textes(Hs["fixes"], 5, 30)]
     if "nombre" in Hs:

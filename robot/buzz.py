@@ -85,6 +85,9 @@ Pour chaque sujet, donne (toujours EN FRANÇAIS, sauf "mots_cles_en") :
 - "mots_cles" : 3 à 6 mots-clés en français pour chercher des articles de presse sur ce sujet ;
 - "mots_cles_en" : les mêmes 3 à 6 mots-clés en anglais (presse et vidéos internationales) ;
 - "hashtags" : 3 à 5 hashtags sans espace, en minuscules, qui décrivent ce sujet ;
+- "categorie" : UN mot parmi faits_divers, animaux, insolite, sport, people, science, nature, societe, politique, tech,
+  sante, economie, culture ;
+- "ville_france" : la ville ou la région de France où ça se passe, sinon "" ;
 - "insolite" : note de 0 à 10 (10 = très surprenant / étonnant, 0 = actualité ordinaire) ;
 - "videos" : la liste des numéros des vidéos qui parlent de ce sujet.
 Ignore les vidéos qui ne sont pas de l'actualité (publicité, jeu, humeur).
@@ -106,6 +109,8 @@ def grouper(liste, journal=print):
                                    mots_cles_en=[str(m) for m in s.get("mots_cles_en") or []][:6],
                                    hashtags=[re.sub(r"[^\wÀ-ÿ]", "", str(h)).lower() for h in s.get("hashtags") or []][:5],
                                    insolite=max(0, min(10, int(s.get("insolite") or 0))),
+                                   categorie=str(s.get("categorie") or "").strip().lower()[:20],
+                                   ville_france=str(s.get("ville_france") or "").strip()[:60],
                                    videos=[liste[n] for n in dict.fromkeys(nums)]))
         if sujets:
             journal(f"  sujets formés par {qui}")
@@ -208,6 +213,17 @@ def verifier_liens(sujets, journal=print):
         journal(f"  {morts} vidéo(s) TikTok devenue(s) indisponible(s) : retirée(s) des liens du site")
 
 
+def facteur_categorie(categorie):
+    """Les thèmes qui font le plus de vues sur notre chaîne passent devant (stats.json, 2 vidéos au moins par thème) :
+    vues médianes du thème ÷ vues médianes de la chaîne, entre ×0,6 et ×1,8."""
+    S = lire("stats.json") or {}
+    med = S.get("vues_mediane") or 0
+    for c in S.get("categories") or []:
+        if c.get("nom") == categorie and med:
+            return max(0.6, min(1.8, c["vues_mediane"] / med))
+    return 1.0
+
+
 def relever(journal=print):
     R = reglages(); B = R["buzz"]
     toutes, etat = [], {}
@@ -248,6 +264,7 @@ def relever(journal=print):
         s["medias"] = sources.nombre_de_medias(s["titre"], s.get("mots_cles") or [], s.get("mots_cles_en") or [])
         if s["medias"] is not None and s["medias"] < 3:
             s["score"] //= 4
+        s["score"] = round(s["score"] * facteur_categorie(s.get("categorie")))   # ce qui marche sur NOTRE chaîne
         time.sleep(0.5)
     ancien = lire("buzz.json") or {}
     d = {"maj": iso(), "comptes": etat, "lues": len(toutes), "retenues": len(retenues),

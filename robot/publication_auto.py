@@ -117,9 +117,14 @@ def format_auto(R, now, h):
     F = R["creation"].get("formats") or {}
     if F.get("semaine") and now.weekday() == 6 and h == max(R["creation"]["heures"]):
         return "semaine"
-    n = int(F.get("vrai_faux") or 0)
+    if F.get("monde60") and now.weekday() == 5 and h == max(R["creation"]["heures"]):
+        return "monde60"                                    # samedi soir : « Le monde en 60 secondes »
     deja = sum(len(x) for x in (lire("garde.json") or {}).get("creation", {}).values())
-    return "vrai_faux" if n and deja % n == n - 1 else "buzz"
+    for nom in ("vrai_faux", "chiffre", "region"):          # 1 vidéo sur N pour chaque format (0 = jamais)
+        n = int(F.get(nom) or 0)
+        if n and deja % n == n - 1:
+            return nom
+    return "buzz"
 
 
 if __name__ == "__main__":

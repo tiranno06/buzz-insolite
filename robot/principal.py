@@ -37,6 +37,41 @@ def sujet_semaine(journal=print):
                  vues=sum(s.get("vues", 0) for s in trois), commentaires=sum(s.get("commentaires", 0) for s in trois))]
 
 
+MULTI = ("semaine", "monde60")                                # formats qui réunissent plusieurs sujets
+
+
+def sujet_monde60(journal=print):
+    """« Le monde en 60 secondes » : les 4 meilleurs sujets des dernières 24 h, de lieux différents si possible."""
+    limite = time.time() - 86400
+    S = [s for s in (lire("buzz.json") or {}).get("sujets") or []
+         if s.get("statut") not in ("ignore", "sans_source") and s.get("derniere_vue", time.time()) >= limite]
+    S.sort(key=lambda s: -s.get("score", 0))
+    if len(S) < 4:
+        journal("Moins de 4 sujets aujourd'hui : pas de vidéo « Le monde en 60 secondes »")
+        return []
+    quatre = S[:4]
+    return [dict(id=f"monde60-{maintenant():%Y%m%d}", titre="Le monde en 60 secondes",
+                 resume=" / ".join(f"{s['titre']} : {s.get('resume', '')}" for s in quatre), mots_cles=[], videos=[],
+                 hashtags=[h for s in quatre for h in (s.get("hashtags") or [])[:1]], parties=quatre,
+                 vues=sum(s.get("vues", 0) for s in quatre), commentaires=sum(s.get("commentaires", 0) for s in quatre))]
+
+
+def deja_traite(s, journal=print, jours=7):
+    """Sujet déjà mis en vidéo ces 7 derniers jours, même sous un autre titre (60 % des mots en commun) : jamais refait."""
+    import datetime
+    limite = maintenant() - datetime.timedelta(days=jours)
+    for v in (lire("file.json") or {}).get("videos") or []:
+        try:
+            recente = datetime.datetime.fromisoformat(v.get("cree_le", "")) >= limite
+        except ValueError:
+            recente = False
+        if recente and v.get("statut") not in ("ecartee",) and \
+                (v.get("sujet_id") == s["id"] or buzz.meme_sujet(s["titre"], v.get("sujet") or v.get("titre") or "")):
+            journal(f"  « {s['titre']} » déjà traité le {v['cree_le'][:10]} (« {v.get('titre', '')} ») : sujet suivant")
+            return True
+    return False
+
+
 def libre_pour_moi(s):
     """Sujet pas encore traité (un sujet réservé par une série depuis plus de 3 h est de nouveau libre)."""
     if s.get("statut", "nouveau") == "nouveau":
@@ -51,7 +86,7 @@ def planifier(nombre, format_="buzz", sujet="", libre="", paralleles=3, journal=
     """Répartit une série entre plusieurs machines qui travaillent en même temps (creer.yml, job « plan »).
     Chaque machine reçoit SON sujet + des sujets de réserve à elle seule ; les sujets sont réservés (« en_cours ») pour
     qu'une autre série ne les prenne pas. Renvoie [{"k": n° de machine, "sujets": "id,id,…"}]."""
-    if libre.strip() or sujet or format_ == "semaine":
+    if libre.strip() or sujet or format_ in MULTI:
         return [{"k": 1, "sujets": sujet}]
     S = [s for s in (lire("buzz.json") or {}).get("sujets") or [] if libre_pour_moi(s)]
     if not S:
@@ -77,6 +112,8 @@ def choisir_sujets(n, sujet_id="", libre="", journal=print, format_="buzz"):
     """Sujets à traiter, du meilleur au moins bon. Sans buzz mesuré : titres à la une de la presse."""
     if format_ == "semaine":
         return sujet_semaine(journal)
+    if format_ == "monde60":
+        return sujet_monde60(journal)
     if libre.strip():
         return [dict(id=buzz.identifiant(libre), titre=libre.strip()[:90], resume=libre.strip(), mots_cles=[], hashtags=[],
                      videos=[], libre=True)]
@@ -85,7 +122,9 @@ def choisir_sujets(n, sujet_id="", libre="", journal=print, format_="buzz"):
     if sujet_id:                                          # un ou plusieurs sujets imposés (« id1,id2 » : réserves d'une machine)
         ids = [x for x in sujet_id.split(",") if x]
         return [s for i in ids for s in sujets if s["id"] == i]
-    frais = [s for s in sujets if libre_pour_moi(s)]
+    frais = [s for s in sujets if libre_pour_moi(s) and not deja_traite(s, journal)]
+    if format_ == "region":                                   # une actu d'une ville de France d'abord
+        frais.sort(key=lambda s: not s.get("ville_france"))
     if frais:
         return frais[:n + 3]                               # quelques sujets en réserve si l'un n'a pas d'article
     journal("Aucun sujet du buzz disponible : titres à la une de la presse à la place")
@@ -234,7 +273,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
         deja |= avancement.medias_des_autres()               # jamais les mêmes passages que les autres vidéos en construction
         script["images_generiques"] = R["video"].get("images_generiques", False)
         if "clips" not in E:                                  # VRAIES vidéos du sujet (licence libre), avant tout le reste
-            E["clips"] = [] if simulation() or format_ == "semaine" else \
+            E["clips"] = [] if simulation() or format_ in MULTI else \
                 images.videos_du_sujet(sujet["titre"], sujet.get("mots_cles") or [], dossier, journal, ecrans=len(script["phrases"]),
                                        mots_en=sujet.get("mots_cles_en") or [])
         for i, p in enumerate(script["phrases"][:-1]):
@@ -242,7 +281,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 p["media"] = E["clips"].pop(0); deja.add(p["media"]["id"])
         # Puis des vidéos libres de CHAQUE personne / lieu / objet cité (demande de l'auteur du 24/11 : des bouts de vraies
         # vidéos collés l'un après l'autre ; les photos ne servent qu'en dernier recours).
-        if not simulation() and format_ != "semaine":
+        if not simulation():
             entites = E.setdefault("entites_faites", [])
             restantes = [p for p in script["phrases"][:-1] if "media" not in p and p.get("entite")]
             for k, nom in enumerate(dict.fromkeys(p["entite"] for p in restantes)):
@@ -279,7 +318,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
             if lieu_cite and lieu_cite.lower() not in texte_articles:
                 journal(f"  carte écartée : « {lieu_cite} » n'est pas cité dans les articles")
                 script["lieu"] = ""
-            if not simulation() and R["video"].get("carte", True) and format_ != "semaine" and script.get("lieu") \
+            if not simulation() and R["video"].get("carte", True) and format_ not in MULTI and script.get("lieu") \
                     and len(script["phrases"]) > 3:
                 lieu = carte.trouver_lieu(script["lieu"], script.get("coordonnees"))
                 if lieu:                                      # 2e écran : la carte qui zoome sur le lieu de l'actu
@@ -376,7 +415,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 verification=script.get("verification"), verifie=script.get("verifie", False),
                 credits=sorted({p["media"]["credit"] for p in script["phrases"] if p.get("media")}),
                 ecrans_illustres=trouves, format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""),
-                humeur=script.get("humeur", ""), texte=[p["ecrit"] for p in script["phrases"]],
+                humeur=script.get("humeur", ""), categorie=sujet.get("categorie", ""), texte=[p["ecrit"] for p in script["phrases"]],
                 essai=simulation(), cree_le=iso(), fabrication_s=round(time.time() - E["t0"]), controles=bulletin,
                 reprises=E.get("reprises", 0), preuves=preuves_licences(script), couverture_ms=couverture_ms(script),
                 statut="a_verifier" if bulletin["graves_restants"] else
@@ -444,7 +483,7 @@ def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz", attend
         journal(f"▶ Sujet : {s['titre']}")
         if etat is None:
             etat = {}
-            if not (s.get("libre") or format_ == "semaine" or simulation()):
+            if not (s.get("libre") or format_ in MULTI or simulation()):
                 # Seulement des sujets SANS problème (demande de l'auteur du 24/11) : au moins 3 médias différents avec un
                 # vrai article, réunis dans une seule vidéo. Un sujet trop maigre n'est pas commencé : sujet suivant.
                 arts = sources.chercher_large(s["titre"], s.get("mots_cles") or [], s.get("videos") or [], journal,
@@ -525,7 +564,7 @@ def main():
     a.add_argument("--nombre", type=int, default=1)
     a.add_argument("--sujet", default="")
     a.add_argument("--libre", default="")
-    a.add_argument("--format", default="buzz", choices=("buzz", "vrai_faux", "semaine"))
+    a.add_argument("--format", default="buzz", choices=("buzz", "vrai_faux", "semaine", "chiffre", "monde60", "region"))
     a.add_argument("--auto", action="store_true", help="création automatique : seulement si activée dans les réglages")
     a.add_argument("--plan", action="store_true", help="répartir une série entre plusieurs machines (sortie GitHub « plan »)")
     a.add_argument("--paralleles", type=int, default=0)
