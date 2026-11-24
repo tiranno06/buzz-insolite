@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T00:46:19+01:00",
+   "niveau": "info",
+   "texte": "🔁 « Macron et l'A320 : un futur qui décolle » refaite (tout) : note 10/100, corrige : « Vidéo de l'ancien code : presque aucune image » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T00:44:12+01:00",
    "niveau": "info",
    "texte": "🔁 « Fascistes en Espagne : un hommage choc à Franco » refaite (tout) : note 55/100, corrige : « Vidéo de l'ancien code : presque aucune image » — l'ancienne version est remplacée"
