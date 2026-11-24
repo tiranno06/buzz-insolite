@@ -308,7 +308,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
         if not E.get("presse_faite"):                         # « La presse en parle » : vrais titres sur des écrans sans image
             titres = [a for a in E["articles"] if a.get("titre") and a.get("media") and a["media"] not in
                       ("Google Actualités", "Wikipédia (contexte)", "Descriptions des vidéos TikTok virales", "Sujet du buzz")]
-            libres = [i for i, p in enumerate(script["phrases"][:-1]) if not p.get("media") and i > 0][:min(3, len(titres))]
+            libres = [i for i, p in enumerate(script["phrases"][:-1]) if not p.get("media") and i > 0][:min(2, len(titres))]
             for k, i in enumerate(libres):
                 script["phrases"][i]["media"] = images.carte_presse(titres[k], os.path.join(dossier, f"presse{k}.png"))
             E["presse_faite"] = True

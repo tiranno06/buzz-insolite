@@ -279,8 +279,9 @@ def uid(script, i):
 def _image_deja_bonne(script, i):
     """Un média déjà accepté sur un autre écran, repris avec un autre moment (vidéo) : jamais d'écran vide tant qu'au moins
     une vraie image existe dans la vidéo."""
-    bons = [q["media"] for k, q in enumerate(script["phrases"][:-1]) if k != i and q.get("media")
-            and q["media"].get("type") in ("video", "photo") and not q.get("_essais_image")]
+    bons = [q["media"] for k, q in enumerate(script["phrases"][:-1]) if k != i and q.get("media") and q.get("_valide")
+            and q["media"].get("type") in ("video", "photo") and not q["media"].get("presse")]
+    bons.sort(key=lambda m: m.get("type") != "video")     # une vraie VIDÉO d'abord (jamais un titre de presse recopié)
     if not bons:
         return None
     m = dict(bons[i % len(bons)])
@@ -336,9 +337,10 @@ def nouvelle_image(script, i, dossier, deja, journal, recherche=""):
 
 
 def part_illustree(script):
-    """(écrans avec une vraie image ou vidéo, écrans à illustrer) : la dernière question et la carte ne comptent pas."""
+    """(écrans avec une VRAIE image ou vidéo, écrans à illustrer) : la dernière question et la carte ne comptent pas, et un
+    titre de presse n'est PAS une vraie image (demande de l'auteur du 24/11 : « pas seulement des titres de journaux »)."""
     ecrans = [p for p in script["phrases"][:-1] if not (p.get("media") or {}).get("type") == "carte"]
-    return sum(1 for p in ecrans if p.get("media")), len(ecrans)
+    return sum(1 for p in ecrans if p.get("media") and not p["media"].get("presse")), len(ecrans)
 
 
 def controle_images(script, dossier, B, journal=print, deja=None, sujet="", sans_ia=False):
@@ -376,6 +378,9 @@ def controle_images(script, dossier, B, journal=print, deja=None, sujet="", sans
         for i, a in avis.items():
             if not a.get("colle", True) or a.get("texte_etranger"):
                 fautifs[i] = (a.get("probleme") or "image qui ne colle pas", a.get("recherche") or "")
+        for i, _, _ in lots:                               # validée par l'IA : peut servir sur un autre écran
+            if i not in fautifs and (avis or sans_ia):
+                script["phrases"][i]["_valide"] = True
         regles = {uid(script, i) for i in fautifs}
         for l in B.ouverts("images"):                      # revérifié : plus de problème sur ce passage
             if l["ecran"] not in regles:

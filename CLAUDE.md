@@ -93,6 +93,14 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
   vidéo avec moins de 70 % d'écrans illustrés (`ecrans_illustres` / `ecrans_total`) ; `principal.reparer_tout_de_suite` la
   refait aussitôt (images) ; la santé de la nuit refait les autres.
 
+- **Analyse des vidéos refaites du 24/11 vers minuit** (« seulement des titres de presse ») : 1) tri par les mots trop faible
+  (« can't » = « CAN », « 2025 ») → `_mots_sujet` sans nombres ni petits mots anglais (`MOTS_VIDES_EN`) + **tri des titres par
+  une IA** (`filtrer_par_ia`, `CONSIGNE_TRI` : même événement / personne / lieu seulement) ; 2) PeerTube refusait (403) le
+  téléchargement par yt-dlp → `telecharger_peertube` : fichier direct de l'API de l'instance, SEUL LE DÉBUT téléchargé puis
+  coupé par ffmpeg (47 s de vidéo en 7 s) ; 3) titres de presse comptés comme images et recopiés → `part_illustree` ne les
+  compte plus, `_image_deja_bonne` ne reprend qu'une image VALIDÉE par l'IA (`_valide`), vidéo d'abord, jamais un titre ;
+  2 titres de presse au plus ; 4) mauvaise page Wikipédia (« Yosemite » pour Franco) → titre de la page vérifié.
+
 ## Vitesse (analyse du 24/11 : vidéo GTA en 99 min, dont 86 min de voix Chatterbox)
 - Voix refaite par le contrôle final : la phrase a déjà eu 2 essais à l'étape voix, donc mots simplifiés DÈS le 1er essai,
   phrase retirée au 3e (si la vidéo reste ≥ 62 s) ; avant : jusqu'à 7 essais identiques (~1 min de Chatterbox chacun).

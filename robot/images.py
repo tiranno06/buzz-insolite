@@ -195,6 +195,8 @@ def wikipedia_media(entite, deja):
     if not res:
         return None
     titre = res[0]["title"]
+    if not (_mots_sujet(titre) & _mots_sujet(entite)) and titre.lower() not in entite.lower():
+        return None                                       # mauvaise page (essai du 24/11 : « Yosemite » pour Franco)
     galerie = _wiki("https://fr.wikipedia.org/api/rest_v1/page/media-list/" + urllib.parse.quote(titre.replace(" ", "_")))
     for it in galerie.get("items") or []:
         nom = str(it.get("title") or "")
@@ -264,9 +266,18 @@ MOTS_VIDES = {"le", "la", "les", "un", "une", "des", "du", "de", "et", "en", "à
               "son", "sa", "ses", "qui", "que", "est", "ce", "cette", "plus", "après", "vidéo", "video", "fou", "folle", "choc"}
 
 
+MOTS_VIDES_EN = {"the", "and", "for", "with", "can", "will", "you", "your", "this", "that", "from", "have", "has", "are", "was",
+                 "were", "but", "not", "all", "new", "how", "why", "what", "who", "after", "over", "into", "out", "our", "they",
+                 "their", "its", "get", "got", "one", "two", "day", "live", "news", "official", "full", "part", "first", "best",
+                 "about", "just", "more", "most", "make", "made", "time", "year", "years", "world", "people", "watch", "here",
+                 "there", "when", "where", "which", "than", "then", "them", "these", "those", "some", "very", "only", "also"}
+
+
 def _mots_sujet(t):
+    """Mots qui désignent VRAIMENT le sujet : sans nombres (« 2025 »), ni petits mots français ou anglais (« can », « the ») —
+    essai du 24/11 : « CAN 2025 » prenait une conférence sur Musk parce que son titre contenait « can't »."""
     t = re.sub(r"[^\wÀ-ÿ]+", " ", str(t).lower())
-    return {m for m in t.split() if len(m) > 2 and m not in MOTS_VIDES}
+    return {m for m in t.split() if len(m) > 3 and not m.isdigit() and m not in MOTS_VIDES and m not in MOTS_VIDES_EN}
 
 
 def _ytdlp(args, timeout=120):
@@ -354,6 +365,87 @@ YOUTUBE = {"refuse": False}                            # YouTube a refusé ce se
 SOURCES_VIDEO = (("YouTube (Creative Commons)", _cand_youtube), ("PeerTube", _cand_peertube), ("Internet Archive", _cand_archive), ("Vimeo", _cand_vimeo))
 
 
+CONSIGNE_TRI = """Tu tries des vidéos pour illustrer une actualité. On te donne le SUJET et une liste de titres de vidéos
+(numérotés, avec leur chaîne). Garde SEULEMENT celles qui montrent VRAIMENT ce sujet : le même événement, la même personne,
+le même lieu ou l'objet précis dont il parle. Écarte tout le reste (autre sujet, vlog, conférence, jeu vidéo, tutoriel, mot en
+commun par hasard). Réponds uniquement en JSON : {"garder": [numéros]}"""
+
+
+def filtrer_par_ia(sujet, mots_en, candidats, journal=print):
+    """Une IA relit les titres des vidéos candidates et ne garde que celles qui parlent vraiment du sujet (les mots en commun
+    ne suffisent pas). IA indisponible : on garde le tri par les mots."""
+    if not candidats:
+        return candidats
+    from . import ia
+    liste = "\n".join(f"{k}. {c['titre'][:110]} (chaîne : {c['auteur'][:40]})" for k, (_, c) in enumerate(candidats[:40]))
+    try:
+        d, _ = ia.demander_json(CONSIGNE_TRI, f"SUJET : {sujet} ({' '.join(mots_en or [])})\n\nVIDÉOS :\n{liste}",
+                                temperature=0.1, max_tokens=600, journal=journal)
+    except Exception as e:
+        journal(f"  tri des vidéos par l'IA impossible ({str(e)[:60]}) : tri par les mots seulement")
+        return candidats
+    garder = {int(n) for n in d.get("garder") or [] if str(n).isdigit()}
+    gardes = [x for k, x in enumerate(candidats[:40]) if k in garder]
+    journal(f"  l'IA garde {len(gardes)} vidéo(s) sur {min(40, len(candidats))} qui parlent vraiment du sujet")
+    return gardes
+
+
+def telecharger_peertube(page, debut, fin, chemin):
+    """PeerTube : le fichier vidéo direct donné par l'API de l'instance (le téléchargement « normal » est refusé (403) par
+    beaucoup d'instances, essai du 24/11) ; ffmpeg ne lit que le passage voulu."""
+    hote = urllib.parse.urlparse(page).netloc
+    uuid = page.rstrip("/").rsplit("/", 1)[-1]
+    d = _json(f"https://{hote}/api/v1/videos/{uuid}")
+    fichiers = list(d.get("files") or []) + [f for p in d.get("streamingPlaylists") or [] for f in p.get("files") or []]
+    fichiers = [f for f in fichiers if f.get("fileUrl")]
+    if not fichiers:
+        raise OSError("aucun fichier vidéo public")
+    f = min(fichiers, key=lambda f: abs(((f.get("resolution") or {}).get("id") or 0) - 480))
+    # Seul le DÉBUT du fichier est téléchargé (assez pour [debut, fin] + marge) : rapide même pour une vidéo d'une heure ;
+    # un mp4 « fragmenté » de PeerTube se lit très bien en partie (ffmpeg qui le lit à distance est, lui, très lent).
+    duree = float(d.get("duration") or 0)
+    taille = int(f.get("size") or 0)
+    octets = int(taille * min(1.0, (fin + 8) / duree) * 1.3) + 2_000_000 if duree and taille else 60_000_000
+    partiel = chemin + ".partiel.mp4"
+    req = urllib.request.Request(f["fileUrl"], headers={"User-Agent": "Mozilla/5.0", "Range": f"bytes=0-{octets}"})
+    with urllib.request.urlopen(req, timeout=120) as r, open(partiel, "wb") as sortie:
+        while True:
+            bloc = r.read(1 << 20)
+            if not bloc:
+                break
+            sortie.write(bloc)
+            if sortie.tell() > octets + (1 << 20):
+                break
+    try:
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(debut), "-i", partiel, "-t", str(max(6, fin - debut)),
+                        "-vf", "scale=-2:'min(720,ih)'", "-c:v", "libx264", "-preset", "veryfast", "-an", chemin],
+                       check=True, timeout=300)
+    finally:
+        os.remove(partiel)
+
+
+def _telecharger_passage(c, debut, fin, duree, chemin, journal=print):
+    """Le passage [debut, fin] de la vidéo candidate `c` dans `chemin` (mp4)."""
+    if c["source"] == "PeerTube":
+        try:
+            telecharger_peertube(c["page"], debut, fin, chemin)
+            if os.path.exists(chemin) and os.path.getsize(chemin) > 50000:
+                return
+        except Exception as x:
+            journal(f"  PeerTube direct impossible ({str(x)[:60]}) : autre méthode")
+    try:
+        _ytdlp(["-q", "-f", "bv*[height<=720][ext=mp4]/b[height<=720]/b", "--download-sections", f"*{debut}-{fin}",
+                "--force-keyframes-at-cuts", "--merge-output-format", "mp4", "-o", chemin, c["page"]], 300)
+    except Exception:                                      # découpe refusée : vidéo entière (si courte), coupée par ffmpeg
+        if duree > 900:
+            raise
+        entier = chemin[:-4] + "-entier.mp4"
+        _ytdlp(["-q", "-f", "b[height<=720]/bv*[height<=720]+ba/b", "--merge-output-format", "mp4", "-o", entier, c["page"]], 400)
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(debut), "-t", str(fin - debut), "-i", entier,
+                        "-c:v", "libx264", "-preset", "veryfast", "-an", chemin], check=True, timeout=300)
+        os.remove(entier)
+
+
 def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, prefixe="sujet", deja=None, mots_en=()):
     """VRAIES vidéos du sujet, publiées par leur auteur sous licence libre (CC BY, CC BY-SA, CC0, domaine public) : YouTube
     (filtre Creative Commons, licence relue sur la page), PeerTube (Sepia Search), Internet Archive, Wikimedia Commons.
@@ -378,6 +470,7 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, 
             if commun >= seuil and c["cle"] not in vus and not vus.add(c["cle"]) and (not c["duree"] or 10 <= c["duree"] <= 3600) and not _interdit(c["titre"], c["auteur"]):
                 candidats.append((commun, c)); bons += 1
         journal(f"  vidéos du sujet ({nom}) : {len(trouves)} trouvée(s), {bons} sur le sujet")
+    candidats = filtrer_par_ia(sujet, mots_en, candidats, journal)
     candidats.sort(key=lambda x: -x[0])
     out, prises, youtube_refuse = [], 0, False
     essais = 0
@@ -409,18 +502,7 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, 
         fin = debut + 6 * ecrans + 2 if not duree else min(duree, debut + 6 * ecrans + 2)
         chemin = os.path.join(dossier, f"{prefixe}-{prises}.mp4")
         try:
-            try:
-                _ytdlp(["-q", "-f", "bv*[height<=720][ext=mp4]/b[height<=720]/b", "--download-sections", f"*{debut}-{fin}",
-                        "--force-keyframes-at-cuts", "--merge-output-format", "mp4", "-o", chemin, c["page"]], 300)
-            except Exception:                              # découpe refusée : vidéo entière (si courte), coupée par ffmpeg
-                if duree > 900:
-                    raise
-                entier = chemin[:-4] + "-entier.mp4"
-                _ytdlp(["-q", "-f", "b[height<=720]/bv*[height<=720]+ba/b", "--merge-output-format", "mp4", "-o", entier,
-                        c["page"]], 400)
-                subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(debut), "-t", str(fin - debut), "-i", entier,
-                                "-c:v", "libx264", "-preset", "veryfast", "-an", chemin], check=True, timeout=300)
-                os.remove(entier)
+            _telecharger_passage(c, debut, fin, duree, chemin, journal)
             reelle = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of",
                                                     "csv=p=0", chemin]))
         except Exception as x:

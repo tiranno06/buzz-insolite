@@ -219,6 +219,7 @@ class TestControleQualite(unittest.TestCase):
         video = dict(type="video", chemin="x.mp4", debut=0, duree=40, id="yt-A-0", credit="c")
         s = {"titre": "Étoiles", "phrases": [dict(ecrit=f"phrase {k}", image="stars", entite="") for k in range(6)]}
         s["phrases"][0]["media"] = video
+        s["phrases"][0]["_valide"] = True                                                # validée par l'IA des images
         garde = (controle.images.trouver, controle.images.videos_du_sujet)
         controle.images.trouver = lambda *a, **k: None
         controle.images.videos_du_sujet = lambda *a, **k: []
@@ -230,6 +231,18 @@ class TestControleQualite(unittest.TestCase):
         self.assertTrue(all(p.get("media") for p in s["phrases"][:5]))
         self.assertEqual(len({p["media"]["id"] for p in s["phrases"][:5]}), 5)          # chacun son passage
         self.assertEqual(controle.part_illustree(s), (5, 5))
+
+    def test_titres_de_presse_ne_comptent_pas(self):
+        """Demande de l'auteur du 24/11 : un titre de journal n'est pas une vraie image, et n'est jamais recopié ailleurs."""
+        from robot import controle
+        presse = dict(type="photo", chemin="p.png", id="presse-x", presse=True)
+        s = {"phrases": [dict(media=presse, _valide=True), dict(media=None), dict(media=None)]}
+        self.assertEqual(controle.part_illustree(s), (0, 2))
+        self.assertIsNone(controle._image_deja_bonne(s, 1))
+
+    def test_tri_des_mots(self):
+        from robot import images
+        self.assertEqual(images._mots_sujet("CAN 2025 : Sénégal vainqueur, you can't, the"), {"sénégal", "vainqueur"})
 
     def test_peu_d_images_jamais_100(self):
         from robot import controle
