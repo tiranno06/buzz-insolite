@@ -34,7 +34,8 @@ def appliquer_reglages(d):
     for k, mini, maxi in (("vues_min", 0, 10**9), ("jaime_min", 0, 10**8), ("commentaires_min", 0, 10**7), ("heures", 6, 240)):
         if k in B:
             R["buzz"][k] = max(mini, min(maxi, int(B[k])))
-    if Vd.get("voix") in ("fr_FR-tom-medium", "fr_FR-siwis-medium", "fr_FR-upmc-medium", "fr_FR-gilles-low"):
+    from .voix import KOKORO, VOIX
+    if Vd.get("voix") in VOIX or Vd.get("voix") in KOKORO:
         R["video"]["voix"] = Vd["voix"]
     if "vitesse" in Vd:
         R["video"]["vitesse"] = max(0.65, min(1.1, float(Vd["vitesse"])))
@@ -47,6 +48,18 @@ def appliquer_reglages(d):
             R[bloc]["heures"] = [h for h in _liste_textes(src["heures"], 4, 5) if len(h) == 5 and h[2] == ":"]
     if "compte" in P:
         R["publication"]["compte"] = str(P["compte"]).strip().lstrip("@")[:60]
+    if "chaine" in P:
+        R["publication"]["chaine"] = str(P["chaine"]).strip().lstrip("@")[:60]
+    if "heures_auto" in P:
+        R["publication"]["heures_auto"] = bool(P["heures_auto"])
+    for k in ("musique", "bruitages", "carte"):
+        if k in Vd:
+            R["video"][k] = bool(Vd[k])
+    F = C.get("formats") or {}
+    if "vrai_faux" in F:
+        R["creation"]["formats"]["vrai_faux"] = max(0, min(10, int(F["vrai_faux"])))
+    if "semaine" in F:
+        R["creation"]["formats"]["semaine"] = bool(F["semaine"])
     if "fixes" in Hs:
         R["hashtags"]["fixes"] = ["#" + h.lstrip("#") for h in _liste_textes(Hs["fixes"], 5, 30)]
     if "nombre" in Hs:

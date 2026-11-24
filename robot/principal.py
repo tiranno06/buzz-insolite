@@ -15,13 +15,31 @@ import subprocess
 import time
 import traceback
 
-from . import avancement, buzz, depot, ecrire, images, montage, sources
+from . import avancement, buzz, carte, depot, ecrire, images, montage, sources
 from . import voix as V
 from .commun import MINIATURES, SORTIE, ecrire as ecrire_donnees, iso, lire, maintenant, noter, reglages, simulation
 
 
-def choisir_sujets(n, sujet_id="", libre="", journal=print):
+def sujet_semaine(journal=print):
+    """« Les 3 actus les plus folles de la semaine » : les 3 meilleurs sujets des 7 derniers jours (déjà traités ou non)."""
+    limite = time.time() - 7 * 86400
+    S = [s for s in (lire("buzz.json") or {}).get("sujets") or []
+         if s.get("statut") not in ("ignore", "sans_source") and s.get("derniere_vue", time.time()) >= limite]
+    S.sort(key=lambda s: -(s.get("score", 0) * (1 + 0.05 * s.get("insolite", 5))))
+    if len(S) < 3:
+        journal("Moins de 3 sujets cette semaine : pas de vidéo « 3 actus de la semaine »")
+        return []
+    trois = S[:3]
+    return [dict(id=f"semaine-{maintenant():%Y%W}", titre="Les 3 actus les plus folles de la semaine",
+                 resume=" / ".join(f"{s['titre']} : {s.get('resume', '')}" for s in trois), mots_cles=[], videos=[],
+                 hashtags=[h for s in trois for h in (s.get("hashtags") or [])[:1]], parties=trois,
+                 vues=sum(s.get("vues", 0) for s in trois), commentaires=sum(s.get("commentaires", 0) for s in trois))]
+
+
+def choisir_sujets(n, sujet_id="", libre="", journal=print, format_="buzz"):
     """Sujets à traiter, du meilleur au moins bon. Sans buzz mesuré : titres à la une de la presse."""
+    if format_ == "semaine":
+        return sujet_semaine(journal)
     if libre.strip():
         return [dict(id=buzz.identifiant(libre), titre=libre.strip()[:90], resume=libre.strip(), mots_cles=[], hashtags=[],
                      videos=[], libre=True)]
@@ -56,7 +74,7 @@ def voix_simulation(p, chemin):
     return d, [(m, k * pas, (k + 1) * pas) for k, m in enumerate(mots)]
 
 
-def fabriquer(sujet, R, n=1, total=1, journal=print):
+def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
     """Une vidéo complète. Renvoie l'entrée de la liste (file.json) ou lève une exception."""
     vid = f"{maintenant():%Y%m%d-%H%M%S}"
     dossier = os.path.join(SORTIE, vid); os.makedirs(dossier, exist_ok=True)
@@ -65,13 +83,19 @@ def fabriquer(sujet, R, n=1, total=1, journal=print):
     t0 = time.time()
 
     avancement.etape(pre + "Lecture des articles de presse", 5, sujet["titre"])
-    articles = [] if simulation() else sources.chercher(sujet["titre"], sujet.get("mots_cles") or [], journal=journal)
+    if simulation():
+        articles = []
+    elif sujet.get("parties"):                                # 3 actus de la semaine : 2 articles par sujet
+        articles = [a for s in sujet["parties"] for a in sources.chercher(s["titre"], s.get("mots_cles") or [], maxi=2,
+                                                                          journal=journal)]
+    else:
+        articles = sources.chercher(sujet["titre"], sujet.get("mots_cles") or [], journal=journal)
     if not simulation() and not articles:
         raise LookupError("aucun article de presse trouvé sur ce sujet")
     journal(f"  {len(articles)} article(s) : " + ", ".join(a["media"] for a in articles))
 
     avancement.etape(pre + "Écriture du texte", 12)
-    script = script_simulation(sujet) if simulation() else ecrire.ecrire(sujet, articles, journal)
+    script = script_simulation(sujet) if simulation() else ecrire.ecrire(sujet, articles, journal, format_)
     avancement.etape(pre + "Vérification des faits par une 2e IA", 22)
     if not simulation():
         script = ecrire.verifier(script, articles, journal)
@@ -96,6 +120,14 @@ def fabriquer(sujet, R, n=1, total=1, journal=print):
         p["media"] = None if simulation() else images.trouver(p["image"], dossier, i, deja, journal)
         avancement.progres(52 + 15 * (i + 1) / len(script["phrases"]))
     script["phrases"][-1]["media"] = None
+    script["musique"] = R["video"].get("musique", True); script["bruitages"] = R["video"].get("bruitages", True)
+    if not simulation() and R["video"].get("carte", True) and format_ != "semaine" and script.get("lieu") and len(script["phrases"]) > 3:
+        lieu = carte.trouver_lieu(script["lieu"], script.get("coordonnees"))
+        if lieu:                                              # 2e écran : la carte qui zoome sur le lieu de l'actu
+            script["phrases"][1]["media"] = dict(type="carte", credit="Carte : Natural Earth, OpenStreetMap", **lieu)
+            if not script["phrases"][1].get("ecran"):
+                script["phrases"][1]["ecran"] = str(script["lieu"]).split(",")[0][:22]
+            journal(f"  carte : {lieu['nom']}")
     trouves = sum(1 for p in script["phrases"] if p.get("media"))
     journal(f"  images : {trouves} écran(s) illustré(s) sur {len(script['phrases'])}")
 
@@ -117,14 +149,14 @@ def fabriquer(sujet, R, n=1, total=1, journal=print):
                 sources=[dict(media=a["media"], titre=a["titre"], lien=a["lien"]) for a in articles],
                 verification=script.get("verification"), verifie=script.get("verifie", False),
                 credits=sorted({p["media"]["credit"] for p in script["phrases"] if p.get("media")}),
-                ecrans_illustres=trouves, texte=[p["ecrit"] for p in script["phrases"]],
+                ecrans_illustres=trouves, format=format_, lieu=script.get("lieu", ""), humeur=script.get("humeur", ""), texte=[p["ecrit"] for p in script["phrases"]],
                 essai=simulation(), cree_le=iso(), fabrication_s=round(time.time() - t0),
                 statut="a_publier" if (mode == "auto" and script.get("verifie")) else "nouvelle")
 
 
-def creer(nombre=1, sujet_id="", libre="", journal=print):
+def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz"):
     R = reglages()
-    sujets = choisir_sujets(nombre, sujet_id, libre, journal)
+    sujets = choisir_sujets(nombre, sujet_id, libre, journal, format_)
     if not sujets:
         noter("🎬 Aucun sujet à traiter (onglet Buzz vide).", "erreur")
         return []
@@ -135,7 +167,7 @@ def creer(nombre=1, sujet_id="", libre="", journal=print):
         essais += 1
         journal(f"▶ Sujet : {s['titre']}")
         try:
-            v = fabriquer(s, R, len(faites) + 1, nombre, journal)
+            v = fabriquer(s, R, len(faites) + 1, nombre, journal, format_)
         except Exception as e:
             traceback.print_exc()
             avancement.finir(False, f"Sujet abandonné : {str(e)[:120]}")
@@ -178,12 +210,13 @@ def main():
     a.add_argument("--nombre", type=int, default=1)
     a.add_argument("--sujet", default="")
     a.add_argument("--libre", default="")
+    a.add_argument("--format", default="buzz", choices=("buzz", "vrai_faux", "semaine"))
     a.add_argument("--auto", action="store_true", help="création automatique : seulement si activée dans les réglages")
     o = a.parse_args()
     if o.auto and not reglages()["creation"].get("auto"):
         print("Création automatique coupée dans les réglages : rien à faire.")
         return
-    faites = creer(max(1, min(10, o.nombre)), o.sujet, o.libre)
+    faites = creer(max(1, min(10, o.nombre)), o.sujet, o.libre, format_=o.format)
     if not faites:
         raise SystemExit(1)
 

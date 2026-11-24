@@ -107,6 +107,7 @@ dialog form { position: absolute; top: 6px; right: 6px; }
     <button data-tab="videos">🎬 Vidéos<span class="count" id="n-videos"></span></button>
     <button data-tab="creer">➕ Créer</button>
     <button data-tab="publication">📅 Publication<span class="count" id="n-pub"></span></button>
+    <button data-tab="stats">📊 Stats</button>
     <button data-tab="journal">📜 Journal</button>
     <button data-tab="reglages">⚙️ Réglages</button>
   </nav>
@@ -153,7 +154,11 @@ dialog form { position: absolute; top: 6px; right: 6px; }
       <h3>🎲 Une série d'un seul bouton</h3>
       <p class="muted petit">Le robot prend les meilleurs sujets de l'onglet 🔥 Buzz pas encore traités, cherche les articles, écrit,
         fait vérifier les faits, enregistre la voix, trouve de vraies vidéos libres de droits et monte tout. Environ 6 à 8 minutes par vidéo.</p>
-      <label class="champ">Nombre de vidéos <input type="number" id="c-nombre" min="1" max="10" value="2"></label>
+      <div class="grille2">
+        <label class="champ">Nombre de vidéos <input type="number" id="c-nombre" min="1" max="10" value="2"></label>
+        <label class="champ">Format <select id="c-format"><option value="buzz">🔥 Le buzz du jour</option>
+          <option value="vrai_faux">❓ Vrai ou faux ?</option><option value="semaine">🏆 Les 3 actus folles de la semaine (1 vidéo)</option></select></label>
+      </div>
       <button class="btn primaire" id="c-serie">🎬 Lancer la série</button>
     </div>
     <div class="card">
@@ -175,6 +180,12 @@ dialog form { position: absolute; top: 6px; right: 6px; }
     <div class="card" id="pub-resume"></div>
     <div class="card"><h3>Prochains créneaux</h3><div id="pub-cal"></div></div>
     <div class="card"><h3>File « À publier » (dans l'ordre)</h3><div id="pub-file"></div></div>
+  </section>
+
+  <!-- ================= STATS ================= -->
+  <section data-vue="stats" hidden>
+    <h2>📊 Ce qui marche sur ta chaîne</h2>
+    <div id="stats"></div>
   </section>
 
   <!-- ================= JOURNAL ================= -->
@@ -212,6 +223,9 @@ dialog form { position: absolute; top: 6px; right: 6px; }
           <label class="champ">2e heure <input type="time" id="r-pub-h2"></label></div>
         <label class="champ">Compte TikTok dans Buffer <span>nom du compte de la chaîne (obligatoire si plusieurs comptes sont reliés)</span>
           <input type="text" id="r-compte"></label>
+        <label class="champ">Pseudo TikTok de la chaîne <span>pour relever les vues de tes vidéos (📊 Stats)</span><input type="text" id="r-chaine"></label>
+        <label class="case"><input type="checkbox" id="r-heures-auto"> Heures choisies par les statistiques (dès qu'elles sont connues)</label>
+        <p class="petit muted" id="r-heures-stats"></p>
         <button class="btn" type="button" id="r-buffer">🔌 Tester Buffer</button>
       </div>
       <div class="card">
@@ -219,6 +233,9 @@ dialog form { position: absolute; top: 6px; right: 6px; }
         <label class="case"><input type="checkbox" id="r-cre-auto"> Créer une vidéo toute seule aux heures ci-dessous</label>
         <div class="grille2"><label class="champ">1re heure <input type="time" id="r-cre-h1"></label>
           <label class="champ">2e heure <input type="time" id="r-cre-h2"></label></div>
+        <label class="champ">« Vrai ou faux ? » <select id="r-vf"><option value="0">jamais</option><option value="2">1 vidéo sur 2</option>
+          <option value="3">1 vidéo sur 3</option><option value="5">1 vidéo sur 5</option></select></label>
+        <label class="case"><input type="checkbox" id="r-semaine"> « Les 3 actus folles de la semaine » le dimanche (dernier créneau)</label>
       </div>
       <div class="card">
         <h3>🔥 Détection du buzz</h3>
@@ -234,11 +251,16 @@ dialog form { position: absolute; top: 6px; right: 6px; }
       <div class="card">
         <h3>🎙️ Voix et description</h3>
         <div class="grille2">
-          <label class="champ">Voix <select id="r-voix"><option value="fr_FR-tom-medium">Tom (homme)</option>
-            <option value="fr_FR-siwis-medium">Siwis (femme)</option><option value="fr_FR-upmc-medium">UPMC (femme)</option>
-            <option value="fr_FR-gilles-low">Gilles (homme)</option></select></label>
+          <label class="champ">Voix <select id="r-voix">
+            <optgroup label="Kokoro (naturelles)"><option value="kokoro-ff_siwis">A — femme</option><option value="kokoro-pm_alex">B — homme (Alex)</option>
+              <option value="kokoro-em_alex">C — homme (Alex 2)</option><option value="kokoro-am_fenrir">D — homme (Fenrir)</option></optgroup>
+            <optgroup label="Piper (plus robotiques)"><option value="fr_FR-tom-medium">Tom (homme)</option><option value="fr_FR-siwis-medium">Siwis (femme)</option>
+              <option value="fr_FR-upmc-medium">UPMC (femme)</option><option value="fr_FR-gilles-low">Gilles (homme)</option></optgroup></select></label>
           <label class="champ">Vitesse <span>0,80 = choisi le 24/11 ; plus petit = plus rapide</span><input type="number" id="r-vitesse" min="0.65" max="1.1" step="0.01"></label>
         </div>
+        <label class="case"><input type="checkbox" id="r-musique"> Musique de fond (très discrète)</label>
+        <label class="case"><input type="checkbox" id="r-bruitages"> Bruitages (woosh, ding…)</label>
+        <label class="case"><input type="checkbox" id="r-carte"> Carte animée du lieu</label>
         <div class="grille2">
           <label class="champ">Hashtags de la chaîne <span>ajoutés à chaque vidéo</span><input type="text" id="r-tags"></label>
           <label class="champ">Nombre de hashtags <input type="number" id="r-ntags" min="3" max="10"></label>
@@ -284,9 +306,14 @@ const DEMO_DATA = {
   "journal.json": { evenements: [{ date: ilya(2), niveau: "info", texte: "🎬 Nouvelle vidéo « 1 an enfermés sur « Mars » » (62 s, 13 écrans illustrés)" },
     { date: ilya(0.5), niveau: "info", texte: "🔥 Buzz : 1 sujet(s) au-dessus des seuils" }] },
   "reglages.json": { buzz: { comptes: ["hugodecrypte", "brut", "bfmtv"], vues_min: 500000, jaime_min: 10000, commentaires_min: 1000, heures: 72 },
-    video: { voix: "fr_FR-tom-medium", vitesse: 0.8 }, publication: { mode: "cocher", auto: true, heures: ["12:30", "19:00"], compte: "" },
+    video: { voix: "kokoro-ff_siwis", vitesse: 0.8 }, publication: { mode: "cocher", auto: true, heures: ["12:30", "19:00"], compte: "" },
     creation: { auto: false, par_jour: 2, heures: ["07:15", "16:15"] }, hashtags: { fixes: ["#insolite", "#actu", "#buzz"], nombre: 6 } },
-  "garde.json": {}
+  "garde.json": {},
+  "stats.json": { maj: ilya(1), chaine: "ma_chaine", lues: 12, retrouvees: 9, videos_mesurees: 8, vues_total: 412000, vues_mediane: 18000,
+    meilleures_heures: ["12:00", "19:00"], heures: [{ nom: "19:00", videos: 4, vues_mediane: 26000, vues_moyennes: 41000 }, { nom: "12:00", videos: 4, vues_mediane: 15000, vues_moyennes: 19000 }],
+    formats: [{ nom: "vrai_faux", videos: 3, vues_mediane: 31000, vues_moyennes: 44000 }, { nom: "buzz", videos: 5, vues_mediane: 14000, vues_moyennes: 21000 }],
+    humeurs: [], hashtags: [{ nom: "#insolite", videos: 8, vues_mediane: 18000, vues_moyennes: 30000 }, { nom: "#espace", videos: 2, vues_mediane: 52000, vues_moyennes: 52000 }],
+    top: [{ id: "20261124-131000", titre: "1 an enfermés sur « Mars »", vues: 98000, jaime: 7100, commentaires: 640 }] }
 };
 const NOMS = Object.keys(DEMO_DATA);
 let D = null, DEMO = false;
@@ -331,10 +358,29 @@ async function ordre(workflow, inputs, msg) {
   return false;
 }
 const commande = (action, id, texte = "", msg = "Ordre envoyé au robot (1 à 2 min).") => ordre("commande.yml", { action, id: id || "", texte }, msg);
-const creer = (inputs, msg) => ordre("creer.yml", { nombre: "1", sujet: "", libre: "", origine: "site", simulation: "0", ...inputs }, msg);
+const creer = (inputs, msg) => ordre("creer.yml", { nombre: "1", sujet: "", libre: "", format: "buzz", origine: "site", simulation: "0", ...inputs }, msg);
 
 // ---------------- rendu ----------------
 let fBuzz = "nouveau", fVid = "nouvelle";
+const FMT = { vrai_faux: "❓ Vrai ou faux", semaine: "🏆 3 actus de la semaine" };
+const NOM_GROUPE = n => ({ buzz: "🔥 Buzz du jour", vrai_faux: "❓ Vrai ou faux", semaine: "🏆 3 actus", neutre: "🎵 neutre", tension: "🎵 suspense", joie: "🎵 joyeuse" }[n] || n);
+function tableau(titre, liste) {
+  if (!(liste || []).length) return "";
+  const max = Math.max(...liste.map(e => e.vues_mediane), 1);
+  return `<div class="card"><h3>${titre}</h3>${liste.map(e => `<div style="margin:6px 0"><div class="rang" style="justify-content:space-between">
+    <span>${esc(NOM_GROUPE(e.nom))} <span class="muted petit">(${e.videos} vidéos)</span></span><b>${nb(e.vues_mediane)}</b></div>
+    <div class="barre" style="margin:3px 0"><div style="width:${Math.round(100 * e.vues_mediane / max)}%"></div></div></div>`).join("")}</div>`;
+}
+function rendreStats() {
+  const S = D["stats.json"] || {};
+  if (!S.maj) { $("#stats").innerHTML = `<p class="muted">Pas encore de statistiques. Écris le pseudo TikTok de la chaîne dans ⚙️ Réglages ; le robot relève les vues toutes les 3 heures.</p>`; return; }
+  $("#stats").innerHTML = `<div class="card"><div class="chiffres"><span>👁️ <b>${nb(S.vues_total)}</b> vues au total</span><span>📈 <b>${nb(S.vues_mediane)}</b> vues par vidéo (médiane)</span>
+    <span>🎬 ${S.retrouvees || 0} vidéos retrouvées sur @${esc(S.chaine)}</span></div><p class="muted petit" style="margin:0">Relevé ${quand(S.maj)}. Chaque vidéo compte après 24 h en ligne.
+    ${(S.meilleures_heures || []).length ? `Meilleures heures : <b>${S.meilleures_heures.join(" et ")}</b>.` : ""}</p></div>`
+    + ((S.top || []).length ? `<div class="card"><h3>🏆 Tes vidéos les plus vues</h3>${S.top.map(t => `<div class="creneau"><span>${esc(t.titre)}</span><b>${nb(t.vues)}</b></div>`).join("")}</div>` : "")
+    + tableau("🕐 Vues selon l'heure de publication", S.heures) + tableau("🎬 Vues selon le format", S.formats)
+    + tableau("#️⃣ Hashtags qui marchent", S.hashtags) + tableau("🎵 Vues selon la musique", S.humeurs);
+}
 function carteSujet(s) {
   const comptes = [...new Set((s.videos || []).map(v => "@" + v.compte))].join(", ");
   const statut = s.statut || "nouveau";
@@ -380,7 +426,8 @@ function carteVideo(v) {
     <button class="vignette" style="background-image:url('${mini}')" data-play="${esc(v.url)}" aria-label="Regarder"></button>
     <div>
       <div class="rang"><span class="tag ${v.statut}">${LIB[v.statut] || v.statut}</span><span class="muted petit">${quand(v.cree_le)} · ${Math.round(v.duree || 0)} s</span>
-        ${v.essai ? '<span class="tag">🧪 essai</span>' : ""}</div>
+        ${v.essai ? '<span class="tag">🧪 essai</span>' : ""}${FMT[v.format] ? `<span class="tag">${FMT[v.format]}</span>` : ""}</div>
+      ${v.stats ? `<div class="chiffres"><span>👁️ <b>${nb(v.stats.vues)}</b></span><span>❤️ <b>${nb(v.stats.jaime)}</b></span><span>💬 <b>${nb(v.stats.commentaires)}</b></span>${v.lien_tiktok ? `<a href="${esc(v.lien_tiktok)}" target="_blank" rel="noopener">voir sur TikTok</a>` : ""}</div>` : ""}
       <h3 style="margin-top:6px">${esc(v.titre)}</h3>
       <div class="muted petit">Sujet : ${esc(v.sujet)}${v.buzz?.vues ? ` · 👁️ ${nb(v.buzz.vues)} · 💬 ${nb(v.buzz.commentaires)}` : ""}</div>
       <div class="desc">${esc(v.description)}\n\n${esc(v.question)}\n\n${esc((v.hashtags || []).join(" "))}</div>
@@ -426,7 +473,8 @@ function rendrePublication() {
     · ${(P.heures || []).join(" et ")} (heure de Paris)<br><span class="muted petit">Mode : ${P.mode === "auto" ? "les vidéos vérifiées vont directement dans la file" : "tu coches « À publier » toi-même"}
     · ${file.length} vidéo(s) en attente${jours ? `, de quoi tenir ${jours.toLocaleString("fr-FR", { maximumFractionDigits: 1 })} jour(s)` : ""}
     ${file.length <= 2 ? " · 🔴 pense à lancer une série" : ""}${P.compte ? " · compte Buffer : " + esc(P.compte) : " · ⚠️ compte TikTok de Buffer non choisi"}</span></p>`;
-  const cr = creneauxAVenir(P.heures);
+  const MH = (D["stats.json"] || {}).meilleures_heures || [];
+  const cr = creneauxAVenir(P.heures_auto && MH.length === 2 ? MH : P.heures);
   $("#pub-cal").innerHTML = cr.slice(0, 8).map((t, i) => `<div class="creneau"><span>${quand(t.toISOString())}</span><span class="${file[i] ? "" : "muted"}">${file[i] ? esc(file[i].titre) : "— rien à publier —"}</span></div>`).join("") || `<p class="muted">Aucune heure de publication réglée.</p>`;
   $("#pub-file").innerHTML = file.map((v, i) => `<div class="creneau"><span>${i + 1}. ${esc(v.titre)}</span><span class="rang"><button class="btn mini primaire" data-a="publier_maintenant" data-id="${v.id}">🚀</button><button class="btn mini" data-a="retirer" data-id="${v.id}">↩️</button></span></div>`).join("") || `<p class="muted">Vide : coche des vidéos « À publier » dans 🎬 Vidéos.</p>`;
 }
@@ -434,7 +482,7 @@ function rendreJournal() {
   $("#journal").innerHTML = ((D["journal.json"] || {}).evenements || []).slice(0, 120).map(e =>
     `<li><time>${quand(e.date)}</time>${e.niveau === "erreur" ? "⚠️ " : ""}${esc(e.texte)}</li>`).join("");
 }
-function rendre() { rendreBuzz(); rendreVideos(); rendrePublication(); rendreJournal(); }
+function rendre() { rendreBuzz(); rendreVideos(); rendrePublication(); rendreStats(); rendreJournal(); }
 
 // ---------------- réglages ----------------
 function remplirReglages() {
@@ -449,18 +497,24 @@ function remplirReglages() {
   $("#r-heures").value = B.heures ?? 72; $("#r-comptes").value = (B.comptes || []).join("\n");
   const E = (D["buzz.json"] || {}).comptes || {};
   $("#r-comptes-etat").textContent = Object.keys(E).length ? "Dernier relevé : " + Object.entries(E).map(([k, e]) => `${e.ok ? "🟢" : "🔴"} @${k}`).join("  ") : "";
-  $("#r-voix").value = V.voix || "fr_FR-tom-medium"; $("#r-vitesse").value = V.vitesse ?? 0.8;
+  $("#r-voix").value = V.voix || "kokoro-ff_siwis"; $("#r-vitesse").value = V.vitesse ?? 0.8;
+  $("#r-musique").checked = V.musique !== false; $("#r-bruitages").checked = V.bruitages !== false; $("#r-carte").checked = V.carte !== false;
+  $("#r-chaine").value = P.chaine || ""; $("#r-heures-auto").checked = !!P.heures_auto;
+  const MH = (D["stats.json"] || {}).meilleures_heures || [];
+  $("#r-heures-stats").textContent = MH.length ? `Meilleures heures d'après tes vidéos : ${MH.join(" et ")}.` : "Les statistiques n'ont pas encore assez de vidéos (2 par heure au moins).";
+  const F = C.formats || {}; $("#r-vf").value = String(F.vrai_faux ?? 3); $("#r-semaine").checked = F.semaine !== false;
   $("#r-tags").value = (H.fixes || []).join(" "); $("#r-ntags").value = H.nombre ?? 6;
 }
 $("#form-reglages").onsubmit = e => {
   e.preventDefault();
   const heures = (...ids) => ids.map(i => $(i).value).filter(Boolean);
   const R = {
-    publication: { mode: $("#r-mode").value, auto: $("#r-pub-auto").checked, heures: heures("#r-pub-h1", "#r-pub-h2"), compte: $("#r-compte").value.trim() },
-    creation: { auto: $("#r-cre-auto").checked, heures: heures("#r-cre-h1", "#r-cre-h2") },
+    publication: { mode: $("#r-mode").value, auto: $("#r-pub-auto").checked, heures: heures("#r-pub-h1", "#r-pub-h2"), compte: $("#r-compte").value.trim(),
+      chaine: $("#r-chaine").value.trim(), heures_auto: $("#r-heures-auto").checked },
+    creation: { auto: $("#r-cre-auto").checked, heures: heures("#r-cre-h1", "#r-cre-h2"), formats: { vrai_faux: +$("#r-vf").value, semaine: $("#r-semaine").checked } },
     buzz: { vues_min: +$("#r-vues").value, jaime_min: +$("#r-jaime").value, commentaires_min: +$("#r-com").value, heures: +$("#r-heures").value,
       comptes: $("#r-comptes").value.split(/\s+/).map(x => x.replace(/^@/, "")).filter(Boolean) },
-    video: { voix: $("#r-voix").value, vitesse: +$("#r-vitesse").value },
+    video: { voix: $("#r-voix").value, vitesse: +$("#r-vitesse").value, musique: $("#r-musique").checked, bruitages: $("#r-bruitages").checked, carte: $("#r-carte").checked },
     hashtags: { fixes: $("#r-tags").value.split(/\s+/).filter(Boolean), nombre: +$("#r-ntags").value }
   };
   commande("reglages", "", JSON.stringify(R), "Réglages envoyés au robot (1 à 2 min).");
@@ -518,7 +572,8 @@ $$("#buzz-filtres button").forEach(b => b.onclick = () => { fBuzz = b.dataset.f;
 $$("#vid-filtres button").forEach(b => b.onclick = () => { fVid = b.dataset.f; $$("#vid-filtres button").forEach(x => x.setAttribute("aria-pressed", x === b)); rendreVideos(); });
 $("#buzz-maj").onclick = () => ordre("buzz.yml", {}, "Recherche lancée : nouveaux sujets dans 5 à 10 minutes.");
 $("#buzz-meilleurs").onclick = () => creer({ nombre: "2" }, "Série de 2 vidéos lancée (environ 15 minutes).");
-$("#c-serie").onclick = () => { const n = Math.max(1, Math.min(10, +$("#c-nombre").value || 1)); creer({ nombre: String(n) }, `Série de ${n} vidéo(s) lancée (environ ${n * 7} minutes).`); };
+$("#c-serie").onclick = () => { const f = $("#c-format").value, n = f === "semaine" ? 1 : Math.max(1, Math.min(10, +$("#c-nombre").value || 1));
+  creer({ nombre: String(n), format: f }, `${n} vidéo(s) lancée(s) (environ ${n * 7} minutes).`); };
 $("#c-un").onclick = () => { const t = $("#c-libre").value.trim(); if (!t) return toast("Écris d'abord le sujet."); creer({ libre: t }, "Vidéo lancée (environ 7 minutes)."); };
 $("#c-essai").onclick = () => creer({ simulation: "1" }, "Essai lancé (environ 3 minutes).");
 
@@ -555,7 +610,7 @@ $("#lecteur").addEventListener("close", () => { $("#lv").pause(); $("#lv").remov
   store.set("bi_jeton", decodeURIComponent(m[1])); history.replaceState(null, "", location.pathname);
   setTimeout(() => toast("Clé GitHub installée sur cet appareil ✓"), 400);
 })();
-const VUES = ["buzz", "videos", "creer", "publication", "journal", "reglages"];
+const VUES = ["buzz", "videos", "creer", "publication", "stats", "journal", "reglages"];
 if (VUES.includes(location.hash.slice(1))) montrer(location.hash.slice(1));
 charger().then(() => suivre(false));
 setInterval(() => { if (!document.hidden) charger(); }, 120e3);

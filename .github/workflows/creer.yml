@@ -1,5 +1,5 @@
 name: Créer des vidéos
-run-name: "Créer ${{ inputs.nombre || '1' }} vidéo(s) ${{ inputs.origine }}"
+run-name: "Créer ${{ inputs.nombre || '1' }} vidéo(s) ${{ inputs.format }} ${{ inputs.origine }}"
 
 on:
   workflow_dispatch:             # bouton « 🎬 Créer » du site, ou création automatique (garde.yml)
@@ -13,6 +13,9 @@ on:
       libre:
         description: "Sujet écrit à la main (facultatif)"
         default: ""
+      format:
+        description: "buzz, vrai_faux (Vrai ou faux ?) ou semaine (3 actus de la semaine)"
+        default: "buzz"
       origine:
         description: "site, auto…"
         default: "site"
@@ -58,6 +61,6 @@ jobs:
       - name: Installer les bibliothèques
         run: pip install -q -r requirements.txt
       - name: Fabriquer
-        run: python -m robot.principal --nombre "${{ inputs.nombre || '1' }}" --sujet "${{ inputs.sujet }}" --libre "$LIBRE"
+        run: python -m robot.principal --nombre "${{ inputs.nombre || '1' }}" --sujet "${{ inputs.sujet }}" --libre "$LIBRE" --format "${{ inputs.format || 'buzz' }}"
         env:
           LIBRE: ${{ inputs.libre }}

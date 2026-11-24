@@ -1,0 +1,27 @@
+name: Statistiques de la chaîne
+
+on:
+  schedule:
+    - cron: "23 */3 * * *"       # toutes les 3 heures
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stats
+  cancel-in-progress: false
+
+jobs:
+  stats:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Installer yt-dlp (lecture du compte TikTok)
+        run: pip install -q -U "yt-dlp[default,curl-cffi]" || pip install -q -U yt-dlp
+      - name: Relever les statistiques
+        run: python -m robot.stats

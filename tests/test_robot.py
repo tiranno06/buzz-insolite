@@ -97,6 +97,57 @@ class TestPublication(unittest.TestCase):
         self.assertEqual(R["video"]["vitesse"], 1.1); self.assertEqual(R["publication"]["heures"], ["12:30"])
 
 
+class TestNouveautes(unittest.TestCase):
+    def test_bruitages(self):
+        from robot import sons
+        ph = [{"ecran": "TITRE"}, {"ecran": "378 JOURS", "media": None}, {"ecran": "", "media": {"type": "video"}},
+              {"ecran": "3… 2… 1…"}, {"ecran": "", "reponse": "faux"}]
+        b = sons.bruitages(ph, [0, 2, 4, 6, 8])
+        noms = [x[0] for x in b]
+        self.assertNotIn(("woosh.wav", 0), [(x[0], x[1]) for x in b])          # pas de woosh au tout début
+        self.assertEqual(noms.count("dun_dun.wav"), 1)
+        self.assertIn("ding.wav", noms)
+
+    def test_musique_existe(self):
+        from robot import sons
+        for h in sons.HUMEURS:
+            self.assertTrue(sons.musique(h), h)
+
+    def test_carte_point_dans_pays(self):
+        from robot import carte
+        carre = [(0, 0), (10, 0), (10, 10), (0, 10)]
+        self.assertTrue(carte._dedans(5, 5, carre)); self.assertFalse(carte._dedans(15, 5, carre))
+        self.assertGreater(carte._merc(60), carte._merc(40))
+
+    def test_carte_secours_ia(self):
+        from robot import carte
+        carte._photon = carte._nominatim = lambda lieu: (_ for _ in ()).throw(OSError("hors ligne"))
+        r = carte.trouver_lieu("Lieu imaginaire de test", [48.6, -2.0])
+        self.assertEqual((r["lat"], r["lon"], r["genre"]), (48.6, -2.0, "ia"))
+
+    def test_stats(self):
+        from robot import stats
+        now = datetime.datetime(2026, 12, 10, 12, 0, tzinfo=PARIS)
+        vids = []
+        for i, (h, vues) in enumerate([(12, 1000), (12, 3000), (19, 9000), (19, 7000), (8, 500)]):
+            vids.append({"id": str(i), "titre": f"v{i}", "statut": "publiee", "format": "vrai_faux" if vues > 5000 else "buzz",
+                         "hashtags": ["#insolite"], "publiee_le": datetime.datetime(2026, 12, 1, h, 0, tzinfo=PARIS).isoformat(),
+                         "stats": {"vues": vues, "jaime": 1, "commentaires": 1, "partages": 0}})
+        S = stats.analyser(vids, now)
+        self.assertEqual(S["meilleures_heures"], ["12:00", "19:00"])
+        self.assertEqual(S["formats"][0]["nom"], "vrai_faux")
+        tiktok = [{"id": "99", "date": datetime.datetime(2026, 12, 1, 19, 5, tzinfo=PARIS).timestamp(), "texte": "fausse base martienne #insolite"}]
+        nos = [{"id": "a", "statut": "publiee", "publiee_le": datetime.datetime(2026, 12, 1, 19, 0, tzinfo=PARIS).isoformat(),
+                "description": "Ils ont vécu dans une fausse base martienne", "hashtags": ["#insolite"]}]
+        self.assertEqual(stats.rapprocher(nos, tiktok)["a"]["id"], "99")
+
+    def test_format_auto(self):
+        R = reglages()
+        dimanche = datetime.datetime(2026, 11, 29, 16, 20, tzinfo=PARIS)
+        self.assertEqual(publication_auto.format_auto(R, dimanche, "16:15"), "semaine")
+        self.assertIn(publication_auto.format_auto(R, dimanche, "07:15"), ("buzz", "vrai_faux"))
+
+
 @unittest.skipUnless(shutil.which("ffmpeg"), "ffmpeg absent")
 class TestVideoComplete(unittest.TestCase):
     def test_essai_sans_reseau(self):
@@ -117,7 +168,8 @@ class TestFichiers(unittest.TestCase):
     def test_workflows_lisibles(self):
         import yaml
         for f in glob.glob(os.path.join(RACINE, ".github", "workflows", "*.yml")):
-            d = yaml.safe_load(open(f, encoding="utf-8"))
+            with open(f, encoding="utf-8") as fh:
+                d = yaml.safe_load(fh)
             self.assertIn("jobs", d, f); self.assertTrue(d.get("name"), f)
 
     def test_donnees_valides(self):

@@ -14,6 +14,13 @@ import urllib.request
 from .commun import CACHE
 
 VOIX = {"fr_FR-tom-medium": "tom", "fr_FR-siwis-medium": "siwis", "fr_FR-upmc-medium": "upmc", "fr_FR-gilles-low": "gilles"}
+# Voix Kokoro (Apache 2.0), bien plus naturelles que Piper (avis de l'auteur, 24/11/2026). Une seule voix française (femme) ;
+# les voix d'homme viennent d'autres langues et parlent français : seules celles que Whisper comprend aussi bien que la voix
+# française ont été gardées (essai du 24/11 : pm_alex, em_alex, am_fenrir).
+KOKORO = {"kokoro-ff_siwis": "femme", "kokoro-pm_alex": "homme (Alex)", "kokoro-em_alex": "homme (Alex 2)",
+          "kokoro-am_fenrir": "homme (Fenrir)"}
+KOKORO_FICHIERS = "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/"
+_KOKORO = None
 
 
 def modele(nom):
@@ -33,12 +40,37 @@ def duree(f):
     return float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f]))
 
 
+def _kokoro():
+    global _KOKORO
+    if _KOKORO is None:
+        from kokoro_onnx import Kokoro
+        dossier = os.path.join(CACHE, "kokoro"); os.makedirs(dossier, exist_ok=True)
+        for nom in ("kokoro-v1.0.onnx", "voices-v1.0.bin"):
+            chemin = os.path.join(dossier, nom)
+            if not os.path.exists(chemin):
+                urllib.request.urlretrieve(KOKORO_FICHIERS + nom, chemin + ".part"); os.replace(chemin + ".part", chemin)
+        _KOKORO = Kokoro(os.path.join(dossier, "kokoro-v1.0.onnx"), os.path.join(dossier, "voices-v1.0.bin"))
+    return _KOKORO
+
+
+def _dire_kokoro(texte, brut, vitesse, nom_voix):
+    import wave
+    import numpy as np
+    son, sr = _kokoro().create(texte, voice=nom_voix.split("-", 1)[1], speed=max(0.8, min(1.4, 0.92 / vitesse)), lang="fr-fr")
+    with wave.open(brut, "wb") as w:
+        w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr)
+        w.writeframes((np.clip(son, -1, 1) * 32767).astype(np.int16).tobytes())
+
+
 def dire(texte, chemin, nom_voix, vitesse=0.80):
     """Fabrique la phrase dite, sans blanc au début ni à la fin. Renvoie sa durée."""
     brut = chemin + ".brut.wav"
-    subprocess.run([sys.executable, "-m", "piper", "-m", modele(nom_voix), "--length-scale", str(vitesse),
-                    "--noise-scale", "0.75", "--noise-w", "0.9", "-f", brut], input=texte, text=True, check=True,
-                   capture_output=True)
+    if nom_voix in KOKORO:
+        _dire_kokoro(texte, brut, vitesse, nom_voix)
+    else:
+        subprocess.run([sys.executable, "-m", "piper", "-m", modele(nom_voix), "--length-scale", str(vitesse),
+                        "--noise-scale", "0.75", "--noise-w", "0.9", "-f", brut], input=texte, text=True, check=True,
+                       capture_output=True)
     coupe = "silenceremove=start_periods=1:start_threshold=-45dB"
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", brut, "-af", f"{coupe},areverse,{coupe},apad=pad_dur=0.04,areverse",
                     "-ar", "44100", chemin], check=True)

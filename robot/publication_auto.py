@@ -38,7 +38,11 @@ def prochaine(file):
 def main():
     R = reglages(); now = maintenant(); jour = f"{now:%Y-%m-%d}"
     E = lire("garde.json") or {}
-    pub_dus = creneaux_dus(R["publication"]["heures"], (E.get("publication") or {}).get(jour, []), now) \
+    heures_pub = R["publication"]["heures"]
+    S = lire("stats.json") or {}
+    if R["publication"].get("heures_auto") and len(S.get("meilleures_heures") or []) == 2:
+        heures_pub = S["meilleures_heures"]                  # heures où nos vidéos font le plus de vues
+    pub_dus = creneaux_dus(heures_pub, (E.get("publication") or {}).get(jour, []), now) \
         if R["publication"].get("auto") else []
     cre_dus = creneaux_dus(R["creation"]["heures"], (E.get("creation") or {}).get(jour, []), now) \
         if R["creation"].get("auto") else []
@@ -90,10 +94,21 @@ def main():
         ecrire("file.json", file)
     depot.enregistrer(appliquer, f"Garde de {now:%H:%M}")
     for h in lancer:
+        format_ = format_auto(R, now, h)
         if depot.en_ligne():
-            subprocess.run(["gh", "workflow", "run", "creer.yml", "-f", "nombre=1", "-f", f"origine=auto {h}"],
-                           check=False, env=dict(os.environ))
-        noter(f"🤖 Création automatique lancée (créneau de {h}).")
+            subprocess.run(["gh", "workflow", "run", "creer.yml", "-f", "nombre=1", "-f", f"format={format_}",
+                            "-f", f"origine=auto {h}"], check=False, env=dict(os.environ))
+        noter(f"🤖 Création automatique lancée (créneau de {h}, format {format_}).")
+
+
+def format_auto(R, now, h):
+    """Dimanche, dernier créneau : « 3 actus de la semaine » ; sinon « Vrai ou faux ? » une vidéo sur N ; sinon buzz."""
+    F = R["creation"].get("formats") or {}
+    if F.get("semaine") and now.weekday() == 6 and h == max(R["creation"]["heures"]):
+        return "semaine"
+    n = int(F.get("vrai_faux") or 0)
+    deja = sum(len(x) for x in (lire("garde.json") or {}).get("creation", {}).values())
+    return "vrai_faux" if n and deja % n == n - 1 else "buzz"
 
 
 if __name__ == "__main__":

@@ -9,6 +9,7 @@ import subprocess
 
 from PIL import Image, ImageDraw, ImageFont
 
+from . import carte, sons
 from . import voix as V
 from .commun import POLICES
 
@@ -39,7 +40,7 @@ def calque(chemin, titre="", grand="", petit="", etiquette="INSOLITE", coul=JAUN
     """Textes posés sur l'image (fond transparent)."""
     im = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im); f = police(46)
     if etiquette:
-        d.rounded_rectangle([60, 120, 60 + d.textlength(etiquette, font=f) + 60, 200], 22, fill=ROUGE)
+        d.rounded_rectangle([60, 120, 60 + d.textlength(etiquette, font=f) + 60, 200], 22, fill=ROUGE, outline=BLANC, width=3)
         d.text((90, 124), etiquette, font=f, fill=BLANC)
     if titre:
         _centre(d, 290, titre, police(_ajuste(d, titre, 104, W - 100)), coul)
@@ -64,6 +65,12 @@ def fond_texte(chemin, haut=(12, 20, 48), bas=(40, 8, 60)):
 def ecran(media, duree, png, sortie, dossier):
     """Un écran de `duree` secondes (sans son)."""
     commun = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-r", str(IPS), "-an"]
+    if media and media["type"] == "carte":
+        try:
+            return carte.video(media, duree, png, sortie, dossier)
+        except Exception as e:                            # carte impossible (frontières injoignables…) : écran de texte
+            print(f"    carte impossible ({str(e)[:80]}) : écran de texte", flush=True)
+            media = None
     haut_net = int(W / 1.1) // 2 * 2
     if media and media["type"] == "video":
         debut = media.get("debut", 0) if (media.get("duree") or 99) > duree + media.get("debut", 0) else 0
@@ -148,7 +155,11 @@ def monter(script, dossier, sortie, suivi=None):
         d = (debuts[i + 1] if i + 1 < len(debuts) else total) - debuts[i]
         png = os.path.join(dossier, f"calque{i:02d}.png")
         derniere = i == len(ph) - 1
-        if p.get("media") and not derniere:
+        if p.get("reponse"):                              # « Vrai ou faux ? » : la réponse en grand, vert ou rouge
+            vrai = p["reponse"] == "vrai"
+            calque(png, grand="VRAI !" if vrai else "FAUX !", petit=(p.get("ecran") or "").upper(),
+                   coul=(80, 220, 120) if vrai else (255, 80, 90))
+        elif p.get("media") and not derniere:
             calque(png, titre=p.get("ecran", "").upper())
         else:
             grand = "ET TOI ?" if derniere else (p.get("ecran") or "").upper()
@@ -170,9 +181,11 @@ def monter(script, dossier, sortie, suivi=None):
     ass = os.path.join(dossier, "st.ass")
     with open(ass, "w", encoding="utf-8") as f:
         f.write(karaoke(ph, debuts, texte_credits))
-    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", images, "-i", voix,
-                    "-filter_complex", f"[1:a]apad,volume=1.5,loudnorm=I=-14:TP=-1.5[a];[0:v]subtitles={ass}:fontsdir={POLICES}[v]",
-                    "-map", "[v]", "-map", "[a]", "-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "medium", "-crf", "21",
+    bande = sons.mixer(voix, ph, debuts, total, script.get("humeur", "neutre"), os.path.join(dossier, "bande.wav"),
+                       script.get("musique", True), script.get("format", ""), script.get("bruitages", True))
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", images, "-i", bande,
+                    "-filter_complex", f"[0:v]subtitles={ass}:fontsdir={POLICES}[v]",
+                    "-map", "[v]", "-map", "1:a", "-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "medium", "-crf", "21",
                     "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-ar", "44100", "-movflags", "+faststart", sortie],
                    check=True)
     return total

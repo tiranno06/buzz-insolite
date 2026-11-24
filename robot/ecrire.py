@@ -22,7 +22,7 @@ Structure :
 3. Un détail surprenant ou un chiffre fort vers la fin.
 4. Dernière phrase : une question au spectateur + « Dis-le en commentaire ! ».
 """ + REGLES_SUJET + """
-Donne 13 à 17 phrases. Pour chaque phrase :
+Donne 13 à 17 phrases (20 à 24 pour les 3 actus de la semaine). Pour chaque phrase :
 - "voix" : la phrase dite (nombres ÉCRITS EN LETTRES, sigles épelés avec des points, ex. « U.L.R. ») ;
 - "ecrit" : la même phrase pour les sous-titres, avec les nombres en chiffres ;
 - "ecran" : facultatif, un gros texte à afficher (3 mots max ou un chiffre avec son unité, ex. « 378 JOURS ») ;
@@ -33,7 +33,9 @@ Aussi :
 - "description" : 1 à 2 phrases pour la description TikTok, avec un émoji ;
 - "question" : la question à poser en commentaire ;
 - "hashtags" : 4 hashtags précis sur le sujet (sans #) ;
-- "lieu" : le lieu principal (ville ou pays) ou "" ;
+- "lieu" : le lieu principal, le plus précis possible (« Saint-Malo, France ») ou "" ;
+- "coordonnees" : [latitude, longitude] de ce lieu, ou [] ;
+- "humeur" : l'ambiance de la musique : "neutre", "tension" (mystère, danger, suspense) ou "joie" (drôle, heureux) ;
 - "sources" : les médias utilisés.
 Réponds uniquement en JSON : {"titre":…, "accroche":…, "phrases":[{"voix":…,"ecrit":…,"ecran":…,"image":…}], …}"""
 
@@ -51,10 +53,27 @@ def nettoyer_hashtag(h):
     return re.sub(r"[^\wÀ-ÿ]", "", str(h)).lower()
 
 
-def ecrire(sujet, articles, journal=print):
+FORMATS = {
+    "buzz": "",
+    "vrai_faux": """
+FORMAT « VRAI OU FAUX ? » (il fait énormément commenter) :
+- 1re phrase : « Vrai ou faux ? » suivi de l'affirmation la plus étonnante du sujet (vraie OU fausse d'après les articles) ;
+- 2e phrase : « Réponds en commentaire avant la fin ! » ;
+- puis une phrase « Trois… deux… un… » (ecran : "3… 2… 1…") ;
+- puis LA RÉPONSE : une phrase « C'est vrai ! » ou « C'est faux ! » avec le champ "reponse" : "vrai" ou "faux" (une seule phrase
+  porte ce champ) ;
+- puis l'explication avec les faits, et la question finale habituelle.""",
+    "semaine": """
+FORMAT « LES 3 ACTUS LES PLUS FOLLES DE LA SEMAINE » : on te donne TROIS sujets. Présente-les du 3e au 1er (le plus fou en
+dernier), 4 à 5 phrases chacun ; la 1re phrase de chaque sujet a pour "ecran" « N°3 », « N°2 » puis « N°1 ». Accroche du
+début : « Les 3 actus les plus folles de la semaine ! ». Question finale : laquelle est la plus folle ?""",
+}
+
+
+def ecrire(sujet, articles, journal=print, format_="buzz"):
     """Texte de la vidéo (dict) ; lève ia.AucuneIA si aucune IA ne répond."""
     texte = f"SUJET : {sujet['titre']}\nCE QU'ON SAIT : {sujet.get('resume', '')}\n\nARTICLES :\n{_articles_texte(articles)}"
-    d, qui = ia.demander_json(CONSIGNE, texte, temperature=0.8, max_tokens=5000, journal=journal)
+    d, qui = ia.demander_json(CONSIGNE + FORMATS.get(format_, ""), texte, temperature=0.8, max_tokens=6000, journal=journal)
     phrases = [p for p in d.get("phrases") or [] if str(p.get("voix") or "").strip()]
     if len(phrases) < 8:
         raise ValueError(f"texte trop court ({len(phrases)} phrases)")
@@ -63,7 +82,17 @@ def ecrire(sujet, articles, journal=print):
         p["ecrit"] = str(p.get("ecrit") or p["voix"]).strip()
         p["ecran"] = str(p.get("ecran") or "").strip()[:24]
         p["image"] = str(p.get("image") or sujet["titre"]).strip()[:60]
+        p["reponse"] = str(p.get("reponse") or "").strip().lower() if format_ == "vrai_faux" else ""
+        if p["reponse"] not in ("vrai", "faux"):
+            p["reponse"] = ""
+    if format_ == "vrai_faux" and not any(p["reponse"] for p in phrases):
+        for p in phrases:                                # réponse non marquée par l'IA : on la retrouve dans le texte
+            m = re.match(r"\W*c'est (vrai|faux)", p["voix"].lower().replace("’", "'"))
+            if m:
+                p["reponse"] = m.group(1); break
     d["phrases"] = phrases
+    d["format"] = format_
+    d["humeur"] = d.get("humeur") if d.get("humeur") in ("neutre", "tension", "joie") else "neutre"
     d["auteur_ia"] = qui
     d["hashtags"] = [nettoyer_hashtag(h) for h in d.get("hashtags") or [] if nettoyer_hashtag(h)]
     journal(f"  texte écrit par {qui} : {len(phrases)} phrases")
@@ -92,7 +121,7 @@ def verifier(script, articles, journal=print):
         corr = str(pb.get("correction") or "").strip()
         if corr and i != len(script["phrases"]) - 1:
             script["phrases"][i].update(voix=corr, ecrit=corr); corrigees += 1
-        elif i not in (0, len(script["phrases"]) - 1):
+        elif i not in (0, len(script["phrases"]) - 1) and not script["phrases"][i].get("reponse"):
             script["phrases"].pop(i); retirees += 1
     script["verifie"] = True
     script["verification"] = {"par": qui, "corrigees": corrigees, "retirees": retirees,
