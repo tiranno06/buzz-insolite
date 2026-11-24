@@ -72,6 +72,14 @@ recherche → thème → écran de texte ; titre → raccourci → retiré ; voi
 courte → phrases ajoutées, sinon sujet abandonné (LookupError). Note = 100 sans problème restant ; un contrôle impossible
 (IA en panne après 3 essais espacés d'1 min) = « a_verifier ».
 
+## Vraies images du sujet (demande de l'auteur du 24/11 : « pas de bouts de vidéos au hasard pour meubler »)
+Les vidéos des JT et agences (BFM, TF1, AFP…) ne sont JAMAIS reprises (droits, TikTok les reconnaît). À la place :
+champ "entite" de chaque phrase (titre de l'article Wikipédia de la personne / du lieu / de l'objet) → `images.wikipedia_media`
+(galerie de l'article Wikipédia FR, qui n'accepte que des images libres ; pauses si 429) ; écrans « LA PRESSE EN PARLE »
+(`images.carte_presse` : vrai titre + nom du média, 3 au plus, sur les écrans restés sans vraie image) ; NASA / Wikimedia ;
+banques d'images génériques (Pixabay, Pexels) COUPÉES (`video.images_generiques` false) ; sinon écran de texte.
+L'IA qui contrôle les images refuse une image générique sans rapport réel.
+
 ## Plusieurs machines en même temps (demande de l'auteur du 24/11)
 creer.yml : job « plan » (`principal.planifier` : un sujet + des réserves PAR machine, réservés « en_cours » avec `reserve_le`,
 libres de nouveau après 3 h ; réserves non utilisées rendues à la fin de `creer`) puis job « creer » en matrice (une vidéo par

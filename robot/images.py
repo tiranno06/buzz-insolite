@@ -170,19 +170,123 @@ def _commons(requete, deja, video=False):
 
 
 CHERCHEURS = (pexels_video, pixabay_video, nasa_video, commons_video, pexels_photo, pixabay_photo, commons_photo)
+GENERIQUES = (pexels_video, pixabay_video, pexels_photo, pixabay_photo)   # banques d'images « pour meubler » : coupées par défaut
 
 
-def trouver(requete, dossier, n, deja, journal=print, theme=""):
-    """Télécharge un média pour la requête (puis pour le thème de la vidéo) ; None = écran de texte, plutôt qu'une image
-    sans rapport. `deja` : identifiants déjà utilisés."""
-    m = _trouver(requete, dossier, n, deja, journal)
+# ------------------------------------------------------------------ vraies images du sujet (demande de l'auteur du 24/11)
+def _wiki(url, essais=4):
+    """Wikipédia / Wikimedia, avec pauses si le site demande de ralentir (erreur 429)."""
+    for k in range(essais):
+        try:
+            return _json(url)
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or k == essais - 1:
+                raise
+            time.sleep(3 * (k + 1))
+
+
+def wikipedia_media(entite, deja):
+    """Vraies photos de la personne, du lieu ou de l'objet dont parle la phrase : galerie de son article Wikipédia en
+    français (qui n'accepte QUE des images libres de droits), dans l'ordre de l'article. Jamais deux fois la même."""
+    q = urllib.parse.urlencode({"action": "query", "list": "search", "srsearch": entite, "srlimit": 1, "format": "json"})
+    res = (_wiki(f"https://fr.wikipedia.org/w/api.php?{q}").get("query") or {}).get("search") or []
+    if not res:
+        return None
+    titre = res[0]["title"]
+    galerie = _wiki("https://fr.wikipedia.org/api/rest_v1/page/media-list/" + urllib.parse.quote(titre.replace(" ", "_")))
+    for it in galerie.get("items") or []:
+        nom = str(it.get("title") or "")
+        if it.get("type") != "image" or not re.search(r"\.(jpe?g|png|webp)$", nom, re.I) or re.search(r"logo|carte|map|blason|signature|drapeau|flag", nom, re.I):
+            continue
+        cle = f"wiki-{nom}"
+        if cle in deja:
+            continue
+        src = (it.get("srcset") or [{}])[-1].get("src") or ""
+        if not src:
+            continue
+        return dict(type="photo", url=("https:" + src) if src.startswith("//") else src, id=cle, entite=titre,
+                    credit=credit_commons(nom) or f"Wikipédia, article « {titre} »")
+    return None
+
+
+def credit_commons(fichier):
+    """« Auteur / Wikimedia Commons, licence » d'un fichier (vide si illisible)."""
+    try:
+        q = urllib.parse.urlencode({"action": "query", "format": "json", "prop": "imageinfo", "iiprop": "extmetadata",
+                                    "titles": fichier if fichier.startswith(("File:", "Fichier:")) else "File:" + fichier,
+                                    "iiextmetadatafilter": "Artist|LicenseShortName"})
+        page = next(iter(_wiki(f"https://commons.wikimedia.org/w/api.php?{q}", 2)["query"]["pages"].values()))
+        m = page["imageinfo"][0]["extmetadata"]
+        auteur = re.sub("<[^>]+>", "", m.get("Artist", {}).get("value", "")).strip()[:40] or "Wikimedia Commons"
+        return f"{auteur} / Wikimedia Commons, {m.get('LicenseShortName', {}).get('value', '')}".strip(", ")
+    except Exception:
+        return ""
+
+
+def carte_presse(article, chemin):
+    """Écran « LA PRESSE EN PARLE » : le vrai titre de l'article et le nom du média (citation avec sa source)."""
+    from PIL import Image, ImageDraw, ImageFont
+    from .commun import POLICES
+    W, H = 1080, 982                                       # même format que l'image nette au milieu de l'écran
+    im = Image.new("RGB", (W, H), (242, 238, 230)); d = ImageDraw.Draw(im)
+    gras = os.path.join(POLICES, "Poppins-Bold.ttf"); moyen = os.path.join(POLICES, "Poppins-Medium.ttf")
+    d.rectangle([0, 0, W, 130], fill=(25, 25, 28))
+    d.text((60, 34), "LA PRESSE EN PARLE", font=ImageFont.truetype(gras, 56), fill=(255, 214, 0))
+    d.text((60, 170), str(article.get("media", ""))[:40].upper(), font=ImageFont.truetype(gras, 48), fill=(232, 40, 60))
+    mots = str(article.get("titre", "")).split()
+    for taille in (76, 68, 60, 52, 46, 40):               # le plus gros texte qui tient
+        f = ImageFont.truetype(gras, taille); lignes, ligne = [], ""
+        for m in mots:
+            essai = (ligne + " " + m).strip()
+            if d.textlength(essai, font=f) > W - 120 and ligne:
+                lignes.append(ligne); ligne = m
+            else:
+                ligne = essai
+        lignes.append(ligne)
+        if 250 + len(lignes) * taille * 1.3 < H - 110:
+            break
+    y = 250
+    for l in lignes:
+        d.text((60, y), l, font=f, fill=(20, 20, 22)); y += int(taille * 1.3)
+    d.text((60, H - 80), "Source : " + str(article.get("media", ""))[:60], font=ImageFont.truetype(moyen, 38), fill=(90, 90, 95))
+    im.save(chemin)
+    return dict(type="photo", chemin=chemin, id=f"presse-{article.get('titre', '')[:40]}", credit=f"Titre : {article.get('media', '')}",
+                presse=True)
+
+
+
+def trouver(requete, dossier, n, deja, journal=print, theme="", entite="", generiques=False):
+    """Média de l'écran : d'abord une VRAIE photo de ce dont parle la phrase (`entite`, galerie Wikipédia), puis les sources
+    publiques (NASA, Wikimedia) ; les banques d'images génériques seulement si l'auteur les a autorisées (`generiques`).
+    None = écran de texte, plutôt qu'une image sans rapport. `deja` : identifiants déjà utilisés."""
+    if entite:
+        try:
+            m = wikipedia_media(entite, deja)
+            if m and _recuperer(m, dossier, n, deja, journal):
+                return m
+        except Exception as e:
+            journal(f"    Wikipédia « {entite} » : {str(e)[:80]}")
+    m = _trouver(requete, dossier, n, deja, journal, generiques)
     if not m and theme and theme.lower() != requete.lower():
-        m = _trouver(theme, dossier, n, deja, journal)
+        m = _trouver(theme, dossier, n, deja, journal, generiques)
     return m
 
 
-def _trouver(requete, dossier, n, deja, journal=print):
+def _recuperer(m, dossier, n, deja, journal):
+    chemin = os.path.join(dossier, f"media{n:02d}.jpg")
+    try:
+        _telecharger(m["url"], chemin)
+    except Exception as e:
+        journal(f"    téléchargement refusé ({str(e)[:60]})")
+        return False
+    deja.add(m["id"]); m["chemin"] = chemin
+    return True
+
+
+def _trouver(requete, dossier, n, deja, journal=print, generiques=False):
     for chercheur in CHERCHEURS:
+        if chercheur in GENERIQUES and not generiques:
+            continue
         if chercheur is nasa_video and not any(m in requete.lower() for m in ("space", "nasa", "mars", "moon", "rocket",
                                                                                "astronaut", "planet", "satellite", "earth from")):
             continue                                       # NASA seulement pour les sujets d'espace

@@ -76,7 +76,8 @@ class Bulletin:
 CONSIGNE_REECRIRE = """Tu corriges certaines phrases d'un texte de vidéo TikTok (chaîne « Buzz et insolite »). On te donne le
 texte complet numéroté, les articles de presse, et pour chaque phrase à corriger le problème. Réécris SEULEMENT ces phrases,
 avec des faits présents dans les articles. Pour chacune : "voix" (nombres en lettres), "ecrit" (nombres en chiffres),
-"ecran" (chiffre fort ou nom, 3 mots max, ou ""), "image" (2 à 4 mots anglais concrets et filmables).
+"ecran" (chiffre fort ou nom, 3 mots max, ou ""), "image" (2 à 4 mots anglais concrets et filmables), "entite" (la vraie
+personne / le lieu / l'objet dont parle la phrase, comme le titre de son article Wikipédia, ou "").
 Si on te demande d'AJOUTER des phrases, donne-les dans "ajouts" (même format), à placer avant la question finale.
 Réponds uniquement en JSON : {"phrases": {"numéro": {...}}, "ajouts": [{...}]}"""
 
@@ -233,7 +234,8 @@ def mesures_image(chemin):
 
 CONSIGNE_IMAGES = """Tu contrôles les images d'une vidéo TikTok d'actualité. Pour chaque image numérotée, on te donne la phrase
 dite pendant qu'elle s'affiche et le sujet de la vidéo. Réponds pour CHAQUE image :
-- "colle" : true si l'image illustre bien la phrase ou au moins le sujet (même de façon générale), false si elle est hors sujet ;
+- "colle" : true si l'image montre ce dont parle la phrase (la personne, le lieu, l'objet nommé) ou au moins le sujet réel de
+  l'actualité ; false si c'est une image générique sans rapport réel (paysage, fleur, objet au hasard) ;
 - "texte_etranger" : true si un texte incrusté en langue étrangère ou des sous-titres sont visibles ;
 - "logo" : true si un logo de marque, de chaîne télé ou un filigrane est visible ;
 - "probleme" : en quelques mots, sinon "" ;
@@ -276,7 +278,8 @@ def nouvelle_image(script, i, dossier, deja, journal, recherche=""):
         p["media"] = None
         return "écran de texte à la place de l'image"
     requete = (recherche or p.get("image", "")) if n == 1 else (script.get("theme_image") or p.get("image", ""))
-    p["media"] = images.trouver(requete, dossier, 50 + 10 * n + i % 10, deja, journal, "") if requete else None
+    p["media"] = images.trouver(requete, dossier, 50 + 10 * n + i % 10, deja, journal, "", entite=p.get("entite", ""),
+                                generiques=script.get("images_generiques", False)) if (requete or p.get("entite")) else None
     return f"nouvelle image (« {requete} »)" if p["media"] else "écran de texte à la place de l'image"
 
 
@@ -287,7 +290,7 @@ def controle_images(script, dossier, B, journal=print, deja=None, sujet=""):
         lots, fautifs = [], {}
         for i, p in enumerate(script["phrases"]):
             m = p.get("media")
-            if not m or m["type"] == "carte":
+            if not m or m["type"] == "carte" or m.get("presse"):      # carte et titre de presse : écrans fabriqués par nous
                 continue
             try:
                 img = _image_de(m, dossier, f"controle{i:02d}.jpg")
@@ -442,7 +445,8 @@ def corriger_ecrans(script, fautifs, dossier, B, journal=print, nom_voix="", vit
                         ph[k]["son"] = os.path.join(dossier, f"voix_ajout{uid(script, k):02d}.wav")
                         V.preparer([ph[k]], nom_voix, vitesse, journal)
                         ph[k]["media"] = images.trouver(ph[k].get("image", ""), dossier, 70 + k, deja, journal,
-                                                        script.get("theme_image", ""))
+                                                        script.get("theme_image", ""), entite=ph[k].get("entite", ""),
+                                                        generiques=script.get("images_generiques", False))
                 l["solution"] = f"{len(ph) - avant} phrase(s) de faits ajoutée(s)"
             else:
                 for q in ph:
@@ -487,7 +491,8 @@ def controle_texte_ajout(script, articles, journal=print):
     for a in d.get("ajouts") or []:
         if str(a.get("voix") or "").strip():
             ph.insert(len(ph) - 1, dict(voix=nombres.dire_les_nombres(str(a["voix"])), ecrit=str(a.get("ecrit") or a["voix"]),
-                                        ecran=str(a.get("ecran") or "")[:24], image=str(a.get("image") or script.get("theme_image", ""))))
+                                        ecran=str(a.get("ecran") or "")[:24], image=str(a.get("image") or script.get("theme_image", "")),
+                                        entite=str(a.get("entite") or "")[:80]))
 
 
 # ------------------------------------------------------------------ 5. avant publication

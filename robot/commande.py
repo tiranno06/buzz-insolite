@@ -53,7 +53,7 @@ def appliquer_reglages(d):
         R["publication"]["chaine"] = str(P["chaine"]).strip().lstrip("@")[:60]
     if "heures_auto" in P:
         R["publication"]["heures_auto"] = bool(P["heures_auto"])
-    for k in ("musique", "bruitages", "transitions", "carte"):
+    for k in ("musique", "bruitages", "transitions", "carte", "images_generiques"):
         if k in Vd:
             R["video"][k] = bool(Vd[k])
     if "paralleles" in C:

@@ -28,6 +28,9 @@ Donne 13 à 17 phrases (20 à 24 pour les 3 actus de la semaine). Pour chaque ph
 - "ecrit" : la même phrase pour les sous-titres, avec les nombres en chiffres ;
 - "ecran" : SEULEMENT pour un chiffre fort, une date, un nom propre ou un mot-clé de la phrase (3 mots max, ex. « 378 JOURS »,
   « LETO », « 99/100 ») ; sinon "" (jamais un mot abstrait comme « contradiction » ou « détails ») ;
+- "entite" : la VRAIE personne, le lieu, l'objet, l'organisation ou l'événement dont parle la phrase, écrit comme le titre de
+  son article Wikipédia en français (ex. « Emmanuel Macron », « Airbus A320 », « Toulouse », « Grand Theft Auto VI »), ou "" ;
+  on montrera SA vraie photo ;
 - "image" : ce qu'on VOIT à l'écran pendant cette phrase, en 2 à 4 mots ANGLAIS concrets et filmables, qui collent au sujet
   (personnes, objets, lieux : « rapper microphone stage », « gamer playing console », « storm waves lighthouse ») ;
   jamais de mot abstrait (controversy, details, contradiction, realism).
@@ -87,6 +90,7 @@ def ecrire(sujet, articles, journal=print, format_="buzz"):
         p["ecrit"] = str(p.get("ecrit") or p["voix"]).strip()
         p["ecran"] = str(p.get("ecran") or "").strip()[:24]
         p["image"] = str(p.get("image") or sujet["titre"]).strip()[:60]
+        p["entite"] = str(p.get("entite") or "").strip()[:80]
         p["reponse"] = str(p.get("reponse") or "").strip().lower() if format_ == "vrai_faux" else ""
         if p["reponse"] not in ("vrai", "faux"):
             p["reponse"] = ""

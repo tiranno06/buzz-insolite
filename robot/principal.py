@@ -172,8 +172,14 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
 
     avancement.etape(pre + "Recherche des vraies images libres", 52)
     deja = set()
+    script["images_generiques"] = R["video"].get("images_generiques", False)
     for i, p in enumerate(script["phrases"][:-1]):
-        p["media"] = None if simulation() else images.trouver(p["image"], dossier, i, deja, journal, script.get("theme_image", ""))
+        p["media"] = None if simulation() else images.trouver(p["image"], dossier, i, deja, journal, script.get("theme_image", ""),
+                                                              entite=p.get("entite", ""), generiques=script["images_generiques"])
+    # « La presse en parle » : les vrais titres des articles (avec leur média), sur des écrans restés sans vraie image
+    titres = [a for a in articles if a.get("titre") and a.get("media") and a["media"] != "Google Actualités"]
+    for k, i in enumerate([i for i, p in enumerate(script["phrases"][:-1]) if not p.get("media") and i > 0][:min(3, len(titres))]):
+        script["phrases"][i]["media"] = images.carte_presse(titres[k], os.path.join(dossier, f"presse{k}.png"))
         avancement.progres(52 + 15 * (i + 1) / len(script["phrases"]))
     script["phrases"][-1]["media"] = None
     script["musique"] = R["video"].get("musique", True); script["bruitages"] = R["video"].get("bruitages", True)

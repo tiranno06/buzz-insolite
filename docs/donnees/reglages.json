@@ -28,7 +28,8 @@
   "musique": true,
   "bruitages": false,
   "carte": true,
-  "transitions": false
+  "transitions": false,
+  "images_generiques": false
  },
  "publication": {
   "mode": "cocher",
