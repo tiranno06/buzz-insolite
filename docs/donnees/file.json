@@ -1,6 +1,371 @@
 {
  "videos": [
   {
+   "id": "20261124-233208-1",
+   "tag": "v-20261124-233208-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233208-1/buzz-20261124-233208-1.mp4",
+   "titre": "Macron sauveur en urgence",
+   "accroche": "LE PRÉSIDENT À L'ACTION",
+   "sujet_id": "ef38e151cf",
+   "sujet": "Malaise étudiant devant Macron à Toulouse",
+   "buzz": {
+    "vues": null,
+    "jaime": null,
+    "commentaires": null,
+    "score": null
+   },
+   "description": "Un malaise en plein discours, Macron réagit en pro ! 💦 Qui aurait cru ça ?",
+   "question": "Tu savais qu’il avait déjà sauvé des gardes républicains ?",
+   "hashtags": [
+    "#emmanuelmacron",
+    "#malaiseenpublic",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 103.1,
+   "sources": [
+    {
+     "media": "gala.fr",
+     "titre": "Un nouveau malaise ! En visite à Toulouse, Emmanuel Macron interrompt son discours face à une lycéenne qui vacille : “Je connais ça par cœur”",
+     "lien": "https://www.gala.fr/politique/un-nouveau-malaise-en-visite-a-toulouse-emmanuel-macron-interrompt-son-discours-face-a-une-lyceenne-qui-vacille-je-connais-ca-par-coeur-20261123"
+    },
+    {
+     "media": "actu.orange.fr",
+     "titre": "\"Je te file mon verre d'eau\" : une lycéenne fait un malaise en plein discours d'Emmanuel Macron",
+     "lien": "https://actu.orange.fr/politique/je-te-file-mon-verre-d-eau-une-lyceenne-fait-un-malaise-en-plein-discours-d-emmanuel-macron-l-express-via-6medias-CNT000002u10ZZ.html"
+    },
+    {
+     "media": "closermag.fr",
+     "titre": "Malaise face à Emmanuel Macron : \"Je te file mon verre d'eau\", une lycéenne \"restée trop longtemps debout\" au bord de l'évanouissement sur le site d'Airbus à Toulouse",
+     "lien": "https://www.closermag.fr/politique/malaise-face-a-emmanuel-macron-je-te-file-mon-verre-deau-une-lyceenne-restee-trop-longtemps-debout-au-bord-de-levanouissement-sur-le-site-dairbus-a-toulouse-3670945"
+    },
+    {
+     "media": "cnews.fr",
+     "titre": "«Il y a d'autres coups de pompe au pas ?» : Emmanuel Macron arrête son discours après le malaise d'une personne à Toulouse",
+     "lien": "https://www.cnews.fr/france/2026-11-23/il-y-dautres-coups-de-pompe-au-pas-emmanuel-macron-arrete-son-discours-apres-le"
+    },
+    {
+     "media": "20minutes.fr",
+     "titre": "Toulouse : « C’est très classique »… Une lycéenne fait un malaise devant Emmanuel Macron chez Airbus",
+     "lien": "https://www.20minutes.fr/societe/4265293-20261124-toulouse-tres-classique-lyceenne-fait-malaise-devant-emmanuel-macron-chez-airbus"
+    },
+    {
+     "media": "actu.orange.fr",
+     "titre": "Une lycéenne fait un malaise devant Emmanuel Macron lors de sa visite sur le site d'Airbus",
+     "lien": "https://actu.orange.fr/videos/politique/une-lyceenne-fait-un-malaise-devant-emmanuel-macron-lors-de-sa-visite-sur-le-site-d-airbus-CNT000002u0Rtx.html"
+    },
+    {
+     "media": "fr.news.yahoo.com",
+     "titre": "Une lycéenne fait un malaise devant Emmanuel Macron lors de son déplacement à Toulouse",
+     "lien": "https://fr.news.yahoo.com/sport/lyc%C3%A9enne-fait-malaise-devant-emmanuel-182449528.html"
+    },
+    {
+     "media": "msn.com",
+     "titre": "Malaise d’une lycéenne : discours interrompu d’Emmanuel Macron chez Airbus",
+     "lien": "https://www.msn.com/fr-fr/actualite/news/malaise-d-une-lyc%C3%A9enne-discours-interrompu-d-emmanuel-macron-chez-airbus/ar-AA2i6OaO"
+    }
+   ],
+   "verification": {
+    "par": "groq:openai/gpt-oss-20b",
+    "corrigees": 1,
+    "retirees": 4,
+    "problemes": [
+     "exagération du rôle de Macron, les articles indiquent qu’il a simplement apporté son aide à un garde, pas qu’il l’a «sauvé»",
+     "Phrase non conforme, pas de contenu factuel.",
+     "Phrase non conforme, pas de contenu factuel.",
+     "Phrase non conforme, pas de contenu factuel.",
+     "Phrase non conforme, pas de contenu factuel."
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "This video is a work by Wikipedia and Wi / Wikimedia Commons, CC BY-SA 4.0",
+    "Titre : actu.orange.fr",
+    "Titre : closermag.fr",
+    "Vidéo : Bleme (PeerTube, CC BY)",
+    "Wikipédia, article « Emmanuel Macron »"
+   ],
+   "ecrans_illustres": 7,
+   "ecrans_total": 21,
+   "format": "buzz",
+   "voix": "chatterbox-bernard",
+   "lieu": "Blagnac, France",
+   "humeur": "neutre",
+   "categorie": "",
+   "texte": [
+    "Macron stoppe net son discours !",
+    "Une lycéenne s’effondre devant lui.",
+    "Il sort son verre d’eau : « Tiens, je te file ça ! »",
+    "« Je connais ça par cœur, reste trop longtemps debout ! »",
+    "Le 23 novembre 2026, Airbus à Blagnac.",
+    "Pas son premier malaise : deux gardes républicains en novembre 2026 aussi.",
+    "En janvier 2024, trois malaises en une semaine !",
+    "« Ça arrive en position statique, sans petit-déjeuner ! »",
+    "Il vérifie : « Il y a d’autres coups de pompe au pas ? »",
+    "Un détail surprenant : il a déjà aidé une femme en 2023.",
+    "Il a même aidé un garde en 2026 à l’Élysée",
+    "Il reprend son discours, mais pas sans humour.",
+    "En 2026, des spécialistes évoquent son « usure physique » liée au pouvoir, avec des traits tirés.",
+    "Son intervention à Airbus promouvait les investissements industriels via le sommet *Choose France*.",
+    "Les malaises vagaux touchent souvent les militaires en grande tenue, immobiles pendant des heures.",
+    "En 2024, une lycéenne s’était évanouie lors de ses vœux aux armées à Cherbourg.",
+    "Le malaise de la lycéenne a été filmé et partagé sur les réseaux sociaux, montrant son évacuation rapide par le service de sécurité.",
+    "Lors du malaise du garde républicain à l’Élysée, son épée de cérémonie est tombée bruyamment au sol, immortalisée par des vidéos.",
+    "En janvier 2024, trois malaises en quelques jours : une lycéenne à Cherbourg, le président de la métropole du Grand Paris, et une femme en Inde.",
+    "Les spécialistes citent des traits tirés et une fatigue visible, liés à l’intensité des fonctions présidentielles depuis 2017.",
+    "Le sommet *Choose France* visait à attirer des investissements majeurs dans l’aéronautique, secteur clé pour l’industrie française.",
+    "Dis-le en commentaire : « T’as déjà vu ça en public ? »"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-25T00:52:14+01:00",
+   "fabrication_s": 4806,
+   "controles": {
+    "note": 15,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 4,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 5,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 6,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 9,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 44 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 2,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "images",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "vraie vidéo de « Emmanuel Macron »"
+     },
+     {
+      "niveau": "images",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 4,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "image hors contexte (Toulouse absente, pas Macron, pas malaise)",
+      "corrige": false,
+      "essais": 4,
+      "solution": "image du thème (« politician speech crowd »)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "Image sans rapport avec le sujet (architecture ancienne, pas de lien avec Élysée ou événement)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "autre passage d'une vraie vidéo du sujet"
+     },
+     {
+      "niveau": "images",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": false,
+      "essais": 2,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": null,
+      "gravite": "grave",
+      "probleme": "trop peu d'images : 6 écran(s) illustré(s) sur 20",
+      "corrige": false,
+      "essais": 1
+     },
+     {
+      "niveau": "video",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre 'MALAISE :' chevauche le bandeau bleu de l'image de fond.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre se superpose et cache le texte d'arrière-plan.",
+      "corrige": false,
+      "essais": 6,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "video",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre chevauche le visage/costume d'Emmanuel Macron.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "Mots '2026' partiellement coupés et déformés",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre se superpose sur le texte du site web en arrière-plan.",
+      "corrige": false,
+      "essais": 4,
+      "solution": "autre passage d'une vraie vidéo du sujet"
+     },
+     {
+      "niveau": "video",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "Texte partiellement masqué par le flou",
+      "corrige": true,
+      "essais": 3,
+      "solution": "autre passage d'une vraie vidéo du sujet"
+     },
+     {
+      "niveau": "video",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre est placé directement par-dessus le texte de l'article.",
+      "corrige": false,
+      "essais": 2,
+      "solution": "titre retiré"
+     }
+    ],
+    "sautes": [
+     "regard de l'IA sur la vidéo finie (IA indisponible)"
+    ],
+    "corriges": 14,
+    "restants": 6,
+    "graves_restants": 7
+   },
+   "reprises": 0,
+   "preuves": [
+    {
+     "ecran": 1,
+     "page": "https://video.ut0pia.org/videos/watch/7e636ed4-7e1c-43c5-bf20-60c64e487b8a",
+     "licence": "CC BY",
+     "auteur": "Bleme",
+     "titre": "Emmanuel Macron accuse les réseaux sociaux et fait vivement débat",
+     "credit": "Vidéo : Bleme (PeerTube, CC BY)",
+     "releve_le": "2026-11-25T00:52:14+01:00"
+    },
+    {
+     "ecran": 2,
+     "page": "https://commons.wikimedia.org/?curid=75762589",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "This video is a work by Wikipedia and Wi",
+     "titre": "",
+     "credit": "This video is a work by Wikipedia and Wi / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T00:52:14+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://commons.wikimedia.org/?curid=75762589",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "This video is a work by Wikipedia and Wi",
+     "titre": "",
+     "credit": "This video is a work by Wikipedia and Wi / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T00:52:14+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AEmmanuel_Macron_%2827_ao%C3%BBt_2014%29.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Emmanuel Macron »",
+     "releve_le": "2026-11-25T00:52:14+01:00"
+    }
+   ],
+   "couverture_ms": 800,
+   "durees": {
+    "articles": 8,
+    "ecriture": 50,
+    "texte": 234,
+    "images": 70,
+    "controle_images": 461,
+    "voix": 1585,
+    "montage": 141,
+    "controle_final": 2770,
+    "rangement": 5
+   },
+   "refaite": null,
+   "statut": "a_verifier",
+   "refaite_de": "20261124-212611-1"
+  },
+  {
    "id": "20261124-233244-1",
    "tag": "v-20261124-233244-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233244-1/buzz-20261124-233244-1.mp4",
