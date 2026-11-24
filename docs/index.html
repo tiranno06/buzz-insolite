@@ -632,12 +632,28 @@ async function lireAvancements() {
     { headers: { ...h, Accept: "application/vnd.github.raw+json" } }).then(x => x.ok ? x.json() : null).catch(() => null)));
   return out.filter(a => a && Date.now() - new Date(a.maj).getTime() < (a.etat === "en_cours" ? 30 : 5) * 60e3).sort((a, b) => (a.debut || "").localeCompare(b.debut || ""));
 }
+// Heure de fin prévue de CHAQUE vidéo (demande de l'auteur du 24/11) : en fabrication = heure du relevé + temps restant ;
+// en file d'attente = elle prend la première place libérée, puis dure le temps moyen d'une vidéo (page Santé).
+function heuresDeFin(A) {
+  const typ = ((D["sante.json"] || {}).durees || {}).total || 40 * 60;
+  const limite = ((D["reglages.json"] || {}).creation || {}).paralleles || 5;
+  const attend = a => a.etat === "en_attente" || a.file === "attente";
+  const places = A.filter(a => a.etat === "en_cours" && !attend(a)).map(a => {
+    a._fin = new Date(a.maj || Date.now()).getTime() + (a.reste_s || 0) * 1e3; return a._fin; });
+  while (places.length < limite) places.push(Date.now());
+  places.sort((x, y) => x - y);
+  A.filter(attend).sort((x, y) => String(x.demande || "").localeCompare(String(y.demande || ""))).forEach(a => {
+    const debut = Math.max(Date.now(), places.shift());
+    a._fin = debut + typ * 1e3; places.push(a._fin); places.sort((x, y) => x - y);
+  });
+}
+const finPrevue = a => a._fin ? ` · fin prévue vers ${new Date(a._fin).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}` : "";
 function barre(a) {
   if (a.etat === "en_attente" || a.file === "attente") return `<div style="margin-bottom:10px"><b>⏳ En file d'attente</b> <span class="muted petit">${esc(a.detail || "")}</span>
-    <div class="muted petit">🤖 machine ${esc(a.machine || "1")} · elle démarrera dès qu'une place se libère</div></div>`;
+    <div class="muted petit">🤖 machine ${esc(a.machine || "1")} · elle démarrera dès qu'une place se libère${finPrevue(a)}</div></div>`;
   const fini = a.etat !== "en_cours";
   return `<div style="margin-bottom:10px"><div class="rang"><b>${fini ? (a.etat === "fini" ? "✅ " : "⚠️ ") : "⏳ "}${esc(a.etape)}</b>
-    <span class="muted petit">${fini ? "" : `${Math.round(a.pourcent)} % · encore ~${Math.max(1, Math.round(a.reste_s / 60))} min`}</span></div>
+    <span class="muted petit">${fini ? "" : `${Math.round(a.pourcent)} % · encore ~${Math.max(1, Math.round(a.reste_s / 60))} min${finPrevue(a)}`}</span></div>
     <div class="barre"><div style="width:${a.pourcent || 0}%"></div></div><div class="muted petit">🤖 machine ${esc(a.machine || "1")} · ${esc(a.titre || "")}</div></div>`;
 }
 async function suivre(nouvelle) {
@@ -647,6 +663,7 @@ async function suivre(nouvelle) {
   try {
     const A = await lireAvancements().catch(() => []);
     const actives = A.filter(a => a.etat === "en_cours" || a.etat === "en_attente");
+    heuresDeFin(A);
     if (A.length) $("#avancement").innerHTML = (actives.length > 1 ? `<p class="petit" style="margin:0 0 8px"><b>${A.filter(a => a.etat === "en_cours" && a.file !== "attente").length} vidéo(s) en fabrication, ${A.filter(a => a.etat === "en_attente" || a.file === "attente").length} en file d'attente</b></p>` : "") + A.map(barre).join("");
     else if (Date.now() - demandeLe < 5 * 60e3) $("#avancement").innerHTML = `<b>📨 Commande envoyée : les machines démarrent…</b><div class="barre"><div style="width:2%"></div></div>`;
     $("#avancement").hidden = !A.length && Date.now() - demandeLe >= 5 * 60e3;

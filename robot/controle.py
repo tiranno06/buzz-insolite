@@ -599,6 +599,11 @@ def avant_publication(v, R, forcer=False):
         pb.append("vidéo d'essai")
     if (v.get("controles") or {}).get("graves_restants") and not forcer:
         pb.append("défaut grave non corrigé (voir le bulletin)")
+    # JAMAIS publiée sans vraies images (exigence de l'auteur du 24/11 : « pas un simple écran bleu ou violet »), même avec
+    # « Publier quand même » : au moins 70 % des écrans avec une vraie vidéo ou image.
+    total = v.get("ecrans_total") or max(1, len(v.get("texte") or []) - 1)
+    if (v.get("ecrans_illustres") or 0) < 0.7 * total:
+        pb.append(f"trop peu de vraies images ({v.get('ecrans_illustres') or 0} écran(s) illustré(s) sur {total}) : à refaire")
     if (v.get("duree") or 0) < 58:
         pb.append(f"vidéo trop courte ({v.get('duree', 0):.0f} s)")
     if not str(v.get("description") or "").strip():

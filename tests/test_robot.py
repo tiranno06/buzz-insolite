@@ -557,6 +557,40 @@ class TestRefaire(unittest.TestCase):
         self.assertEqual(refaire.ecrans_cites("écrans 2, 4 et 5", 6), {1, 3, 4})
 
 
+class TestJamaisSansImages(unittest.TestCase):
+    def test_publication_refusee_sans_images_meme_forcee(self):
+        from robot import controle
+        v = dict(ecrans_illustres=1, ecrans_total=14, duree=70, description="d", hashtags=["#a", "#b", "#c"], url="")
+        self.assertTrue(any("vraies images" in x for x in controle.avant_publication(v, {"publication": {}}, forcer=True)))
+
+    def test_peertube_essaye_quand_youtube_refuse(self):
+        """Essai du 24/11 : les 8 premiers candidats étaient des YouTube refusés ; PeerTube doit être essayé quand même."""
+        from robot import images
+        import json as J
+        def faux(args, timeout=120):
+            if "--flat-playlist" in args:
+                return J.dumps({"entries": [dict(id=f"Y{k}", title="Macron malaise Toulouse étudiant", duration=60) for k in range(9)]})
+            if "-J" in args:
+                raise RuntimeError("ERROR: Sign in to confirm you're not a bot")
+            open(args[args.index("-o") + 1], "wb").close(); return ""
+        def faux_json(url, *a, **k):
+            if "sepiasearch" in url:
+                return {"data": [dict(url="https://pt.fr/w/9", uuid="P9", name="Macron à Toulouse : malaise d'un étudiant",
+                                      duration=40, licence={"id": 1}, account={"displayName": "Témoin"})]}
+            raise OSError("hors ligne")
+        garde = (images._ytdlp, images.shutil_which, images.subprocess.check_output, images._json, images.commons_video)
+        images._ytdlp, images.shutil_which, images._json = faux, lambda n: "/x", faux_json
+        images.subprocess.check_output = lambda *a, **k: b"30.0"
+        images.commons_video = lambda *a: None
+        images.YOUTUBE["refuse"] = False
+        try:
+            clips = images.videos_du_sujet("Malaise étudiant devant Macron à Toulouse", [], TMP, journal=lambda *a: None)
+        finally:
+            (images._ytdlp, images.shutil_which, images.subprocess.check_output, images._json, images.commons_video) = garde
+            images.YOUTUBE["refuse"] = False
+        self.assertTrue(clips); self.assertTrue(all("PeerTube" in c["credit"] for c in clips))
+
+
 class TestParallele(unittest.TestCase):
     def test_sujets_differents_par_machine(self):
         from robot import principal

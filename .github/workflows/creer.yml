@@ -34,6 +34,7 @@ on:
 
 permissions:
   contents: write                # données du site et Releases (adresse publique des vidéos pour Buffer)
+  actions: write                 # vidéo sans assez d'images : refaite tout de suite (principal.reparer_tout_de_suite)
 
 # Plusieurs machines en même temps (demande de l'auteur du 24/11) : le job « plan » répartit les sujets (un sujet + des
 # réserves par machine, réservés dans buzz.json), puis « fabriquer » lance une machine par vidéo, N à la fois au plus

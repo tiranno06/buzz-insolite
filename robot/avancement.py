@@ -14,7 +14,6 @@ from .commun import RACINE, SORTIE, iso, maintenant
 
 BRANCHE = "avancement"
 INTERVALLE = 10                 # secondes entre deux envois (sauf changement d'étape, envoyé tout de suite)
-TYPIQUE = {"video": 14 * 60}            # durée habituelle d'une création, en secondes
 
 _etat = {}
 _dernier_envoi = 0.0
@@ -57,11 +56,20 @@ def finir(ok, texte):
     _envoyer(force=True)
 
 
+def duree_typique():
+    """Durée moyenne réelle d'une vidéo (10 dernières, page Santé), sinon 40 min."""
+    try:
+        from .commun import lire
+        return int(((lire("sante.json") or {}).get("durees") or {}).get("total") or 40 * 60)
+    except Exception:
+        return 40 * 60
+
+
 def contenu():
     """Ce que lit le site, avec l'heure de fin estimée (d'après le temps déjà passé et le pourcentage)."""
     ecoule = time.time() - _etat["debut_s"]
     p = _etat["pourcent"]
-    typique = TYPIQUE.get(_etat["format"], 15 * 60)
+    typique = duree_typique()
     if _etat["etat"] == "en_attente":
         reste = typique
     elif _etat["etat"] != "en_cours":

@@ -85,13 +85,22 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
 `part_illustree` : moins de 70 % d'écrans illustrés = problème grave (« à vérifier », jamais 100/100) ; raisons de chaque
 écran refusé écrites dans le journal.
 
+- **Analyse des vidéos sans images du 24/11 au soir** (« Malaise… Macron », « Franco… », « Sénégal… », « Macron et l'A320 ») :
+  faites par l'ANCIEN code (lancées avant la correction ci-dessus) ; en plus, YouTube refuse les serveurs de GitHub (« Sign in
+  to confirm you're not a bot ») et seuls les 8 premiers candidats (tous YouTube) étaient essayés : PeerTube / Internet
+  Archive jamais tentés. Corrigé : tous les candidats (10 essais au plus), YouTube écarté pour tout le passage dès son 1er
+  refus (`images.YOUTUBE`). **Garanties** : `controle.avant_publication` refuse TOUJOURS (même « Publier quand même ») une
+  vidéo avec moins de 70 % d'écrans illustrés (`ecrans_illustres` / `ecrans_total`) ; `principal.reparer_tout_de_suite` la
+  refait aussitôt (images) ; la santé de la nuit refait les autres.
+
 ## Vitesse (analyse du 24/11 : vidéo GTA en 99 min, dont 86 min de voix Chatterbox)
 - Voix refaite par le contrôle final : la phrase a déjà eu 2 essais à l'étape voix, donc mots simplifiés DÈS le 1er essai,
   phrase retirée au 3e (si la vidéo reste ≥ 62 s) ; avant : jusqu'à 7 essais identiques (~1 min de Chatterbox chacun).
 - `CONSIGNE_FINALE` : le texte DANS l'image de fond (article, panneau) n'est pas un chevauchement ; titre déjà retiré et
   toujours un problème = l'image est changée (avant : 7 tours sans fin sur une carte « La presse en parle »).
 - Contrôle final arrêté après 70 min de fabrication (2 tours au moins) : problèmes restants dans le bulletin, « à vérifier ».
-- File commune : 3 vidéos en même temps au plus (`creation.paralleles`) ; les autres attendent leur tour.
+- File commune : 5 vidéos en même temps au plus (`creation.paralleles`) ; les autres attendent leur tour ; le site affiche
+  l'heure de fin prévue de chaque vidéo (`heuresDeFin` : temps restant, ou première place libérée + durée moyenne réelle).
 
 ## Liens des vidéos d'origine (24/11 : « vidéo indisponible » sur TikTok)
 Les liens étaient bons (34/34 vérifiés) : TikTok affiche « vidéo indisponible » sur téléphone hors de l'appli, sans compte,

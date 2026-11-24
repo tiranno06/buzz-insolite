@@ -348,6 +348,9 @@ def _cand_vimeo(sujet, journal):
     return out
 
 
+YOUTUBE = {"refuse": False}                            # YouTube a refusé ce serveur pendant le passage
+
+
 SOURCES_VIDEO = (("YouTube (Creative Commons)", _cand_youtube), ("PeerTube", _cand_peertube), ("Internet Archive", _cand_archive), ("Vimeo", _cand_vimeo))
 
 
@@ -361,7 +364,7 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, 
     vus = {d.rsplit("-", 1)[0] for d in (deja or ())}    # vidéos déjà prises pour cette vidéo : jamais deux fois
     candidats = []
     for nom, chercher in SOURCES_VIDEO:
-        if chercher is _cand_youtube and not shutil_which("yt-dlp"):
+        if chercher is _cand_youtube and (not shutil_which("yt-dlp") or YOUTUBE["refuse"]):
             continue
         trouves = []
         for requete in [sujet] + ([" ".join(list(mots_en)[:4])] if mots_en else []):   # en français, puis en anglais
@@ -377,17 +380,21 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, 
         journal(f"  vidéos du sujet ({nom}) : {len(trouves)} trouvée(s), {bons} sur le sujet")
     candidats.sort(key=lambda x: -x[0])
     out, prises, youtube_refuse = [], 0, False
-    for _, c in candidats[:8]:
-        if prises >= maxi:
+    essais = 0
+    for _, c in candidats:                                 # TOUS les candidats (essai du 24/11 : les 8 premiers étaient
+        if prises >= maxi or essais >= 10:                 # des YouTube refusés, PeerTube n'était jamais essayé)
             break
         if c["source"] == "YouTube":
-            if youtube_refuse:
+            if youtube_refuse or YOUTUBE["refuse"]:
                 continue
+            essais += 1
             try:
                 info = json.loads(_ytdlp(["-J", c["page"]], 90))
             except Exception as x:
                 journal(f"  vidéo YouTube illisible ({str(x)[:80]})")
-                youtube_refuse = any(m in str(x) for m in ("429", "Sign in", "bot"))   # refus du serveur : on n'insiste pas
+                if any(m in str(x) for m in ("429", "Sign in", "bot")):   # YouTube refuse ce serveur : plus essayé
+                    youtube_refuse = YOUTUBE["refuse"] = True                # de tout le passage (jamais contourné)
+                    journal("  YouTube refuse les serveurs de GitHub : autres sources seulement pour cette vidéo")
                 continue
             if "creative commons" not in str(info.get("license") or "").lower():
                 continue                                   # licence relue : non libre = jamais reprise
@@ -395,6 +402,8 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, 
             c["auteur"] = info.get("channel") or c["auteur"]
         if not c.get("licence"):
             continue
+        if c["source"] != "YouTube":
+            essais += 1
         duree = float(c["duree"] or 0)
         debut = 3 if duree > 40 else 0
         fin = debut + 6 * ecrans + 2 if not duree else min(duree, debut + 6 * ecrans + 2)

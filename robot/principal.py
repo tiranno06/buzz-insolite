@@ -357,7 +357,6 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
         fil.join()
     if erreurs:
         raise erreurs[0]
-    trouves = sum(1 for p in script["phrases"] if p.get("media"))
 
     # ---------- 5. montage (les écrans déjà fabriqués sont gardés)
     E["fichier"] = fichier = os.path.join(dossier, f"buzz-{vid}.mp4")
@@ -421,7 +420,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 sources=[dict(media=a["media"], titre=a["titre"], lien=a["lien"]) for a in articles_],
                 verification=script.get("verification"), verifie=script.get("verifie", False),
                 credits=sorted({p["media"]["credit"] for p in script["phrases"] if p.get("media")}),
-                ecrans_illustres=trouves, format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""),
+                ecrans_illustres=controle.part_illustree(script)[0], ecrans_total=controle.part_illustree(script)[1], format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""),
                 humeur=script.get("humeur", ""), categorie=sujet.get("categorie", ""), texte=[p["ecrit"] for p in script["phrases"]],
                 essai=simulation(), cree_le=iso(), fabrication_s=round(time.time() - E["t0"]), controles=bulletin,
                 reprises=E.get("reprises", 0), preuves=preuves_licences(script), couverture_ms=couverture_ms(script),
@@ -537,6 +536,7 @@ def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz", attend
                   + (" — à publier automatiquement" if v["statut"] == "a_publier" else " — à regarder puis cocher « À publier »"))
         depot.enregistrer(appliquer, f"Nouvelle vidéo : {v['titre']}")
         avancement.finir(True, f"Vidéo prête : {v['titre']}")
+        reparer_tout_de_suite(v, journal)
         faites.append(v)
         if depot.en_ligne():                                  # sur GitHub : place libérée (la vidéo est dans la Release)
             shutil.rmtree(os.path.join(SORTIE, v["id"]), ignore_errors=True)
@@ -550,6 +550,17 @@ def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz", attend
             ecrire_donnees("buzz.json", B)
         depot.enregistrer(liberer, "Sujets de réserve rendus")
     return faites
+
+
+def reparer_tout_de_suite(v, journal=print):
+    """Vidéo avec trop peu de vraies images : refaite TOUT DE SUITE en corrigeant (autres images), sans attendre la nuit."""
+    if v.get("essai") or not depot.en_ligne() or (v.get("ecrans_illustres") or 0) >= 0.7 * (v.get("ecrans_total") or 1):
+        return
+    remarque = f"Réparation automatique : seulement {v.get('ecrans_illustres')} écran(s) illustré(s) sur {v.get('ecrans_total')}"
+    r = subprocess.run(["gh", "workflow", "run", "creer.yml", "-f", f"refaire={v['id']}", "-f", "etape=images",
+                        "-f", f"remarque={remarque}", "-f", "origine=reparation"], capture_output=True, text=True)
+    journal(f"  🔧 {remarque} : la vidéo est refaite tout de suite" if r.returncode == 0 else
+            f"  réparation non lancée ({r.stderr[-120:]}) : la santé du robot la refera cette nuit")
 
 
 def refaire_video(vid, etape="auto", remarque="", journal=print):
