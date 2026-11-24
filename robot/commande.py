@@ -1,7 +1,8 @@
 """Ordres envoyés par les boutons du site (workflow commande.yml), appliqués aux données puis enregistrés.
 
     ACTION=a_publier ID=<vidéo> python -m robot.commande
-Actions sur une vidéo : a_publier, retirer, ecarter, supprimer, publier_maintenant, publiee (TEXTE = lien TikTok), texte
+Actions sur une vidéo : a_publier, retirer, ecarter, supprimer, publier_maintenant, publier_force (malgré un défaut grave
+signalé par le contrôle qualité : décision de l'auteur), publiee (TEXTE = lien TikTok), texte
 (TEXTE = JSON {description, question, hashtags}). Sujets : sujet_ignorer, sujet_remettre. Autres : reglages (TEXTE = JSON),
 buffer_test.
 """
@@ -94,9 +95,13 @@ def appliquer(action, vid, texte):
     elif action == "ecarter":
         v["statut"] = "ecartee"
         noter(f"🛑 « {v['titre']} » écartée (ne sera pas publiée).")
-    elif action == "publier_maintenant":
+    elif action in ("publier_maintenant", "publier_force"):
         rep = ENVOI.get(vid)
-        if isinstance(rep, Exception) or rep is None:
+        from .controle import Refusee
+        if isinstance(rep, Refusee):
+            v.update(statut="a_verifier", echec_publication=f"{iso()} : {str(rep)[:300]}")
+            noter(f"🛡️ « {v['titre']} » non publiée : {str(rep)[:180]}", "attention")
+        elif isinstance(rep, Exception) or rep is None:
             v["echec_publication"] = f"{iso()} : {str(rep)[:200]}"
             noter(f"❌ « {v['titre']} » : publication refusée ({str(rep)[:160]})", "erreur")
         else:
@@ -131,10 +136,11 @@ ENVOI = {}                                   # réponse de Buffer, obtenue UNE f
 
 def main():
     action, vid, texte = os.environ.get("ACTION", ""), os.environ.get("ID", ""), os.environ.get("TEXTE", "")
-    if action == "publier_maintenant":
+    if action in ("publier_maintenant", "publier_force"):
+        from . import controle
         v = _video(lire("file.json") or {"videos": []}, vid)
         try:
-            ENVOI[vid] = publier.envoyer(v, reglages())
+            ENVOI[vid] = controle.verifier_et_envoyer(v, reglages(), forcer=action == "publier_force")
         except Exception as e:
             ENVOI[vid] = e
     depot.enregistrer(lambda: appliquer(action, vid, texte), f"Ordre du site : {action} {vid}".strip())

@@ -15,7 +15,7 @@ import subprocess
 import time
 import traceback
 
-from . import avancement, buzz, carte, depot, ecrire, images, montage, sources
+from . import avancement, buzz, carte, controle, depot, ecrire, images, montage, sources
 from . import voix as V
 from .commun import MINIATURES, SORTIE, ecrire as ecrire_donnees, iso, lire, maintenant, noter, reglages, simulation
 
@@ -102,8 +102,14 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
     avancement.etape(pre + "Écriture du texte", 12)
     script = script_simulation(sujet) if simulation() else ecrire.ecrire(sujet, articles, journal, format_)
     avancement.etape(pre + "Vérification des faits par une 2e IA", 22)
+    B = controle.Bulletin()
     if not simulation():
         script = ecrire.verifier(script, articles, journal)
+        avancement.etape(pre + "Contrôle 1/4 : le texte", 26)
+        avant = [p["ecrit"] for p in script["phrases"]]
+        script = controle.controle_texte(script, articles, B, journal)
+        if [p["ecrit"] for p in script["phrases"]] != avant:          # phrases réécrites : faits revérifiés
+            script = ecrire.verifier(script, articles, journal)
         if len(script["phrases"]) < 9:
             raise LookupError(f"seulement {len(script['phrases'])} phrases vérifiées : trop court pour une vidéo d'1 minute")
 
@@ -117,6 +123,9 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
     else:
         script["voix_utilisee"] = V.preparer(script["phrases"], nom_voix, vitesse, journal,
                                              suivi=lambda k, n: avancement.progres(30 + 20 * k / n, f"phrase {k}/{n}"))
+        for i, p in enumerate(script["phrases"]):                    # contrôle 2/4 : la voix (déjà refaite une fois)
+            if p.get("_voix_defaut"):
+                B.ajouter("voix", p["_voix_defaut"], i, "moyen")
     parole = sum(p["duree"] for p in script["phrases"]) + montage.PAUSE * len(script["phrases"]) + montage.FIN
     if parole < 60:
         journal(f"  ⚠️ vidéo de {parole:.0f} s : moins d'1 minute (TikTok ne paie qu'au-delà)")
@@ -141,13 +150,32 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
             if not script["phrases"][1].get("ecran"):
                 script["phrases"][1]["ecran"] = str(script["lieu"]).split(",")[0][:22]
             journal(f"  carte : {lieu['nom']}")
+    if not simulation():
+        avancement.etape(pre + "Contrôle 3/4 : les images", 62)
+        script = controle.controle_images(script, dossier, B, journal, deja, sujet["titre"])
     trouves = sum(1 for p in script["phrases"] if p.get("media"))
     journal(f"  images : {trouves} écran(s) illustré(s) sur {len(script['phrases'])}")
 
     avancement.etape(pre + "Montage", 68)
     fichier = os.path.join(dossier, f"buzz-{vid}.mp4")
     duree = montage.monter(script, dossier, fichier,
-                           suivi=lambda k, nb: avancement.progres(68 + 25 * k / nb, f"écran {k}/{nb}"))
+                           suivi=lambda k, nb: avancement.progres(68 + 18 * k / nb, f"écran {k}/{nb}"))
+    for tour in range(2):                                             # contrôle 4/4 : la vidéo finie
+        avancement.etape(pre + f"Contrôle 4/4 : la vidéo finie (tour {tour + 1})", 87 + 3 * tour)
+        fautifs = controle.controle_video(fichier, script, dossier, B, journal, leger=simulation())
+        if not fautifs:
+            break
+        journal(f"  vidéo finie : {len(fautifs)} écran(s) à corriger : " + ", ".join(f"n°{i} ({p})" for i, (p, _) in fautifs.items()))
+        controle.corriger_ecrans(script, fautifs, dossier, B, journal, nom_voix, vitesse)
+        duree = montage.monter(script, dossier, fichier)
+        journal(f"  {script.get('_ecrans_refaits', 0)} écran(s) refait(s), le reste de la vidéo est inchangé")
+    else:
+        fautifs = controle.controle_video(fichier, script, dossier, controle.Bulletin(), journal, leger=simulation())
+        for i, (p, _) in fautifs.items():
+            B.ajouter("video", p, i, "grave")
+    bulletin = B.resume()
+    journal(f"  bulletin : note {bulletin['note']}/100, {bulletin['corriges']} correction(s), "
+            f"{bulletin['graves_restants']} défaut(s) grave(s) restant(s)")
 
     avancement.etape(pre + "Rangement de la vidéo", 95)
     os.makedirs(MINIATURES, exist_ok=True)
@@ -163,8 +191,9 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
                 verification=script.get("verification"), verifie=script.get("verifie", False),
                 credits=sorted({p["media"]["credit"] for p in script["phrases"] if p.get("media")}),
                 ecrans_illustres=trouves, format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""), humeur=script.get("humeur", ""), texte=[p["ecrit"] for p in script["phrases"]],
-                essai=simulation(), cree_le=iso(), fabrication_s=round(time.time() - t0),
-                statut="a_publier" if (mode == "auto" and script.get("verifie")) else "nouvelle")
+                essai=simulation(), cree_le=iso(), fabrication_s=round(time.time() - t0), controles=bulletin,
+                statut="a_verifier" if bulletin["graves_restants"] else
+                       "a_publier" if (mode == "auto" and script.get("verifie")) else "nouvelle")
 
 
 def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz"):

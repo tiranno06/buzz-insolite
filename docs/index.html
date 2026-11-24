@@ -312,7 +312,7 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&l
 const nb = n => (n || 0) >= 1e6 ? (n / 1e6).toLocaleString("fr-FR", { maximumFractionDigits: 1 }) + " M"
   : (n || 0) >= 1e3 ? Math.round(n / 1e3).toLocaleString("fr-FR") + " k" : String(n || 0);
 const quand = iso => iso ? new Date(iso).toLocaleString("fr-FR", { timeZone: "Europe/Paris", weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "";
-const LIB = { nouvelle: "À regarder", a_publier: "À publier", publiee: "Publiée", ecartee: "Écartée", echec: "Échec de publication",
+const LIB = { a_verifier: "⚠️ À vérifier", nouvelle: "À regarder", a_publier: "À publier", publiee: "Publiée", ecartee: "Écartée", echec: "Échec de publication",
   nouveau: "Nouveau", utilise: "En vidéo", ignore: "Ignoré", sans_source: "Sans article", echec_s: "Échec" };
 function toast(t) { $(".toast")?.remove(); const d = document.createElement("div"); d.className = "toast"; d.setAttribute("role", "status"); d.textContent = t; document.body.append(d); setTimeout(() => d.remove(), 4800); }
 
@@ -436,12 +436,20 @@ function rendreBuzz() {
   $("#buzz-liste").innerHTML = liste.map(carteSujet).join("") || `<p class="muted">Rien ici pour l'instant.</p>`;
   $("#n-buzz").textContent = S.filter(s => (s.statut || "nouveau") === "nouveau").length || "";
 }
+const NIV = { texte: "📝 Texte", voix: "🗣️ Voix", images: "🖼️ Images", video: "🎬 Vidéo finie", publication: "📤 Publication" };
+function bulletin(v) {
+  const C = v.controles; if (!C) return "";
+  const L = (C.lignes || []).map(l => `<li>${l.corrige ? "✅" : l.gravite === "grave" ? "❌" : "⚠️"} ${NIV[l.niveau] || l.niveau}${l.ecran != null ? ` (écran ${l.ecran + 1})` : ""} : ${esc(l.probleme)}${l.corrige ? " — corrigé" : ""}</li>`).join("");
+  return `<details style="margin-top:8px"${C.graves_restants ? " open" : ""}><summary class="petit">🛡️ Contrôle qualité : ${C.note}/100 · ${C.corriges} correction(s)${C.graves_restants ? ` · ❌ ${C.graves_restants} défaut(s) grave(s)` : ""}</summary>
+    <ul class="petit">${L || "<li>✅ Aucun problème trouvé aux 4 contrôles.</li>"}${(C.sautes || []).map(s => `<li>⏭️ Contrôle non fait : ${esc(s)}</li>`).join("")}</ul></details>`;
+}
 function carteVideo(v) {
   const mini = DEMO ? "" : `miniatures/${v.id}.jpg`;
   const ver = v.verification ? `vérifiée par ${esc(v.verification.par)} (${v.verification.corrigees} corrigée(s), ${v.verification.retirees} retirée(s))`
     : v.verifie === false ? "⚠️ faits NON vérifiés (aucune 2e IA disponible)" : "";
   const sources = (v.sources || []).map(s => `<li><a href="${esc(s.lien)}" target="_blank" rel="noopener">${esc(s.media)} — ${esc(s.titre)}</a></li>`).join("");
   const boutons = {
+    a_verifier: `<button class="btn mini primaire" data-a="publier_force" data-id="${v.id}">🚀 Publier quand même</button><button class="btn mini" data-a="ecarter" data-id="${v.id}">🛑 Écarter</button>`,
     nouvelle: `<button class="btn mini ok" data-a="a_publier" data-id="${v.id}">✅ À publier</button><button class="btn mini primaire" data-a="publier_maintenant" data-id="${v.id}">🚀 Publier maintenant</button><button class="btn mini" data-a="ecarter" data-id="${v.id}">🛑 Écarter</button>`,
     a_publier: `<button class="btn mini primaire" data-a="publier_maintenant" data-id="${v.id}">🚀 Publier maintenant</button><button class="btn mini" data-a="retirer" data-id="${v.id}">↩️ Retirer de la file</button>`,
     echec: `<button class="btn mini ok" data-a="a_publier" data-id="${v.id}">🔁 Remettre dans la file</button>`,
@@ -452,7 +460,7 @@ function carteVideo(v) {
     <button class="vignette" style="background-image:url('${mini}')" data-play="${esc(v.url)}" aria-label="Regarder"></button>
     <div>
       <div class="rang"><span class="tag ${v.statut}">${LIB[v.statut] || v.statut}</span><span class="muted petit">${quand(v.cree_le)} · ${Math.round(v.duree || 0)} s</span>
-        ${v.essai ? '<span class="tag">🧪 essai</span>' : ""}${FMT[v.format] ? `<span class="tag">${FMT[v.format]}</span>` : ""}</div>
+        ${v.essai ? '<span class="tag">🧪 essai</span>' : ""}${v.controles ? `<span class="tag" title="Note de confiance du contrôle qualité">🛡️ ${v.controles.note}/100</span>` : ""}${FMT[v.format] ? `<span class="tag">${FMT[v.format]}</span>` : ""}</div>
       ${v.stats ? `<div class="chiffres"><span>👁️ <b>${nb(v.stats.vues)}</b></span><span>❤️ <b>${nb(v.stats.jaime)}</b></span><span>💬 <b>${nb(v.stats.commentaires)}</b></span>${v.lien_tiktok ? `<a href="${esc(v.lien_tiktok)}" target="_blank" rel="noopener">voir sur TikTok</a>` : ""}</div>` : ""}
       <h3 style="margin-top:6px">${esc(v.titre)}</h3>
       <div class="muted petit">Sujet : ${esc(v.sujet)}${v.buzz?.vues ? ` · 👁️ ${nb(v.buzz.vues)} · 💬 ${nb(v.buzz.commentaires)}` : ""}</div>
@@ -460,6 +468,7 @@ function carteVideo(v) {
       <div class="rang">${boutons}<button class="btn mini" data-a="copier" data-id="${v.id}">📋 Copier la description</button>
         ${v.url ? `<a class="btn mini" href="${esc(v.url)}" target="_blank" rel="noopener">⬇️ Télécharger</a>` : ""}</div>
       ${v.echec_publication ? `<p class="petit" style="color:var(--accent)">❌ ${esc(v.echec_publication)}</p>` : ""}
+      ${bulletin(v)}
       <details style="margin-top:8px"><summary class="petit">Sources, vérification, texte, modifier</summary>
         <p class="petit">${ver} · ${v.ecrans_illustres ?? "?"} écrans illustrés${(v.credits || []).length ? " · images : " + esc(v.credits.join(", ")) : ""}</p>
         <ul class="petit">${sources}</ul>
@@ -474,7 +483,8 @@ function carteVideo(v) {
 }
 function rendreVideos() {
   const V = D["file.json"].videos || [];
-  const liste = V.filter(v => fVid === "tous" || v.statut === fVid || (fVid === "autres" && ["ecartee", "echec"].includes(v.statut)));
+  const liste = V.filter(v => fVid === "tous" || v.statut === fVid || (fVid === "nouvelle" && v.statut === "a_verifier")
+    || (fVid === "autres" && ["ecartee", "echec"].includes(v.statut)));
   $("#vid-liste").innerHTML = liste.map(carteVideo).join("") || `<p class="muted">Aucune vidéo ici.</p>`;
   $("#n-videos").textContent = V.filter(v => v.statut === "nouvelle").length || "";
   $("#n-pub").textContent = V.filter(v => v.statut === "a_publier").length || "";
@@ -625,7 +635,7 @@ document.addEventListener("click", async e => {
   if (a === "sujet_ignorer" || a === "sujet_remettre") return commande(a, id);
   if (a === "lien") { const l = prompt("Lien de la vidéo sur TikTok :"); if (l) commande("publiee", id, l.trim()); return; }
   if (a === "texte") return commande("texte", id, JSON.stringify({ description: $("#d-" + id).value, question: $("#q-" + id).value, hashtags: $("#h-" + id).value }));
-  if (a === "publier_maintenant") { if (!arme(b, a + id)) return; return commande(a, id, "", "Envoi à TikTok par Buffer (1 à 2 min)."); }
+  if (a === "publier_maintenant" || a === "publier_force") { if (!arme(b, a + id)) return; return commande(a, id, "", "Contrôle puis envoi à TikTok par Buffer (1 à 2 min)."); }
   if (a === "supprimer") { if (!arme(b, a + id)) return; return commande(a, id); }
   if (["a_publier", "retirer", "ecarter"].includes(a)) return commande(a, id);
 });

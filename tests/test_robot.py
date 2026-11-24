@@ -155,6 +155,58 @@ class TestNouveautes(unittest.TestCase):
         self.assertIn(publication_auto.format_auto(R, dimanche, "07:15"), ("buzz", "vrai_faux"))
 
 
+class TestControleQualite(unittest.TestCase):
+    def script(self, n=14, mots=16):
+        ph = [dict(voix=" ".join(["mot"] * mots) + ".", ecrit=" ".join(["mot"] * mots) + f" {k}.", ecran="", image="x")
+              for k in range(n)]
+        ph[-1]["ecrit"] += " Et toi ?"; ph[0]["voix"] = "Accroche courte et choc."
+        return {"phrases": ph}
+
+    def test_nombres_en_lettres(self):
+        from robot.nombres import dire_les_nombres, en_lettres
+        self.assertEqual(en_lettres(378), "trois cent soixante-dix-huit")
+        self.assertEqual(en_lettres(2027), "deux mille vingt-sept")
+        self.assertEqual(en_lettres(80), "quatre-vingts")
+        self.assertEqual(dire_les_nombres("16 000 km"), "seize mille kilomètres")
+
+    def test_regles_texte(self):
+        from robot import controle
+        s = self.script()
+        self.assertEqual(controle.regles_texte(s), [])
+        s["phrases"][3]["voix"] = "Il y a 378 jours."; s["phrases"][4]["ecran"] = "UN TITRE BEAUCOUP TROP LONG POUR L'ÉCRAN"
+        pb = controle.regles_texte(s)
+        controle.corriger_sans_ia(s, pb)
+        self.assertEqual(s["phrases"][3]["voix"], "Il y a trois cent soixante-dix-huit jours.")
+        self.assertLessEqual(len(s["phrases"][4]["ecran"]), 24)
+        self.assertTrue(any(i is None for i, _, _ in controle.regles_texte(self.script(n=6))))   # trop court
+
+    def test_note(self):
+        from robot import controle
+        B = controle.Bulletin(); B.ajouter("images", "hors sujet", 2, corrige=True); B.ajouter("video", "trop court", None, "grave")
+        self.assertEqual(B.note(), 74); self.assertEqual(B.resume()["graves_restants"], 1)
+
+    def test_image_noire(self):
+        from robot import controle
+        from PIL import Image
+        noir = os.path.join(TMP, "noir.jpg"); Image.new("RGB", (64, 64), (3, 3, 3)).save(noir)
+        self.assertLess(controle.mesures_image(noir)[0], 20)
+
+    def test_avant_publication(self):
+        from robot import controle
+        v = {"duree": 70, "description": "ok", "hashtags": ["#a", "#b", "#c"], "url": "file:///x", "controles": {"graves_restants": 1}}
+        pb = controle.avant_publication(v, {"publication": {"compte": "buzz.insolite"}})
+        self.assertTrue(any("grave" in p for p in pb)); self.assertTrue(any("adresse" in p for p in pb))
+        self.assertFalse(any("grave" in p for p in controle.avant_publication(v, {"publication": {"compte": "x"}}, forcer=True)))
+
+    @unittest.skipUnless(shutil.which("ffmpeg"), "ffmpeg absent")
+    def test_ecran_noir_detecte(self):
+        from robot import controle
+        f = os.path.join(TMP, "noir.mp4")
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", "color=c=gray:s=320x240:d=2", "-f", "lavfi",
+                        "-i", "color=c=black:s=320x240:d=2", "-filter_complex", "[0][1]concat=n=2:v=1", f], check=True)
+        self.assertEqual(controle.ecrans_noirs(f, [0, 2]), {1})
+
+
 @unittest.skipUnless(shutil.which("ffmpeg"), "ffmpeg absent")
 class TestVideoComplete(unittest.TestCase):
     def test_essai_sans_reseau(self):

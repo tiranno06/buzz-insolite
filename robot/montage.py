@@ -158,13 +158,44 @@ def miniature(chemin_video, chemin_jpg, instant=1.0):
                     "-vf", "scale=360:-2", "-q:v", "4", chemin_jpg], check=True)
 
 
-def monter(script, dossier, sortie, suivi=None):
-    """script["phrases"][i] doit avoir : son, duree, mots, media (ou None), ecran. Renvoie la durée de la vidéo."""
-    ph = script["phrases"]
+def debuts_et_total(ph):
     debuts, t = [], 0.0
     for p in ph:
         debuts.append(t); t += p["duree"] + PAUSE
-    total = t + FIN
+    return debuts, t + FIN
+
+
+def faire_ecran(script, i, d, dossier):
+    """Fabrique l'écran n° i (durée d). Renvoie le fichier."""
+    ph = script["phrases"]; p = ph[i]
+    png = os.path.join(dossier, f"calque{i:02d}.png")
+    derniere = i == len(ph) - 1
+    if p.get("reponse"):                                  # « Vrai ou faux ? » : la réponse en grand, vert ou rouge
+        vrai = p["reponse"] == "vrai"
+        calque(png, grand="VRAI !" if vrai else "FAUX !", petit=(p.get("ecran") or "").upper(),
+               coul=(80, 220, 120) if vrai else (255, 80, 90))
+    elif p.get("media") and not derniere:
+        calque(png, titre=p.get("ecran", "").upper())
+    else:
+        grand = "ET TOI ?" if derniere else (p.get("ecran") or "").upper()
+        petit = "dis-le en commentaire" if derniere else ""
+        calque(png, grand=grand, petit=petit)
+    m = os.path.join(dossier, f"ecran{i:02d}.mp4")
+    ecran(p.get("media"), d, png, m, dossier)
+    return m
+
+
+def _signature(script, i, d):
+    p = script["phrases"][i]; m = p.get("media") or {}
+    return f"{d:.3f}|{m.get('id') or m.get('type') or ''}|{m.get('debut', '')}|{p.get('ecran', '')}|{p.get('reponse', '')}|{i == len(script['phrases']) - 1}"
+
+
+def monter(script, dossier, sortie, suivi=None):
+    """script["phrases"][i] doit avoir : son, duree, mots, media (ou None), ecran. Renvoie la durée de la vidéo.
+    Un écran déjà fabriqué dont rien n'a changé (durée, image, titre) est gardé tel quel : une correction ne refait que les
+    écrans touchés, puis la vidéo est réassemblée (voix, sous-titres et musique sont refaits en entier, c'est rapide)."""
+    ph = script["phrases"]
+    debuts, total = debuts_et_total(ph)
     pause = os.path.join(dossier, "pause.wav")
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", str(PAUSE), pause], check=True)
     with open(os.path.join(dossier, "voix.txt"), "w") as f:
@@ -172,26 +203,17 @@ def monter(script, dossier, sortie, suivi=None):
     voix = os.path.join(dossier, "voix.wav")
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0", "-i", os.path.join(dossier, "voix.txt"), voix], check=True)
 
-    morceaux = []
+    morceaux, refaits = [], 0
     for i, p in enumerate(ph):
         d = (debuts[i + 1] if i + 1 < len(debuts) else total) - debuts[i]
-        png = os.path.join(dossier, f"calque{i:02d}.png")
-        derniere = i == len(ph) - 1
-        if p.get("reponse"):                              # « Vrai ou faux ? » : la réponse en grand, vert ou rouge
-            vrai = p["reponse"] == "vrai"
-            calque(png, grand="VRAI !" if vrai else "FAUX !", petit=(p.get("ecran") or "").upper(),
-                   coul=(80, 220, 120) if vrai else (255, 80, 90))
-        elif p.get("media") and not derniere:
-            calque(png, titre=p.get("ecran", "").upper())
-        else:
-            grand = "ET TOI ?" if derniere else (p.get("ecran") or "").upper()
-            petit = "dis-le en commentaire" if derniere else ""
-            calque(png, grand=grand, petit=petit)
-        m = os.path.join(dossier, f"ecran{i:02d}.mp4")
-        ecran(p.get("media"), d, png, m, dossier)
-        morceaux.append(m)
+        sig = _signature(script, i, d)
+        fichier = os.path.join(dossier, f"ecran{i:02d}.mp4")
+        if p.get("_sig") != sig or not os.path.exists(fichier):
+            faire_ecran(script, i, d, dossier); p["_sig"] = sig; refaits += 1
+        morceaux.append(fichier)
         if suivi:
             suivi(i + 1, len(ph))
+    script["_ecrans_refaits"] = refaits
     with open(os.path.join(dossier, "ecrans.txt"), "w") as f:
         f.write("".join(f"file '{m}'\n" for m in morceaux))
     images = os.path.join(dossier, "images.mp4")

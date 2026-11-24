@@ -108,3 +108,39 @@ def demander_json(consigne, texte, temperature=0.7, max_tokens=4000, exclure=(),
                     break
         journal(f"  IA {fourn} indisponible ({derniere[:160]}) : IA suivante")
     raise AucuneIA(derniere)
+
+
+# ------------------------------------------------------------------ IA qui voit les images (contrôle qualité)
+VISION = {"gemini": ("gemini-flash-latest", "gemini-2.5-flash", "gemini-flash-lite-latest"),
+          "mistral": ("mistral-small-latest", "ministral-14b-2512"),
+          "groq": ("meta-llama/llama-4-scout-17b-16e-instruct", "meta-llama/llama-4-maverick-17b-128e-instruct")}
+
+
+def _image_b64(chemin):
+    import base64
+    with open(chemin, "rb") as f:
+        return "data:image/jpeg;base64," + base64.b64encode(f.read()).decode()
+
+
+def regarder_json(consigne, texte, images, journal=print, exclure=()):
+    """Montre des images (5 au plus, fichiers .jpg) à une IA gratuite qui voit, et renvoie (objet JSON, « fournisseur:modèle »)."""
+    contenu = [{"type": "text", "text": texte}] + [{"type": "image_url", "image_url": {"url": _image_b64(c)}} for c in images[:5]]
+    messages = [{"role": "system", "content": consigne}, {"role": "user", "content": contenu}]
+    derniere = "aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY)"
+    for fourn in [f for f in ("gemini", "mistral", "groq") if os.environ.get(FOURNISSEURS[f]["cle"]) and f not in exclure
+                  and f not in _SAUTES]:
+        for modele in VISION[fourn]:
+            for essai in range(2):
+                try:
+                    rep = _appel(fourn, modele, messages, 0.1, 2500)
+                    UTILISES[fourn] = UTILISES.get(fourn, 0) + 1
+                    return lire_json(rep), f"{fourn}:{modele}"
+                except urllib.error.HTTPError as e:
+                    corps = e.read()[:300].decode("utf-8", "ignore"); derniere = f"{fourn} {modele} {e.code} : {corps[:160]}"
+                    if e.code in (429, 500, 502, 503, 504) and essai == 0 and "per day" not in corps.lower():
+                        time.sleep(15); continue
+                    break
+                except (ValueError, urllib.error.URLError, TimeoutError, OSError) as e:
+                    derniere = f"{fourn} {modele} : {str(e)[:120]}"
+                    break
+    raise AucuneIA(derniere)

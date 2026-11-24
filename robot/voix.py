@@ -125,7 +125,10 @@ def preparer(phrases, nom_voix, vitesse, journal=print, suivi=None):
                 p["duree"] = dire(p["voix"], p["son"], nom_voix, vitesse, brut=b)
                 p["mots"] = mots_entendus(p["son"])
                 # Whisper écrit « 31 » quand la voix dit « trente et un » : on compare aux deux versions du texte
-                if max(ressemblance(p["voix"], p["mots"]), ressemblance(p.get("ecrit", p["voix"]), p["mots"])) < 0.75:
+                compris = max(ressemblance(p["voix"], p["mots"]), ressemblance(p.get("ecrit", p["voix"]), p["mots"]))
+                bafouille = p["duree"] > 0.7 * len(p["voix"].split()) + 1.5      # voix qui traîne ou répète
+                p["_voix_defaut"] = ("mots mal prononcés" if compris < 0.75 else "voix qui traîne" if bafouille else "")
+                if p["_voix_defaut"]:
                     refaire.append(i)
                 if suivi:
                     suivi(len([q for q in phrases if "mots" in q]), len(phrases))

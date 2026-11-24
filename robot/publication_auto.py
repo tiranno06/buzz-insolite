@@ -9,7 +9,7 @@ import datetime
 import os
 import subprocess
 
-from . import depot, publier
+from . import controle, depot, publier
 from .commun import ecrire, iso, lire, maintenant, noter, reglages
 
 FENETRE = datetime.timedelta(hours=3)
@@ -54,20 +54,31 @@ def main():
     file = publier.mettre_a_jour(lire("file.json") or {"videos": []})
     resultats = {}                                       # créneau → (id de la vidéo, réponse Buffer ou erreur)
     deja = set()
+    refusees = {}                                        # vidéos bloquées par le contrôle avant publication
     for h in pub_dus:
-        v = prochaine({"videos": [x for x in file["videos"] if x["id"] not in deja]})
-        if not v:
-            resultats[h] = (None, None); continue
-        deja.add(v["id"])
-        try:
-            resultats[h] = (v["id"], publier.envoyer(v, R))
-        except Exception as e:
-            resultats[h] = (v["id"], e)
+        resultats[h] = (None, None)
+        while True:                                      # une vidéo refusée par le contrôle : la suivante tente sa chance
+            v = prochaine({"videos": [x for x in file["videos"] if x["id"] not in deja]})
+            if not v:
+                break
+            deja.add(v["id"])
+            try:
+                resultats[h] = (v["id"], controle.verifier_et_envoyer(v, R))
+                break
+            except controle.Refusee as e:
+                refusees[v["id"]] = str(e)
+            except Exception as e:
+                resultats[h] = (v["id"], e)
+                break
 
     def appliquer():
         E = lire("garde.json") or {}
         file = publier.mettre_a_jour(lire("file.json") or {"videos": []})
         par_id = {x["id"]: x for x in file["videos"]}
+        for vid, raison in refusees.items():
+            if vid in par_id:
+                par_id[vid].update(statut="a_verifier", echec_publication=f"{iso()} : {raison}")
+                noter(f"🛡️ « {par_id[vid]['titre']} » non publiée : {raison[:180]}", "attention")
         for h in pub_dus:
             E.setdefault("publication", {}).setdefault(jour, []).append(h)
             vid, rep = resultats[h]
