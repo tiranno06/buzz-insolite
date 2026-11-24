@@ -19,6 +19,10 @@ VOIX = {"fr_FR-tom-medium": "tom", "fr_FR-siwis-medium": "siwis", "fr_FR-upmc-me
 # française ont été gardées (essai du 24/11 : pm_alex, em_alex, am_fenrir).
 KOKORO = {"kokoro-ff_siwis": "femme", "kokoro-pm_alex": "homme (Alex)", "kokoro-em_alex": "homme (Alex 2)",
           "kokoro-am_fenrir": "homme (Fenrir)"}
+# Voix choisie par l'auteur le 24/11/2026 : homme français sans accent, Chatterbox Multilingual (MIT) qui imite « Bernard »
+# (lecteur LibriVox, domaine public). Tourne dans son propre espace Python (robot/chatterbox_voix.py, CHATTERBOX_PYTHON).
+CHATTERBOX = {"chatterbox-bernard": "homme français (Bernard)"}
+REFERENCES = {"chatterbox-bernard": "bernard.wav"}
 KOKORO_FICHIERS = "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/"
 _KOKORO = None
 
@@ -62,20 +66,80 @@ def _dire_kokoro(texte, brut, vitesse, nom_voix):
         w.writeframes((np.clip(son, -1, 1) * 32767).astype(np.int16).tobytes())
 
 
-def dire(texte, chemin, nom_voix, vitesse=0.80):
-    """Fabrique la phrase dite, sans blanc au début ni à la fin. Renvoie sa durée."""
-    brut = chemin + ".brut.wav"
-    if nom_voix in KOKORO:
+def dire(texte, chemin, nom_voix, vitesse=0.80, brut=None):
+    """Fabrique la phrase dite, sans blanc au début ni à la fin. Renvoie sa durée. `brut` : son déjà fabriqué (Chatterbox)."""
+    tempo = ""
+    if brut:
+        tempo = f",atempo={max(0.8, min(1.4, 0.92 / vitesse)):.3f}"   # Chatterbox parle lentement : même rythme que validé
+    else:
+        brut = chemin + ".brut.wav"
+    if tempo:
+        pass                                              # son déjà fabriqué (Chatterbox)
+    elif nom_voix in KOKORO:
         _dire_kokoro(texte, brut, vitesse, nom_voix)
     else:
         subprocess.run([sys.executable, "-m", "piper", "-m", modele(nom_voix), "--length-scale", str(vitesse),
                         "--noise-scale", "0.75", "--noise-w", "0.9", "-f", brut], input=texte, text=True, check=True,
                        capture_output=True)
     coupe = "silenceremove=start_periods=1:start_threshold=-45dB"
-    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", brut, "-af", f"{coupe},areverse,{coupe},apad=pad_dur=0.04,areverse",
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", brut, "-af", f"{coupe},areverse,{coupe},apad=pad_dur=0.04,areverse{tempo}",
                     "-ar", "44100", chemin], check=True)
     os.remove(brut)
     return duree(chemin)
+
+
+def _chatterbox(textes, bruts):
+    """Fabrique toutes les phrases d'un coup avec Chatterbox (modèle chargé une seule fois)."""
+    import json
+    from .commun import RACINE
+    travail = bruts[0] + ".travail.json"
+    with open(travail, "w", encoding="utf-8") as f:
+        json.dump({"reference": os.path.join(RACINE, "sons", "voix", REFERENCES["chatterbox-bernard"]),
+                   "phrases": [{"texte": t, "chemin": b} for t, b in zip(textes, bruts)]}, f, ensure_ascii=False)
+    py = os.environ.get("CHATTERBOX_PYTHON") or os.path.expanduser("~/venv-chatterbox/bin/python")
+    subprocess.run([py, os.path.join(RACINE, "robot", "chatterbox_voix.py"), travail], check=True, timeout=3600)
+
+
+def ressemblance(texte, entendus):
+    """Part des mots du texte retrouvés dans ce que Whisper a entendu (1 = tout est compris)."""
+    A = [norm(m) for m in texte.split() if norm(m)]; E = [norm(m) for m, _, _ in entendus if norm(m)]
+    return difflib.SequenceMatcher(None, A, E, autojunk=False).ratio() if A else 1.0
+
+
+def preparer(phrases, nom_voix, vitesse, journal=print, suivi=None):
+    """Voix de toutes les phrases : p["son"] doit être donné ; remplit p["duree"] et p["mots"].
+    Chatterbox (un peu au hasard d'un essai à l'autre) : une phrase mal comprise par Whisper (< 75 % des mots) est refaite
+    une fois. Si Chatterbox est en panne, la voix Kokoro (femme) prend le relais pour toute la vidéo."""
+    if nom_voix in CHATTERBOX:
+        a_faire = list(range(len(phrases)))
+        for essai in range(2):
+            bruts = [phrases[i]["son"] + f".cb{essai}.wav" for i in a_faire]
+            try:
+                _chatterbox([phrases[i]["voix"] for i in a_faire], bruts)
+            except Exception as e:
+                journal(f"  ⚠️ voix Chatterbox en panne ({str(e)[:120]}) : voix Kokoro à la place")
+                return preparer(phrases, "kokoro-ff_siwis", vitesse, journal, suivi)
+            refaire = []
+            for i, b in zip(a_faire, bruts):
+                p = phrases[i]
+                p["duree"] = dire(p["voix"], p["son"], nom_voix, vitesse, brut=b)
+                p["mots"] = mots_entendus(p["son"])
+                if ressemblance(p["voix"], p["mots"]) < 0.75:
+                    refaire.append(i)
+                if suivi:
+                    suivi(len([q for q in phrases if "mots" in q]), len(phrases))
+            if not refaire:
+                break
+            journal(f"  {len(refaire)} phrase(s) mal prononcée(s) : refaite(s)" if essai == 0 else
+                    f"  {len(refaire)} phrase(s) encore imparfaite(s) : gardée(s) telles quelles")
+            a_faire = refaire
+        return nom_voix
+    for k, p in enumerate(phrases):
+        p["duree"] = dire(p["voix"], p["son"], nom_voix, vitesse)
+        p["mots"] = mots_entendus(p["son"])
+        if suivi:
+            suivi(k + 1, len(phrases))
+    return nom_voix
 
 
 # ------------------------------------------------------------------ instants des mots

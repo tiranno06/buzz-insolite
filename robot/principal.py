@@ -104,12 +104,12 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
     nom_voix, vitesse = R["video"]["voix"], float(R["video"]["vitesse"])
     for i, p in enumerate(script["phrases"]):
         p["son"] = os.path.join(dossier, f"voix{i:02d}.wav")
-        if simulation():
+    if simulation():
+        for p in script["phrases"]:
             p["duree"], p["mots"] = voix_simulation(p, p["son"])
-        else:
-            p["duree"] = V.dire(p["voix"], p["son"], nom_voix, vitesse)
-            p["mots"] = V.mots_entendus(p["son"])
-        avancement.progres(30 + 20 * (i + 1) / len(script["phrases"]), f"phrase {i + 1}/{len(script['phrases'])}")
+    else:
+        script["voix_utilisee"] = V.preparer(script["phrases"], nom_voix, vitesse, journal,
+                                             suivi=lambda k, n: avancement.progres(30 + 20 * k / n, f"phrase {k}/{n}"))
     parole = sum(p["duree"] for p in script["phrases"]) + montage.PAUSE * len(script["phrases"]) + montage.FIN
     if parole < 60:
         journal(f"  ⚠️ vidéo de {parole:.0f} s : moins d'1 minute (TikTok ne paie qu'au-delà)")
@@ -149,7 +149,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz"):
                 sources=[dict(media=a["media"], titre=a["titre"], lien=a["lien"]) for a in articles],
                 verification=script.get("verification"), verifie=script.get("verifie", False),
                 credits=sorted({p["media"]["credit"] for p in script["phrases"] if p.get("media")}),
-                ecrans_illustres=trouves, format=format_, lieu=script.get("lieu", ""), humeur=script.get("humeur", ""), texte=[p["ecrit"] for p in script["phrases"]],
+                ecrans_illustres=trouves, format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""), humeur=script.get("humeur", ""), texte=[p["ecrit"] for p in script["phrases"]],
                 essai=simulation(), cree_le=iso(), fabrication_s=round(time.time() - t0),
                 statut="a_publier" if (mode == "auto" and script.get("verifie")) else "nouvelle")
 

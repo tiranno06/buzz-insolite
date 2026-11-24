@@ -153,7 +153,8 @@ dialog form { position: absolute; top: 6px; right: 6px; }
     <div class="card">
       <h3>🎲 Une série d'un seul bouton</h3>
       <p class="muted petit">Le robot prend les meilleurs sujets de l'onglet 🔥 Buzz pas encore traités, cherche les articles, écrit,
-        fait vérifier les faits, enregistre la voix, trouve de vraies vidéos libres de droits et monte tout. Environ 6 à 8 minutes par vidéo.</p>
+        fait vérifier les faits, enregistre la voix, trouve de vraies vidéos libres de droits et monte tout. Environ 12 à 15 minutes par vidéo
+        (la voix d'homme demande environ 6 minutes).</p>
       <div class="grille2">
         <label class="champ">Nombre de vidéos <input type="number" id="c-nombre" min="1" max="10" value="2"></label>
         <label class="champ">Format <select id="c-format"><option value="buzz">🔥 Le buzz du jour</option>
@@ -252,6 +253,7 @@ dialog form { position: absolute; top: 6px; right: 6px; }
         <h3>🎙️ Voix et description</h3>
         <div class="grille2">
           <label class="champ">Voix <select id="r-voix">
+            <optgroup label="Voix choisie"><option value="chatterbox-bernard">Homme français (Chatterbox)</option></optgroup>
             <optgroup label="Kokoro (naturelles)"><option value="kokoro-ff_siwis">A — femme</option><option value="kokoro-pm_alex">B — homme (Alex)</option>
               <option value="kokoro-em_alex">C — homme (Alex 2)</option><option value="kokoro-am_fenrir">D — homme (Fenrir)</option></optgroup>
             <optgroup label="Piper (plus robotiques)"><option value="fr_FR-tom-medium">Tom (homme)</option><option value="fr_FR-siwis-medium">Siwis (femme)</option>
@@ -306,7 +308,7 @@ const DEMO_DATA = {
   "journal.json": { evenements: [{ date: ilya(2), niveau: "info", texte: "🎬 Nouvelle vidéo « 1 an enfermés sur « Mars » » (62 s, 13 écrans illustrés)" },
     { date: ilya(0.5), niveau: "info", texte: "🔥 Buzz : 1 sujet(s) au-dessus des seuils" }] },
   "reglages.json": { buzz: { comptes: ["hugodecrypte", "brut", "bfmtv"], vues_min: 500000, jaime_min: 10000, commentaires_min: 1000, heures: 72 },
-    video: { voix: "kokoro-ff_siwis", vitesse: 0.8 }, publication: { mode: "cocher", auto: true, heures: ["12:30", "19:00"], compte: "" },
+    video: { voix: "chatterbox-bernard", vitesse: 0.8 }, publication: { mode: "cocher", auto: true, heures: ["12:30", "19:00"], compte: "" },
     creation: { auto: false, par_jour: 2, heures: ["07:15", "16:15"] }, hashtags: { fixes: ["#insolite", "#actu", "#buzz"], nombre: 6 } },
   "garde.json": {},
   "stats.json": { maj: ilya(1), chaine: "ma_chaine", lues: 12, retrouvees: 9, videos_mesurees: 8, vues_total: 412000, vues_mediane: 18000,
@@ -497,7 +499,7 @@ function remplirReglages() {
   $("#r-heures").value = B.heures ?? 72; $("#r-comptes").value = (B.comptes || []).join("\n");
   const E = (D["buzz.json"] || {}).comptes || {};
   $("#r-comptes-etat").textContent = Object.keys(E).length ? "Dernier relevé : " + Object.entries(E).map(([k, e]) => `${e.ok ? "🟢" : "🔴"} @${k}`).join("  ") : "";
-  $("#r-voix").value = V.voix || "kokoro-ff_siwis"; $("#r-vitesse").value = V.vitesse ?? 0.8;
+  $("#r-voix").value = V.voix || "chatterbox-bernard"; $("#r-vitesse").value = V.vitesse ?? 0.8;
   $("#r-musique").checked = V.musique !== false; $("#r-bruitages").checked = V.bruitages !== false; $("#r-carte").checked = V.carte !== false;
   $("#r-chaine").value = P.chaine || ""; $("#r-heures-auto").checked = !!P.heures_auto;
   const MH = (D["stats.json"] || {}).meilleures_heures || [];
@@ -573,7 +575,7 @@ $$("#vid-filtres button").forEach(b => b.onclick = () => { fVid = b.dataset.f; $
 $("#buzz-maj").onclick = () => ordre("buzz.yml", {}, "Recherche lancée : nouveaux sujets dans 5 à 10 minutes.");
 $("#buzz-meilleurs").onclick = () => creer({ nombre: "2" }, "Série de 2 vidéos lancée (environ 15 minutes).");
 $("#c-serie").onclick = () => { const f = $("#c-format").value, n = f === "semaine" ? 1 : Math.max(1, Math.min(10, +$("#c-nombre").value || 1));
-  creer({ nombre: String(n), format: f }, `${n} vidéo(s) lancée(s) (environ ${n * 7} minutes).`); };
+  creer({ nombre: String(n), format: f }, `${n} vidéo(s) lancée(s) (environ ${n * 14} minutes).`); };
 $("#c-un").onclick = () => { const t = $("#c-libre").value.trim(); if (!t) return toast("Écris d'abord le sujet."); creer({ libre: t }, "Vidéo lancée (environ 7 minutes)."); };
 $("#c-essai").onclick = () => creer({ simulation: "1" }, "Essai lancé (environ 3 minutes).");
 

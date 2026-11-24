@@ -33,7 +33,7 @@ concurrency:
 jobs:
   creer:
     runs-on: ubuntu-24.04
-    timeout-minutes: 120
+    timeout-minutes: 240
     env:
       SIMULATION: ${{ inputs.simulation || '0' }}
       MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
@@ -60,6 +60,22 @@ jobs:
         run: bash outils/installer_ffmpeg.sh
       - name: Installer les bibliothèques
         run: pip install -q -r requirements.txt
+      - name: Retrouver la voix d'homme déjà installée (Chatterbox et son modèle)
+        id: cache-chatterbox
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/venv-chatterbox
+            ~/.cache/huggingface
+          key: chatterbox-v1-py312-0.1.7
+      - name: Installer la voix d'homme (Chatterbox, espace à part)
+        if: steps.cache-chatterbox.outputs.cache-hit != 'true'
+        timeout-minutes: 25
+        run: |
+          python -m venv ~/venv-chatterbox
+          ~/venv-chatterbox/bin/pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          ~/venv-chatterbox/bin/pip install -q chatterbox-tts==0.1.7
+          ~/venv-chatterbox/bin/python -c "from chatterbox.mtl_tts import ChatterboxMultilingualTTS as M; M.from_pretrained(device='cpu')"
       - name: Fabriquer
         run: python -m robot.principal --nombre "${{ inputs.nombre || '1' }}" --sujet "${{ inputs.sujet }}" --libre "$LIBRE" --format "${{ inputs.format || 'buzz' }}"
         env:

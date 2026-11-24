@@ -34,8 +34,8 @@ def appliquer_reglages(d):
     for k, mini, maxi in (("vues_min", 0, 10**9), ("jaime_min", 0, 10**8), ("commentaires_min", 0, 10**7), ("heures", 6, 240)):
         if k in B:
             R["buzz"][k] = max(mini, min(maxi, int(B[k])))
-    from .voix import KOKORO, VOIX
-    if Vd.get("voix") in VOIX or Vd.get("voix") in KOKORO:
+    from .voix import CHATTERBOX, KOKORO, VOIX
+    if Vd.get("voix") in VOIX or Vd.get("voix") in KOKORO or Vd.get("voix") in CHATTERBOX:
         R["video"]["voix"] = Vd["voix"]
     if "vitesse" in Vd:
         R["video"]["vitesse"] = max(0.65, min(1.1, float(Vd["vitesse"])))

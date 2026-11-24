@@ -13,7 +13,7 @@ from .commun import RACINE, SORTIE, iso, maintenant
 
 BRANCHE = "avancement"
 INTERVALLE = 10                 # secondes entre deux envois (sauf changement d'étape, envoyé tout de suite)
-TYPIQUE = {"video": 7 * 60}            # durée habituelle d'une création, en secondes
+TYPIQUE = {"video": 14 * 60}            # durée habituelle d'une création, en secondes
 
 _etat = {}
 _dernier_envoi = 0.0
