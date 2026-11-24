@@ -152,6 +152,7 @@ class TestNouveautes(unittest.TestCase):
 class TestVideoComplete(unittest.TestCase):
     def test_essai_sans_reseau(self):
         env = dict(os.environ, SIMULATION="1")
+        env.pop("GITHUB_ACTIONS", None)                  # sur GitHub aussi : ni Release, ni envoi dans le dépôt
         r = subprocess.run([sys.executable, "-m", "robot.principal", "--libre", "Essai"], cwd=RACINE, env=env,
                            capture_output=True, text=True, timeout=900)
         self.assertEqual(r.returncode, 0, r.stdout[-2000:] + r.stderr[-2000:])
