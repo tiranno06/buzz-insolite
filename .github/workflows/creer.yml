@@ -41,6 +41,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Installer l'outil d'images (chargé au démarrage du robot)
+        run: pip install -q "Pillow>=11,<14"
       - name: Répartir les vidéos entre les machines
         id: plan
         env:
