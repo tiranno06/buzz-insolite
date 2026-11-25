@@ -1,9 +1,9 @@
 {
  "videos": [
   {
-   "id": "20261124-233208-1",
-   "tag": "v-20261124-233208-1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233208-1/buzz-20261124-233208-1.mp4",
+   "id": "20261124-233208-1-r1",
+   "tag": "v-20261124-233208-1-r1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233208-1-r1/buzz-20261124-233208-1-r1.mp4",
    "titre": "Macron sauveur en urgence",
    "accroche": "LE PRÉSIDENT À L'ACTION",
    "sujet_id": "ef38e151cf",
@@ -80,14 +80,13 @@
    },
    "verifie": true,
    "credits": [
-    "This video is a work by Wikipedia and Wi / Wikimedia Commons, CC BY-SA 4.0",
-    "Titre : actu.orange.fr",
-    "Titre : closermag.fr",
-    "Vidéo : Bleme (PeerTube, CC BY)",
+    "Carte : Natural Earth, OpenStreetMap",
+    "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+    "Netbocage / Wikimedia Commons, CC BY 3.0",
     "Wikipédia, article « Emmanuel Macron »"
    ],
-   "ecrans_illustres": 7,
-   "ecrans_total": 21,
+   "ecrans_illustres": 9,
+   "ecrans_total": 20,
    "format": "buzz",
    "voix": "chatterbox-bernard",
    "lieu": "Blagnac, France",
@@ -118,99 +117,189 @@
     "Dis-le en commentaire : « T’as déjà vu ça en public ? »"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T00:52:14+01:00",
-   "fabrication_s": 4806,
+   "cree_le": "2026-11-25T01:46:11+01:00",
+   "fabrication_s": 2207,
    "controles": {
-    "note": 15,
+    "note": 0,
     "lignes": [
      {
-      "niveau": "texte",
-      "ecran": 4,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": 5,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": 6,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": 9,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": null,
+      "niveau": "images",
+      "ecran": 29,
       "gravite": "moyen",
-      "probleme": "texte trop court (environ 44 s, il faut plus d'1 minute)",
+      "probleme": "image illisible",
       "corrige": true,
-      "essais": 2,
-      "solution": "phrase réécrite et revérifiée"
-     },
-     {
-      "niveau": "texte",
-      "ecran": null,
-      "gravite": "moyen",
-      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "phrase réécrite et revérifiée"
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
-      "ecran": 22,
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 37,
       "gravite": "moyen",
       "probleme": "image illisible",
       "corrige": true,
       "essais": 2,
-      "solution": "vraie vidéo de « Emmanuel Macron »"
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 38,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 39,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 40,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 41,
+      "gravite": "moyen",
+      "probleme": "usine industrielle sans rapport avec le sujet politique",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 42,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "Salle de sport, aucun rapport",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 26,
       "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 4,
+      "probleme": "Salle de sport, aucun rapport",
+      "corrige": false,
+      "essais": 5,
       "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
-      "ecran": 27,
+      "ecran": 28,
       "gravite": "moyen",
-      "probleme": "image hors contexte (Toulouse absente, pas Macron, pas malaise)",
+      "probleme": "Image hors contexte (fanfare militaire)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "Image hors contexte (fanfare militaire)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "Image hors contexte (lanterne ancienne, pas lié à 2026 ou Élysée)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "vraie vidéo de « Élysée »"
+     },
+     {
+      "niveau": "images",
+      "ecran": 33,
+      "gravite": "moyen",
+      "probleme": "Personnage et contexte sans rapport avec Macron ou Toulouse",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 34,
+      "gravite": "moyen",
+      "probleme": "Image hors contexte (salle du Congrès américain, pas lié à usure physique)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "autre passage d'une vraie vidéo du sujet"
+     },
+     {
+      "niveau": "images",
+      "ecran": 35,
+      "gravite": "moyen",
+      "probleme": "Image incorrecte (Ukraine, pas Airbus/Toulouse)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 36,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "Personnage inconnu, décor inadapté",
       "corrige": false,
       "essais": 4,
       "solution": "image du thème (« politician speech crowd »)"
      },
      {
       "niveau": "images",
-      "ecran": 32,
+      "ecran": 27,
       "gravite": "moyen",
-      "probleme": "Image sans rapport avec le sujet (architecture ancienne, pas de lien avec Élysée ou événement)",
-      "corrige": true,
-      "essais": 1,
+      "probleme": "Salle de sport, aucun rapport",
+      "corrige": false,
+      "essais": 3,
       "solution": "autre passage d'une vraie vidéo du sujet"
      },
      {
@@ -218,6 +307,24 @@
       "ecran": 32,
       "gravite": "moyen",
       "probleme": "image illisible",
+      "corrige": false,
+      "essais": 3,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 34,
+      "gravite": "moyen",
+      "probleme": "Image de patinoire sans lien avec le sujet",
+      "corrige": false,
+      "essais": 3,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "Salle de sport, aucun rapport",
       "corrige": false,
       "essais": 2,
       "solution": "vraie image d'un autre écran, à un autre moment"
@@ -226,144 +333,116 @@
       "niveau": "images",
       "ecran": null,
       "gravite": "grave",
-      "probleme": "trop peu d'images : 6 écran(s) illustré(s) sur 20",
+      "probleme": "trop peu d'images : 9 écran(s) illustré(s) sur 20",
       "corrige": false,
       "essais": 1
-     },
-     {
-      "niveau": "video",
-      "ecran": 31,
-      "gravite": "moyen",
-      "probleme": "Le sous-titre 'MALAISE :' chevauche le bandeau bleu de l'image de fond.",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 26,
-      "gravite": "moyen",
-      "probleme": "Le sous-titre se superpose et cache le texte d'arrière-plan.",
-      "corrige": false,
-      "essais": 6,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "video",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "Le sous-titre chevauche le visage/costume d'Emmanuel Macron.",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 25,
-      "gravite": "moyen",
-      "probleme": "Mots '2026' partiellement coupés et déformés",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 24,
-      "gravite": "moyen",
-      "probleme": "Le sous-titre se superpose sur le texte du site web en arrière-plan.",
-      "corrige": false,
-      "essais": 4,
-      "solution": "autre passage d'une vraie vidéo du sujet"
-     },
-     {
-      "niveau": "video",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "Texte partiellement masqué par le flou",
-      "corrige": true,
-      "essais": 3,
-      "solution": "autre passage d'une vraie vidéo du sujet"
-     },
-     {
-      "niveau": "video",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 25,
-      "gravite": "moyen",
-      "probleme": "Le sous-titre est placé directement par-dessus le texte de l'article.",
-      "corrige": false,
-      "essais": 2,
-      "solution": "titre retiré"
      }
     ],
-    "sautes": [
-     "regard de l'IA sur la vidéo finie (IA indisponible)"
-    ],
-    "corriges": 14,
-    "restants": 6,
-    "graves_restants": 7
+    "sautes": [],
+    "corriges": 15,
+    "restants": 9,
+    "graves_restants": 9
    },
    "reprises": 0,
    "preuves": [
     {
      "ecran": 1,
-     "page": "https://video.ut0pia.org/videos/watch/7e636ed4-7e1c-43c5-bf20-60c64e487b8a",
-     "licence": "CC BY",
-     "auteur": "Bleme",
-     "titre": "Emmanuel Macron accuse les réseaux sociaux et fait vivement débat",
-     "credit": "Vidéo : Bleme (PeerTube, CC BY)",
-     "releve_le": "2026-11-25T00:52:14+01:00"
-    },
-    {
-     "ecran": 2,
-     "page": "https://commons.wikimedia.org/?curid=75762589",
+     "page": "https://commons.wikimedia.org/?curid=34613392",
      "licence": "CC BY-SA 4.0",
-     "auteur": "This video is a work by Wikipedia and Wi",
+     "auteur": "Clément Bucco-Lechat",
      "titre": "",
-     "credit": "This video is a work by Wikipedia and Wi / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T00:52:14+01:00"
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T01:46:11+01:00"
     },
     {
      "ecran": 3,
-     "page": "https://commons.wikimedia.org/?curid=75762589",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "This video is a work by Wikipedia and Wi",
-     "titre": "",
-     "credit": "This video is a work by Wikipedia and Wi / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T00:52:14+01:00"
-    },
-    {
-     "ecran": 6,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AEmmanuel_Macron_%2827_ao%C3%BBt_2014%29.jpg",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AVisit_of_Xi_Jinping_to_France_-_2024_%28P063803-92196%29.jpg",
      "licence": "",
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Emmanuel Macron »",
-     "releve_le": "2026-11-25T00:52:14+01:00"
+     "releve_le": "2026-11-25T01:46:11+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T01:46:11+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T01:46:11+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://commons.wikimedia.org/?curid=115807130",
+     "licence": "CC BY 3.0",
+     "auteur": "Netbocage",
+     "titre": "",
+     "credit": "Netbocage / Wikimedia Commons, CC BY 3.0",
+     "releve_le": "2026-11-25T01:46:11+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T01:46:11+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T01:46:11+01:00"
+    },
+    {
+     "ecran": 13,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T01:46:11+01:00"
+    },
+    {
+     "ecran": 14,
+     "page": "https://commons.wikimedia.org/?curid=115807130",
+     "licence": "CC BY 3.0",
+     "auteur": "Netbocage",
+     "titre": "",
+     "credit": "Netbocage / Wikimedia Commons, CC BY 3.0",
+     "releve_le": "2026-11-25T01:46:11+01:00"
     }
    ],
    "couverture_ms": 800,
    "durees": {
-    "articles": 8,
-    "ecriture": 50,
-    "texte": 234,
-    "images": 70,
-    "controle_images": 461,
-    "voix": 1585,
-    "montage": 141,
-    "controle_final": 2770,
-    "rangement": 5
+    "voix": 0,
+    "images": 292,
+    "controle_images": 1321,
+    "montage": 233,
+    "controle_final": 351,
+    "rangement": 3
    },
-   "refaite": null,
+   "refaite": {
+    "de": "20261124-233208-1",
+    "etape": "images",
+    "remarque": "Scènes de 5 à 10 s en vraies vidéos de toutes les sources, sans doublon"
+   },
    "statut": "a_verifier",
-   "refaite_de": "20261124-212611-1"
+   "refaite_de": "20261124-233208-1"
   },
   {
    "id": "20261124-233244-1",
