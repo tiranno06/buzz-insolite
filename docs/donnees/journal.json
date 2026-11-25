@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T12:13:24+01:00",
+   "niveau": "erreur",
+   "texte": "🧪 Essai de la nuit : en panne : Tests du code (montage compris), Recadrage et agrandissement (OpenCV)"
+  },
+  {
    "date": "2026-11-25T11:34:53+01:00",
    "niveau": "info",
    "texte": "⚙️ Réglages enregistrés."

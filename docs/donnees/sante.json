@@ -128,5 +128,59 @@
   }
  ],
  "sujets_remis": 0,
- "resume": "⚠️ En panne : gemini"
+ "resume": "⚠️ En panne : gemini",
+ "essai_nuit": {
+  "le": "2026-11-25T12:13:23+01:00",
+  "resultats": [
+   {
+    "nom": "Tests du code (montage compris)",
+    "ok": false,
+    "detail": "Ran 78 tests in 81.424s  FAILED (failures=1)",
+    "duree_s": 82.0
+   },
+   {
+    "nom": "Voix d'homme (Chatterbox)",
+    "ok": true,
+    "detail": "3.8 s de voix",
+    "duree_s": 46.9
+   },
+   {
+    "nom": "Calage des mots (Whisper)",
+    "ok": true,
+    "detail": "7 mots entendus",
+    "duree_s": 0.3
+   },
+   {
+    "nom": "Téléchargement d'une vidéo TikTok d'origine",
+    "ok": true,
+    "detail": "@reuters : 35 s",
+    "duree_s": 3.7
+   },
+   {
+    "nom": "Recadrage et agrandissement (OpenCV)",
+    "ok": false,
+    "detail": "agrandissement impossible (modèle FSRCNN ou OpenCV)",
+    "duree_s": 0.4
+   },
+   {
+    "nom": "Orthographe (LanguageTool)",
+    "ok": true,
+    "detail": "1 faute(s) vue(s)",
+    "duree_s": 0.7
+   },
+   {
+    "nom": "IA qui écrit",
+    "ok": true,
+    "detail": "groq:openai/gpt-oss-120b",
+    "duree_s": 1.2
+   },
+   {
+    "nom": "IA qui voit",
+    "ok": true,
+    "detail": "gemini:gemini-flash-lite-latest",
+    "duree_s": 180.9
+   }
+  ],
+  "ok": false
+ }
 }
