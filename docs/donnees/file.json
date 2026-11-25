@@ -1,9 +1,9 @@
 {
  "videos": [
   {
-   "id": "20261124-233208-1-r3",
-   "tag": "v-20261124-233208-1-r3",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233208-1-r3/buzz-20261124-233208-1-r3.mp4",
+   "id": "20261124-233208-1-r4",
+   "tag": "v-20261124-233208-1-r4",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233208-1-r4/buzz-20261124-233208-1-r4.mp4",
    "titre": "Macron sauveur en urgence",
    "accroche": "LE PRÉSIDENT À L'ACTION",
    "sujet_id": "ef38e151cf",
@@ -80,10 +80,19 @@
    },
    "verifie": true,
    "credits": [
+    "Abujoy / Wikimedia Commons, CC BY 4.0",
+    "After William Hogarth / Wikimedia Commons, CC BY 4.0",
+    "Bromley, Edward A / Wikimedia Commons, Public domain",
     "Carte : Natural Earth, OpenStreetMap",
-    "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-    "Vidéo : Bleme (PeerTube, CC BY)",
-    "Vidéo : tg2p (PeerTube, domaine public)"
+    "Hood, Ted, 1911-2000 / Wikimedia Commons, Public domain",
+    "Joseph R. Denti (U.S. Airforce) / Wikimedia Commons, Public domain",
+    "National Library of Ireland on The Commo / Wikimedia Commons, Public domain",
+    "The White House / Wikimedia Commons, Public domain",
+    "US Congressman Al Green of Texas / Wikimedia Commons, Public domain",
+    "Vidéo : Nucléaire (PeerTube, domaine public)",
+    "Vidéo : Vousavezledroit (PeerTube, CC BY)",
+    "Vidéo : 🇫🇷Patriote🇫🇷 (Internet Archive, BY 3.0)",
+    "Xuthoria / Wikimedia Commons, CC BY-SA 4.0"
    ],
    "ecrans_illustres": 20,
    "ecrans_total": 20,
@@ -117,450 +126,217 @@
     "Dis-le en commentaire : « T’as déjà vu ça en public ? »"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T04:12:00+01:00",
-   "fabrication_s": 2046,
+   "cree_le": "2026-11-25T05:06:40+01:00",
+   "fabrication_s": 1295,
    "controles": {
-    "note": 0,
-    "lignes": [
-     {
-      "niveau": "images",
-      "ecran": 29,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 30,
-      "gravite": "moyen",
-      "probleme": "image illisible (media58-std.jpg : )",
-      "corrige": true,
-      "essais": 2,
-      "solution": "autre passage d'une vraie vidéo du sujet"
-     },
-     {
-      "niveau": "images",
-      "ecran": 37,
-      "gravite": "moyen",
-      "probleme": "image illisible (media95-std.jpg : )",
-      "corrige": true,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 38,
-      "gravite": "moyen",
-      "probleme": "image illisible (media96-std.jpg : )",
-      "corrige": true,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 39,
-      "gravite": "moyen",
-      "probleme": "image illisible (media97-std.jpg : )",
-      "corrige": true,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 40,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 41,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 3,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 42,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 3,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "image illisible (media50-std.jpg : )",
-      "corrige": true,
-      "essais": 2,
-      "solution": "vraie vidéo de « Emmanuel Macron »"
-     },
-     {
-      "niveau": "images",
-      "ecran": 24,
-      "gravite": "moyen",
-      "probleme": "image illisible (media82-std.jpg : )",
-      "corrige": true,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 25,
-      "gravite": "moyen",
-      "probleme": "image illisible (media83-std.jpg : )",
-      "corrige": true,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 26,
-      "gravite": "moyen",
-      "probleme": "faux lieu, faux contexte",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 27,
-      "gravite": "moyen",
-      "probleme": "image illisible (media85-std.jpg : )",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 28,
-      "gravite": "moyen",
-      "probleme": "scène hors contexte",
-      "corrige": true,
-      "essais": 4,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 31,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 32,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 33,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 34,
-      "gravite": "moyen",
-      "probleme": "texte incrusté en français non lié au sujet",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 35,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 36,
-      "gravite": "moyen",
-      "probleme": "image illisible (media94-std.jpg : )",
-      "corrige": true,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 30,
-      "gravite": "moyen",
-      "probleme": "image illisible (media88-std.jpg : )",
-      "corrige": false,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 37,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 1,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 38,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 1,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 39,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 1,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 41,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 1,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 42,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 1,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     }
+    "note": 90,
+    "lignes": [],
+    "sautes": [
+     "regard de l'IA sur les images (IA indisponible)"
     ],
-    "sautes": [],
-    "corriges": 14,
-    "restants": 12,
-    "graves_restants": 12
+    "corriges": 0,
+    "restants": 0,
+    "graves_restants": 1
    },
    "reprises": 0,
    "preuves": [
     {
      "ecran": 1,
-     "page": "https://video.ut0pia.org/videos/watch/7e636ed4-7e1c-43c5-bf20-60c64e487b8a",
+     "page": "https://indymotion.fr/videos/watch/885661d6-135e-41f9-bbe3-774278f99d91",
      "licence": "CC BY",
-     "auteur": "Bleme",
-     "titre": "Emmanuel Macron accuse les réseaux sociaux et fait vivement débat",
-     "credit": "Vidéo : Bleme (PeerTube, CC BY)",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "auteur": "Vousavezledroit",
+     "titre": "Emmanuel Macron malade, que devient le pouvoir?",
+     "credit": "Vidéo : Vousavezledroit (PeerTube, CC BY)",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 3,
-     "page": "https://video.ut0pia.org/videos/watch/7e636ed4-7e1c-43c5-bf20-60c64e487b8a",
+     "page": "https://indymotion.fr/videos/watch/885661d6-135e-41f9-bbe3-774278f99d91",
      "licence": "CC BY",
-     "auteur": "Bleme",
-     "titre": "Emmanuel Macron accuse les réseaux sociaux et fait vivement débat",
-     "credit": "Vidéo : Bleme (PeerTube, CC BY)",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "auteur": "Vousavezledroit",
+     "titre": "Emmanuel Macron malade, que devient le pouvoir?",
+     "credit": "Vidéo : Vousavezledroit (PeerTube, CC BY)",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 4,
-     "page": "https://video.ut0pia.org/videos/watch/7e636ed4-7e1c-43c5-bf20-60c64e487b8a",
-     "licence": "CC BY",
-     "auteur": "Bleme",
-     "titre": "Emmanuel Macron accuse les réseaux sociaux et fait vivement débat",
-     "credit": "Vidéo : Bleme (PeerTube, CC BY)",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "page": "https://commons.wikimedia.org/?curid=83395803",
+     "licence": "CC BY 4.0",
+     "auteur": "Abujoy",
+     "titre": "",
+     "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 5,
-     "page": "https://video.ut0pia.org/videos/watch/7e636ed4-7e1c-43c5-bf20-60c64e487b8a",
-     "licence": "CC BY",
-     "auteur": "Bleme",
-     "titre": "Emmanuel Macron accuse les réseaux sociaux et fait vivement débat",
-     "credit": "Vidéo : Bleme (PeerTube, CC BY)",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "page": "https://commons.wikimedia.org/?curid=83395803",
+     "licence": "CC BY 4.0",
+     "auteur": "Abujoy",
+     "titre": "",
+     "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 6,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "page": "https://archive.org/details/youtube-YhX_Yq39GJ4",
+     "licence": "BY 3.0",
+     "auteur": "🇫🇷Patriote🇫🇷",
+     "titre": "Fanfare de cavalerie de la Garde Républicaine(Chants militaire)",
+     "credit": "Vidéo : 🇫🇷Patriote🇫🇷 (Internet Archive, BY 3.0)",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 7,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "page": "https://archive.org/details/youtube-YhX_Yq39GJ4",
+     "licence": "BY 3.0",
+     "auteur": "🇫🇷Patriote🇫🇷",
+     "titre": "Fanfare de cavalerie de la Garde Républicaine(Chants militaire)",
+     "credit": "Vidéo : 🇫🇷Patriote🇫🇷 (Internet Archive, BY 3.0)",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 8,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
+     "page": "https://commons.wikimedia.org/?curid=36668102",
+     "licence": "CC BY 4.0",
+     "auteur": "After William Hogarth",
      "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "credit": "After William Hogarth / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 9,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
+     "page": "https://commons.wikimedia.org/?curid=36668102",
+     "licence": "CC BY 4.0",
+     "auteur": "After William Hogarth",
      "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "credit": "After William Hogarth / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 10,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "page": "https://video.antopie.org/videos/watch/3c2bd534-a7c0-4c67-9a48-ad8e0a27da71",
+     "licence": "domaine public",
+     "auteur": "Nucléaire",
+     "titre": "Sous-sols de l'Élysée, le poste de commandement Jupiter (1979)",
+     "credit": "Vidéo : Nucléaire (PeerTube, domaine public)",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 11,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "page": "https://video.antopie.org/videos/watch/3c2bd534-a7c0-4c67-9a48-ad8e0a27da71",
+     "licence": "domaine public",
+     "auteur": "Nucléaire",
+     "titre": "Sous-sols de l'Élysée, le poste de commandement Jupiter (1979)",
+     "credit": "Vidéo : Nucléaire (PeerTube, domaine public)",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 12,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
+     "page": "https://commons.wikimedia.org/?curid=59600691",
+     "licence": "Public domain",
+     "auteur": "US Congressman Al Green of Texas",
      "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "credit": "US Congressman Al Green of Texas / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 13,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
+     "page": "https://commons.wikimedia.org/?curid=59600691",
+     "licence": "Public domain",
+     "auteur": "US Congressman Al Green of Texas",
      "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "credit": "US Congressman Al Green of Texas / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 14,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
+     "page": "https://commons.wikimedia.org/?curid=18996373",
+     "licence": "Public domain",
+     "auteur": "The White House",
      "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "credit": "The White House / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 15,
-     "page": "https://video.echelon.pl/videos/watch/5ef94246-fb1b-4dc4-b220-83221abd0ba6",
-     "licence": "domaine public",
-     "auteur": "tg2p",
-     "titre": "Zelensky Meets Macron at Élysée Palace",
-     "credit": "Vidéo : tg2p (PeerTube, domaine public)",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "page": "https://commons.wikimedia.org/?curid=18996373",
+     "licence": "Public domain",
+     "auteur": "The White House",
+     "titre": "",
+     "credit": "The White House / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 16,
-     "page": "https://video.echelon.pl/videos/watch/5ef94246-fb1b-4dc4-b220-83221abd0ba6",
-     "licence": "domaine public",
-     "auteur": "tg2p",
-     "titre": "Zelensky Meets Macron at Élysée Palace",
-     "credit": "Vidéo : tg2p (PeerTube, domaine public)",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "page": "https://commons.wikimedia.org/?curid=160336869",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Xuthoria",
+     "titre": "",
+     "credit": "Xuthoria / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 17,
-     "page": "https://video.echelon.pl/videos/watch/5ef94246-fb1b-4dc4-b220-83221abd0ba6",
-     "licence": "domaine public",
-     "auteur": "tg2p",
-     "titre": "Zelensky Meets Macron at Élysée Palace",
-     "credit": "Vidéo : tg2p (PeerTube, domaine public)",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "page": "https://commons.wikimedia.org/?curid=160336868",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Xuthoria",
+     "titre": "",
+     "credit": "Xuthoria / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 18,
-     "page": "https://video.echelon.pl/videos/watch/5ef94246-fb1b-4dc4-b220-83221abd0ba6",
-     "licence": "domaine public",
-     "auteur": "tg2p",
-     "titre": "Zelensky Meets Macron at Élysée Palace",
-     "credit": "Vidéo : tg2p (PeerTube, domaine public)",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "page": "https://commons.wikimedia.org/?curid=48562962",
+     "licence": "Public domain",
+     "auteur": "National Library of Ireland on The Commo",
+     "titre": "",
+     "credit": "National Library of Ireland on The Commo / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 19,
-     "page": "https://video.echelon.pl/videos/watch/5ef94246-fb1b-4dc4-b220-83221abd0ba6",
-     "licence": "domaine public",
-     "auteur": "tg2p",
-     "titre": "Zelensky Meets Macron at Élysée Palace",
-     "credit": "Vidéo : tg2p (PeerTube, domaine public)",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "page": "https://commons.wikimedia.org/?curid=156185258",
+     "licence": "Public domain",
+     "auteur": "Bromley, Edward A",
+     "titre": "",
+     "credit": "Bromley, Edward A / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 20,
-     "page": "https://video.ut0pia.org/videos/watch/7e636ed4-7e1c-43c5-bf20-60c64e487b8a",
-     "licence": "CC BY",
-     "auteur": "Bleme",
-     "titre": "Emmanuel Macron accuse les réseaux sociaux et fait vivement débat",
-     "credit": "Vidéo : Bleme (PeerTube, CC BY)",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "page": "https://commons.wikimedia.org/?curid=36387686",
+     "licence": "Public domain",
+     "auteur": "Joseph R. Denti (U.S. Airforce)",
+     "titre": "",
+     "credit": "Joseph R. Denti (U.S. Airforce) / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     },
     {
      "ecran": 21,
-     "page": "https://video.ut0pia.org/videos/watch/7e636ed4-7e1c-43c5-bf20-60c64e487b8a",
-     "licence": "CC BY",
-     "auteur": "Bleme",
-     "titre": "Emmanuel Macron accuse les réseaux sociaux et fait vivement débat",
-     "credit": "Vidéo : Bleme (PeerTube, CC BY)",
-     "releve_le": "2026-11-25T04:12:00+01:00"
+     "page": "https://commons.wikimedia.org/?curid=36452215",
+     "licence": "Public domain",
+     "auteur": "Hood, Ted, 1911-2000",
+     "titre": "",
+     "credit": "Hood, Ted, 1911-2000 / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T05:06:40+01:00"
     }
    ],
    "couverture_ms": 800,
    "durees": {
     "voix": 0,
-    "images": 327,
-    "controle_images": 1119,
-    "montage": 244,
-    "controle_final": 345,
-    "rangement": 6
+    "images": 383,
+    "controle_images": 309,
+    "montage": 171,
+    "controle_final": 402,
+    "rangement": 21
    },
    "refaite": {
-    "de": "20261124-233208-1-r2",
+    "de": "20261124-233208-1-r3",
     "etape": "images",
-    "remarque": "Images hors sujet (chevaux, cavalerie) à remplacer"
+    "remarque": "Images hors sujet et illisibles à remplacer"
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233208-1-r2"
+   "refaite_de": "20261124-233208-1-r3"
   },
   {
    "id": "20261124-233244-1-r3",
