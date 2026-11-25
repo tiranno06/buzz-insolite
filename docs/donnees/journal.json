@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T13:55:37+01:00",
+   "niveau": "info",
+   "texte": "🔁 « CAN 2025 : Sénégal récupère le titre » refaite (texte) : note 90/100, corrige : « ne dire le score 1-0 qu'une seule fois (phrases 3, 6 et 10 le répètent) ; phrase 7 trop administrative ('cette sanction a été prise, invoquant les articles 82 et 84') à simplifier ; accroche sans sigle (pas TAS) » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T13:47:26+01:00",
    "niveau": "attention",
    "texte": "🩺 Santé du robot : ⚠️ En panne : mistral"

@@ -1,11 +1,11 @@
 {
  "videos": [
   {
-   "id": "20261124-233239-1-r12",
-   "tag": "v-20261124-233239-1-r12",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r12/buzz-20261124-233239-1-r12.mp4",
-   "titre": "CAN 2025 : TAS redonne titre",
-   "accroche": "TAS REND LA VICTOIRE",
+   "id": "20261124-233239-1-r13",
+   "tag": "v-20261124-233239-1-r13",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r13/buzz-20261124-233239-1-r13.mp4",
+   "titre": "CAN 2025 : Sénégal récupère le titre",
+   "accroche": "SÉNÉGAL REPREND LA CUP",
    "sujet_id": "af2b8dfec2",
    "sujet": "CAN 2025 : Sénégal vainqueur après arbitrage TAS",
    "buzz": {
@@ -14,8 +14,8 @@
     "commentaires": 7196,
     "score": 2963
    },
-   "description": "Le Tribunal arbitral du sport a remis le trophée au Sénégal après une bataille juridique de dix mois ⚖️. Découvre les détails du revirement.",
-   "question": "Et toi, que penses‑tu de ce revirement ?",
+   "description": "Le tribunal suisse rend justice au football africain ⚽️",
+   "question": "Et toi, que penses-tu de ce revirement judiciaire ?",
    "hashtags": [
     "#can2025",
     "#sénégalchampion",
@@ -23,7 +23,7 @@
     "#actu",
     "#buzz"
    ],
-   "duree": 66.4,
+   "duree": 67.2,
    "sources": [
     {
      "media": "linternaute.com",
@@ -64,15 +64,29 @@
      "media": "Le Parisien",
      "titre": "Le Sénégal vainqueur de la CAN 2025 face au Maroc : « Le football a gagné », estime El-Hadji Diouf",
      "lien": "https://www.leparisien.fr/sports/football/le-senegal-vainqueur-de-la-can-face-au-maroc-2025-le-football-a-gagne-estime-el-hadji-diouf-24-11-2026-MVE7JLGR2ZDQ3PIWNFBLPFFNYI.php"
+    },
+    {
+     "media": "Wikipédia (contexte)",
+     "titre": "Coupe d'Afrique des nations de football 2025",
+     "lien": "https://fr.wikipedia.org/wiki/Coupe%20d%27Afrique%20des%20nations%20de%20football%202025"
+    },
+    {
+     "media": "Wikipédia (contexte)",
+     "titre": "Coupe d'Afrique des nations de football",
+     "lien": "https://fr.wikipedia.org/wiki/Coupe%20d%27Afrique%20des%20nations%20de%20football"
     }
    ],
    "verification": {
-    "par": "groq:openai/gpt-oss-120b",
-    "corrigees": 2,
-    "retirees": 0,
+    "par": "gemini:gemini-flash-lite-latest",
+    "corrigees": 1,
+    "retirees": 5,
     "problemes": [
-     "Le sigle correct est la FSF (ou la fédération sénégalaise), et non \"Le FSF\".",
-     "Les articles indiquent que le Maroc peut faire appel devant le Tribunal Fédéral Suisse pour la forme, mais ne disent pas que \"le titre reste suspendu\"."
+     "La CAF a déclaré le Sénégal forfait et non le Maroc, avec un score de 3-0 en faveur du Maroc.",
+     "Cette phrase ne contient que des chiffres incohérents sans lien avec le sujet de la vidéo.",
+     "La phrase ne contient aucun fait en lien avec les articles et n'a aucun sens dans ce contexte.",
+     "La phrase est un chiffre isolé sans contexte ni rapport avec les articles.",
+     "La phrase ne contient que des numéros d'articles sans contexte compréhensible ni fait validé.",
+     "La phrase est une suite de chiffres isolés qui n'a aucun sens ni fait vérifiable."
     ]
    },
    "verifie": true,
@@ -80,107 +94,165 @@
     "@aljazeeraenglish (TikTok, extrait cité)",
     "@bfmtv (TikTok, extrait cité)",
     "@brutofficiel (TikTok, extrait cité)",
-    "@franceinfo (TikTok, extrait cité)",
-    "Carte : Natural Earth, OpenStreetMap"
+    "@franceinfo (TikTok, extrait cité)"
    ],
    "extraits_perdus": 0,
    "regles_non_respectees": [],
-   "ecrans_illustres": 12,
-   "ecrans_total": 12,
+   "ecrans_illustres": 14,
+   "ecrans_total": 14,
    "format": "buzz",
    "voix": "chatterbox-bernard",
    "lieu": "Rabat, Maroc",
-   "humeur": "tension",
-   "categorie": "",
+   "humeur": "epique",
+   "categorie": "actualite",
    "texte": [
-    "Le tribunal a redonné la coupe au Sénégal !",
-    "La finale s’est jouée le 18 janvier à Rabat.",
-    "Sur le terrain, le Sénégal menait 1-0 grâce à Pape Gueye en prolongation.",
-    "Avant ce but, les joueurs sénégalais ont quitté le gazon pour protester contre un penalty contesté.",
-    "Le penalty a été tiré par Brahim Diaz, qui l’a manqué.",
-    "Après la confusion, le match s’est terminé 1-0, mais la CAF a ensuite déclaré un forfait 3-0 en faveur du Maroc.",
-    "Cette sanction a été prise, invoquant les articles 82 et 84 du règlement.",
-    "La FSF a contesté cette décision devant le Tribunal arbitral du sport à Lausanne.",
-    "Le mardi 24 novembre, le TAS a rendu son verdict à l’unanimité.",
-    "Le tribunal a annulé le forfait et a rétabli la victoire 1-0 du Sénégal.",
-    "Abdoulaye Fall, président de la fédération sénégalaise, a dédié la deuxième étoile à Aïda Faye Samb.",
-    "La CAF a déclaré respecter la décision du TAS et prendre toutes les mesures nécessaires.",
-    "Le Maroc peut encore faire appel de cette décision devant le Tribunal fédéral suisse.",
-    "Et toi, que penses-tu de ce revirement judiciaire ? Dis-le en commentaire !"
+    "Le titre revient au Sénégal !",
+    "La finale de la CAN 2025 s’est jouée le 18 janvier à Rabat.",
+    "Pendant le match, les Lions ont quitté le gazon pour protester contre un penalty contesté.",
+    "Le tir au but a été confié à Brahim Diaz, qui l’a manqué.",
+    "Quelques minutes plus tard, Pape Gueye a inscrit le but décisif en prolongation.",
+    "Le score officiel était 1-0 en faveur du Sénégal.",
+    "Après le match, la CAF a déclaré le Sénégal forfait avec un résultat de 3-0 pour le Maroc.",
+    "Le Sénégal a fait appel de cette décision devant le Tribunal Arbitral du Sport à Lausanne.",
+    "Le mardi 24 novembre 2026, le tribunal a rendu un verdict unanime.",
+    "Il a rétabli la victoire du Sénégal telle qu’elle était sur le terrain.",
+    "Le président de la fédération sénégalaise, Abdoulaye Fall, a dédié la deuxième étoile à Aïda Faye Samb.",
+    "La CAF a annoncé qu’elle respecterait la décision du tribunal et appliquerait les mesures nécessaires.",
+    "Le Maroc peut encore saisir le Tribunal fédéral suisse pour contester le verdict.",
+    "18 7 18",
+    "Et toi, que penses-tu de ce revirement judiciaire ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T13:14:09+01:00",
+   "cree_le": "2026-11-25T13:55:37+01:00",
    "ia_quotas": {
-    "gemini": {
-     "appels": 3,
-     "refus": 7,
-     "erreurs": 3
-    },
     "mistral": {
      "appels": 0,
      "refus": 0,
-     "erreurs": 11,
+     "erreurs": 39,
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 3,
-     "refus": 0,
-     "erreurs": 3,
-     "restant_demandes": "997",
-     "limite_demandes": "1000",
-     "restant_mots": "6881"
-    },
-    "openrouter": {
-     "appels": 2,
+     "appels": 8,
      "refus": 8,
-     "erreurs": 0
+     "erreurs": 1,
+     "restant_demandes": "999",
+     "limite_demandes": "1000",
+     "restant_mots": "7476"
+    },
+    "gemini": {
+     "appels": 8,
+     "refus": 11,
+     "erreurs": 1
     }
    },
-   "fabrication_s": 1091,
+   "fabrication_s": 1521,
    "controles": {
-    "note": 100,
+    "note": 90,
     "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "voix et sous-titres ne correspondent pas (0%)",
+      "corrige": false,
+      "essais": 5,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "video",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
      {
       "niveau": "video",
       "ecran": 23,
       "gravite": "moyen",
-      "probleme": "Sous-titres blancs peu lisibles sous le bandeau noir et sources en bas très serrées.",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 17,
-      "gravite": "moyen",
-      "probleme": "sous-titres en bas superposés et illisibles",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 16,
-      "gravite": "moyen",
-      "probleme": "sous-titres en bas illisibles et se superposent",
+      "probleme": "Sous-titres originaux en partie masqués",
       "corrige": true,
       "essais": 1,
       "solution": "titre raccourci"
      },
      {
       "niveau": "video",
-      "ecran": 14,
+      "ecran": 22,
       "gravite": "moyen",
-      "probleme": "sous-titres en bas chevauchent l'image et sont illisibles",
+      "probleme": "texte mal placé",
       "corrige": true,
       "essais": 1,
-      "solution": "titre retiré"
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "Sous-titres originaux illisibles sous le sous-titre noir",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 16,
+      "gravite": "moyen",
+      "probleme": "Texte du haut coupé, chevauchement entre l'étiquette rouge et le sous-titre",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
      }
     ],
     "sautes": [],
-    "corriges": 4,
-    "restants": 0,
-    "graves_restants": 0
+    "corriges": 10,
+    "restants": 1,
+    "graves_restants": 1
    },
    "reprises": 0,
    "preuves": [
@@ -191,25 +263,34 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:14:09+01:00"
+     "releve_le": "2026-11-25T13:55:37+01:00"
+    },
+    {
+     "ecran": 2,
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@aljazeeraenglish",
+     "titre": "",
+     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T13:55:37+01:00"
     },
     {
      "ecran": 3,
-     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711749544022723873",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@aljazeeraenglish",
+     "auteur": "@brutofficiel",
      "titre": "",
-     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:14:09+01:00"
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T13:55:37+01:00"
     },
     {
      "ecran": 4,
-     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711749544022723873",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@aljazeeraenglish",
+     "auteur": "@brutofficiel",
      "titre": "",
-     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:14:09+01:00"
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T13:55:37+01:00"
     },
     {
      "ecran": 5,
@@ -218,7 +299,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:14:09+01:00"
+     "releve_le": "2026-11-25T13:55:37+01:00"
     },
     {
      "ecran": 6,
@@ -227,34 +308,34 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:14:09+01:00"
+     "releve_le": "2026-11-25T13:55:37+01:00"
     },
     {
      "ecran": 7,
-     "page": "https://www.tiktok.com/@brutofficiel/video/7711749544022723873",
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711775708510473475",
      "licence": "courte citation (source visible, logo non flouté)",
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:14:09+01:00"
+     "releve_le": "2026-11-25T13:55:37+01:00"
     },
     {
      "ecran": 8,
-     "page": "https://www.tiktok.com/@brutofficiel/video/7711775708510473475",
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@brutofficiel",
+     "auteur": "@aljazeeraenglish",
      "titre": "",
-     "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:14:09+01:00"
+     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T13:55:37+01:00"
     },
     {
      "ecran": 9,
-     "page": "https://www.tiktok.com/@brutofficiel/video/7711775708510473475",
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@brutofficiel",
+     "auteur": "@aljazeeraenglish",
      "titre": "",
-     "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:14:09+01:00"
+     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T13:55:37+01:00"
     },
     {
      "ecran": 10,
@@ -263,7 +344,7 @@
      "auteur": "@franceinfo",
      "titre": "",
      "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:14:09+01:00"
+     "releve_le": "2026-11-25T13:55:37+01:00"
     },
     {
      "ecran": 11,
@@ -272,45 +353,55 @@
      "auteur": "@franceinfo",
      "titre": "",
      "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:14:09+01:00"
+     "releve_le": "2026-11-25T13:55:37+01:00"
     },
     {
      "ecran": 12,
-     "page": "https://www.tiktok.com/@bfmtv/video/7711852622038174978",
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@bfmtv",
+     "auteur": "@aljazeeraenglish",
      "titre": "",
-     "credit": "@bfmtv (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:14:09+01:00"
+     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T13:55:37+01:00"
     },
     {
      "ecran": 13,
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@aljazeeraenglish",
+     "titre": "",
+     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T13:55:37+01:00"
+    },
+    {
+     "ecran": 14,
      "page": "https://www.tiktok.com/@bfmtv/video/7711852622038174978",
      "licence": "courte citation (source visible, logo non flouté)",
      "auteur": "@bfmtv",
      "titre": "",
      "credit": "@bfmtv (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:14:09+01:00"
+     "releve_le": "2026-11-25T13:55:37+01:00"
     }
    ],
-   "couverture_ms": 5839,
+   "couverture_ms": 800,
    "durees": {
-    "voix": 0,
-    "images": 11,
-    "controle_images": 4,
-    "montage": 183,
-    "controle_final": 557,
+    "texte": 127,
+    "images": 2,
+    "controle_images": 5,
+    "voix": 431,
+    "montage": 141,
+    "controle_final": 799,
     "extraits": 0,
-    "regles": 316,
+    "regles": 0,
     "rangement": 9
    },
    "refaite": {
-    "de": "20261124-233239-1-r11",
-    "etape": "controle",
-    "remarque": "titres 1-0 et 3-0 affichés avec un carré (tiret que la police n'a pas)"
+    "de": "20261124-233239-1-r12",
+    "etape": "texte",
+    "remarque": "ne dire le score 1-0 qu'une seule fois (phrases 3, 6 et 10 le répètent) ; phrase 7 trop administrative ('cette sanction a été prise, invoquant les articles 82 et 84') à simplifier ; accroche sans sigle (pas TAS)"
    },
-   "statut": "nouvelle",
-   "refaite_de": "20261124-233239-1-r11"
+   "statut": "a_verifier",
+   "refaite_de": "20261124-233239-1-r12"
   }
  ]
 }
