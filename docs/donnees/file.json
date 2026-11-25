@@ -339,9 +339,9 @@
    "refaite_de": "20261124-233208-1-r3"
   },
   {
-   "id": "20261124-233244-1-r4",
-   "tag": "v-20261124-233244-1-r4",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233244-1-r4/buzz-20261124-233244-1-r4.mp4",
+   "id": "20261124-233244-1-r5",
+   "tag": "v-20261124-233244-1-r5",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233244-1-r5/buzz-20261124-233244-1-r5.mp4",
    "titre": "Macron et l'A320 : un futur qui décolle",
    "accroche": "FRANCE EN VOL",
    "sujet_id": "67ccec0235",
@@ -413,7 +413,9 @@
    "credits": [
     "Abujoy / Wikimedia Commons, CC BY 4.0",
     "Carte : Natural Earth, OpenStreetMap",
-    "NASA (domaine public)",
+    "Jeremy Elson / Wikimedia Commons, CC BY-SA 3.0",
+    "Matti Blume / Wikimedia Commons, CC BY-SA 4.0",
+    "Unknown authorUnknown author or not prov / Wikimedia Commons, Public domain",
     "Wikipédia, article « Airbus A320 »",
     "Wikipédia, article « Airbus Commercial Aircraft »"
    ],
@@ -441,124 +443,18 @@
     "Prêt à voler sur l’A320 du futur ?"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T05:26:59+01:00",
-   "fabrication_s": 2539,
+   "cree_le": "2026-11-25T05:47:56+01:00",
+   "fabrication_s": 916,
    "controles": {
-    "note": 50,
-    "lignes": [
-     {
-      "niveau": "images",
-      "ecran": 19,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 20,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 21,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 26,
-      "gravite": "moyen",
-      "probleme": "écran presque noir",
-      "corrige": true,
-      "essais": 2,
-      "solution": "image du thème (« airplane assembly factory »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 27,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 1,
-      "solution": "nouvelle image (« aerospace employees »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 2,
-      "solution": "image du thème (« airplane assembly factory »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 28,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 1,
-      "solution": "nouvelle image (« hydrogen airplane concept »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 30,
-      "gravite": "moyen",
-      "probleme": "wrong person, unrelated context",
-      "corrige": false,
-      "essais": 4,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 27,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 26,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 1,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "video",
-      "ecran": 25,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 4,
-      "solution": "image du thème (« airplane assembly factory »)"
-     }
+    "note": 80,
+    "lignes": [],
+    "sautes": [
+     "regard de l'IA sur les images (IA indisponible)",
+     "regard de l'IA sur la vidéo finie (IA indisponible)"
     ],
-    "sautes": [],
-    "corriges": 7,
-    "restants": 5,
-    "graves_restants": 5
+    "corriges": 0,
+    "restants": 0,
+    "graves_restants": 2
    },
    "reprises": 0,
    "preuves": [
@@ -569,43 +465,43 @@
      "auteur": "Abujoy",
      "titre": "",
      "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
-     "releve_le": "2026-11-25T05:26:59+01:00"
+     "releve_le": "2026-11-25T05:47:56+01:00"
     },
     {
      "ecran": 3,
-     "page": "https://images-assets.nasa.gov/video/AFRC_2026_14594_MikeFrederick_Incentiveflights_Broll_Final/AFRC_2026_14594_MikeFrederick_Incentiveflights_Broll_Final~medium.mp4",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AF-GFKA_%2815994463494%29.jpg",
      "licence": "",
      "auteur": "",
      "titre": "",
-     "credit": "NASA (domaine public)",
-     "releve_le": "2026-11-25T05:26:59+01:00"
+     "credit": "Wikipédia, article « Airbus A320 »",
+     "releve_le": "2026-11-25T05:47:56+01:00"
     },
     {
      "ecran": 4,
-     "page": "https://images-assets.nasa.gov/video/AFRC_2026_14594_MikeFrederick_Incentiveflights_Broll_Final/AFRC_2026_14594_MikeFrederick_Incentiveflights_Broll_Final~medium.mp4",
-     "licence": "",
-     "auteur": "",
+     "page": "https://commons.wikimedia.org/?curid=62534882",
+     "licence": "Public domain",
+     "auteur": "Unknown authorUnknown author or not prov",
      "titre": "",
-     "credit": "NASA (domaine public)",
-     "releve_le": "2026-11-25T05:26:59+01:00"
+     "credit": "Unknown authorUnknown author or not prov / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T05:47:56+01:00"
     },
     {
      "ecran": 5,
-     "page": "https://images-assets.nasa.gov/video/AFRC_2026_14594_MikeFrederick_Incentiveflights_Broll_Final/AFRC_2026_14594_MikeFrederick_Incentiveflights_Broll_Final~medium.mp4",
-     "licence": "",
-     "auteur": "",
+     "page": "https://commons.wikimedia.org/?curid=62534882",
+     "licence": "Public domain",
+     "auteur": "Unknown authorUnknown author or not prov",
      "titre": "",
-     "credit": "NASA (domaine public)",
-     "releve_le": "2026-11-25T05:26:59+01:00"
+     "credit": "Unknown authorUnknown author or not prov / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T05:47:56+01:00"
     },
     {
      "ecran": 6,
-     "page": "https://images-assets.nasa.gov/video/AFRC_2026_14594_MikeFrederick_Incentiveflights_Broll_Final/AFRC_2026_14594_MikeFrederick_Incentiveflights_Broll_Final~medium.mp4",
-     "licence": "",
-     "auteur": "",
+     "page": "https://commons.wikimedia.org/?curid=79865480",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Matti Blume",
      "titre": "",
-     "credit": "NASA (domaine public)",
-     "releve_le": "2026-11-25T05:26:59+01:00"
+     "credit": "Matti Blume / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T05:47:56+01:00"
     },
     {
      "ecran": 7,
@@ -614,7 +510,7 @@
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Airbus Commercial Aircraft »",
-     "releve_le": "2026-11-25T05:26:59+01:00"
+     "releve_le": "2026-11-25T05:47:56+01:00"
     },
     {
      "ecran": 8,
@@ -623,7 +519,7 @@
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Airbus Commercial Aircraft »",
-     "releve_le": "2026-11-25T05:26:59+01:00"
+     "releve_le": "2026-11-25T05:47:56+01:00"
     },
     {
      "ecran": 9,
@@ -632,7 +528,7 @@
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Airbus Commercial Aircraft »",
-     "releve_le": "2026-11-25T05:26:59+01:00"
+     "releve_le": "2026-11-25T05:47:56+01:00"
     },
     {
      "ecran": 10,
@@ -641,7 +537,7 @@
      "auteur": "Abujoy",
      "titre": "",
      "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
-     "releve_le": "2026-11-25T05:26:59+01:00"
+     "releve_le": "2026-11-25T05:47:56+01:00"
     },
     {
      "ecran": 11,
@@ -650,7 +546,7 @@
      "auteur": "Abujoy",
      "titre": "",
      "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
-     "releve_le": "2026-11-25T05:26:59+01:00"
+     "releve_le": "2026-11-25T05:47:56+01:00"
     },
     {
      "ecran": 12,
@@ -659,34 +555,34 @@
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Airbus A320 »",
-     "releve_le": "2026-11-25T05:26:59+01:00"
+     "releve_le": "2026-11-25T05:47:56+01:00"
     },
     {
      "ecran": 13,
-     "page": "https://images-assets.nasa.gov/video/AFRC_2026_14594_MikeFrederick_Incentiveflights_Broll_Final/AFRC_2026_14594_MikeFrederick_Incentiveflights_Broll_Final~medium.mp4",
-     "licence": "",
-     "auteur": "",
+     "page": "https://commons.wikimedia.org/?curid=16996754",
+     "licence": "CC BY-SA 3.0",
+     "auteur": "Jeremy Elson",
      "titre": "",
-     "credit": "NASA (domaine public)",
-     "releve_le": "2026-11-25T05:26:59+01:00"
+     "credit": "Jeremy Elson / Wikimedia Commons, CC BY-SA 3.0",
+     "releve_le": "2026-11-25T05:47:56+01:00"
     }
    ],
    "couverture_ms": 13895,
    "durees": {
     "voix": 0,
-    "images": 142,
-    "controle_images": 852,
-    "montage": 102,
-    "controle_final": 1426,
-    "rangement": 11
+    "images": 121,
+    "controle_images": 309,
+    "montage": 100,
+    "controle_final": 370,
+    "rangement": 7
    },
    "refaite": {
-    "de": "20261124-233244-1-r3",
+    "de": "20261124-233244-1-r4",
     "etape": "images",
-    "remarque": "Il faut des scènes de vraies vidéos"
+    "remarque": "Images refusées par le contrôle"
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233244-1-r3"
+   "refaite_de": "20261124-233244-1-r4"
   },
   {
    "id": "20261124-233157-1-r2",
