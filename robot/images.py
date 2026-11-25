@@ -200,7 +200,8 @@ def wikipedia_media(entite, deja):
     galerie = _wiki("https://fr.wikipedia.org/api/rest_v1/page/media-list/" + urllib.parse.quote(titre.replace(" ", "_")))
     for it in galerie.get("items") or []:
         nom = str(it.get("title") or "")
-        if it.get("type") != "image" or not re.search(r"\.(jpe?g|png|webp)$", nom, re.I) or re.search(r"logo|carte|map|blason|signature|drapeau|flag", nom, re.I):
+        if it.get("type") != "image" or not re.search(r"\.(jpe?g|png|webp)$", nom, re.I) or re.search(r"logo|carte|map|blason|signature|drapeau|flag|location|locator|emblem|coat_of_arms|armoiries|seal|icon|"
+                                                                                      r"full_colour|full_color|\.svg|diagram|schema|chart|graph", nom, re.I):
             continue
         cle = f"wiki-{nom}"
         if cle in deja:
@@ -622,10 +623,26 @@ def lisible(chemin):
         return str(e)[:80]
 
 
+def bonne_extension(chemin):
+    """Renomme le fichier selon son VRAI contenu (bug du 25/11 : des PNG de Wikipédia enregistrés en « .jpg » ne s'ouvraient
+    pas sur les machines de GitHub, où ffmpeg se fie à l'extension : « image illisible » sur presque tous les écrans)."""
+    with open(chemin, "rb") as f:
+        tete = f.read(16)
+    ext = (".png" if tete.startswith(b"\x89PNG") else ".gif" if tete.startswith(b"GIF8") else
+           ".webp" if tete[:4] == b"RIFF" and tete[8:12] == b"WEBP" else ".jpg" if tete.startswith(b"\xff\xd8") else
+           ".webm" if tete.startswith(b"\x1aE\xdf\xa3") else ".mp4" if tete[4:8] == b"ftyp" else "")
+    base, actuelle = os.path.splitext(chemin)
+    if ext and ext != actuelle.lower():
+        os.replace(chemin, base + ext)
+        return base + ext
+    return chemin
+
+
 def _recuperer(m, dossier, n, deja, journal):
     chemin = os.path.join(dossier, f"media{n:02d}.jpg")
     try:
         _telecharger(m["url"], chemin)
+        chemin = bonne_extension(chemin)
     except Exception as e:
         journal(f"    téléchargement refusé ({str(e)[:60]})")
         return False
@@ -664,6 +681,7 @@ def _trouver(requete, dossier, n, deja, journal=print, generiques=False):
             except Exception:
                 journal(f"    téléchargement refusé ({str(e)[:60]})")
                 continue
+        chemin = bonne_extension(chemin)
         raison = lisible(chemin)
         if raison:
             journal(f"    {chercheur.__name__} : fichier écarté ({raison})")

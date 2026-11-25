@@ -486,6 +486,15 @@ class TestSujetsRiches(unittest.TestCase):
         v = dict(description="d", question="q", hashtags=["#a"])
         self.assertIn("IA", publier.texte(v, mention_ia=True)); self.assertNotIn("IA", publier.texte(v))
 
+    def test_extension_selon_le_contenu(self):
+        """Bug du 25/11 : un PNG enregistré en « .jpg » ne s'ouvrait pas sur GitHub ; il est renommé selon son contenu."""
+        from robot import images
+        from PIL import Image
+        c = os.path.join(TMP, "faux.jpg")
+        Image.new("RGB", (40, 40), (200, 30, 30)).save(c, format="PNG")
+        bon = images.bonne_extension(c)
+        self.assertTrue(bon.endswith(".png")); self.assertTrue(os.path.exists(bon)); self.assertFalse(os.path.exists(c))
+
     def test_licences(self):
         from robot import images
         self.assertTrue(images.licence_ok("https://creativecommons.org/licenses/by/3.0/"))

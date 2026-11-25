@@ -128,6 +128,11 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
   (lien `download` de l'API officielle) sont prises (`fichier`, 300 Mo au plus) ; 3) beaucoup de sujets d'actu n'ont presque
   aucune vidéo libre de l'événement exact.
 
+- **Cause des « image illisible » (25/11)** : la galerie Wikipédia donne souvent des PNG, enregistrés en « .jpg » ; sur les
+  machines de GitHub, ffmpeg n'en tirait aucune image (sans message). `images.bonne_extension` renomme chaque fichier selon
+  son VRAI contenu (PNG, JPEG, WebP, GIF, WebM, MP4). Cartes, logos, emblèmes, drapeaux, schémas de la galerie Wikipédia
+  écartés (ce ne sont pas de vraies photos). YouTube mis de côté après 2 échecs quels qu'ils soient (« Video unavailable »).
+
 ## Vitesse (analyse du 24/11 : vidéo GTA en 99 min, dont 86 min de voix Chatterbox)
 - Voix refaite par le contrôle final : la phrase a déjà eu 2 essais à l'étape voix, donc mots simplifiés DÈS le 1er essai,
   phrase retirée au 3e (si la vidéo reste ≥ 62 s) ; avant : jusqu'à 7 essais identiques (~1 min de Chatterbox chacun).
