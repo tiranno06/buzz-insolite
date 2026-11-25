@@ -1081,9 +1081,9 @@
    "refaite_de": "20261124-233157-1-r1"
   },
   {
-   "id": "20261124-233239-1-r2",
-   "tag": "v-20261124-233239-1-r2",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r2/buzz-20261124-233239-1-r2.mp4",
+   "id": "20261124-233239-1-r3",
+   "tag": "v-20261124-233239-1-r3",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r3/buzz-20261124-233239-1-r3.mp4",
    "titre": "CAN 2025 : Le Sénégal récupère son titre",
    "accroche": "LE TAS REND LA JUSTICE",
    "sujet_id": "af2b8dfec2",
@@ -1156,11 +1156,9 @@
    "verifie": true,
    "credits": [
     "Carte : Natural Earth, OpenStreetMap",
-    "Titre : linternaute.com",
-    "Wikipédia, article « Confédération africaine de football »",
-    "Wikipédia, article « Coupe d'Afrique des nations de football »"
+    "Titre : linternaute.com"
    ],
-   "ecrans_illustres": 3,
+   "ecrans_illustres": 0,
    "ecrans_total": 12,
    "format": "buzz",
    "voix": "chatterbox-bernard",
@@ -1184,8 +1182,8 @@
     "Alors, qui aurait dû gagner selon vous ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T02:33:36+01:00",
-   "fabrication_s": 755,
+   "cree_le": "2026-11-25T03:00:24+01:00",
+   "fabrication_s": 576,
    "controles": {
     "note": 75,
     "lignes": [
@@ -1220,19 +1218,19 @@
       "niveau": "images",
       "ecran": 18,
       "gravite": "moyen",
-      "probleme": "image illisible (media54.jpg : )",
+      "probleme": "image illisible (media18.jpg : )",
       "corrige": true,
-      "essais": 2,
+      "essais": 1,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
       "ecran": 19,
       "gravite": "moyen",
-      "probleme": "image illisible (media19.jpg : )",
+      "probleme": "image illisible (media55.jpg : )",
       "corrige": true,
-      "essais": 1,
-      "solution": "nouvelle image (« scoreboard controversy »)"
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
@@ -1241,7 +1239,7 @@
       "probleme": "image illisible (media20.jpg : )",
       "corrige": true,
       "essais": 1,
-      "solution": "image du thème (« football trophy african cup »)"
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
@@ -1281,64 +1279,45 @@
      },
      {
       "niveau": "images",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "image illisible (media62.jpg : )",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
       "ecran": null,
       "gravite": "grave",
-      "probleme": "trop peu d'images : 3 écran(s) illustré(s) sur 12",
+      "probleme": "trop peu d'images : 0 écran(s) illustré(s) sur 12",
       "corrige": false,
       "essais": 1
      }
     ],
     "sautes": [],
-    "corriges": 10,
+    "corriges": 11,
     "restants": 1,
     "graves_restants": 1
    },
    "reprises": 0,
-   "preuves": [
-    {
-     "ecran": 6,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ALocationWesternAfrica.png",
-     "licence": "",
-     "auteur": "",
-     "titre": "",
-     "credit": "Wikipédia, article « Confédération africaine de football »",
-     "releve_le": "2026-11-25T02:33:36+01:00"
-    },
-    {
-     "ecran": 7,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AAfrica-countries-CECAFA.png",
-     "licence": "",
-     "auteur": "",
-     "titre": "",
-     "credit": "Wikipédia, article « Confédération africaine de football »",
-     "releve_le": "2026-11-25T02:33:36+01:00"
-    },
-    {
-     "ecran": 13,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ACAN_-_Fr_-_Full_Colour.png",
-     "licence": "",
-     "auteur": "",
-     "titre": "",
-     "credit": "Wikipédia, article « Coupe d'Afrique des nations de football »",
-     "releve_le": "2026-11-25T02:33:36+01:00"
-    }
-   ],
-   "couverture_ms": 25714,
+   "preuves": [],
+   "couverture_ms": 57501,
    "durees": {
     "voix": 0,
-    "images": 154,
-    "controle_images": 276,
-    "montage": 104,
-    "controle_final": 203,
-    "rangement": 4
+    "images": 124,
+    "controle_images": 173,
+    "montage": 69,
+    "controle_final": 195,
+    "rangement": 6
    },
    "refaite": {
-    "de": "20261124-233239-1-r1",
+    "de": "20261124-233239-1-r2",
     "etape": "images",
-    "remarque": "Aucune vraie image : scènes de 5 à 10 s en vraies vidéos"
+    "remarque": "Images illisibles : il faut des scènes de vraies vidéos et photos"
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233239-1-r1"
+   "refaite_de": "20261124-233239-1-r2"
   }
  ]
 }
