@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T11:12:12+01:00",
+   "niveau": "info",
+   "texte": "🔁 « CAN 2025 : Le Sénégal récupère son titre » refaite (images) : note 90/100, corrige : « maximum d'extraits vidéo de l'événement, photos des articles pour meubler » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T09:59:33+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 37 sujet(s) au-dessus des seuils — en tête : « Maresées exceptionnelles menacent l'Oregon et la Californie »"

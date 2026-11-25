@@ -1275,9 +1275,9 @@
    "refaite_de": "20261124-233157-1-r4"
   },
   {
-   "id": "20261124-233239-1-r8",
-   "tag": "v-20261124-233239-1-r8",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r8/buzz-20261124-233239-1-r8.mp4",
+   "id": "20261124-233239-1-r9",
+   "tag": "v-20261124-233239-1-r9",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r9/buzz-20261124-233239-1-r9.mp4",
    "titre": "CAN 2025 : Le Sénégal récupère son titre",
    "accroche": "LE TAS REND LA JUSTICE",
    "sujet_id": "af2b8dfec2",
@@ -1349,15 +1349,12 @@
    },
    "verifie": true,
    "credits": [
-    "Ben Sutherland from Crystal Palace, Lond / Wikimedia Commons, CC BY 2.0",
+    "@aljazeeraenglish (TikTok, extrait cité)",
+    "@bbcnews (TikTok, extrait cité)",
+    "@franceinfo (TikTok, extrait cité)",
     "Carte : Natural Earth, OpenStreetMap",
-    "Richard Humphrey / Wikimedia Commons, CC BY-SA 2.0",
     "Wikipédia, article « Confédération africaine de football »",
-    "Wikipédia, article « Coupe d'Afrique des nations de football »",
-    "Wikipédia, article « Pape Gueye »",
-    "Wikipédia, article « Sadio Mané »",
-    "Wikipédia, article « Stade Prince Moulay Abdellah »",
-    "Wikipédia, article « Équipe du Sénégal de football »"
+    "Wikipédia, article « Pape Gueye »"
    ],
    "ecrans_illustres": 12,
    "ecrans_total": 12,
@@ -1383,90 +1380,207 @@
     "Alors, qui aurait dû gagner selon vous ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T08:19:22+01:00",
-   "fabrication_s": 1402,
+   "cree_le": "2026-11-25T11:12:12+01:00",
+   "fabrication_s": 3688,
    "controles": {
-    "note": 100,
+    "note": 90,
     "lignes": [
      {
-      "niveau": "images",
+      "niveau": "video",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
       "ecran": 20,
       "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 18,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
       "corrige": true,
       "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "Texte 'Play was' partiellement coupé par le bord inférieur",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 16,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 15,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 18,
+      "gravite": "moyen",
+      "probleme": "Texte sur les crédits d'images en bas",
+      "corrige": true,
+      "essais": 3,
+      "solution": "nouvelle image (« senegal player celebrating goal »)"
+     },
+     {
+      "niveau": "video",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "Texte anglais en bas très petit et illisible.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre anglais est illisible car il est placé directement sur le texte de crédit en arrière-plan.",
+      "corrige": false,
+      "essais": 8,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "video",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "Le texte '1-0' se superpose légèrement sur la tête d'une personne.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre rose est mal placé sur les crédits et peu lisible.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre anglais est illisible et se superpose avec les crédits d'images.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 14,
+      "gravite": "moyen",
+      "probleme": "chevauchement des sources en bas",
+      "corrige": true,
+      "essais": 3,
       "solution": "image du thème (« football trophy african cup »)"
      },
      {
-      "niveau": "images",
-      "ecran": 23,
+      "niveau": "video",
+      "ecran": 16,
       "gravite": "moyen",
-      "probleme": "hors contexte (chevaux)",
+      "probleme": "Texte sur le visage",
       "corrige": true,
-      "essais": 3,
-      "solution": "image refusée gardée après un 2e avis (lien avec le sujet confirmé)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 24,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 1,
-      "solution": "nouvelle image (« Sadio Mane reaction »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 26,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 1,
-      "solution": "nouvelle image (« Senegal CAN trophy 2025 »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 26,
-      "gravite": "moyen",
-      "probleme": "Image non pertinente (personnes sans lien avec le Sénégal ou la CAN)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "image refusée gardée après un 2e avis (lien avec le sujet confirmé)"
+      "essais": 2,
+      "solution": "titre retiré"
      }
     ],
     "sautes": [],
-    "corriges": 5,
-    "restants": 0,
-    "graves_restants": 0
+    "corriges": 17,
+    "restants": 1,
+    "graves_restants": 1
    },
    "reprises": 0,
    "preuves": [
     {
      "ecran": 1,
-     "page": "https://commons.wikimedia.org/?curid=52628748",
-     "licence": "CC BY 2.0",
-     "auteur": "Ben Sutherland from Crystal Palace, Lond",
-     "titre": "",
-     "credit": "Ben Sutherland from Crystal Palace, Lond / Wikimedia Commons, CC BY 2.0",
-     "releve_le": "2026-11-25T08:19:22+01:00"
-    },
-    {
-     "ecran": 3,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AMoulay_Abdellah_Stadium.jpg",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ADirigeants_de_la_CAF_respectant_les_mesures_barri%C3%A8res.jpg",
      "licence": "",
      "auteur": "",
      "titre": "",
-     "credit": "Wikipédia, article « Stade Prince Moulay Abdellah »",
-     "releve_le": "2026-11-25T08:19:22+01:00"
+     "credit": "Wikipédia, article « Confédération africaine de football »",
+     "releve_le": "2026-11-25T11:12:12+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://www.tiktok.com/@bbcnews/video/7711757357302222102",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@bbcnews",
+     "titre": "",
+     "credit": "@bbcnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T11:12:12+01:00"
     },
     {
      "ecran": 4,
-     "page": "https://commons.wikimedia.org/?curid=161783437",
-     "licence": "CC BY-SA 2.0",
-     "auteur": "Richard Humphrey",
+     "page": "https://www.tiktok.com/@franceinfo/video/7711768577195379990",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@franceinfo",
      "titre": "",
-     "credit": "Richard Humphrey / Wikimedia Commons, CC BY-SA 2.0",
-     "releve_le": "2026-11-25T08:19:22+01:00"
+     "credit": "@franceinfo (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T11:12:12+01:00"
     },
     {
      "ecran": 5,
@@ -1475,79 +1589,97 @@
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Pape Gueye »",
-     "releve_le": "2026-11-25T08:19:22+01:00"
+     "releve_le": "2026-11-25T11:12:12+01:00"
     },
     {
      "ecran": 6,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ADirigeants_de_la_CAF_respectant_les_mesures_barri%C3%A8res.jpg",
-     "licence": "",
-     "auteur": "",
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711796789120159007",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@aljazeeraenglish",
      "titre": "",
-     "credit": "Wikipédia, article « Confédération africaine de football »",
-     "releve_le": "2026-11-25T08:19:22+01:00"
+     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T11:12:12+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@aljazeeraenglish",
+     "titre": "",
+     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T11:12:12+01:00"
     },
     {
      "ecran": 8,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AAfricancup.jpg",
-     "licence": "",
-     "auteur": "",
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711749934453755149",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@aljazeeraenglish",
      "titre": "",
-     "credit": "Wikipédia, article « Équipe du Sénégal de football »",
-     "releve_le": "2026-11-25T08:19:22+01:00"
+     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T11:12:12+01:00"
     },
     {
      "ecran": 9,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AAfricancup.jpg",
-     "licence": "",
-     "auteur": "",
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711749934453755149",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@aljazeeraenglish",
      "titre": "",
-     "credit": "Wikipédia, article « Équipe du Sénégal de football »",
-     "releve_le": "2026-11-25T08:19:22+01:00"
+     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T11:12:12+01:00"
     },
     {
      "ecran": 10,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AFAR_Rabat_vs_AS_Sale%2C_November_6_2012-1.jpg",
-     "licence": "",
-     "auteur": "",
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711749934453755149",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@aljazeeraenglish",
      "titre": "",
-     "credit": "Wikipédia, article « Stade Prince Moulay Abdellah »",
-     "releve_le": "2026-11-25T08:19:22+01:00"
+     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T11:12:12+01:00"
     },
     {
      "ecran": 11,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ASadio_Mane_France_v_Senegal_16_June_2026-450.jpg",
-     "licence": "",
-     "auteur": "",
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@aljazeeraenglish",
      "titre": "",
-     "credit": "Wikipédia, article « Sadio Mané »",
-     "releve_le": "2026-11-25T08:19:22+01:00"
+     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T11:12:12+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711749934453755149",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@aljazeeraenglish",
+     "titre": "",
+     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T11:12:12+01:00"
     },
     {
      "ecran": 13,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AHanafy_Bastan_1957.jpg",
-     "licence": "",
-     "auteur": "",
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@aljazeeraenglish",
      "titre": "",
-     "credit": "Wikipédia, article « Coupe d'Afrique des nations de football »",
-     "releve_le": "2026-11-25T08:19:22+01:00"
+     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T11:12:12+01:00"
     }
    ],
-   "couverture_ms": 11039,
+   "couverture_ms": 36860,
    "durees": {
     "voix": 0,
-    "images": 124,
-    "controle_images": 841,
-    "montage": 124,
-    "controle_final": 297,
+    "images": 142,
+    "controle_images": 3,
+    "montage": 152,
+    "controle_final": 3377,
     "rangement": 6
    },
    "refaite": {
-    "de": "20261124-233239-1-r7",
+    "de": "20261124-233239-1-r8",
     "etape": "images",
-    "remarque": ""
+    "remarque": "maximum d'extraits vidéo de l'événement, photos des articles pour meubler"
    },
-   "statut": "nouvelle",
-   "refaite_de": "20261124-233239-1-r7"
+   "statut": "a_verifier",
+   "refaite_de": "20261124-233239-1-r8"
   }
  ]
 }
