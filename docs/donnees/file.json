@@ -1,9 +1,9 @@
 {
  "videos": [
   {
-   "id": "20261124-233208-1-r5",
-   "tag": "v-20261124-233208-1-r5",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233208-1-r5/buzz-20261124-233208-1-r5.mp4",
+   "id": "20261124-233208-1-r6",
+   "tag": "v-20261124-233208-1-r6",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233208-1-r6/buzz-20261124-233208-1-r6.mp4",
    "titre": "Macron sauveur en urgence",
    "accroche": "LE PRÉSIDENT À L'ACTION",
    "sujet_id": "ef38e151cf",
@@ -80,11 +80,14 @@
    },
    "verifie": true,
    "credits": [
+    "Bromley, Edward A / Wikimedia Commons, Public domain",
     "Carte : Natural Earth, OpenStreetMap",
-    "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-    "Wikipédia, article « Emmanuel Macron »"
+    "National Library of Ireland on The Commo / Wikimedia Commons, Public domain",
+    "Vidéo : Tof'Michaels (PeerTube, CC BY-SA)",
+    "Wikipédia, article « Emmanuel Macron »",
+    "Wikipédia, article « Garde républicaine (France) »"
    ],
-   "ecrans_illustres": 20,
+   "ecrans_illustres": 19,
    "ecrans_total": 20,
    "format": "buzz",
    "voix": "chatterbox-bernard",
@@ -116,25 +119,25 @@
     "Dis-le en commentaire : « T’as déjà vu ça en public ? »"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T06:34:51+01:00",
-   "fabrication_s": 3724,
+   "cree_le": "2026-11-25T07:51:36+01:00",
+   "fabrication_s": 4343,
    "controles": {
-    "note": 0,
+    "note": 80,
     "lignes": [
      {
       "niveau": "images",
       "ecran": 22,
       "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
+      "probleme": "personne ne correspond à Macron",
       "corrige": true,
       "essais": 1,
-      "solution": "nouvelle image (« Macron Toulouse student fainting »)"
+      "solution": "nouvelle image (« Macron speech Toulouse student faints »)"
      },
      {
       "niveau": "images",
       "ecran": 24,
       "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
+      "probleme": "personne ne correspond à Macron",
       "corrige": true,
       "essais": 1,
       "solution": "image du thème (« politician speech crowd »)"
@@ -143,7 +146,7 @@
       "niveau": "images",
       "ecran": 25,
       "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
+      "probleme": "personne ne correspond à Macron",
       "corrige": true,
       "essais": 1,
       "solution": "image du thème (« politician speech crowd »)"
@@ -152,70 +155,70 @@
       "niveau": "images",
       "ecran": 26,
       "gravite": "moyen",
-      "probleme": "date incorrecte",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "probleme": "date future incorrecte, lieu sans lien",
+      "corrige": true,
+      "essais": 1,
+      "solution": "nouvelle image (« Airbus Toulouse factory aerial view »)"
      },
      {
       "niveau": "images",
       "ecran": 27,
       "gravite": "moyen",
-      "probleme": "date incorrecte, wrong event",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "probleme": "date future incorrecte, gardes républicains non visibles",
+      "corrige": true,
+      "essais": 1,
+      "solution": "nouvelle image (« French Republican Guards fainting incident »)"
      },
      {
       "niveau": "images",
       "ecran": 28,
       "gravite": "moyen",
-      "probleme": "salle équestre sans lien avec malaise étudiant",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "probleme": "Image sans lien avec le malaise étudiant ou Macron",
+      "corrige": true,
+      "essais": 1,
+      "solution": "image du thème (« politician speech crowd »)"
      },
      {
       "niveau": "images",
       "ecran": 29,
       "gravite": "moyen",
-      "probleme": "salle équestre sans lien avec malaise étudiant",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "probleme": "Image ancienne sans lien avec le sujet",
+      "corrige": true,
+      "essais": 1,
+      "solution": "image du thème (« politician speech crowd »)"
      },
      {
       "niveau": "images",
       "ecran": 30,
       "gravite": "moyen",
-      "probleme": "salle équestre sans lien avec malaise étudiant",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "probleme": "Image ancienne sans lien avec le sujet",
+      "corrige": true,
+      "essais": 1,
+      "solution": "image du thème (« politician speech crowd »)"
      },
      {
       "niveau": "images",
       "ecran": 31,
       "gravite": "moyen",
-      "probleme": "salle équestre sans lien avec malaise étudiant",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "probleme": "Image ancienne sans lien avec le sujet",
+      "corrige": true,
+      "essais": 1,
+      "solution": "image du thème (« politician speech crowd »)"
      },
      {
       "niveau": "images",
       "ecran": 32,
       "gravite": "moyen",
-      "probleme": "old building unrelated",
+      "probleme": "Anachronisme (2026) et image sans lien",
       "corrige": true,
       "essais": 1,
-      "solution": "nouvelle image (« Macron Toulouse student collapse »)"
+      "solution": "vraie vidéo de « Élysée »"
      },
      {
       "niveau": "images",
       "ecran": 33,
       "gravite": "moyen",
-      "probleme": "Lieu et contexte inappropriés (salle du Congrès américain, discours politique US)",
+      "probleme": "Lieu et contexte sans lien avec Macron ou Toulouse",
       "corrige": true,
       "essais": 1,
       "solution": "image du thème (« politician speech crowd »)"
@@ -224,7 +227,7 @@
       "niveau": "images",
       "ecran": 34,
       "gravite": "moyen",
-      "probleme": "Lieu et contexte inappropriés (salle du Congrès américain, discours politique US)",
+      "probleme": "Image d'un discours politique américain sans lien avec Macron",
       "corrige": true,
       "essais": 1,
       "solution": "image du thème (« politician speech crowd »)"
@@ -233,25 +236,25 @@
       "niveau": "images",
       "ecran": 35,
       "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "probleme": "Image générique de discours politique américain, pas Airbus ou Choose France",
+      "corrige": true,
+      "essais": 1,
+      "solution": "image du thème (« politician speech crowd »)"
      },
      {
       "niveau": "images",
       "ecran": 36,
       "gravite": "moyen",
-      "probleme": "contexte militaire, pas étudiant",
+      "probleme": "Sujet des militaires sans lien avec étudiant ou Macron",
       "corrige": true,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "essais": 1,
+      "solution": "image du thème (« politician speech crowd »)"
      },
      {
       "niveau": "images",
       "ecran": 37,
       "gravite": "moyen",
-      "probleme": "Lieu et contexte inappropriés (Trump event, unrelated to Macron or student fainting)",
+      "probleme": "Image d'un discours américain, pas lié à lycéenne française ou Cherbourg",
       "corrige": true,
       "essais": 1,
       "solution": "image du thème (« politician speech crowd »)"
@@ -260,28 +263,10 @@
       "niveau": "images",
       "ecran": 38,
       "gravite": "moyen",
-      "probleme": "cheval et écurie hors contexte",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 39,
-      "gravite": "moyen",
       "probleme": "image qui ne colle pas",
       "corrige": true,
-      "essais": 3,
+      "essais": 1,
       "solution": "image du thème (« politician speech crowd »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 40,
-      "gravite": "moyen",
-      "probleme": "cheval et écurie hors contexte",
-      "corrige": false,
-      "essais": 5,
-      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
@@ -289,7 +274,7 @@
       "gravite": "moyen",
       "probleme": "image qui ne colle pas",
       "corrige": true,
-      "essais": 3,
+      "essais": 1,
       "solution": "image du thème (« politician speech crowd »)"
      },
      {
@@ -298,62 +283,44 @@
       "gravite": "moyen",
       "probleme": "image qui ne colle pas",
       "corrige": true,
-      "essais": 2,
-      "solution": "autre passage d'une vraie vidéo du sujet"
-     },
-     {
-      "niveau": "images",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 3,
-      "solution": "image du thème (« politician speech crowd »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 24,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 3,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 25,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 3,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 32,
-      "gravite": "moyen",
-      "probleme": "military band parade unrelated to student fainting",
-      "corrige": false,
-      "essais": 3,
-      "solution": "image du thème (« politician speech crowd »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 42,
-      "gravite": "moyen",
-      "probleme": "message environnemental hors contexte",
-      "corrige": false,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 36,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
       "essais": 1,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "solution": "image du thème (« politician speech crowd »)"
+     },
+     {
+      "niveau": "video",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "Texte 'UN DÉTAIL SURPRENANT :' partiellement masqué par le podium",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune autre image trouvée)"
+     },
+     {
+      "niveau": "video",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": false,
+      "essais": 5,
+      "solution": "image du thème (« politician speech crowd »)"
      },
      {
       "niveau": "video",
@@ -361,106 +328,117 @@
       "gravite": "moyen",
       "probleme": "texte mal placé",
       "corrige": true,
-      "essais": 3,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "Contraste faible sur 'CŒUR'",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
      }
     ],
-    "sautes": [],
-    "corriges": 12,
-    "restants": 15,
-    "graves_restants": 15
+    "sautes": [
+     "regard de l'IA sur les images (IA indisponible)"
+    ],
+    "corriges": 24,
+    "restants": 1,
+    "graves_restants": 2
    },
    "reprises": 0,
    "preuves": [
     {
      "ecran": 1,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
+     "page": "https://video.infosec.exchange/videos/watch/64755742-1b7b-4ec5-bf9e-0dc7a3c94fc6",
+     "licence": "CC BY-SA",
+     "auteur": "Tof'Michaels",
+     "titre": "Emmanuel Valls au cœur d'une mise en scène suspecte : un \"dossier\" opportunément fourni à  son arrivée à l'Élysée",
+     "credit": "Vidéo : Tof'Michaels (PeerTube, CC BY-SA)",
+     "releve_le": "2026-11-25T07:51:36+01:00"
     },
     {
      "ecran": 3,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
-    },
-    {
-     "ecran": 4,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
-    },
-    {
-     "ecran": 5,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
-    },
-    {
-     "ecran": 6,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
-    },
-    {
-     "ecran": 7,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
-    },
-    {
-     "ecran": 8,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
-    },
-    {
-     "ecran": 9,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
-    },
-    {
-     "ecran": 10,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
-    },
-    {
-     "ecran": 11,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AVisit_of_Xi_Jinping_to_France_-_2024_%28P063803-92196%29.jpg",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AEmmanuel_et_Brigitte_Macron_%28cropped%29.jpg",
      "licence": "",
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Emmanuel Macron »",
-     "releve_le": "2026-11-25T06:34:51+01:00"
+     "releve_le": "2026-11-25T07:51:36+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AUnited_States_and_Eurozone_leaders_at_G20_meeting.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Emmanuel Macron »",
+     "releve_le": "2026-11-25T07:51:36+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AEmmanuel_Macron_Meeting_Dijon_2017.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Emmanuel Macron »",
+     "releve_le": "2026-11-25T07:51:36+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AFrench_Republican_Guard_Bastille_Day_2007_n2.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Garde républicaine (France) »",
+     "releve_le": "2026-11-25T07:51:36+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AEmmanuel_Macron_%2827_ao%C3%BBt_2014%29.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Emmanuel Macron »",
+     "releve_le": "2026-11-25T07:51:36+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ASommet_%C3%A9co_franco-chinois-1934.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Emmanuel Macron »",
+     "releve_le": "2026-11-25T07:51:36+01:00"
+    },
+    {
+     "ecran": 9,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AGroupe_turbo-alternateur_EPR_de_Flamanville_%28FLA3%29_-_2023.png",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Emmanuel Macron »",
+     "releve_le": "2026-11-25T07:51:36+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AEmmanuel_Macron_2025_%28cropped%29.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Emmanuel Macron »",
+     "releve_le": "2026-11-25T07:51:36+01:00"
     },
     {
      "ecran": 12,
@@ -469,7 +447,7 @@
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Emmanuel Macron »",
-     "releve_le": "2026-11-25T06:34:51+01:00"
+     "releve_le": "2026-11-25T07:51:36+01:00"
     },
     {
      "ecran": 13,
@@ -478,25 +456,25 @@
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Emmanuel Macron »",
-     "releve_le": "2026-11-25T06:34:51+01:00"
+     "releve_le": "2026-11-25T07:51:36+01:00"
     },
     {
      "ecran": 14,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3A2018-12-01_13-57-34_manif-GJ-Belfort_%28cropped%29.jpg",
+     "licence": "",
+     "auteur": "",
      "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
+     "credit": "Wikipédia, article « Emmanuel Macron »",
+     "releve_le": "2026-11-25T07:51:36+01:00"
     },
     {
      "ecran": 15,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AEmmanuel_Macron_2020.jpg",
+     "licence": "",
+     "auteur": "",
      "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
+     "credit": "Wikipédia, article « Emmanuel Macron »",
+     "releve_le": "2026-11-25T07:51:36+01:00"
     },
     {
      "ecran": 16,
@@ -505,70 +483,70 @@
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Emmanuel Macron »",
-     "releve_le": "2026-11-25T06:34:51+01:00"
+     "releve_le": "2026-11-25T07:51:36+01:00"
     },
     {
      "ecran": 17,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AAngela_Merkel%2C_Emmanuel_Macron%2C_Petro_Poroshenko.jpg",
+     "licence": "",
+     "auteur": "",
      "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
+     "credit": "Wikipédia, article « Emmanuel Macron »",
+     "releve_le": "2026-11-25T07:51:36+01:00"
     },
     {
      "ecran": 18,
+     "page": "https://commons.wikimedia.org/?curid=48562962",
+     "licence": "Public domain",
+     "auteur": "National Library of Ireland on The Commo",
+     "titre": "",
+     "credit": "National Library of Ireland on The Commo / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T07:51:36+01:00"
+    },
+    {
+     "ecran": 19,
+     "page": "https://commons.wikimedia.org/?curid=156185258",
+     "licence": "Public domain",
+     "auteur": "Bromley, Edward A",
+     "titre": "",
+     "credit": "Bromley, Edward A / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T07:51:36+01:00"
+    },
+    {
+     "ecran": 20,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ATrump_and_Macron_at_2018_NATO_Summit.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Emmanuel Macron »",
+     "releve_le": "2026-11-25T07:51:36+01:00"
+    },
+    {
+     "ecran": 21,
      "page": "https://commons.wikimedia.org/wiki/Fichier%3AEmmanuel_Macron_%282019-10-09%29_03.jpg",
      "licence": "",
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Emmanuel Macron »",
-     "releve_le": "2026-11-25T06:34:51+01:00"
-    },
-    {
-     "ecran": 19,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
-    },
-    {
-     "ecran": 20,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AIntervention_du_Pr%C3%A9sident_de_la_R%C3%A9publique_Emmanuel_Macron_devant_le_Parlement_europ%C3%A9en_President_Emmanuel_Macron%27s_Speech_at_the_European_Parliament.jpg",
-     "licence": "",
-     "auteur": "",
-     "titre": "",
-     "credit": "Wikipédia, article « Emmanuel Macron »",
-     "releve_le": "2026-11-25T06:34:51+01:00"
-    },
-    {
-     "ecran": 21,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
-     "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T06:34:51+01:00"
+     "releve_le": "2026-11-25T07:51:36+01:00"
     }
    ],
    "couverture_ms": 800,
    "durees": {
     "voix": 0,
-    "images": 5,
-    "controle_images": 1745,
-    "montage": 215,
-    "controle_final": 1742,
-    "rangement": 8
+    "images": 422,
+    "controle_images": 858,
+    "montage": 224,
+    "controle_final": 2826,
+    "rangement": 4
    },
    "refaite": {
-    "de": "20261124-233208-1-r4",
-    "etape": "controle",
+    "de": "20261124-233208-1-r5",
+    "etape": "images",
     "remarque": ""
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233208-1-r4"
+   "refaite_de": "20261124-233208-1-r5"
   },
   {
    "id": "20261124-233244-1-r6",
