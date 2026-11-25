@@ -1,11 +1,11 @@
 {
  "videos": [
   {
-   "id": "20261124-233239-1-r9",
-   "tag": "v-20261124-233239-1-r9",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r9/buzz-20261124-233239-1-r9.mp4",
-   "titre": "CAN 2025 : Le Sénégal récupère son titre",
-   "accroche": "LE TAS REND LA JUSTICE",
+   "id": "20261124-233239-1-r10",
+   "tag": "v-20261124-233239-1-r10",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r10/buzz-20261124-233239-1-r10.mp4",
+   "titre": "Sénégal champion CAN 2025 : le twist fou",
+   "accroche": "TITRE VOLÉ RENDU",
    "sujet_id": "af2b8dfec2",
    "sujet": "CAN 2025 : Sénégal vainqueur après arbitrage TAS",
    "buzz": {
@@ -14,17 +14,16 @@
     "commentaires": 7196,
     "score": 2963
    },
-   "description": "Le Sénégal remporte enfin la CAN 2025 après un arbitrage historique ! 🏆 Découvrez comment tout s'est joué...",
-   "question": "ET VOUS, QUI AURIEZ GAGNÉ ?",
+   "description": "Le Sénégal récupère enfin son titre de champion d'Afrique après un rebondissement incroyable ! 🏆 Qui aurait dû gagner selon toi ?",
+   "question": "Et toi, tu penses que le Sénégal méritait vraiment ce titre ?",
    "hashtags": [
-    "#c",
-    "#a",
-    "#n",
-    "#2",
+    "#can2025",
+    "#sénégalchampion",
     "#insolite",
-    "#actu"
+    "#actu",
+    "#buzz"
    ],
-   "duree": 73.1,
+   "duree": 68.1,
    "sources": [
     {
      "media": "linternaute.com",
@@ -68,160 +67,238 @@
     }
    ],
    "verification": {
-    "par": "groq:openai/gpt-oss-20b",
-    "corrigees": 0,
+    "par": "mistral:ministral-14b-2512",
+    "corrigees": 6,
     "retirees": 0,
-    "problemes": []
+    "problemes": [
+     "Contient une affirmation subjective (« titre volé ») non attestée dans les articles ; les faits doivent rester neutres",
+     "La date de la finale est incorrecte (18 janvier 2025, pas 2026).",
+     "La CAF n'a pas retiré le titre en mars 2026, mais le jury d'appel de la CAF l'a fait le 17 mars 2026.",
+     "La CAF n'a pas annulé la victoire du Sénégal, mais a déclaré le Sénégal forfait sur un score de 3-0 pour le Maroc.",
+     "La décision du TAS a été rendue le 24 novembre 2026, mais le Sénégal a porté l'affaire devant le TAS après la décision du jury d'appel de la CAF en mars 2026.",
+     "Le Maroc a dénoncé un 'incident' avant le verdict du TAS, mais cela n'a pas empêché la confirmation de la victoire du Sénégal.",
+     "Phrase non neutre et sollicitant une opinion subjective, ce qui est interdit."
+    ]
    },
    "verifie": true,
    "credits": [
     "@aljazeeraenglish (TikTok, extrait cité)",
-    "@bbcnews (TikTok, extrait cité)",
-    "@franceinfo (TikTok, extrait cité)",
-    "Carte : Natural Earth, OpenStreetMap",
+    "Post of Moldova / Wikimedia Commons, Public domain",
+    "Richard Humphrey / Wikimedia Commons, CC BY-SA 2.0",
     "Wikipédia, article « Confédération africaine de football »",
-    "Wikipédia, article « Pape Gueye »"
+    "feguifoot / Wikimedia Commons, Public domain"
    ],
-   "ecrans_illustres": 12,
+   "ecrans_illustres": 10,
    "ecrans_total": 12,
    "format": "buzz",
    "voix": "chatterbox-bernard",
-   "lieu": "Lausanne, Suisse",
-   "humeur": "joie",
+   "lieu": "Rabat, Maroc",
+   "humeur": "tension",
    "categorie": "",
    "texte": [
-    "Imaginez un titre de champion d’Afrique volé, puis rendu après des mois d’attente.",
-    "Le Sénégal a remporté la CAN 2025 sur le terrain, mais la CAF lui a retiré le titre en mars 2026.",
-    "Pourquoi ? À cause d’une finale chaotique à Rabat le 18 janvier 2026.",
-    "Des joueurs sénégalais ont quitté le terrain pour protester contre un penalty accordé au Maroc.",
-    "Le Maroc a marqué un but en prolongation, mais le Sénégal a obtenu la victoire grâce à Pape Gueye.",
-    "La CAF a annulé cette victoire et donné un 3-0 au Maroc, comme si le Sénégal avait abandonné.",
+    "Le Sénégal champion de la CAN 2025",
+    "Tu savais que le Sénégal avait gagné la finale sur le terrain le 18 janvier 2025 ?",
+    "Mais le jury d'appel de la CAF lui a retiré le titre en mars 2026 après un penalty contesté.",
+    "Les joueurs sénégalais avaient quitté le terrain pour protester contre un penalty litigieux.",
+    "Le Maroc a raté son penalty, puis Pape Gueye a marqué en prolongation pour le Sénégal.",
+    "La CAF a déclaré le Sénégal forfait sur un score de 3-0 pour le Maroc.",
     "Le Sénégal a porté l’affaire devant le TAS, qui a rendu sa décision le 24 novembre 2026.",
-    "Résultat : le Sénégal est officiellement champion d’Afrique à nouveau, avec une victoire 1-0 validée.",
-    "Le Maroc a dénoncé un 'incident' avant le verdict, mais le Sénégal le rejette.",
-    "Le Maroc peut encore faire appel, mais il perd déjà 18 points au classement FIFA.",
-    "Sadio Mané a réagi : « Nous sommes remplis de joie, merci au peuple sénégalais pour son soutien ! »",
-    "Et le président sénégalais Abdoulaye Fall a dédié ce titre à Aïda Faye Samb, une supporteuse décédée.",
+    "Résultat : le Sénégal est officiellement champion d’Afrique avec une victoire 1-0 validée.",
+    "Le Maroc a dénoncé un 'incident' avant le verdict, mais le TAS a confirmé la victoire du Sénégal.",
+    "Le président de la Fédération sénégalaise Abdoulaye Fall a dédié ce titre à Aïda Faye Samb, une supporteuse décédée.",
     "Le Sénégal a enfin sa deuxième étoile en CAN, après des mois de bataille juridique.",
-    "Alors, qui aurait dû gagner selon vous ? Dis-le en commentaire !"
+    "La CAF a finalement respecté la décision du TAS et confirmé le Sénégal comme champion.",
+    "Alors, tu trouves que le Sénégal méritait vraiment ce titre ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T11:12:12+01:00",
-   "fabrication_s": 3688,
+   "cree_le": "2026-11-25T12:22:02+01:00",
+   "fabrication_s": 3272,
    "controles": {
-    "note": 90,
+    "note": 70,
     "lignes": [
      {
-      "niveau": "video",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 2,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 20,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 2,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 19,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 2,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 18,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
+      "niveau": "texte",
+      "ecran": 7,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
       "corrige": true,
       "essais": 1,
-      "solution": "titre raccourci"
+      "solution": "corrigé automatiquement"
      },
      {
-      "niveau": "video",
-      "ecran": 17,
+      "niveau": "images",
+      "ecran": 32,
       "gravite": "moyen",
-      "probleme": "Texte 'Play was' partiellement coupé par le bord inférieur",
+      "probleme": "tableau de score en japonais",
       "corrige": true,
       "essais": 1,
-      "solution": "titre retiré"
+      "solution": "nouvelle image (« football scoreboard match »)"
      },
      {
-      "niveau": "video",
-      "ecran": 16,
+      "niveau": "images",
+      "ecran": 33,
       "gravite": "moyen",
-      "probleme": "texte mal placé",
+      "probleme": "tete de gazelle empaille",
       "corrige": true,
       "essais": 1,
-      "solution": "titre raccourci"
+      "solution": "image du thème (« football trophy court »)"
      },
      {
-      "niveau": "video",
-      "ecran": 15,
+      "niveau": "images",
+      "ecran": 34,
       "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 2,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 21,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 18,
-      "gravite": "moyen",
-      "probleme": "Texte sur les crédits d'images en bas",
+      "probleme": "timbres de Moldavie sans aucun rapport avec le sujet",
       "corrige": true,
       "essais": 3,
-      "solution": "nouvelle image (« senegal player celebrating goal »)"
-     },
-     {
-      "niveau": "video",
-      "ecran": 17,
-      "gravite": "moyen",
-      "probleme": "Texte anglais en bas très petit et illisible.",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "Le sous-titre anglais est illisible car il est placé directement sur le texte de crédit en arrière-plan.",
-      "corrige": false,
-      "essais": 8,
       "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
+      "niveau": "images",
+      "ecran": 35,
+      "gravite": "moyen",
+      "probleme": "peinture de femme",
+      "corrige": true,
+      "essais": 1,
+      "solution": "image du thème (« football trophy court »)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "montre du football americain (NFL) au lieu de la CAN",
+      "corrige": true,
+      "essais": 1,
+      "solution": "image du thème (« football trophy court »)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "montre une statue sans rapport",
+      "corrige": true,
+      "essais": 1,
+      "solution": "nouvelle image (« Senegal football final match »)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "montre une statue sans rapport avec la CAF",
+      "corrige": true,
+      "essais": 1,
+      "solution": "image du thème (« football trophy court »)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 35,
+      "gravite": "moyen",
+      "probleme": "carte de l'Afrique de l'Est sans rapport avec le Sénégal",
+      "corrige": true,
+      "essais": 1,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "image d'un trophée sans rapport avec la CAF",
+      "corrige": true,
+      "essais": 1,
+      "solution": "image refusée gardée après un 2e avis (lien avec le sujet confirmé)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 32,
+      "gravite": "moyen",
+      "probleme": "Image d'un match de football féminin américain de 2009 sans rapport direct avec la CAN",
+      "corrige": true,
+      "essais": 1,
+      "solution": "image du thème (« football trophy court »)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "Image d'archives d'un joueur sénégalais recevant un trophée (ancienne CAN ou autre compétition, pas la CAN 2025)",
+      "corrige": false,
+      "essais": 1,
+      "solution": "écran de texte (aucune autre image trouvée)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "Match de football européen (pas lié au Sénégal ou à la CAN 2025)",
+      "corrige": false,
+      "essais": 1,
+      "solution": "nouvelle image (« Senegal CAN 2025 match replay »)"
+     },
+     {
       "niveau": "video",
-      "ecran": 22,
+      "ecran": 36,
+      "gravite": "moyen",
+      "probleme": "sous-titres en anglais superposés sous le bandeau noir et illisibles",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "sous-titres en anglais superposés sous le bandeau noir et illisibles",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 35,
+      "gravite": "moyen",
+      "probleme": "Sous-titres d'origine superposés",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 34,
+      "gravite": "moyen",
+      "probleme": "Sous-titres d'origine superposés",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "Sous-titres en bas chevauchent les sources et sont illisibles",
+      "corrige": true,
+      "essais": 4,
+      "solution": "écran de texte (aucune autre image trouvée)"
+     },
+     {
+      "niveau": "video",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 28,
       "gravite": "moyen",
       "probleme": "texte mal placé",
       "corrige": true,
@@ -230,137 +307,128 @@
      },
      {
       "niveau": "video",
-      "ecran": 21,
+      "ecran": 27,
       "gravite": "moyen",
-      "probleme": "Le texte '1-0' se superpose légèrement sur la tête d'une personne.",
+      "probleme": "Sous-titres en bas chevauchent les crédits d'images et sont illisibles",
       "corrige": true,
       "essais": 1,
       "solution": "titre raccourci"
      },
      {
       "niveau": "video",
-      "ecran": 20,
+      "ecran": 35,
       "gravite": "moyen",
-      "probleme": "Le sous-titre rose est mal placé sur les crédits et peu lisible.",
+      "probleme": "titre jaune posé sur la tête/le visage",
       "corrige": true,
       "essais": 1,
-      "solution": "titre retiré"
+      "solution": "titre raccourci"
      },
      {
       "niveau": "video",
-      "ecran": 19,
+      "ecran": 27,
       "gravite": "moyen",
-      "probleme": "Le sous-titre anglais est illisible et se superpose avec les crédits d'images.",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 14,
-      "gravite": "moyen",
-      "probleme": "chevauchement des sources en bas",
-      "corrige": true,
-      "essais": 3,
-      "solution": "image du thème (« football trophy african cup »)"
-     },
-     {
-      "niveau": "video",
-      "ecran": 16,
-      "gravite": "moyen",
-      "probleme": "Texte sur le visage",
+      "probleme": "Sous-titres en bas chevauchent les crédits et sont illisibles",
       "corrige": true,
       "essais": 2,
       "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 36,
+      "gravite": "moyen",
+      "probleme": "titre jaune sur le visage",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "sous-titres en bas chevauchent les crédits et sont illisibles",
+      "corrige": false,
+      "essais": 6,
+      "solution": "écran de texte (aucune autre image trouvée)"
      }
     ],
     "sautes": [],
-    "corriges": 17,
-    "restants": 1,
-    "graves_restants": 1
+    "corriges": 23,
+    "restants": 3,
+    "graves_restants": 3
    },
    "reprises": 0,
    "preuves": [
     {
      "ecran": 1,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ADirigeants_de_la_CAF_respectant_les_mesures_barri%C3%A8res.jpg",
-     "licence": "",
-     "auteur": "",
-     "titre": "",
-     "credit": "Wikipédia, article « Confédération africaine de football »",
-     "releve_le": "2026-11-25T11:12:12+01:00"
-    },
-    {
-     "ecran": 3,
-     "page": "https://www.tiktok.com/@bbcnews/video/7711757357302222102",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@bbcnews",
-     "titre": "",
-     "credit": "@bbcnews (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T11:12:12+01:00"
-    },
-    {
-     "ecran": 4,
-     "page": "https://www.tiktok.com/@franceinfo/video/7711768577195379990",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@franceinfo",
-     "titre": "",
-     "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T11:12:12+01:00"
-    },
-    {
-     "ecran": 5,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3APape_Gueye_France_v_Senegal_16_June_2026-359_%28cropped%29.jpg",
-     "licence": "",
-     "auteur": "",
-     "titre": "",
-     "credit": "Wikipédia, article « Pape Gueye »",
-     "releve_le": "2026-11-25T11:12:12+01:00"
-    },
-    {
-     "ecran": 6,
-     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711796789120159007",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@aljazeeraenglish",
-     "titre": "",
-     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T11:12:12+01:00"
-    },
-    {
-     "ecran": 7,
      "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
      "licence": "courte citation (source visible, logo non flouté)",
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T11:12:12+01:00"
+     "releve_le": "2026-11-25T12:22:02+01:00"
+    },
+    {
+     "ecran": 2,
+     "page": "https://commons.wikimedia.org/?curid=144538103",
+     "licence": "Public domain",
+     "auteur": "feguifoot",
+     "titre": "",
+     "credit": "feguifoot / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T12:22:02+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ACAF_headquarter.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Confédération africaine de football »",
+     "releve_le": "2026-11-25T12:22:02+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://commons.wikimedia.org/?curid=161783437",
+     "licence": "CC BY-SA 2.0",
+     "auteur": "Richard Humphrey",
+     "titre": "",
+     "credit": "Richard Humphrey / Wikimedia Commons, CC BY-SA 2.0",
+     "releve_le": "2026-11-25T12:22:02+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://commons.wikimedia.org/?curid=115743991",
+     "licence": "Public domain",
+     "auteur": "Post of Moldova",
+     "titre": "",
+     "credit": "Post of Moldova / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T12:22:02+01:00"
     },
     {
      "ecran": 8,
-     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711749934453755149",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@aljazeeraenglish",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ADirigeants_de_la_CAF_respectant_les_mesures_barri%C3%A8res.jpg",
+     "licence": "",
+     "auteur": "",
      "titre": "",
-     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T11:12:12+01:00"
+     "credit": "Wikipédia, article « Confédération africaine de football »",
+     "releve_le": "2026-11-25T12:22:02+01:00"
     },
     {
      "ecran": 9,
-     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711749934453755149",
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
      "licence": "courte citation (source visible, logo non flouté)",
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T11:12:12+01:00"
+     "releve_le": "2026-11-25T12:22:02+01:00"
     },
     {
      "ecran": 10,
-     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711749934453755149",
+     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
      "licence": "courte citation (source visible, logo non flouté)",
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T11:12:12+01:00"
+     "releve_le": "2026-11-25T12:22:02+01:00"
     },
     {
      "ecran": 11,
@@ -369,43 +437,35 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T11:12:12+01:00"
+     "releve_le": "2026-11-25T12:22:02+01:00"
     },
     {
      "ecran": 12,
-     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711749934453755149",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@aljazeeraenglish",
-     "titre": "",
-     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T11:12:12+01:00"
-    },
-    {
-     "ecran": 13,
      "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
      "licence": "courte citation (source visible, logo non flouté)",
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T11:12:12+01:00"
+     "releve_le": "2026-11-25T12:22:02+01:00"
     }
    ],
-   "couverture_ms": 36860,
+   "couverture_ms": 3609,
    "durees": {
-    "voix": 0,
-    "images": 142,
-    "controle_images": 3,
-    "montage": 152,
-    "controle_final": 3377,
-    "rangement": 6
+    "texte": 39,
+    "images": 135,
+    "voix": 686,
+    "controle_images": 704,
+    "montage": 131,
+    "controle_final": 2250,
+    "rangement": 5
    },
    "refaite": {
-    "de": "20261124-233239-1-r8",
-    "etape": "images",
-    "remarque": "maximum d'extraits vidéo de l'événement, photos des articles pour meubler"
+    "de": "20261124-233239-1-r9",
+    "etape": "texte",
+    "remarque": "Abdoulaye Fall est le président de la Fédération sénégalaise de football, pas le président du Sénégal ; phrase contradictoire sur la prolongation (but du Maroc, victoire du Sénégal) ; tutoyer (pas Imaginez) ; question finale en tutoyant"
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233239-1-r8"
+   "refaite_de": "20261124-233239-1-r9"
   }
  ]
 }

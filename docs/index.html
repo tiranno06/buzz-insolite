@@ -486,6 +486,7 @@ function carteVideo(v) {
       + (v.buffer ? `<span class="petit ${v.buffer.etiquette_ia ? "muted" : ""}">${v.buffer.etiquette_ia ? "🤖 étiquette IA cochée" : "⚠️ étiquette IA à cocher dans l'appli TikTok"}</span>` : "")
       + (v.retiree_le ? `<span class="petit">🚨 retirée de TikTok</span>` : "")
   }[v.statut] || "";
+  const perdus = v.extraits_perdus ? `<p class="petit"><b>🎞️ ${v.extraits_perdus} extrait(s) de l'événement perdu(s)</b> : publication bloquée, à refaire.</p>` : "";
   return `<div class="card video">
     <button class="vignette" style="background-image:url('${mini}')" data-play="${esc(v.url)}" aria-label="Regarder"></button>
     <div>
@@ -495,7 +496,7 @@ function carteVideo(v) {
       <h3 style="margin-top:6px">${esc(v.titre)}</h3>
       <div class="muted petit">Sujet : ${esc(v.sujet)}${v.buzz?.vues ? ` · 👁️ ${nb(v.buzz.vues)} · 💬 ${nb(v.buzz.commentaires)}` : ""}</div>
       <div class="desc">${esc(v.description)}\n\n${esc(v.question)}\n\n${esc((v.hashtags || []).join(" "))}</div>
-      <div class="rang">${boutons}<button class="btn mini" data-a="copier" data-id="${v.id}">📋 Copier la description</button>
+      ${perdus}<div class="rang">${boutons}<button class="btn mini" data-a="copier" data-id="${v.id}">📋 Copier la description</button>
         ${v.url ? `<a class="btn mini" href="${esc(v.url)}" target="_blank" rel="noopener">⬇️ Télécharger</a>` : ""}</div>
       ${v.echec_publication ? `<p class="petit" style="color:var(--accent)">❌ ${esc(v.echec_publication)}</p>` : ""}
       ${bulletin(v)}
@@ -558,7 +559,7 @@ function rendreJournal() {
   $("#journal").innerHTML = ((D["journal.json"] || {}).evenements || []).filter(e => !seulement || e.niveau !== "info").slice(0, 120).map(e =>
     `<li><time>${quand(e.date)}</time>${e.niveau === "erreur" ? "⚠️ " : ""}${esc(e.texte)}</li>`).join("");
 }
-const NOMS_ETAPES = { articles: "Articles", ecriture: "Écriture", texte: "Vérification du texte", voix: "Voix", images: "Images",
+const NOMS_ETAPES = { articles: "Articles", extraits: "Extraits vérifiés", ecriture: "Écriture", texte: "Vérification du texte", voix: "Voix", images: "Images",
   controle_images: "Contrôle des images", montage: "Montage", controle_final: "Contrôle final", rangement: "Rangement", total: "⏱️ Vidéo entière" };
 function rendreSante() {
   const S = D["sante.json"] || {};

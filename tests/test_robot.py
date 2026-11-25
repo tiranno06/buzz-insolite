@@ -901,3 +901,28 @@ class TestAudienceSecurite(unittest.TestCase):
         vendredi = datetime.datetime(2026, 11, 27, 7, 15)
         self.assertEqual(P.serie_du_jour(R, vendredi, "07:15")[1], "VRAI OU FAUX DU VENDREDI")
         self.assertIsNone(P.serie_du_jour(R, vendredi, "16:15"))
+
+
+class TestExtraitsPerdus(unittest.TestCase):
+    def test_extraits_perdus_remis(self):
+        from robot import controle
+        d = tempfile.mkdtemp()
+        f = [os.path.join(d, f"c{k}.mp4") for k in range(3)]
+        for x in f:
+            open(x, "wb").write(b"x")
+        ext = [dict(type="video", chemin=f[k], id=f"citation-{k}-0", citation=True, compte=f"c{k}") for k in range(3)]
+        script = {"_citations_toutes": ext, "phrases": [
+            dict(ecrit="a", media=dict(ext[0])), dict(ecrit="b", media=None), dict(ecrit="c", media=dict(type="carte")),
+            dict(ecrit="d", media=dict(type="photo", chemin="p.jpg", id="wiki")), dict(ecrit="e", media=dict(ext[0], id="citation-0-0-suite4", suite=True)),
+            dict(ecrit="Et toi ?", media=None)]}
+        self.assertEqual([m["compte"] for m in controle.extraits_perdus(script)], ["c1", "c2"])
+        self.assertEqual(controle.reposer_extraits(script, journal=lambda *_: None), 2)
+        self.assertEqual(controle.extraits_perdus(script), [])
+        self.assertEqual(script["phrases"][1]["media"]["compte"], "c1")       # l'écran de texte d'abord
+        self.assertEqual(script["phrases"][3]["media"]["compte"], "c2")       # puis la photo Wikipédia
+        self.assertEqual(script["phrases"][2]["media"]["type"], "carte")      # la carte jamais
+
+    def test_publication_bloquee(self):
+        from robot import controle
+        v = dict(extraits_perdus=2, duree=70, description="x", hashtags=["#a", "#b", "#c"], url="", ecrans_illustres=10, ecrans_total=10)
+        self.assertTrue(any("extrait" in p for p in controle.avant_publication(v, {}, forcer=True)))

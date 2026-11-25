@@ -1,6 +1,16 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T12:22:05+01:00",
+   "niveau": "info",
+   "texte": "🧪 Essai de la nuit : tout fonctionne"
+  },
+  {
+   "date": "2026-11-25T12:22:03+01:00",
+   "niveau": "info",
+   "texte": "🔁 « Sénégal champion CAN 2025 : le twist fou » refaite (texte) : note 70/100, corrige : « Abdoulaye Fall est le président de la Fédération sénégalaise de football, pas le président du Sénégal ; phrase contradictoire sur la prolongation (but du Maroc, victoire du Sénégal) ; tutoyer (pas Imaginez) ; question finale en tutoyant » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T12:13:24+01:00",
    "niveau": "erreur",
    "texte": "🧪 Essai de la nuit : en panne : Tests du code (montage compris), Recadrage et agrandissement (OpenCV)"
