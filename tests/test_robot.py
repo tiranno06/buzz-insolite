@@ -1142,6 +1142,7 @@ class TestModelesDeSecours(unittest.TestCase):
                         "pixtral-large-latest": {"capabilities": {"vision": True, "completion_chat": True}},
                         "mistral-embed": {"capabilities": {}}},
             "gemini": {"gemini-flash-latest": {}, "gemini-3-flash": {}, "gemini-2.5-flash-preview-tts": {},
+                       "gemini-2.5-flash-image": {}, "gemini-3.1-flash-lite-image": {},
                        "text-embedding-004": {}}})
         try:
             g = ia.modeles("groq")
@@ -1168,3 +1169,14 @@ class TestModelesDeSecours(unittest.TestCase):
             self.assertEqual(ia.modeles("groq"), ia.FOURNISSEURS["groq"]["modeles"])
         finally:
             ia._EN_LIGNE.clear(); ia._EN_LIGNE.update(ancien)
+
+
+class TestLimiteDuJour(unittest.TestCase):
+    def test_gemini_seul_le_modele_ecarte(self):
+        from robot import ia
+        ia._mort("gemini", "gemini-flash-latest", 429, '{"quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier"}')
+        self.assertIn(("gemini", "gemini-flash-latest"), ia._MORTS)
+        self.assertNotIn("gemini", ia._SAUTES)
+        ia._mort("openrouter", "x:free", 429, "Rate limit exceeded: free-models-per-day")
+        self.assertIn("openrouter", ia._SAUTES)
+        ia._MORTS.discard(("gemini", "gemini-flash-latest")); ia._SAUTES.discard("openrouter")

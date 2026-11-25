@@ -36,8 +36,16 @@ def _mort(fourn, modele, code, corps):
     bas = corps.lower()
     # fournisseur entier hors service pour ce passage (25/11 : Mistral « You need a subscription » 402 à CHAQUE appel,
     # 111 essais perdus par vidéo ; OpenRouter « free-models-per-day » : plus rien jusqu'au lendemain) : plus essayé
-    if code in (401, 402, 403) or "per-day" in bas or "per day" in bas or "billing" in bas or "subscription" in bas:
+    par_jour = "per-day" in bas or "per day" in bas or "perday" in bas
+    if code in (401, 402, 403) or "billing" in bas or "subscription" in bas:
         _SAUTES.add(fourn)
+    elif par_jour:
+        # Gemini et Groq comptent la limite du jour PAR MODÈLE (25/11 au soir : Gemini entier mis de côté alors que ses
+        # autres modèles restaient libres) : seul ce modèle est écarté ; OpenRouter : limite commune à tous ses modèles
+        if fourn in ("gemini", "groq"):
+            _MORTS.add((fourn, modele))
+        else:
+            _SAUTES.add(fourn)
 
 
 class AucuneIA(Exception):
@@ -70,7 +78,7 @@ _EN_LIGNE = {}
 LISTES = {"mistral": "https://api.mistral.ai/v1/models", "groq": "https://api.groq.com/openai/v1/models",
           "gemini": "https://generativelanguage.googleapis.com/v1beta/openai/models"}
 EXCLUS = ("embed", "tts", "whisper", "audio", "guard", "moderation", "ocr", "image-generation", "live", "native",
-          "transcri", "realtime", "codestral", "devstral", "compound", "prompt-guard", "safeguard", "orpheus", "veo",
+          "transcri", "realtime", "-image", "image-preview", "codestral", "devstral", "compound", "prompt-guard", "safeguard", "orpheus", "veo",
           "imagen", "learnlm", "gemma-3n", "robotics", "computer-use", "nano")
 SECOURS_MAX = 4
 

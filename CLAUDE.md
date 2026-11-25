@@ -504,7 +504,10 @@ lit la liste OFFICIELLE des modèles de chaque fournisseur avec sa clé (`LISTES
 préférés (`FOURNISSEURS[...]["modeles"]`, `VISION`, listes allongées) encore publiés d'abord, puis jusqu'à 4 modèles de secours
 du même fournisseur (`_secours_ok` : Gemini « flash », Mistral selon `capabilities.vision`, Groq « llama-4 / vision / -vl »
 pour les images ; jamais embed / tts / whisper / guard…). Liste illisible = liste préférée telle quelle. OpenRouter : 8
-modèles gratuits. La santé écrit dans son journal les modèles retenus pour chaque IA.
+modèles gratuits. La santé écrit dans son journal les modèles retenus pour chaque IA. Relevé du 25/11 : Groq n'a PLUS aucun
+modèle qui voit (llama-4 retirés) ni llama-3.3-70b ; modèles Gemini qui DESSINENT (« -image ») écartés. Limite du jour :
+Gemini et Groq la comptent PAR MODÈLE → seul le modèle épuisé est écarté (`_MORTS`) ; OpenRouter (limite commune) et
+401 / 402 / 403 / abonnement → fournisseur entier mis de côté.
 
 ## Avant d'envoyer
 `python -m unittest discover -s tests` (aucun appel réseau ni IA ; ffmpeg nécessaire pour l'essai complet). Essai sans IA :
