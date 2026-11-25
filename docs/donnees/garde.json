@@ -35,11 +35,20 @@
    },
    "demande_le": "2026-11-25T18:37:57+01:00",
    "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie) ; déjà 2 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
+  },
+  {
+   "inputs": {
+    "nombre": "1",
+    "format": "buzz",
+    "origine": "auto 16:15"
+   },
+   "demande_le": "2026-11-25T18:58:32+01:00",
+   "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
   }
  ],
  "credits": {
-  "le": "2026-11-25T18:37:57+01:00",
-  "resume": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie) ; déjà 2 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
+  "le": "2026-11-25T18:58:32+01:00",
+  "resume": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
  },
  "creation": {
   "2026-11-25": [
