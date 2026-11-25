@@ -23,10 +23,22 @@
    },
    "demande_le": "2026-11-25T18:33:29+01:00",
    "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
+  },
+  {
+   "inputs": {
+    "format": "buzz",
+    "refaire": "20261125-163311-1",
+    "etape": "auto",
+    "remarque": "Réparation automatique : accroche mal écrite : « FLOGGING FOR MUSIC » ; écran 15 : titre « June 2026 » absent de la phrase dite ; écran 16 : phrase absurde (« 2 »)",
+    "origine": "reparation",
+    "nombre": "1"
+   },
+   "demande_le": "2026-11-25T18:37:48+01:00",
+   "raison": "0 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie) ; aucune IA qui voit les images disponible"
   }
  ],
  "credits": {
-  "le": "2026-11-25T18:33:29+01:00",
-  "resume": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
+  "le": "2026-11-25T18:37:48+01:00",
+  "resume": "0 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie) ; aucune IA qui voit les images disponible"
  }
 }

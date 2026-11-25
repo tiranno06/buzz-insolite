@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T18:37:48+01:00",
+   "niveau": "attention",
+   "texte": "⏸️ Création mise en attente : 0 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie) ; aucune IA qui voit les images disponible. Elle partira toute seule dès que les IA gratuites seront de nouveau disponibles (vérifié toutes les 15 min)."
+  },
+  {
    "date": "2026-11-25T18:37:39+01:00",
    "niveau": "attention",
    "texte": "🩺 Santé du robot : ⚠️ En panne : mistral, openrouter ; 3 vidéo(s) en réparation"
