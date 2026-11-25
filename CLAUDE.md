@@ -305,6 +305,13 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
 - **Pas de déguisement en navigateur** (demande de l'auteur du 25/11, refusée) : les téléchargements d'extraits ne se font
   jamais passer pour Chrome quand TikTok refuse (contournement d'une protection anti-robots) ; simples nouveaux essais.
 
+## Boutons des vidéos (demande de l'auteur du 25/11 : « comme l'autre projet », jt-auto)
+Interrupteurs `boutonsVideo` / `bascule` (classe `.btn.bascule`) : VIDES tant qu'ils ne sont pas activés (« ☐ À publier »,
+« ☐ Écarter », « 🚀 Publier maintenant »), COLORÉS seulement une fois activés (« ✅ À publier · n° k dans la file » vert,
+« 🛑 Écartée (toucher pour annuler) » rouge, « 📤 Publiée · date » bleu) ; toucher un interrupteur activé l'annule
+(`retirer`). Juste après un appui : « ⏳ … » clignotant (`enAttente`, `envoyerBascule`) jusqu'à la confirmation du robot
+(site relu à 20, 45, 75 et 120 s ; `oublierAttentes`), retour à l'état d'avant si l'ordre est refusé.
+
 ## Avancement en direct (demande de l'auteur du 25/11 : « mis à jour bien plus rapidement »)
 Robot : envoi toutes les 5 s au plus (`avancement.INTERVALLE`) + signe de vie toutes les 15 s même au milieu d'une longue
 étape (`_lancer_battement`, fil discret : temps écoulé et fin prévue à jour). Site : relecture toutes les 5 s pendant une

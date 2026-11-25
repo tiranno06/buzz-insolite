@@ -62,6 +62,16 @@ h3 { font: 700 15px/1.3 var(--f-display); margin: 0 0 6px; }
 .btn.ok { background: var(--ok); color: #fff; border-color: var(--ok); }
 .btn.mini { padding: 5px 10px; min-height: 34px; font-size: 13px; }
 .btn:disabled { opacity: .5; cursor: default; }
+/* Interrupteurs (comme jt-auto, demande de l'auteur du 25/11) : VIDES tant qu'ils ne sont pas activés, COLORÉS seulement
+   une fois activés ; « en cours » pendant que l'ordre part au robot */
+.btn.bascule { background: transparent; border: 2px solid var(--line); border-radius: 999px; color: inherit; }
+.btn.bascule.on.vert { background: var(--ok); border-color: var(--ok); color: #fff; }
+.btn.bascule.on.rouge { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.btn.bascule.on.bleu { background: #2f6fd6; border-color: #2f6fd6; color: #fff; }
+.btn.bascule.on:disabled { opacity: 1; cursor: default; }
+.btn.attente { border-style: dashed; opacity: .85; cursor: progress; animation: clignote 1.4s ease-in-out infinite; }
+@keyframes clignote { 50% { opacity: .45; } }
+@media (prefers-reduced-motion: reduce) { .btn.attente { animation: none; } }
 .rang { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .chiffres { display: flex; flex-wrap: wrap; gap: 6px 14px; font: 500 13px var(--f-mono); color: var(--muted); margin: 6px 0; }
 .chiffres b { color: var(--fg); }
@@ -471,21 +481,58 @@ function bulletin(v) {
   return `<details style="margin-top:8px"><summary class="petit">🛡️ Contrôle qualité : ${C.note}/100 · ${C.corriges} correction(s)${C.graves_restants ? ` · ❌ ${C.graves_restants} défaut(s) grave(s)` : ""}</summary>
     <ul class="petit">${L || "<li>✅ Aucun problème trouvé aux 4 contrôles.</li>"}${(C.sautes || []).map(s => `<li>⏭️ Contrôle non fait : ${esc(s)}</li>`).join("")}</ul></details>`;
 }
+// ---------------- interrupteurs des vidéos (demande de l'auteur du 25/11 : « comme l'autre projet ») ----------------
+// Un bouton est VIDE (☐) tant qu'il n'est pas activé, et COLORÉ seulement quand il l'est (✅ À publier en vert, 🛑 Écartée
+// en rouge, 📤 Publiée en bleu). Juste après un appui : « ⏳ … » clignotant tant que le robot n'a pas confirmé.
+const enAttente = {};                                         // id → {action, le}
+function attente(id) { const x = enAttente[id]; return x && Date.now() - x.le < 4 * 60e3 ? x.action : ""; }
+function bascule(v, a, txtOff, txtOn, on, couleur, aOff) {
+  const att = attente(v.id);
+  const enCours = att === (on ? aOff : a);
+  const txt = enCours ? `⏳ ${on ? "Annulation…" : txtOff.replace(/^☐\s*/, "") + "…"}` : (on ? txtOn : txtOff);
+  return `<button class="btn mini bascule ${on ? "on " + couleur : ""} ${enCours ? "attente" : ""}" ${enCours ? "disabled" : ""}
+    data-a="${on ? aOff : a}" data-id="${v.id}" aria-pressed="${on}">${txt}</button>`;
+}
+function rangFile(v) {
+  const F = (D["file.json"].videos || []).filter(x => x.statut === "a_publier" && !x.essai)
+    .sort((a, b) => (a.coche_le || a.cree_le || "").localeCompare(b.coche_le || b.cree_le || ""));
+  return F.findIndex(x => x.id === v.id) + 1;
+}
+function boutonsVideo(v) {
+  const s = v.statut, att = attente(v.id), out = [];
+  if (["nouvelle", "a_publier", "echec"].includes(s))
+    out.push(bascule(v, "a_publier", "☐ À publier", `✅ À publier · n° ${rangFile(v)} dans la file`, s === "a_publier", "vert", "retirer"));
+  if (["nouvelle", "a_publier"].includes(s))
+    out.push(att === "publier_maintenant" ? `<button class="btn mini bascule attente" disabled>⏳ Envoi à TikTok…</button>`
+      : `<button class="btn mini bascule" data-a="publier_maintenant" data-id="${v.id}">🚀 Publier maintenant</button>`);
+  if (s === "a_verifier")
+    out.push(att === "publier_force" ? `<button class="btn mini bascule attente" disabled>⏳ Envoi à TikTok…</button>`
+      : `<button class="btn mini bascule" data-a="publier_force" data-id="${v.id}">🚀 Publier quand même</button>`);
+  if (["nouvelle", "a_verifier", "ecartee"].includes(s))
+    out.push(bascule(v, "ecarter", "☐ Écarter", "🛑 Écartée (toucher pour annuler)", s === "ecartee", "rouge", "retirer"));
+  if (s === "publiee") {
+    out.push(`<button class="btn mini bascule on bleu" disabled aria-pressed="true">📤 Publiée${v.publiee_le ? " · " + quand(v.publiee_le) : ""}</button>`);
+    out.push(`<button class="btn mini" data-a="lien" data-id="${v.id}">🔗 Ajouter le lien TikTok</button>`);
+    if (v.buffer) out.push(`<span class="petit ${v.buffer.etiquette_ia ? "muted" : ""}">${v.buffer.etiquette_ia ? "🤖 étiquette IA cochée" : "⚠️ étiquette IA à cocher dans l'appli TikTok"}</span>`);
+    if (v.retiree_le) out.push(`<span class="petit">🚨 retirée de TikTok</span>`);
+  }
+  return out.join("");
+}
+function oublierAttentes() {                                  // le robot a confirmé (statut changé) : fin du « ⏳ »
+  const attendu = { a_publier: ["a_publier"], retirer: ["nouvelle", "a_verifier"], ecarter: ["ecartee"],
+    publier_maintenant: ["publiee", "echec", "a_verifier"], publier_force: ["publiee", "echec", "a_verifier"] };
+  for (const [id, x] of Object.entries(enAttente)) {
+    const v = (D["file.json"].videos || []).find(y => y.id === id);
+    if (!v || (attendu[x.action] || []).includes(v.statut) && !(x.action.startsWith("publier") && v.statut === x.avant)) delete enAttente[id];
+  }
+}
+
 function carteVideo(v) {
   const mini = DEMO ? "" : `miniatures/${v.id}.jpg`;
   const ver = v.verification ? `vérifiée par ${esc(v.verification.par)} (${v.verification.corrigees} corrigée(s), ${v.verification.retirees} retirée(s))`
     : v.verifie === false ? "⚠️ faits NON vérifiés (aucune 2e IA disponible)" : "";
   const sources = (v.sources || []).map(s => `<li><a href="${esc(s.lien)}" target="_blank" rel="noopener">${esc(s.media)} — ${esc(s.titre)}</a></li>`).join("");
-  const boutons = {
-    a_verifier: `<button class="btn mini primaire" data-a="publier_force" data-id="${v.id}">🚀 Publier quand même</button><button class="btn mini" data-a="ecarter" data-id="${v.id}">🛑 Écarter</button>`,
-    nouvelle: `<button class="btn mini ok" data-a="a_publier" data-id="${v.id}">✅ À publier</button><button class="btn mini primaire" data-a="publier_maintenant" data-id="${v.id}">🚀 Publier maintenant</button><button class="btn mini" data-a="ecarter" data-id="${v.id}">🛑 Écarter</button>`,
-    a_publier: `<button class="btn mini primaire" data-a="publier_maintenant" data-id="${v.id}">🚀 Publier maintenant</button><button class="btn mini" data-a="retirer" data-id="${v.id}">↩️ Retirer de la file</button>`,
-    echec: `<button class="btn mini ok" data-a="a_publier" data-id="${v.id}">🔁 Remettre dans la file</button>`,
-    ecartee: `<button class="btn mini" data-a="retirer" data-id="${v.id}">↩️ Remettre à regarder</button>`,
-    publiee: `<button class="btn mini" data-a="lien" data-id="${v.id}">🔗 Ajouter le lien TikTok</button>`
-      + (v.buffer ? `<span class="petit ${v.buffer.etiquette_ia ? "muted" : ""}">${v.buffer.etiquette_ia ? "🤖 étiquette IA cochée" : "⚠️ étiquette IA à cocher dans l'appli TikTok"}</span>` : "")
-      + (v.retiree_le ? `<span class="petit">🚨 retirée de TikTok</span>` : "")
-  }[v.statut] || "";
+  const boutons = boutonsVideo(v);
   const perdus = (v.extraits_perdus ? `<p class="petit"><b>🎞️ ${v.extraits_perdus} extrait(s) de l'événement perdu(s)</b> : publication bloquée, à refaire.</p>` : "")
     + ((v.regles_non_respectees || []).length ? `<p class="petit"><b>📏 Règle(s) non respectée(s)</b> (publication bloquée) : ${v.regles_non_respectees.map(esc).join(" ; ")}</p>` : "");
   return `<div class="card video">
@@ -521,6 +568,7 @@ function carteVideo(v) {
     </div></div>`;
 }
 function rendreVideos() {
+  oublierAttentes();
   const V = D["file.json"].videos || [];
   // du plus RÉCENT au plus ancien (demande de l'auteur du 25/11) : une vidéo refaite compte à la date où elle a été refaite
   const quand = v => String(v.cree_le || "");
@@ -729,6 +777,14 @@ $("#c-serie").onclick = () => { const f = $("#c-format").value, n = (f === "sema
 $("#c-un").onclick = () => { const t = $("#c-libre").value.trim(); if (!t) return toast("Écris d'abord le sujet."); creer({ libre: t }, "Vidéo lancée (environ 7 minutes)."); };
 $("#c-essai").onclick = () => creer({ simulation: "1" }, "Essai lancé (environ 3 minutes).");
 
+async function envoyerBascule(a, id, msg) {
+  const v = (D["file.json"].videos || []).find(x => x.id === id);
+  enAttente[id] = { action: a, le: Date.now(), avant: v && v.statut };
+  rendreVideos();                                             // le bouton passe tout de suite en « ⏳ … »
+  const ok = await commande(a, id, "", msg);
+  if (!ok) { delete enAttente[id]; rendreVideos(); }          // ordre refusé : le bouton revient comme avant
+  else [20e3, 45e3, 75e3, 120e3].forEach(t => setTimeout(charger, t));   // relit le site jusqu'à la confirmation
+}
 const armes = new Set();
 function arme(b, cle) {
   if (armes.has(cle)) { armes.delete(cle); return true; }
@@ -756,9 +812,13 @@ document.addEventListener("click", async e => {
   }
   if (a === "lien") { const l = prompt("Lien de la vidéo sur TikTok :"); if (l) commande("publiee", id, l.trim()); return; }
   if (a === "texte") return commande("texte", id, JSON.stringify({ description: $("#d-" + id).value, question: $("#q-" + id).value, hashtags: $("#h-" + id).value }));
-  if (a === "publier_maintenant" || a === "publier_force") { if (!arme(b, a + id)) return; return commande(a, id, "", "Contrôle puis envoi à TikTok par Buffer (1 à 2 min)."); }
+  if (a === "publier_maintenant" || a === "publier_force") {
+    if (!arme(b, a + id)) return;
+    return envoyerBascule(a, id, "Contrôle puis envoi à TikTok par Buffer (1 à 2 min).");
+  }
   if (a === "supprimer") { if (!arme(b, a + id)) return; return commande(a, id); }
-  if (["a_publier", "retirer", "ecarter"].includes(a)) return commande(a, id);
+  if (["a_publier", "retirer", "ecarter"].includes(a))
+    return envoyerBascule(a, id, { a_publier: "✅ Ajoutée à la file de publication.", retirer: "↩️ Annulé.", ecarter: "🛑 Vidéo écartée." }[a]);
 });
 $("#j-erreurs").onchange = rendreJournal;
 $("#lecteur").addEventListener("close", () => { $("#lv").pause(); $("#lv").removeAttribute("src"); });
