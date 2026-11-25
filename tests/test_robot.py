@@ -852,3 +852,20 @@ class TestAuditCAN(unittest.TestCase):
         from robot import ecrire
         self.assertEqual(ecrire.liste_hashtags("#can2025 #senegal"), ["can2025", "senegal"])
         self.assertEqual(ecrire.liste_hashtags(["", "c", "a", "can2025"]), ["can2025"])
+
+
+class TestVision(unittest.TestCase):
+    def test_caler_sur_plans(self):
+        from robot import vision
+        self.assertEqual(vision.caler_sur_plans(3.0, 15, [4.2, 9.0, 16.5, 17.8], 40), (4.2, 13.6))
+        self.assertEqual(vision.caler_sur_plans(3.0, 12, [], 40), (3.0, 12))
+
+    def test_moments_notes_ia(self):
+        from robot import citations as C
+        # l'IA voit l'action vers 80 s, un présentateur au début : le passage choisi est celui de l'action
+        m = C.moments([], 120, 15, 1, notes=[(15, 1), (30, 2), (80, 9), (85, 10)])
+        self.assertTrue(70 <= m[0] <= 85)
+
+    def test_agrandir_sans_modele(self):
+        from robot import vision
+        self.assertEqual(vision.agrandir("/inexistant.jpg"), "/inexistant.jpg")

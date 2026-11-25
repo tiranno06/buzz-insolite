@@ -91,6 +91,7 @@ jobs:
           path: |
             ~/paquets-ffmpeg
             ~/.cache/buzz-insolite
+            ~/.cache/buzz-modeles
           key: outils-v1-${{ hashFiles('requirements.txt') }}
       - name: Installer ffmpeg
         timeout-minutes: 25

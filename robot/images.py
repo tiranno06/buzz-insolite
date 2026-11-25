@@ -654,7 +654,8 @@ def photo_standard(chemin):
         fond.save(sortie, "JPEG", quality=92)
     if sortie != chemin:
         os.remove(chemin)
-    return sortie
+    from . import vision
+    return vision.agrandir(sortie)                      # petite photo (< 1000 px) agrandie ×2 (amélioration 4 du 25/11)
 
 
 def _recuperer(m, dossier, n, deja, journal):

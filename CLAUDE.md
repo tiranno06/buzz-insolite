@@ -203,6 +203,19 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
 (`tachesActives` : runs in_progress / queued de creer.yml) ; creer.yml a une étape `if: cancelled()` qui marque la barre
 « annulee » (`python -m robot.avancement --annuler`), effacée au bout d'1 min.
 
+## Améliorations choisies le 25/11 (liste de 30 : n° 1 à 6, 9, 10, 12, 13, 16, 17, 18, 21, 23, 25, 26, 27)
+- **1. Moments forts** (`citations.notes_ia`, `CONSIGNE_MOMENTS`) : l'IA qui voit note 10 images de chaque vidéo d'origine
+  (10 = l'action de l'événement, 0 = présentateur, plateau, titre) ; `moments(notes=)` choisit les passages les mieux notés,
+  puis les changements de plan ; images fixes prises aux instants les mieux notés.
+- **3. Coupes sur les plans** (`vision.scenes` : PySceneDetect, sinon ffmpeg ; `vision.caler_sur_plans`) : un extrait
+  commence au début d'un plan et finit à la fin d'un plan (10 s au moins).
+- **2. Recadrage sur les visages** (`vision.centre_visages`, OpenCV YuNet ; `montage.centre_cadrage` → `media["cx"]`) : vidéo
+  ou photo HORIZONTALE recadrée sur le plus grand visage au lieu du milieu (MediaPipe récent ne détecte plus les visages sans
+  modèle à part).
+- **4. Photos agrandies** (`vision.agrandir`, OpenCV dnn_superres FSRCNN ×2, 0,3 s) : toute photo de moins de 1000 px, dans
+  `images.photo_standard` (Real-ESRGAN demande une carte graphique). OpenCV 4 obligatoire (`opencv-contrib-python-headless<5` :
+  OpenCV 5 ne lit plus les modèles .pb). Modèles en cache `~/.cache/buzz-modeles` (creer.yml).
+
 ## Avancement en direct (demande de l'auteur du 25/11 : « mis à jour bien plus rapidement »)
 Robot : envoi toutes les 5 s au plus (`avancement.INTERVALLE`) + signe de vie toutes les 15 s même au milieu d'une longue
 étape (`_lancer_battement`, fil discret : temps écoulé et fin prévue à jour). Site : relecture toutes les 5 s pendant une

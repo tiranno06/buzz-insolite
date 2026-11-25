@@ -97,6 +97,24 @@ def fond_texte(chemin, haut=(12, 20, 48), bas=(40, 8, 60)):
     return chemin
 
 
+def centre_cadrage(media):
+    """Vidéo ou photo HORIZONTALE (hors citation, montrée en entier) : position des visages (0 à 1) pour la recadrer sur eux
+    (amélioration 2 du 25/11) ; 0,5 = le milieu, comme avant."""
+    if not media or media.get("type") not in ("video", "photo") or media.get("citation") or not media.get("chemin"):
+        return 0.5
+    if "cx" not in media:
+        from . import vision
+        try:
+            r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height",
+                                "-of", "csv=p=0", media["chemin"]], capture_output=True, text=True, timeout=30)
+            w, h = [int(x) for x in r.stdout.strip().split(",")[:2]]
+        except Exception:
+            w, h = 1, 1
+        media["cx"] = (vision.centre_visages(media["chemin"], media.get("debut", 0), 10, media["type"] == "video")
+                       if w > h * 1.15 else None) or 0.5
+    return media["cx"]
+
+
 def ecran(media, duree, png, sortie, dossier):
     """Un écran de `duree` secondes (sans son)."""
     commun = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-r", str(IPS), "-an"]
@@ -107,6 +125,8 @@ def ecran(media, duree, png, sortie, dossier):
             print(f"    carte impossible ({str(e)[:80]}) : écran de texte", flush=True)
             media = None
     haut_net = int(W / 1.1) // 2 * 2
+    cx = centre_cadrage(media)
+    xcrop = f"max(0,min(iw-min(iw,ih*1.1),{cx}*iw-min(iw,ih*1.1)/2))"    # recadré sur les visages (sinon le milieu)
     if media and media["type"] == "photo" and media.get("citation"):
         # image fixe tirée d'une vidéo d'origine : montrée en ENTIER (logo visible), sur fond flou
         vf = (f"[0:v]split[a][b];[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},boxblur=30:2,"
@@ -124,14 +144,14 @@ def ecran(media, duree, png, sortie, dossier):
     elif media and media["type"] == "video":
         debut = media.get("debut", 0) if (media.get("duree") or 99) > duree + media.get("debut", 0) else 0
         vf = (f"[0:v]split[a][b];[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},boxblur=25:2,"
-              f"eq=brightness=-0.18,fps={IPS}[fond];[b]crop=w='min(iw,ih*1.1)':h=ih:x='(iw-min(iw,ih*1.1))/2':y=0,scale={W}:{haut_net},"
+              f"eq=brightness=-0.18,fps={IPS}[fond];[b]crop=w='min(iw,ih*1.1)':h=ih:x='{xcrop}':y=0,scale={W}:{haut_net},"
               f"fps={IPS},zoompan=z='1+0.0015*on':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s={W}x{haut_net}:fps={IPS}[net];"
               f"[fond][net]overlay=0:(H-h)/2-40[v];[v][1:v]overlay=0:0,format=yuv420p[s]")
         entree = ["-stream_loop", "-1", "-ss", str(debut), "-i", media["chemin"]]
     elif media and media["type"] == "photo":
         n = int(duree * IPS) + 1
         vf = (f"[0:v]split[a][b];[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},boxblur=30:2,"
-              f"eq=brightness=-0.2[fond];[b]scale={W*2}:-2,crop=w='min(iw,ih*1.1)':h=ih,"
+              f"eq=brightness=-0.2[fond];[b]scale={W*2}:-2,crop=w='min(iw,ih*1.1)':h=ih:x='{xcrop}':y=0,"
               f"zoompan=z='1+0.07*on/{n}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={n}:s={W}x{haut_net}:fps={IPS}[net];"
               f"[fond]fps={IPS}[f2];[f2][net]overlay=0:(H-h)/2-40[v];[v][1:v]overlay=0:0,format=yuv420p[s]")
         entree = ["-loop", "1", "-i", media["chemin"]]

@@ -15,7 +15,7 @@ import os
 import re
 import subprocess
 
-from . import ia, images
+from . import ia, images, vision
 from .commun import lire
 
 DUREE_MIN, DUREE_MAX, PART_MAX, ORIGINE_MIN = 10.0, 15.0, 0.4, 20.0
@@ -41,7 +41,50 @@ def meilleur_moment(changements, d, lg):
     return round(max(debuts, key=lambda x: (sum(1 for t in changements if x <= t < x + lg), -abs(x - d * 0.3))), 2)
 
 
+CONSIGNE_MOMENTS = """On te montre des images tirées d'une vidéo d'actualité sur un événement précis. Donne à CHAQUE image une
+note de 0 à 10 : 10 = on VOIT l'événement lui-même (l'action, la foule, les personnes concernées sur place, le moment fort) ;
+5 = une image liée (document, photo d'archive, carte) ; 0 = un présentateur ou un journaliste qui parle face caméra, un plateau,
+un écran de titre, un logo ou une publicité. Réponds uniquement en JSON : {"images": [{"n": numéro, "note": 0-10}]}"""
+
+
+def notes_ia(brut, d, sujet, dossier, journal=print, nb=10):
+    """Notes de l'IA qui voit sur `nb` images réparties dans la vidéo d'origine (amélioration 1 du 25/11) : sert à choisir
+    les passages où l'on voit l'ACTION. [] si l'IA est indisponible (le choix se fait alors aux changements de plan)."""
+    instants = [round(d * (k + 0.5) / nb, 2) for k in range(nb)]
+    imgs = []
+    for k, t in enumerate(instants):
+        chemin = os.path.join(dossier, f"note-{os.path.basename(brut)[:-4]}-{k}.jpg")
+        r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(t), "-i", brut, "-frames:v", "1", "-vf", "scale=360:-2",
+                            "-q:v", "5", chemin], capture_output=True, timeout=60)
+        if r.returncode == 0 and os.path.exists(chemin):
+            imgs.append((t, chemin))
+    out = []
+    try:
+        for k in range(0, len(imgs), 5):
+            paquet = imgs[k:k + 5]
+            d_, _ = ia.regarder_json(CONSIGNE_MOMENTS, f"ÉVÉNEMENT : {sujet.get('titre', '')}", [c for _, c in paquet],
+                                     journal=journal)
+            for r in d_.get("images") or []:
+                try:
+                    out.append((paquet[int(r.get("n")) - 1][0], max(0.0, min(10.0, float(r.get("note"))))))
+                except (TypeError, ValueError, IndexError):
+                    pass
+    except Exception as e:
+        journal(f"  moments forts : IA indisponible ({str(e)[:60]}), changements de plan seulement")
+    for _, c in imgs:
+        try:
+            os.remove(c)
+        except OSError:
+            pass
+    return out
+
+
 def _changements(fichier):
+    from . import vision
+    return vision.scenes(fichier)
+
+
+def _changements_ffmpeg(fichier):
     r = subprocess.run(["ffmpeg", "-v", "info", "-i", fichier, "-vf", "select='gt(scene,0.25)',showinfo", "-an", "-f", "null", "-"],
                        capture_output=True, text=True, timeout=300)
     return [float(x) for x in re.findall(r"pts_time:([\d.]+)", r.stderr)]
@@ -56,14 +99,19 @@ def _duree(fichier):
         return 0.0
 
 
-def moments(changements, d, lg, nombre):
-    """Jusqu'à `nombre` fenêtres de `lg` s qui ne se chevauchent pas, celles où l'image bouge le plus d'abord, entre 10 % et
-    90 % de la vidéo ; renvoyées dans l'ordre de la vidéo d'origine."""
+def moments(changements, d, lg, nombre, notes=None):
+    """Jusqu'à `nombre` fenêtres de `lg` s qui ne se chevauchent pas, entre 10 % et 90 % de la vidéo, renvoyées dans l'ordre
+    de la vidéo d'origine. Les meilleures d'abord : la note de l'IA qui voit (l'ACTION de l'événement, pas un présentateur ;
+    `notes` = [(instant, note 0-10)]), puis le nombre de changements de plan."""
     a, b = d * 0.1, d * 0.9 - lg
     if b <= a:
         return [max(0.0, (d - lg) / 2)][:nombre]
     debuts = [a + k * (b - a) / 40 for k in range(41)]
-    score = lambda x: (sum(1 for t in changements if x <= t < x + lg), -abs(x - d * 0.3))
+
+    def note_ia(x):
+        dedans = [n for t, n in notes or [] if x <= t < x + lg]
+        return round(sum(dedans) / len(dedans), 1) if dedans else 5.0
+    score = lambda x: (note_ia(x), sum(1 for t in changements if x <= t < x + lg), -abs(x - d * 0.3))
     pris = []
     for x in sorted(debuts, key=score, reverse=True):
         if len(pris) >= nombre:
@@ -130,18 +178,22 @@ def telecharger(url, chemin, essais=3):
             time.sleep(10 * (n + 1))
 
 
-def images_fixes(brut, d, pris, lg, nombre, dossier, base):
-    """Images fixes de l'événement tirées de la vidéo d'origine, à des moments qui ne sont PAS dans les extraits."""
-    out, t = [], d * 0.15
+def images_fixes(brut, d, pris, lg, nombre, dossier, base, notes=None):
+    """Images fixes de l'événement tirées de la vidéo d'origine, à des moments qui ne sont PAS dans les extraits ; les
+    images les mieux notées par l'IA d'abord (l'action, pas le présentateur)."""
+    out = []
     pas = max(1.0, d * 0.7 / (nombre + 1))
-    while len(out) < nombre and t < d * 0.9:
-        if all(not (a - 1 <= t <= a + lg + 1) for a in pris):
+    instants = [t for t, n in sorted(notes or [], key=lambda x: -x[1]) if n >= 6] + \
+        [d * 0.15 + k * pas for k in range(int(d * 0.75 / pas) + 1)]
+    for t in instants:
+        if len(out) >= nombre or t >= d * 0.95:
+            continue
+        if all(not (a - 1 <= t <= a + lg + 1) for a in pris) and all(abs(t - x) > 2 for x, _ in out):
             chemin = os.path.join(dossier, f"{base}-image{len(out)}.jpg")
             r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.2f}", "-i", brut, "-frames:v", "1", "-q:v", "2", chemin],
                                capture_output=True, timeout=120)
             if r.returncode == 0 and not images.lisible(chemin):
                 out.append((t, chemin))
-        t += pas
     return out
 
 
@@ -151,7 +203,7 @@ def extraits(sujet, dossier, journal=print, nombre=5, deja=None, photos=3):
     sous la MOITIÉ de sa durée (une vidéo de 24 s ne donne donc qu'un extrait)."""
     deja = deja if deja is not None else set()
     videos = videos_du_meme_evenement(sujet, journal)
-    plans = []                                                # (vidéo, fichier, durée, longueur, [débuts])
+    plans, notes_par_video = [], {}                           # (vidéo, fichier, durée, longueur, [débuts], [longueurs])
     for v in videos:
         brut = os.path.join(dossier, f"origine-{v.get('id', len(plans))}.mp4")
         try:
@@ -161,14 +213,22 @@ def extraits(sujet, dossier, journal=print, nombre=5, deja=None, photos=3):
             lg = duree_extrait(d)
             if not lg:                                        # trop courte pour un extrait : images fixes seulement
                 journal(f"  citation @{v.get('compte')} : vidéo de {d:.0f} s, trop courte pour un extrait de 10 s (images fixes seulement)")
-                plans.append((v, brut, d, 0, [])); continue
+                notes_par_video[v["url"]] = notes_ia(brut, d, sujet, dossier, journal, nb=5)
+                plans.append((v, brut, d, 0, [], [])); continue
             n_max = max(1, int(d * PART_TOTALE // lg))
-            plans.append((v, brut, d, lg, moments(_changements(brut), d, lg, n_max)))
+            coupes = _changements(brut)
+            notes = notes_ia(brut, d, sujet, dossier, journal) if d >= 25 else []
+            choisis = [vision.caler_sur_plans(x, lg, coupes, d) for x in moments(coupes, d, lg, n_max, notes)]
+            if notes:
+                journal(f"  moments forts @{v.get('compte')} : " + ", ".join(f"{x:.0f} s" for x, _ in choisis)
+                        + f" (notes de l'IA : {', '.join(str(int(n)) for _, n in notes)})")
+            notes_par_video[v["url"]] = notes
+            plans.append((v, brut, d, lg, [x for x, _ in choisis], [l for _, l in choisis]))
         except Exception as e:
             journal(f"  citation @{v.get('compte')} impossible ({str(e)[:100]})")
     ordre = [(p, k) for k in range(max((len(p[4]) for p in plans), default=0)) for p in plans if k < len(p[4])]
     out, par_compte = [], {}
-    for (v, brut, d, lg, debuts), k in ordre:                 # un par vidéo d'abord, puis les passages suivants
+    for (v, brut, d, lg0, debuts, longueurs), k in ordre:     # un par vidéo d'abord, puis les passages suivants
         if len(out) >= nombre:
             break
         if par_compte.get(v.get("compte"), 0) >= PARCOMPTE_MAX:
@@ -177,7 +237,7 @@ def extraits(sujet, dossier, journal=print, nombre=5, deja=None, photos=3):
         cle = f"citation-{v.get('id', 'x')}-{k}"
         if cle in deja:
             continue
-        debut = debuts[k]
+        debut, lg = debuts[k], (longueurs[k] if k < len(longueurs) else lg0)   # recalé sur les plans
         chemin = os.path.join(dossier, f"{cle}.mp4")
         try:
             subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(debut), "-i", brut, "-t", str(lg), "-an",
@@ -197,11 +257,12 @@ def extraits(sujet, dossier, journal=print, nombre=5, deja=None, photos=3):
         journal(f"  ✓ citation @{compte} : {lg:.0f} s à partir de {debut:.0f} s (vidéo de {d:.0f} s)")
     # images fixes de l'événement (« photos »), tirées des vidéos d'origine hors des extraits, une vidéo après l'autre
     fixes = []
-    for v, brut, d, lg, debuts in sorted(plans, key=lambda p: bool(p[4])):   # vidéos sans extrait d'abord
+    for v, brut, d, lg, debuts, _ in sorted(plans, key=lambda p: bool(p[4])):   # vidéos sans extrait d'abord
         if len(fixes) >= photos:
             break
         pris = [m["origine"]["debut"] for m in out if m["page"] == v["url"]]
-        for t, chemin in images_fixes(brut, d, pris, lg, min(2, photos - len(fixes)), dossier, f"citation-{v.get('id', 'x')}"):
+        for t, chemin in images_fixes(brut, d, pris, lg, min(2, photos - len(fixes)), dossier, f"citation-{v.get('id', 'x')}",
+                                      notes_par_video.get(v["url"])):
             compte = v.get("compte") or "source"
             fixes.append(dict(type="photo", chemin=chemin, id=os.path.basename(chemin)[:-4], citation=True, compte=compte,
                               credit=f"@{compte} (TikTok, image citée)", page=v["url"], auteur=f"@{compte}",
