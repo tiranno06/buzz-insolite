@@ -53,6 +53,14 @@ def _modeles_openrouter():
         return ()
 
 
+def _objet(x):
+    """Une IA répond parfois par une LISTE au lieu de l'objet demandé ({"images": [...]}) : le robot plantait
+    (« 'list' object has no attribute 'get' », 25/11). La liste est rangée sous toutes les clés habituelles."""
+    if isinstance(x, list):
+        return {k: x for k in ("images", "problemes", "sujets", "garder", "phrases", "liste")}
+    return x if isinstance(x, dict) else {}
+
+
 def lire_json(texte):
     """Objet JSON trouvé dans une réponse (même entourée de ```json … ``` ou de phrases)."""
     t = re.sub(r"^```(?:json)?|```$", "", str(texte).strip(), flags=re.M).strip()
@@ -97,7 +105,7 @@ def demander_json(consigne, texte, temperature=0.7, max_tokens=4000, exclure=(),
                 try:
                     rep = _appel(fourn, modele, messages, temperature, max_tokens)
                     UTILISES[fourn] = UTILISES.get(fourn, 0) + 1
-                    return lire_json(rep), f"{fourn}:{modele}"
+                    return _objet(lire_json(rep)), f"{fourn}:{modele}"
                 except urllib.error.HTTPError as e:
                     corps = e.read()[:400].decode("utf-8", "ignore"); bas = corps.lower()
                     derniere = f"{fourn} {modele} {e.code} : {corps[:200]}"
@@ -142,7 +150,7 @@ def regarder_json(consigne, texte, images, journal=print, exclure=()):
                 try:
                     rep = _appel(fourn, modele, messages, 0.1, 2500)
                     UTILISES[fourn] = UTILISES.get(fourn, 0) + 1
-                    return lire_json(rep), f"{fourn}:{modele}"
+                    return _objet(lire_json(rep)), f"{fourn}:{modele}"
                 except urllib.error.HTTPError as e:
                     corps = e.read()[:300].decode("utf-8", "ignore"); derniere = f"{fourn} {modele} {e.code} : {corps[:160]}"
                     _mort(fourn, modele, e.code, corps)

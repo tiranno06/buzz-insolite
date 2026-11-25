@@ -81,6 +81,12 @@ class TestTextes(unittest.TestCase):
         self.assertIn("#insolite", h)
         self.assertLessEqual(len(h), R["hashtags"]["nombre"])
 
+    def test_reponse_en_liste(self):
+        """Bug du 25/11 : l'IA répondait par une liste et le contrôle des images plantait."""
+        from robot import ia
+        self.assertEqual(ia._objet([{"n": 1}])["images"], [{"n": 1}])
+        self.assertEqual(ia._objet({"images": []}), {"images": []})
+
     def test_json_entoure(self):
         from robot import ia
         self.assertEqual(ia.lire_json('Voici : ```json\n{"a": {"b": 1}}\n``` voilà'), {"a": {"b": 1}})

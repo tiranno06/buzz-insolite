@@ -138,6 +138,11 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
   donne un `rapport` (exact / sujet / domaine / aucun) : seule « aucun » est refusée (un A320 en vol pour une phrase sur sa
   chaîne de montage = bon ; des chevaux pour une élève qui fait un malaise = refusé).
 
+- **Fin des écrans vides (25/11)** : le contrôle lit les PHOTOS avec Pillow (`controle._image_de`) — ffmpeg n'en tirait
+  rien sur GitHub, même d'un JPEG standard ; résultat : CAN 0 → 11 écrans sur 12, « Macron sauveur » 20/20 avec 3 vraies
+  vidéos (PeerTube, Internet Archive). Une IA qui répond par une LISTE au lieu d'un objet faisait planter le contrôle des
+  images (3 essais puis mode secours, vidéo « à vérifier ») → `ia._objet` range la liste sous les clés habituelles.
+
 ## Vitesse (analyse du 24/11 : vidéo GTA en 99 min, dont 86 min de voix Chatterbox)
 - Voix refaite par le contrôle final : la phrase a déjà eu 2 essais à l'étape voix, donc mots simplifiés DÈS le 1er essai,
   phrase retirée au 3e (si la vidéo reste ≥ 62 s) ; avant : jusqu'à 7 essais identiques (~1 min de Chatterbox chacun).
