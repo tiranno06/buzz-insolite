@@ -514,7 +514,9 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, 
                 info = json.loads(_ytdlp(["-J", c["page"]], 90))
             except Exception as x:
                 journal(f"  vidéo YouTube illisible ({str(x)[:80]})")
-                if any(m in str(x) for m in ("429", "Sign in", "bot")):   # YouTube refuse ce serveur : plus essayé
+                YOUTUBE["echecs"] = YOUTUBE.get("echecs", 0) + 1
+                # refus du serveur (« Sign in », 429) ou 2 échecs de suite (« Video unavailable » le 25/11) : YouTube de côté
+                if any(m in str(x) for m in ("429", "Sign in", "bot")) or YOUTUBE["echecs"] >= 2:
                     youtube_refuse = YOUTUBE["refuse"] = True                # de tout le passage (jamais contourné)
                     journal("  YouTube refuse les serveurs de GitHub : autres sources seulement pour cette vidéo")
                 continue
