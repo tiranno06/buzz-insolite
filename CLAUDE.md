@@ -507,7 +507,8 @@ pour les images ; jamais embed / tts / whisper / guard…). Liste illisible = li
 modèles gratuits. La santé écrit dans son journal les modèles retenus pour chaque IA. Relevé du 25/11 : Groq n'a PLUS aucun
 modèle qui voit (llama-4 retirés) ni llama-3.3-70b ; modèles Gemini qui DESSINENT (« -image ») écartés. Limite du jour :
 Gemini et Groq la comptent PAR MODÈLE → seul le modèle épuisé est écarté (`_MORTS`) ; OpenRouter (limite commune) et
-401 / 402 / 403 / abonnement → fournisseur entier mis de côté.
+401 / 402 / 403 / abonnement → fournisseur entier mis de côté. Piège : le 429 de Gemini dit « check your plan and BILLING
+details » → ce n'est PAS un abonnement (avant : tout Gemini écarté, plus aucune IA qui voit).
 
 ## Avant d'envoyer
 `python -m unittest discover -s tests` (aucun appel réseau ni IA ; ffmpeg nécessaire pour l'essai complet). Essai sans IA :

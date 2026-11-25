@@ -37,7 +37,9 @@ def _mort(fourn, modele, code, corps):
     # fournisseur entier hors service pour ce passage (25/11 : Mistral « You need a subscription » 402 à CHAQUE appel,
     # 111 essais perdus par vidéo ; OpenRouter « free-models-per-day » : plus rien jusqu'au lendemain) : plus essayé
     par_jour = "per-day" in bas or "per day" in bas or "perday" in bas
-    if code in (401, 402, 403) or "billing" in bas or "subscription" in bas:
+    if code == 429 and fourn in ("gemini", "groq") and ("quota" in bas or "billing" in bas):
+        par_jour = True        # Gemini, quota épuisé : « check your plan and billing details » (429), PAR MODÈLE, pas un abonnement
+    if code in (401, 402, 403) or (code != 429 and ("billing" in bas or "subscription" in bas)):
         _SAUTES.add(fourn)
     elif par_jour:
         # Gemini et Groq comptent la limite du jour PAR MODÈLE (25/11 au soir : Gemini entier mis de côté alors que ses
