@@ -2946,7 +2946,21 @@
     "compte": "buzz.insolite",
     "quand": null,
     "etiquette_ia": true
-   }
+   },
+   "stats": {
+    "vues": 0,
+    "jaime": 0,
+    "commentaires": 0,
+    "partages": 0,
+    "maj": "2026-11-25T20:23:16+01:00"
+   },
+   "lien_tiktok": "https://www.tiktok.com/@buzz.insolite/video/7712127678555442465",
+   "stats_hist": [
+    [
+     "2026-11-25T20:23:16+01:00",
+     0
+    ]
+   ]
   }
  ]
 }
