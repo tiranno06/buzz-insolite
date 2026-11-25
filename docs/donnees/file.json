@@ -1383,9 +1383,9 @@
    "echec_publication": "2026-11-25T20:51:23+01:00 : contrôle avant publication : description vide"
   },
   {
-   "id": "20261125-163234-1",
-   "tag": "v-20261125-163234-1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-163234-1/buzz-20261125-163234-1.mp4",
+   "id": "20261125-163234-1-r1",
+   "tag": "v-20261125-163234-1-r1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-163234-1-r1/buzz-20261125-163234-1-r1.mp4",
    "titre": "Peine de mort accélérée : Trump",
    "accroche": "TRUMP ACCÉLÈRE LA PEINE",
    "sujet_id": "569fb914b4",
@@ -1462,8 +1462,8 @@
     "@cbsnews (TikTok, extrait cité)",
     "@cbsnews (TikTok, image citée)",
     "Carte : Natural Earth, OpenStreetMap",
-    "Photo : theepochtimes.com (article cité)",
-    "The White House / Wikimedia Commons, Public domain"
+    "Photo : lebrief.ma (article cité)",
+    "Photo : theepochtimes.com (article cité)"
    ],
    "extraits_perdus": 0,
    "regles_non_respectees": [],
@@ -1491,76 +1491,34 @@
     "Et toi, tu penses que l’accélération de la peine de mort est une solution ?"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T16:53:18+01:00",
+   "cree_le": "2026-11-25T21:08:01+01:00",
    "ia_quotas": {
     "mistral": {
      "appels": 0,
      "refus": 0,
-     "erreurs": 23,
+     "erreurs": 5,
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 4,
-     "refus": 14,
-     "erreurs": 3,
-     "restant_demandes": "980",
+     "appels": 2,
+     "refus": 0,
+     "erreurs": 4,
+     "restant_demandes": "997",
      "limite_demandes": "1000",
-     "restant_mots": "7304"
+     "restant_mots": "6012"
     },
     "gemini": {
-     "appels": 10,
-     "refus": 21,
-     "erreurs": 8
-    },
-    "openrouter": {
-     "appels": 0,
-     "refus": 12,
-     "erreurs": 0
+     "appels": 6,
+     "refus": 2,
+     "erreurs": 1
     }
    },
-   "fabrication_s": 1243,
+   "fabrication_s": 313,
    "controles": {
     "note": 100,
-    "lignes": [
-     {
-      "niveau": "texte",
-      "ecran": 11,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "images",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "Réunion sans rapport avec la peine de mort",
-      "corrige": true,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 26,
-      "gravite": "moyen",
-      "probleme": "Manifestation sans rapport avec le sujet",
-      "corrige": true,
-      "essais": 1,
-      "solution": "nouvelle image (« Donald Trump death penalty »)"
-     },
-     {
-      "niveau": "video",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "le chiffre 548 est sur le visage de Trump",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     }
-    ],
+    "lignes": [],
     "sautes": [],
-    "corriges": 4,
+    "corriges": 0,
     "restants": 0,
     "graves_restants": 0
    },
@@ -1573,7 +1531,7 @@
      "auteur": "@cbsnews",
      "titre": "",
      "credit": "@cbsnews (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T16:53:18+01:00"
+     "releve_le": "2026-11-25T21:08:01+01:00"
     },
     {
      "ecran": 3,
@@ -1582,7 +1540,7 @@
      "auteur": "@cbsnews",
      "titre": "",
      "credit": "@cbsnews (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T16:53:18+01:00"
+     "releve_le": "2026-11-25T21:08:01+01:00"
     },
     {
      "ecran": 4,
@@ -1591,7 +1549,7 @@
      "auteur": "@cbsnews",
      "titre": "",
      "credit": "@cbsnews (TikTok, image citée)",
-     "releve_le": "2026-11-25T16:53:18+01:00"
+     "releve_le": "2026-11-25T21:08:01+01:00"
     },
     {
      "ecran": 5,
@@ -1600,7 +1558,7 @@
      "auteur": "@cbsnews",
      "titre": "",
      "credit": "@cbsnews (TikTok, image citée)",
-     "releve_le": "2026-11-25T16:53:18+01:00"
+     "releve_le": "2026-11-25T21:08:01+01:00"
     },
     {
      "ecran": 6,
@@ -1609,7 +1567,7 @@
      "auteur": "@cbsnews",
      "titre": "",
      "credit": "@cbsnews (TikTok, image citée)",
-     "releve_le": "2026-11-25T16:53:18+01:00"
+     "releve_le": "2026-11-25T21:08:01+01:00"
     },
     {
      "ecran": 7,
@@ -1618,7 +1576,7 @@
      "auteur": "@cbsnews",
      "titre": "",
      "credit": "@cbsnews (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T16:53:18+01:00"
+     "releve_le": "2026-11-25T21:08:01+01:00"
     },
     {
      "ecran": 8,
@@ -1627,7 +1585,7 @@
      "auteur": "@cbsnews",
      "titre": "",
      "credit": "@cbsnews (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T16:53:18+01:00"
+     "releve_le": "2026-11-25T21:08:01+01:00"
     },
     {
      "ecran": 9,
@@ -1636,7 +1594,7 @@
      "auteur": "theepochtimes.com",
      "titre": "",
      "credit": "Photo : theepochtimes.com (article cité)",
-     "releve_le": "2026-11-25T16:53:18+01:00"
+     "releve_le": "2026-11-25T21:08:01+01:00"
     },
     {
      "ecran": 10,
@@ -1645,7 +1603,7 @@
      "auteur": "@cbsnews",
      "titre": "",
      "credit": "@cbsnews (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T16:53:18+01:00"
+     "releve_le": "2026-11-25T21:08:01+01:00"
     },
     {
      "ecran": 11,
@@ -1654,7 +1612,7 @@
      "auteur": "@cbsnews",
      "titre": "",
      "credit": "@cbsnews (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T16:53:18+01:00"
+     "releve_le": "2026-11-25T21:08:01+01:00"
     },
     {
      "ecran": 12,
@@ -1663,35 +1621,36 @@
      "auteur": "@cbsnews",
      "titre": "",
      "credit": "@cbsnews (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T16:53:18+01:00"
+     "releve_le": "2026-11-25T21:08:01+01:00"
     },
     {
      "ecran": 13,
-     "page": "https://commons.wikimedia.org/?curid=176061937",
-     "licence": "Public domain",
-     "auteur": "The White House",
+     "page": "https://www.lebrief.ma/etats-unis-trump-veut-durcir-le-recours-a-la-peine-de-mort-100174331/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "lebrief.ma",
      "titre": "",
-     "credit": "The White House / Wikimedia Commons, Public domain",
-     "releve_le": "2026-11-25T16:53:18+01:00"
+     "credit": "Photo : lebrief.ma (article cité)",
+     "releve_le": "2026-11-25T21:08:01+01:00"
     }
    ],
    "couverture_ms": 20954,
    "durees": {
-    "articles": 0,
-    "ecriture": 366,
-    "texte": 16,
-    "voix": 66,
-    "images": 192,
-    "controle_images": 94,
-    "montage": 224,
-    "controle_final": 269,
+    "voix": 0,
+    "images": 68,
+    "controle_images": 3,
+    "montage": 116,
+    "controle_final": 72,
     "extraits": 0,
-    "regles": 1,
-    "rangement": 42
+    "regles": 35,
+    "rangement": 6
    },
-   "refaite": null,
+   "refaite": {
+    "de": "20261125-163234-1",
+    "etape": "images",
+    "remarque": "Réparation automatique : Le sujet abordé (logements abordables / Newsom) ne correspond pas à l'ordre sur  ; Le sujet bifurque sur le logement abordable (« affordable housing »), hors sujet"
+   },
    "statut": "nouvelle",
-   "reparations": 1
+   "refaite_de": "20261125-163234-1"
   },
   {
    "id": "20261125-163217-1",
