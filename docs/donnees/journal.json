@@ -1,9 +1,24 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T01:56:06+01:00",
+   "niveau": "info",
+   "texte": "🔁 « Fascistes en Espagne : un hommage choc à Franco » refaite (images) : note 65/100, corrige : « Scènes de 5 à 10 s en vraies vidéos de toutes les sources, sans doublon » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T01:46:11+01:00",
    "niveau": "info",
    "texte": "🔁 « Macron sauveur en urgence » refaite (images) : note 0/100, corrige : « Scènes de 5 à 10 s en vraies vidéos de toutes les sources, sans doublon » — l'ancienne version est remplacée"
+  },
+  {
+   "date": "2026-11-25T01:25:28+01:00",
+   "niveau": "attention",
+   "texte": "🔁 Refaire « Fascistes en Espagne : un hommage choc à Franco » : étape ratée ('list' object has no attribute 'get') — reprise 3/4"
+  },
+  {
+   "date": "2026-11-25T01:22:13+01:00",
+   "niveau": "attention",
+   "texte": "🔁 Refaire « Fascistes en Espagne : un hommage choc à Franco » : étape ratée ('list' object has no attribute 'get') — reprise 2/4"
   },
   {
    "date": "2026-11-25T01:21:13+01:00",

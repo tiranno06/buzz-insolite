@@ -930,9 +930,9 @@
    "refaite_de": "20261124-194231-1"
   },
   {
-   "id": "20261124-233157-1",
-   "tag": "v-20261124-233157-1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233157-1/buzz-20261124-233157-1.mp4",
+   "id": "20261124-233157-1-r1",
+   "tag": "v-20261124-233157-1-r1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233157-1-r1/buzz-20261124-233157-1-r1.mp4",
    "titre": "Fascistes en Espagne : un hommage choc à Franco",
    "accroche": "FRANCO REVIENT EN FORCE",
    "sujet_id": "97a197f1f5",
@@ -1008,11 +1008,10 @@
    "verifie": true,
    "credits": [
     "Carte : Natural Earth, OpenStreetMap",
-    "Wikipédia, article « Parc national de Yosemite »",
-    "Wikipédia, article « Phalange espagnole »",
-    "Wikipédia, article « Valle de los Caídos »"
+    "Titre : Le Figaro",
+    "Titre : charliehebdo.fr"
    ],
-   "ecrans_illustres": 3,
+   "ecrans_illustres": 0,
    "ecrans_total": 15,
    "format": "buzz",
    "voix": "chatterbox-bernard",
@@ -1039,99 +1038,126 @@
     "Et toi, tu connaissais ce lieu de pèlerinage fasciste ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T00:44:12+01:00",
-   "fabrication_s": 4334,
+   "cree_le": "2026-11-25T01:56:05+01:00",
+   "fabrication_s": 2782,
    "controles": {
-    "note": 55,
+    "note": 65,
     "lignes": [
      {
-      "niveau": "texte",
-      "ecran": 4,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": 5,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": 8,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": 10,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": 11,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": null,
+      "niveau": "images",
+      "ecran": 18,
       "gravite": "moyen",
-      "probleme": "texte trop court (environ 52 s, il faut plus d'1 minute)",
+      "probleme": "image illisible",
       "corrige": true,
-      "essais": 1,
-      "solution": "phrase réécrite et revérifiée"
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "Cimetière générique, pas celui lié à Franco ou Valle de los Caídos",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
       "ecran": 24,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "Image hors sujet (contexte politique américain)",
       "corrige": true,
       "essais": 3,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "Image hors sujet (contexte politique américain)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "Image hors sujet (contexte politique américain)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "Image hors sujet (contexte politique américain)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "Manifestation Black Lives Matter, pas rassemblement fasciste espagnol",
+      "corrige": true,
+      "essais": 1,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
       "ecran": null,
       "gravite": "grave",
-      "probleme": "trop peu d'images : 4 écran(s) illustré(s) sur 16",
+      "probleme": "trop peu d'images : 0 écran(s) illustré(s) sur 15",
       "corrige": false,
       "essais": 1
-     },
-     {
-      "niveau": "voix",
-      "ecran": 29,
-      "gravite": "moyen",
-      "probleme": "mots mal prononcés",
-      "corrige": true,
-      "essais": 3,
-      "solution": "phrase retirée"
-     },
-     {
-      "niveau": "video",
-      "ecran": 24,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 5,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "video",
@@ -1139,116 +1165,35 @@
       "gravite": "moyen",
       "probleme": "texte mal placé",
       "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 25,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 3,
-      "solution": "nouvelle image (« graves under monument »)"
-     },
-     {
-      "niveau": "video",
-      "ecran": 21,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 3,
-      "solution": "nouvelle image (« massive stone cross »)"
-     },
-     {
-      "niveau": "video",
-      "ecran": 20,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 3,
-      "solution": "nouvelle image (« old black and white photos »)"
-     },
-     {
-      "niveau": "video",
-      "ecran": 19,
-      "gravite": "moyen",
-      "probleme": "texte partiellement masqué par le fond lumineux",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 20,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": false,
-      "essais": 1,
+      "essais": 2,
       "solution": "titre retiré"
      }
     ],
     "sautes": [
-     "regard de l'IA sur la vidéo finie (IA indisponible)"
+     "regard de l'IA sur les images (IA indisponible)"
     ],
-    "corriges": 15,
-    "restants": 2,
-    "graves_restants": 3
+    "corriges": 13,
+    "restants": 1,
+    "graves_restants": 2
    },
    "reprises": 0,
-   "preuves": [
-    {
-     "ecran": 3,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AFalange_Members_in_Saragossa_1936_%28Retouched%29.jpg",
-     "licence": "",
-     "auteur": "",
-     "titre": "",
-     "credit": "Wikipédia, article « Phalange espagnole »",
-     "releve_le": "2026-11-25T00:44:12+01:00"
-    },
-    {
-     "ecran": 4,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ASPA-2014-San_Lorenzo_de_El_Escorial-Valley_of_the_Fallen_%28Valle_de_los_Ca%C3%ADdos%29.jpg",
-     "licence": "",
-     "auteur": "",
-     "titre": "",
-     "credit": "Wikipédia, article « Valle de los Caídos »",
-     "releve_le": "2026-11-25T00:44:12+01:00"
-    },
-    {
-     "ecran": 5,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ATunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg",
-     "licence": "",
-     "auteur": "",
-     "titre": "",
-     "credit": "Wikipédia, article « Parc national de Yosemite »",
-     "releve_le": "2026-11-25T00:44:12+01:00"
-    }
-   ],
+   "preuves": [],
    "couverture_ms": 800,
    "durees": {
-    "articles": 9,
-    "ecriture": 72,
-    "texte": 52,
-    "images": 40,
-    "controle_images": 76,
-    "voix": 1098,
-    "montage": 110,
-    "controle_final": 2975,
-    "rangement": 3
+    "voix": 0,
+    "images": 575,
+    "controle_images": 963,
+    "montage": 68,
+    "controle_final": 777,
+    "rangement": 4
    },
-   "refaite": null,
+   "refaite": {
+    "de": "20261124-233157-1",
+    "etape": "images",
+    "remarque": "Scènes de 5 à 10 s en vraies vidéos de toutes les sources, sans doublon"
+   },
    "statut": "a_verifier",
-   "refaite_de": "20261124-211029-1"
+   "refaite_de": "20261124-233157-1"
   },
   {
    "id": "20261124-233239-1-r1",
