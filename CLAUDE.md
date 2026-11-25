@@ -89,6 +89,10 @@ commentaires, commits, textes du site), explications simples, sans jargon.
   au moins), formats, musiques, hashtags qui marchent → stats.json, onglet 📊 Stats ; `publication.heures_auto` = publier aux
   meilleures heures.
 
+- **Voix proposées sur le site** (demande de l'auteur du 25/11) : seulement les 2 voix non robotiques retenues — Homme
+  (`chatterbox-bernard`, par défaut) et Femme (`kokoro-ff_siwis`). Les autres restent dans le code (secours) mais ne sont
+  plus proposées.
+
 ## Contrôle qualité en 4 niveaux (demande de l'auteur du 24/11 : « comme l'autre projet », correction du seul passage fautif)
 `robot/controle.py` (détail en tête du fichier) : 1. texte (`controle_texte` : faits par la 2e IA + règles, nombres en lettres
 `robot/nombres.py`, durée estimée à 3,5 mots/s, seules les phrases fautives réécrites puis revérifiées) ; 2. voix (`voix.preparer` :

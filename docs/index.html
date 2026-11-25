@@ -295,11 +295,8 @@ dialog form { position: absolute; top: 6px; right: 6px; }
         <h3>🎙️ Voix et description</h3>
         <div class="grille2">
           <label class="champ">Voix <select id="r-voix">
-            <optgroup label="Voix choisie"><option value="chatterbox-bernard">Homme français (Chatterbox)</option></optgroup>
-            <optgroup label="Kokoro (naturelles)"><option value="kokoro-ff_siwis">A — femme</option><option value="kokoro-pm_alex">B — homme (Alex)</option>
-              <option value="kokoro-em_alex">C — homme (Alex 2)</option><option value="kokoro-am_fenrir">D — homme (Fenrir)</option></optgroup>
-            <optgroup label="Piper (plus robotiques)"><option value="fr_FR-tom-medium">Tom (homme)</option><option value="fr_FR-siwis-medium">Siwis (femme)</option>
-              <option value="fr_FR-upmc-medium">UPMC (femme)</option><option value="fr_FR-gilles-low">Gilles (homme)</option></optgroup></select></label>
+            <option value="chatterbox-bernard">Homme (voix choisie, par défaut)</option>
+            <option value="kokoro-ff_siwis">Femme</option></select></label>
           <label class="champ">Vitesse <span>0,80 = choisi le 24/11 ; plus petit = plus rapide</span><input type="number" id="r-vitesse" min="0.65" max="1.1" step="0.01"></label>
         </div>
         <label class="case"><input type="checkbox" id="r-musique"> Musique de fond (très discrète)</label>
@@ -591,7 +588,7 @@ function remplirReglages() {
   $("#r-heures").value = B.heures ?? 72; $("#r-comptes").value = (B.comptes || []).join("\n");
   const E = (D["buzz.json"] || {}).comptes || {};
   $("#r-comptes-etat").textContent = Object.keys(E).length ? "Dernier relevé : " + Object.entries(E).map(([k, e]) => `${e.ok ? "🟢" : "🔴"} @${k}`).join("  ") : "";
-  $("#r-voix").value = V.voix || "chatterbox-bernard"; $("#r-vitesse").value = V.vitesse ?? 0.8;
+  $("#r-voix").value = ["chatterbox-bernard", "kokoro-ff_siwis"].includes(V.voix) ? V.voix : "chatterbox-bernard"; $("#r-vitesse").value = V.vitesse ?? 0.8;
   $("#r-musique").checked = V.musique !== false; $("#r-bruitages").checked = V.bruitages !== false; $("#r-transitions").checked = !!V.transitions; $("#r-carte").checked = V.carte !== false; $("#r-generiques").checked = !!V.images_generiques; $("#r-citations").checked = V.citations !== false; $("#r-citations-nb").value = String(V.citations_nombre || 12);
   $("#r-chaine").value = P.chaine || ""; $("#r-heures-auto").checked = !!P.heures_auto;
   const MH = (D["stats.json"] || {}).meilleures_heures || [];
