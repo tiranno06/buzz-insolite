@@ -40,7 +40,11 @@ jobs:
         timeout-minutes: 25
         run: bash outils/installer_ffmpeg.sh
       - name: Installer les bibliothèques
-        run: uv pip install --system -q -r requirements.txt || pip install -q -r requirements.txt
+        run: |
+          uv pip install --system -q -r requirements.txt || pip install -q -r requirements.txt
+          # PySceneDetect SANS ses dépendances : il réclame opencv-python (OpenCV 5), qui remplacerait l'OpenCV 4 de
+          # requirements.txt et casserait l'agrandissement des photos (OpenCV 5 ne lit plus les modèles .pb)
+          uv pip install --system -q --no-deps scenedetect==0.7.3 click platformdirs tqdm || pip install -q --no-deps scenedetect==0.7.3 click platformdirs tqdm
       - name: Installer yt-dlp et deno (vraies vidéos du sujet sous licence libre, YouTube Creative Commons)
         run: uv pip install --system -q -U "yt-dlp[default]" || pip install -q -U yt-dlp
       - uses: denoland/setup-deno@v2

@@ -30,8 +30,9 @@ def main():
     res = []
 
     def tests():
+        env = {k: v for k, v in os.environ.items() if k != "GITHUB_ACTIONS"}   # les tests n'envoient jamais rien sur GitHub
         r = subprocess.run([sys.executable, "-m", "unittest", "discover", "-s", "tests"], cwd=RACINE, capture_output=True,
-                           text=True, timeout=1200)
+                           text=True, timeout=1200, env=env)
         fin = (r.stderr or "").strip().splitlines()[-3:]
         if r.returncode:
             raise RuntimeError(" ".join(fin))

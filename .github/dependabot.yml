@@ -12,6 +12,10 @@ updates:
     open-pull-requests-limit: 5
     commit-message:
       prefix: "Mise à jour (outils Python)"
+    ignore:
+      # OpenCV 5 ne lit plus les modèles .pb de l'agrandissement des photos (FSRCNN) : on reste en 4.x
+      - dependency-name: "opencv-contrib-python-headless"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:

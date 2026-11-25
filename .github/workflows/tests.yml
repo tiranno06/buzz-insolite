@@ -24,4 +24,4 @@ jobs:
       - name: Installer les bibliothèques
         run: uv pip install --system -q -r requirements.txt pyyaml || pip install -q -r requirements.txt pyyaml
       - name: Tests (aucun appel réseau ni IA)
-        run: python -m unittest discover -s tests -v
+        run: env -u GITHUB_ACTIONS python -m unittest discover -s tests -v   # jamais d'envoi sur GitHub pendant les tests

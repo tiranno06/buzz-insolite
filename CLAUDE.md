@@ -214,7 +214,10 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
   modèle à part).
 - **4. Photos agrandies** (`vision.agrandir`, OpenCV dnn_superres FSRCNN ×2, 0,3 s) : toute photo de moins de 1000 px, dans
   `images.photo_standard` (Real-ESRGAN demande une carte graphique). OpenCV 4 obligatoire (`opencv-contrib-python-headless<5` :
-  OpenCV 5 ne lit plus les modèles .pb). Modèles en cache `~/.cache/buzz-modeles` (creer.yml).
+  OpenCV 5 ne lit plus les modèles .pb). Modèles en cache `~/.cache/buzz-modeles` (creer.yml). PySceneDetect est installé
+  SANS ses dépendances (`--no-deps`, creer.yml / essai.yml) : il réclame `opencv-python` (OpenCV 5) qui écrasait l'OpenCV 4
+  (essai de la nuit du 25/11 : « agrandissement impossible ») ; Dependabot ignore OpenCV 5. Les tests tournent toujours
+  SANS `GITHUB_ACTIONS` (tests.yml, essai de la nuit) : sinon ils tentent d'envoyer sur GitHub (échec sur les PR de Dependabot).
 
 - **5. Voix plus vivante** (`voix.emotion` → « exaggeration » de Chatterbox) : accroche 0,7, phrase qui s'exclame ou
   questionne 0,62, explications 0,5 (la voix choisie). **10. Tous les cœurs** (`voix.processus_voix`, `_chatterbox`) : les
