@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T18:33:17+01:00",
+   "niveau": "attention",
+   "texte": "⏸️ Création mise en attente : 1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie). Elle partira toute seule dès que les IA gratuites seront de nouveau disponibles (vérifié toutes les 15 min)."
+  },
+  {
    "date": "2026-11-25T17:24:12+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Policier de Miami frappe suspect » (45 s, 13 écrans illustrés) — à regarder puis cocher « À publier »"
