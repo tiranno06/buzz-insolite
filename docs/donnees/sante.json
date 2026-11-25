@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-25T18:37:38+01:00",
+ "maj": "2026-11-25T20:27:33+01:00",
  "ia": [
   {
    "nom": "mistral",
@@ -36,7 +36,7 @@
   {
    "nom": "Internet Archive (vidéos libres)",
    "ok": true,
-   "detail": "3 vidéos"
+   "detail": "7 vidéos"
   },
   {
    "nom": "Wikimedia Commons",
@@ -95,23 +95,23 @@
   "foxnews": 0
  },
  "durees": {
-  "articles": 0,
-  "controle_images": 242,
-  "regles": 30,
-  "montage": 136,
-  "controle_final": 514,
+  "images": 175,
   "texte": 136,
   "extraits": 0,
-  "images": 175,
-  "voix": 161,
-  "rangement": 33,
   "ecriture": 186,
+  "articles": 0,
+  "rangement": 33,
+  "voix": 161,
+  "montage": 136,
+  "controle_final": 514,
+  "regles": 30,
+  "controle_images": 242,
   "total": 1552
  },
  "creations_24h": {
-  "reussies": 23,
+  "reussies": 25,
   "ratees": 0,
-  "en_cours": 3
+  "en_cours": 1
  },
  "quotas": {
   "mistral": {
@@ -144,6 +144,13 @@
   }
  },
  "reparations": [
+  {
+   "id": "20261125-163217-1",
+   "titre": "Leto Lucia et la polémique GTA VI",
+   "etape": "auto",
+   "raison": "Réparation automatique : à vérifier",
+   "le": "2026-11-25T20:27:28+01:00"
+  },
   {
    "id": "20261125-163119-1",
    "titre": "Policier de Miami frappe suspect",

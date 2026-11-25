@@ -44,10 +44,22 @@
    },
    "demande_le": "2026-11-25T18:58:32+01:00",
    "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
+  },
+  {
+   "inputs": {
+    "format": "buzz",
+    "refaire": "20261125-163217-1",
+    "etape": "auto",
+    "remarque": "Réparation automatique : à vérifier",
+    "origine": "reparation",
+    "nombre": "1"
+   },
+   "demande_le": "2026-11-25T20:27:57+01:00",
+   "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
   }
  ],
  "credits": {
-  "le": "2026-11-25T18:58:32+01:00",
+  "le": "2026-11-25T20:27:57+01:00",
   "resume": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
  },
  "creation": {
