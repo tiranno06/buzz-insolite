@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T09:07:59+01:00",
+   "niveau": "info",
+   "texte": "🔁 « Macron sauveur en urgence » refaite (controle) : note 35/100 — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T08:51:47+01:00",
    "niveau": "info",
    "texte": "🔁 « Fascistes en Espagne : un hommage choc à Franco » refaite (controle) : note 70/100 — l'ancienne version est remplacée"
