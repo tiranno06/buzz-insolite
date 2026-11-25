@@ -35,10 +35,22 @@
    },
    "demande_le": "2026-11-25T18:37:48+01:00",
    "raison": "0 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie) ; aucune IA qui voit les images disponible"
+  },
+  {
+   "inputs": {
+    "format": "buzz",
+    "refaire": "20261125-163119-1",
+    "etape": "auto",
+    "remarque": "Réparation automatique : texte un peu court (environ 45 s) ; écran presque noir ; montre des enfants avec un policier sans rapport",
+    "origine": "reparation",
+    "nombre": "1"
+   },
+   "demande_le": "2026-11-25T18:37:53+01:00",
+   "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
   }
  ],
  "credits": {
-  "le": "2026-11-25T18:37:48+01:00",
-  "resume": "0 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie) ; aucune IA qui voit les images disponible"
+  "le": "2026-11-25T18:37:53+01:00",
+  "resume": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
  }
 }
