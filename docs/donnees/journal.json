@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T16:28:39+01:00",
+   "niveau": "info",
+   "texte": "⚙️ Réglages enregistrés."
+  },
+  {
    "date": "2026-11-25T16:28:35+01:00",
    "niveau": "info",
    "texte": "⚙️ Réglages enregistrés."
