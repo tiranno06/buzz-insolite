@@ -926,3 +926,23 @@ class TestExtraitsPerdus(unittest.TestCase):
         from robot import controle
         v = dict(extraits_perdus=2, duree=70, description="x", hashtags=["#a", "#b", "#c"], url="", ecrans_illustres=10, ecrans_total=10)
         self.assertTrue(any("extrait" in p for p in controle.avant_publication(v, {}, forcer=True)))
+
+
+class TestAccrocheMeilleurExtrait(unittest.TestCase):
+    def test_meilleur_extrait_en_premier_et_comptes_espaces(self):
+        from robot import principal as P, citations as C
+        ph = [dict(ecrit="un deux trois quatre cinq six sept huit neuf dix onze douze") for _ in range(10)] + [dict(ecrit="Et toi ?")]
+        ext = [dict(type="video", chemin="x.mp4", duree=12, debut=0, id=f"citation-{k}", citation=True, compte=c, note_ia=n, credit="c")
+               for k, (c, n) in enumerate([("aljazeera", 3), ("aljazeera", 4), ("brut", 9), ("franceinfo", 6), ("bfmtv", 5)])]
+        ancien, ancien_sim, ancien_pp = C.extraits, P.simulation, C.photos_presse
+        try:
+            C.extraits = lambda *a, **k: ext; C.photos_presse = lambda *a, **k: []
+            P.simulation = lambda: False
+            script = {"phrases": ph}
+            P.placer_citations(script, P.scenes_de(ph), {"videos": []}, "/tmp", set(), lambda *_: None,
+                               {"video": {"citations": True}}, {"articles": []}, "buzz")
+        finally:
+            C.extraits, P.simulation, C.photos_presse = ancien, ancien_sim, ancien_pp
+        self.assertEqual(ph[0]["media"]["compte"], "brut")                    # le mieux noté ouvre la vidéo
+        comptes = [p["media"]["compte"] for p in ph[:-1] if p.get("media") and not p["media"].get("suite")]
+        self.assertFalse(any(a == b for a, b in zip(comptes, comptes[1:])), comptes)

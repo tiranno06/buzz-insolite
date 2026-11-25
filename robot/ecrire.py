@@ -18,6 +18,8 @@ CONSIGNE = """Tu écris le texte d'une vidéo TikTok de 60 à 75 secondes pour l
 Public : francophones de 15 à 40 ans. Style : rythmé, phrases courtes, langage simple, effet « tu savais ? ».
 On TUTOIE toujours le spectateur (« tu », « imagine », « et toi ? »), jamais « vous » ni « imaginez ».
 Reste centré sur le SUJET qui buzze : chaque phrase doit en parler (pas de digression sur un autre thème).
+Chaque chiffre, score ou date n'est dit qu'UNE fois (vidéo CAN du 25/11 : « 1-0 » répété dans 3 phrases).
+Phrases simples et correctes, sans tournure administrative (pas « cette sanction a été prise, invoquant les articles… »).
 Rassemble les informations de TOUS les articles (chacun apporte souvent un détail différent), sans jamais répéter deux fois
 la même information.
 Structure :
@@ -39,7 +41,8 @@ Donne 13 à 17 phrases (20 à 24 pour les 3 actus de la semaine). Pour chaque ph
   jamais de mot abstrait (controversy, details, contradiction, realism).
 Aussi :
 - "titre" : titre court de la vidéo (6 mots max) ;
-- "accroche" : texte de couverture (4 mots max, en majuscules) ;
+- "accroche" : texte de couverture (4 mots max, en majuscules), compris par TOUS : jamais de sigle (pas « TAS », « CAF »,
+  « FSF » : « LE SÉNÉGAL GARDE SA COUPE ») ;
 - "description" : 1 à 2 phrases pour la description TikTok, avec un émoji ;
 - "question" : la question à poser en commentaire, en TUTOYANT (« Et toi, … ? ») ;
 - "hashtags" : 4 hashtags précis sur le sujet (sans #) ;
@@ -57,7 +60,8 @@ Juge SEULEMENT les phrases marquées « À JUGER ». Une phrase est BONNE si :
 - ou c'est une transition, une accroche, une question au spectateur, ou une explication générale évidente et sans risque
   (« L'A320 est un avion d'Airbus », « Toulouse est la ville de l'aéronautique »).
 Contrôle EN PARTICULIER : la FONCTION exacte de chaque personne (président DE QUOI : du pays, d'une fédération, d'un club…),
-les dates, les scores, les chiffres, qui a fait quoi, et les phrases qui se contredisent entre elles (ex. « le Maroc a marqué…
+les dates, les scores, les chiffres, qui a fait quoi, un même chiffre ou score redit dans plusieurs phrases (à retirer
+des phrases suivantes), et les phrases qui se contredisent entre elles (ex. « le Maroc a marqué…
 mais le Sénégal a gagné » sans explication).
 Une phrase est à CORRIGER si un fait est faux, exagéré ou absent des articles : donne alors une CORRECTION fidèle aux articles
 (même longueur, même style). Ne retire une phrase (correction "") que si aucune correction honnête n'est possible.

@@ -47,6 +47,12 @@ note de 0 à 10 : 10 = on VOIT l'événement lui-même (l'action, la foule, les 
 un écran de titre, un logo ou une publicité. Réponds uniquement en JSON : {"images": [{"n": numéro, "note": 0-10}]}"""
 
 
+def _note_fenetre(notes, debut, lg):
+    """Note moyenne de l'IA sur un passage (None si l'IA n'a pas noté cette vidéo)."""
+    dedans = [n for t, n in notes or [] if debut <= t < debut + lg]
+    return round(sum(dedans) / len(dedans), 1) if dedans else None
+
+
 def notes_ia(brut, d, sujet, dossier, journal=print, nb=10):
     """Notes de l'IA qui voit sur `nb` images réparties dans la vidéo d'origine (amélioration 1 du 25/11) : sert à choisir
     les passages où l'on voit l'ACTION. [] si l'IA est indisponible (le choix se fait alors aux changements de plan)."""
@@ -220,7 +226,7 @@ def extraits(sujet, dossier, journal=print, nombre=5, deja=None, photos=3):
             if not lg:                                        # trop courte pour un extrait : images fixes seulement
                 journal(f"  citation @{v.get('compte')} : vidéo de {d:.0f} s, trop courte pour un extrait de 10 s (images fixes seulement)")
                 notes_par_video[v["url"]] = notes_ia(brut, d, sujet, dossier, journal, nb=5)
-                plans.append((v, brut, d, 0, [], [])); continue
+                plans.append((v, brut, d, 0, [], [], [])); continue
             n_max = max(1, int(d * PART_TOTALE // lg))
             coupes = _changements(brut)
             notes = notes_ia(brut, d, sujet, dossier, journal) if d >= 25 else []
@@ -229,12 +235,13 @@ def extraits(sujet, dossier, journal=print, nombre=5, deja=None, photos=3):
                 journal(f"  moments forts @{v.get('compte')} : " + ", ".join(f"{x:.0f} s" for x, _ in choisis)
                         + f" (notes de l'IA : {', '.join(str(int(n)) for _, n in notes)})")
             notes_par_video[v["url"]] = notes
-            plans.append((v, brut, d, lg, [x for x, _ in choisis], [l for _, l in choisis]))
+            plans.append((v, brut, d, lg, [x for x, _ in choisis], [l for _, l in choisis],
+                          [_note_fenetre(notes, x, l) for x, l in choisis]))
         except Exception as e:
             journal(f"  citation @{v.get('compte')} impossible ({str(e)[:100]})")
     ordre = [(p, k) for k in range(max((len(p[4]) for p in plans), default=0)) for p in plans if k < len(p[4])]
     out, par_compte = [], {}
-    for (v, brut, d, lg0, debuts, longueurs), k in ordre:     # un par vidéo d'abord, puis les passages suivants
+    for (v, brut, d, lg0, debuts, longueurs, notes_f), k in ordre:     # un par vidéo d'abord, puis les passages suivants
         if len(out) >= nombre:
             break
         if par_compte.get(v.get("compte"), 0) >= PARCOMPTE_MAX:
@@ -258,12 +265,13 @@ def extraits(sujet, dossier, journal=print, nombre=5, deja=None, photos=3):
         out.append(dict(type="video", chemin=chemin, duree=lg, debut=0, id=cle, citation=True, compte=compte,
                         credit=f"@{compte} (TikTok, extrait cité)", page=v["url"], auteur=f"@{compte}",
                         licence="courte citation (source visible, logo non flouté)",
-                        origine=dict(duree=round(d, 1), debut=debut, longueur=lg)))
+                        origine=dict(duree=round(d, 1), debut=debut, longueur=lg),
+                        note_ia=notes_f[k] if k < len(notes_f) else None))
         deja.add(cle)
         journal(f"  ✓ citation @{compte} : {lg:.0f} s à partir de {debut:.0f} s (vidéo de {d:.0f} s)")
     # images fixes de l'événement (« photos »), tirées des vidéos d'origine hors des extraits, une vidéo après l'autre
     fixes = []
-    for v, brut, d, lg, debuts, _ in sorted(plans, key=lambda p: bool(p[4])):   # vidéos sans extrait d'abord
+    for v, brut, d, lg, debuts, _, _n in sorted(plans, key=lambda p: bool(p[4])):   # vidéos sans extrait d'abord
         if len(fixes) >= photos:
             break
         pris = [m["origine"]["debut"] for m in out if m["page"] == v["url"]]

@@ -278,6 +278,13 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
   écrit par l'IA, absent de Poppins) : `montage.affichable` / `REMPLACER` (tirets ‐ ‑ ‒ − → « - », trait d'union conditionnel
   retiré) à TOUT texte dessiné (titres, sous-titres, crédits), `ecrire.normaliser` nettoie le texte de l'IA à la source,
   règle « caracteres » (regles.py) et rejeu (« 1‑0 » → « 1-0 »).
+- **Analyse de la vidéo CAN r12 (25/11, 100/100) et corrections pour les suivantes** : accroche sur un homme de dos sur une
+  plage → l'extrait le MIEUX NOTÉ par l'IA ouvre la vidéo (`note_ia` de chaque extrait, `_note_fenetre`) ; extraits d'un même
+  compte collés → espacés (`placer_citations`) ; « 1-0 » redit dans 3 phrases et phrase administrative (« cette sanction a
+  été prise, invoquant les articles… ») → consignes d'écriture et de vérification (un chiffre dit UNE fois, phrases simples) ;
+  accroche « TAS REND LA VICTOIRE » → jamais de sigle dans l'accroche ; question avec tiret insécable → `affichable` sur la
+  question et la description ; `categorie` vide → « actualite » par défaut. Non corrigé (choix) : nos sous-titres sur
+  bandeau noir peuvent tomber près des sous-titres de la vidéo d'origine (leur place change d'un média à l'autre).
 - **Rejeu d'une vraie vidéo** (`tests/test_rejeu.py`, données réelles de la CAN r10 dans `tests/donnees/rejeu_can`, sans
   réseau ni IA, ~50 s, à chaque envoi) : les règles trouvent les défauts réels, la réparation ne touche que les passages
   fautifs, refaire le texte ne perd aucun extrait, le montage ne refait que les écrans changés. Il a trouvé dès sa 1re

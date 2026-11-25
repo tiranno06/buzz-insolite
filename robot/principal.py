@@ -516,14 +516,14 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
     articles_ = E["articles"]
     return dict(id=vid, tag=f"v-{vid}", url=E["url"], titre=script["titre"], accroche=script.get("accroche", ""),
                 sujet_id=sujet["id"], sujet=sujet["titre"], buzz={k: sujet.get(k) for k in ("vues", "jaime", "commentaires", "score")},
-                description=script.get("description", ""), question=script.get("question", ""),
+                description=montage.affichable(script.get("description", "")), question=montage.affichable(script.get("question", "")),
                 hashtags=([f"#{script['serie_hashtag']}"] if script.get("serie_hashtag") else []) + ecrire.hashtags(script, sujet, R), duree=round(E["duree"], 1),
                 sources=[dict(media=a["media"], titre=a["titre"], lien=a["lien"]) for a in articles_],
                 verification=script.get("verification"), verifie=script.get("verifie", False),
                 credits=sorted({p["media"]["credit"] for p in script["phrases"] if p.get("media")}),
                 extraits_perdus=E.get("extraits_perdus", 0), regles_non_respectees=E.get("regles", []),
                 ecrans_illustres=controle.part_illustree(script)[0], ecrans_total=controle.part_illustree(script)[1], format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""),
-                humeur=script.get("humeur", ""), categorie=sujet.get("categorie", ""), texte=[p["ecrit"] for p in script["phrases"]],
+                humeur=script.get("humeur", ""), categorie=sujet.get("categorie") or script.get("categorie") or "actualite", texte=[p["ecrit"] for p in script["phrases"]],
                 essai=simulation(), cree_le=iso(), ia_quotas={k: dict(v) for k, v in ia.QUOTAS.items()}, fabrication_s=round(time.time() - E["t0"]), controles=bulletin,
                 reprises=E.get("reprises", 0), preuves=preuves_licences(script), couverture_ms=couverture_ms(script),
                 durees=E.get("durees", {}), refaite=E.get("refaite"),
@@ -582,6 +582,17 @@ def placer_citations(script, scenes, sujet, dossier, deja, journal, R, E, format
         journal(f"  {len(reserve)} extrait(s) de l'ancienne version reposé(s) sur les phrases nouvelles")
     vids = [m for m in extraits if m["type"] == "video"]
     fixes = [m for m in extraits if m["type"] == "photo"]
+    # ACCROCHE : l'extrait le mieux noté par l'IA (l'action, la foule, le moment fort) ouvre la vidéo (vidéo CAN r12 du
+    # 25/11 : elle s'ouvrait sur un homme de dos sur une plage) ; les extraits d'un même compte sont espacés
+    if vids:
+        meilleur = max(vids, key=lambda m: m.get("note_ia") if m.get("note_ia") is not None else -1)
+        vids.remove(meilleur)
+        espaces, reste = [], vids[:]
+        while reste:                                          # jamais deux extraits du même compte à la suite, si possible
+            dernier = (espaces or [meilleur])[-1].get("compte")
+            k = next((j for j, m in enumerate(reste) if m.get("compte") != dernier), 0)
+            espaces.append(reste.pop(k))
+        vids = [meilleur] + espaces
     if len(vids) < len(libres):
         fixes += citations.photos_presse(E.get("articles") or [], sujet, dossier, journal,
                                          maxi=max(0, len(libres) - len(vids) - len(fixes) + 2))
