@@ -1,10 +1,10 @@
 {
- "maj": "2026-11-24T23:53:29+01:00",
+ "maj": "2026-11-25T13:47:25+01:00",
  "ia": [
   {
    "nom": "mistral",
-   "ok": true,
-   "detail": "mistral:ministral-14b-2512"
+   "ok": false,
+   "detail": "mistral ministral-8b-latest 402 : {\"object\":\"error\",\"message\":\"You need a subscription to access this API.\",\"type\":\"billing_no_api_budget_configured\",\"param\":nu"
   },
   {
    "nom": "groq",
@@ -13,8 +13,8 @@
   },
   {
    "nom": "gemini",
-   "ok": false,
-   "detail": "gemini gemini-2.5-flash 404 : [{\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash is no longer available to new users. Please up"
+   "ok": true,
+   "detail": "gemini:gemini-flash-lite-latest"
   },
   {
    "nom": "openrouter",
@@ -26,7 +26,7 @@
   {
    "nom": "Presse (Bing Actualités)",
    "ok": true,
-   "detail": "5 articles"
+   "detail": "2 articles"
   },
   {
    "nom": "PeerTube (vidéos libres)",
@@ -36,7 +36,7 @@
   {
    "nom": "Internet Archive (vidéos libres)",
    "ok": true,
-   "detail": "4 vidéos"
+   "detail": "6 vidéos"
   },
   {
    "nom": "Wikimedia Commons",
@@ -51,7 +51,7 @@
   {
    "nom": "Vimeo (vidéos libres)",
    "ok": true,
-   "detail": "45 vidéos"
+   "detail": "0 vidéos"
   }
  ],
  "buffer": {
@@ -95,21 +95,50 @@
   "foxnews": 0
  },
  "durees": {
-  "ecriture": 79,
-  "images": 233,
-  "voix": 598,
-  "rangement": 6,
-  "controle_final": 165,
-  "montage": 58,
-  "articles": 4,
-  "texte": 42,
-  "controle_images": 338,
-  "total": 964
+  "controle_images": 4,
+  "rangement": 9,
+  "images": 11,
+  "voix": 0,
+  "regles": 316,
+  "montage": 183,
+  "extraits": 0,
+  "controle_final": 557,
+  "total": 1091
  },
  "creations_24h": {
-  "reussies": 9,
-  "ratees": 5,
-  "en_cours": 4
+  "reussies": 24,
+  "ratees": 1,
+  "en_cours": 1
+ },
+ "quotas": {
+  "mistral": {
+   "appels": 0,
+   "refus": 0,
+   "erreurs": 11,
+   "restant_minute": "0",
+   "sature": false
+  },
+  "groq": {
+   "appels": 3,
+   "refus": 0,
+   "erreurs": 3,
+   "restant_demandes": "999",
+   "limite_demandes": "1000",
+   "restant_mots": "7578",
+   "sature": false
+  },
+  "gemini": {
+   "appels": 3,
+   "refus": 7,
+   "erreurs": 3,
+   "sature": true
+  },
+  "openrouter": {
+   "appels": 2,
+   "refus": 8,
+   "erreurs": 0,
+   "sature": true
+  }
  },
  "reparations": [
   {
@@ -128,59 +157,5 @@
   }
  ],
  "sujets_remis": 0,
- "resume": "⚠️ En panne : gemini",
- "essai_nuit": {
-  "le": "2026-11-25T12:22:05+01:00",
-  "resultats": [
-   {
-    "nom": "Tests du code (montage compris)",
-    "ok": true,
-    "detail": "Ran 80 tests in 26.317s  OK",
-    "duree_s": 26.9
-   },
-   {
-    "nom": "Voix d'homme (Chatterbox)",
-    "ok": true,
-    "detail": "4.1 s de voix",
-    "duree_s": 51.2
-   },
-   {
-    "nom": "Calage des mots (Whisper)",
-    "ok": true,
-    "detail": "9 mots entendus",
-    "duree_s": 0.3
-   },
-   {
-    "nom": "Téléchargement d'une vidéo TikTok d'origine",
-    "ok": true,
-    "detail": "@reuters : 35 s",
-    "duree_s": 2.5
-   },
-   {
-    "nom": "Recadrage et agrandissement (OpenCV)",
-    "ok": true,
-    "detail": "visage : None, photo agrandie",
-    "duree_s": 1.0
-   },
-   {
-    "nom": "Orthographe (LanguageTool)",
-    "ok": true,
-    "detail": "1 faute(s) vue(s)",
-    "duree_s": 0.5
-   },
-   {
-    "nom": "IA qui écrit",
-    "ok": true,
-    "detail": "groq:openai/gpt-oss-120b",
-    "duree_s": 1.0
-   },
-   {
-    "nom": "IA qui voit",
-    "ok": true,
-    "detail": "gemini:gemini-flash-lite-latest",
-    "duree_s": 16.0
-   }
-  ],
-  "ok": true
- }
+ "resume": "⚠️ En panne : mistral"
 }

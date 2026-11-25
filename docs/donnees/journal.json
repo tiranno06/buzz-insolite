@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T13:47:26+01:00",
+   "niveau": "attention",
+   "texte": "🩺 Santé du robot : ⚠️ En panne : mistral"
+  },
+  {
    "date": "2026-11-25T13:14:10+01:00",
    "niveau": "info",
    "texte": "🔁 « CAN 2025 : TAS redonne titre » refaite (controle) : note 100/100, corrige : « titres 1-0 et 3-0 affichés avec un carré (tiret que la police n'a pas) » — l'ancienne version est remplacée"

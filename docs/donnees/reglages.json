@@ -74,7 +74,8 @@
    "region": 7,
    "monde60": true
   },
-  "paralleles": 5
+  "paralleles": 5,
+  "series": true
  },
  "hashtags": {
   "fixes": [
