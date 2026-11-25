@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T17:24:12+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Policier de Miami frappe suspect » (45 s, 13 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-25T17:13:14+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Iran: Lashes for a Hijab-Free Song » (60 s, 16 écrans illustrés) — à regarder puis cocher « À publier »"
