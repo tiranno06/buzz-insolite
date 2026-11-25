@@ -462,15 +462,18 @@ class TestSujetsRiches(unittest.TestCase):
         from robot import images
         def faux(url, entetes=None, *a):
             self.assertIn("bearer", entetes["Authorization"])
-            return {"data": [dict(link="https://vimeo.com/1", name="n", duration=30, user={"name": "A"}, license="by"),
-                             dict(link="https://vimeo.com/2", name="n", duration=30, user={"name": "B"}, license="by-nc")]}
+            dl = [dict(link="https://dl/1.mp4", height=540, size=9e6), dict(link="https://dl/0.mp4", height=240, size=2e6)]
+            return {"data": [dict(link="https://vimeo.com/1", name="n", duration=30, user={"name": "A"}, license="by", download=dl),
+                             dict(link="https://vimeo.com/2", name="n", duration=30, user={"name": "B"}, license="by-nc", download=dl),
+                             dict(link="https://vimeo.com/3", name="n", duration=30, user={"name": "C"}, license="by")]}
         garde = images._json; images._json = faux
         os.environ["VIMEO_TOKEN"] = "essai"
         try:
             c = images._cand_vimeo("Sujet", print)
         finally:
             images._json = garde; os.environ.pop("VIMEO_TOKEN")
-        self.assertEqual({x["page"] for x in c}, {"https://vimeo.com/1"})               # « by-nc » jamais repris
+        self.assertEqual({x["page"] for x in c}, {"https://vimeo.com/1"})               # « by-nc » jamais repris ; sans lien
+        self.assertEqual(c[0]["fichier"], "https://dl/1.mp4")                            # de téléchargement : écartée
         self.assertEqual(images._cand_vimeo("Sujet", print), [])                          # sans clé : Vimeo sauté
 
     def test_preuves_et_mention_ia(self):

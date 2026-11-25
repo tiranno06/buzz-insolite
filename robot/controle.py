@@ -219,14 +219,16 @@ def _image_de(media, dossier, nom, instant=1.0):
     sortie = os.path.join(dossier, nom)
     entree = media["chemin"]
     t = media.get("debut", 0) + instant if media["type"] == "video" else 0
+    erreur = ""
     for essai_t in (t, 0):                               # vidéo plus courte que prévu : on prend sa toute première image
         if os.path.exists(sortie):
             os.remove(sortie)
-        subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(essai_t), "-i", entree, "-frames:v", "1", "-vf", "scale=512:-2",
-                        "-q:v", "4", sortie], check=False)
+        r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(essai_t), "-i", entree, "-frames:v", "1",
+                            "-vf", "scale=512:-2", "-q:v", "4", sortie], check=False, capture_output=True, text=True)
         if os.path.exists(sortie) and os.path.getsize(sortie) > 0:
             return sortie
-    raise OSError("aucune image lisible dans ce média")
+        erreur = (r.stderr or "").strip().splitlines()[-1:] or [""]
+    raise OSError(f"{os.path.basename(entree)} : {erreur[0][:90]}")
 
 
 def mesures_image(chemin):
@@ -357,8 +359,8 @@ def controle_images(script, dossier, B, journal=print, deja=None, sujet="", sans
             try:
                 img = _image_de(m, dossier, f"controle{i:02d}.jpg")
                 lum, net = mesures_image(img)
-            except Exception:
-                fautifs[i] = ("image illisible", ""); continue
+            except Exception as e:
+                fautifs[i] = (f"image illisible ({str(e)[:70]})", ""); continue
             if lum < 20:
                 fautifs[i] = ("écran presque noir", "")
             elif net < 6:

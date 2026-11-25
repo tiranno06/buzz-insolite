@@ -347,16 +347,21 @@ def _cand_vimeo(sujet, journal):
         return []
     out = []
     for filtre in ("CC-BY", "CC-BY-SA", "CC0"):
-        q = urllib.parse.urlencode({"query": sujet[:80], "filter": filtre, "per_page": 15,
-                                    "fields": "link,name,duration,user.name,license"})
+        q = urllib.parse.urlencode({"query": sujet[:80], "filter": filtre, "per_page": 25,
+                                    "fields": "link,name,duration,user.name,license,download"})
         d = _json(f"https://api.vimeo.com/videos?{q}", {"Authorization": f"bearer {jeton}",
                                                        "Accept": "application/vnd.vimeo.*+json;version=3.4"})
         for v in d.get("data") or []:
             lic = {"by": "CC BY", "by-sa": "CC BY-SA", "cc0": "CC0"}.get(str(v.get("license") or "").lower())
-            if lic:
+            # Vimeo refuse le téléchargement sans compte (essai du 25/11) : seules les vidéos dont l'AUTEUR a permis le
+            # téléchargement (lien « download » de l'API officielle) sont prises ; le plus petit fichier d'au moins 360p.
+            liens = sorted([x for x in v.get("download") or [] if x.get("link") and (x.get("height") or 0) >= 360],
+                           key=lambda x: x.get("size") or 1e12)
+            if lic and liens:
                 out.append(dict(source="Vimeo", page=v["link"], cle=f"vm-{v['link'].rstrip('/').rsplit('/', 1)[-1]}",
                                 titre=v.get("name", ""), auteur=(v.get("user") or {}).get("name", ""),
-                                duree=v.get("duration") or 0, licence=lic))
+                                duree=v.get("duration") or 0, licence=lic, fichier=liens[0]["link"],
+                                taille=liens[0].get("size") or 0))
     return out
 
 
@@ -427,6 +432,18 @@ def telecharger_peertube(page, debut, fin, chemin):
 
 def _telecharger_passage(c, debut, fin, duree, chemin, journal=print):
     """Le passage [debut, fin] de la vidéo candidate `c` dans `chemin` (mp4)."""
+    if c.get("fichier"):                                   # lien direct de téléchargement donné par la source (Vimeo)
+        if (c.get("taille") or 0) > 300 * 1024 * 1024:
+            raise OSError("fichier trop gros (plus de 300 Mo)")
+        entier = chemin[:-4] + "-entier.mp4"
+        _telecharger(c["fichier"], entier)
+        try:
+            subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(debut), "-i", entier, "-t", str(max(6, fin - debut)),
+                            "-vf", "scale=-2:'min(720,ih)'", "-c:v", "libx264", "-preset", "veryfast", "-an", chemin],
+                           check=True, timeout=300)
+        finally:
+            os.remove(entier)
+        return
     if c["source"] == "PeerTube":
         try:
             telecharger_peertube(c["page"], debut, fin, chemin)
@@ -584,12 +601,35 @@ def trouver(requete, dossier, n, deja, journal=print, theme="", entite="", gener
     return m
 
 
+def lisible(chemin):
+    """'' si le fichier est une vraie image ou vidéo lisible, sinon la raison (page d'erreur HTML, fichier vide, format
+    inconnu…) : un fichier illisible n'est JAMAIS posé sur un écran (bug du 25/11 : 11 écrans « image illisible »)."""
+    try:
+        if os.path.getsize(chemin) < 2000:
+            return f"fichier trop petit ({os.path.getsize(chemin)} octets)"
+        with open(chemin, "rb") as f:
+            debut = f.read(200).lower()
+        if b"<html" in debut or b"<!doctype" in debut or debut.lstrip().startswith(b"{"):
+            return "page web à la place de l'image (" + debut[:60].decode("utf-8", "ignore").strip() + ")"
+        r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=codec_type,codec_name", "-of", "csv=p=0", chemin],
+                           capture_output=True, text=True, timeout=60)
+        if "video" not in r.stdout:
+            return "format illisible (" + (r.stderr or r.stdout).strip()[:80] + ")"
+        return ""
+    except Exception as e:
+        return str(e)[:80]
+
+
 def _recuperer(m, dossier, n, deja, journal):
     chemin = os.path.join(dossier, f"media{n:02d}.jpg")
     try:
         _telecharger(m["url"], chemin)
     except Exception as e:
         journal(f"    téléchargement refusé ({str(e)[:60]})")
+        return False
+    raison = lisible(chemin)
+    if raison:
+        journal(f"    image écartée : {raison}")
         return False
     deja.add(m["id"]); m["chemin"] = chemin
     return True
@@ -622,6 +662,10 @@ def _trouver(requete, dossier, n, deja, journal=print, generiques=False):
             except Exception:
                 journal(f"    téléchargement refusé ({str(e)[:60]})")
                 continue
+        raison = lisible(chemin)
+        if raison:
+            journal(f"    {chercheur.__name__} : fichier écarté ({raison})")
+            continue
         deja.add(m["id"]); m["chemin"] = chemin
         if m["type"] == "video":
             try:

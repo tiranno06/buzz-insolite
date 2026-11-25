@@ -120,6 +120,14 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
   que pour la DERNIÈRE phrase (boucle cassée) → écrans vides puis titres de presse. Chaque écran a de nouveau sa recherche.
 - Site : le bulletin du contrôle qualité est toujours replié (demande de l'auteur du 25/11).
 
+- **Analyse des vidéos refaites du 25/11 (0 vraie image sur 12 à 15 écrans)** : 1) les images trouvées étaient jugées
+  « illisibles » sans raison connue (Wikimedia bloque le serveur de la session : pas reproductible ici) → tout fichier
+  téléchargé est vérifié aussitôt (`images.lisible` : taille, page HTML, ffprobe) et jamais posé s'il est illisible ; la
+  raison exacte est écrite dans le journal (`_image_de` donne l'erreur de ffmpeg) ; 2) Vimeo refuse le téléchargement sans
+  compte (« only works when logged-in », même par son lecteur) → seules les vidéos dont l'auteur a permis le téléchargement
+  (lien `download` de l'API officielle) sont prises (`fichier`, 300 Mo au plus) ; 3) beaucoup de sujets d'actu n'ont presque
+  aucune vidéo libre de l'événement exact.
+
 ## Vitesse (analyse du 24/11 : vidéo GTA en 99 min, dont 86 min de voix Chatterbox)
 - Voix refaite par le contrôle final : la phrase a déjà eu 2 essais à l'étape voix, donc mots simplifiés DÈS le 1er essai,
   phrase retirée au 3e (si la vidéo reste ≥ 62 s) ; avant : jusqu'à 7 essais identiques (~1 min de Chatterbox chacun).
