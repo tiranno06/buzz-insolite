@@ -1,6 +1,338 @@
 {
  "videos": [
   {
+   "id": "20261125-163355-1",
+   "tag": "v-20261125-163355-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-163355-1/buzz-20261125-163355-1.mp4",
+   "titre": "Bois de l'Arche, 4300 ans",
+   "accroche": "ARCHE DÉCODÉE !",
+   "sujet_id": "072f38e62b",
+   "sujet": "Recherche Ark biblique : bois datés 4300 ans",
+   "buzz": {
+    "vues": 720800,
+    "jaime": 69000,
+    "commentaires": 5292,
+    "score": 320
+   },
+   "description": "",
+   "question": "",
+   "hashtags": [
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 68.8,
+   "sources": [
+    {
+     "media": "markets.businessinsider.com",
+     "titre": "World-Shaking Match: Carbon Dating Confirms Wood from the Durupınar “Noah’s Ark” Site is from the Flood Era",
+     "lien": "https://markets.businessinsider.com/news/stocks/world-shaking-match-carbon-dating-confirms-wood-from-the-durup-nar-noah-s-ark-site-is-from-the-flood-era-1036795582"
+    },
+    {
+     "media": "patheos.com",
+     "titre": "Noah’s Ark Archaeologists: Gopher Wood or Should We Go Fish?",
+     "lien": "https://www.patheos.com/blogs/closetohome/2026/11/noahs-ark-archaeologists-gopher-wood-or-should-we-go-fish/"
+    },
+    {
+     "media": "newsweek.com",
+     "titre": "Noah’s Ark Hunters Say Lab Results Line Up With Biblical Dates",
+     "lien": "https://www.newsweek.com/noahs-ark-hunters-say-lab-results-line-up-with-biblical-dates-12758131"
+    },
+    {
+     "media": "newsweek.com",
+     "titre": "Noah’s Ark Hunters Say They’ve Found Wood With Tool Marks",
+     "lien": "https://www.newsweek.com/noahs-ark-hunters-say-theyve-found-wood-with-tool-marks-12700404"
+    },
+    {
+     "media": "dailygeekshow.com",
+     "titre": "Du bois brûlé extrait sous la formation de Durupınar relance l’arche de Noé, mais les géologues y voient un pli naturel",
+     "lien": "https://dailygeekshow.com/bois-carbonise-durupinar-arche/"
+    },
+    {
+     "media": "churchleaders.com",
+     "titre": "‘I Believe It’s Noah’s Ark’—Wood Found Beneath Ararat Reportedly Matches Flood Date",
+     "lien": "https://churchleaders.com/news/2225904-noahs-ark-scans-wood-ararat-flood-date.html"
+    },
+    {
+     "media": "yahoo.com",
+     "titre": "Noah’s Ark hunters say lab results match the biblical timeline",
+     "lien": "https://www.yahoo.com/news/science/articles/noah-ark-hunters-lab-results-181526505.html"
+    },
+    {
+     "media": "economictimes.indiatimes.com",
+     "titre": "Has Noah's Ark finally been found? 4,300-year-old wood discovery raises new questions",
+     "lien": "https://economictimes.indiatimes.com/science/has-noahs-ark-finally-been-found-4300-year-old-wood-discovery-raises-new-questions/articleshow/136126248.cms"
+    },
+    {
+     "media": "msn.com",
+     "titre": "Des fragments de bois carbonisés découverts à 9 mètres de profondeur en Turquie pourraient être des vestiges de l'arche de Noé",
+     "lien": "https://www.msn.com/fr-fr/actualite/other/des-fragments-de-bois-carbonis%C3%A9s-d%C3%A9couverts-%C3%A0-9-m%C3%A8tres-de-profondeur-en-turquie-pourraient-%C3%AAtre-des-vestiges-de-larche-de-no%C3%A9/ar-AA2h5BVg"
+    },
+    {
+     "media": "tf1.fr",
+     "titre": "Info/Infox : l'arche de Noé a-t-elle été réellement retrouvée en Turquie ?",
+     "lien": "https://www.tf1.fr/fr-ci/tf1/jt-20h/videos/info-infox-larche-de-noe-a-t-elle-ete-reellement-retrouvee-en-turquie-63496513.html"
+    }
+   ],
+   "verification": {
+    "par": "gemini:gemini-flash-lite-latest",
+    "corrigees": 1,
+    "retirees": 2,
+    "problemes": [
+     "Les articles parlent du déluge de Noé (Noah's Flood) et non de l'Apocalypse.",
+     "Cette phrase contient une suite de nombres isolés sans contexte compréhensible pour le spectateur.",
+     "Ces chiffres n'apparaissent nulle part dans les articles fournis et n'ont aucun rapport avec le sujet."
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "@dailymail (TikTok, image citée)",
+    "Photo : churchleaders.com (article cité)",
+    "Photo : dailygeekshow.com (article cité)",
+    "Photo : economictimes.indiatimes.com (article cité)",
+    "Photo : markets.businessinsider.com (article cité)",
+    "Photo : newsweek.com (article cité)",
+    "Photo : patheos.com (article cité)"
+   ],
+   "extraits_perdus": 0,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 13,
+   "ecrans_total": 13,
+   "format": "buzz",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "",
+   "humeur": "neutre",
+   "categorie": "actualite",
+   "texte": [
+    "Des chercheurs ont retrouvé des fragments de bois carbonisé dans la formation de Durupınar.",
+    "Les fragments se trouvent à environ 9 m, soit 9 mètres, sous la surface.",
+    "Une analyse radiocarbone réalisée à l'American Laboratory de Floride place les échantillons à 4 300 années.",
+    "Les dates calibrées couvrent la période des deux dates du déluge biblique, 2348 BC.",
+    "Le bois porte des marques de coupe qui indiquent une fabrication humaine.",
+    "Le professeur Cenker Atila de l'université Sivas Cumhuriyet a dirigé l'excavation.",
+    "La formation en forme de bateau est connue sous le nom de Durupınar, située au sud du mont Ararat.",
+    "Les géologues l'ont longtemps considérée comme une structure naturelle, sans lien avec un navire.",
+    "Noah's Ark Scans, une organisation américaine dirigée par Andrew Jones, poursuit la recherche.",
+    "Un rapport final devrait être publié à la fin du printemps 2027.",
+    "Les dimensions du bois suggèrent une longueur d'environ 300 cubits, conforme aux dimensions bibliques.",
+    "Le test a mesuré 3850 années radiocarbone.",
+    "Certains sceptiques affirment que la profondeur ne garantit pas l'âge, et que le bois pourrait provenir d'un feu de berger.",
+    "Et toi, tu en penses quoi ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-25T16:59:25+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 38,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 5,
+     "refus": 23,
+     "erreurs": 3,
+     "restant_demandes": "974",
+     "limite_demandes": "1000",
+     "restant_mots": "331"
+    },
+    "gemini": {
+     "appels": 5,
+     "refus": 16,
+     "erreurs": 16
+    },
+    "openrouter": {
+     "appels": 0,
+     "refus": 36,
+     "erreurs": 0
+    }
+   },
+   "fabrication_s": 1530,
+   "controles": {
+    "note": 90,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 9,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 12,
+      "gravite": "moyen",
+      "probleme": "la dernière phrase n'est pas une question au spectateur",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 14,
+      "gravite": "moyen",
+      "probleme": "la dernière phrase n'est pas une question au spectateur",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase réécrite et revérifiée"
+     }
+    ],
+    "sautes": [
+     "regard de l'IA sur la vidéo finie (IA indisponible : openrouter nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free 429 : {\"error\":{\"message\":\"Rate limit exceeded: free-model)"
+    ],
+    "corriges": 4,
+    "restants": 0,
+    "graves_restants": 1
+   },
+   "reprises": 0,
+   "preuves": [
+    {
+     "ecran": 1,
+     "page": "https://www.tiktok.com/@dailymail/video/7711679808245075214",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@dailymail",
+     "titre": "",
+     "credit": "@dailymail (TikTok, image citée)",
+     "releve_le": "2026-11-25T16:59:25+01:00"
+    },
+    {
+     "ecran": 2,
+     "page": "https://economictimes.indiatimes.com/science/has-noahs-ark-finally-been-found-4300-year-old-wood-discovery-raises-new-questions/articleshow/136126248.cms",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "economictimes.indiatimes.com",
+     "titre": "",
+     "credit": "Photo : economictimes.indiatimes.com (article cité)",
+     "releve_le": "2026-11-25T16:59:25+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://www.tiktok.com/@dailymail/video/7711679808245075214",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@dailymail",
+     "titre": "",
+     "credit": "@dailymail (TikTok, image citée)",
+     "releve_le": "2026-11-25T16:59:25+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://markets.businessinsider.com/news/stocks/world-shaking-match-carbon-dating-confirms-wood-from-the-durup-nar-noah-s-ark-site-is-from-the-flood-era-1036795582",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "markets.businessinsider.com",
+     "titre": "",
+     "credit": "Photo : markets.businessinsider.com (article cité)",
+     "releve_le": "2026-11-25T16:59:25+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://www.patheos.com/blogs/closetohome/2026/11/noahs-ark-archaeologists-gopher-wood-or-should-we-go-fish/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "patheos.com",
+     "titre": "",
+     "credit": "Photo : patheos.com (article cité)",
+     "releve_le": "2026-11-25T16:59:25+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://www.patheos.com/blogs/closetohome/2026/11/noahs-ark-archaeologists-gopher-wood-or-should-we-go-fish/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "patheos.com",
+     "titre": "",
+     "credit": "Photo : patheos.com (article cité)",
+     "releve_le": "2026-11-25T16:59:25+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://www.newsweek.com/noahs-ark-hunters-say-lab-results-line-up-with-biblical-dates-12758131",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "newsweek.com",
+     "titre": "",
+     "credit": "Photo : newsweek.com (article cité)",
+     "releve_le": "2026-11-25T16:59:25+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://www.newsweek.com/noahs-ark-hunters-say-lab-results-line-up-with-biblical-dates-12758131",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "newsweek.com",
+     "titre": "",
+     "credit": "Photo : newsweek.com (article cité)",
+     "releve_le": "2026-11-25T16:59:25+01:00"
+    },
+    {
+     "ecran": 9,
+     "page": "https://www.newsweek.com/noahs-ark-hunters-say-lab-results-line-up-with-biblical-dates-12758131",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "newsweek.com",
+     "titre": "",
+     "credit": "Photo : newsweek.com (article cité)",
+     "releve_le": "2026-11-25T16:59:25+01:00"
+    },
+    {
+     "ecran": 10,
+     "page": "https://dailygeekshow.com/bois-carbonise-durupinar-arche/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "dailygeekshow.com",
+     "titre": "",
+     "credit": "Photo : dailygeekshow.com (article cité)",
+     "releve_le": "2026-11-25T16:59:25+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://dailygeekshow.com/bois-carbonise-durupinar-arche/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "dailygeekshow.com",
+     "titre": "",
+     "credit": "Photo : dailygeekshow.com (article cité)",
+     "releve_le": "2026-11-25T16:59:25+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://churchleaders.com/news/2225904-noahs-ark-scans-wood-ararat-flood-date.html",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "churchleaders.com",
+     "titre": "",
+     "credit": "Photo : churchleaders.com (article cité)",
+     "releve_le": "2026-11-25T16:59:25+01:00"
+    },
+    {
+     "ecran": 13,
+     "page": "https://churchleaders.com/news/2225904-noahs-ark-scans-wood-ararat-flood-date.html",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "churchleaders.com",
+     "titre": "",
+     "credit": "Photo : churchleaders.com (article cité)",
+     "releve_le": "2026-11-25T16:59:25+01:00"
+    }
+   ],
+   "couverture_ms": 9414,
+   "durees": {
+    "articles": 0,
+    "ecriture": 378,
+    "texte": 174,
+    "images": 150,
+    "voix": 138,
+    "controle_images": 20,
+    "montage": 162,
+    "controle_final": 366,
+    "extraits": 0,
+    "regles": 44,
+    "rangement": 79
+   },
+   "refaite": null,
+   "statut": "a_verifier"
+  },
+  {
    "id": "20261125-163234-1",
    "tag": "v-20261125-163234-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-163234-1/buzz-20261125-163234-1.mp4",
