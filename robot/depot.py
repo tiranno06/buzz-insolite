@@ -83,9 +83,11 @@ def rendre_publique(tag, url=None, essais=5):
             if not url:
                 return True
             try:
-                req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "buzz-insolite-robot"})
-                if urllib.request.urlopen(req, timeout=30).status < 400:
-                    return True
+                # début du fichier seulement (GitHub répond 401 à une simple demande HEAD sur les fichiers des Releases)
+                req = urllib.request.Request(url, headers={"User-Agent": "buzz-insolite-robot", "Range": "bytes=0-1023"})
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    if r.status < 400 and r.read(1024):
+                        return True
             except Exception:
                 pass
         time.sleep(10 * (essai + 1))
