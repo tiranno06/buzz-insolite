@@ -15,10 +15,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6   # installation des outils bien plus rapide (amélioration 12 du 25/11)
       - name: Installer ffmpeg et numpy
         run: |
           sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
-          pip install -q "numpy<3"
+          uv pip install --system -q "numpy<3" || pip install -q "numpy<3"
       - name: Télécharger et classer les musiques
         run: python -m robot.musiques
       - name: Enregistrer

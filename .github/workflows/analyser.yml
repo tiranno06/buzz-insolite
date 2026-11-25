@@ -27,12 +27,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6   # installation des outils bien plus rapide (amélioration 12 du 25/11)
       - name: Installer ffmpeg
         timeout-minutes: 25
         run: bash outils/installer_ffmpeg.sh
       - name: Installer les outils
         run: |
-          pip install -q -U "yt-dlp[default,curl-cffi]" || pip install -q -U yt-dlp
-          pip install -q faster-whisper==1.2.1 "numpy<3" "Pillow>=11,<14"
+          uv pip install --system -q -U "yt-dlp[default,curl-cffi]" || pip install -q -U yt-dlp
+          uv pip install --system -q faster-whisper==1.2.1 "numpy<3" "Pillow>=11,<14" || pip install -q faster-whisper==1.2.1 "numpy<3" "Pillow>=11,<14"
       - name: Analyser (texte seulement, vidéos effacées)
         run: python outils/analyser_profil.py "${{ inputs.profil }}" "${{ inputs.combien }}"

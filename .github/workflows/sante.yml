@@ -31,6 +31,7 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+      - uses: astral-sh/setup-uv@v6   # installation des outils bien plus rapide (amélioration 12 du 25/11)
       - name: Retrouver ffmpeg déjà téléchargé
         uses: actions/cache@v4
         with:
@@ -41,8 +42,8 @@ jobs:
         run: bash outils/installer_ffmpeg.sh
       - name: Installer les outils
         run: |
-          pip install -q "Pillow>=11,<14" "numpy<3"
-          pip install -q -U "yt-dlp[default]" || pip install -q -U yt-dlp
+          uv pip install --system -q "Pillow>=11,<14" "numpy<3" || pip install -q "Pillow>=11,<14" "numpy<3"
+          uv pip install --system -q -U "yt-dlp[default]" || pip install -q -U yt-dlp
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
