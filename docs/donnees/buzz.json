@@ -374,8 +374,9 @@
     "animals"
    ],
    "medias": 3,
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T20:46:45+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-24T20:46:45+01:00",
+   "reserve_le": "2026-11-25T22:24:23+01:00"
   },
   {
    "titre": "États-Unis : arrestation passagers à l’aéroport de Seattle",
@@ -484,8 +485,9 @@
    ],
    "medias": 9,
    "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-25T21:39:33+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-25T21:39:33+01:00",
+   "reserve_le": "2026-11-25T22:24:23+01:00"
   },
   {
    "titre": "Pont suspendu de Torres del Paine secoué",
@@ -541,8 +543,9 @@
    ],
    "medias": 9,
    "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-25T21:39:33+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-25T21:39:33+01:00",
+   "reserve_le": "2026-11-25T22:24:23+01:00"
   },
   {
    "titre": "Afghanistan : nouvelles règles de noms pour femmes",
