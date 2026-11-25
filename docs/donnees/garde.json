@@ -2,17 +2,6 @@
  "en_attente": [
   {
    "inputs": {
-    "sujet": "8446b43f08",
-    "format": "buzz",
-    "etape": "auto",
-    "origine": "site",
-    "nombre": "1"
-   },
-   "demande_le": "2026-11-25T21:49:08+01:00",
-   "raison": "déjà 3 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
-  },
-  {
-   "inputs": {
     "sujet": "d5f66101fb",
     "format": "buzz",
     "etape": "auto",
@@ -24,7 +13,7 @@
   }
  ],
  "credits": {
-  "le": "2026-11-25T22:22:53+01:00",
+  "le": "2026-11-25T22:38:02+01:00",
   "resume": "✅ IA disponibles : groq, gemini ; voient : gemini"
  },
  "creation": {
