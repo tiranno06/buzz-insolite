@@ -15,11 +15,29 @@ import subprocess
 from .commun import RACINE
 
 SONS = os.path.join(RACINE, "sons")
-HUMEURS = ("neutre", "tension", "joie")
+HUMEURS = ("neutre", "tension", "joie", "epique", "emotion")
+# rythme voulu pour chaque ambiance (battements par minute) : la musique est choisie d'abord dans cette plage
+TEMPOS = {"joie": (110, 150), "tension": (70, 110), "epique": (90, 140), "emotion": (55, 95), "neutre": (85, 125)}
 
 
 def musique(humeur):
-    choix = sorted(glob.glob(os.path.join(SONS, "musique", f"{humeur if humeur in HUMEURS else 'neutre'}_*.mp3")))
+    """Musique de l'ambiance demandée (amélioration 9 du 25/11 : ambiance ET rythme, catalogue sons/musique/catalogue.json
+    rempli par robot/musiques.py) ; sans catalogue : les boucles d'origine, comme avant."""
+    humeur = humeur if humeur in HUMEURS else "neutre"
+    dossier = os.path.join(SONS, "musique")
+    try:
+        import json
+        cat = [m for m in json.load(open(os.path.join(dossier, "catalogue.json"), encoding="utf-8"))
+               if os.path.exists(os.path.join(dossier, m["fichier"]))]
+    except Exception:
+        cat = []
+    if cat:
+        lo, hi = TEMPOS[humeur]
+        meme = [m for m in cat if m["humeur"] == humeur]
+        bons = [m for m in meme if lo <= (m.get("tempo") or 0) <= hi] or meme or [m for m in cat if m["humeur"] == "neutre"]
+        if bons:
+            return os.path.join(dossier, random.choice(bons)["fichier"])
+    choix = sorted(glob.glob(os.path.join(dossier, f"{humeur}_*.mp3"))) or sorted(glob.glob(os.path.join(dossier, "neutre_*.mp3")))
     return random.choice(choix) if choix else None
 
 

@@ -5,8 +5,9 @@ voir creer.yml) et ce fichier ne dépend que de lui. Il imite la voix de référ
 de LibriVox, enregistrement du domaine public, voir sons/LICENCES.md).
 
     python robot/chatterbox_voix.py travail.json
-travail.json = {"reference": "…wav", "phrases": [{"texte": "…", "chemin": "…wav"}, …]}
-Le modèle est chargé UNE fois pour toutes les phrases (environ 6 s de calcul par seconde de voix sur 4 processeurs).
+travail.json = {"reference": "…wav", "phrases": [{"texte": "…", "chemin": "…wav", "emotion": 0.5}, …]}
+Le modèle est chargé UNE fois pour toutes les phrases de ce calcul ; robot/voix.py en lance plusieurs EN MÊME TEMPS, chacun
+avec sa part des cœurs (CHATTERBOX_COEURS) et l'intensité de chaque phrase (« emotion » = exaggeration de Chatterbox).
 """
 import json
 import sys
@@ -19,11 +20,12 @@ def main():
     from chatterbox.mtl_tts import ChatterboxMultilingualTTS
 
     travail = json.load(open(sys.argv[1], encoding="utf-8"))
-    torch.set_num_threads(max(1, torch.get_num_threads()))
+    import os
+    torch.set_num_threads(int(os.environ.get("CHATTERBOX_COEURS") or max(1, torch.get_num_threads())))
     modele = ChatterboxMultilingualTTS.from_pretrained(device="cpu")
     for i, p in enumerate(travail["phrases"]):
         son = modele.generate(p["texte"], language_id="fr", audio_prompt_path=travail["reference"],
-                              exaggeration=0.5, cfg_weight=0.5)
+                              exaggeration=float(p.get("emotion", 0.5)), cfg_weight=0.5)
         x = son.squeeze(0).detach().cpu().numpy()
         with wave.open(p["chemin"], "wb") as w:
             w.setnchannels(1); w.setsampwidth(2); w.setframerate(modele.sr)

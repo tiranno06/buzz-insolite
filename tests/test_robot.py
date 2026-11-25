@@ -869,3 +869,17 @@ class TestVision(unittest.TestCase):
     def test_agrandir_sans_modele(self):
         from robot import vision
         self.assertEqual(vision.agrandir("/inexistant.jpg"), "/inexistant.jpg")
+
+
+class TestVoixParallele(unittest.TestCase):
+    def test_emotion_et_processus(self):
+        from robot import voix
+        self.assertEqual(voix.emotion("Imagine un titre volé.", premiere=True), 0.7)
+        self.assertEqual(voix.emotion("Et toi, tu en penses quoi ?"), 0.62)
+        self.assertEqual(voix.emotion("Le TAS a rendu sa décision."), 0.5)
+        os.environ["CHATTERBOX_PROCESSUS"] = "3"
+        try:
+            self.assertEqual(voix.processus_voix(2), 2)
+            self.assertEqual(voix.processus_voix(10), 3)
+        finally:
+            del os.environ["CHATTERBOX_PROCESSUS"]

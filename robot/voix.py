@@ -89,16 +89,53 @@ def dire(texte, chemin, nom_voix, vitesse=0.80, brut=None):
     return duree(chemin)
 
 
-def _chatterbox(textes, bruts):
-    """Fabrique toutes les phrases d'un coup avec Chatterbox (modèle chargé une seule fois)."""
+def emotion(texte, premiere=False):
+    """Intensité de la voix Chatterbox (« exaggeration », amélioration 5 du 25/11) : accroche et phrases qui s'exclament ou
+    questionnent plus vivantes ; les explications restent posées (0,5 = la voix choisie par l'auteur)."""
+    t = texte.strip()
+    if premiere:
+        return 0.7
+    if t.endswith(("!", "?")):
+        return 0.62
+    return 0.5
+
+
+def processus_voix(nb_phrases):
+    """Nombre de calculs de voix EN MÊME TEMPS (amélioration 10 : tous les cœurs) : un par paire de cœurs, 2 au moins sur une
+    machine de 4 cœurs ; jamais plus que de phrases. Réglable par CHATTERBOX_PROCESSUS."""
+    n = int(os.environ.get("CHATTERBOX_PROCESSUS") or max(1, (os.cpu_count() or 2) // 2))
+    return max(1, min(n, nb_phrases))
+
+
+def _chatterbox(textes, bruts, emotions=None):
+    """Fabrique toutes les phrases avec Chatterbox. Les phrases sont réparties entre plusieurs calculs qui tournent EN MÊME
+    TEMPS (chacun charge le modèle une fois et prend sa part des cœurs du processeur)."""
     import json
     from .commun import RACINE
-    travail = bruts[0] + ".travail.json"
-    with open(travail, "w", encoding="utf-8") as f:
-        json.dump({"reference": os.path.join(RACINE, "sons", "voix", REFERENCES["chatterbox-bernard"]),
-                   "phrases": [{"texte": t, "chemin": b} for t, b in zip(textes, bruts)]}, f, ensure_ascii=False)
+    emotions = emotions or [0.5] * len(textes)
+    n = processus_voix(len(textes))
+    coeurs = max(1, (os.cpu_count() or 2) // n)
+    ordre = sorted(range(len(textes)), key=lambda i: -len(textes[i]))   # longues phrases réparties équitablement
+    groupes = [ordre[k::n] for k in range(n)]
     py = os.environ.get("CHATTERBOX_PYTHON") or os.path.expanduser("~/venv-chatterbox/bin/python")
-    subprocess.run([py, os.path.join(RACINE, "robot", "chatterbox_voix.py"), travail], check=True, timeout=3600)
+    procs = []
+    for k, g in enumerate(groupes):
+        travail = bruts[0] + f".travail{k}.json"
+        with open(travail, "w", encoding="utf-8") as f:
+            json.dump({"reference": os.path.join(RACINE, "sons", "voix", REFERENCES["chatterbox-bernard"]),
+                       "phrases": [{"texte": textes[i], "chemin": bruts[i], "emotion": emotions[i]} for i in g]},
+                      f, ensure_ascii=False)
+        env = dict(os.environ, OMP_NUM_THREADS=str(coeurs), MKL_NUM_THREADS=str(coeurs), CHATTERBOX_COEURS=str(coeurs))
+        procs.append(subprocess.Popen([py, os.path.join(RACINE, "robot", "chatterbox_voix.py"), travail], env=env))
+    erreurs = []
+    for p in procs:
+        try:
+            if p.wait(timeout=3600) != 0:
+                erreurs.append(p.returncode)
+        except subprocess.TimeoutExpired:
+            p.kill(); erreurs.append("trop long")
+    if erreurs:
+        raise RuntimeError(f"Chatterbox : {len(erreurs)} calcul(s) en échec ({erreurs})")
 
 
 def ressemblance(texte, entendus):
@@ -171,7 +208,8 @@ def _preparer(phrases, nom_voix, vitesse, journal=print, suivi=None):
         for essai in range(2):
             bruts = [phrases[i]["son"] + f".cb{essai}.wav" for i in a_faire]
             try:
-                _chatterbox([phrases[i]["voix"] for i in a_faire], bruts)
+                _chatterbox([phrases[i]["voix"] for i in a_faire], bruts,
+                            [emotion(phrases[i]["voix"], phrases[i].get("_premiere", False)) for i in a_faire])
             except Exception as e:
                 journal(f"  ⚠️ voix Chatterbox en panne ({str(e)[:120]}) : voix Kokoro à la place")
                 return _preparer(phrases, "kokoro-ff_siwis", vitesse, journal, suivi)

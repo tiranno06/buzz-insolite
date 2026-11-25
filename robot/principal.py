@@ -18,7 +18,7 @@ import urllib.error
 import time
 import traceback
 
-from . import citations, refaire, avancement, buzz, carte, controle, depot, ecrire, ia, images, montage, sources
+from . import citations, langue, refaire, avancement, buzz, carte, controle, depot, ecrire, ia, images, montage, sources
 from . import voix as V
 from .commun import MINIATURES, SORTIE, ecrire as ecrire_donnees, iso, lire, maintenant, noter, reglages, simulation
 
@@ -241,6 +241,10 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 script = ecrire.verifier(script, articles_, journal, seulement=nouvelles)
             if len(script["phrases"]) >= 9 and controle.duree_estimee(script["phrases"]) >= 62 and not controle.regles_texte(script):
                 break
+        n = langue.corriger(script, journal)                  # orthographe et grammaire des sous-titres (LanguageTool)
+        if n:
+            B.ajouter("texte", f"{n} faute(s) d'orthographe ou de grammaire corrigée(s)", corrige=True,
+                      solution="LanguageTool + IA")
         if controle.duree_estimee(script["phrases"]) < 60:    # jamais d'abandon : signalé, la vidéo va au bout
             B.ouvrir("texte", f"texte un peu court (environ {controle.duree_estimee(script['phrases']):.0f} s)", None, "grave")
         E["script"] = script
@@ -257,6 +261,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
             E["voix_kokoro"] = True
         E["nom_voix"] = "kokoro-ff_siwis" if E.get("voix_kokoro") else R["video"]["voix"]
         E["vitesse"] = float(R["video"]["vitesse"])
+        script["phrases"][0]["_premiere"] = True              # accroche : voix plus vivante (voix.emotion)
         a_dire = [p for p in script["phrases"] if not p.get("mots") or not os.path.exists(p.get("son", ""))]
         for p in a_dire:
             p["son"] = os.path.join(dossier, f"voix{p['uid']:03d}.wav")

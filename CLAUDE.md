@@ -216,6 +216,17 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
   `images.photo_standard` (Real-ESRGAN demande une carte graphique). OpenCV 4 obligatoire (`opencv-contrib-python-headless<5` :
   OpenCV 5 ne lit plus les modèles .pb). Modèles en cache `~/.cache/buzz-modeles` (creer.yml).
 
+- **5. Voix plus vivante** (`voix.emotion` → « exaggeration » de Chatterbox) : accroche 0,7, phrase qui s'exclame ou
+  questionne 0,62, explications 0,5 (la voix choisie). **10. Tous les cœurs** (`voix.processus_voix`, `_chatterbox`) : les
+  phrases sont réparties entre plusieurs calculs Chatterbox EN MÊME TEMPS (un par paire de cœurs ; `CHATTERBOX_PROCESSUS`,
+  `CHATTERBOX_COEURS`), longues phrases réparties équitablement.
+- **6. Orthographe** (`robot/langue.py`, LanguageTool public sans clé) : fautes de frappe évidentes corrigées directement,
+  accords / conjugaisons corrigés par l'IA avec les remarques (la 1re suggestion de LanguageTool est parfois fausse) ; noms
+  propres jamais touchés ; à la fin de l'étape « texte ».
+- **9. Musiques** (`robot/musiques.py`, workflow « Musiques libres » à lancer à la main) : FreePD.com (domaine public CC0)
+  → `sons/musique/<ambiance>_fp_*.mp3` + `catalogue.json` (tempo mesuré) ; `sons.musique` choisit l'ambiance PUIS le rythme
+  (`TEMPOS`) ; 2 ambiances de plus pour l'IA : « epique » et « emotion ».
+
 ## Avancement en direct (demande de l'auteur du 25/11 : « mis à jour bien plus rapidement »)
 Robot : envoi toutes les 5 s au plus (`avancement.INTERVALLE`) + signe de vie toutes les 15 s même au milieu d'une longue
 étape (`_lancer_battement`, fil discret : temps écoulé et fin prévue à jour). Site : relecture toutes les 5 s pendant une

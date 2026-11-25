@@ -1,0 +1,31 @@
+name: Musiques libres (FreePD, domaine public)
+run-name: "Musiques : téléchargement et classement"
+# Amélioration 9 du 25/11 : télécharge des musiques du domaine public (FreePD.com, CC0), les classe par ambiance et par
+# rythme (sons/musique/catalogue.json). À lancer à la main (une fois, puis quand on veut en ajouter).
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  musiques:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Installer ffmpeg et numpy
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+          pip install -q "numpy<3"
+      - name: Télécharger et classer les musiques
+        run: python -m robot.musiques
+      - name: Enregistrer
+        run: |
+          git config user.name "robot-buzz"
+          git config user.email "robot-buzz@users.noreply.github.com"
+          git add sons/musique
+          git diff --cached --quiet && exit 0
+          git commit -m "Musiques libres (FreePD, domaine public) classées par ambiance et rythme"
+          for i in 1 2 3; do git pull --no-rebase -q && git push -q && break; sleep 5; done

@@ -46,7 +46,8 @@ Aussi :
 - "theme_image" : 2 ou 3 mots ANGLAIS concrets qui illustrent tout le sujet (ex. « video game controller », « Mars habitat ») ;
 - "lieu" : le lieu où l'actu se PASSE, cité dans les articles (« Saint-Malo, France »), sinon "" (jamais un siège social) ;
 - "coordonnees" : [latitude, longitude] de ce lieu, ou [] ;
-- "humeur" : l'ambiance de la musique : "neutre", "tension" (mystère, danger, suspense) ou "joie" (drôle, heureux) ;
+- "humeur" : l'ambiance de la musique : "neutre", "tension" (mystère, danger, suspense), "joie" (drôle, heureux),
+  "epique" (exploit, victoire, record, grand moment) ou "emotion" (triste, touchant, hommage) ;
 - "sources" : les médias utilisés.
 Réponds uniquement en JSON : {"titre":…, "accroche":…, "phrases":[{"voix":…,"ecrit":…,"ecran":…,"image":…}], …}"""
 
@@ -164,7 +165,7 @@ def normaliser(d, sujet, format_, qui, journal=print):
                 p["reponse"] = m.group(1); break
     d["phrases"] = phrases
     d["format"] = format_
-    d["humeur"] = d.get("humeur") if d.get("humeur") in ("neutre", "tension", "joie") else "neutre"
+    d["humeur"] = d.get("humeur") if d.get("humeur") in ("neutre", "tension", "joie", "epique", "emotion") else "neutre"
     d["auteur_ia"] = qui
     d["hashtags"] = liste_hashtags(d.get("hashtags"))
     journal(f"  texte écrit par {qui} : {len(phrases)} phrases")
