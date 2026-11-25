@@ -40,6 +40,15 @@ commentaires, commits, textes du site), explications simples, sans jargon.
   **Sous-titres sur bandeau noir** pendant une citation (style ASS « B », `montage.karaoke`) : les vidéos d'origine ont leurs
   propres sous-titres incrustés au même endroit (vidéo CAN r9 du 25/11 : 12/12 écrans de l'événement — Al Jazeera, BBC,
   franceinfo — mais « sous-titre anglais illisible ») ; ligne des crédits sur fond sombre aussi.
+  **Audit de la vidéo CAN r9 (25/11, demandé par l'auteur) et corrections** : hashtags « #c #a #n #2 » (chaîne de l'IA découpée
+  en lettres → `ecrire.liste_hashtags`, 3 lettres au moins) ; « président sénégalais » pour le président de la FÉDÉRATION
+  laissé par un modèle 20b → `CONSIGNE_VERIF` contrôle fonctions / dates / scores / contradictions, et 2e vérification par
+  un autre fournisseur si le 1er est un petit modèle ; « Imaginez… / Dis-le » → tutoiement partout ; contrôle final : 12 tours
+  (56 min) et l'accroche d'Al Jazeera remplacée par une photo Wikipédia à cause des sous-titres de la vidéo d'origine → un
+  extrait n'est JAMAIS remplacé pour un texte (`CONSIGNE_FINALE` : les textes de la vidéo d'origine font partie de l'image) ;
+  7 extraits sur 10 d'Al Jazeera (anglais) → comptes français d'abord (`COMPTES_FR`), 3 extraits par compte au plus
+  (`PARCOMPTE_MAX`) ; Brut / BFM / HugoDécrypte refusés une fois par TikTok → 3 essais simples espacés (`telecharger`, jamais
+  de contournement) ; même titre jaune sur 2 écrans de suite → affiché une fois.
   Durée : le contrôle final exige 61 s au moins (TikTok paie les vidéos de PLUS d'1 minute ; texte visé 62 s). Durée TikTok : `video.duree_min` 62 s.
 - **Style validé sur l'essai « 1 an sur Mars »** : voix Piper « Tom » au départ (remplacée par Kokoro, voir plus bas), pauses de 0,18 s, silences coupés ; vraie vidéo nette au milieu + la même floutée derrière ; étiquette rouge
   « INSOLITE » + gros titre jaune en haut ; sous-titres karaoké Poppins (3 mots, le mot dit en jaune et grossi à 112 %, calé

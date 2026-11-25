@@ -19,6 +19,9 @@ from . import ia, images
 from .commun import lire
 
 DUREE_MIN, DUREE_MAX, PART_MAX, ORIGINE_MIN = 10.0, 15.0, 0.4, 20.0
+PARCOMPTE_MAX = 3                                          # extraits d'un même compte au plus (variété des sources)
+COMPTES_FR = {"hugodecrypte", "brutofficiel", "franceinfo", "leparisien", "20minutesfrance", "euronewsfr", "bfmtv", "lemondefr",
+              "konbini", "tf1info", "loopsider", "ouestfrance", "lefigaro", "le.huffpost"}
 PART_TOTALE = 0.5                                        # ensemble repris d'une même vidéo : la moitié au plus
 
 
@@ -104,11 +107,27 @@ def videos_du_meme_evenement(sujet, journal=print, maxi=12):
         except Exception as e:                                # IA indisponible : seulement les vidéos très proches
             journal(f"  tri des autres vidéos par l'IA impossible ({str(e)[:80]}) : mots en commun seulement")
             autres = [v for v in cand if len(voulus & images._mots_sujet(v.get("texte") or "")) >= 3]
-    connues.sort(key=lambda v: -(v.get("vues") or 0))
-    autres.sort(key=lambda v: -(v.get("vues") or 0))
+    # comptes FRANÇAIS d'abord (la vidéo est en français), puis les plus vues (vidéo CAN du 25/11 : 7 extraits sur 10 d'Al
+    # Jazeera, en anglais)
+    francais = lambda v: 0 if v.get("compte") in COMPTES_FR else 1
+    connues.sort(key=lambda v: (francais(v), -(v.get("vues") or 0)))
+    autres.sort(key=lambda v: (francais(v), -(v.get("vues") or 0)))
     journal(f"  vidéos de l'événement : {len(connues)} du sujet + {len(autres)} d'autres comptes suivis"
             + (f" ({', '.join('@' + str(v.get('compte')) for v in autres[:8])})" if autres else ""))
     return (connues + autres)[:maxi]
+
+
+def telecharger(url, chemin, essais=3):
+    """TikTok répond parfois « Unexpected response from webpage request » (vidéo CAN du 25/11 : Brut, BFM, HugoDécrypte
+    perdus) : 3 essais simples espacés (10 s, 20 s). Jamais de contournement : un refus qui dure = vidéo passée."""
+    import time
+    for n in range(essais):
+        try:
+            return images._ytdlp(["-f", "mp4/best", "--max-filesize", "300M", "--no-playlist", "-o", chemin, url], timeout=240)
+        except Exception:
+            if n == essais - 1:
+                raise
+            time.sleep(10 * (n + 1))
 
 
 def images_fixes(brut, d, pris, lg, nombre, dossier, base):
@@ -137,7 +156,7 @@ def extraits(sujet, dossier, journal=print, nombre=5, deja=None, photos=3):
         brut = os.path.join(dossier, f"origine-{v.get('id', len(plans))}.mp4")
         try:
             if not os.path.exists(brut):
-                images._ytdlp(["-f", "mp4/best", "--max-filesize", "300M", "--no-playlist", "-o", brut, v["url"]], timeout=240)
+                telecharger(v["url"], brut)
             d = _duree(brut)
             lg = duree_extrait(d)
             if not lg:                                        # trop courte pour un extrait : images fixes seulement
@@ -148,10 +167,13 @@ def extraits(sujet, dossier, journal=print, nombre=5, deja=None, photos=3):
         except Exception as e:
             journal(f"  citation @{v.get('compte')} impossible ({str(e)[:100]})")
     ordre = [(p, k) for k in range(max((len(p[4]) for p in plans), default=0)) for p in plans if k < len(p[4])]
-    out = []
+    out, par_compte = [], {}
     for (v, brut, d, lg, debuts), k in ordre:                 # un par vidéo d'abord, puis les passages suivants
         if len(out) >= nombre:
             break
+        if par_compte.get(v.get("compte"), 0) >= PARCOMPTE_MAX:
+            continue
+        par_compte[v.get("compte")] = par_compte.get(v.get("compte"), 0) + 1
         cle = f"citation-{v.get('id', 'x')}-{k}"
         if cle in deja:
             continue

@@ -16,6 +16,7 @@ REGLES_SUJET = """Règles à respecter quel que soit le sujet :
 
 CONSIGNE = """Tu écris le texte d'une vidéo TikTok de 60 à 75 secondes pour la chaîne française « Buzz et insolite ».
 Public : francophones de 15 à 40 ans. Style : rythmé, phrases courtes, langage simple, effet « tu savais ? ».
+On TUTOIE toujours le spectateur (« tu », « imagine », « et toi ? »), jamais « vous » ni « imaginez ».
 Reste centré sur le SUJET qui buzze : chaque phrase doit en parler (pas de digression sur un autre thème).
 Rassemble les informations de TOUS les articles (chacun apporte souvent un détail différent), sans jamais répéter deux fois
 la même information.
@@ -40,7 +41,7 @@ Aussi :
 - "titre" : titre court de la vidéo (6 mots max) ;
 - "accroche" : texte de couverture (4 mots max, en majuscules) ;
 - "description" : 1 à 2 phrases pour la description TikTok, avec un émoji ;
-- "question" : la question à poser en commentaire ;
+- "question" : la question à poser en commentaire, en TUTOYANT (« Et toi, … ? ») ;
 - "hashtags" : 4 hashtags précis sur le sujet (sans #) ;
 - "theme_image" : 2 ou 3 mots ANGLAIS concrets qui illustrent tout le sujet (ex. « video game controller », « Mars habitat ») ;
 - "lieu" : le lieu où l'actu se PASSE, cité dans les articles (« Saint-Malo, France »), sinon "" (jamais un siège social) ;
@@ -54,6 +55,9 @@ Juge SEULEMENT les phrases marquées « À JUGER ». Une phrase est BONNE si :
 - son fait est confirmé par les articles (même dit autrement) ;
 - ou c'est une transition, une accroche, une question au spectateur, ou une explication générale évidente et sans risque
   (« L'A320 est un avion d'Airbus », « Toulouse est la ville de l'aéronautique »).
+Contrôle EN PARTICULIER : la FONCTION exacte de chaque personne (président DE QUOI : du pays, d'une fédération, d'un club…),
+les dates, les scores, les chiffres, qui a fait quoi, et les phrases qui se contredisent entre elles (ex. « le Maroc a marqué…
+mais le Sénégal a gagné » sans explication).
 Une phrase est à CORRIGER si un fait est faux, exagéré ou absent des articles : donne alors une CORRECTION fidèle aux articles
 (même longueur, même style). Ne retire une phrase (correction "") que si aucune correction honnête n'est possible.
 Signale aussi toute phrase qui ne respecte pas ces règles :
@@ -70,6 +74,14 @@ def _articles_texte(articles, total=16000):
 
 def nettoyer_hashtag(h):
     return re.sub(r"[^\wÀ-ÿ]", "", str(h)).lower()
+
+
+def liste_hashtags(x):
+    """L'IA donne parfois les hashtags en UNE chaîne (« #can2025 #senegal ») : une liste de mots, jamais de lettres seules
+    (bug de la vidéo CAN du 25/11 : « #c #a #n #2 »)."""
+    if isinstance(x, str):
+        x = re.split(r"[\s,;#]+", x)
+    return [t for t in (nettoyer_hashtag(h) for h in x or []) if len(t) >= 3]
 
 
 FORMATS = {
@@ -154,7 +166,7 @@ def normaliser(d, sujet, format_, qui, journal=print):
     d["format"] = format_
     d["humeur"] = d.get("humeur") if d.get("humeur") in ("neutre", "tension", "joie") else "neutre"
     d["auteur_ia"] = qui
-    d["hashtags"] = [nettoyer_hashtag(h) for h in d.get("hashtags") or [] if nettoyer_hashtag(h)]
+    d["hashtags"] = liste_hashtags(d.get("hashtags"))
     journal(f"  texte écrit par {qui} : {len(phrases)} phrases")
     return d
 
@@ -193,15 +205,25 @@ def verifier(script, articles, journal=print, seulement=None):
     script["verification"] = {"par": qui, "corrigees": avant["corrigees"] + corrigees, "retirees": avant["retirees"] + retirees,
                               "problemes": (avant["problemes"] + [str(p.get("raison", ""))[:160] for p in d.get("problemes") or []])[:10]}
     journal(f"  vérifié par {qui} : {corrigees} phrase(s) corrigée(s), {retirees} retirée(s)")
+    if any(x in qui for x in ("20b", "8b", "lite", "mini", "small")) and not script.get("_verif_double"):
+        # petit modèle (vidéo CAN du 25/11 : « président sénégalais » pour le président de la FÉDÉRATION, laissé passer
+        # par un modèle 20b) : 2e vérification par un autre fournisseur
+        script["_verif_double"] = True
+        auteur = script.get("auteur_ia", "")
+        script["auteur_ia"] = qui
+        try:
+            script = verifier(script, articles, journal, seulement)
+        finally:
+            script["auteur_ia"] = auteur
     return script
 
 
 def hashtags(script, sujet, R):
     """4 à 6 hashtags : sujet, ceux des vidéos virales du même sujet, puis ceux de la chaîne."""
     nb = int(R["hashtags"].get("nombre", 6))
-    tags = [nettoyer_hashtag(h) for h in (script.get("hashtags") or [])[:2]]
-    tags += [nettoyer_hashtag(h) for h in (sujet.get("hashtags_viraux") or []) if h not in ("fyp", "pourtoi", "foryou", "viral")][:2]
-    tags += [nettoyer_hashtag(h) for h in (sujet.get("hashtags") or [])]
+    tags = liste_hashtags(script.get("hashtags"))[:2]
+    tags += [h for h in liste_hashtags(sujet.get("hashtags_viraux")) if h not in ("fyp", "pourtoi", "foryou", "viral")][:2]
+    tags += liste_hashtags(sujet.get("hashtags"))
     fixes = [nettoyer_hashtag(h) for h in R["hashtags"].get("fixes") or []]
     garde = []
     for t in tags:

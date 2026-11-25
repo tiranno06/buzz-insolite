@@ -845,3 +845,10 @@ class TestPhotosPresse(unittest.TestCase):
         im = Image.new("RGB", (800, 600), (200, 30, 30)); im.paste((10, 10, 200), (0, 0, 400, 600)); im.save(a)
         im.resize((1200, 900)).save(b)
         self.assertLessEqual(bin(C._empreinte(a) ^ C._empreinte(b)).count("1"), 6)
+
+
+class TestAuditCAN(unittest.TestCase):
+    def test_hashtags_en_chaine(self):
+        from robot import ecrire
+        self.assertEqual(ecrire.liste_hashtags("#can2025 #senegal"), ["can2025", "senegal"])
+        self.assertEqual(ecrire.liste_hashtags(["", "c", "a", "can2025"]), ["can2025"])

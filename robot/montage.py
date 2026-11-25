@@ -211,7 +211,10 @@ def faire_ecran(script, i, d, dossier):
                coul=(80, 220, 120) if vrai else (255, 80, 90))
     elif p.get("media") and not derniere:
         m = p["media"]
-        calque(png, titre=p.get("ecran", "").upper(),
+        titre = (p.get("ecran") or "").upper()
+        if i > 0 and titre and titre == (ph[i - 1].get("ecran") or "").upper():
+            titre = ""                                        # même titre que l'écran d'avant (« INCIDENT » 2 fois de suite)
+        calque(png, titre=titre,
                source=(m.get("bandeau") or f"@{m.get('compte', 'source')}") if m.get("citation") else "")
     else:
         grand = "ET TOI ?" if derniere else (p.get("ecran") or "").upper()
