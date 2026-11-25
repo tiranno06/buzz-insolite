@@ -1092,3 +1092,39 @@ class TestPhrasesNombres(unittest.TestCase):
         ecrits = [p["ecrit"] for p in script["phrases"]]
         self.assertNotIn("74", ecrits); self.assertNotIn("2", ecrits)
         self.assertIn("Les avocats ont tenté de reporter la peine.", ecrits)
+
+
+class TestPrononciation(unittest.TestCase):
+    def test_mise_en_forme_et_sigles(self):
+        from robot import prononciation as P
+        d = {"Ferguson": "Feurgueusonne"}
+        t = P.pour_voix("Bob Ferguson accuse l'ICE et la FIFA, à 18h30, n° 3, Louis XIV, 50 %.", d)
+        self.assertIn("Feurgueusonne", t)
+        self.assertIn("i cé eu", t)
+        self.assertIn("fifa", t)
+        self.assertIn("dix-huit heures trente", t)
+        self.assertIn("numéro trois", t)
+        self.assertIn("XIV", t)
+        self.assertIn("pour cent", t)
+        self.assertEqual(P.pour_voix("le 1er et la 2e", {}), "le premier et la deuxième")
+
+    def test_candidats_et_espeak(self):
+        from robot import prononciation as P
+        entendus = [(m, 0, 0) for m in "Le gouverneur Bob a parlé".split()]
+        self.assertEqual(P.candidats("Le gouverneur Bob Ferguson a parlé.", entendus), ["Ferguson"])
+        self.assertEqual(P.candidats("Le gouverneur a parlé longuement.", [(m, 0, 0) for m in "Le gouverneur a parlé".split()]), [])
+        francais = P.ipa_vers_francais(P.ipa("Ferguson"))
+        if francais:                                  # eSpeak-NG présent (installé avec Kokoro)
+            self.assertTrue(francais.startswith("f"))
+
+    def test_l_auteur_passe_avant_le_robot(self):
+        from robot import prononciation as P, commun
+        ancien = P.lire if hasattr(P, "lire") else None
+        vrai = commun.lire
+        commun.lire = lambda n: {"mots": {"Gueye": {"dire": "Gaille", "source": "robot"}, "Newsom": {"dire": "Niouzeum", "source": "auteur"}}}
+        try:
+            P.oublier_cache()
+            d = P.charger()
+        finally:
+            commun.lire = vrai; P.oublier_cache()
+        self.assertEqual(d["Gueye"], "Gaille"); self.assertEqual(d["Newsom"], "Niouzeum")

@@ -310,6 +310,17 @@ dialog form { position: absolute; top: 6px; right: 6px; }
             <option value="kokoro-ff_siwis">Femme</option></select></label>
           <label class="champ">Vitesse <span>0,80 = choisi le 24/11 ; plus petit = plus rapide</span><input type="number" id="r-vitesse" min="0.65" max="1.1" step="0.01"></label>
         </div>
+        <div class="card" style="margin:10px 0;padding:12px">
+          <h3 style="margin-top:0">🗣️ Prononciation</h3>
+          <p class="petit muted">Un mot mal dit par la voix (homme ou femme) ? Écris-le et comment le prononcer : ce sera dit ainsi dans
+            toutes les prochaines vidéos (les sous-titres restent bien écrits). Le robot apprend aussi tout seul (🤖).</p>
+          <div class="grille2">
+            <label class="champ">Mot écrit <input type="text" id="pr-mot" placeholder="Ferguson"></label>
+            <label class="champ">Comment le dire <input type="text" id="pr-dire" placeholder="Feurgueusonne"></label>
+          </div>
+          <button class="btn mini" type="button" id="pr-ajouter">➕ Ajouter</button>
+          <div id="pr-liste" style="margin-top:8px"></div>
+        </div>
         <label class="case"><input type="checkbox" id="r-musique"> Musique de fond (très discrète)</label>
         <label class="case"><input type="checkbox" id="r-bruitages"> Bruitages (ding sur les chiffres, « dun dun » du vrai / faux)</label>
         <label class="case"><input type="checkbox" id="r-transitions"> « Woosh » entre les écrans</label>
@@ -365,6 +376,7 @@ const DEMO_DATA = {
     video: { voix: "chatterbox-bernard", vitesse: 0.8 }, publication: { mode: "cocher", auto: true, heures: ["12:30", "19:00"], compte: "" },
     creation: { auto: false, par_jour: 2, heures: ["07:15", "16:15"] }, hashtags: { fixes: ["#insolite", "#actu", "#buzz"], nombre: 6 } },
   "garde.json": {},
+  "prononciation.json": { mots: { "Ferguson": { dire: "Feurgueusonne", source: "auteur" }, "Gueye": { dire: "Guèye", source: "robot" } } },
   "stats.json": { maj: ilya(1), chaine: "ma_chaine", lues: 12, retrouvees: 9, videos_mesurees: 8, vues_total: 412000, vues_mediane: 18000,
     meilleures_heures: ["12:00", "19:00"], heures: [{ nom: "19:00", videos: 4, vues_mediane: 26000, vues_moyennes: 41000 }, { nom: "12:00", videos: 4, vues_mediane: 15000, vues_moyennes: 19000 }],
     formats: [{ nom: "vrai_faux", videos: 3, vues_mediane: 31000, vues_moyennes: 44000 }, { nom: "buzz", videos: 5, vues_mediane: 14000, vues_moyennes: 21000 }],
@@ -629,7 +641,14 @@ function rendreSante() {
     <div class="card"><h3>🔧 Réparations automatiques</h3>${(S.reparations || []).map(r => `<p class="petit">${quand(r.le)} · « ${esc(r.titre)} » refaite (${esc(r.etape)}) : ${esc(r.raison)}</p>`).join("") || '<p class="petit muted">Aucune pour l\'instant.</p>'}
       ${S.sujets_remis ? `<p class="petit">${S.sujets_remis} sujet(s) bloqué(s) remis en jeu.</p>` : ""}</div>`;
 }
-function rendre() { rendreBuzz(); rendreVideos(); rendrePublication(); rendreStats(); rendreSante(); rendreJournal(); }
+function rendrePrononciation() {
+  const M = ((D["prononciation.json"] || {}).mots) || {};
+  const l = Object.entries(M).sort((a, b) => a[0].localeCompare(b[0], "fr"));
+  $("#pr-liste").innerHTML = l.map(([mot, x]) => `<div class="creneau"><span>${x.source === "auteur" ? "✍️" : "🤖"} <b>${esc(mot)}</b> → « ${esc(x.dire)} »</span>
+    <button class="btn mini" type="button" data-pr-suppr="${esc(mot)}" aria-label="Retirer ${esc(mot)}">✕</button></div>`).join("")
+    || '<p class="petit muted">Aucun mot pour l\'instant.</p>';
+}
+function rendre() { rendrePrononciation(); rendreBuzz(); rendreVideos(); rendrePublication(); rendreStats(); rendreSante(); rendreJournal(); }
 
 // ---------------- réglages ----------------
 function remplirReglages() {
@@ -826,6 +845,21 @@ document.addEventListener("click", async e => {
     return envoyerBascule(a, id, { a_publier: "✅ Ajoutée à la file de publication.", retirer: "↩️ Annulé.", ecarter: "🛑 Vidéo écartée." }[a]);
 });
 $("#j-erreurs").onchange = rendreJournal;
+$("#pr-ajouter").onclick = async () => {
+  const mot = $("#pr-mot").value.trim(), dire = $("#pr-dire").value.trim();
+  if (!mot || !dire) return toast("Écris le mot et comment le dire.");
+  if (await commande("prononciation", "", JSON.stringify({ mot, dire }), `« ${mot} » sera dit « ${dire} » dans les prochaines vidéos.`)) {
+    ((D["prononciation.json"] ||= { mots: {} }).mots ||= {})[mot] = { dire, source: "auteur" };
+    $("#pr-mot").value = ""; $("#pr-dire").value = ""; rendrePrononciation();
+  }
+};
+document.addEventListener("click", async e => {
+  const b = e.target.closest("[data-pr-suppr]"); if (!b) return;
+  const mot = b.dataset.prSuppr;
+  if (await commande("prononciation", "", JSON.stringify({ mot, supprimer: true }), `« ${mot} » retiré du dictionnaire.`)) {
+    delete ((D["prononciation.json"] || {}).mots || {})[mot]; rendrePrononciation();
+  }
+});
 $("#lecteur").addEventListener("close", () => { $("#lv").pause(); $("#lv").removeAttribute("src"); });
 
 // ---------------- appli installable (Android) et connexion d'un autre appareil ----------------

@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "a_publier, retirer, ecarter, supprimer, publier_maintenant, publier_force, publiee, texte, reglages, sujet_ignorer, sujet_remettre, buffer_test"
+        description: "a_publier, retirer, ecarter, supprimer, publier_maintenant, publier_force, publiee, texte, reglages, prononciation, sujet_ignorer, sujet_remettre, buffer_test"
         required: true
       id:
         description: "Identifiant de la vidéo ou du sujet"

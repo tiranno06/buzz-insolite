@@ -146,7 +146,8 @@ def ressemblance(texte, entendus):
 
 def _cle_voix(texte, nom_voix, vitesse):
     import hashlib
-    return hashlib.sha1(f"{nom_voix}|{float(vitesse):.3f}|{texte.strip()}".encode()).hexdigest()[:20]
+    from .prononciation import pour_voix                   # un mot mieux prononcé = voix refaite (clé différente)
+    return hashlib.sha1(f"{nom_voix}|{float(vitesse):.3f}|{pour_voix(texte).strip()}".encode()).hexdigest()[:20]
 
 
 def depuis_memoire(p, nom_voix, vitesse, memoire):
@@ -203,12 +204,14 @@ def _preparer(phrases, nom_voix, vitesse, journal=print, suivi=None):
     """Voix de toutes les phrases : p["son"] doit être donné ; remplit p["duree"] et p["mots"].
     Chatterbox (un peu au hasard d'un essai à l'autre) : une phrase mal comprise par Whisper (< 75 % des mots) est refaite
     une fois. Si Chatterbox est en panne, la voix Kokoro (femme) prend le relais pour toute la vidéo."""
+    from . import prononciation as PR
+    essayes = {}                                            # mot → écriture phonétique essayée (point 2 : apprentissage)
     if nom_voix in CHATTERBOX:
         a_faire = list(range(len(phrases)))
         for essai in range(2):
             bruts = [phrases[i]["son"] + f".cb{essai}.wav" for i in a_faire]
             try:
-                _chatterbox([phrases[i]["voix"] for i in a_faire], bruts,
+                _chatterbox([PR.pour_voix(phrases[i]["voix"]) for i in a_faire], bruts,
                             [emotion(phrases[i]["voix"], phrases[i].get("_premiere", False)) for i in a_faire])
             except Exception as e:
                 journal(f"  ⚠️ voix Chatterbox en panne ({str(e)[:120]}) : voix Kokoro à la place")
@@ -226,18 +229,69 @@ def _preparer(phrases, nom_voix, vitesse, journal=print, suivi=None):
                     refaire.append(i)
                 if suivi:
                     suivi(len([q for q in phrases if "mots" in q]), len(phrases))
+            if essai == 1:
+                _garder_appris(phrases, essayes, journal)
             if not refaire:
                 break
+            if essai == 0:
+                _essayer_mots(phrases, refaire, essayes, journal)
             journal(f"  {len(refaire)} phrase(s) mal prononcée(s) : refaite(s)" if essai == 0 else
                     f"  {len(refaire)} phrase(s) encore imparfaite(s) : gardée(s) telles quelles")
             a_faire = refaire
         return nom_voix
-    for k, p in enumerate(phrases):
-        p["duree"] = dire(p["voix"], p["son"], nom_voix, vitesse)
-        p["mots"] = mots_entendus(p["son"])
-        if suivi:
-            suivi(k + 1, len(phrases))
+    a_faire = list(range(len(phrases)))                    # Kokoro (voix de femme) : même apprentissage
+    for essai in range(2):
+        refaire = []
+        for k in a_faire:
+            p = phrases[k]
+            p["duree"] = dire(PR.pour_voix(p["voix"]), p["son"], nom_voix, vitesse)
+            p["mots"] = mots_entendus(p["son"])
+            compris = max(ressemblance(p["voix"], p["mots"]), ressemblance(p.get("ecrit", p["voix"]), p["mots"]))
+            if compris < 0.75 and PR.candidats(p.get("ecrit") or p["voix"], p["mots"]):
+                refaire.append(k)
+            if suivi:
+                suivi(len([q for q in phrases if "mots" in q]), len(phrases))
+        if essai == 1:
+            _garder_appris(phrases, essayes, journal)
+        if not refaire or essai == 1:
+            break
+        _essayer_mots(phrases, refaire, essayes, journal)
+        if not essayes:
+            break
+        a_faire = refaire
     return nom_voix
+
+
+def _essayer_mots(phrases, indices, essayes, journal):
+    """Point 2 : mots que Whisper n'a pas retrouvés → écriture phonétique (IA + eSpeak-NG), essayée au prochain passage."""
+    from . import prononciation as PR
+    dico = PR.charger()
+    for i in indices:
+        p = phrases[i]
+        for mot in PR.candidats(p.get("ecrit") or p["voix"], p.get("mots")):
+            if mot in essayes or mot in dico:
+                continue
+            dire = PR.respeller(mot, p.get("ecrit") or p["voix"], journal)
+            if dire:
+                PR.apprendre(mot, dire); essayes[mot] = dire
+                journal(f"  🗣️ « {mot} » mal compris : essai avec « {dire} »")
+
+
+def _garder_appris(phrases, essayes, journal):
+    """Les écritures essayées qui ont rendu la phrase compréhensible sont gardées pour les vidéos suivantes."""
+    from . import prononciation as PR
+    valides = {}
+    for mot, dire in essayes.items():
+        concernees = [p for p in phrases if mot in (p.get("ecrit") or p["voix"]) and p.get("mots") is not None]
+        if concernees and all(max(ressemblance(p["voix"], p["mots"]), ressemblance(p.get("ecrit", p["voix"]), p["mots"])) >= 0.75
+                              for p in concernees):
+            valides[mot] = dire
+        else:
+            PR.APPRIS.pop(mot, None)
+    try:
+        PR.enregistrer_appris(valides, journal)
+    except Exception as e:
+        journal(f"  prononciation non enregistrée ({str(e)[:60]})")
 
 
 # ------------------------------------------------------------------ instants des mots

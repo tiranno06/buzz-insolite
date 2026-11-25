@@ -82,6 +82,21 @@ def appliquer_reglages(d):
 def appliquer(action, vid, texte):
     if action == "reglages":
         return appliquer_reglages(json.loads(texte or "{}"))
+    if action == "prononciation":                       # Réglages → 🗣️ Prononciation (mots de l'auteur, prioritaires)
+        d = json.loads(texte or "{}")
+        mot = str(d.get("mot") or "").strip()[:60]
+        if not mot:
+            return
+        f = lire("prononciation.json") or {"mots": {}}
+        f.setdefault("mots", {})
+        if d.get("supprimer"):
+            f["mots"].pop(mot, None)
+            noter(f"🗣️ « {mot} » retiré du dictionnaire de prononciation.")
+        else:
+            f["mots"][mot] = {"dire": str(d.get("dire") or "").strip()[:80], "source": "auteur", "le": iso()}
+            noter(f"🗣️ « {mot} » sera dit « {f['mots'][mot]['dire']} » dans les prochaines vidéos.")
+        ecrire("prononciation.json", f)
+        return
     if action == "buffer_test":
         comptes = publier.comptes_tiktok()
         noter("🔌 Buffer répond. Comptes TikTok reliés : " + (", ".join(c["nom"] for c in comptes) or "aucun"))

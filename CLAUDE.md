@@ -324,6 +324,21 @@ en anglais, vidéos de 45 à 59 s. Corrections :
 - LanguageTool ne touche JAMAIS une citation entre guillemets (« racli » devenu « racle » dans la vidéo GTA).
 - Unités : « 30 pieds, soit 9 mètres » → « 9 mètres » (plus « 9 m, soit 9 mètres »).
 
+## Prononciation des voix homme et femme (demande de l'auteur du 25/11, points 1, 2, 3, 4, 6)
+`robot/prononciation.py`, appliqué JUSTE avant la voix (Chatterbox et Kokoro, `voix._preparer` ; les sous-titres restent bien
+écrits ; la clé de la mémoire des voix suit le texte DIT : un mot corrigé = phrase redite) :
+- 4. `mise_en_forme` : M. / Mme / n° / 1er / 2e, %, €, $, km/h, °C, &, vs, etc., heures (18h30) ; sigles épelés à la française
+  (« ICE » → « i cé eu ») sauf `COMME_UN_MOT` (NASA, OTAN, FIFA, CAF…) ; chiffres romains laissés.
+- 1. dictionnaire `docs/donnees/prononciation.json` (+ `BASE`) : mot → comment le dire ; 3. l'auteur ajoute / retire un
+  mot sur le site (Réglages → 🗣️ Prononciation, ordre `prononciation`), ses mots (✍️) passent avant ceux du robot (🤖).
+- 2. apprentissage : phrase mal comprise par Whisper (< 75 %) → `candidats` (noms propres, sigles, mots à l'allure
+  étrangère, jamais un mot français courant) → `respeller` (IA aidée par 6. eSpeak-NG, déjà installé avec Kokoro :
+  espeakng-loader + phonemizer ; secours `ipa_vers_francais`) → phrase redite ; gardé pour les vidéos suivantes
+  (`enregistrer_appris`) seulement si la phrase est alors bien comprise.
+- Mistral (25/11 au soir) : la nouvelle clé répond encore « You need a subscription » (402) : il faut ACTIVER le plan
+  gratuit dans la console Mistral (une nouvelle clé ne suffit pas). Créations : doublons entre attente et santé évités
+  (`sante.deja_en_refaire` lit aussi `en_attente`, `mettre_en_attente` sans doublon, refaire d'une vidéo disparue oublié).
+
 ## Boutons des vidéos (demande de l'auteur du 25/11 : « comme l'autre projet », jt-auto)
 Interrupteurs `boutonsVideo` / `bascule` (classe `.btn.bascule`) : VIDES tant qu'ils ne sont pas activés (« ☐ À publier »,
 « ☐ Écarter », « 🚀 Publier maintenant »), COLORÉS seulement une fois activés (« ✅ À publier · n° k dans la file » vert,
