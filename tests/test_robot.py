@@ -613,6 +613,26 @@ class TestComposition(unittest.TestCase):
         montage.enchainer(ph, [0.0, 4.3, 8.9])
         self.assertEqual(ph[1]["media"]["debut"], 24.3)
 
+    def test_scenes_de_5_a_10_secondes(self):
+        from robot import principal
+        mots = lambda n: " ".join(["mot"] * n)
+        ph = [dict(voix=mots(n)) for n in (8, 10, 30, 6, 7, 9, 12)] + [dict(voix="Et toi ?")]
+        scenes = principal.scenes_de(ph)
+        self.assertEqual(sum(scenes, []), list(range(7)))                            # chaque phrase dans une scène, dans l'ordre
+        for sc in scenes:
+            d = sum(len(ph[j]["voix"].split()) / 3.5 + 0.18 for j in sc)
+            self.assertTrue(len(sc) == 1 or 5 <= d <= 10.2, (sc, d))                 # 5 à 10 s (une longue phrase reste seule)
+
+    def test_jamais_deux_fois_le_meme_passage(self):
+        from robot import controle
+        v = dict(type="video", chemin="c.mp4", debut=0, duree=60, id="pt-a-0")
+        s = {"phrases": [dict(media=v, _valide=True), dict(media=None), dict(media=dict(v, debut=10, id="pt-a-1")), dict(media=None)]}
+        m = controle._image_deja_bonne(s, 1)
+        self.assertTrue(m["suite"])                                                  # la scène d'avant continue
+        s["phrases"][2]["_valide"] = False
+        m = controle._image_deja_bonne(s, 3)
+        self.assertEqual(m["debut"], 20)                                             # passage jamais montré (20 s → 30 s)
+
     def test_articles_sans_doublons(self):
         from robot import sources
         texte = "Le président a inauguré la nouvelle ligne d'assemblage de l'avion à Toulouse devant les ouvriers " * 5

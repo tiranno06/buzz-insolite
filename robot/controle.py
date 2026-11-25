@@ -277,18 +277,20 @@ def uid(script, i):
 
 
 def _image_deja_bonne(script, i):
-    """Un média déjà accepté sur un autre écran, repris avec un autre moment (vidéo) : jamais d'écran vide tant qu'au moins
-    une vraie image existe dans la vidéo."""
-    bons = [q["media"] for k, q in enumerate(script["phrases"][:-1]) if k != i and q.get("media") and q.get("_valide")
-            and q["media"].get("type") in ("video", "photo") and not q["media"].get("presse")]
-    bons.sort(key=lambda m: m.get("type") != "video")     # une vraie VIDÉO d'abord (jamais un titre de presse recopié)
-    if not bons:
-        return None
-    m = dict(bons[i % len(bons)])
-    if m["type"] == "video":
-        m["debut"] = round((m.get("debut", 0) + 3 + 2 * i) % max(1.0, (m.get("duree") or 12) - 6), 1)
-    m["id"] = f"{m.get('id', 'media')}-bis{i}"
-    return m
+    """Dernier recours avant l'écran de texte, SANS doublon (demande de l'auteur du 25/11) : 1) la scène d'avant CONTINUE
+    (même vraie vidéo, la suite des images) ; 2) un passage PAS ENCORE MONTRÉ d'une vraie vidéo déjà validée par l'IA."""
+    ph = script["phrases"]
+    avant = (ph[i - 1].get("media") or {}) if i > 0 else {}
+    if avant.get("type") == "video" and ph[i - 1].get("_valide") and not avant.get("presse"):
+        return dict(avant, id=f"{str(avant.get('id', 'media')).split('-suite')[0]}-suite{i}", suite=True)
+    for q in ph[:-1]:
+        m = q.get("media") or {}
+        if m.get("type") != "video" or not q.get("_valide") or not m.get("chemin"):
+            continue
+        fin_vue = max((x["media"].get("debut", 0) for x in ph if (x.get("media") or {}).get("chemin") == m["chemin"]), default=0) + 10
+        if fin_vue + 5 <= (m.get("duree") or 0):          # il reste au moins 5 s jamais montrées dans cette vidéo
+            return dict(m, debut=fin_vue, id=f"{str(m.get('id', 'media')).split('-suite')[0]}-p{int(fin_vue)}", suite=False)
+    return None
 
 
 def nouvelle_image(script, i, dossier, deja, journal, recherche=""):

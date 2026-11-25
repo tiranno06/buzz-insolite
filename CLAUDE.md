@@ -106,6 +106,11 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
   phrases (`donner_clip` : la phrase suivante reçoit le même morceau avec `suite`, si les 2 phrases font ≤ 10,5 s estimées ;
   `montage.enchainer` fait reprendre la vidéo là où l'écran d'avant s'est arrêté). **Et des images fixes** : 1 écran sur 4
   (écrans 4, 8, 12…) prend la vraie photo Wikipédia de l'entité citée (`images.trouver_photo`), sinon une vidéo.
+- **Scènes de 5 à 10 s** (demande de l'auteur du 25/11, remplace le « 1 ou 2 phrases ») : `principal.scenes_de` regroupe
+  les phrases qui se suivent (3,5 mots/s) ; une scène = UN média (`donner` : 1re phrase + copies `suite` pour les autres),
+  vraie vidéo qui continue (`montage.enchainer`) ou vraie photo (1 scène sur 4) ; `E["scenes"]` gardé pour les reprises.
+- **Jamais de doublon** : `controle._image_deja_bonne` ne recopie plus une image ; il fait CONTINUER la scène d'avant (même
+  vidéo, la suite) ou prend un passage jamais montré d'une vidéo validée (après tout ce qui a été vu de ce fichier).
 - **Toutes les sources** : vidéos du sujet prises à tour de rôle dans chaque source (YouTube CC, PeerTube, Internet Archive,
   Vimeo, Commons), 5 au plus, titres copiés d'une source à l'autre essayés en dernier ; articles : 8 au plus,
   `sources.sans_doublons` (même lien, même titre ou 60 % des mots en commun = copie d'agence : le plus complet gardé),
