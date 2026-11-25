@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T16:10:14+01:00",
+   "niveau": "info",
+   "texte": "🔁 « CAN 2025 : Sénégal récupère le titre » refaite (controle) : note 90/100, corrige : « regard de l'IA sur la vidéo finie à refaire (IA saturée) » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T15:57:26+01:00",
    "niveau": "info",
    "texte": "🔁 « CAN 2025 : Sénégal récupère le titre » refaite (controle) : note 90/100, corrige : « problème de voix d'une phrase déjà retirée » — l'ancienne version est remplacée"
