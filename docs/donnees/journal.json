@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T16:53:18+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Peine de mort accélérée : Trump » (68 s, 12 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-25T16:52:44+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Leto Lucia et la polémique GTA VI » (66 s, 14 écrans illustrés) — à regarder puis cocher « À publier »"

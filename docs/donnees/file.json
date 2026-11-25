@@ -1,6 +1,316 @@
 {
  "videos": [
   {
+   "id": "20261125-163234-1",
+   "tag": "v-20261125-163234-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-163234-1/buzz-20261125-163234-1.mp4",
+   "titre": "Peine de mort accélérée : Trump",
+   "accroche": "TRUMP ACCÉLÈRE LA PEINE",
+   "sujet_id": "569fb914b4",
+   "sujet": "Trump signe ordre pour peine de mort accélérée",
+   "buzz": {
+    "vues": 1600000,
+    "jaime": 168000,
+    "commentaires": 9398,
+    "score": 367
+   },
+   "description": "Décision controversée sur la peine de mort. 🗽",
+   "question": "Et toi, tu penses que l’accélération de la peine de mort est une solution ?",
+   "hashtags": [
+    "#peinedemort",
+    "#trump",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 67.8,
+   "sources": [
+    {
+     "media": "lebrief.ma",
+     "titre": "États-Unis : Trump veut durcir le recours à la peine de mort",
+     "lien": "https://www.lebrief.ma/etats-unis-trump-veut-durcir-le-recours-a-la-peine-de-mort-100174331/"
+    },
+    {
+     "media": "theepochtimes.com",
+     "titre": "Trump Urges Congress to Pass Death Penalty Expansion",
+     "lien": "https://www.theepochtimes.com/us/trump-urges-congress-to-pass-death-penalty-expansion-6128665"
+    },
+    {
+     "media": "gentside.com",
+     "titre": "Donald Trump veut systématiser la peine de mort pour les meurtriers d’enfants et les violeurs",
+     "lien": "https://www.gentside.com/news/politique/art122435-donald-trump-veut-systematiser-la-peine-de-mort-pour-les-meurtriers-denfants-et-les.html"
+    },
+    {
+     "media": "bamada.net",
+     "titre": "États-Unis : Trump promet de contester la commutation de peines de mort en Californie",
+     "lien": "https://bamada.net/etats-unis-trump-promet-de-contester-la-commutation-de-peines-de-mort-en-californie"
+    },
+    {
+     "media": "yahoo.com",
+     "titre": "Trump seeks to speed up executions in US federal death penalty cases",
+     "lien": "https://www.yahoo.com/news/politics/articles/trump-seeks-speed-executions-us-031838926.html"
+    },
+    {
+     "media": "baltimoresun.com",
+     "titre": "Trump calls on Congress to pass expansion of death penalty, criticizes Newsom",
+     "lien": "https://www.baltimoresun.com/2026/11/24/trump-calls-on-congress-to-pass-expansion-of-death-penalty-criticizes-newsom/"
+    },
+    {
+     "media": "rtl.be",
+     "titre": "Donald Trump demande à la Justice de requérir la peine capitale pour les meurtriers d’enfants",
+     "lien": "https://www.rtl.be/actu/monde/international/donald-trump-demande-la-justice-de-requerir-la-peine-capitale-pour-les/2026-11-24/article/807557"
+    },
+    {
+     "media": "ouest-france.fr",
+     "titre": "Peine de mort aux États-Unis : Donald Trump renonce finalement à diffuser en direct une exécution militaire",
+     "lien": "https://www.ouest-france.fr/societe/peine-de-mort/peine-de-mort-aux-etats-unis-donald-trump-renonce-finalement-a-diffuser-en-direct-une-execution-militaire-7299da32-c8a3-11f1-b3f5-183597cb1094"
+    }
+   ],
+   "verification": {
+    "par": "groq:openai/gpt-oss-20b",
+    "corrigees": 2,
+    "retirees": 0,
+    "problemes": [
+     "Les articles indiquent qu'il a donné des instructions ou signé une directive / un mémorandum, mais ne parlent pas d'un décret.",
+     "La phrase affirme que la peine capitale donne une justice rapide aux familles des victimes, ce qui n’est pas confirmé par les articles ; ils indiquent plutôt qu"
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "@cbsnews (TikTok, extrait cité)",
+    "@cbsnews (TikTok, image citée)",
+    "Carte : Natural Earth, OpenStreetMap",
+    "Photo : theepochtimes.com (article cité)",
+    "The White House / Wikimedia Commons, Public domain"
+   ],
+   "extraits_perdus": 0,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 12,
+   "ecrans_total": 12,
+   "format": "buzz",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "Washington, D.C.",
+   "humeur": "tension",
+   "categorie": "actualite",
+   "texte": [
+    "Trump veut accélérer la peine de mort.",
+    "Le 23 novembre, il a signé une directive.",
+    "Il ordonne au Département de la Justice de demander la peine capitale pour les meurtriers d’enfants.",
+    "Le décret s’applique aussi aux violeurs et trafiquants d’êtres humains qui tuent leurs victimes.",
+    "Il a chargé le secrétaire à la Justice, Todd Blanche, d’accélérer les exécutions fédérales.",
+    "Cette décision oppose Trump à Gavin Newsom, qui a commué 548 peines en Californie.",
+    "Newsom a proposé de passer ces peines à la vie sans libération conditionnelle.",
+    "Le décret survient alors qu’en 2025, 47 personnes ont été exécutées aux États-Unis.",
+    "Selon le Pew Research Center, 66% des Américains soutiennent la peine de mort.",
+    "Mais 59% estiment que la peine de mort n’est pas un frein aux crimes graves.",
+    "Trump a aussi appelé le Congrès à adopter un projet de loi renforçant la peine de mort.",
+    "Le projet, le H.R. 11132, vise à étendre la peine à certains meurtriers d’agents de police et d’immigrés.",
+    "Il affirme que les exécutions sont souvent retardées, empêchant les familles de trouver la clôture.",
+    "Et toi, tu penses que l’accélération de la peine de mort est une solution ?"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-25T16:53:18+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 23,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 4,
+     "refus": 14,
+     "erreurs": 3,
+     "restant_demandes": "980",
+     "limite_demandes": "1000",
+     "restant_mots": "7304"
+    },
+    "gemini": {
+     "appels": 10,
+     "refus": 21,
+     "erreurs": 8
+    },
+    "openrouter": {
+     "appels": 0,
+     "refus": 12,
+     "erreurs": 0
+    }
+   },
+   "fabrication_s": 1243,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 11,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "images",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "Réunion sans rapport avec la peine de mort",
+      "corrige": true,
+      "essais": 2,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "Manifestation sans rapport avec le sujet",
+      "corrige": true,
+      "essais": 1,
+      "solution": "nouvelle image (« Donald Trump death penalty »)"
+     },
+     {
+      "niveau": "video",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "le chiffre 548 est sur le visage de Trump",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     }
+    ],
+    "sautes": [],
+    "corriges": 4,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "preuves": [
+    {
+     "ecran": 1,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711508210296884493",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:53:18+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711508210296884493",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:53:18+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711508210296884493",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, image citée)",
+     "releve_le": "2026-11-25T16:53:18+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711508210296884493",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, image citée)",
+     "releve_le": "2026-11-25T16:53:18+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711508210296884493",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, image citée)",
+     "releve_le": "2026-11-25T16:53:18+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711508210296884493",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:53:18+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711508210296884493",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:53:18+01:00"
+    },
+    {
+     "ecran": 9,
+     "page": "https://www.theepochtimes.com/us/trump-urges-congress-to-pass-death-penalty-expansion-6128665",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "theepochtimes.com",
+     "titre": "",
+     "credit": "Photo : theepochtimes.com (article cité)",
+     "releve_le": "2026-11-25T16:53:18+01:00"
+    },
+    {
+     "ecran": 10,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711508210296884493",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:53:18+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711508210296884493",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:53:18+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711508210296884493",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:53:18+01:00"
+    },
+    {
+     "ecran": 13,
+     "page": "https://commons.wikimedia.org/?curid=176061937",
+     "licence": "Public domain",
+     "auteur": "The White House",
+     "titre": "",
+     "credit": "The White House / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T16:53:18+01:00"
+    }
+   ],
+   "couverture_ms": 20954,
+   "durees": {
+    "articles": 0,
+    "ecriture": 366,
+    "texte": 16,
+    "voix": 66,
+    "images": 192,
+    "controle_images": 94,
+    "montage": 224,
+    "controle_final": 269,
+    "extraits": 0,
+    "regles": 1,
+    "rangement": 42
+   },
+   "refaite": null,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261125-163217-1",
    "tag": "v-20261125-163217-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-163217-1/buzz-20261125-163217-1.mp4",
