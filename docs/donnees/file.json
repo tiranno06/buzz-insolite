@@ -1,6 +1,370 @@
 {
  "videos": [
   {
+   "id": "20261125-222618-1",
+   "tag": "v-20261125-222618-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-222618-1/buzz-20261125-222618-1.mp4",
+   "titre": "Explosion drone à Middletown",
+   "accroche": "EXPLOSION DRONE À MIDDLETOWN",
+   "sujet_id": "25c51d115d",
+   "sujet": "Explosion à Middletown capturée par drone",
+   "buzz": {
+    "vues": 1300000,
+    "jaime": 105400,
+    "commentaires": 6234,
+    "score": 811
+   },
+   "description": "🚀 Découvre la détonation filmée par drone et les mesures de sécurité. #BuzzEtInsolite",
+   "question": "Et toi, que penses-tu de cette opération ?",
+   "hashtags": [
+    "#iowaexplosion",
+    "#dronefootage",
+    "#iowa",
+    "#drone",
+    "#middletown",
+    "#explosion",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 68.4,
+   "sources": [
+    {
+     "media": "newsweek.com",
+     "titre": "US Army Releases Video From Iowa Explosion Site As Maps Show Fallout",
+     "lien": "https://www.newsweek.com/us-army-video-iowa-explosion-site-maps-fallout-lead-azide-12766387"
+    },
+    {
+     "media": "foxnews.com",
+     "titre": "Army detonates tons of lead azide in Iowa as map shows dust plume projections",
+     "lien": "https://www.foxnews.com/live-news/army-detonation-lead-azide-middletown-iowa-11-25-26"
+    },
+    {
+     "media": "cnn.com",
+     "titre": "US officials report encouraging early signs after Army detonates unstable chemicals in Iowa",
+     "lien": "https://www.cnn.com/2026/11/25/us/live-news/iowa-lead-azide-detonation"
+    },
+    {
+     "media": "nypost.com",
+     "titre": "Iowa lead detonation live updates: Blowing up US stockpile of bomb-making chemical ‘absolutely reduced’ threat, Army says",
+     "lien": "https://nypost.com/2026/11/25/us-news/iowa-lead-detonation-live-updates/?preferred_app=nypost"
+    },
+    {
+     "media": "timesnownews.com",
+     "titre": "US Army To Detonate Unstable Explosives At Iowa Ammunition Plant, Residents Evacuated",
+     "lien": "https://www.timesnownews.com/world/us/us-news/us-army-to-detonate-unstable-explosives-at-iowa-ammunition-plant-residents-evacuated-article-156565822"
+    },
+    {
+     "media": "news.meaww.com",
+     "titre": "Iowa detonation: Drone footage captures twin explosions as Trump hails Army’s mitigation efforts",
+     "lien": "https://news.meaww.com/iowa-detonation-drone-footage-captures-twin-explosions-as-trump-hails-armys-mitigation-efforts"
+    },
+    {
+     "media": "Euronews",
+     "titre": "Iowa : l'armée américaine fait exploser son stock de plomb azide malgré les craintes",
+     "lien": "https://fr.euronews.com/2026/11/25/iowa-larmee-americaine-fait-exploser-son-stock-de-plomb-azide-malgre-les-craintes"
+    },
+    {
+     "media": "clarin.com",
+     "titre": "Did they detonate the lead in Iowa? Containment update, air monitoring, evacuations, and safety guidance after controlled blast in Middletown",
+     "lien": "https://www.clarin.com/us-news/did-they-detonate-the-lead-in-iowa-containment-update-air-monitoring-evacuations-and-safety-guidance-after-controlled-blast-in-middletown_0_LlFm7hop5m.html"
+    }
+   ],
+   "verification": null,
+   "verifie": false,
+   "credits": [
+    "@cnn (TikTok, extrait cité)",
+    "@cnn (TikTok, image citée)",
+    "Carte : Natural Earth, OpenStreetMap",
+    "Photo : newsweek.com (article cité)"
+   ],
+   "extraits_perdus": 0,
+   "regles_non_respectees": [
+    "faits non vérifiés par une 2e IA"
+   ],
+   "ecrans_illustres": 14,
+   "ecrans_total": 14,
+   "format": "buzz",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "Middletown, Iowa, États-Unis",
+   "humeur": "tension",
+   "categorie": "faits_divers",
+   "texte": [
+    "Tu as vu l'explosion capturée par drone ?",
+    "Le drone a filmé les deux explosions à l'usine de munitions de l'armée américaine.",
+    "The explosion released about 5 tons of lead acid.",
+    "68 barrels containing more than 9,700 rounds explore.",
+    "The two detonations rang around 9 a.m., Central Time.",
+    "The day was November 25, 2026.",
+    "The Army coordinated the drone flight with police and the armed forces.",
+    "Specialists from the 71st Ordnance Group carried out the detonation.",
+    "Earth berms, sand blocks and a water wall of 100,000 gallons surrounded the site.",
+    "The EPA collected over 1,200 samples before the blast.",
+    "Sensors showed no airborne lead for the first 15 minutes.",
+    "A white smoke column rose, then the plume dissipâtes in un der an hour.",
+    "21 people évacuées, a five-mile zone was cleared.",
+    "Residents within a 20-mile radius must stay inside until the all-clean.",
+    "Trump said the mitigation measures far exceeded expectations.",
+    "Et toi, que penses-tu de cette opération ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-25T22:40:58+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 5,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 7,
+     "refus": 2,
+     "erreurs": 7,
+     "restant_demandes": "992",
+     "limite_demandes": "1000",
+     "restant_mots": "967"
+    },
+    "gemini": {
+     "appels": 0,
+     "refus": 2,
+     "erreurs": 2
+    },
+    "openrouter": {
+     "appels": 0,
+     "refus": 8,
+     "erreurs": 0
+    }
+   },
+   "fabrication_s": 879,
+   "controles": {
+    "note": 0,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "5 faute(s) d'orthographe ou de grammaire corrigée(s)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "LanguageTool + IA"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 29,
+      "gravite": "grave",
+      "probleme": "voix et sous-titres ne correspondent pas (33%)",
+      "corrige": false,
+      "essais": 4,
+      "solution": "voix refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 28,
+      "gravite": "grave",
+      "probleme": "voix et sous-titres ne correspondent pas (48%)",
+      "corrige": false,
+      "essais": 4,
+      "solution": "voix refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 27,
+      "gravite": "grave",
+      "probleme": "voix et sous-titres ne correspondent pas (38%)",
+      "corrige": false,
+      "essais": 4,
+      "solution": "voix refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 21,
+      "gravite": "grave",
+      "probleme": "voix et sous-titres ne correspondent pas (59%)",
+      "corrige": false,
+      "essais": 4,
+      "solution": "voix refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 19,
+      "gravite": "grave",
+      "probleme": "voix et sous-titres ne correspondent pas (55%)",
+      "corrige": false,
+      "essais": 4,
+      "solution": "voix refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 18,
+      "gravite": "grave",
+      "probleme": "voix et sous-titres ne correspondent pas (40%)",
+      "corrige": false,
+      "essais": 4,
+      "solution": "voix refaite"
+     },
+     {
+      "niveau": "regles",
+      "ecran": null,
+      "gravite": "grave",
+      "probleme": "faits non vérifiés par une 2e IA",
+      "corrige": false,
+      "essais": 1
+     }
+    ],
+    "sautes": [
+     "regard de l'IA sur la vidéo finie (IA indisponible : aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY))"
+    ],
+    "corriges": 1,
+    "restants": 7,
+    "graves_restants": 8
+   },
+   "reprises": 0,
+   "preuves": [
+    {
+     "ecran": 1,
+     "page": "https://www.tiktok.com/@cnn/video/7712141092535176478",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cnn",
+     "titre": "",
+     "credit": "@cnn (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://www.tiktok.com/@cnn/video/7712141092535176478",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cnn",
+     "titre": "",
+     "credit": "@cnn (TikTok, image citée)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://www.newsweek.com/us-army-video-iowa-explosion-site-maps-fallout-lead-azide-12766387",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "newsweek.com",
+     "titre": "",
+     "credit": "Photo : newsweek.com (article cité)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://www.tiktok.com/@cnn/video/7711922115238219022",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cnn",
+     "titre": "",
+     "credit": "@cnn (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://www.tiktok.com/@cnn/video/7711922115238219022",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cnn",
+     "titre": "",
+     "credit": "@cnn (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://www.tiktok.com/@cnn/video/7712141092535176478",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cnn",
+     "titre": "",
+     "credit": "@cnn (TikTok, image citée)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://www.newsweek.com/us-army-video-iowa-explosion-site-maps-fallout-lead-azide-12766387",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "newsweek.com",
+     "titre": "",
+     "credit": "Photo : newsweek.com (article cité)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    },
+    {
+     "ecran": 9,
+     "page": "https://www.tiktok.com/@cnn/video/7711922115238219022",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cnn",
+     "titre": "",
+     "credit": "@cnn (TikTok, image citée)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    },
+    {
+     "ecran": 10,
+     "page": "https://www.tiktok.com/@cnn/video/7711922115238219022",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cnn",
+     "titre": "",
+     "credit": "@cnn (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://www.tiktok.com/@cnn/video/7711922115238219022",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cnn",
+     "titre": "",
+     "credit": "@cnn (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://www.tiktok.com/@cnn/video/7711922115238219022",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cnn",
+     "titre": "",
+     "credit": "@cnn (TikTok, image citée)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    },
+    {
+     "ecran": 13,
+     "page": "https://www.tiktok.com/@cnn/video/7711922115238219022",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cnn",
+     "titre": "",
+     "credit": "@cnn (TikTok, image citée)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    },
+    {
+     "ecran": 14,
+     "page": "https://www.newsweek.com/us-army-video-iowa-explosion-site-maps-fallout-lead-azide-12766387",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "newsweek.com",
+     "titre": "",
+     "credit": "Photo : newsweek.com (article cité)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    },
+    {
+     "ecran": 15,
+     "page": "https://www.newsweek.com/us-army-video-iowa-explosion-site-maps-fallout-lead-azide-12766387",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "newsweek.com",
+     "titre": "",
+     "credit": "Photo : newsweek.com (article cité)",
+     "releve_le": "2026-11-25T22:40:58+01:00"
+    }
+   ],
+   "couverture_ms": 17031,
+   "durees": {
+    "articles": 0,
+    "ecriture": 11,
+    "texte": 32,
+    "images": 41,
+    "controle_images": 2,
+    "voix": 62,
+    "montage": 93,
+    "controle_final": 604,
+    "extraits": 0,
+    "regles": 57,
+    "rangement": 7
+   },
+   "refaite": null,
+   "statut": "a_verifier"
+  },
+  {
    "id": "20261125-214937-1",
    "tag": "v-20261125-214937-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-214937-1/buzz-20261125-214937-1.mp4",

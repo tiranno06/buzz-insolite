@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T22:40:58+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Explosion drone à Middletown » (68 s, 14 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-25T22:38:02+01:00",
    "niveau": "info",
    "texte": "▶️ Création en attente lancée : les IA gratuites sont de nouveau disponibles (IA disponibles : groq, gemini ; voient : gemini)."
