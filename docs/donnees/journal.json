@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T02:33:37+01:00",
+   "niveau": "info",
+   "texte": "🔁 « CAN 2025 : Le Sénégal récupère son titre » refaite (images) : note 75/100, corrige : « Aucune vraie image : scènes de 5 à 10 s en vraies vidéos » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T02:22:55+01:00",
    "niveau": "info",
    "texte": "🔁 « Macron et l'A320 : un futur qui décolle » refaite (images) : note 0/100, corrige : « Scènes de 5 à 10 s en vraies vidéos de toutes les sources, sans doublon » — l'ancienne version est remplacée"

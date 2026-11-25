@@ -1040,9 +1040,9 @@
    "refaite_de": "20261124-233157-1"
   },
   {
-   "id": "20261124-233239-1-r1",
-   "tag": "v-20261124-233239-1-r1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r1/buzz-20261124-233239-1-r1.mp4",
+   "id": "20261124-233239-1-r2",
+   "tag": "v-20261124-233239-1-r2",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r2/buzz-20261124-233239-1-r2.mp4",
    "titre": "CAN 2025 : Le Sénégal récupère son titre",
    "accroche": "LE TAS REND LA JUSTICE",
    "sujet_id": "af2b8dfec2",
@@ -1115,9 +1115,11 @@
    "verifie": true,
    "credits": [
     "Carte : Natural Earth, OpenStreetMap",
-    "Titre : linternaute.com"
+    "Titre : linternaute.com",
+    "Wikipédia, article « Confédération africaine de football »",
+    "Wikipédia, article « Coupe d'Afrique des nations de football »"
    ],
-   "ecrans_illustres": 0,
+   "ecrans_illustres": 3,
    "ecrans_total": 12,
    "format": "buzz",
    "voix": "chatterbox-bernard",
@@ -1141,8 +1143,8 @@
     "Alors, qui aurait dû gagner selon vous ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T01:21:13+01:00",
-   "fabrication_s": 695,
+   "cree_le": "2026-11-25T02:33:36+01:00",
+   "fabrication_s": 755,
    "controles": {
     "note": 75,
     "lignes": [
@@ -1150,16 +1152,16 @@
       "niveau": "images",
       "ecran": 14,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "image illisible (media80.jpg : )",
       "corrige": true,
-      "essais": 1,
+      "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
       "ecran": 16,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "image illisible (media52.jpg : )",
       "corrige": true,
       "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1168,7 +1170,7 @@
       "niveau": "images",
       "ecran": 17,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "image illisible (media53.jpg : )",
       "corrige": true,
       "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1177,7 +1179,7 @@
       "niveau": "images",
       "ecran": 18,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "image illisible (media54.jpg : )",
       "corrige": true,
       "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1186,25 +1188,25 @@
       "niveau": "images",
       "ecran": 19,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "image illisible (media19.jpg : )",
       "corrige": true,
-      "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "essais": 1,
+      "solution": "nouvelle image (« scoreboard controversy »)"
      },
      {
       "niveau": "images",
       "ecran": 20,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "image illisible (media20.jpg : )",
       "corrige": true,
       "essais": 1,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "solution": "image du thème (« football trophy african cup »)"
      },
      {
       "niveau": "images",
       "ecran": 21,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "image illisible (media21.jpg : )",
       "corrige": true,
       "essais": 1,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1213,7 +1215,7 @@
       "niveau": "images",
       "ecran": 22,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "image illisible (media58.jpg : )",
       "corrige": true,
       "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1222,7 +1224,7 @@
       "niveau": "images",
       "ecran": 23,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "image illisible (media59.jpg : )",
       "corrige": true,
       "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1231,16 +1233,7 @@
       "niveau": "images",
       "ecran": 24,
       "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 26,
-      "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "image illisible (media60.jpg : )",
       "corrige": true,
       "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1249,34 +1242,62 @@
       "niveau": "images",
       "ecran": null,
       "gravite": "grave",
-      "probleme": "trop peu d'images : 0 écran(s) illustré(s) sur 12",
+      "probleme": "trop peu d'images : 3 écran(s) illustré(s) sur 12",
       "corrige": false,
       "essais": 1
      }
     ],
     "sautes": [],
-    "corriges": 11,
+    "corriges": 10,
     "restants": 1,
     "graves_restants": 1
    },
    "reprises": 0,
-   "preuves": [],
-   "couverture_ms": 57501,
+   "preuves": [
+    {
+     "ecran": 6,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ALocationWesternAfrica.png",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Confédération africaine de football »",
+     "releve_le": "2026-11-25T02:33:36+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AAfrica-countries-CECAFA.png",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Confédération africaine de football »",
+     "releve_le": "2026-11-25T02:33:36+01:00"
+    },
+    {
+     "ecran": 13,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ACAN_-_Fr_-_Full_Colour.png",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Coupe d'Afrique des nations de football »",
+     "releve_le": "2026-11-25T02:33:36+01:00"
+    }
+   ],
+   "couverture_ms": 25714,
    "durees": {
     "voix": 0,
-    "images": 155,
-    "controle_images": 240,
-    "montage": 92,
-    "controle_final": 194,
-    "rangement": 3
+    "images": 154,
+    "controle_images": 276,
+    "montage": 104,
+    "controle_final": 203,
+    "rangement": 4
    },
    "refaite": {
-    "de": "20261124-233239-1",
+    "de": "20261124-233239-1-r1",
     "etape": "images",
-    "remarque": "Scènes de 5 à 10 s en vraies vidéos de toutes les sources, sans doublon"
+    "remarque": "Aucune vraie image : scènes de 5 à 10 s en vraies vidéos"
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233239-1"
+   "refaite_de": "20261124-233239-1-r1"
   }
  ]
 }
