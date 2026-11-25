@@ -144,15 +144,17 @@ def relancer_attente(E):
         print(f"{len(attente)} création(s) en attente : {resume}")
         return
     demande = attente[0]
+    ref = (demande.get("inputs") or {}).get("refaire")
+    meme = lambda x: x == demande or (ref and (x.get("inputs") or {}).get("refaire") == ref)   # doublons partis aussi
 
     def appliquer():
         G = lire("garde.json") or {}
-        G["en_attente"] = [x for x in G.get("en_attente") or [] if x != demande]
+        G["en_attente"] = [x for x in G.get("en_attente") or [] if not meme(x)]
         G["credits"] = {"le": iso(), "resume": resume}
         ecrire("garde.json", G)
         noter(f"▶️ Création en attente lancée : les IA gratuites sont de nouveau disponibles ({resume.lstrip('✅ ')}).")
     depot.enregistrer(appliquer, "Création en attente lancée")
-    E["en_attente"] = attente[1:]
+    E["en_attente"] = [x for x in attente if not meme(x)]
     args = ["gh", "workflow", "run", "creer.yml"]
     for k, v in (demande.get("inputs") or {}).items():
         args += ["-f", f"{k}={v}"]
