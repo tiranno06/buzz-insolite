@@ -883,3 +883,21 @@ class TestVoixParallele(unittest.TestCase):
             self.assertEqual(voix.processus_voix(10), 3)
         finally:
             del os.environ["CHATTERBOX_PROCESSUS"]
+
+
+class TestAudienceSecurite(unittest.TestCase):
+    def test_tendance_google(self):
+        from robot import sources
+        t = [("grève eurostar", "FR", "200+", ["Le trafic des trains Eurostar perturbé par une grève"])]
+        self.assertEqual(sources.en_tendance({"titre": "Grève surprise chez Eurostar", "mots_cles": ["Eurostar", "grève"]}, t)["pays"], "FR")
+        self.assertIsNone(sources.en_tendance({"titre": "CAN 2025 : Sénégal", "mots_cles": ["Sénégal"]}, t))
+
+    def test_series(self):
+        import datetime
+        from robot import publication_auto as P
+        R = {"creation": {"heures": ["07:15", "16:15"], "series": True, "formats": {}}}
+        lundi = datetime.datetime(2026, 11, 23, 7, 15)
+        self.assertEqual(P.format_auto(R, lundi, "07:15"), "chiffre")
+        vendredi = datetime.datetime(2026, 11, 27, 7, 15)
+        self.assertEqual(P.serie_du_jour(R, vendredi, "07:15")[1], "VRAI OU FAUX DU VENDREDI")
+        self.assertIsNone(P.serie_du_jour(R, vendredi, "16:15"))

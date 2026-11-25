@@ -131,14 +131,20 @@ def videos_du_meme_evenement(sujet, journal=print, maxi=12):
     """Vidéos de l'événement sur TOUS les comptes suivis (demande de l'auteur du 25/11) : les vidéos virales du sujet, puis
     toutes les autres vidéos lues ces 7 jours (videos_lues.json, même sous les seuils) qui parlent du MÊME événement
     (mots en commun, puis confirmation par l'IA)."""
-    connues = [v for v in sujet.get("videos") or [] if v.get("url") and not v.get("indisponible")]
+    import datetime
+    from .commun import maintenant, reglages
+    risque = {c for c, le in (reglages()["video"].get("sources_a_risque") or {}).items()
+              if maintenant() - datetime.datetime.fromisoformat(le) < datetime.timedelta(days=30)}
+    if risque:
+        journal(f"  comptes mis de côté (une de nos vidéos qui les citait a été retirée) : {', '.join('@' + c for c in sorted(risque))}")
+    connues = [v for v in sujet.get("videos") or [] if v.get("url") and not v.get("indisponible") and v.get("compte") not in risque]
     ids = {str(v.get("id")) for v in connues}
     voulus = images._mots_sujet(" ".join([sujet.get("titre", "")] + list(sujet.get("mots_cles") or [])
                                          + list(sujet.get("mots_cles_en") or [])))
     stock = (lire("videos_lues.json") or {}).get("videos") or []
     cand = []
     for v in stock:
-        if str(v.get("id")) in ids or not v.get("url"):
+        if str(v.get("id")) in ids or not v.get("url") or v.get("compte") in risque:
             continue
         commun = len(voulus & images._mots_sujet(v.get("texte") or ""))
         if commun >= 2:

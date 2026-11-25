@@ -112,8 +112,24 @@ def main():
         noter(f"🤖 Création automatique lancée (créneau de {h}, format {format_}).")
 
 
+SERIES = {0: ("chiffre", "LE CHIFFRE DU LUNDI", "lechiffredulundi"),
+          4: ("vrai_faux", "VRAI OU FAUX DU VENDREDI", "vraioufauxduvendredi")}
+
+
+def serie_du_jour(R, now, h):
+    """Séries récurrentes (amélioration 23 du 25/11) : le 1er créneau du lundi = « Le chiffre du lundi », du vendredi =
+    « Vrai ou faux du vendredi » (les abonnés reviennent pour un rendez-vous). (format, étiquette, hashtag) ou None."""
+    if not R["creation"].get("series", True) or h != min(R["creation"]["heures"]):
+        return None
+    return SERIES.get(now.weekday())
+
+
 def format_auto(R, now, h):
-    """Dimanche, dernier créneau : « 3 actus de la semaine » ; sinon « Vrai ou faux ? » une vidéo sur N ; sinon buzz."""
+    """Séries du lundi et du vendredi ; dimanche, dernier créneau : « 3 actus de la semaine » ; samedi soir : « Le monde en
+    60 secondes » ; sinon « Vrai ou faux ? » une vidéo sur N ; sinon buzz."""
+    serie = serie_du_jour(R, now, h)
+    if serie:
+        return serie[0]
     F = R["creation"].get("formats") or {}
     if F.get("semaine") and now.weekday() == 6 and h == max(R["creation"]["heures"]):
         return "semaine"

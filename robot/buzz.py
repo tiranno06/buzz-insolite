@@ -20,7 +20,7 @@ import unicodedata
 from . import ecrire, sources, ia
 from .commun import ecrire, iso, lire, maintenant, noter, reglages
 
-VARIANTES = (["--impersonate", "chrome"], ["--extractor-args", "tiktok:api_hostname=api16-normal-c-useast1a.tiktokv.com"], [])
+VARIANTES = (["--impersonate", "chrome"], ["--extractor-args", "tiktok:api_hostname=api16-normal-c-useast1a.tiktokv.com"], [])  # gitleaks:allow (adresse de serveur, pas une clé)
 
 
 def videos_du_compte(pseudo, n=30):
@@ -263,6 +263,7 @@ def relever(journal=print):
     for s in sujets:
         s["sous_seuils"] = all(v.get("sous_seuils") for v in s["videos"])
     now = time.time()
+    tendances = sources.tendances_google()                  # ce qui monte AUSSI sur Google (amélioration 21 du 25/11)
     for s in sujets:
         s["id"] = identifiant(s["titre"])
         s["score"] = score(s, now) // (2 if s.get("sous_seuils") else 1)     # les vrais gros buzz d'abord
@@ -278,6 +279,9 @@ def relever(journal=print):
         if s["medias"] is not None and s["medias"] < 3:
             s["score"] //= 4
         s["score"] = round(s["score"] * facteur_categorie(s.get("categorie")))   # ce qui marche sur NOTRE chaîne
+        s["tendance"] = sources.en_tendance(s, tendances)
+        if s["tendance"]:                                     # le sujet monte aussi sur Google : vrai buzz, plus sûr
+            s["score"] = round(s["score"] * 1.5)
         time.sleep(0.5)
     ancien = lire("buzz.json") or {}
     d = {"maj": iso(), "comptes": etat, "lues": len(toutes), "retenues": len(retenues),

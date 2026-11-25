@@ -113,6 +113,28 @@ def main():
                 v["non_vue_sur_tiktok"] = iso()
                 noter(f"⚠️ « {v['titre']} » : envoyée à Buffer mais introuvable sur TikTok 2 h après l'heure prévue. "
                       "Regarde dans Buffer (publication refusée ?) et sur l'appli TikTok (brouillons, notifications).", "erreur")
+        # Vidéo vue en ligne puis DISPARUE de la chaîne (retirée par TikTok, souvent pour droits d'auteur ; amélioration
+        # 25 du 25/11) : alerte, et les comptes cités dans cette vidéo sont mis de côté 30 jours pour les extraits
+        ids_en_ligne = {str(x.get("id")) for x in tiktok}
+        plus_ancienne = min((x.get("date") or 0 for x in tiktok), default=0)
+        R2 = reglages()
+        risque = R2["video"].setdefault("sources_a_risque", {})
+        for v in file["videos"]:
+            lien = v.get("lien_tiktok") or ""
+            vid = lien.rstrip("/").rsplit("/", 1)[-1]
+            if v.get("statut") != "publiee" or not vid or vid in ids_en_ligne or v.get("retiree_le"):
+                continue
+            if plus_ancienne and en_ligne_le(v).timestamp() < plus_ancienne:
+                continue                                      # trop ancienne : hors des 60 vidéos lues, pas une disparition
+            v["retiree_le"] = iso()
+            comptes = sorted({c.split(" ")[0].lstrip("@") for c in v.get("credits") or [] if "extrait cité" in c or "image citée" in c})
+            for c in comptes:
+                risque[c] = iso()
+            noter(f"🚨 « {v['titre']} » a DISPARU de la chaîne TikTok (retirée, souvent pour droits d'auteur). "
+                  + (f"Extraits de {', '.join('@' + c for c in comptes)} mis de côté 30 jours. " if comptes else "")
+                  + "Regarde les notifications de l'appli TikTok.", "erreur")
+        if risque:
+            ecrire("reglages.json", R2)
         S = analyser(file["videos"])
         S["chaine"] = pseudo; S["lues"] = len(tiktok); S["retrouvees"] = len(paires)
         ecrire("file.json", file); ecrire("stats.json", S)

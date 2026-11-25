@@ -269,6 +269,7 @@ dialog form { position: absolute; top: 6px; right: 6px; }
         <label class="champ">Machines qui fabriquent en même temps <span>une série de 6 vidéos avec 3 machines prend environ 2 fois 30 minutes</span>
           <input type="number" id="r-paralleles" min="1" max="5"></label>
         <label class="case"><input type="checkbox" id="r-cre-auto"> Créer une vidéo toute seule aux heures ci-dessous</label>
+        <label class="case"><input type="checkbox" id="r-series"> Séries : « Le chiffre du lundi » et « Vrai ou faux du vendredi » (1re vidéo du jour)</label>
         <div class="grille2"><label class="champ">1re heure <input type="time" id="r-cre-h1"></label>
           <label class="champ">2e heure <input type="time" id="r-cre-h2"></label></div>
         <label class="champ">« Vrai ou faux ? » <select id="r-vf"><option value="0">jamais</option><option value="2">1 vidéo sur 2</option>
@@ -437,7 +438,7 @@ function carteSujet(s) {
     <div class="rang"><span class="tag ${statut}">${LIB[statut] || statut}</span>${s.insolite >= 7 ? '<span class="tag">🤯 très insolite</span>' : ""}
       ${s.presse ? '<span class="tag">📰 presse</span>' : ""}${s.sous_seuils ? '<span class="tag" title="Moins de vues que tes seuils : ajouté pour avoir toujours 5 sujets">📉 sous les seuils</span>' : ""}</div>
     <h3 style="margin-top:8px">${esc(s.titre)}</h3>
-    <div class="chiffres"><span>👁️ <b>${nb(s.vues)}</b> vues</span><span>❤️ <b>${nb(s.jaime)}</b></span><span>💬 <b>${nb(s.commentaires)}</b></span><span>⚡ score ${nb(s.score)}</span>${s.medias != null ? `<span>📰 <b>${s.medias}</b> média(s)${s.medias < 3 ? " (peu)" : ""}</span>` : ""}</div>
+    <div class="chiffres"><span>👁️ <b>${nb(s.vues)}</b> vues</span><span>❤️ <b>${nb(s.jaime)}</b></span><span>💬 <b>${nb(s.commentaires)}</b></span><span>⚡ score ${nb(s.score)}</span>${s.medias != null ? `<span>📰 <b>${s.medias}</b> média(s)${s.medias < 3 ? " (peu)" : ""}</span>` : ""}${s.tendance ? `<span title="recherche qui monte sur Google">🔎 Google ${esc(s.tendance.pays)} : « ${esc(s.tendance.recherche)} » ${esc(s.tendance.trafic || "")}</span>` : ""}</div>
     <p class="petit" style="margin:4px 0">${esc(s.resume)}</p>
     <p class="muted petit" style="margin:4px 0">Vu chez ${esc(comptes) || "—"}
       ${(s.videos || []).filter(v => v.url && v.url !== "#" && !v.indisponible).map((v, i) => ` · <a href="${esc(v.url)}" target="_blank" rel="noopener" data-lecteur="${esc(v.lecteur || ("https://www.tiktok.com/player/v1/" + (v.id || "")))}">▶️ vidéo ${i + 1}</a>`).join("")}</p>
@@ -482,6 +483,8 @@ function carteVideo(v) {
     echec: `<button class="btn mini ok" data-a="a_publier" data-id="${v.id}">🔁 Remettre dans la file</button>`,
     ecartee: `<button class="btn mini" data-a="retirer" data-id="${v.id}">↩️ Remettre à regarder</button>`,
     publiee: `<button class="btn mini" data-a="lien" data-id="${v.id}">🔗 Ajouter le lien TikTok</button>`
+      + (v.buffer ? `<span class="petit ${v.buffer.etiquette_ia ? "muted" : ""}">${v.buffer.etiquette_ia ? "🤖 étiquette IA cochée" : "⚠️ étiquette IA à cocher dans l'appli TikTok"}</span>` : "")
+      + (v.retiree_le ? `<span class="petit">🚨 retirée de TikTok</span>` : "")
   }[v.statut] || "";
   return `<div class="card video">
     <button class="vignette" style="background-image:url('${mini}')" data-play="${esc(v.url)}" aria-label="Regarder"></button>
@@ -586,7 +589,7 @@ function remplirReglages() {
   const P = R.publication || {}, C = R.creation || {}, B = R.buzz || {}, V = R.video || {}, H = R.hashtags || {};
   $("#r-mode").value = P.mode || "cocher"; $("#r-pub-auto").checked = !!P.auto;
   $("#r-pub-h1").value = (P.heures || [])[0] || ""; $("#r-pub-h2").value = (P.heures || [])[1] || ""; $("#r-compte").value = P.compte || "";
-  $("#r-cre-auto").checked = !!C.auto; $("#r-cre-h1").value = (C.heures || [])[0] || ""; $("#r-cre-h2").value = (C.heures || [])[1] || "";
+  $("#r-cre-auto").checked = !!C.auto; $("#r-series").checked = C.series !== false; $("#r-cre-h1").value = (C.heures || [])[0] || ""; $("#r-cre-h2").value = (C.heures || [])[1] || "";
   $("#r-vues").value = B.vues_min ?? 500000; $("#r-jaime").value = B.jaime_min ?? 10000; $("#r-com").value = B.commentaires_min ?? 1000;
   $("#r-heures").value = B.heures ?? 72; $("#r-comptes").value = (B.comptes || []).join("\n");
   const E = (D["buzz.json"] || {}).comptes || {};
@@ -607,7 +610,7 @@ $("#form-reglages").onsubmit = e => {
   const R = {
     publication: { mode: $("#r-mode").value, auto: $("#r-pub-auto").checked, heures: heures("#r-pub-h1", "#r-pub-h2"), compte: $("#r-compte").value.trim(),
       chaine: $("#r-chaine").value.trim(), heures_auto: $("#r-heures-auto").checked },
-    creation: { paralleles: +$("#r-paralleles").value || 5, auto: $("#r-cre-auto").checked, heures: heures("#r-cre-h1", "#r-cre-h2"), formats: { vrai_faux: +$("#r-vf").value, semaine: $("#r-semaine").checked, chiffre: +$("#r-chiffre").value, region: +$("#r-region").value, monde60: $("#r-monde60").checked } },
+    creation: { paralleles: +$("#r-paralleles").value || 5, auto: $("#r-cre-auto").checked, series: $("#r-series").checked, heures: heures("#r-cre-h1", "#r-cre-h2"), formats: { vrai_faux: +$("#r-vf").value, semaine: $("#r-semaine").checked, chiffre: +$("#r-chiffre").value, region: +$("#r-region").value, monde60: $("#r-monde60").checked } },
     buzz: { vues_min: +$("#r-vues").value, jaime_min: +$("#r-jaime").value, commentaires_min: +$("#r-com").value, heures: +$("#r-heures").value,
       comptes: $("#r-comptes").value.split(/\s+/).map(x => x.replace(/^@/, "")).filter(Boolean) },
     video: { voix: $("#r-voix").value, vitesse: +$("#r-vitesse").value, musique: $("#r-musique").checked, bruitages: $("#r-bruitages").checked, transitions: $("#r-transitions").checked, carte: $("#r-carte").checked, images_generiques: $("#r-generiques").checked, citations: $("#r-citations").checked, citations_nombre: +$("#r-citations-nb").value },

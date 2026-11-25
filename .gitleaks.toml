@@ -1,0 +1,16 @@
+# Règles de gitleaks (amélioration 26 du 25/11) : les règles habituelles (clés d'API connues, jetons GitHub, clés privées…)
+# + celles du projet (noms des secrets du robot écrits avec une valeur).
+title = "buzz-insolite"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "cle-du-robot"
+description = "Clé d'un service du robot écrite en clair"
+regex = '''(?i)(MISTRAL|GROQ|GEMINI|OPENROUTER|BUFFER|PEXELS|PIXABAY|VIMEO)_(API_KEY|TOKEN)\s*[=:]\s*["']?[A-Za-z0-9_\-]{16,}'''
+
+[allowlist]
+description = "Sons et miniatures (fichiers binaires)"
+paths = ['''sons/.*''', '''docs/miniatures/.*''']
+regexes = ['''api16-normal-c-useast1a\.tiktokv\.com''']   # adresse de serveur TikTok (pas une clé)

@@ -356,6 +356,9 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 script["phrases"][i]["media"] = images.carte_presse(titres[k], os.path.join(dossier, f"presse{k}.png"))
             E["presse_faite"] = True
         script["phrases"][-1]["media"] = None
+        serie = serie_de(format_)                             # « LE CHIFFRE DU LUNDI », « VRAI OU FAUX DU VENDREDI »
+        if serie:
+            script["etiquette"], script["serie_hashtag"] = serie[1], serie[2]
         script["musique"] = R["video"].get("musique", True); script["bruitages"] = R["video"].get("bruitages", True)
         script["transitions"] = R["video"].get("transitions", False)
         if not E.get("carte_faite"):
@@ -466,7 +469,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
     return dict(id=vid, tag=f"v-{vid}", url=E["url"], titre=script["titre"], accroche=script.get("accroche", ""),
                 sujet_id=sujet["id"], sujet=sujet["titre"], buzz={k: sujet.get(k) for k in ("vues", "jaime", "commentaires", "score")},
                 description=script.get("description", ""), question=script.get("question", ""),
-                hashtags=ecrire.hashtags(script, sujet, R), duree=round(E["duree"], 1),
+                hashtags=([f"#{script['serie_hashtag']}"] if script.get("serie_hashtag") else []) + ecrire.hashtags(script, sujet, R), duree=round(E["duree"], 1),
                 sources=[dict(media=a["media"], titre=a["titre"], lien=a["lien"]) for a in articles_],
                 verification=script.get("verification"), verifie=script.get("verifie", False),
                 credits=sorted({p["media"]["credit"] for p in script["phrases"] if p.get("media")}),
@@ -491,6 +494,13 @@ def scenes_de(ph, mini=5.0, maxi=10.0):
     if cur:
         scenes.append(cur)
     return scenes
+
+
+def serie_de(format_):
+    """Série récurrente du jour (heure de Paris) si le format correspond : (format, étiquette, hashtag) ou None."""
+    from .publication_auto import SERIES
+    s = SERIES.get(maintenant().weekday())
+    return s if s and s[0] == format_ and reglages()["creation"].get("series", True) else None
 
 
 def _duree_estimee(p):

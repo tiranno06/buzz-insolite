@@ -282,3 +282,34 @@ def nombre_de_medias(sujet, mots_cles=(), mots_en=()):
         vus |= {urllib.parse.urlparse(l).netloc.replace("www.", "") for t, l, r in L if len(voulus & _mots(t + " " + r)) >= 2}
     return len(vus) if lu else None
 
+
+
+
+def tendances_google(pays=("FR", "US", "GB")):
+    """Recherches qui montent sur Google en ce moment (flux officiel « Daily Search Trends », sans clé ; amélioration 21 du
+    25/11) : [(recherche, pays, trafic, [titres d'articles liés])]. pytrends n'est pas utilisé : il est souvent refusé."""
+    out = []
+    for p in pays:
+        try:
+            racine = ET.fromstring(_ouvrir(f"https://trends.google.com/trending/rss?geo={p}", timeout=20))
+        except Exception:
+            continue
+        ns = {"ht": "https://trends.google.com/trending/rss"}
+        for item in racine.iter("item"):
+            titre = (item.findtext("title") or "").strip()
+            trafic = (item.findtext("ht:approx_traffic", namespaces=ns) or "").strip()
+            articles = [(n.findtext("ht:news_item_title", namespaces=ns) or "") for n in item.findall("ht:news_item", ns)]
+            if titre:
+                out.append((titre, p, trafic, [html.unescape(a) for a in articles if a]))
+    return out
+
+
+def en_tendance(sujet, tendances):
+    """La recherche Google qui correspond au sujet (2 mots en commun avec la recherche et ses articles), sinon None."""
+    voulus = _mots(" ".join([sujet.get("titre", "")] + list(sujet.get("mots_cles") or []) + list(sujet.get("mots_cles_en") or [])))
+    meilleur = None
+    for titre, pays, trafic, articles in tendances:
+        commun = len(voulus & _mots(titre + " " + " ".join(articles)))
+        if commun >= 2 and (not meilleur or commun > meilleur[0]):
+            meilleur = (commun, {"recherche": titre, "pays": pays, "trafic": trafic})
+    return meilleur[1] if meilleur else None

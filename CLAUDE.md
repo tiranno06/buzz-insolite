@@ -240,6 +240,20 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
 - **18. Quotas des IA** (`ia.QUOTAS` : appels, refus 429, erreurs, restes annoncés par les en-têtes x-ratelimit) → fiche de
   chaque vidéo (`ia_quotas`) → `sante.quotas_ia` (24 h) → onglet Santé (🟠 = plus de 30 % de refus).
 
+- **21. Tendances Google** (`sources.tendances_google` : flux officiel « Daily Search Trends » FR / US / GB, sans clé ;
+  pytrends trop souvent refusé ; `en_tendance` : 2 mots en commun) : un sujet qui monte AUSSI sur Google a son score × 1,5
+  et le badge 🔎 sur le site.
+- **23. Séries** (`publication_auto.SERIES`, `serie_du_jour`, réglage `creation.series`) : 1re vidéo du lundi = « LE
+  CHIFFRE DU LUNDI » (format chiffre), du vendredi = « VRAI OU FAUX DU VENDREDI » ; étiquette rouge à la place
+  d'« INSOLITE » (`script["etiquette"]`) et hashtag de la série en tête.
+- **25. Vidéos retirées** (`stats.main`) : une vidéo publiée vue en ligne puis disparue de la chaîne = 🚨 dans le journal,
+  `retiree_le`, et les comptes cités dedans mis de côté 30 jours pour les extraits (`video.sources_a_risque`,
+  `citations.videos_du_meme_evenement`).
+- **26. gitleaks 8.30.0** (secrets.yml, empreinte vérifiée, `--redact`, `.gitleaks.toml` : règles habituelles + noms des
+  secrets du robot) à chaque envoi ; à la main = tout l'historique (vérifié propre le 25/11).
+- **27. Étiquette IA** : déjà en place (Buffer `isAiGenerated`, sinon mention écrite + alerte) ; badge sur le site
+  (« 🤖 étiquette IA cochée » / « ⚠️ à cocher »).
+
 ## Avancement en direct (demande de l'auteur du 25/11 : « mis à jour bien plus rapidement »)
 Robot : envoi toutes les 5 s au plus (`avancement.INTERVALLE`) + signe de vie toutes les 15 s même au milieu d'une longue
 étape (`_lancer_battement`, fil discret : temps écoulé et fin prévue à jour). Site : relecture toutes les 5 s pendant une

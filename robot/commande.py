@@ -60,6 +60,8 @@ def appliquer_reglages(d):
         R["video"]["citations_nombre"] = max(1, min(15, int(Vd["citations_nombre"])))
     if "paralleles" in C:
         R["creation"]["paralleles"] = max(1, min(5, int(C["paralleles"])))
+    if "series" in C:
+        R["creation"]["series"] = bool(C["series"])
     F = C.get("formats") or {}
     if "vrai_faux" in F:
         R["creation"]["formats"]["vrai_faux"] = max(0, min(10, int(F["vrai_faux"])))

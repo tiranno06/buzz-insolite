@@ -64,7 +64,7 @@ REGLAGES_DEFAUT = {
                     "auto": True, "heures": ["12:30", "19:00"], "compte": "",
                     "chaine": "",                     # pseudo TikTok de la chaîne (statistiques)
                     "heures_auto": False},            # heures choisies par les statistiques quand elles sont connues
-    "creation": {"auto": False, "par_jour": 2, "heures": ["07:15", "16:15"],
+    "creation": {"auto": False, "series": True, "par_jour": 2, "heures": ["07:15", "16:15"],
                  "paralleles": 5,                     # machines GitHub qui fabriquent en même temps (1 à 5)
                  "formats": {"vrai_faux": 3, "semaine": True, "chiffre": 5, "region": 7, "monde60": True}},   # 1 vidéo sur 3 en « Vrai ou faux ? » (0 = jamais) ; semaine le dimanche
     "hashtags": {"fixes": ["#insolite", "#actu", "#buzz"], "nombre": 6},
