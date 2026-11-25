@@ -520,8 +520,10 @@ function carteVideo(v) {
 }
 function rendreVideos() {
   const V = D["file.json"].videos || [];
+  // du plus RÉCENT au plus ancien (demande de l'auteur du 25/11) : une vidéo refaite compte à la date où elle a été refaite
+  const quand = v => String(v.cree_le || "");
   const liste = V.filter(v => fVid === "tous" || v.statut === fVid || (fVid === "nouvelle" && v.statut === "a_verifier")
-    || (fVid === "autres" && ["ecartee", "echec"].includes(v.statut)));
+    || (fVid === "autres" && ["ecartee", "echec"].includes(v.statut))).slice().sort((a, b) => quand(b).localeCompare(quand(a)));
   $("#vid-liste").innerHTML = liste.map(carteVideo).join("") || `<p class="muted">Aucune vidéo ici.</p>`;
   $("#n-videos").textContent = V.filter(v => v.statut === "nouvelle").length || "";
   $("#n-pub").textContent = V.filter(v => v.statut === "a_publier").length || "";
