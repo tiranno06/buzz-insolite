@@ -37,6 +37,9 @@ commentaires, commits, textes du site), explications simples, sans jargon.
   scènes restantes : images tirées des vidéos d'origine, puis **photos des articles** (`sources.images_de_page` : og:image,
   twitter:image, grandes photos du corps de l'article ; `citations.photos_presse` : 600 px au moins, sans doublon d'agence
   par empreinte `_empreinte`, confirmées par l'IA qui voit `CONSIGNE_PHOTOS_PRESSE` ; bandeau et crédit « Photo : média »).
+  **Sous-titres sur bandeau noir** pendant une citation (style ASS « B », `montage.karaoke`) : les vidéos d'origine ont leurs
+  propres sous-titres incrustés au même endroit (vidéo CAN r9 du 25/11 : 12/12 écrans de l'événement — Al Jazeera, BBC,
+  franceinfo — mais « sous-titre anglais illisible ») ; ligne des crédits sur fond sombre aussi.
   Durée : le contrôle final exige 61 s au moins (TikTok paie les vidéos de PLUS d'1 minute ; texte visé 62 s). Durée TikTok : `video.duree_min` 62 s.
 - **Style validé sur l'essai « 1 an sur Mars »** : voix Piper « Tom » au départ (remplacée par Kokoro, voir plus bas), pauses de 0,18 s, silences coupés ; vraie vidéo nette au milieu + la même floutée derrière ; étiquette rouge
   « INSOLITE » + gros titre jaune en haut ; sous-titres karaoké Poppins (3 mots, le mot dit en jaune et grossi à 112 %, calé

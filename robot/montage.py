@@ -155,11 +155,16 @@ def karaoke(phrases, debuts, credits_texte):
            "StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
            f"Style: S,Poppins,100,&H00FFFFFF,&H00FFFFFF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,9,4,2,"
            f"{MARGE_COTES},{MARGE_COTES + 10},{SOUS_TITRES_MARGE},1",
+           # écran d'une vidéo d'origine (citation) : ses propres sous-titres incrustés sont souvent au même endroit que les
+           # nôtres (vidéo CAN du 25/11) → nos sous-titres sur un BANDEAU NOIR opaque, toujours lisibles
+           f"Style: B,Poppins,92,&H00FFFFFF,&H00FFFFFF,&H28000000,&H28000000,-1,0,0,0,100,100,0,0,3,18,0,2,"
+           f"{MARGE_COTES},{MARGE_COTES + 10},{SOUS_TITRES_MARGE},1",
            # crédits juste sous les sous-titres, AU-DESSUS de la description de TikTok (sinon cachés : licence CC BY)
-           f"Style: C,Poppins,26,&H00DDDDDD,&H00DDDDDD,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,2,0,2,"
+           f"Style: C,Poppins,26,&H00DDDDDD,&H00DDDDDD,&H60000000,&H60000000,0,0,0,0,100,100,0,0,3,4,0,2,"
            f"{MARGE_COTES},{MARGE_COTES + 10},{H - ZONE_BAS + 8},1", "",
            "[Events]", "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"]
     for i, p in enumerate(phrases):
+        style = "B" if (p.get("media") or {}).get("citation") else "S"
         aff = V.mots_affiches(p["ecrit"]); tm = V.caler(aff, p["mots"], p["duree"])
         paquets, cur = [], []
         for k, m in enumerate(aff):
@@ -176,7 +181,7 @@ def karaoke(phrases, debuts, credits_texte):
                 txt = " ".join(("{\\c&H00D6FF&\\fscx112\\fscy112}" + aff[x].upper() + "{\\c&HFFFFFF&\\fscx100\\fscy100}")
                                if x == k else aff[x].upper() for x in paq)
                 if b > a:
-                    ass.append(f"Dialogue: 0,{_hms(debuts[i] + a)},{_hms(debuts[i] + b)},S,,0,0,0,,{txt}")
+                    ass.append(f"Dialogue: 0,{_hms(debuts[i] + a)},{_hms(debuts[i] + b)},{style},,0,0,0,,{txt}")
     total = debuts[-1] + phrases[-1]["duree"] + phrases[-1].get("_pause", PAUSE) + FIN
     if credits_texte:
         ass.append(f"Dialogue: 0,{_hms(0)},{_hms(total)},C,,0,0,0,,{credits_texte}")
