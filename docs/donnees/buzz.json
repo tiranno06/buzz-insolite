@@ -1,149 +1,149 @@
 {
- "maj": "2026-11-25T12:43:45+01:00",
+ "maj": "2026-11-25T21:39:33+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:41:31+01:00"
+   "le": "2026-11-25T21:37:21+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:41:35+01:00"
+   "le": "2026-11-25T21:37:26+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:41:40+01:00"
+   "le": "2026-11-25T21:37:30+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:41:45+01:00"
+   "le": "2026-11-25T21:37:34+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:41:50+01:00"
+   "le": "2026-11-25T21:37:38+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-25T12:41:54+01:00"
+   "le": "2026-11-25T21:37:41+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:41:59+01:00"
+   "le": "2026-11-25T21:37:46+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:42:03+01:00"
+   "le": "2026-11-25T21:37:50+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:42:08+01:00"
+   "le": "2026-11-25T21:37:54+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:42:12+01:00"
+   "le": "2026-11-25T21:37:58+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:42:16+01:00"
+   "le": "2026-11-25T21:38:02+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:42:21+01:00"
+   "le": "2026-11-25T21:38:06+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:42:25+01:00"
+   "le": "2026-11-25T21:38:10+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-25T12:42:28+01:00"
+   "le": "2026-11-25T21:38:14+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:42:32+01:00"
+   "le": "2026-11-25T21:38:18+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:42:36+01:00"
+   "le": "2026-11-25T21:38:23+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:42:40+01:00"
+   "le": "2026-11-25T21:38:26+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:42:44+01:00"
+   "le": "2026-11-25T21:38:30+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:42:48+01:00"
+   "le": "2026-11-25T21:38:34+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:42:52+01:00"
+   "le": "2026-11-25T21:38:38+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:42:56+01:00"
+   "le": "2026-11-25T21:38:42+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:43:00+01:00"
+   "le": "2026-11-25T21:38:46+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:43:04+01:00"
+   "le": "2026-11-25T21:38:50+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:43:09+01:00"
+   "le": "2026-11-25T21:38:53+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:43:12+01:00"
+   "le": "2026-11-25T21:38:58+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:43:16+01:00"
+   "le": "2026-11-25T21:39:02+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:43:20+01:00"
+   "le": "2026-11-25T21:39:06+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T12:43:24+01:00"
+   "le": "2026-11-25T21:39:10+01:00"
   }
  },
  "lues": 809,
- "retenues": 3,
+ "retenues": 4,
  "sujets": [
   {
    "titre": "Maresées exceptionnelles menacent l'Oregon et la Californie",
@@ -200,6 +200,59 @@
    "vu_le": "2026-11-25T09:59:33+01:00",
    "reserve_le": "2026-11-25T14:04:44+01:00",
    "video_id": "20261125-140715-1"
+  },
+  {
+   "titre": "King tides menacent Cannon Beach, Oregon",
+   "resume": "Des marées de roi ont presque emporté un promeneur et son chien à Cannon Beach, Oregon. Les niveaux d'eau élevés inquiètent les autorités côtières de la côte Ouest.",
+   "mots_cles": [
+    "marées de roi",
+    "Cannon Beach",
+    "Oregon",
+    "inondation",
+    "côte"
+   ],
+   "mots_cles_en": [
+    "king tides",
+    "Cannon Beach",
+    "Oregon",
+    "flooding",
+    "coast"
+   ],
+   "hashtags": [
+    "kingtides",
+    "cannonbeach",
+    "oregon"
+   ],
+   "insolite": 6,
+   "categorie": "nature",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711896010431204621",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7711896010431204621",
+     "vues": 21000000,
+     "jaime": 812900,
+     "commentaires": 21700,
+     "partages": 117500,
+     "date": 1795565735,
+     "texte": "A dog and its owner were almost swept away at Cannon Beach, Oregon by king tides, which are expected to cause significant coastal flooding on the West Coast. Both the man and his dog were able to reach another set of stairs and escape the surf without injury. Water levels in San Francisco topped records on Tuesday and coastal flooding could reach major to extreme levels in some areas as unusually ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711896010431204621?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "46fe7b37ef",
+   "score": 3830,
+   "derniere_vue": 1795639162.5313458,
+   "vues": 21000000,
+   "jaime": 812900,
+   "commentaires": 21700,
+   "hashtags_viraux": [],
+   "medias": 9,
+   "tendance": null,
+   "statut": "sans_source",
+   "vu_le": "2026-11-25T21:39:33+01:00"
   },
   {
    "titre": "CAN 2025 : Sénégal vainqueur après arbitrage TAS",
@@ -266,41 +319,6 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T18:19:59+01:00",
    "video_id": "20261124-203224-1"
-  },
-  {
-   "titre": "A dog and its owner were almost swept away at Cannon Beach, Oregon by king tides, which ar",
-   "resume": "A dog and its owner were almost swept away at Cannon Beach, Oregon by king tides, which are expected to cause significant coastal flooding on the West Coast. Both the man and his dog were able to reach another set of stairs and escape the surf without injury. Water levels in San Francisco topped records on Tuesday and coastal flooding could reach major to extreme levels in some areas as unusually ",
-   "mots_cles": [],
-   "hashtags": [],
-   "insolite": 5,
-   "videos": [
-    {
-     "id": "7711896010431204621",
-     "compte": "cbsnews",
-     "url": "https://www.tiktok.com/@cbsnews/video/7711896010431204621",
-     "vues": 15100000,
-     "jaime": 599800,
-     "commentaires": 15600,
-     "partages": 86200,
-     "date": 1795565735,
-     "texte": "A dog and its owner were almost swept away at Cannon Beach, Oregon by king tides, which are expected to cause significant coastal flooding on the West Coast. Both the man and his dog were able to reach another set of stairs and escape the surf without injury. Water levels in San Francisco topped records on Tuesday and coastal flooding could reach major to extreme levels in some areas as unusually ",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7711896010431204621?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "a981a70d43",
-   "score": 1001,
-   "derniere_vue": 1795607012.4707718,
-   "vues": 15100000,
-   "jaime": 599800,
-   "commentaires": 15600,
-   "hashtags_viraux": [],
-   "medias": 2,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-25T12:43:45+01:00",
-   "reserve_le": "2026-11-25T14:04:44+01:00"
   },
   {
    "titre": "Brésil : golden retriever sauve enfant noyé",
@@ -412,6 +430,172 @@
    "vu_le": "2026-11-24T20:46:45+01:00",
    "reserve_le": "2026-11-25T14:04:44+01:00",
    "video_id": "20261125-140606-2"
+  },
+  {
+   "titre": "Explosion à Middletown capturée par drone",
+   "resume": "Un drone a filmé l'explosion d'une charge d'azide à Middletown, Iowa. L'opérateur du drone avait coordonné le vol avec l'armée et la police.",
+   "mots_cles": [
+    "Middletown",
+    "explosion",
+    "drone",
+    "azide",
+    "Iowa"
+   ],
+   "mots_cles_en": [
+    "Middletown",
+    "explosion",
+    "drone",
+    "azide",
+    "Iowa"
+   ],
+   "hashtags": [
+    "middletown",
+    "explosion",
+    "drone"
+   ],
+   "insolite": 5,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712141092535176478",
+     "compte": "cnn",
+     "url": "https://www.tiktok.com/@cnn/video/7712141092535176478",
+     "vues": 1300000,
+     "jaime": 105400,
+     "commentaires": 6234,
+     "partages": 20800,
+     "date": 1795622785,
+     "texte": "Drone video shows the moment of the Middletown lead azide explosion. The drone stayed outside of restricted airspace for the duration of its flight, and drone operator James Wilson coordinated with the Army and police beforehand. #iowa #drone",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712141092535176478?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "25c51d115d",
+   "score": 811,
+   "derniere_vue": 1795639162.5313458,
+   "vues": 1300000,
+   "jaime": 105400,
+   "commentaires": 6234,
+   "hashtags_viraux": [
+    "iowa",
+    "drone"
+   ],
+   "medias": 9,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T21:39:33+01:00"
+  },
+  {
+   "titre": "Pont suspendu de Torres del Paine secoué",
+   "resume": "Un touriste a vécu un cauchemar lorsque de forts vents ont fait osciller le pont suspendu du parc Torres del Paine au Chili. L'incident a provoqué une évacuation d'urgence.",
+   "mots_cles": [
+    "Torres del Paine",
+    "pont suspendu",
+    "vent",
+    "tourisme",
+    "Chili"
+   ],
+   "mots_cles_en": [
+    "Torres del Paine",
+    "suspension bridge",
+    "wind",
+    "tourism",
+    "Chile"
+   ],
+   "hashtags": [
+    "torresdelpaine",
+    "pont",
+    "vent"
+   ],
+   "insolite": 7,
+   "categorie": "nature",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712035729592831263",
+     "compte": "abcnews",
+     "url": "https://www.tiktok.com/@abcnews/video/7712035729592831263",
+     "vues": 5100000,
+     "jaime": 289800,
+     "commentaires": 4437,
+     "partages": 72900,
+     "date": 1795598284,
+     "texte": "A tourist experienced a nightmare scenario while trekking Chile’s Torres del Paine National Park, as strong winds caused the suspension footbridge he was on to lurch violently. #abcnews #news",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712035729592831263?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "1b6165168a",
+   "score": 775,
+   "derniere_vue": 1795639162.5313458,
+   "vues": 5100000,
+   "jaime": 289800,
+   "commentaires": 4437,
+   "hashtags_viraux": [
+    "abcnews",
+    "news"
+   ],
+   "medias": 9,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T21:39:33+01:00"
+  },
+  {
+   "titre": "Afghanistan : nouvelles règles de noms pour femmes",
+   "resume": "Un décret afghan impose aux femmes l'usage de surnoms au lieu de leurs prénoms. Cette mesure suscite des critiques de la part des organisations de droits humains.",
+   "mots_cles": [
+    "Afghanistan",
+    "femmes",
+    "décret",
+    "surnoms",
+    "droits humains"
+   ],
+   "mots_cles_en": [
+    "Afghanistan",
+    "women",
+    "decree",
+    "nicknames",
+    "human rights"
+   ],
+   "hashtags": [
+    "afghanistan",
+    "femmes",
+    "decret"
+   ],
+   "insolite": 7,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711838616284040470",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
+     "vues": 2600000,
+     "jaime": 472700,
+     "commentaires": 5120,
+     "partages": 53000,
+     "date": 1795552321,
+     "texte": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret leur impose des surnoms.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711838616284040470?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "74c3a73a89",
+   "score": 699,
+   "derniere_vue": 1795639162.5313458,
+   "vues": 2600000,
+   "jaime": 472700,
+   "commentaires": 5120,
+   "hashtags_viraux": [],
+   "medias": 8,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T21:39:33+01:00"
   },
   {
    "titre": "Policier de Miami frappe suspect lors arrestation",
@@ -600,6 +784,60 @@
    "medias": 5,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Affaire Christopher Payne : justice japonaise remise en cause",
+   "resume": "Christopher Payne, arrêté au Japon en 2021, voit sa condamnation annulée et un nouveau procès ordonné. Son dossier alimente le débat sur le système de « justice otage » japonais.",
+   "mots_cles": [
+    "Christopher Payne",
+    "Japon",
+    "justice otage",
+    "condamnation",
+    "réexamen"
+   ],
+   "mots_cles_en": [
+    "Christopher Payne",
+    "Japan",
+    "hostage justice",
+    "conviction",
+    "retrial"
+   ],
+   "hashtags": [
+    "japon",
+    "justice",
+    "hostagejustice"
+   ],
+   "insolite": 6,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712046743042526478",
+     "compte": "cnn",
+     "url": "https://www.tiktok.com/@cnn/video/7712046743042526478",
+     "vues": 2200000,
+     "jaime": 270200,
+     "commentaires": 3895,
+     "partages": 9123,
+     "date": 1795600812,
+     "texte": "American Christopher Payne was arrested in Japan in 2021 for a crime he's always denied committing. His conviction was overturned last year and a retrial was ordered, but he remains behind bars. His lawyers say his case highlights Japan's \"hostage justice\" system, where suspects can be detained for lengthy periods without charge. Japan's Ministry of Justice has repeatedly rejected allegations of \"",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712046743042526478?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "a7dc3d3e3e",
+   "score": 429,
+   "derniere_vue": 1795639162.5313458,
+   "vues": 2200000,
+   "jaime": 270200,
+   "commentaires": 3895,
+   "hashtags_viraux": [],
+   "medias": 5,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T21:39:33+01:00"
   },
   {
    "titre": "Arrestations controversées à l'aéroport de Seattle",
@@ -2458,6 +2696,60 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
+   "titre": "Arnaque consoles de jeux à l'approche de Noël",
+   "resume": "Des annonces frauduleuses sur les plateformes de seconde main proposent des consoles neuves, mais seules des photos sont livrées. Les consommateurs sont mis en garde contre ce type d'escroquerie.",
+   "mots_cles": [
+    "arnaque",
+    "consoles",
+    "Noël",
+    "seconde main",
+    "fraude"
+   ],
+   "mots_cles_en": [
+    "scam",
+    "consoles",
+    "Christmas",
+    "secondhand",
+    "fraud"
+   ],
+   "hashtags": [
+    "arnaque",
+    "consoles",
+    "noel"
+   ],
+   "insolite": 5,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711847373802179873",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7711847373802179873",
+     "vues": 2200000,
+     "jaime": 150600,
+     "commentaires": 2368,
+     "partages": 44700,
+     "date": 1795554385,
+     "texte": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateformes de seconde main proposent, en apparence, des consoles de jeux dernier cri. En réalité, seule une photo du produit est mise en vente et livrée.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711847373802179873?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "c4b593899e",
+   "score": 49,
+   "derniere_vue": 1795639162.5313458,
+   "vues": 2200000,
+   "jaime": 150600,
+   "commentaires": 2368,
+   "hashtags_viraux": [],
+   "medias": 2,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T21:39:33+01:00"
+  },
+  {
    "titre": "Gardien de stade étouffe entraîneur brésilien",
    "resume": "Un gardien de sécurité a agrippé le cou d’un entraîneur brésilien lors d’une célébration en stade, le prenant pour un supporter. L’entraîneur, Tcheco, affirme ne pas avoir été blessé mais dénonce l’incident.",
    "mots_cles": [
@@ -2511,41 +2803,6 @@
    "medias": 0,
    "statut": "nouveau",
    "vu_le": "2026-11-25T02:05:25+01:00"
-  },
-  {
-   "titre": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateforme",
-   "resume": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateformes de seconde main proposent, en apparence, des consoles de jeux dernier cri. En réalité, seule une photo du produit est mise en vente et livrée.",
-   "mots_cles": [],
-   "hashtags": [],
-   "insolite": 5,
-   "videos": [
-    {
-     "id": "7711847373802179873",
-     "compte": "tf1info",
-     "url": "https://www.tiktok.com/@tf1info/video/7711847373802179873",
-     "vues": 1600000,
-     "jaime": 95700,
-     "commentaires": 1626,
-     "partages": 29500,
-     "date": 1795554385,
-     "texte": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateformes de seconde main proposent, en apparence, des consoles de jeux dernier cri. En réalité, seule une photo du produit est mise en vente et livrée.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7711847373802179873?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "4427f6581c",
-   "score": 48,
-   "derniere_vue": 1795607012.4707718,
-   "vues": 1600000,
-   "jaime": 95700,
-   "commentaires": 1626,
-   "hashtags_viraux": [],
-   "medias": 1,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
    "titre": "Hommes transgressant le code de la route séduisent",
