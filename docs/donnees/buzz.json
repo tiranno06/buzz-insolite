@@ -1,148 +1,148 @@
 {
- "maj": "2026-11-25T22:59:59+01:00",
+ "maj": "2026-11-25T23:02:41+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:57:51+01:00"
+   "le": "2026-11-25T23:00:23+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:57:55+01:00"
+   "le": "2026-11-25T23:00:27+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:57:59+01:00"
+   "le": "2026-11-25T23:00:32+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:58:03+01:00"
+   "le": "2026-11-25T23:00:36+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:58:07+01:00"
+   "le": "2026-11-25T23:00:39+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-25T22:58:10+01:00"
+   "le": "2026-11-25T23:00:42+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:58:14+01:00"
+   "le": "2026-11-25T23:00:47+01:00"
   },
   "lemondefr": {
    "ok": true,
-   "videos": 30,
-   "le": "2026-11-25T22:58:17+01:00"
+   "videos": 15,
+   "le": "2026-11-25T23:00:51+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:58:22+01:00"
+   "le": "2026-11-25T23:00:55+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:58:25+01:00"
+   "le": "2026-11-25T23:01:00+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:58:29+01:00"
+   "le": "2026-11-25T23:01:05+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:58:34+01:00"
+   "le": "2026-11-25T23:01:10+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:58:37+01:00"
+   "le": "2026-11-25T23:01:14+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-25T22:58:41+01:00"
+   "le": "2026-11-25T23:01:19+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:58:44+01:00"
+   "le": "2026-11-25T23:01:23+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:58:48+01:00"
+   "le": "2026-11-25T23:01:26+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:58:52+01:00"
+   "le": "2026-11-25T23:01:31+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:58:55+01:00"
+   "le": "2026-11-25T23:01:35+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:58:59+01:00"
+   "le": "2026-11-25T23:01:39+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:59:03+01:00"
+   "le": "2026-11-25T23:01:44+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:59:09+01:00"
+   "le": "2026-11-25T23:01:49+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:59:13+01:00"
+   "le": "2026-11-25T23:01:53+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:59:18+01:00"
+   "le": "2026-11-25T23:01:57+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:59:21+01:00"
+   "le": "2026-11-25T23:02:03+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:59:25+01:00"
+   "le": "2026-11-25T23:02:07+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:59:28+01:00"
+   "le": "2026-11-25T23:02:12+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:59:32+01:00"
+   "le": "2026-11-25T23:02:16+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T22:59:36+01:00"
+   "le": "2026-11-25T23:02:20+01:00"
   }
  },
- "lues": 809,
+ "lues": 794,
  "retenues": 4,
  "sujets": [
   {
@@ -546,6 +546,115 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-25T21:39:33+01:00"
+  },
+  {
+   "titre": "Explosion de lead azide à Middletown",
+   "resume": "Une explosion de lead azide a eu lieu à Middletown, capturée par un drone. Les autorités ont coordonné la sécurité et l'intervention.",
+   "mots_cles": [
+    "explosion lead azide",
+    "Middletown",
+    "drone",
+    "sécurité",
+    "incendie"
+   ],
+   "mots_cles_en": [
+    "lead azide explosion",
+    "Middletown",
+    "drone",
+    "safety",
+    "fire"
+   ],
+   "hashtags": [
+    "explosion",
+    "drone",
+    "middletown"
+   ],
+   "insolite": 5,
+   "categorie": "sante",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712141092535176478",
+     "compte": "cnn",
+     "url": "https://www.tiktok.com/@cnn/video/7712141092535176478",
+     "vues": 1500000,
+     "jaime": 120300,
+     "commentaires": 6889,
+     "partages": 22700,
+     "date": 1795622785,
+     "texte": "Drone video shows the moment of the Middletown lead azide explosion. The drone stayed outside of restricted airspace for the duration of its flight, and drone operator James Wilson coordinated with the Army and police beforehand. #iowa #drone",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712141092535176478?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "416ea80eff",
+   "score": 773,
+   "derniere_vue": 1795644149.7443585,
+   "vues": 1500000,
+   "jaime": 120300,
+   "commentaires": 6889,
+   "hashtags_viraux": [
+    "iowa",
+    "drone"
+   ],
+   "medias": 7,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T23:02:41+01:00"
+  },
+  {
+   "titre": "Afghanistan: femmes sans noms imposés par décret",
+   "resume": "Un nouveau décret afghan impose des surnoms aux femmes, les privant de leurs noms personnels. Cette mesure a suscité des réactions internationales.",
+   "mots_cles": [
+    "décret afghan",
+    "femmes sans nom",
+    "surnoms",
+    "Afghanistan",
+    "droits des femmes"
+   ],
+   "mots_cles_en": [
+    "Afghan decree",
+    "women without names",
+    "aliases",
+    "Afghanistan",
+    "women's rights"
+   ],
+   "hashtags": [
+    "afghanistan",
+    "droitsdesfemmes",
+    "décret"
+   ],
+   "insolite": 8,
+   "categorie": "politique",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711838616284040470",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
+     "vues": 2800000,
+     "jaime": 494100,
+     "commentaires": 5329,
+     "partages": 54900,
+     "date": 1795552321,
+     "texte": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret leur impose des surnoms.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711838616284040470?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "f242ef4684",
+   "score": 735,
+   "derniere_vue": 1795644149.7443585,
+   "vues": 2800000,
+   "jaime": 494100,
+   "commentaires": 5329,
+   "hashtags_viraux": [],
+   "medias": 15,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
    "titre": "Afghanistan : nouvelles règles imposent surnoms aux femmes",
@@ -1417,41 +1526,6 @@
    "vu_le": "2026-11-25T22:59:59+01:00"
   },
   {
-   "titre": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret",
-   "resume": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret leur impose des surnoms.",
-   "mots_cles": [],
-   "hashtags": [],
-   "insolite": 5,
-   "videos": [
-    {
-     "id": "7711838616284040470",
-     "compte": "brutofficiel",
-     "url": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
-     "vues": 1600000,
-     "jaime": 292700,
-     "commentaires": 3467,
-     "partages": 36100,
-     "date": 1795552321,
-     "texte": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret leur impose des surnoms.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7711838616284040470?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "29d9069d96",
-   "score": 280,
-   "derniere_vue": 1795607012.4707718,
-   "vues": 1600000,
-   "jaime": 292700,
-   "commentaires": 3467,
-   "hashtags_viraux": [],
-   "medias": 4,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-25T12:43:45+01:00"
-  },
-  {
    "titre": "Leçon antiraciste de Jane Elliott en 1968 toujours pertinente",
    "resume": "Jane Elliott, professeure ayant mené une expérience sur le racisme en 1968, revient sur son impact durable. Son exercice « Blue Eyes, Brown Eyes » reste une référence pour lutter contre les discriminations.",
    "mots_cles": [
@@ -1563,6 +1637,60 @@
    "medias": 14,
    "statut": "nouveau",
    "vu_le": "2026-11-25T09:59:33+01:00"
+  },
+  {
+   "titre": "Miss Universe 2026 : première mère",
+   "resume": "Jennifer Barreto, mère de 27 ans, remporte Miss Universe 2026. Elle représente Porto Rico et bat 115 concurrents.",
+   "mots_cles": [
+    "Miss Universe 2026",
+    "Jennifer Barreto",
+    "mère",
+    "Porto Rico",
+    "concours"
+   ],
+   "mots_cles_en": [
+    "Miss Universe 2026",
+    "Jennifer Barreto",
+    "mother",
+    "Puerto Rico",
+    "contest"
+   ],
+   "hashtags": [
+    "missuniverse",
+    "mère",
+    "portorico"
+   ],
+   "insolite": 5,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712030539338747149",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712030539338747149",
+     "vues": 1400000,
+     "jaime": 238200,
+     "commentaires": 2338,
+     "partages": 5486,
+     "date": 1795597048,
+     "texte": "Jennifer Barreto, 27, has been crowned Miss Universe 2026, making history as the first mother to win the global beauty pageant. Representing Puerto Rico, she took home the crown in front of a home crowd in San Juan, beating 115 other contestants. The historic win comes three years after Miss Universe changed its rules to allow mothers and married women to compete for the title. Puerto Rico’s gover",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712030539338747149?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "340072cab1",
+   "score": 261,
+   "derniere_vue": 1795644149.7443585,
+   "vues": 1400000,
+   "jaime": 238200,
+   "commentaires": 2338,
+   "hashtags_viraux": [],
+   "medias": 14,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
    "titre": "Naissance des étoiles : son capturé par la NASA",
@@ -1696,6 +1824,60 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-25T12:43:45+01:00"
+  },
+  {
+   "titre": "Arnaque consoles jeux en ligne",
+   "resume": "Des annonces sur les plateformes de seconde main vendent des consoles de jeux fictives. Les victimes reçoivent uniquement une photo du produit.",
+   "mots_cles": [
+    "arnaque consoles",
+    "jeux vidéo",
+    "seconde main",
+    "fraude",
+    "plateformes"
+   ],
+   "mots_cles_en": [
+    "console scam",
+    "video games",
+    "secondhand",
+    "fraud",
+    "platforms"
+   ],
+   "hashtags": [
+    "arnaque",
+    "jeuxvideo",
+    "fraude"
+   ],
+   "insolite": 7,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711847373802179873",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7711847373802179873",
+     "vues": 2300000,
+     "jaime": 157000,
+     "commentaires": 2450,
+     "partages": 46500,
+     "date": 1795554385,
+     "texte": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateformes de seconde main proposent, en apparence, des consoles de jeux dernier cri. En réalité, seule une photo du produit est mise en vente et livrée.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711847373802179873?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "fd846b1b64",
+   "score": 211,
+   "derniere_vue": 1795644149.7443585,
+   "vues": 2300000,
+   "jaime": 157000,
+   "commentaires": 2450,
+   "hashtags_viraux": [],
+   "medias": 3,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
    "titre": "Sabrina Bahsoon, known globally as Tube Girl, wants hospitals to offer a series of tests a",
@@ -2341,6 +2523,64 @@
    "video_id": "20261124-190104-1"
   },
   {
+   "titre": "Nouveaux drogues vape gas stations",
+   "resume": "Des produits hallucinogènes sont vendus dans les stations-service. Le New York Times a testé 28 articles pour vérifier leur contenu.",
+   "mots_cles": [
+    "drogues vape",
+    "stations-service",
+    "hallucinogènes",
+    "NYT",
+    "test"
+   ],
+   "mots_cles_en": [
+    "vape drugs",
+    "gas stations",
+    "hallucinogens",
+    "NYT",
+    "testing"
+   ],
+   "hashtags": [
+    "vape",
+    "drogues",
+    "nyt"
+   ],
+   "insolite": 6,
+   "categorie": "sante",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711424511110843661",
+     "compte": "nytimes",
+     "url": "https://www.tiktok.com/@nytimes/video/7711424511110843661",
+     "vues": 1700000,
+     "jaime": 158700,
+     "commentaires": 1915,
+     "partages": 23400,
+     "date": 1795455960,
+     "texte": "A new generation of drugs is for sale inside gas station convenience stores and smoke shops across the country. It can be difficult to know what’s actually inside these items. To better understand this phenomenon, The New York Times purchased and lab-tested 28 products. #gasstation #vape #hallucinogens",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711424511110843661?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "57ac6e841b",
+   "score": 98,
+   "derniere_vue": 1795644149.7443585,
+   "vues": 1700000,
+   "jaime": 158700,
+   "commentaires": 1915,
+   "hashtags_viraux": [
+    "gasstation",
+    "vape",
+    "hallucinogens"
+   ],
+   "medias": 4,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T23:02:41+01:00"
+  },
+  {
    "titre": "Psychologie : les hommes qui roulent vite plus attractifs",
    "resume": "Des psychologues suggèrent que les hommes qui enfreignent les règles de conduite pourraient être perçus comme plus attractifs à long terme. Cette étude explore les traits de personnalité liés à ce comportement.",
    "mots_cles": [
@@ -2543,6 +2783,60 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T16:44:03+01:00",
    "video_id": "20261125-224006-1"
+  },
+  {
+   "titre": "Jeunes britanniques : moins de sexe",
+   "resume": "Une étude Natsal révèle que les jeunes britanniques ont moins de relations sexuelles. Ils consomment davantage de pornographie et de sexting.",
+   "mots_cles": [
+    "jeunes britanniques",
+    "sexe",
+    "pornographie",
+    "sexting",
+    "Natsal"
+   ],
+   "mots_cles_en": [
+    "British teens",
+    "sex",
+    "pornography",
+    "sexting",
+    "Natsal"
+   ],
+   "hashtags": [
+    "britishteens",
+    "sex",
+    "porn"
+   ],
+   "insolite": 4,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712064128998821142",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7712064128998821142",
+     "vues": 2000000,
+     "jaime": 129900,
+     "commentaires": 3136,
+     "partages": 71600,
+     "date": 1795604839,
+     "texte": "British people, particularly teens and young adults, are having less or no sex compared to past generations, but lots are watching porn and sexting, a major study indicated. It is the first time The National Survey of Sexual Attitudes and Lifestyles' (Natsal) research into general public sex lives has asked about online behaviours. The latest results were published in The Lancet and were based on ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712064128998821142?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "b5361044b3",
+   "score": 73,
+   "derniere_vue": 1795644149.7443585,
+   "vues": 2000000,
+   "jaime": 129900,
+   "commentaires": 3136,
+   "hashtags_viraux": [],
+   "medias": 1,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
    "titre": "Vol de colis filmé par caméra de surveillance",
@@ -3240,24 +3534,26 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
-   "titre": "Politique d'influenceurs du Number 10 critiquée",
-   "resume": "Le correspondant politique de Sky News interroge l'efficacité de la politique du gouvernement britannique visant à impliquer les influenceurs, après la suppression d'une vidéo polémique. Le créateur a présenté des excuses publiques.",
+   "titre": "Politique influenceurs : polémique",
+   "resume": "Le gouvernement britannique a critiqué la politique d'influenceurs du 10. Les créateurs affirment qu'ils n'ont pas de malice.",
    "mots_cles": [
-    "Number 10",
     "influenceurs",
-    "politique britannique",
-    "controverse"
+    "politique",
+    "Number 10",
+    "Lucy McDaid",
+    "controversy"
    ],
    "mots_cles_en": [
-    "Number 10",
     "influencers",
-    "UK policy",
+    "policy",
+    "Number 10",
+    "Lucy McDaid",
     "controversy"
    ],
    "hashtags": [
     "influenceurs",
-    "gouvernement",
-    "ukpolitics"
+    "politique",
+    "controversy"
    ],
    "insolite": 3,
    "categorie": "politique",
@@ -3268,8 +3564,8 @@
      "compte": "skynews",
      "url": "https://www.tiktok.com/@skynews/video/7711836882820254998",
      "vues": 2000000,
-     "jaime": 123000,
-     "commentaires": 2597,
+     "jaime": 123200,
+     "commentaires": 2599,
      "partages": 27900,
      "date": 1795551953,
      "texte": "Sky's political correspondent Lucy McDaid asks whether the Number 10 policy on involving influencers has backfired. Responding to the video and its removal, Max Balegde said his content is 'always meant to be light hearted and funny', insisted no malice was intended and apologised for 'any offence caused'. #skynews #uk #influencer #number10 ",
@@ -3279,22 +3575,22 @@
     }
    ],
    "sous_seuils": true,
-   "id": "13e962f8c0",
+   "id": "551dce854f",
    "score": 38,
-   "derniere_vue": 1795643989.07539,
+   "derniere_vue": 1795644149.7443585,
    "vues": 2000000,
-   "jaime": 123000,
-   "commentaires": 2597,
+   "jaime": 123200,
+   "commentaires": 2599,
    "hashtags_viraux": [
     "skynews",
     "uk",
     "influencer",
     "number10"
    ],
-   "medias": 0,
+   "medias": 1,
    "tendance": null,
    "statut": "nouveau",
-   "vu_le": "2026-11-25T22:59:59+01:00"
+   "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
    "titre": "Sky's political correspondent Lucy McDaid asks whether the Number 10 policy on involving i",
