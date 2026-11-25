@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T15:36:55+01:00",
+   "niveau": "info",
+   "texte": "🔁 « CAN 2025 : Sénégal récupère le titre » refaite (controle) : note 65/100, corrige : « phrase absurde 18 7 18 à retirer » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T15:24:30+01:00",
    "niveau": "info",
    "texte": "🔁 « Marées géantes menacent Oregon et Californie » refaite (controle) : note 100/100, corrige : « unités en pieds à convertir, titres en anglais, accroche mal écrite, même photo sur plusieurs écrans » — l'ancienne version est remplacée"

@@ -609,9 +609,9 @@
    "refaite_de": "20261125-140715-1"
   },
   {
-   "id": "20261124-233239-1-r13",
-   "tag": "v-20261124-233239-1-r13",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r13/buzz-20261124-233239-1-r13.mp4",
+   "id": "20261124-233239-1-r14",
+   "tag": "v-20261124-233239-1-r14",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r14/buzz-20261124-233239-1-r14.mp4",
    "titre": "CAN 2025 : Sénégal récupère le titre",
    "accroche": "SÉNÉGAL REPREND LA CUP",
    "sujet_id": "af2b8dfec2",
@@ -631,7 +631,7 @@
     "#actu",
     "#buzz"
    ],
-   "duree": 67.2,
+   "duree": 62.2,
    "sources": [
     {
      "media": "linternaute.com",
@@ -700,16 +700,16 @@
    "verifie": true,
    "credits": [
     "@aljazeeraenglish (TikTok, extrait cité)",
-    "@bfmtv (TikTok, extrait cité)",
     "@brutofficiel (TikTok, extrait cité)",
-    "@franceinfo (TikTok, extrait cité)"
+    "@franceinfo (TikTok, extrait cité)",
+    "Carte : Natural Earth, OpenStreetMap"
    ],
    "extraits_perdus": 0,
    "regles_non_respectees": [],
-   "ecrans_illustres": 14,
-   "ecrans_total": 14,
+   "ecrans_illustres": 12,
+   "ecrans_total": 12,
    "format": "buzz",
-   "voix": "chatterbox-bernard",
+   "voix": "kokoro-ff_siwis",
    "lieu": "Rabat, Maroc",
    "humeur": "epique",
    "categorie": "actualite",
@@ -727,140 +727,92 @@
     "Le président de la fédération sénégalaise, Abdoulaye Fall, a dédié la deuxième étoile à Aïda Faye Samb.",
     "La CAF a annoncé qu’elle respecterait la décision du tribunal et appliquerait les mesures nécessaires.",
     "Le Maroc peut encore saisir le Tribunal fédéral suisse pour contester le verdict.",
-    "18 7 18",
     "Et toi, que penses-tu de ce revirement judiciaire ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T13:55:37+01:00",
+   "cree_le": "2026-11-25T15:36:54+01:00",
    "ia_quotas": {
+    "gemini": {
+     "appels": 2,
+     "refus": 8,
+     "erreurs": 8
+    },
     "mistral": {
      "appels": 0,
      "refus": 0,
-     "erreurs": 39,
+     "erreurs": 12,
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 8,
-     "refus": 8,
-     "erreurs": 1,
+     "appels": 2,
+     "refus": 0,
+     "erreurs": 3,
      "restant_demandes": "999",
      "limite_demandes": "1000",
-     "restant_mots": "7476"
+     "restant_mots": "5339"
     },
-    "gemini": {
-     "appels": 8,
-     "refus": 11,
-     "erreurs": 1
+    "openrouter": {
+     "appels": 7,
+     "refus": 22,
+     "erreurs": 0
     }
    },
-   "fabrication_s": 1521,
+   "fabrication_s": 1417,
    "controles": {
-    "note": 90,
+    "note": 65,
     "lignes": [
-     {
-      "niveau": "texte",
-      "ecran": null,
-      "gravite": "moyen",
-      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "phrase réécrite et revérifiée"
-     },
-     {
-      "niveau": "texte",
-      "ecran": null,
-      "gravite": "moyen",
-      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "phrase réécrite et revérifiée"
-     },
-     {
-      "niveau": "texte",
-      "ecran": null,
-      "gravite": "moyen",
-      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "phrase réécrite et revérifiée"
-     },
-     {
-      "niveau": "texte",
-      "ecran": null,
-      "gravite": "moyen",
-      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "phrase réécrite et revérifiée"
-     },
      {
       "niveau": "voix",
       "ecran": 28,
-      "gravite": "moyen",
+      "gravite": "grave",
       "probleme": "voix et sous-titres ne correspondent pas (0%)",
       "corrige": false,
-      "essais": 5,
-      "solution": "phrase simplifiée puis refaite"
+      "essais": 4,
+      "solution": "voix refaite"
      },
      {
       "niveau": "video",
-      "ecran": 24,
+      "ecran": 19,
       "gravite": "moyen",
-      "probleme": "texte mal placé",
+      "probleme": "Les sous-titres blancs sont illisibles sur le fond et se superposent aux crédits.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 18,
+      "gravite": "moyen",
+      "probleme": "Le titre jaune chevauche le texte d'origine 'Brut.' et le sous-titre blanc chevauche le texte rouge.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre blanc chevauche le texte rouge en bas.",
       "corrige": true,
       "essais": 1,
       "solution": "titre retiré"
      },
      {
       "niveau": "video",
-      "ecran": 23,
+      "ecran": 15,
       "gravite": "moyen",
-      "probleme": "Sous-titres originaux en partie masqués",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 21,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 20,
-      "gravite": "moyen",
-      "probleme": "Sous-titres originaux illisibles sous le sous-titre noir",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 16,
-      "gravite": "moyen",
-      "probleme": "Texte du haut coupé, chevauchement entre l'étiquette rouge et le sous-titre",
+      "probleme": "Le sous-titre blanc chevauche le texte rouge en dessous.",
       "corrige": true,
       "essais": 1,
       "solution": "titre raccourci"
      }
     ],
-    "sautes": [],
-    "corriges": 10,
+    "sautes": [
+     "regard de l'IA sur la vidéo finie (IA indisponible : openrouter nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free : pas de JSON dans la réponse)"
+    ],
+    "corriges": 4,
     "restants": 1,
-    "graves_restants": 1
+    "graves_restants": 2
    },
    "reprises": 0,
    "preuves": [
@@ -871,16 +823,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
-    },
-    {
-     "ecran": 2,
-     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@aljazeeraenglish",
-     "titre": "",
-     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
+     "releve_le": "2026-11-25T15:36:54+01:00"
     },
     {
      "ecran": 3,
@@ -889,7 +832,7 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
+     "releve_le": "2026-11-25T15:36:54+01:00"
     },
     {
      "ecran": 4,
@@ -898,7 +841,7 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
+     "releve_le": "2026-11-25T15:36:54+01:00"
     },
     {
      "ecran": 5,
@@ -907,7 +850,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
+     "releve_le": "2026-11-25T15:36:54+01:00"
     },
     {
      "ecran": 6,
@@ -916,7 +859,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
+     "releve_le": "2026-11-25T15:36:54+01:00"
     },
     {
      "ecran": 7,
@@ -925,7 +868,7 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
+     "releve_le": "2026-11-25T15:36:54+01:00"
     },
     {
      "ecran": 8,
@@ -934,7 +877,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
+     "releve_le": "2026-11-25T15:36:54+01:00"
     },
     {
      "ecran": 9,
@@ -943,7 +886,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
+     "releve_le": "2026-11-25T15:36:54+01:00"
     },
     {
      "ecran": 10,
@@ -952,7 +895,7 @@
      "auteur": "@franceinfo",
      "titre": "",
      "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
+     "releve_le": "2026-11-25T15:36:54+01:00"
     },
     {
      "ecran": 11,
@@ -961,7 +904,7 @@
      "auteur": "@franceinfo",
      "titre": "",
      "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
+     "releve_le": "2026-11-25T15:36:54+01:00"
     },
     {
      "ecran": 12,
@@ -970,7 +913,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
+     "releve_le": "2026-11-25T15:36:54+01:00"
     },
     {
      "ecran": 13,
@@ -979,37 +922,27 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
-    },
-    {
-     "ecran": 14,
-     "page": "https://www.tiktok.com/@bfmtv/video/7711852622038174978",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@bfmtv",
-     "titre": "",
-     "credit": "@bfmtv (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T13:55:37+01:00"
+     "releve_le": "2026-11-25T15:36:54+01:00"
     }
    ],
    "couverture_ms": 800,
    "durees": {
-    "texte": 127,
-    "images": 2,
+    "images": 10,
     "controle_images": 5,
-    "voix": 431,
-    "montage": 141,
-    "controle_final": 799,
+    "voix": 51,
+    "montage": 112,
+    "controle_final": 1187,
     "extraits": 0,
-    "regles": 0,
-    "rangement": 9
+    "regles": 45,
+    "rangement": 8
    },
    "refaite": {
-    "de": "20261124-233239-1-r12",
-    "etape": "texte",
-    "remarque": "ne dire le score 1-0 qu'une seule fois (phrases 3, 6 et 10 le répètent) ; phrase 7 trop administrative ('cette sanction a été prise, invoquant les articles 82 et 84') à simplifier ; accroche sans sigle (pas TAS)"
+    "de": "20261124-233239-1-r13",
+    "etape": "controle",
+    "remarque": "phrase absurde 18 7 18 à retirer"
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233239-1-r12"
+   "refaite_de": "20261124-233239-1-r13"
   }
  ]
 }
