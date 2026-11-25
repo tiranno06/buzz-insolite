@@ -146,6 +146,14 @@ def refaire_texte(sujet, articles, ancien, problemes, remarque, tout=False, jour
 
 def normaliser(d, sujet, format_, qui, journal=print):
     """Texte de l'IA mis au propre (champs de chaque phrase, réponse d'un vrai / faux, humeur, hashtags)."""
+    from .montage import affichable                         # tirets que la police n'a pas (« 1‑0 » → « 1-0 »)
+    for p in d.get("phrases") or []:
+        for k in ("voix", "ecrit", "ecran"):
+            if isinstance(p.get(k), str):
+                p[k] = affichable(p[k])
+    for k in ("titre", "accroche", "description", "question"):
+        if isinstance(d.get(k), str):
+            d[k] = affichable(d[k])
     phrases = [p for p in d.get("phrases") or [] if str(p.get("voix") or "").strip()]
     if len(phrases) < 8:
         raise ValueError(f"texte trop court ({len(phrases)} phrases)")

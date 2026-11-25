@@ -274,6 +274,10 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
   question finale, description. `reparer` ne corrige QUE les passages fautifs (voix refaite pour ces phrases seulement,
   seuls ces écrans remontés), puis TOUT est revérifié (2 tours) ; il reste une règle = grave, `regles_non_respectees`,
   jamais publiée (`avant_publication`), badge 📏 sur le site.
+- **Caractères que la police n'a pas** (vidéo CAN r11 du 25/11, 100/100 mais « 1☒0 » sur 4 écrans : tiret insécable U+2011
+  écrit par l'IA, absent de Poppins) : `montage.affichable` / `REMPLACER` (tirets ‐ ‑ ‒ − → « - », trait d'union conditionnel
+  retiré) à TOUT texte dessiné (titres, sous-titres, crédits), `ecrire.normaliser` nettoie le texte de l'IA à la source,
+  règle « caracteres » (regles.py) et rejeu (« 1‑0 » → « 1-0 »).
 - **Rejeu d'une vraie vidéo** (`tests/test_rejeu.py`, données réelles de la CAN r10 dans `tests/donnees/rejeu_can`, sans
   réseau ni IA, ~50 s, à chaque envoi) : les règles trouvent les défauts réels, la réparation ne touche que les passages
   fautifs, refaire le texte ne perd aucun extrait, le montage ne refait que les écrans changés. Il a trouvé dès sa 1re

@@ -6,8 +6,8 @@ refaits) et TOUTES les règles sont revérifiées, pour qu'une correction ne cas
 2 tours = problème grave : la vidéo n'est jamais publiée (controle.avant_publication) et la santé de la nuit la refait.
 
 Règles : extraits perdus ; écran sans image ; même passage montré deux fois ; vidéo de plus d'1 minute ; plus de 70 %
-d'écrans illustrés ; hashtags (3 à 10, mots entiers) ; tutoiement ; dates et années présentes dans les articles ; question
-finale ; description.
+d'écrans illustrés ; hashtags (3 à 10, mots entiers) ; tutoiement ; dates et années présentes dans les articles ; caractères
+que la police n'affiche pas (« 1☒0 », vidéo CAN r11) ; question finale ; description.
 """
 import re
 
@@ -85,6 +85,10 @@ def verifier(script, articles, hashtags=None, duree=None, description=None, ques
             if douteuses:
                 pb.append(dict(regle="date", ecran=i, dates=douteuses,
                                message=f"écran {i + 1} : date absente des articles ({', '.join(douteuses)})"))
+    from .montage import REMPLACER
+    for i, p in enumerate(ph):
+        if any(c in REMPLACER for c in (p.get("ecrit") or "") + (p.get("ecran") or "")):
+            pb.append(dict(regle="caracteres", ecran=i, message=f"écran {i + 1} : caractère que la police n'affiche pas"))
     fin = (ph[-1].get("ecrit") or "") if ph else ""
     if "?" not in fin and "commentaire" not in fin.lower():
         pb.append(dict(regle="question_finale", ecran=len(ph) - 1, message="la dernière phrase ne pose pas de question"))
@@ -154,6 +158,12 @@ def reparer(script, problemes, articles, R, journal=print, sujet=None):
             if nouveau != ph[i]["ecrit"]:
                 journal(f"  règle « date », écran {i + 1} : « {ph[i]['ecrit']} » → « {nouveau} »")
                 _changer(ph[i], nouveau); textes.add(i)
+        elif r == "caracteres" and i is not None:            # remplacés à l'affichage aussi : seul l'écran est refait
+            from .montage import affichable
+            for k in ("ecrit", "ecran"):
+                if ph[i].get(k):
+                    ph[i][k] = affichable(ph[i][k])
+            ph[i].pop("_sig", None); images_.add(i)
         elif r == "question_finale" and i is not None:
             _changer(ph[i], ph[i]["ecrit"].rstrip(" .!") + " ? Dis-le en commentaire !"); textes.add(i)
         elif r == "description":

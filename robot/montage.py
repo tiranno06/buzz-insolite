@@ -58,9 +58,19 @@ def logo_rond():
     return _logo[0]
 
 
+# Caractères que la police Poppins n'a PAS (vidéo CAN r11 du 25/11 : « 1‑0 » avec un tiret insécable affiché « 1☒0 ») :
+# remplacés par leur équivalent simple partout où du texte est dessiné (titres, sous-titres, crédits)
+REMPLACER = {"\u2010": "-", "\u2011": "-", "\u2012": "-", "\u2212": "-", "\u00ad": ""}
+
+
+def affichable(t):
+    return "".join(REMPLACER.get(c, c) for c in str(t or ""))
+
+
 def calque(chemin, titre="", grand="", petit="", etiquette="INSOLITE", coul=JAUNE, bas="", source=""):
     """Textes posés sur l'image (fond transparent), et le logo de la chaîne en haut à droite. `source` : bandeau
     « @compte » (court, demande de l'auteur du 25/11) bien visible pendant une courte citation (la source n'est jamais cachée)."""
+    titre, grand, petit, bas, source, etiquette = (affichable(x) for x in (titre, grand, petit, bas, source, etiquette))
     im = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im); f = police(46)
     lg = logo_rond()
     if lg:
@@ -185,7 +195,7 @@ def karaoke(phrases, debuts, credits_texte):
            "[Events]", "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"]
     for i, p in enumerate(phrases):
         style = "B" if (p.get("media") or {}).get("citation") else "S"
-        aff = V.mots_affiches(p["ecrit"]); tm = V.caler(aff, p["mots"], p["duree"])
+        aff = V.mots_affiches(affichable(p["ecrit"])); tm = V.caler(aff, p["mots"], p["duree"])
         paquets, cur = [], []
         for k, m in enumerate(aff):
             cur.append(k)
@@ -301,7 +311,7 @@ def monter(script, dossier, sortie, suivi=None):
                     "-c", "copy", images], check=True)
 
     credits_ = sorted({p["media"]["credit"] for p in ph if (p.get("media") or {}).get("credit")})
-    texte_credits = ("Images : " + " · ".join(credits_))[:150] if credits_ else ""
+    texte_credits = affichable(("Images : " + " · ".join(credits_))[:150]) if credits_ else ""
     ass = os.path.join(dossier, "st.ass")
     with open(ass, "w", encoding="utf-8") as f:
         f.write(karaoke(ph, debuts, texte_credits))

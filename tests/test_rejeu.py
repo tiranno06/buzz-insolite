@@ -76,15 +76,17 @@ class RejeuVideoCAN(unittest.TestCase):
         from robot import regles
         ph = self.script["phrases"]
         ph[0]["ecrit"] = "Imaginez un titre de champion volé, puis rendu."        # défaut vu : « vous »
+        ph[2]["ecran"] = "1\u20110"                                              # défaut vu (r11) : « 1☒0 »
         avant = copy.deepcopy(ph)
         pbs = regles.verifier(self.script, self.articles, ["#c", "#a", "#n", "#2"], 73, "desc", "Et toi ?")
         trouves = {p["regle"] for p in pbs}
-        for r in ("extraits_perdus", "ecran_vide", "tutoiement", "date", "hashtags"):
+        for r in ("extraits_perdus", "ecran_vide", "tutoiement", "date", "hashtags", "caracteres"):
             self.assertIn(r, trouves, f"la règle « {r} » n'a pas vu le défaut réel de la vidéo CAN")
         textes, images_, _ = regles.reparer(self.script, pbs, self.articles, {}, journal=lambda *_: None)
         # la date inventée « 18 janvier 2025 » (les articles disent « 18 janvier ») : l'année est retirée
         self.assertIn("18 janvier", ph[1]["ecrit"]); self.assertNotIn("2025", ph[1]["ecrit"])
         self.assertTrue(ph[0]["ecrit"].startswith("Imagine "))
+        self.assertEqual(ph[2]["ecran"], "1-0")
         # seuls les passages fautifs ont changé
         for i, (a, b) in enumerate(zip(avant, ph)):
             if i not in textes:
@@ -95,6 +97,7 @@ class RejeuVideoCAN(unittest.TestCase):
                                                       "desc", "Et toi ?")}
         self.assertNotIn("extraits_perdus", reste)
         self.assertNotIn("tutoiement", reste)
+        self.assertNotIn("caracteres", reste)
         self.assertNotIn("doublon", reste, "une réparation a créé un doublon")
 
     def test_refaire_le_texte_ne_perd_aucun_extrait(self):
