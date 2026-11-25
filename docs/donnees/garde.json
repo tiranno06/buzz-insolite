@@ -2,18 +2,6 @@
  "en_attente": [
   {
    "inputs": {
-    "format": "buzz",
-    "refaire": "20261125-163217-1",
-    "etape": "auto",
-    "remarque": "Réparation automatique : à vérifier",
-    "origine": "reparation",
-    "nombre": "1"
-   },
-   "demande_le": "2026-11-25T20:27:57+01:00",
-   "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
-  },
-  {
-   "inputs": {
     "sujet": "8446b43f08",
     "format": "buzz",
     "etape": "auto",
