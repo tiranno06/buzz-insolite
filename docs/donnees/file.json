@@ -1,9 +1,9 @@
 {
  "videos": [
   {
-   "id": "20261124-233208-1-r1",
-   "tag": "v-20261124-233208-1-r1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233208-1-r1/buzz-20261124-233208-1-r1.mp4",
+   "id": "20261124-233208-1-r2",
+   "tag": "v-20261124-233208-1-r2",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233208-1-r2/buzz-20261124-233208-1-r2.mp4",
    "titre": "Macron sauveur en urgence",
    "accroche": "LE PRÉSIDENT À L'ACTION",
    "sujet_id": "ef38e151cf",
@@ -82,10 +82,9 @@
    "credits": [
     "Carte : Natural Earth, OpenStreetMap",
     "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-    "Netbocage / Wikimedia Commons, CC BY 3.0",
-    "Wikipédia, article « Emmanuel Macron »"
+    "This video is a work by Wikipedia and Wi / Wikimedia Commons, CC BY-SA 4.0"
    ],
-   "ecrans_illustres": 9,
+   "ecrans_illustres": 20,
    "ecrans_total": 20,
    "format": "buzz",
    "voix": "chatterbox-bernard",
@@ -117,8 +116,8 @@
     "Dis-le en commentaire : « T’as déjà vu ça en public ? »"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T01:46:11+01:00",
-   "fabrication_s": 2207,
+   "cree_le": "2026-11-25T03:33:18+01:00",
+   "fabrication_s": 2584,
    "controles": {
     "note": 0,
     "lignes": [
@@ -126,88 +125,97 @@
       "niveau": "images",
       "ecran": 29,
       "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 3,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "probleme": "Image hors sujet (cavalerie)",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 30,
       "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 3,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "probleme": "Image hors sujet (cavalerie)",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 37,
       "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "probleme": "scène équestre sans lien avec lycéenne évanouie Cherbourg",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 38,
       "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "probleme": "Course de chevaux sans lien avec le sujet",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 39,
       "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "probleme": "Course de chevaux sans lien avec le sujet",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 40,
       "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "probleme": "Course de chevaux sans lien avec le sujet",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 41,
       "gravite": "moyen",
-      "probleme": "usine industrielle sans rapport avec le sujet politique",
-      "corrige": true,
-      "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "probleme": "Course de chevaux sans lien avec le sujet",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 42,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "Course de chevaux sans lien avec le sujet",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "image illisible (media50.jpg : )",
       "corrige": true,
       "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "solution": "vraie vidéo de « Emmanuel Macron »"
      },
      {
       "niveau": "images",
       "ecran": 24,
       "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 2,
+      "probleme": "Image hors sujet (cheval/hippodrome)",
+      "corrige": false,
+      "essais": 5,
       "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 25,
       "gravite": "moyen",
-      "probleme": "Salle de sport, aucun rapport",
+      "probleme": "Image hors sujet (cheval/hippodrome)",
       "corrige": false,
       "essais": 5,
       "solution": "vraie image d'un autre écran, à un autre moment"
@@ -216,7 +224,16 @@
       "niveau": "images",
       "ecran": 26,
       "gravite": "moyen",
-      "probleme": "Salle de sport, aucun rapport",
+      "probleme": "Image hors sujet (cheval/hippodrome)",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "Image hors sujet (cheval/hippodrome)",
       "corrige": false,
       "essais": 5,
       "solution": "vraie image d'un autre écran, à un autre moment"
@@ -225,19 +242,19 @@
       "niveau": "images",
       "ecran": 28,
       "gravite": "moyen",
-      "probleme": "Image hors contexte (fanfare militaire)",
-      "corrige": true,
-      "essais": 3,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "probleme": "Image hors sujet (cavalerie)",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 31,
       "gravite": "moyen",
-      "probleme": "Image hors contexte (fanfare militaire)",
+      "probleme": "Image hors contexte (personne différente, pas Macron)",
       "corrige": true,
-      "essais": 3,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "essais": 2,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
@@ -252,7 +269,7 @@
       "niveau": "images",
       "ecran": 33,
       "gravite": "moyen",
-      "probleme": "Personnage et contexte sans rapport avec Macron ou Toulouse",
+      "probleme": "scène équestre sans lien avec le sujet",
       "corrige": false,
       "essais": 5,
       "solution": "vraie image d'un autre écran, à un autre moment"
@@ -261,134 +278,144 @@
       "niveau": "images",
       "ecran": 34,
       "gravite": "moyen",
-      "probleme": "Image hors contexte (salle du Congrès américain, pas lié à usure physique)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "autre passage d'une vraie vidéo du sujet"
+      "probleme": "scène équestre sans lien avec le sujet",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 35,
       "gravite": "moyen",
-      "probleme": "Image incorrecte (Ukraine, pas Airbus/Toulouse)",
-      "corrige": true,
-      "essais": 3,
+      "probleme": "scène équestre sans lien avec Airbus ou Macron",
+      "corrige": false,
+      "essais": 5,
       "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 36,
       "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "Personnage inconnu, décor inadapté",
+      "probleme": "scène équestre sans lien avec malaises vagaux militaires",
       "corrige": false,
-      "essais": 4,
-      "solution": "image du thème (« politician speech crowd »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 27,
-      "gravite": "moyen",
-      "probleme": "Salle de sport, aucun rapport",
-      "corrige": false,
-      "essais": 3,
-      "solution": "autre passage d'une vraie vidéo du sujet"
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 32,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "Anachronisme (2026) et hors sujet (cavalerie)",
       "corrige": false,
       "essais": 3,
       "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
-      "ecran": 34,
+      "ecran": 31,
       "gravite": "moyen",
-      "probleme": "Image de patinoire sans lien avec le sujet",
-      "corrige": false,
-      "essais": 3,
+      "probleme": "Image hors sujet (cavalcade, spectacle équestre)",
+      "corrige": true,
+      "essais": 1,
       "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
-      "ecran": 24,
+      "ecran": 22,
       "gravite": "moyen",
-      "probleme": "Salle de sport, aucun rapport",
+      "probleme": "Image hors sujet (cheval/hippodrome)",
       "corrige": false,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": null,
-      "gravite": "grave",
-      "probleme": "trop peu d'images : 9 écran(s) illustré(s) sur 20",
-      "corrige": false,
-      "essais": 1
+      "essais": 1,
+      "solution": "autre passage d'une vraie vidéo du sujet"
      }
     ],
     "sautes": [],
-    "corriges": 15,
-    "restants": 9,
-    "graves_restants": 9
+    "corriges": 4,
+    "restants": 19,
+    "graves_restants": 19
    },
    "reprises": 0,
    "preuves": [
     {
      "ecran": 1,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "page": "https://commons.wikimedia.org/?curid=75762589",
      "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
+     "auteur": "This video is a work by Wikipedia and Wi",
      "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T01:46:11+01:00"
+     "credit": "This video is a work by Wikipedia and Wi / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
     },
     {
      "ecran": 3,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AVisit_of_Xi_Jinping_to_France_-_2024_%28P063803-92196%29.jpg",
-     "licence": "",
-     "auteur": "",
+     "page": "https://commons.wikimedia.org/?curid=75762589",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "This video is a work by Wikipedia and Wi",
      "titre": "",
-     "credit": "Wikipédia, article « Emmanuel Macron »",
-     "releve_le": "2026-11-25T01:46:11+01:00"
+     "credit": "This video is a work by Wikipedia and Wi / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
     },
     {
      "ecran": 4,
-     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "page": "https://commons.wikimedia.org/?curid=75762589",
      "licence": "CC BY-SA 4.0",
-     "auteur": "Clément Bucco-Lechat",
+     "auteur": "This video is a work by Wikipedia and Wi",
      "titre": "",
-     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T01:46:11+01:00"
+     "credit": "This video is a work by Wikipedia and Wi / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
     },
     {
      "ecran": 5,
+     "page": "https://commons.wikimedia.org/?curid=75762589",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "This video is a work by Wikipedia and Wi",
+     "titre": "",
+     "credit": "This video is a work by Wikipedia and Wi / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
+    },
+    {
+     "ecran": 6,
      "page": "https://commons.wikimedia.org/?curid=34613392",
      "licence": "CC BY-SA 4.0",
      "auteur": "Clément Bucco-Lechat",
      "titre": "",
      "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T01:46:11+01:00"
+     "releve_le": "2026-11-25T03:33:18+01:00"
     },
     {
-     "ecran": 6,
-     "page": "https://commons.wikimedia.org/?curid=115807130",
-     "licence": "CC BY 3.0",
-     "auteur": "Netbocage",
+     "ecran": 7,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
      "titre": "",
-     "credit": "Netbocage / Wikimedia Commons, CC BY 3.0",
-     "releve_le": "2026-11-25T01:46:11+01:00"
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
+    },
+    {
+     "ecran": 9,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
+    },
+    {
+     "ecran": 10,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
     },
     {
      "ecran": 11,
@@ -397,7 +424,7 @@
      "auteur": "Clément Bucco-Lechat",
      "titre": "",
      "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T01:46:11+01:00"
+     "releve_le": "2026-11-25T03:33:18+01:00"
     },
     {
      "ecran": 12,
@@ -406,7 +433,7 @@
      "auteur": "Clément Bucco-Lechat",
      "titre": "",
      "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T01:46:11+01:00"
+     "releve_le": "2026-11-25T03:33:18+01:00"
     },
     {
      "ecran": 13,
@@ -415,34 +442,97 @@
      "auteur": "Clément Bucco-Lechat",
      "titre": "",
      "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T01:46:11+01:00"
+     "releve_le": "2026-11-25T03:33:18+01:00"
     },
     {
      "ecran": 14,
-     "page": "https://commons.wikimedia.org/?curid=115807130",
-     "licence": "CC BY 3.0",
-     "auteur": "Netbocage",
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
      "titre": "",
-     "credit": "Netbocage / Wikimedia Commons, CC BY 3.0",
-     "releve_le": "2026-11-25T01:46:11+01:00"
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
+    },
+    {
+     "ecran": 15,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
+    },
+    {
+     "ecran": 16,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
+    },
+    {
+     "ecran": 17,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
+    },
+    {
+     "ecran": 18,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
+    },
+    {
+     "ecran": 19,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
+    },
+    {
+     "ecran": 20,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
+    },
+    {
+     "ecran": 21,
+     "page": "https://commons.wikimedia.org/?curid=34613392",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Clément Bucco-Lechat",
+     "titre": "",
+     "credit": "Clément Bucco-Lechat / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T03:33:18+01:00"
     }
    ],
    "couverture_ms": 800,
    "durees": {
     "voix": 0,
-    "images": 292,
-    "controle_images": 1321,
-    "montage": 233,
-    "controle_final": 351,
-    "rangement": 3
+    "images": 347,
+    "controle_images": 1562,
+    "montage": 298,
+    "controle_final": 367,
+    "rangement": 5
    },
    "refaite": {
-    "de": "20261124-233208-1",
+    "de": "20261124-233208-1-r1",
     "etape": "images",
-    "remarque": "Scènes de 5 à 10 s en vraies vidéos de toutes les sources, sans doublon"
+    "remarque": "Images illisibles : il faut des scènes de vraies vidéos et photos"
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233208-1"
+   "refaite_de": "20261124-233208-1-r1"
   },
   {
    "id": "20261124-233244-1-r3",

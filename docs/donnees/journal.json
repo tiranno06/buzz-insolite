@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T03:33:18+01:00",
+   "niveau": "info",
+   "texte": "🔁 « Macron sauveur en urgence » refaite (images) : note 0/100, corrige : « Images illisibles : il faut des scènes de vraies vidéos et photos » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T03:10:22+01:00",
    "niveau": "info",
    "texte": "🔁 « Macron et l'A320 : un futur qui décolle » refaite (images) : note 10/100, corrige : « Images illisibles : il faut des scènes de vraies vidéos et photos » — l'ancienne version est remplacée"
