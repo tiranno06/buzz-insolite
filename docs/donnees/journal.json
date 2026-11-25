@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T21:49:08+01:00",
+   "niveau": "attention",
+   "texte": "⏸️ Création mise en attente : déjà 3 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites). Elle partira toute seule dès que les IA gratuites seront de nouveau disponibles (vérifié toutes les 15 min)."
+  },
+  {
    "date": "2026-11-25T21:39:38+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 47 sujet(s) au-dessus des seuils — en tête : « Brésil : golden retriever sauve enfant noyé »"

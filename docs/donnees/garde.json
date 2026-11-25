@@ -32,11 +32,22 @@
    },
    "demande_le": "2026-11-25T20:27:57+01:00",
    "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
+  },
+  {
+   "inputs": {
+    "sujet": "8446b43f08",
+    "format": "buzz",
+    "etape": "auto",
+    "origine": "site",
+    "nombre": "1"
+   },
+   "demande_le": "2026-11-25T21:49:08+01:00",
+   "raison": "déjà 3 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
   }
  ],
  "credits": {
-  "le": "2026-11-25T21:37:26+01:00",
-  "resume": "✅ IA disponibles : groq, gemini ; voient : gemini"
+  "le": "2026-11-25T21:49:08+01:00",
+  "resume": "déjà 3 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
  },
  "creation": {
   "2026-11-25": [
