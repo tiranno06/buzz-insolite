@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T21:37:41+01:00",
+   "niveau": "info",
+   "texte": "📤 « Marées géantes menacent Oregon et Californie » publiée sur TikTok (créneau de 19:00)."
+  },
+  {
    "date": "2026-11-25T21:37:26+01:00",
    "niveau": "info",
    "texte": "▶️ Création en attente lancée : les IA gratuites sont de nouveau disponibles (IA disponibles : groq, gemini ; voient : gemini)."

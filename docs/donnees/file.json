@@ -2613,9 +2613,16 @@
     "etape": "controle",
     "remarque": "unités en pieds à convertir, titres en anglais, accroche mal écrite, même photo sur plusieurs écrans"
    },
-   "statut": "a_publier",
+   "statut": "publiee",
    "refaite_de": "20261125-140715-1",
-   "coche_le": "2026-11-25T16:13:56+01:00"
+   "coche_le": "2026-11-25T16:13:56+01:00",
+   "publiee_le": "2026-11-25T21:37:41+01:00",
+   "buffer": {
+    "id": "6b07470bbffb0dd0732ff1e8",
+    "compte": "buzz.insolite",
+    "quand": null,
+    "etiquette_ia": true
+   }
   },
   {
    "id": "20261124-233239-1-r16",
