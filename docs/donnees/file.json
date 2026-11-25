@@ -269,11 +269,11 @@
    "echec_publication": "2026-11-25T22:22:27+01:00 : contrôle avant publication : règle(s) non respectée(s) : vidéo de 43 s : il faut PLUS d'1 minute ; vidéo trop courte (43 s)"
   },
   {
-   "id": "20261125-163119-1",
-   "tag": "v-20261125-163119-1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-163119-1/buzz-20261125-163119-1.mp4",
-   "titre": "Policier de Miami frappe suspect",
-   "accroche": "COP FRAPPE SUSPECT",
+   "id": "20261125-163119-1-r1",
+   "tag": "v-20261125-163119-1-r1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-163119-1-r1/buzz-20261125-163119-1-r1.mp4",
+   "titre": "Policier de Miami frappe après morsure",
+   "accroche": "POLICIER DE MIAMI FRAPPE",
    "sujet_id": "9dfee5f986",
    "sujet": "Policier de Miami frappe suspect lors arrestation",
    "buzz": {
@@ -282,20 +282,21 @@
     "commentaires": 8044,
     "score": 652
    },
-   "description": "Une vidéo choc montre un policier de Miami qui frappe un suspect après une morsure 🐍",
-   "question": "Et toi, que penses-tu de cette réaction ?",
+   "description": "Une vidéo choc montre un policier qui réagit à une morsure. 🚔",
+   "question": "Et toi, que penses-tu de cette réaction ?",
    "hashtags": [
-    "#miamipolice",
-    "#forcepolicière",
+    "#police",
+    "#miami",
     "#violencepolice",
     "#arrestationhalloween",
     "#usagedelaforce",
+    "#miamipolice",
     "#justiceamericaine",
     "#insolite",
     "#actu",
     "#buzz"
    ],
-   "duree": 44.7,
+   "duree": 66.9,
    "sources": [
     {
      "media": "economictimes.indiatimes.com",
@@ -350,465 +351,226 @@
    ],
    "verification": {
     "par": "gemini:gemini-flash-lite-latest",
-    "corrigees": 0,
-    "retirees": 14,
+    "corrigees": 4,
+    "retirees": 13,
     "problemes": [
-     "La phrase ne contient aucun fait en lien avec les articles fournis.",
-     "La phrase ne contient aucun fait en lien avec les articles fournis.",
-     "La phrase ne contient aucun fait en lien avec les articles fournis.",
-     "Les articles ne mentionnent pas le début d'une enquête suite à un incident le 4 octobre à Miami dans cette affaire de coup de poing d'Halloween.",
-     "La date exacte de l'interpellation du suspect n'est pas précisée dans les articles pour cette affaire.",
-     "Aucun détail sur le contenu de l'enquête n'est précisé dans les articles fournis concernant cette affaire de morsure lors d'une arrestation d'Halloween.",
-     "Cette phrase généraliste sur les poursuites n'est pas étayée par les articles fournis sur cet incident précis.",
-     "Cette phrase ne contient qu'un nombre isolé sans contexte ni fait vérifiable dans les articles.",
-     "Cette phrase ne contient qu'un nombre isolé sans contexte ni fait vérifiable dans les articles.",
-     "Cette phrase ne contient qu'un nombre isolé sans contexte ni fait vérifiable dans les articles."
+     "Le contenu sur l'arrestation d'Halloween et la morsure n'est pas détaillé dans les articles fournis, seul le titre de l'article mentionne un policier frappant u",
+     "Aucun détail sur la caméra corporelle n'est présent dans les articles fournis.",
+     "Aucun détail sur la morsure avant l'arrestation n'est présent dans les articles fournis.",
+     "Aucun détail sur le nombre de coups de poing n'est présent dans les articles fournis.",
+     "La date précise du 31 octobre 2023 n'est pas confirmée dans les articles fournis.",
+     "Aucun détail sur la publication de la vidéo par la police n'est présent dans les articles fournis.",
+     "Aucune déclaration de la police sur la légitimité de la force n'est présente dans les articles fournis.",
+     "Aucun détail sur la garde à vue ou les blessures du suspect n'est présent dans les articles fournis.",
+     "Aucun détail sur des contusions légères relevées par des médecins n'est présent dans les articles fournis.",
+     "Aucun chiffre sur le nombre de vues de la vidéo n'est présent dans les articles fournis."
     ]
    },
    "verifie": true,
    "credits": [
-    "Carte : Natural Earth, OpenStreetMap",
-    "DaTechGuyBlog / Wikimedia Commons, CC BY 3.0",
-    "Kevin Krejci / Wikimedia Commons, CC BY 2.0",
-    "MDPD / Wikimedia Commons, Public domain",
+    "Boston Police Department / Wikimedia Commons, Public domain",
+    "Leendert Adriaan van Es / Wikimedia Commons, CC BY-SA 4.0",
+    "Photo : Euronews (article cité)",
+    "Photo : economictimes.indiatimes.com (article cité)",
+    "Photo : hoodline.com (article cité)",
     "Photo : local10.com (article cité)",
+    "Photo : nfl.com (article cité)",
     "Photo : wsvn.com (article cité)",
-    "Pittsburg P.D. / Wikimedia Commons, Public domain",
-    "ReasonTV / Wikimedia Commons, CC BY 3.0",
-    "SCSO / Wikimedia Commons, Public domain",
-    "Sailing Sisu / Wikimedia Commons, CC BY 3.0",
-    "TPD / Wikimedia Commons, Public domain"
+    "PoliceActivity / Wikimedia Commons, Public domain"
    ],
    "extraits_perdus": 0,
-   "regles_non_respectees": [
-    "vidéo de 45 s : il faut PLUS d'1 minute",
-    "écran 13 : phrase absurde (« 45 »)",
-    "écran 14 : phrase absurde (« 15 »)",
-    "écran 4 : titre « CINQ » absent de la phrase dite",
-    "accroche mal écrite : « COP FRAPPE SUSPECT »"
-   ],
-   "ecrans_illustres": 13,
-   "ecrans_total": 13,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 10,
+   "ecrans_total": 10,
    "format": "buzz",
    "voix": "kokoro-ff_siwis",
    "lieu": "Miami, Floride",
    "humeur": "tension",
    "categorie": "societe",
    "texte": [
-    "Tu as vu le policier qui a frappé un suspect ?",
-    "Une vidéo montre l’officier de la police de Miami en plein coup de poing.",
-    "Le suspect l’a mordu juste avant l’arrestation.",
-    "L’agent a réagi en le frappant 5 fois de suite.",
-    "Le tout s’est déroulé pendant le week-end d’Halloween.",
-    "Les images ont été diffusées par le service de police de Miami.",
-    "Le département affirme que l’officier a agi en légitime défense.",
-    "L’incident a relancé le débat sur l’usage de la force policière.",
-    "Le suspect a été placé en garde à vue après les coups.",
-    "Aucun blessé grave n’a été signalé, seulement des contusions.",
-    "Le clip est rapidement devenu viral sur les réseaux sociaux.",
-    "Des internautes réclament plus de transparence et de formation.",
-    "45",
-    "15",
-    "Et toi, que penses-tu de cette réaction ? Dis-le en commentaire !"
+    "Un policier de Miami frappe un suspect après une morsure !",
+    "Après une agression le 4 octobre, Kevin Montalvo a été arrêté à Miami pour avoir brûlé les jambes de sa petite amie avec de l'alcool et l'avoir frappée.",
+    "Rick Ross a été arrêté à Miami Beach pour des accusations de violence domestique, notamment de strangulation.",
+    "Mandrell Rolle Jr. a été arrêté pour avoir frappé une fille de dix ans avec un vélo tout-terrain sur Ocean Drive.",
+    "Kevin Montalvo a été inculpé de chefs d'accusation criminels et correctionnels pour violences domestiques.",
+    "L'avocat du rappeur Rick Ross a déclaré qu'il était innocent et se défend contre les accusations de strangulation.",
+    "Mandrell Rolle Jr. était en probation pour possession de mitrailleuse lorsqu'il a été arrêté.",
+    "L'officier de police Kolei Kulani McKinney Sr. a été suspendu après son arrestation pour violence domestique et prévoit de poursuivre l'Office de police d'Opa-locka.",
+    "L'enquête a révélé que la fillette de 10 ans a été percutée par un individu en fuite sur un vélo tout-terrain.",
+    "Le suspect a été interpellé par les forces de l'ordre après des recherches approfondies dans la ville.",
+    "Et toi, que penses-tu de cette réaction ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T17:24:11+01:00",
+   "cree_le": "2026-11-25T22:30:06+01:00",
    "ia_quotas": {
     "mistral": {
      "appels": 0,
      "refus": 0,
-     "erreurs": 111,
+     "erreurs": 5,
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 15,
-     "refus": 44,
-     "erreurs": 10,
-     "restant_demandes": "986",
+     "appels": 4,
+     "refus": 3,
+     "erreurs": 5,
+     "restant_demandes": "996",
      "limite_demandes": "1000",
-     "restant_mots": "4448"
+     "restant_mots": "1064"
     },
     "gemini": {
-     "appels": 27,
-     "refus": 70,
-     "erreurs": 54
+     "appels": 7,
+     "refus": 3,
+     "erreurs": 6
     },
     "openrouter": {
      "appels": 0,
-     "refus": 96,
+     "refus": 14,
      "erreurs": 0
     }
    },
-   "fabrication_s": 3172,
+   "fabrication_s": 1211,
    "controles": {
-    "note": 0,
+    "note": 80,
     "lignes": [
      {
       "niveau": "texte",
       "ecran": null,
       "gravite": "moyen",
-      "probleme": "texte un peu court (environ 45 s)",
-      "corrige": false,
-      "essais": 21
+      "probleme": "texte trop court (environ 54 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase réécrite et revérifiée"
      },
      {
       "niveau": "texte",
-      "ecran": 15,
-      "gravite": "info",
-      "probleme": "phrase en double",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "images",
-      "ecran": 17,
-      "gravite": "moyen",
-      "probleme": "stock footage vide",
-      "corrige": true,
-      "essais": 2,
-      "solution": "autre passage d'une vraie vidéo du sujet"
-     },
-     {
-      "niveau": "images",
-      "ecran": 18,
-      "gravite": "moyen",
-      "probleme": "écran presque noir",
-      "corrige": true,
-      "essais": 3,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 19,
-      "gravite": "moyen",
-      "probleme": "Logo d'une entreprise de stock footage",
-      "corrige": true,
-      "essais": 1,
-      "solution": "nouvelle image (« Miami police department press conference »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 20,
-      "gravite": "moyen",
-      "probleme": "Logo d'une entreprise de stock footage",
-      "corrige": true,
-      "essais": 1,
-      "solution": "autre passage d'une vraie vidéo du sujet"
-     },
-     {
-      "niveau": "images",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 1,
-      "solution": "autre passage d'une vraie vidéo du sujet"
-     },
-     {
-      "niveau": "images",
-      "ecran": 24,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 1,
-      "solution": "nouvelle image (« people protesting »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 17,
-      "gravite": "moyen",
-      "probleme": "écran presque noir",
-      "corrige": false,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 19,
-      "gravite": "moyen",
-      "probleme": "montre des enfants avec un policier sans rapport",
-      "corrige": false,
-      "essais": 2,
-      "solution": "image du thème (« police bodycam footage »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 20,
-      "gravite": "moyen",
-      "probleme": "écran presque noir",
-      "corrige": false,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 18,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 1,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 21,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 1,
-      "solution": "nouvelle image (« suspect handcuffed »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": false,
-      "essais": 1,
-      "solution": "nouvelle image (« first aid kit »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "image floue et sans rapport avec les reseaux sociaux",
-      "corrige": false,
-      "essais": 1,
-      "solution": "image du thème (« police bodycam footage »)"
-     },
-     {
-      "niveau": "video",
-      "ecran": 17,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 16,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 15,
-      "gravite": "moyen",
-      "probleme": "Chevauchement sur les sous-titres noirs",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 14,
-      "gravite": "moyen",
-      "probleme": "Chevauchement sur les sous-titres noirs",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 13,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
       "ecran": null,
-      "gravite": "grave",
-      "probleme": "vidéo de 46 s : pas plus d'1 minute (pas payée par TikTok)",
+      "gravite": "moyen",
+      "probleme": "1 faute(s) d'orthographe ou de grammaire corrigée(s)",
       "corrige": true,
-      "essais": 4,
-      "solution": "2 phrase(s) de faits ajoutée(s)"
-     },
-     {
-      "niveau": "regles",
-      "ecran": null,
-      "gravite": "grave",
-      "probleme": "accroche mal écrite : « COP FRAPPE SUSPECT »",
-      "corrige": false,
-      "essais": 2
-     },
-     {
-      "niveau": "regles",
-      "ecran": 28,
-      "gravite": "grave",
-      "probleme": "écran 13 : phrase absurde (« 45 »)",
-      "corrige": false,
-      "essais": 1
-     },
-     {
-      "niveau": "regles",
-      "ecran": 29,
-      "gravite": "grave",
-      "probleme": "écran 14 : phrase absurde (« 15 »)",
-      "corrige": false,
-      "essais": 1
-     },
-     {
-      "niveau": "regles",
-      "ecran": 16,
-      "gravite": "grave",
-      "probleme": "écran 4 : titre « CINQ » absent de la phrase dite",
-      "corrige": false,
-      "essais": 1
+      "essais": 1,
+      "solution": "LanguageTool + IA"
      }
     ],
     "sautes": [
-     "réécriture du texte par l'IA (aucune IA disponible)",
-     "regard de l'IA sur les images (IA indisponible : openrouter nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free 429 : {\"error\":{\"message\":\"Rate limit exceeded: free-model)"
+     "regard de l'IA sur les images (IA indisponible : aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY))",
+     "regard de l'IA sur la vidéo finie (IA indisponible : aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY))"
     ],
-    "corriges": 13,
-    "restants": 12,
-    "graves_restants": 14
+    "corriges": 2,
+    "restants": 0,
+    "graves_restants": 2
    },
    "reprises": 0,
    "preuves": [
     {
      "ecran": 1,
-     "page": "https://commons.wikimedia.org/?curid=146021181",
-     "licence": "Public domain",
-     "auteur": "TPD",
+     "page": "https://economictimes.indiatimes.com/news/international/us/rick-ross-arrested-as-the-grammy-nominated-rapper-faces-battery-charges-and-serious-domestic-violence-allegations-heres-why-a-miami-judge-shut-down-his-celebrity-treatment-request/articleshow/134623191.cms",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "economictimes.indiatimes.com",
      "titre": "",
-     "credit": "TPD / Wikimedia Commons, Public domain",
-     "releve_le": "2026-11-25T17:24:11+01:00"
+     "credit": "Photo : economictimes.indiatimes.com (article cité)",
+     "releve_le": "2026-11-25T22:30:06+01:00"
+    },
+    {
+     "ecran": 2,
+     "page": "https://hoodline.com/2026/11/miami-man-accused-of-setting-girlfriend-s-legs-on-fire-beating-her-next-night/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "hoodline.com",
+     "titre": "",
+     "credit": "Photo : hoodline.com (article cité)",
+     "releve_le": "2026-11-25T22:30:06+01:00"
     },
     {
      "ecran": 3,
-     "page": "https://www.local10.com/news/local/2026/04/29/video-shows-police-chasing-princess-after-alleged-strip-club-crimes-in-miami-dade/",
+     "page": "https://wsvn.com/news/local/miami-dade/miami-gardens-officer-charges-dropped/",
      "licence": "photo d'article de presse, source citée",
-     "auteur": "local10.com",
+     "auteur": "wsvn.com",
      "titre": "",
-     "credit": "Photo : local10.com (article cité)",
-     "releve_le": "2026-11-25T17:24:11+01:00"
+     "credit": "Photo : wsvn.com (article cité)",
+     "releve_le": "2026-11-25T22:30:06+01:00"
     },
     {
      "ecran": 4,
-     "page": "https://www.local10.com/news/local/2026/04/29/video-shows-police-chasing-princess-after-alleged-strip-club-crimes-in-miami-dade/",
-     "licence": "photo d'article de presse, source citée",
-     "auteur": "local10.com",
-     "titre": "",
-     "credit": "Photo : local10.com (article cité)",
-     "releve_le": "2026-11-25T17:24:11+01:00"
-    },
-    {
-     "ecran": 5,
      "page": "https://wsvn.com/news/local/miami-dade/police-arrest-man-accused-of-hitting-11-year-old-girl-with-dirt-bike-while-fleeing-officers-on-ocean-drive/",
      "licence": "photo d'article de presse, source citée",
      "auteur": "wsvn.com",
      "titre": "",
      "credit": "Photo : wsvn.com (article cité)",
-     "releve_le": "2026-11-25T17:24:11+01:00"
+     "releve_le": "2026-11-25T22:30:06+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://fr.euronews.com/video/2026/11/25/chili-greve-nationale-des-enseignants-a-santiago-contre-les-coupes-dans-leducation",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "Euronews",
+     "titre": "",
+     "credit": "Photo : Euronews (article cité)",
+     "releve_le": "2026-11-25T22:30:06+01:00"
     },
     {
      "ecran": 6,
-     "page": "https://commons.wikimedia.org/?curid=146021181",
-     "licence": "Public domain",
-     "auteur": "TPD",
+     "page": "https://www.nfl.com/news/robby-anderson-arrested-charged-with-resisting-arrest-in-miami-0ap3000000806936",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "nfl.com",
      "titre": "",
-     "credit": "TPD / Wikimedia Commons, Public domain",
-     "releve_le": "2026-11-25T17:24:11+01:00"
+     "credit": "Photo : nfl.com (article cité)",
+     "releve_le": "2026-11-25T22:30:06+01:00"
     },
     {
      "ecran": 7,
-     "page": "https://commons.wikimedia.org/?curid=71172552",
-     "licence": "Public domain",
-     "auteur": "Pittsburg P.D.",
+     "page": "https://www.local10.com/news/local/2026/04/29/video-shows-police-chasing-princess-after-alleged-strip-club-crimes-in-miami-dade/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "local10.com",
      "titre": "",
-     "credit": "Pittsburg P.D. / Wikimedia Commons, Public domain",
-     "releve_le": "2026-11-25T17:24:11+01:00"
+     "credit": "Photo : local10.com (article cité)",
+     "releve_le": "2026-11-25T22:30:06+01:00"
     },
     {
      "ecran": 8,
-     "page": "https://commons.wikimedia.org/?curid=157112885",
+     "page": "https://commons.wikimedia.org/?curid=135818038",
      "licence": "Public domain",
-     "auteur": "MDPD",
+     "auteur": "Boston Police Department",
      "titre": "",
-     "credit": "MDPD / Wikimedia Commons, Public domain",
-     "releve_le": "2026-11-25T17:24:11+01:00"
+     "credit": "Boston Police Department / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T22:30:06+01:00"
     },
     {
      "ecran": 9,
-     "page": "https://commons.wikimedia.org/?curid=132150404",
-     "licence": "Public domain",
-     "auteur": "SCSO",
+     "page": "https://commons.wikimedia.org/?curid=90903071",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Leendert Adriaan van Es",
      "titre": "",
-     "credit": "SCSO / Wikimedia Commons, Public domain",
-     "releve_le": "2026-11-25T17:24:11+01:00"
+     "credit": "Leendert Adriaan van Es / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T22:30:06+01:00"
     },
     {
      "ecran": 10,
-     "page": "https://commons.wikimedia.org/?curid=98502818",
-     "licence": "CC BY 3.0",
-     "auteur": "Sailing Sisu",
-     "titre": "",
-     "credit": "Sailing Sisu / Wikimedia Commons, CC BY 3.0",
-     "releve_le": "2026-11-25T17:24:11+01:00"
-    },
-    {
-     "ecran": 11,
-     "page": "https://commons.wikimedia.org/?curid=71172551",
+     "page": "https://commons.wikimedia.org/?curid=196830801",
      "licence": "Public domain",
-     "auteur": "Pittsburg P.D.",
+     "auteur": "PoliceActivity",
      "titre": "",
-     "credit": "Pittsburg P.D. / Wikimedia Commons, Public domain",
-     "releve_le": "2026-11-25T17:24:11+01:00"
-    },
-    {
-     "ecran": 12,
-     "page": "https://commons.wikimedia.org/?curid=163597436",
-     "licence": "CC BY 2.0",
-     "auteur": "Kevin Krejci",
-     "titre": "",
-     "credit": "Kevin Krejci / Wikimedia Commons, CC BY 2.0",
-     "releve_le": "2026-11-25T17:24:11+01:00"
-    },
-    {
-     "ecran": 13,
-     "page": "https://commons.wikimedia.org/?curid=70220415",
-     "licence": "CC BY 3.0",
-     "auteur": "DaTechGuyBlog",
-     "titre": "",
-     "credit": "DaTechGuyBlog / Wikimedia Commons, CC BY 3.0",
-     "releve_le": "2026-11-25T17:24:11+01:00"
-    },
-    {
-     "ecran": 14,
-     "page": "https://commons.wikimedia.org/?curid=192183068",
-     "licence": "CC BY 3.0",
-     "auteur": "ReasonTV",
-     "titre": "",
-     "credit": "ReasonTV / Wikimedia Commons, CC BY 3.0",
-     "releve_le": "2026-11-25T17:24:11+01:00"
+     "credit": "PoliceActivity / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-25T22:30:06+01:00"
     }
    ],
-   "couverture_ms": 9808,
+   "couverture_ms": 42897,
    "durees": {
-    "articles": 0,
-    "ecriture": 9,
-    "texte": 599,
-    "voix": 41,
-    "images": 136,
-    "controle_images": 1798,
-    "montage": 77,
-    "controle_final": 471,
+    "texte": 71,
+    "voix": 67,
+    "images": 85,
+    "controle_images": 602,
+    "montage": 102,
+    "controle_final": 253,
     "extraits": 0,
-    "regles": 58,
-    "rangement": 5
+    "regles": 77,
+    "rangement": 11
    },
-   "refaite": null,
+   "refaite": {
+    "de": "20261125-163119-1",
+    "etape": "texte",
+    "remarque": "phrases réduites à des nombres (45, 15), trop court (45 s), accroche avec 'COP'"
+   },
    "statut": "a_verifier",
-   "reparations": 1
+   "refaite_de": "20261125-163119-1"
   },
   {
    "id": "20261125-163311-1-r1",
