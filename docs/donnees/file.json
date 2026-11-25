@@ -1,6 +1,273 @@
 {
  "videos": [
   {
+   "id": "20261125-214937-1",
+   "tag": "v-20261125-214937-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-214937-1/buzz-20261125-214937-1.mp4",
+   "titre": "Condamnation vandalisme Vierge Porto-Vecchio",
+   "accroche": "CONDAMNATION VANDALISME VIERGE PORTO-VECCHIO",
+   "sujet_id": "cdc02173dc",
+   "sujet": "Condamnation pour vandalisme statue Vierge Porto-Vecchio",
+   "buzz": {
+    "vues": 540200,
+    "jaime": 40800,
+    "commentaires": 1249,
+    "score": 84
+   },
+   "description": "Deux jeunes ont payé cher pour avoir profané la Vierge de Porto-Vecchio 🏛️. Verdict et débat en cours.",
+   "question": "Et toi, que penses-tu de ces peines ?",
+   "hashtags": [
+    "#portovecchio",
+    "#viergemariale",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 42.6,
+   "sources": [
+    {
+     "media": "corsematin.com",
+     "titre": "DIRECT. Vierge de Porto-Vecchio : \"bêtise\", \"absence de regrets\", \"apaisement\"… Le tribunal motive ses condamnations",
+     "lien": "https://www.corsematin.com/article/faits-diversjustice/54764446428844/direct-corsematin-en-direct-vierge-de-porto-vecchio-a-quelles-peines-les-prevenus-vont-ils-etre-condamnes"
+    },
+    {
+     "media": "cnews.fr",
+     "titre": "Statue de la Vierge profanée à Porto-Vecchio : cercueil, menaces, traque... Retour sur l'incroyable fuite des suspects",
+     "lien": "https://www.cnews.fr/france/2026-11-15/statue-de-la-vierge-profanee-porto-vecchio-cercueil-menaces-traque-retour-sur"
+    },
+    {
+     "media": "21news.be",
+     "titre": "En Corse, la statue de la Vierge de Porto-Vecchio de nouveau dégradée, au lendemain de sa réinstallation",
+     "lien": "https://www.21news.be/en-corse-la-statue-de-la-vierge-de-porto-vecchio-de-nouveau-degradee-au-lendemain-de-sa-reinstallation/"
+    },
+    {
+     "media": "corsematin.com",
+     "titre": "DIRECT. Bénédiction, émotion, \"pardon\" : revivez le retour de la statue de la Vierge Marie à Porto-Vecchio",
+     "lien": "https://www.corsematin.com/article/societe/1854813286911814/direct-corsematin-en-direct-porto-vecchio-suivez-le-retour-de-la-statue-de-la-vierge-marie"
+    },
+    {
+     "media": "policeetrealites.com",
+     "titre": "Porto-Vecchio : la statue de la Vierge Marie à nouveau dégradée le lendemain de sa réinstallation",
+     "lien": "https://policeetrealites.com/2026/11/22/porto-vecchio-la-statue-de-la-vierge-marie-a-nouveau-degradee-le-lendemain-de-sa-reinstallation/"
+    },
+    {
+     "media": "la-croix.com",
+     "titre": "Statue de la Vierge dégradée en Corse : deux jeunes condamnés à 3 et 6 mois de prison ferme",
+     "lien": "https://www.la-croix.com/religion/statue-de-la-vierge-degradee-en-corse-deux-jeunes-condamnes-a-3-et-6-mois-de-prison-ferme-20261123"
+    },
+    {
+     "media": "cnews.fr",
+     "titre": "Porto-Vecchio : à peine restaurée, la statue de la Vierge Marie déjà dégradée",
+     "lien": "https://www.cnews.fr/france/2026-11-23/porto-vecchio-peine-restauree-la-statue-de-la-vierge-marie-deja-degradee-1959488"
+    },
+    {
+     "media": "video.lefigaro.fr",
+     "titre": "La statue de la Vierge Marie de Porto-Vecchio de nouveau prise pour cible",
+     "lien": "https://video.lefigaro.fr/figaro/faits-divers/porto-vecchio-la-statue-de-la-vierge-marie-de-nouveau-prise-pour-cible-20261123"
+    }
+   ],
+   "verification": {
+    "par": "groq:openai/gpt-oss-20b",
+    "corrigees": 3,
+    "retirees": 3,
+    "problemes": [
+     "L'année 2024 n'est pas mentionnée dans les articles pour la condamnation.",
+     "Enzo a écopé de 18 mois d'emprisonnement dont 15 mois avec sursis probatoire, soit 3 mois ferme.",
+     "Les articles ne mentionnent pas le refus d'une demande des associations pour une peine plus lourde, mais le rejet de leur constitution de partie civile quant au",
+     "Ce débat sur la liberté d'expression n'est pas mentionné dans les articles fournis.",
+     "L'année 2024 n'est pas précisée dans les sources.",
+     "La phrase mentionne que les faits ne visaient pas la religion, ce qui n’est pas confirmé par les articles."
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "@brutofficiel (TikTok, extrait cité)",
+    "@brutofficiel (TikTok, image citée)",
+    "Carte : Natural Earth, OpenStreetMap",
+    "Photo : corsematin.com (article cité)"
+   ],
+   "extraits_perdus": 0,
+   "regles_non_respectees": [
+    "vidéo de 43 s : il faut PLUS d'1 minute"
+   ],
+   "ecrans_illustres": 8,
+   "ecrans_total": 8,
+   "format": "buzz",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "Porto-Vecchio, Corse-du-Sud, France",
+   "humeur": "tension",
+   "categorie": "actualite",
+   "texte": [
+    "Tu savais que deux jeunes ont fini en prison pour la Vierge ?",
+    "Le tribunal correctionnel d'Ajaccio les a condamnés le 23 novembre.",
+    "Johan Courtel, lui, a reçu 6 mois ferme, avec bracelet électronique.",
+    "Les deux étaient très alcoolisés lorsqu’ils ont grimpé la statue et simulé un acte sexuel.",
+    "Ils ont filmé la scène, la vidéo a atteint 1 000 000 de vues sur Snapchat.",
+    "Quelques heures après, les internautes ont partagé la vidéo, déclenchant une chasse numérique.",
+    "Le président du tribunal, Hugo Meral, a rappelé que la peine devait rester mesurée pour la jeunesse.",
+    "Il a souligné que les faits n’étaient pas prémédités.",
+    "La statue, restaurée et réinstallée le 21 novembre, a de nouveau été vandalisée le lendemain.",
+    "Et toi, que penses-tu de ces peines ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-25T22:00:29+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 5,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 2,
+     "refus": 0,
+     "erreurs": 4,
+     "restant_demandes": "996",
+     "limite_demandes": "1000",
+     "restant_mots": "3150"
+    },
+    "gemini": {
+     "appels": 1,
+     "refus": 2,
+     "erreurs": 3
+    },
+    "openrouter": {
+     "appels": 0,
+     "refus": 8,
+     "erreurs": 0
+    }
+   },
+   "fabrication_s": 652,
+   "controles": {
+    "note": 45,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte un peu court (environ 42 s)",
+      "corrige": false,
+      "essais": 21
+     },
+     {
+      "niveau": "video",
+      "ecran": null,
+      "gravite": "grave",
+      "probleme": "vidéo de 43 s : pas plus d'1 minute (pas payée par TikTok)",
+      "corrige": true,
+      "essais": 4,
+      "solution": ""
+     },
+     {
+      "niveau": "regles",
+      "ecran": null,
+      "gravite": "grave",
+      "probleme": "vidéo de 43 s : il faut PLUS d'1 minute",
+      "corrige": false,
+      "essais": 1
+     }
+    ],
+    "sautes": [
+     "réécriture du texte par l'IA (aucune IA disponible)",
+     "regard de l'IA sur la vidéo finie (IA indisponible : aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY))"
+    ],
+    "corriges": 1,
+    "restants": 2,
+    "graves_restants": 4
+   },
+   "reprises": 0,
+   "preuves": [
+    {
+     "ecran": 1,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711399471346617622",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T22:00:29+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711399471346617622",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T22:00:29+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711399471346617622",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T22:00:29+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711399471346617622",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, image citée)",
+     "releve_le": "2026-11-25T22:00:29+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://www.corsematin.com/article/faits-diversjustice/54764446428844/direct-corsematin-en-direct-vierge-de-porto-vecchio-a-quelles-peines-les-prevenus-vont-ils-etre-condamnes",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "corsematin.com",
+     "titre": "",
+     "credit": "Photo : corsematin.com (article cité)",
+     "releve_le": "2026-11-25T22:00:29+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711399471346617622",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T22:00:29+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711399471346617622",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, image citée)",
+     "releve_le": "2026-11-25T22:00:29+01:00"
+    },
+    {
+     "ecran": 9,
+     "page": "https://www.corsematin.com/article/faits-diversjustice/54764446428844/direct-corsematin-en-direct-vierge-de-porto-vecchio-a-quelles-peines-les-prevenus-vont-ils-etre-condamnes",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "corsematin.com",
+     "titre": "",
+     "credit": "Photo : corsematin.com (article cité)",
+     "releve_le": "2026-11-25T22:00:29+01:00"
+    }
+   ],
+   "couverture_ms": 8299,
+   "durees": {
+    "articles": 0,
+    "ecriture": 12,
+    "texte": 14,
+    "voix": 57,
+    "images": 62,
+    "controle_images": 2,
+    "montage": 77,
+    "controle_final": 457,
+    "extraits": 0,
+    "regles": 2,
+    "rangement": 5
+   },
+   "refaite": null,
+   "statut": "a_verifier"
+  },
+  {
    "id": "20261125-163119-1",
    "tag": "v-20261125-163119-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-163119-1/buzz-20261125-163119-1.mp4",

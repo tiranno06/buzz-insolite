@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T22:00:29+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Condamnation vandalisme Vierge Porto-Vecchio » (43 s, 8 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-25T22:00:13+01:00",
    "niveau": "info",
    "texte": "🔁 « Flagellation pour chant sans hijab » refaite (texte) : note 65/100, corrige : « phrases réduites à des nombres, titres en anglais, accroche en anglais, trop court » — l'ancienne version est remplacée"
