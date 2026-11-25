@@ -1236,9 +1236,9 @@
    "refaite_de": "20261124-233157-1-r1"
   },
   {
-   "id": "20261124-233239-1-r3",
-   "tag": "v-20261124-233239-1-r3",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r3/buzz-20261124-233239-1-r3.mp4",
+   "id": "20261124-233239-1-r4",
+   "tag": "v-20261124-233239-1-r4",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r4/buzz-20261124-233239-1-r4.mp4",
    "titre": "CAN 2025 : Le Sénégal récupère son titre",
    "accroche": "LE TAS REND LA JUSTICE",
    "sujet_id": "af2b8dfec2",
@@ -1337,8 +1337,8 @@
     "Alors, qui aurait dû gagner selon vous ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T03:00:24+01:00",
-   "fabrication_s": 576,
+   "cree_le": "2026-11-25T03:47:11+01:00",
+   "fabrication_s": 598,
    "controles": {
     "note": 75,
     "lignes": [
@@ -1346,16 +1346,16 @@
       "niveau": "images",
       "ecran": 14,
       "gravite": "moyen",
-      "probleme": "image illisible (media80.jpg : )",
+      "probleme": "image illisible (media14-std.jpg : )",
       "corrige": true,
-      "essais": 2,
+      "essais": 1,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
       "ecran": 16,
       "gravite": "moyen",
-      "probleme": "image illisible (media52.jpg : )",
+      "probleme": "image illisible (media52-std.jpg : )",
       "corrige": true,
       "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1364,7 +1364,7 @@
       "niveau": "images",
       "ecran": 17,
       "gravite": "moyen",
-      "probleme": "image illisible (media53.jpg : )",
+      "probleme": "image illisible (media53-std.jpg : )",
       "corrige": true,
       "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1373,16 +1373,16 @@
       "niveau": "images",
       "ecran": 18,
       "gravite": "moyen",
-      "probleme": "image illisible (media18.jpg : )",
+      "probleme": "image illisible (media54-std.jpg : )",
       "corrige": true,
-      "essais": 1,
+      "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
       "ecran": 19,
       "gravite": "moyen",
-      "probleme": "image illisible (media55.jpg : )",
+      "probleme": "image illisible (media55-std.jpg : )",
       "corrige": true,
       "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1391,7 +1391,7 @@
       "niveau": "images",
       "ecran": 20,
       "gravite": "moyen",
-      "probleme": "image illisible (media20.jpg : )",
+      "probleme": "image illisible (media20-std.jpg : )",
       "corrige": true,
       "essais": 1,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1400,7 +1400,7 @@
       "niveau": "images",
       "ecran": 21,
       "gravite": "moyen",
-      "probleme": "image illisible (media21.jpg : )",
+      "probleme": "image illisible (media21-std.jpg : )",
       "corrige": true,
       "essais": 1,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1409,7 +1409,7 @@
       "niveau": "images",
       "ecran": 22,
       "gravite": "moyen",
-      "probleme": "image illisible (media58.jpg : )",
+      "probleme": "image illisible (media58-std.jpg : )",
       "corrige": true,
       "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1418,7 +1418,7 @@
       "niveau": "images",
       "ecran": 23,
       "gravite": "moyen",
-      "probleme": "image illisible (media59.jpg : )",
+      "probleme": "image illisible (media59-std.jpg : )",
       "corrige": true,
       "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1427,7 +1427,7 @@
       "niveau": "images",
       "ecran": 24,
       "gravite": "moyen",
-      "probleme": "image illisible (media60.jpg : )",
+      "probleme": "image illisible (media60-std.jpg : )",
       "corrige": true,
       "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1436,7 +1436,7 @@
       "niveau": "images",
       "ecran": 26,
       "gravite": "moyen",
-      "probleme": "image illisible (media62.jpg : )",
+      "probleme": "image illisible (media62-std.jpg : )",
       "corrige": true,
       "essais": 2,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -1460,19 +1460,19 @@
    "couverture_ms": 57501,
    "durees": {
     "voix": 0,
-    "images": 124,
-    "controle_images": 173,
-    "montage": 69,
-    "controle_final": 195,
-    "rangement": 6
+    "images": 119,
+    "controle_images": 171,
+    "montage": 90,
+    "controle_final": 208,
+    "rangement": 3
    },
    "refaite": {
-    "de": "20261124-233239-1-r2",
+    "de": "20261124-233239-1-r3",
     "etape": "images",
-    "remarque": "Images illisibles : il faut des scènes de vraies vidéos et photos"
+    "remarque": "Aucune vraie image : scènes de vraies vidéos et photos"
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233239-1-r2"
+   "refaite_de": "20261124-233239-1-r3"
   }
  ]
 }
