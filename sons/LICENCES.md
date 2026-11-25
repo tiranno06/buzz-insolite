@@ -5,6 +5,6 @@
 - `musique/*.mp3` : boucles instrumentales générées par jt-auto avec ACE-Step (licence Apache 2.0), sans échantillon protégé.
 - `voix/bernard.wav` : 14 s de « Cinq semaines en ballon » (Jules Verne) lu par Bernard pour LibriVox (enregistrement du domaine
   public, https://librivox.org). Sert de modèle à la voix d'homme Chatterbox (Resemble AI, licence MIT).
-- `musique/*_fp_*.mp3` : musiques de **FreePD.com** (Kevin MacLeod), versées au **domaine public (CC0)** : usage commercial
-  et montage permis sans obligation de crédit. Titre, ambiance, tempo et adresse d'origine de chacune : `musique/catalogue.json`
-  (téléchargées et classées par `robot/musiques.py`, workflow « Musiques libres »).
+- `musique/*_ov_*.mp3` : musiques sous licence **CC0 (domaine public)**, surtout de **Freesound**, trouvées par **Openverse**
+  (moteur de médias libres de la fondation WordPress) : usage commercial et montage permis sans obligation de crédit. Titre,
+  auteur, page d'origine, ambiance et tempo de chacune : `musique/catalogue.json` (`robot/musiques.py`, workflow « Musiques libres »).

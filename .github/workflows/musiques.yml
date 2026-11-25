@@ -1,6 +1,6 @@
-name: Musiques libres (FreePD, domaine public)
+name: Musiques libres (Openverse, CC0)
 run-name: "Musiques : téléchargement et classement"
-# Amélioration 9 du 25/11 : télécharge des musiques du domaine public (FreePD.com, CC0), les classe par ambiance et par
+# Amélioration 9 du 25/11 : télécharge des musiques du domaine public (CC0, Openverse), les classe par ambiance et par
 # rythme (sons/musique/catalogue.json). À lancer à la main (une fois, puis quand on veut en ajouter).
 on:
   workflow_dispatch:
@@ -28,5 +28,5 @@ jobs:
           git config user.email "robot-buzz@users.noreply.github.com"
           git add sons/musique
           git diff --cached --quiet && exit 0
-          git commit -m "Musiques libres (FreePD, domaine public) classées par ambiance et rythme"
+          git commit -m "Musiques libres (CC0, Openverse) classées par ambiance et rythme"
           for i in 1 2 3; do git pull --no-rebase -q && git push -q && break; sleep 5; done

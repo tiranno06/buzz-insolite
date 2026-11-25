@@ -223,8 +223,9 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
 - **6. Orthographe** (`robot/langue.py`, LanguageTool public sans clé) : fautes de frappe évidentes corrigées directement,
   accords / conjugaisons corrigés par l'IA avec les remarques (la 1re suggestion de LanguageTool est parfois fausse) ; noms
   propres jamais touchés ; à la fin de l'étape « texte ».
-- **9. Musiques** (`robot/musiques.py`, workflow « Musiques libres » à lancer à la main) : FreePD.com (domaine public CC0)
-  → `sons/musique/<ambiance>_fp_*.mp3` + `catalogue.json` (tempo mesuré) ; `sons.musique` choisit l'ambiance PUIS le rythme
+- **9. Musiques** (`robot/musiques.py`, workflow « Musiques libres » à lancer à la main) : Openverse (API sans clé, licence
+  CC0 seulement, surtout Freesound ; FreePD a fermé en 2025), 5 par ambiance, 40 s à 5 min, sans voix ni bruitage
+  → `sons/musique/<ambiance>_ov_*.mp3` + `catalogue.json` (auteur, page, tempo mesuré) ; `sons.musique` choisit l'ambiance PUIS le rythme
   (`TEMPOS`) ; 2 ambiances de plus pour l'IA : « epique » et « emotion ».
 
 - **12. uv** (astral-sh/setup-uv) dans tous les workflows : `uv pip install --system …`, pip en secours (`|| pip install …`) ;

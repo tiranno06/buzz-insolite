@@ -1,10 +1,10 @@
 """Plus de musiques, classées par ambiance et par rythme (amélioration 9 du 25/11).
 
-Source : FreePD.com (Kevin MacLeod), musiques versées au DOMAINE PUBLIC (CC0) : usage commercial et montage permis, sans
-obligation de crédit (le crédit est quand même écrit dans sons/LICENCES.md). Lancé à la main par musiques.yml (sur GitHub :
-le site n'est pas joignable depuis toutes les machines) : chaque page de catégorie est lue, les morceaux sont téléchargés,
-coupés à 2 min, mis au même niveau sonore, et leur tempo est mesuré (sons.battements). Résultat : sons/musique/<ambiance>_fp_*.mp3
-et sons/musique/catalogue.json (titre, ambiance, tempo, adresse d'origine), lus par sons.musique.
+Source : Openverse (moteur de recherche de médias libres de la fondation WordPress, sans clé), musiques sous licence CC0
+(domaine public, surtout de Freesound) : usage commercial et montage permis sans obligation de crédit (auteur et page
+d'origine gardés quand même dans catalogue.json). FreePD, prévu d'abord, a fermé en 2025. Lancé à la main par musiques.yml :
+recherches par ambiance, morceaux de 40 s à 5 min sans voix ni bruitage, coupés à 2 min, mis au même niveau sonore, tempo
+mesuré (sons.battements). Résultat : sons/musique/<ambiance>_ov_*.mp3 + catalogue.json, lus par sons.musique.
 """
 import json
 import os
@@ -17,10 +17,12 @@ import urllib.request
 from .commun import RACINE
 
 DOSSIER = os.path.join(RACINE, "sons", "musique")
-# catégorie de FreePD → ambiance de nos vidéos
-CATEGORIES = {"upbeat": "joie", "comedy": "joie", "epic": "epique", "scoring": "tension", "horror": "tension",
-              "electronic": "neutre", "misc": "neutre", "romantic": "emotion", "world": "neutre"}
-PAR_CATEGORIE = 4
+# recherches Openverse (moteur de médias libres de la fondation WordPress) → ambiance de nos vidéos
+RECHERCHES = {"joie": ["upbeat music loop", "happy background music"], "tension": ["suspense music", "tension music loop"],
+              "epique": ["epic orchestral music", "cinematic music"], "emotion": ["sad piano music", "emotional piano"],
+              "neutre": ["background music loop", "lofi music"]}
+PAR_AMBIANCE = 5
+MOTS_INTERDITS = ("whoosh", "horn", "hit", "sfx", "effect", "impact", "riser", "stinger", "voice", "vocal", "speech", "jingle")
 
 
 def _lire(url, timeout=60):
@@ -29,14 +31,19 @@ def _lire(url, timeout=60):
         return r.read()
 
 
-def morceaux(categorie):
-    page = _lire(f"https://freepd.com/{categorie}.php").decode("utf-8", "ignore")
-    liens = []
-    for lien in re.findall(r'href=["\']([^"\']+\.mp3)["\']', page, re.I):
-        url = urllib.parse.urljoin(f"https://freepd.com/{categorie}.php", lien)
-        if url not in liens:
-            liens.append(url)
-    return liens
+def morceaux(recherche):
+    """Musiques CC0 trouvées par Openverse (surtout Freesound) : 40 s à 5 min, sans voix ni bruitage."""
+    q = urllib.parse.urlencode({"q": recherche, "license": "cc0", "page_size": 20})
+    d = json.loads(_lire(f"https://api.openverse.org/v1/audio/?{q}"))
+    out = []
+    for r in d.get("results") or []:
+        titre = str(r.get("title") or "")
+        duree = (r.get("duration") or 0) / 1000
+        if r.get("license") != "cc0" or not 40 <= duree <= 300 or any(x in titre.lower() for x in MOTS_INTERDITS):
+            continue
+        out.append(dict(url=r["url"], titre=titre, page=r.get("foreign_landing_url") or r["url"],
+                        auteur=r.get("creator") or "", source=r.get("source") or ""))
+    return out
 
 
 def tempo(fichier):
@@ -53,37 +60,38 @@ def main():
     chemin_cat = os.path.join(DOSSIER, "catalogue.json")
     catalogue = json.load(open(chemin_cat, encoding="utf-8")) if os.path.exists(chemin_cat) else []
     deja = {m["origine"] for m in catalogue}
-    for cat, humeur in CATEGORIES.items():
-        try:
-            liens = morceaux(cat)
-        except Exception as e:
-            print(f"{cat} : page illisible ({e})"); continue
-        pris = 0
-        for url in liens:
-            if pris >= PAR_CATEGORIE:
-                break
-            if url in deja:
-                pris += 1; continue
-            titre = urllib.parse.unquote(url.rsplit("/", 1)[1])[:-4]
-            nom = f"{humeur}_fp_{re.sub(r'[^a-z0-9]+', '_', titre.lower()).strip('_')[:40]}.mp3"
-            brut = os.path.join(DOSSIER, "brut.mp3")
+    for humeur, recherches in RECHERCHES.items():
+        pris = sum(1 for m in catalogue if m["humeur"] == humeur and m.get("categorie") == "openverse")
+        for recherche in recherches:
             try:
-                with open(brut, "wb") as f:
-                    f.write(_lire(url, 120))
-                sortie = os.path.join(DOSSIER, nom)
-                subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", brut, "-t", "120", "-af", "loudnorm=I=-16:TP=-1.5:LRA=11",
-                                "-ac", "2", "-ar", "44100", "-b:a", "128k", sortie], check=True, timeout=300)
-                catalogue.append(dict(fichier=nom, titre=titre, humeur=humeur, categorie=cat, tempo=tempo(sortie), origine=url,
-                                      licence="domaine public (CC0), FreePD.com — Kevin MacLeod"))
-                deja.add(url); pris += 1
-                print(f"✓ {nom} ({humeur}, {catalogue[-1]['tempo']} bpm)")
+                liste = morceaux(recherche)
             except Exception as e:
-                print(f"✗ {titre} : {e}")
-            finally:
-                if os.path.exists(brut):
-                    os.remove(brut)
+                print(f"{recherche} : recherche impossible ({e})"); continue
+            for x in liste:
+                if pris >= PAR_AMBIANCE:
+                    break
+                if x["url"] in deja:
+                    continue
+                nom = f"{humeur}_ov_{re.sub(r'[^a-z0-9]+', '_', x['titre'].lower()).strip('_')[:40]}.mp3"
+                brut = os.path.join(DOSSIER, "brut.mp3")
+                try:
+                    with open(brut, "wb") as f:
+                        f.write(_lire(x["url"], 120))
+                    sortie = os.path.join(DOSSIER, nom)
+                    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", brut, "-t", "120", "-af", "loudnorm=I=-16:TP=-1.5:LRA=11",
+                                    "-ac", "2", "-ar", "44100", "-b:a", "128k", sortie], check=True, timeout=300)
+                    catalogue.append(dict(fichier=nom, titre=x["titre"], humeur=humeur, categorie="openverse", recherche=recherche,
+                                          tempo=tempo(sortie), origine=x["url"], page=x["page"], auteur=x["auteur"],
+                                          licence=f"CC0 (domaine public), {x['source']} via Openverse"))
+                    deja.add(x["url"]); pris += 1
+                    print(f"✓ {nom} ({humeur}, {catalogue[-1]['tempo']} bpm)")
+                except Exception as e:
+                    print(f"✗ {x['titre']} : {e}")
+                finally:
+                    if os.path.exists(brut):
+                        os.remove(brut)
     for f in sorted(os.listdir(DOSSIER)):                     # les boucles d'origine (ACE-Step) aussi, avec leur tempo
-        if f.endswith(".mp3") and "_fp_" not in f and not any(m["fichier"] == f for m in catalogue):
+        if f.endswith(".mp3") and "_ov_" not in f and not any(m["fichier"] == f for m in catalogue):
             catalogue.append(dict(fichier=f, titre=f[:-4], humeur=f.split("_")[0], categorie="ace-step",
                                   tempo=tempo(os.path.join(DOSSIER, f)), origine="jt-auto (ACE-Step, Apache 2.0)",
                                   licence="Apache 2.0"))
