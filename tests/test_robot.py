@@ -795,3 +795,12 @@ class TestCitations(unittest.TestCase):
         f = os.path.join(tempfile.mkdtemp(), "c.png")
         montage.calque(f, titre="TEST", source="Images : @brutofficiel (TikTok)")
         self.assertTrue(os.path.getsize(f) > 0)
+
+
+class TestPlusieursExtraits(unittest.TestCase):
+    def test_moments_sans_chevauchement(self):
+        from robot import citations as C
+        m = C.moments([20, 21, 60, 61, 62, 90], 120, 15, int(120 * C.PART_TOTALE // 15))
+        self.assertEqual(len(m), 4)
+        self.assertTrue(all(b - a >= 15 for a, b in zip(m, m[1:])))
+        self.assertEqual(len(C.moments([], 24, 10, max(1, int(24 * C.PART_TOTALE // 10)))), 1)   # vidéo de 24 s : 1 seul

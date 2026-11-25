@@ -60,7 +60,7 @@ def logo_rond():
 
 def calque(chemin, titre="", grand="", petit="", etiquette="INSOLITE", coul=JAUNE, bas="", source=""):
     """Textes posés sur l'image (fond transparent), et le logo de la chaîne en haut à droite. `source` : bandeau
-    « Images : @compte (TikTok) » bien visible pendant une courte citation (la source n'est jamais cachée)."""
+    « @compte » (court, demande de l'auteur du 25/11) bien visible pendant une courte citation (la source n'est jamais cachée)."""
     im = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im); f = police(46)
     lg = logo_rond()
     if lg:
@@ -69,11 +69,11 @@ def calque(chemin, titre="", grand="", petit="", etiquette="INSOLITE", coul=JAUN
         d.rounded_rectangle([60, 185, 60 + d.textlength(etiquette, font=f) + 60, 265], 22, fill=ROUGE, outline=BLANC, width=3)
         d.text((90, 189), etiquette, font=f, fill=BLANC)
     if source:
-        fs = police(34)
+        fs = police(28)
         larg = min(W - 2 * MARGE_COTES, d.textlength(source, font=fs) + 40)
         y = 470 if titre else 300                       # sous le gros titre, loin des textes de la vidéo d'origine
-        d.rounded_rectangle([60, y, 60 + larg, y + 60], 14, fill=(0, 0, 0, 200), outline=BLANC, width=2)
-        d.text((80, y + 7), source, font=fs, fill=BLANC)
+        d.rounded_rectangle([60, y, 60 + larg, y + 48], 12, fill=(0, 0, 0, 190), outline=BLANC, width=2)
+        d.text((80, y + 6), source, font=fs, fill=BLANC)
     larg = W - 2 * MARGE_COTES                         # jamais sous la colonne de boutons de TikTok
     if titre:
         _centre(d, 330, titre, police(_ajuste(d, titre, 104, larg)), coul)
@@ -201,7 +201,7 @@ def faire_ecran(script, i, d, dossier):
     elif p.get("media") and not derniere:
         m = p["media"]
         calque(png, titre=p.get("ecran", "").upper(),
-               source=f"Images : @{m.get('compte', 'source')} (TikTok)" if m.get("citation") else "")
+               source=f"@{m.get('compte', 'source')}" if m.get("citation") else "")
     else:
         grand = "ET TOI ?" if derniere else (p.get("ecran") or "").upper()
         petit = "dis-le en commentaire" if derniere else ""

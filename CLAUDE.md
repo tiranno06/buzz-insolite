@@ -16,12 +16,13 @@ commentaires, commits, textes du site), explications simples, sans jargon.
   commentaires (réglables sur le site). « Rien à éviter » comme sujet, mais les règles légales restent (pas de nom de victime
   ni de mineur, présomption d'innocence, faits vérifiés) : `ecrire.REGLES_SUJET`.
 - **Courtes citations des vidéos d'origine** (choix de l'auteur du 25/11, après explication des risques ; remplace « jamais
-  la vidéo d'un autre compte ») : `robot/citations.py` + `principal.placer_citations`. UN extrait de 10 à 15 s par vidéo
-  virale d'origine du sujet (`sujet["videos"]`, les plus vues d'abord, `video.citations_nombre` 5 au plus, un par vidéo :
-  4 ou 5 extraits = 4 ou 5 vidéos différentes), 40 % de la vidéo au plus (10 s au moins ; vidéo de moins de 20 s non
-  citée), moment où l'image bouge le plus (`meilleur_moment`), son d'origine coupé, vidéo montrée en ENTIER (ni recadrée
+  la vidéo d'un autre compte ») : `robot/citations.py` + `principal.placer_citations`. Extraits de 10 à 15 s des vidéos
+  virales d'origine du sujet (`sujet["videos"]`, les plus vues d'abord, `video.citations_nombre` 5 au plus) : un par vidéo
+  d'abord, puis d'autres passages des mêmes vidéos (autorisé par l'auteur le 25/11) sans que l'ensemble repris d'une vidéo
+  dépasse la MOITIÉ de sa durée (`PART_TOTALE` ; une vidéo de 24 s = 1 extrait) ; 40 % de la vidéo par extrait au plus
+  (10 s au moins ; vidéo de moins de 20 s non citée), moments où l'image bouge le plus, sans chevauchement (`moments`), son d'origine coupé, vidéo montrée en ENTIER (ni recadrée
   ni floutée : logo et encadré du journaliste visibles — l'auteur demandait de les flouter : REFUSÉ, cela cache la source),
-  bandeau « Images : @compte (TikTok) » sous le titre (`calque(source=)`), crédit + preuve « courte citation ». Le 1er
+  bandeau court « @compte » sous le titre (`calque(source=)`, raccourci à la demande de l'auteur du 25/11), crédit + preuve « courte citation ». Le 1er
   extrait sur l'accroche, les autres répartis ; scène trop courte prolongée par la suivante. Pas jugés par l'IA des
   images (c'est l'événement lui-même) ; gardés par « Refaire » (images). Vidéo entière jamais gardée. Le reste de la
   vidéo : notre texte, notre voix, les images libres. Durée TikTok : `video.duree_min` 62 s.
