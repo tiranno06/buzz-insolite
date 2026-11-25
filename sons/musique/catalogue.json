@@ -1,0 +1,74 @@
+[
+ {
+  "fichier": "joie_0.mp3",
+  "titre": "joie_0",
+  "humeur": "joie",
+  "categorie": "ace-step",
+  "tempo": 161,
+  "origine": "jt-auto (ACE-Step, Apache 2.0)",
+  "licence": "Apache 2.0"
+ },
+ {
+  "fichier": "joie_1.mp3",
+  "titre": "joie_1",
+  "humeur": "joie",
+  "categorie": "ace-step",
+  "tempo": 66,
+  "origine": "jt-auto (ACE-Step, Apache 2.0)",
+  "licence": "Apache 2.0"
+ },
+ {
+  "fichier": "neutre_0.mp3",
+  "titre": "neutre_0",
+  "humeur": "neutre",
+  "categorie": "ace-step",
+  "tempo": 63,
+  "origine": "jt-auto (ACE-Step, Apache 2.0)",
+  "licence": "Apache 2.0"
+ },
+ {
+  "fichier": "neutre_1.mp3",
+  "titre": "neutre_1",
+  "humeur": "neutre",
+  "categorie": "ace-step",
+  "tempo": 161,
+  "origine": "jt-auto (ACE-Step, Apache 2.0)",
+  "licence": "Apache 2.0"
+ },
+ {
+  "fichier": "neutre_2.mp3",
+  "titre": "neutre_2",
+  "humeur": "neutre",
+  "categorie": "ace-step",
+  "tempo": 96,
+  "origine": "jt-auto (ACE-Step, Apache 2.0)",
+  "licence": "Apache 2.0"
+ },
+ {
+  "fichier": "tension_0.mp3",
+  "titre": "tension_0",
+  "humeur": "tension",
+  "categorie": "ace-step",
+  "tempo": 86,
+  "origine": "jt-auto (ACE-Step, Apache 2.0)",
+  "licence": "Apache 2.0"
+ },
+ {
+  "fichier": "tension_1.mp3",
+  "titre": "tension_1",
+  "humeur": "tension",
+  "categorie": "ace-step",
+  "tempo": 74,
+  "origine": "jt-auto (ACE-Step, Apache 2.0)",
+  "licence": "Apache 2.0"
+ },
+ {
+  "fichier": "tension_2.mp3",
+  "titre": "tension_2",
+  "humeur": "tension",
+  "categorie": "ace-step",
+  "tempo": 129,
+  "origine": "jt-auto (ACE-Step, Apache 2.0)",
+  "licence": "Apache 2.0"
+ }
+]
