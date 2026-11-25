@@ -189,7 +189,7 @@ def enregistrer_appris(valides, journal=print):
                 f["mots"][mot] = {"dire": dire, "source": "robot", "le": iso()}
         ecrire(FICHIER, f)
     depot.enregistrer(appliquer, f"Prononciation : {len(valides)} mot(s) appris")
-    journal(f"  🗣️ prononciation apprise : " + ", ".join(f"{m} → {d}" for m, d in valides.items()))
+    journal("  🗣️ prononciation apprise : " + ", ".join(f"{m} → {d}" for m, d in valides.items()))
 
 
 def candidats(texte, entendus):

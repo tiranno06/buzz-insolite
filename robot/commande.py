@@ -169,7 +169,7 @@ def main():
         from . import controle
         v = _video(lire("file.json") or {"videos": []}, vid)
         try:
-            ENVOI[vid] = controle.verifier_et_envoyer(v, reglages(), forcer=action == "publier_force")
+            ENVOI[vid] = controle.verifier_et_envoyer(v, reglages(), forcer=action == "publier_force" or bool(v.get("force")))
         except Exception as e:
             ENVOI[vid] = e
     depot.enregistrer(lambda: appliquer(action, vid, texte), f"Ordre du site : {action} {vid}".strip())

@@ -576,7 +576,7 @@ class TestFormatsEtSujets(unittest.TestCase):
         ecrire("file.json", {"videos": []})
 
     def test_formats_et_categories(self):
-        from robot import ecrire as E, publication_auto, buzz
+        from robot import ecrire as E, buzz
         from robot.commun import ecrire
         for f in ("chiffre", "monde60", "region"):
             self.assertIn(f, E.FORMATS)
@@ -1208,3 +1208,34 @@ class TestPublierAVerifier(unittest.TestCase):
             self.assertEqual(file["videos"][0]["statut"], "a_verifier"); self.assertNotIn("force", file["videos"][0])
         finally:
             commande.lire, commande.ecrire, commande.noter, commande.publier.mettre_a_jour = anciens
+
+
+class TestAuditComplet(unittest.TestCase):
+    def test_buzz_regroupe_avec_les_hashtags(self):
+        """25/11 : `ecrire` désignait la fonction d'enregistrement ET le module d'écriture → regroupement du buzz en panne."""
+        from robot import buzz, ia
+        ancien = ia.demander_json
+        ia.demander_json = lambda *a, **k: ({"sujets": [{"titre": "Sujet", "videos": [0], "hashtags": "#chat #insolite"}]}, "x")
+        try:
+            liste = [dict(texte="Un chat", compte="c", vues=1, jaime=1, commentaires=1)]
+            s = buzz.grouper(liste, journal=lambda *a: None)
+            self.assertEqual(s[0]["titre"], "Sujet")                # formé par l'IA, pas « une vidéo = un sujet »
+            self.assertEqual(s[0]["hashtags"], ["chat", "insolite"])
+        finally:
+            ia.demander_json = ancien
+
+    def test_buffer_sans_reponse_jamais_renvoye(self):
+        from robot import publier
+        appels = []
+        anciens = publier._gql, publier.compte
+        publier.compte = lambda R: {"id": "c", "nom": "n"}
+        def gql(req):
+            appels.append(req)
+            raise publier.ErreurBuffer("Buffer injoignable : timed out")
+        publier._gql = gql
+        try:
+            with self.assertRaises(publier.ErreurBuffer):
+                publier.envoyer({"url": "https://x/v.mp4", "description": "d", "hashtags": []}, {})
+            self.assertEqual(len(appels), 1)                  # UN seul envoi : jamais de double publication
+        finally:
+            publier._gql, publier.compte = anciens

@@ -127,7 +127,10 @@ def relancer_attente(E):
     if not attente or not depot.en_ligne():
         return
     # une vidéo à refaire qui n'existe plus (déjà refaite entre-temps, par exemple par la santé de la nuit) : oubliée
-    ids = {v["id"] for v in (lire("file.json") or {}).get("videos") or []}
+    # … ou que l'auteur a décidé de garder telle quelle (cochée « À publier » malgré le bulletin, publiée, écartée : 25/11,
+    # la vidéo de l'arche cochée « À publier » aurait été refaite et remplacée dès que les IA se seraient libérées)
+    ids = {v["id"] for v in (lire("file.json") or {}).get("videos") or []
+           if v.get("statut") in ("nouvelle", "a_verifier", "echec") and not v.get("force")}
     perimees = [x for x in attente if (x.get("inputs") or {}).get("refaire") and x["inputs"]["refaire"] not in ids]
     if perimees:
         def oublier():

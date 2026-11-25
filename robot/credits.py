@@ -12,10 +12,9 @@ nombres, titres en anglais, vidéos à 0/100. Désormais :
 import base64
 import json
 import os
-import urllib.request
 
 from . import ia
-from .commun import ROBOT_UA, iso, lire, maintenant
+from .commun import iso, lire
 
 MAX_EN_MEME_TEMPS = 2                     # vidéos fabriquées en même temps avec les IA gratuites
 
@@ -32,7 +31,7 @@ def _pixel():
 def _essai_texte(fourn):
     modeles = ia.modeles(fourn)
     derniere = "aucun modèle"
-    for modele in [m for m in modeles if (fourn, m) not in ia._MORTS][:3]:
+    for modele in [m for m in modeles if (fourn, m) not in ia._MORTS][:5]:
         try:
             ia._appel(fourn, modele, [{"role": "user", "content": 'Réponds en json : {"ok": true}'}], 0, 20)
             return True, modele
@@ -46,7 +45,7 @@ def _essai_image(fourn):
     contenu = [{"type": "text", "text": 'Réponds en json : {"ok": true}'},
                {"type": "image_url", "image_url": {"url": "data:image/jpeg;base64," + _pixel()}}]
     derniere = "aucun modèle"
-    for modele in [m for m in modeles if (fourn, m) not in ia._MORTS][:3]:
+    for modele in [m for m in modeles if (fourn, m) not in ia._MORTS][:5]:
         try:
             ia._appel(fourn, modele, [{"role": "user", "content": contenu}], 0, 20)
             return True, modele

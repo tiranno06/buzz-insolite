@@ -37,8 +37,8 @@ def _gql(requete):
         rep = json.loads(urllib.request.urlopen(req, timeout=120).read().decode())
     except urllib.error.HTTPError as e:
         raise ErreurBuffer(f"Buffer a répondu {e.code} : {e.read().decode(errors='replace')[:200]}")
-    except (urllib.error.URLError, TimeoutError) as e:
-        raise ErreurBuffer(f"Buffer injoignable : {e}")
+    except (urllib.error.URLError, TimeoutError, OSError) as e:
+        raise ErreurBuffer(f"Buffer injoignable : {e}") from e
     if rep.get("errors"):
         raise ErreurBuffer(f"Buffer : {str(rep['errors'])[:300]}")
     return rep["data"]
@@ -123,6 +123,9 @@ def envoyer(v, R, quand_iso=None):
         try:
             rep = _gql(req)["createPost"]
         except ErreurBuffer as e:
+            if "injoignable" in str(e) or "timed out" in str(e).lower():
+                # pas de réponse : Buffer a PEUT-ÊTRE reçu la vidéo → jamais de 2e envoi (double publication)
+                raise ErreurBuffer(f"{e} — vérifie dans Buffer si la vidéo est partie avant de réessayer") from e
             derniere = str(e)
             continue
         if rep.get("post"):

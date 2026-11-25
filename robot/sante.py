@@ -200,7 +200,7 @@ def reparer(journal=print):
     for v in file["videos"]:
         if len(faites) >= REPARATIONS_PAR_NUIT:
             break
-        if v.get("essai") or v.get("statut") not in ("nouvelle", "a_publier", "a_verifier") or not v.get("url", "").startswith("https"):
+        if v.get("essai") or v.get("statut") not in ("nouvelle", "a_verifier")   # « À publier » : choix de l'auteur, jamais refaite seule or not v.get("url", "").startswith("https"):
             continue
         try:
             if datetime.datetime.fromisoformat(v.get("cree_le", "")) < limite:

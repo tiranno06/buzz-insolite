@@ -17,7 +17,7 @@ import sys
 import time
 import unicodedata
 
-from . import ecrire, sources, ia
+from . import ecrire as redaction, sources, ia
 from .commun import ecrire, iso, lire, maintenant, noter, reglages
 
 VARIANTES = (["--impersonate", "chrome"], ["--extractor-args", "tiktok:api_hostname=api16-normal-c-useast1a.tiktokv.com"], [])  # gitleaks:allow (adresse de serveur, pas une clé)
@@ -118,7 +118,7 @@ def grouper(liste, journal=print):
                 sujets.append(dict(titre=str(s["titre"]).strip()[:90], resume=str(s.get("resume") or "")[:400],
                                    mots_cles=[str(m) for m in s.get("mots_cles") or []][:6],
                                    mots_cles_en=[str(m) for m in s.get("mots_cles_en") or []][:6],
-                                   hashtags=ecrire.liste_hashtags(s.get("hashtags"))[:5],
+                                   hashtags=redaction.liste_hashtags(s.get("hashtags"))[:5],
                                    insolite=max(0, min(10, int(s.get("insolite") or 0))),
                                    categorie=str(s.get("categorie") or "").strip().lower()[:20],
                                    ville_france=str(s.get("ville_france") or "").strip()[:60],

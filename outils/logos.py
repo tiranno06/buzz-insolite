@@ -1,7 +1,7 @@
 """Logos de la chaîne (photo de profil TikTok, 1080 × 1080, contenu dans le rond central). python outils/logos.py"""
 import math
 import os
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from PIL import Image, ImageDraw, ImageFont
 
 ICI = os.path.dirname(os.path.abspath(__file__)); SORTIE = os.path.join(ICI, "..", "docs", "marque")
 GRAS = os.path.join(ICI, "..", "polices", "Poppins-Bold.ttf")

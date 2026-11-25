@@ -1,0 +1,44 @@
+name: Métronome (réveils sûrs)
+
+# GitHub saute la plupart des réveils programmés (25/11 : la garde « toutes les 15 min » n'est partie que 3 fois en 24 h,
+# le buzz « toutes les 2 h » pas depuis 8 h). Le métronome tourne en continu (gratuit : dépôt public) et LANCE lui-même :
+# la garde toutes les 15 min, le buzz toutes les 2 h, les statistiques toutes les 3 h. Il se relance seul avant la limite
+# de 6 h des tâches GitHub. Les réveils programmés des autres tâches restent en secours.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "7 * * * *"          # secours : si le métronome s'est arrêté, il repart à l'heure suivante
+  push:
+    branches: [main]
+    paths: [".github/workflows/metronome.yml"]
+
+permissions:
+  actions: write
+
+concurrency:
+  group: metronome
+  cancel-in-progress: false      # un seul métronome à la fois ; un réveil de secours attend son tour
+
+jobs:
+  metronome:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 355
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Battre la mesure (5 h 40)
+        run: |
+          lancer() { for i in 1 2 3; do gh workflow run "$1" && { echo "▶️ $1 lancé à $(date -u +%H:%M)"; return; }; sleep 20; done; echo "⚠️ $1 n'a pas pu être lancé"; }
+          dernier() { gh run list --workflow "$1" --limit 1 --json createdAt --jq '.[0].createdAt // ""' 2>/dev/null; }
+          age_min() { d=$(dernier "$1"); [ -z "$d" ] && echo 9999 || echo $(( ($(date -u +%s) - $(date -u -d "$d" +%s)) / 60 )); }
+          fin=$(( $(date +%s) + 340*60 ))
+          while [ "$(date +%s)" -lt "$fin" ]; do
+            [ "$(age_min garde.yml)" -ge 14 ] && lancer garde.yml
+            [ "$(age_min buzz.yml)" -ge 118 ] && lancer buzz.yml
+            [ "$(age_min stats.yml)" -ge 178 ] && lancer stats.yml
+            sleep 300
+          done
+      - name: Se relancer pour la suite
+        if: always()
+        run: gh workflow run metronome.yml || echo "le réveil de secours (chaque heure) prendra le relais"
