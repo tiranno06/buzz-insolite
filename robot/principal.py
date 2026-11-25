@@ -417,14 +417,18 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
 
     # ---------- 6. contrôle 4/4 : la vidéo finie (boucle jusqu'à zéro problème ; le tour en cours est gardé)
     def controle_final():
-        for tour in range(E.get("tour_video", 0), 12):
+        # 4 tours au plus (amélioration 13 du 25/11 : la vidéo CAN avait fait 12 tours, 56 min) ; à partir du 2e tour, l'IA
+        # ne regarde de nouveau que les écrans REFAITS (les autres ont déjà été jugés bons)
+        a_revoir = None
+        for tour in range(E.get("tour_video", 0), 4):
             E["tour_video"] = tour
             if tour >= 2 and time.time() - E["t0"] > 70 * 60:  # limite de temps : la vidéo arrive sur le site, « à vérifier »
                 journal(f"  contrôle de la vidéo finie arrêté après {tour} tours (plus de 70 min de fabrication) : "
                         "les problèmes restants sont signalés dans le bulletin")
                 return
             avancement.etape(pre + f"Contrôle 4/4 : la vidéo finie (tour {tour + 1})", min(94, 87 + tour))
-            fautifs = controle.controle_video(fichier, script, dossier, B, journal, leger=simulation(), sans_ia=secours)
+            fautifs = controle.controle_video(fichier, script, dossier, B, journal, leger=simulation(), sans_ia=secours,
+                                              seulement=a_revoir)
             trouves_ici = {(("voix" if a == "voix" else "video"), (None if i is None else controle.uid(script, i)))
                            for i, (_, a) in fautifs.items()}
             for l in B.ouverts():                             # revérifié : passage réglé
@@ -436,7 +440,9 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                     + ", ".join(f"{'vidéo' if i is None else f'écran {i + 1}'} ({p})" for i, (p, _) in fautifs.items()))
             controle.corriger_ecrans(script, fautifs, dossier, B, journal, E.get("nom_voix", R["video"]["voix"]),
                                      E.get("vitesse", 0.8), E["articles"])
+            avant = {p.get("uid"): p.get("_sig") for p in script["phrases"]}
             E["duree"] = montage.monter(script, dossier, fichier)
+            a_revoir = {i for i, p in enumerate(script["phrases"]) if avant.get(p.get("uid")) != p.get("_sig")}
             journal(f"  {script.get('_ecrans_refaits', 0)} écran(s) refait(s), le reste de la vidéo est inchangé")
     etape("controle_final", 87, controle_final)
     bulletin = B.resume()
@@ -466,7 +472,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 credits=sorted({p["media"]["credit"] for p in script["phrases"] if p.get("media")}),
                 ecrans_illustres=controle.part_illustree(script)[0], ecrans_total=controle.part_illustree(script)[1], format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""),
                 humeur=script.get("humeur", ""), categorie=sujet.get("categorie", ""), texte=[p["ecrit"] for p in script["phrases"]],
-                essai=simulation(), cree_le=iso(), fabrication_s=round(time.time() - E["t0"]), controles=bulletin,
+                essai=simulation(), cree_le=iso(), ia_quotas={k: dict(v) for k, v in ia.QUOTAS.items()}, fabrication_s=round(time.time() - E["t0"]), controles=bulletin,
                 reprises=E.get("reprises", 0), preuves=preuves_licences(script), couverture_ms=couverture_ms(script),
                 durees=E.get("durees", {}), refaite=E.get("refaite"),
                 statut="a_verifier" if bulletin["graves_restants"] else

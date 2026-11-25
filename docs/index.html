@@ -565,6 +565,9 @@ function rendreSante() {
   const C = S.creations_24h || {}, K = S.comptes || {};
   $("#sante").innerHTML = `<div class="card"><h3>${esc(S.resume || "")}</h3><p class="petit muted">Bilan du ${quand(S.maj)}</p></div>
     <div class="card"><h3>🤖 IA gratuites</h3>${(S.ia || []).map(ligne).join("")}</div>
+    ${S.essai_nuit ? `<div class="card"><h3>🧪 Essai complet de la nuit ${S.essai_nuit.ok ? "✅" : "❌"}</h3><p class="petit muted">${quand(S.essai_nuit.le)}</p>${(S.essai_nuit.resultats || []).map(r => `<div class="creneau"><span>${r.ok ? "✅" : "❌"} ${esc(r.nom)}</span><span class="muted petit">${esc(r.detail || "")} · ${r.duree_s} s</span></div>`).join("")}</div>` : ""}
+    <div class="card"><h3>📊 Quotas des IA gratuites (24 h)</h3>${Object.entries(S.quotas || {}).map(([f, q]) => `<div class="creneau"><span>${q.sature ? "🟠" : "🟢"} ${esc(f)}</span><span class="petit">${q.appels || 0} appel(s) · ${q.refus || 0} refus « trop de demandes »${q.restant_jour ? " · reste aujourd'hui : " + esc(q.restant_jour) : q.restant_demandes ? " · reste : " + esc(q.restant_demandes) + (q.limite_demandes ? "/" + esc(q.limite_demandes) : "") : ""}</span></div>`).join("") || '<p class="petit muted">Mesuré à partir des prochaines vidéos.</p>'}
+      <p class="petit muted">🟠 = saturée (plus de 30 % de refus) : le robot passe à l'IA suivante.</p></div>
     <div class="card"><h3>🎞️ Sources de vidéos et presse</h3>${(S.sources || []).map(ligne).join("")}</div>
     <div class="card"><h3>📤 Publication</h3>${S.buffer ? ligne(S.buffer) : ""}</div>
     <div class="card"><h3>👀 Comptes TikTok suivis</h3><p class="petit">${K.lus ?? "?"} lus sur ${K.total ?? "?"}${(K.en_pause || []).length ? " · en pause 7 jours : " + K.en_pause.map(p => "@" + esc(p)).join(", ") : ""}</p></div>

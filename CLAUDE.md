@@ -105,7 +105,7 @@ Gemini → Mistral → Groq par paquets de 5 ; écran fautif = nouvelle image, s
 
 **ZÉRO problème restant (exigence de l'auteur du 24/11)** : chaque problème reste « ouvert » dans le `Bulletin` jusqu'à ce que
 la revérification du passage le trouve réglé (`ouvrir` / `fermer`, phrases repérées par `uid`) ; boucles jusqu'à zéro (texte
-4 tours, images 5, vidéo finie 12) avec une échelle de solutions dont la dernière marche à coup sûr : image → nouvelle
+4 tours, images 5, vidéo finie 4 depuis le 25/11) avec une échelle de solutions dont la dernière marche à coup sûr : image → nouvelle
 recherche → thème → écran de texte ; titre → raccourci → retiré ; voix → refaite → phrase simplifiée par l'IA → phrase retirée
 (si la vidéo reste ≥ 62 s) ; phrase / accroche trop longue → coupée en deux ; question finale → question type ; vidéo trop
 courte → phrases ajoutées, sinon sujet abandonné (LookupError). Note = 100 sans problème restant ; un contrôle impossible
@@ -226,6 +226,19 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
 - **9. Musiques** (`robot/musiques.py`, workflow « Musiques libres » à lancer à la main) : FreePD.com (domaine public CC0)
   → `sons/musique/<ambiance>_fp_*.mp3` + `catalogue.json` (tempo mesuré) ; `sons.musique` choisit l'ambiance PUIS le rythme
   (`TEMPOS`) ; 2 ambiances de plus pour l'IA : « epique » et « emotion ».
+
+- **12. uv** (astral-sh/setup-uv) dans tous les workflows : `uv pip install --system …`, pip en secours (`|| pip install …`) ;
+  l'espace à part de Chatterbox garde pip (en cache). **13. Contrôle final** : 4 tours au plus (avant 12), et à partir du
+  2e tour l'IA ne revoit que les écrans REFAITS (`controle_video(seulement=)`, comparaison des signatures `_sig`).
+
+- **16. Essai de la nuit** (`robot/essai_nuit.py`, essai.yml à 01 h 47 UTC) : tests du code, voix d'homme (1 phrase),
+  Whisper, téléchargement TikTok, OpenCV, LanguageTool, IA qui écrit, IA qui voit — sans publier ni ajouter de vidéo ;
+  résultat `sante.json` → `essai_nuit` (onglet Santé), panne écrite dans le journal.
+- **17. Versions figées** : `requirements.txt` (OpenCV, scenedetect… à la version essayée) + `.github/dependabot.yml`
+  (chaque lundi, mises à jour proposées en « pull request », testées par tests.yml avant fusion par l'auteur ; yt-dlp
+  toujours en dernière version, exprès).
+- **18. Quotas des IA** (`ia.QUOTAS` : appels, refus 429, erreurs, restes annoncés par les en-têtes x-ratelimit) → fiche de
+  chaque vidéo (`ia_quotas`) → `sante.quotas_ia` (24 h) → onglet Santé (🟠 = plus de 30 % de refus).
 
 ## Avancement en direct (demande de l'auteur du 25/11 : « mis à jour bien plus rapidement »)
 Robot : envoi toutes les 5 s au plus (`avancement.INTERVALLE`) + signe de vie toutes les 15 s même au milieu d'une longue

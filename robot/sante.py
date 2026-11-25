@@ -50,6 +50,32 @@ def verifier_ia():
     return out
 
 
+def quotas_ia(videos):
+    """Tableau des quotas des IA gratuites (amélioration 18 du 25/11) : appels et refus des vidéos des 24 dernières heures,
+    plus ce qu'il reste chez chaque fournisseur d'après le test de cette nuit (quand il le dit)."""
+    import datetime
+    limite = maintenant() - datetime.timedelta(hours=24)
+    out = {f: {"appels": 0, "refus": 0, "erreurs": 0} for f in ia.ORDRE}
+    for v in videos:
+        try:
+            if datetime.datetime.fromisoformat(v.get("cree_le", "")) < limite:
+                continue
+        except ValueError:
+            continue
+        for f, st in (v.get("ia_quotas") or {}).items():
+            o = out.setdefault(f, {"appels": 0, "refus": 0, "erreurs": 0})
+            for k in ("appels", "refus", "erreurs"):
+                o[k] += int(st.get(k) or 0)
+    for f, st in ia.QUOTAS.items():                           # restes annoncés lors du test de santé
+        for k, val in st.items():
+            if k.startswith("restant") or k.startswith("limite"):
+                out.setdefault(f, {})[k] = val
+    for f, o in out.items():
+        total = o.get("appels", 0) + o.get("refus", 0)
+        o["sature"] = bool(total) and o.get("refus", 0) / total > 0.3
+    return out
+
+
 def verifier_sources():
     from . import images, sources
     tests = [
@@ -232,6 +258,7 @@ def main():
          "comptes": {"lus": sum(1 for e in B_comptes.values() if e.get("ok")), "total": len(B_comptes),
                      "en_pause": sorted(pauses)},
          "comptes_muets": series, "durees": durees_moyennes(videos), "creations_24h": creations_24h(),
+         "quotas": quotas_ia(videos),
          "reparations": (reparations + (precedent.get("reparations") or []))[:20], "sujets_remis": remis,
          "resume": "✅ Tout fonctionne" if not pannes else "⚠️ En panne : " + ", ".join(pannes)}
 

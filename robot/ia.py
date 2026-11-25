@@ -92,8 +92,35 @@ def _appel(fourn, modele, messages, temperature, max_tokens):
     req = urllib.request.Request(F["url"], data=json.dumps(corps).encode(), method="POST",
                                  headers={"Authorization": f"Bearer {os.environ[F['cle']]}", "Content-Type": "application/json",
                                           "User-Agent": ROBOT_UA, "X-Title": "buzz-insolite-robot"})
-    d = json.loads(urllib.request.urlopen(req, timeout=180).read())
+    st = QUOTAS.setdefault(fourn, {"appels": 0, "refus": 0, "erreurs": 0})
+    try:
+        with urllib.request.urlopen(req, timeout=180) as r:
+            _noter_restant(st, r.headers)
+            d = json.loads(r.read())
+        st["appels"] += 1
+    except urllib.error.HTTPError as e:
+        _noter_restant(st, e.headers or {})
+        st["refus" if e.code == 429 else "erreurs"] += 1
+        raise
     return ((d.get("choices") or [{}])[0].get("message") or {}).get("content") or ""
+
+
+# Quotas des IA gratuites pendant ce passage du robot (amélioration 18 du 25/11) : appels réussis, refus « trop de
+# demandes » (429), autres erreurs, et ce qu'il reste quand le fournisseur le dit (en-têtes x-ratelimit-…). Rangé dans la
+# fiche de chaque vidéo (« ia_quotas ») et résumé dans l'onglet Santé.
+QUOTAS = {}
+
+
+def _noter_restant(st, entetes):
+    try:
+        for cle, nom in (("x-ratelimit-remaining-requests", "restant_demandes"), ("x-ratelimit-limit-requests", "limite_demandes"),
+                         ("x-ratelimit-remaining-tokens", "restant_mots"), ("x-ratelimit-remaining-requests-day", "restant_jour"),
+                         ("x-ratelimit-remaining-req-minute", "restant_minute")):
+            val = entetes.get(cle)
+            if val not in (None, ""):
+                st[nom] = val
+    except Exception:
+        pass
 
 
 def demander_json(consigne, texte, temperature=0.7, max_tokens=4000, exclure=(), journal=print):

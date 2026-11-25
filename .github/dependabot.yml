@@ -1,0 +1,22 @@
+# Amélioration 17 du 25/11 : les versions des outils sont FIGÉES (requirements.txt, workflows) ; chaque semaine, Dependabot
+# (intégré à GitHub, gratuit) propose les mises à jour sous forme de « pull request » que les tests vérifient avant toute
+# fusion. Rien ne change tout seul : une mise à jour d'outil ne casse plus le robot du jour au lendemain.
+# yt-dlp n'est pas ici : il DOIT rester à jour (TikTok change souvent), il est installé en dernière version à chaque passage.
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "Mise à jour (outils Python)"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "Mise à jour (actions GitHub)"

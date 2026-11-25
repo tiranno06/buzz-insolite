@@ -504,7 +504,7 @@ sur bandeau noir) et NOTRE titre jaune comptent.
 Réponds uniquement en JSON : {"images": [{"n": numéro, "titre_coupe": …, "chevauchement": …, "illisible": …, "probleme": "…"}]}"""
 
 
-def controle_video(fichier, script, dossier, B, journal=print, leger=False, sans_ia=False):
+def controle_video(fichier, script, dossier, B, journal=print, leger=False, sans_ia=False, seulement=None):
     """Niveau 4. Renvoie {n° d'écran (ou None = toute la vidéo): (problème, action)} ;
     action = "image", "titre", "voix", "allonger" (trop court) ou "refaire" (format, son)."""
     from . import montage
@@ -531,8 +531,8 @@ def controle_video(fichier, script, dossier, B, journal=print, leger=False, sans
         B.saute(f"réécoute des sous-titres ({str(e)[:60]})")
     lots = []
     for i in range(len(ph)):
-        if i in fautifs:
-            continue
+        if i in fautifs or (seulement is not None and i not in seulement):
+            continue                                       # (tours suivants) seuls les écrans refaits sont regardés de nouveau
         img = os.path.join(dossier, f"final{i:02d}.jpg")
         t = debuts[i] + min(1.2, ph[i]["duree"] / 2)
         subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.2f}", "-i", fichier, "-frames:v", "1", "-vf", "scale=540:-2",
