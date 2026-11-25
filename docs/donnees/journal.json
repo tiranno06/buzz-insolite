@@ -1,6 +1,21 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T11:25:54+01:00",
+   "niveau": "info",
+   "texte": "🗑️ « Fascistes en Espagne : un hommage choc à Franco » supprimée."
+  },
+  {
+   "date": "2026-11-25T11:25:49+01:00",
+   "niveau": "info",
+   "texte": "🗑️ « Fascistes en Espagne : un hommage choc à Franco » supprimée."
+  },
+  {
+   "date": "2026-11-25T11:25:48+01:00",
+   "niveau": "info",
+   "texte": "🗑️ « Macron et l'A320 : un futur qui décolle » supprimée."
+  },
+  {
    "date": "2026-11-25T11:12:12+01:00",
    "niveau": "info",
    "texte": "🔁 « CAN 2025 : Le Sénégal récupère son titre » refaite (images) : note 90/100, corrige : « maximum d'extraits vidéo de l'événement, photos des articles pour meubler » — l'ancienne version est remplacée"
