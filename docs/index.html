@@ -623,18 +623,23 @@ $("#r-oublier").onclick = () => { store.del("bi_jeton"); toast("Clé oubliée su
 $("#r-buffer").onclick = () => commande("buffer_test", "", "", "Test envoyé : le résultat arrive dans 📜 Journal (1 à 2 min).");
 
 // ---------------- avancement de la fabrication (une barre par machine) ----------------
-let suiviActif = false, demandeLe = 0; const vuesFinies = new Set();
+let suiviActif = false, demandeLe = 0, avTaches = {}, avLu = 0, avMinuteur = 0; const vuesFinies = new Set(), avCache = {};
 async function lireAvancements() {
   const c = conn(); if (!c.repo || !c.token) return [];
   const h = { Authorization: `Bearer ${c.token}` };
   const r = await fetch(`https://api.github.com/repos/${c.repo}/contents/?ref=avancement&t=${Date.now()}`, { headers: { ...h, Accept: "application/vnd.github+json" } });
   if (!r.ok) return [];
   const fichiers = (await r.json()).filter(f => f.name.endsWith(".json"));
-  const out = await Promise.all(fichiers.map(f => fetch(`https://api.github.com/repos/${c.repo}/contents/${f.name}?ref=avancement&t=${Date.now()}`,
-    { headers: { ...h, Accept: "application/vnd.github.raw+json" } }).then(x => x.ok ? x.json() : null).catch(() => null)));
+  // Relu toutes les 5 s (demande de l'auteur du 25/11) : seuls les fichiers qui ont CHANGÉ sont retéléchargés (mémoire par
+  // empreinte « sha »), pour rester loin de la limite de GitHub (5 000 demandes par heure).
+  const out = await Promise.all(fichiers.map(f => avCache[f.name]?.sha === f.sha ? avCache[f.name].d :
+    fetch(`https://api.github.com/repos/${c.repo}/contents/${f.name}?ref=avancement&t=${Date.now()}`,
+      { headers: { ...h, Accept: "application/vnd.github.raw+json" } }).then(x => x.ok ? x.json() : null)
+      .then(d => { if (d) avCache[f.name] = { sha: f.sha, d }; return d; }).catch(() => null)));
   // Une fabrication ANNULÉE ou plantée sur GitHub n'a pas pu effacer sa barre : on ne garde que celles dont la tâche GitHub
-  // tourne vraiment (bug du 25/11 : 11 « en fabrication » affichées pour 4 réelles).
-  const actives = await tachesActives(c, h);
+  // tourne vraiment (bug du 25/11 : 11 « en fabrication » affichées pour 4 réelles). Relu toutes les 30 s seulement.
+  if (!avTaches.le || Date.now() - avTaches.le > 30e3) avTaches = { le: Date.now(), ids: await tachesActives(c, h) };
+  const actives = avTaches.ids;
   return out.filter(a => a && Date.now() - new Date(a.maj).getTime() < (a.etat === "en_cours" ? 30 : 5) * 60e3)
     .filter(a => a.etat !== "en_cours" || !actives || !a.run || actives.has(String(a.run)))
     .sort((a, b) => (a.debut || "").localeCompare(b.debut || ""));
@@ -682,14 +687,23 @@ async function suivre(nouvelle) {
     const A = await lireAvancements().catch(() => []);
     const actives = A.filter(a => a.etat === "en_cours" || a.etat === "en_attente");
     heuresDeFin(A);
-    if (A.length) $("#avancement").innerHTML = (actives.length > 1 ? `<p class="petit" style="margin:0 0 8px"><b>${A.filter(a => a.etat === "en_cours" && a.file !== "attente").length} vidéo(s) en fabrication, ${A.filter(a => a.etat === "en_attente" || a.file === "attente").length} en file d'attente</b></p>` : "") + A.map(barre).join("");
+    if (A.length) $("#avancement").innerHTML = `<p class="muted petit" id="av-maj" style="margin:0 0 6px;text-align:right">mis à jour à l'instant</p>` + (actives.length > 1 ? `<p class="petit" style="margin:0 0 8px"><b>${A.filter(a => a.etat === "en_cours" && a.file !== "attente").length} vidéo(s) en fabrication, ${A.filter(a => a.etat === "en_attente" || a.file === "attente").length} en file d'attente</b></p>` : "") + A.map(barre).join("");
     else if (Date.now() - demandeLe < 5 * 60e3) $("#avancement").innerHTML = `<b>📨 Commande envoyée : les machines démarrent…</b><div class="barre"><div style="width:2%"></div></div>`;
     $("#avancement").hidden = !A.length && Date.now() - demandeLe >= 5 * 60e3;
     const finies = A.filter(a => a.etat !== "en_cours" && !vuesFinies.has(a.id));      // une vidéo vient de finir : liste relue
     if (finies.length) { finies.forEach(a => vuesFinies.add(a.id)); charger(); }
-    if (actives.length || Date.now() - demandeLe < 5 * 60e3) { suiviActif = false; return setTimeout(suivre, 8000); }
-  } finally { suiviActif = false; }
+    avLu = Date.now();
+    // fabrication en cours : relu toutes les 5 s ; sinon un coup d'œil toutes les 30 s (une vidéo lancée par la création
+    // automatique ou depuis un autre appareil apparaît d'elle-même, sans recharger la page)
+    suiviActif = false;
+    clearTimeout(avMinuteur);                              // une seule relecture programmée à la fois
+    avMinuteur = setTimeout(suivre, document.hidden ? 60e3 : (actives.length || Date.now() - demandeLe < 5 * 60e3) ? 5000 : 30e3);
+  } catch { suiviActif = false; clearTimeout(avMinuteur); avMinuteur = setTimeout(suivre, 30e3); }
+  finally { suiviActif = false; }
 }
+// entre deux relectures : « il y a X s » et compte à rebours de la fin prévue, chaque seconde
+setInterval(() => { const e = $("#av-maj"); if (e && avLu) e.textContent = `mis à jour il y a ${Math.round((Date.now() - avLu) / 1e3)} s`; }, 1000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) { avTaches = {}; suivre(false); } });
 
 // ---------------- navigation et boutons ----------------
 function montrer(v) {

@@ -187,6 +187,12 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
 (`tachesActives` : runs in_progress / queued de creer.yml) ; creer.yml a une étape `if: cancelled()` qui marque la barre
 « annulee » (`python -m robot.avancement --annuler`), effacée au bout d'1 min.
 
+## Avancement en direct (demande de l'auteur du 25/11 : « mis à jour bien plus rapidement »)
+Robot : envoi toutes les 5 s au plus (`avancement.INTERVALLE`) + signe de vie toutes les 15 s même au milieu d'une longue
+étape (`_lancer_battement`, fil discret : temps écoulé et fin prévue à jour). Site : relecture toutes les 5 s pendant une
+fabrication, 30 s sinon (une vidéo lancée ailleurs apparaît seule), 60 s onglet caché ; seuls les fichiers dont l'empreinte
+`sha` a changé sont retéléchargés (`avCache`), tâches GitHub relues toutes les 30 s (`avTaches`) ; « mis à jour il y a X s ».
+
 ## Liens des vidéos d'origine (24/11 : « vidéo indisponible » sur TikTok)
 Les liens étaient bons (34/34 vérifiés) : TikTok affiche « vidéo indisponible » sur téléphone hors de l'appli, sans compte,
 ou pour une vidéo supprimée / réservée aux adultes. Le site ouvre maintenant la vidéo dans le LECTEUR OFFICIEL de TikTok

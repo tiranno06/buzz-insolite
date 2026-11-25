@@ -2,7 +2,8 @@
 
 Le robot écrit un petit fichier avancement.json sur une branche à part du dépôt (« avancement »), remplacée à chaque mise
 à jour (aucun historique, la branche main n'est jamais touchée). Pendant le montage, le pourcentage est relayé :
-une mise à jour toutes les 10 s environ. Le site relit ce fichier toutes les 8 s.
+une mise à jour toutes les 5 s au plus, et un signe de vie toutes les 15 s même au milieu d'une longue étape (voix,
+contrôle) : temps écoulé et fin prévue toujours à jour. Le site relit ce fichier toutes les 5 s (demande de l'auteur du 25/11).
 """
 import json
 import os
@@ -13,7 +14,8 @@ import time
 from .commun import RACINE, SORTIE, iso, maintenant
 
 BRANCHE = "avancement"
-INTERVALLE = 10                 # secondes entre deux envois (sauf changement d'étape, envoyé tout de suite)
+INTERVALLE = 5                  # secondes entre deux envois (sauf changement d'étape, envoyé tout de suite)
+BATTEMENT = 15                  # signe de vie : envoi toutes les 15 s même si rien n'a bougé
 
 _etat = {}
 _dernier_envoi = 0.0
@@ -27,6 +29,30 @@ def demarrer(vid, format_, titre=""):
                  debut=iso(), debut_s=time.time(), run=os.environ.get("GITHUB_RUN_ID", ""))
     _dernier_envoi = 0.0
     _envoyer(force=True)
+    _lancer_battement()
+
+
+def _lancer_battement():
+    """Fil discret qui renvoie l'avancement toutes les 15 s tant que la vidéo est en fabrication (une étape longue, comme
+    la voix, ne fige plus la barre ni l'heure de fin sur le site)."""
+    if _BATTEMENT["fil"] and _BATTEMENT["fil"].is_alive():
+        return
+
+    def boucle():
+        while True:
+            time.sleep(BATTEMENT)
+            try:
+                if not _etat or _etat.get("etat") not in ("en_cours", "en_attente"):
+                    continue
+                if time.time() - _dernier_envoi >= BATTEMENT:
+                    _envoyer(force=True)
+            except Exception:
+                pass
+    _BATTEMENT["fil"] = threading.Thread(target=boucle, daemon=True)
+    _BATTEMENT["fil"].start()
+
+
+_BATTEMENT = {"fil": None}
 
 
 def etape(texte, pourcent, detail="", titre=None):
