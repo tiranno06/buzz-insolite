@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T12:51:33+01:00",
+   "niveau": "info",
+   "texte": "🔁 « CAN 2025 : TAS redonne titre » refaite (texte) : note 100/100, corrige : « la finale de la CAN 2025 a eu lieu le 18 janvier 2026 (pas 2025) : vérifier la date dans les articles ; garder le maximum d'extraits vidéo de l'événement » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T12:43:46+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 50 sujet(s) au-dessus des seuils — en tête : « Maresées exceptionnelles menacent l'Oregon et la Californie »"
