@@ -1,150 +1,204 @@
 {
- "maj": "2026-11-25T02:05:25+01:00",
+ "maj": "2026-11-25T09:59:33+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:02:37+01:00"
+   "le": "2026-11-25T09:56:46+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:02:41+01:00"
+   "le": "2026-11-25T09:56:49+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:02:44+01:00"
+   "le": "2026-11-25T09:56:53+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:02:48+01:00"
+   "le": "2026-11-25T09:56:57+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:02:52+01:00"
+   "le": "2026-11-25T09:57:01+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-25T02:02:54+01:00"
+   "le": "2026-11-25T09:57:04+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:02:58+01:00"
+   "le": "2026-11-25T09:57:07+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:02+01:00"
+   "le": "2026-11-25T09:57:11+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:05+01:00"
+   "le": "2026-11-25T09:57:14+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:09+01:00"
+   "le": "2026-11-25T09:57:18+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:13+01:00"
+   "le": "2026-11-25T09:57:21+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:16+01:00"
+   "le": "2026-11-25T09:57:25+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:20+01:00"
+   "le": "2026-11-25T09:57:28+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-25T02:03:23+01:00"
+   "le": "2026-11-25T09:57:31+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:27+01:00"
+   "le": "2026-11-25T09:57:34+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:30+01:00"
+   "le": "2026-11-25T09:57:38+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:34+01:00"
+   "le": "2026-11-25T09:57:42+01:00"
   },
   "unilad": {
    "ok": true,
-   "videos": 15,
-   "le": "2026-11-25T02:03:37+01:00"
+   "videos": 30,
+   "le": "2026-11-25T09:57:45+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:42+01:00"
+   "le": "2026-11-25T09:57:49+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:46+01:00"
+   "le": "2026-11-25T09:57:53+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:49+01:00"
+   "le": "2026-11-25T09:57:56+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:53+01:00"
+   "le": "2026-11-25T09:58:00+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:03:56+01:00"
+   "le": "2026-11-25T09:58:03+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:04:00+01:00"
+   "le": "2026-11-25T09:58:07+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:04:03+01:00"
+   "le": "2026-11-25T09:58:11+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:04:06+01:00"
+   "le": "2026-11-25T09:58:15+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:04:10+01:00"
+   "le": "2026-11-25T09:58:19+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T02:04:13+01:00"
+   "le": "2026-11-25T09:58:22+01:00"
   }
  },
- "lues": 794,
+ "lues": 809,
  "retenues": 4,
  "sujets": [
+  {
+   "titre": "Maresées exceptionnelles menacent l'Oregon et la Californie",
+   "resume": "Des inondations côtières graves ont forcé un homme et son chien à fuir des vagues géantes à Cannon Beach, Oregon. Les autorités alertent sur des risques similaires en Californie.",
+   "mots_cles": [
+    "marées exceptionnelles",
+    "Oregon",
+    "Californie",
+    "inondations",
+    "climat"
+   ],
+   "mots_cles_en": [
+    "kingtides",
+    "Oregon",
+    "California",
+    "flooding",
+    "climate"
+   ],
+   "hashtags": [
+    "",
+    "m",
+    "a",
+    "r",
+    "e"
+   ],
+   "insolite": 5,
+   "categorie": "nature",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711896010431204621",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7711896010431204621",
+     "vues": 13100000,
+     "jaime": 534100,
+     "commentaires": 13800,
+     "partages": 77000,
+     "date": 1795565735,
+     "texte": "A dog and its owner were almost swept away at Cannon Beach, Oregon by king tides, which are expected to cause significant coastal flooding on the West Coast. Both the man and his dog were able to reach another set of stairs and escape the surf without injury. Water levels in San Francisco topped records on Tuesday and coastal flooding could reach major to extreme levels in some areas as unusually ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711896010431204621?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "b654d333fe",
+   "score": 4226,
+   "derniere_vue": 1795597155.4223838,
+   "vues": 13100000,
+   "jaime": 534100,
+   "commentaires": 13800,
+   "hashtags_viraux": [],
+   "medias": 6,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T09:59:33+01:00"
+  },
   {
    "titre": "CAN 2025 : Sénégal vainqueur après arbitrage TAS",
    "resume": "Le Sénégal a été désigné vainqueur de la Coupe d’Afrique des Nations 2025 par le Tribunal Arbitral du Sport (TAS) après avoir perdu son titre initial. Le Maroc, initialement finaliste, a été disqualifié pour des raisons non précisées.",
@@ -507,6 +561,61 @@
    "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
+   "titre": "Arrestations controversées à l'aéroport de Seattle",
+   "resume": "Deux passagers ont été arrêtés à Seattle-Tacoma avant leur vol, provoquant une vive réaction des autorités locales. L’incident soulève des questions sur les pratiques migratoires.",
+   "mots_cles": [
+    "Seattle",
+    "arrestations",
+    "immigration",
+    "aéroport",
+    "Alaska Airlines"
+   ],
+   "mots_cles_en": [
+    "Seattle",
+    "arrests",
+    "immigration",
+    "airport",
+    "AlaskaAirlines"
+   ],
+   "hashtags": [
+    "",
+    "s",
+    "e",
+    "a",
+    "t"
+   ],
+   "insolite": 4,
+   "categorie": "politique",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711127723879582989",
+     "compte": "nytimes",
+     "url": "https://www.tiktok.com/@nytimes/video/7711127723879582989",
+     "vues": 11300000,
+     "jaime": 165300,
+     "commentaires": 3991,
+     "partages": 9235,
+     "date": 1795386861,
+     "texte": "Federal immigration officers on Saturday arrested two passengers at Seattle-Tacoma International Airport as they were boarding an Alaska Airlines flight, prompting criticism from Washington’s governor and airport officials, who called the incident “distressing.” The Port of Seattle, which operates the airport, and Alaska Airlines said they did not have advance knowledge of the immigration enforcem",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711127723879582989?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "85dae265bc",
+   "score": 410,
+   "derniere_vue": 1795597155.4223838,
+   "vues": 11300000,
+   "jaime": 165300,
+   "commentaires": 3991,
+   "hashtags_viraux": [],
+   "medias": 17,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T09:59:33+01:00"
+  },
+  {
    "titre": "Trump signe ordre pour peine de mort accélérée",
    "resume": "Donald Trump a signé un décret ordonnant au département de la Justice d’accélérer les exécutions fédérales pour meurtres d’enfants, viols et trafic humain. Cette décision divise l’opinion publique américaine.",
    "mots_cles": [
@@ -665,58 +774,58 @@
    "vu_le": "2026-11-25T02:05:25+01:00"
   },
   {
-   "titre": "Recherche de l'Arche de Noé en Turquie",
-   "resume": "Des chercheurs affirment avoir daté des morceaux de bois découverts en Turquie à environ 4 300 ans, correspondant à la période biblique du Déluge. Ces échantillons proviennent d’une fouille sous-marine près du mont Ararat.",
+   "titre": "Chanteuse iranienne condamnée à 74 coups de fouet",
+   "resume": "Parastoo Ahmadi et son équipe ont été condamnés pour avoir diffusé des vidéos de chansons persanes, jugées contraires aux règles publiques. L’Iran interdit aux femmes de chanter en solo.",
    "mots_cles": [
-    "Arche de Noé",
-    "Turquie",
-    "fouilles",
-    "bible",
-    "archéologie"
+    "Iran",
+    "Parastoo Ahmadi",
+    "coup de fouet",
+    "censure",
+    "musique"
    ],
    "mots_cles_en": [
-    "Noah's Ark",
-    "Turkey",
-    "excavation",
-    "Bible",
-    "archaeology"
+    "Iran",
+    "ParastooAhmadi",
+    "lashes",
+    "censorship",
+    "music"
    ],
    "hashtags": [
-    "archedenoe",
-    "turquiearchéo",
-    "délugebiblique",
-    "montararat",
-    "découvertehistorique"
+    "",
+    "i",
+    "r",
+    "a",
+    "n"
    ],
-   "insolite": 8,
-   "categorie": "insolite",
+   "insolite": 7,
+   "categorie": "societe",
    "ville_france": "",
    "videos": [
     {
-     "id": "7711679808245075214",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7711679808245075214",
+     "id": "7711819275983490318",
+     "compte": "abcnews",
+     "url": "https://www.tiktok.com/@abcnews/video/7711819275983490318",
      "vues": 1000000,
-     "jaime": 96100,
-     "commentaires": 6710,
-     "partages": 4722,
-     "date": 1795515420,
-     "texte": "Researchers searching for the remains of Noah’s Ark in Turkey say new laboratory tests have dated two pieces of buried wood to around 4,300 years ago, overlapping with dates traditionally associated with the biblical Flood. The samples were recovered more than 30 feet beneath the surface of the boat-shaped Durupınar formation near Mount Ararat, which the research team believes could conceal traces",
+     "jaime": 106800,
+     "commentaires": 5069,
+     "partages": 7970,
+     "date": 1795547871,
+     "texte": "Iranian singer Parastoo Ahmadi and eight members of her production team received a punishment of 74 lashings each after a court found them guilty of \"hurting public decency\" by publishing videos of Ahmadi singing Persian folk songs online. In Iran, women are barred from singing solo in public, and doing so without a hijab is considered an even more serious offense.",
      "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7711679808245075214?description=1&music_info=1"
+     "lecteur": "https://www.tiktok.com/player/v1/7711819275983490318?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
-   "id": "d7e6aa1b5d",
-   "score": 323,
-   "derniere_vue": 1795568710.1000378,
+   "id": "67bd909f42",
+   "score": 335,
+   "derniere_vue": 1795597155.4223838,
    "vues": 1000000,
-   "jaime": 96100,
-   "commentaires": 6710,
+   "jaime": 106800,
+   "commentaires": 5069,
    "hashtags_viraux": [],
-   "medias": 9,
+   "medias": 10,
    "statut": "nouveau",
-   "vu_le": "2026-11-25T02:05:25+01:00"
+   "vu_le": "2026-11-25T09:59:33+01:00"
   },
   {
    "titre": "Recherche Ark biblique : bois datés 4300 ans",
@@ -769,6 +878,113 @@
    "medias": 11,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Recherche de l'Arche de Noé en Turquie",
+   "resume": "Des chercheurs turcs affirment avoir daté des morceaux de bois découverts sous terre à environ 4 300 ans, correspondant à l'époque du déluge biblique. Ces échantillons pourraient provenir de l’Arche de Noé.",
+   "mots_cles": [
+    "Arche de Noé",
+    "Turquie",
+    "découverte archéologique",
+    "biblique"
+   ],
+   "mots_cles_en": [
+    "NoahsArk",
+    "Turkey",
+    "archaeologicaldiscovery",
+    "biblical"
+   ],
+   "hashtags": [
+    "",
+    "a",
+    "r",
+    "c",
+    "h"
+   ],
+   "insolite": 8,
+   "categorie": "insolite",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711679808245075214",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711679808245075214",
+     "vues": 1300000,
+     "jaime": 127700,
+     "commentaires": 7988,
+     "partages": 6081,
+     "date": 1795515420,
+     "texte": "Researchers searching for the remains of Noah’s Ark in Turkey say new laboratory tests have dated two pieces of buried wood to around 4,300 years ago, overlapping with dates traditionally associated with the biblical Flood. The samples were recovered more than 30 feet beneath the surface of the boat-shaped Durupınar formation near Mount Ararat, which the research team believes could conceal traces",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711679808245075214?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "d7e6aa1b5d",
+   "score": 311,
+   "derniere_vue": 1795597155.4223838,
+   "vues": 1300000,
+   "jaime": 127700,
+   "commentaires": 7988,
+   "hashtags_viraux": [],
+   "medias": 5,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T02:05:25+01:00"
+  },
+  {
+   "titre": "Femmes afghanes privées de noms officiels",
+   "resume": "Un nouveau décret en Afghanistan impose aux femmes des surnoms au lieu de leurs noms officiels. Cette mesure renforce les restrictions sur leurs droits fondamentaux.",
+   "mots_cles": [
+    "Afghanistan",
+    "femmes",
+    "surnoms",
+    "droits humains",
+    "Taliban"
+   ],
+   "mots_cles_en": [
+    "Afghanistan",
+    "women",
+    "nicknames",
+    "humanrights",
+    "Taliban"
+   ],
+   "hashtags": [
+    "",
+    "a",
+    "f",
+    "g",
+    "h"
+   ],
+   "insolite": 9,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711838616284040470",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
+     "vues": 1400000,
+     "jaime": 238000,
+     "commentaires": 2793,
+     "partages": 30900,
+     "date": 1795552321,
+     "texte": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret leur impose des surnoms.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711838616284040470?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "f3f410d566",
+   "score": 308,
+   "derniere_vue": 1795597155.4223838,
+   "vues": 1400000,
+   "jaime": 238000,
+   "commentaires": 2793,
+   "hashtags_viraux": [],
+   "medias": 11,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T09:59:33+01:00"
   },
   {
    "titre": "Toulouse : malaise étudiant devant Macron et polémique policière",
@@ -836,62 +1052,6 @@
    "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
-   "titre": "Ventes drogues illégales dans stations-service américaines",
-   "resume": "Des produits contenant des substances illégales sont vendus ouvertement dans des stations-service et magasins aux États-Unis. Une enquête du *New York Times* révèle des risques sanitaires majeurs pour les consommateurs.",
-   "mots_cles": [
-    "drogues",
-    "stations-service",
-    "États-Unis",
-    "santé",
-    "enquête"
-   ],
-   "mots_cles_en": [
-    "drugs",
-    "gas stations",
-    "USA",
-    "health",
-    "investigation"
-   ],
-   "hashtags": [
-    "",
-    "d",
-    "r",
-    "o",
-    "g"
-   ],
-   "insolite": 6,
-   "videos": [
-    {
-     "id": "7711424511110843661",
-     "compte": "nytimes",
-     "url": "https://www.tiktok.com/@nytimes/video/7711424511110843661",
-     "vues": 1500000,
-     "jaime": 137200,
-     "commentaires": 1790,
-     "partages": 19900,
-     "date": 1795455960,
-     "texte": "A new generation of drugs is for sale inside gas station convenience stores and smoke shops across the country. It can be difficult to know what’s actually inside these items. To better understand this phenomenon, The New York Times purchased and lab-tested 28 products. #gasstation #vape #hallucinogens",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7711424511110843661?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "0d13d1583a",
-   "score": 282,
-   "derniere_vue": 1795549585.0168877,
-   "vues": 1500000,
-   "jaime": 137200,
-   "commentaires": 1790,
-   "hashtags_viraux": [
-    "gasstation",
-    "vape",
-    "hallucinogens"
-   ],
-   "medias": 7,
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T20:46:45+01:00"
-  },
-  {
    "titre": "Leçon antiraciste de Jane Elliott en 1968 toujours pertinente",
    "resume": "Jane Elliott, professeure ayant mené une expérience sur le racisme en 1968, revient sur son impact durable. Son exercice « Blue Eyes, Brown Eyes » reste une référence pour lutter contre les discriminations.",
    "mots_cles": [
@@ -944,30 +1104,30 @@
    "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
-   "titre": "Son TikTok contre le surmenage mental",
-   "resume": "Un audio TikTok utilisant des ondes theta binaurales et des sons alternés gagne en popularité pour aider à réduire l’anxiété et le surmenage. Cette technique de relaxation bilatérale séduit les internautes stressés.",
+   "titre": "Son TikTok contre le surmenage mental viral",
+   "resume": "Un audio TikTok utilisant des fréquences theta binaurales aide à réduire l’anxiété et les pensées intrusives. La technique repose sur des sons alternés pour apaiser l’esprit.",
    "mots_cles": [
     "TikTok",
-    "relaxation",
-    "ondes theta",
+    "theta binaural",
     "anxiété",
-    "sommeil"
+    "relaxation",
+    "neuroscience"
    ],
    "mots_cles_en": [
     "TikTok",
-    "relaxation",
-    "theta waves",
+    "binauralbeats",
     "anxiety",
-    "sleep"
+    "relaxation",
+    "neuroscience"
    ],
    "hashtags": [
-    "tiktokrelaxation",
-    "ondestheta",
-    "antianxiete",
-    "sommeilprofond",
-    "binauralbeats"
+    "",
+    "t",
+    "i",
+    "k",
+    "t"
    ],
-   "insolite": 7,
+   "insolite": 5,
    "categorie": "sante",
    "ville_france": "",
    "videos": [
@@ -975,10 +1135,10 @@
      "id": "7711696996100263182",
      "compte": "dailymail",
      "url": "https://www.tiktok.com/@dailymail/video/7711696996100263182",
-     "vues": 1800000,
-     "jaime": 157900,
-     "commentaires": 2202,
-     "partages": 15200,
+     "vues": 2600000,
+     "jaime": 246900,
+     "commentaires": 3008,
+     "partages": 21800,
      "date": 1795519475,
      "texte": "Struggling to switch off a racing mind? A viral TikTok sound is gaining attention for its supposed ability to help quiet overthinking and encourage relaxation. The audio uses a 5Hz theta binaural beat, alongside alternating sounds that move between the left and right ears, a technique known as bilateral stimulation that is also used in EMDR therapy. #overthinking #audio #viral #science #anxiety ",
      "sous_seuils": true,
@@ -987,12 +1147,12 @@
     }
    ],
    "sous_seuils": true,
-   "id": "9275e547e0",
-   "score": 270,
-   "derniere_vue": 1795568710.1000378,
-   "vues": 1800000,
-   "jaime": 157900,
-   "commentaires": 2202,
+   "id": "cee03a3bbd",
+   "score": 272,
+   "derniere_vue": 1795597155.4223838,
+   "vues": 2600000,
+   "jaime": 246900,
+   "commentaires": 3008,
    "hashtags_viraux": [
     "overthinking",
     "audio",
@@ -1000,9 +1160,9 @@
     "science",
     "anxiety"
    ],
-   "medias": 3,
+   "medias": 14,
    "statut": "nouveau",
-   "vu_le": "2026-11-25T02:05:25+01:00"
+   "vu_le": "2026-11-25T09:59:33+01:00"
   },
   {
    "titre": "Naissance des étoiles : son capturé par la NASA",
@@ -1101,6 +1261,61 @@
    "vu_le": "2026-11-24T18:38:52+01:00",
    "reserve_le": "2026-11-24T19:50:48+01:00",
    "video_id": "20261124-195233-2"
+  },
+  {
+   "titre": "Le galet de compression des fenêtres PVC expliqué",
+   "resume": "Une rumeur virale affirme qu’un petit galet sur les fenêtres PVC permettrait de passer en mode hiver. Les experts démentent cette théorie.",
+   "mots_cles": [
+    "galet compression",
+    "fenêtre PVC",
+    "mode hiver",
+    "infaux",
+    "économie d'énergie"
+   ],
+   "mots_cles_en": [
+    "compressionstone",
+    "PVCwindow",
+    "wintermode",
+    "hoax",
+    "energy"
+   ],
+   "hashtags": [
+    "",
+    "g",
+    "a",
+    "l",
+    "e"
+   ],
+   "insolite": 6,
+   "categorie": "insolite",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711361843385732354",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7711361843385732354",
+     "vues": 2900000,
+     "jaime": 144300,
+     "commentaires": 511,
+     "partages": 21100,
+     "date": 1795441349,
+     "texte": "🪟 INFO/INFOX : Tourner le galet de compression suffirait-il à passer du mode été au mode hiver ? ➡️ Les internautes ont découvert une toute petite pièce, le galet de compression, qui se trouve sur les fenêtres en PVC. Certains affirment qu'elle permettrait de passer en \"mode hiver\" et, donc, de faire baisser la facture de chauffage. Cette pièce ne sert pas du tout à régler vos fenêtres en fonction",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711361843385732354?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "1ee8474cad",
+   "score": 161,
+   "derniere_vue": 1795597155.4223838,
+   "vues": 2900000,
+   "jaime": 144300,
+   "commentaires": 511,
+   "hashtags_viraux": [],
+   "medias": 7,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T09:59:33+01:00"
   },
   {
    "titre": "Disney : accident scooter blesse enfant en Floride",
@@ -1674,59 +1889,59 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
-   "titre": "Vol de colis filmé par caméra de surveillance",
-   "resume": "Une femme a été filmée volant un colis peu après l’avoir livré en Géorgie, selon les images d’une caméra de porte. L’entreprise Lululemon a remboursé le cadeau de Noël mais avertit contre ce type de vols.",
+   "titre": "Étudiante fait malaise devant Emmanuel Macron",
+   "resume": "Une étudiante a perdu connaissance lors d’une visite d’Emmanuel Macron à Toulouse. Les causes du malaise restent à déterminer.",
    "mots_cles": [
-    "vol colis",
-    "caméra surveillance",
-    "Géorgie",
-    "Lululemon",
-    "Noël"
+    "Emmanuel Macron",
+    "malaise",
+    "Toulouse",
+    "Airbus",
+    "santé"
    ],
    "mots_cles_en": [
-    "package theft",
-    "security camera",
-    "Georgia",
-    "Lululemon",
-    "Christmas"
+    "EmmanuelMacron",
+    "fainting",
+    "Toulouse",
+    "Airbus",
+    "health"
    ],
    "hashtags": [
-    "volcolisnoel",
-    "camérasurveillance",
-    "lululemonarnaque",
-    "volsdomiciles",
-    "georgia"
+    "",
+    "m",
+    "a",
+    "c",
+    "r"
    ],
-   "insolite": 5,
+   "insolite": 3,
    "categorie": "faits_divers",
-   "ville_france": "",
+   "ville_france": "Toulouse",
    "videos": [
     {
-     "id": "7711759134198123789",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7711759134198123789",
-     "vues": 1800000,
-     "jaime": 161400,
-     "commentaires": 1706,
-     "partages": 4271,
-     "date": 1795533881,
-     "texte": "A woman was caught on a ring camera stealing a package moments after delivering it to a home in Georgia.  The footage shows the woman dropping off the parcel, taking a photo and then snatching it before fleeing to her car.  Lululemon reimbursed the $100 Christmas gift, but warned that package theft can have a serious impact on families who cannot afford to lose valuable deliveries, particularly du",
+     "id": "7711441451774758177",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711441451774758177",
+     "vues": 1400000,
+     "jaime": 85800,
+     "commentaires": 1420,
+     "partages": 5808,
+     "date": 1795459881,
+     "texte": "Une étudiante fait un malaise devant Emmanuel Macron à Toulouse. Ce lundi 23 novembre 2026, Emmanuel Macron s'est rendu sur le site d'Airbus",
      "sous_seuils": true,
      "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7711759134198123789?description=1&music_info=1"
+     "lecteur": "https://www.tiktok.com/player/v1/7711441451774758177?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
-   "id": "d2fa128f0c",
-   "score": 80,
-   "derniere_vue": 1795568710.1000378,
-   "vues": 1800000,
-   "jaime": 161400,
-   "commentaires": 1706,
+   "id": "d5f66101fb",
+   "score": 81,
+   "derniere_vue": 1795597155.4223838,
+   "vues": 1400000,
+   "jaime": 85800,
+   "commentaires": 1420,
    "hashtags_viraux": [],
-   "medias": 2,
+   "medias": 10,
    "statut": "nouveau",
-   "vu_le": "2026-11-25T02:05:25+01:00"
+   "vu_le": "2026-11-25T09:59:33+01:00"
   },
   {
    "titre": "Policier vole vélo à cycliste à Toulouse",
@@ -1770,6 +1985,61 @@
    "hashtags_viraux": [],
    "statut": "nouveau",
    "vu_le": "2026-11-24T16:44:03+01:00"
+  },
+  {
+   "titre": "Vol de colis filmé par caméra de surveillance",
+   "resume": "Une femme a été prise en flagrant délit de vol de colis après l’avoir livré à domicile en Géorgie. L’entreprise Lululemon a remboursé le client mais avertit contre ces pratiques.",
+   "mots_cles": [
+    "vol colis",
+    "caméra surveillance",
+    "Géorgie",
+    "Lululemon",
+    "livraison"
+   ],
+   "mots_cles_en": [
+    "package theft",
+    "surveillance",
+    "Georgia",
+    "Lululemon",
+    "delivery"
+   ],
+   "hashtags": [
+    "",
+    "v",
+    "o",
+    "l",
+    "c"
+   ],
+   "insolite": 4,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711759134198123789",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711759134198123789",
+     "vues": 2500000,
+     "jaime": 217600,
+     "commentaires": 2301,
+     "partages": 6021,
+     "date": 1795533881,
+     "texte": "A woman was caught on a ring camera stealing a package moments after delivering it to a home in Georgia.  The footage shows the woman dropping off the parcel, taking a photo and then snatching it before fleeing to her car.  Lululemon reimbursed the $100 Christmas gift, but warned that package theft can have a serious impact on families who cannot afford to lose valuable deliveries, particularly du",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711759134198123789?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "d2fa128f0c",
+   "score": 70,
+   "derniere_vue": 1795597155.4223838,
+   "vues": 2500000,
+   "jaime": 217600,
+   "commentaires": 2301,
+   "hashtags_viraux": [],
+   "medias": 2,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T02:05:25+01:00"
   },
   {
    "titre": "Arrêt baron drogue El Chapo Isidro Mexique",
@@ -2072,6 +2342,122 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
+   "titre": "Sabrina Bahsoon plaide pour des tests médicaux systématiques",
+   "resume": "Sabrina Bahsoon, connue sous le nom de *Tube Girl*, demande aux hôpitaux d’inclure des tests spécifiques pour éviter les diagnostics erronés comme le sien. Elle souffre d’une maladie auto-immune mal identifiée.",
+   "mots_cles": [
+    "Sabrina Bahsoon",
+    "maladie auto-immune",
+    "diagnostic",
+    "hôpitaux",
+    "santé"
+   ],
+   "mots_cles_en": [
+    "SabrinaBahsoon",
+    "autoimmunedisease",
+    "diagnosis",
+    "hospitals",
+    "health"
+   ],
+   "hashtags": [
+    "",
+    "s",
+    "a",
+    "b",
+    "r"
+   ],
+   "insolite": 6,
+   "categorie": "sante",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711799474699488534",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7711799474699488534",
+     "vues": 1400000,
+     "jaime": 114800,
+     "commentaires": 497,
+     "partages": 6636,
+     "date": 1795543212,
+     "texte": "Sabrina Bahsoon, known globally as Tube Girl, wants hospitals to offer a series of tests as standard practice if patients suddenly develop the symptoms that led to her misdiagnosis. #TubeGirl #SabrinaBahsoon #WomensHealth #AutoImmuneDisease #BBCNews",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711799474699488534?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "940408dbb4",
+   "score": 46,
+   "derniere_vue": 1795597155.4223838,
+   "vues": 1400000,
+   "jaime": 114800,
+   "commentaires": 497,
+   "hashtags_viraux": [
+    "tubegirl",
+    "sabrinabahsoon",
+    "womenshealth",
+    "autoimmunedisease",
+    "bbcnews"
+   ],
+   "medias": 2,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T09:59:33+01:00"
+  },
+  {
+   "titre": "Hommes transgressant les règles plus séduisants selon psychologues",
+   "resume": "Des psychologues estiment que les hommes qui enfreignent les règles routières pourraient être perçus comme plus confiants et attractifs. Cette théorie divise les experts.",
+   "mots_cles": [
+    "psychologie",
+    "comportement",
+    "attractivité",
+    "règles",
+    "confiance"
+   ],
+   "mots_cles_en": [
+    "psychology",
+    "behavior",
+    "attractiveness",
+    "rules",
+    "confidence"
+   ],
+   "hashtags": [
+    "",
+    "p",
+    "s",
+    "y",
+    "c"
+   ],
+   "insolite": 3,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711706139641105678",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711706139641105678",
+     "vues": 1700000,
+     "jaime": 152200,
+     "commentaires": 1921,
+     "partages": 72300,
+     "date": 1795521576,
+     "texte": "Psychologists suggest men who bend or break traffic rules may possess personality traits that make them more attractive as long-term partners, including confidence, assertiveness and a willingness to take risks. Experts say rule-breaking behavior can create an impression of power and high social status, potentially contributing to the appeal of the so-called ‘bad boy’ type. However, this doesn’t m",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711706139641105678?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "df2cf312fb",
+   "score": 41,
+   "derniere_vue": 1795597155.4223838,
+   "vues": 1700000,
+   "jaime": 152200,
+   "commentaires": 1921,
+   "hashtags_viraux": [],
+   "medias": 2,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T09:59:33+01:00"
+  },
+  {
    "titre": "Leandro Paredes s’effondre après victoire Copa Sudamericana",
    "resume": "Leandro Paredes, champion de la Copa Sudamericana avec Boca Juniors, s’est effondré lors d’une interview après le match. Son malaise a été rapidement pris en charge par les secours.",
    "mots_cles": [
@@ -2115,6 +2501,65 @@
    "hashtags_viraux": [],
    "statut": "nouveau",
    "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Ventes de drogues illégales dans les stations-service américaines",
+   "resume": "Des produits hallucinogènes et non régulés sont vendus dans des stations-service et des *smoke shops* aux États-Unis. Le *New York Times* a testé 28 échantillons pour analyser leur contenu.",
+   "mots_cles": [
+    "drogues illégales",
+    "stations-service",
+    "hallucinogènes",
+    "NYT",
+    "vape"
+   ],
+   "mots_cles_en": [
+    "illegal drugs",
+    "gas stations",
+    "hallucinogens",
+    "NYT",
+    "vape"
+   ],
+   "hashtags": [
+    "",
+    "d",
+    "r",
+    "o",
+    "g"
+   ],
+   "insolite": 7,
+   "categorie": "sante",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711424511110843661",
+     "compte": "nytimes",
+     "url": "https://www.tiktok.com/@nytimes/video/7711424511110843661",
+     "vues": 1600000,
+     "jaime": 150800,
+     "commentaires": 1813,
+     "partages": 22000,
+     "date": 1795455960,
+     "texte": "A new generation of drugs is for sale inside gas station convenience stores and smoke shops across the country. It can be difficult to know what’s actually inside these items. To better understand this phenomenon, The New York Times purchased and lab-tested 28 products. #gasstation #vape #hallucinogens",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711424511110843661?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "0d13d1583a",
+   "score": 29,
+   "derniere_vue": 1795597155.4223838,
+   "vues": 1600000,
+   "jaime": 150800,
+   "commentaires": 1813,
+   "hashtags_viraux": [
+    "gasstation",
+    "vape",
+    "hallucinogens"
+   ],
+   "medias": 1,
+   "statut": "nouveau",
+   "vu_le": "2026-11-24T20:46:45+01:00"
   }
  ]
 }
