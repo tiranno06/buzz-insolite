@@ -1,6 +1,16 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T20:27:34+01:00",
+   "niveau": "attention",
+   "texte": "🩺 Santé du robot : ⚠️ En panne : mistral, openrouter ; 1 vidéo(s) en réparation"
+  },
+  {
+   "date": "2026-11-25T20:27:06+01:00",
+   "niveau": "attention",
+   "texte": "🩺 3 vidéo(s) rendue(s) de nouveau visible(s) sur le site (restées en brouillon sur GitHub)."
+  },
+  {
    "date": "2026-11-25T18:58:32+01:00",
    "niveau": "attention",
    "texte": "⏸️ Création mise en attente : 1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie). Elle partira toute seule dès que les IA gratuites seront de nouveau disponibles (vérifié toutes les 15 min)."
