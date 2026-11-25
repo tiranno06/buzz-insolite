@@ -520,6 +520,24 @@ details » → ce n'est PAS un abonnement (avant : tout Gemini écarté, plus au
 - Contrôle avant publication : le lien de la vidéo était testé par HEAD (GitHub répond 401 → TOUTES les publications
   refusées) → `controle.lien_en_ligne` lit le début du fichier.
 
+## Audit complet en 4 passes (25/11 au soir, demande de l'auteur)
+1. Code (ruff, ESLint du site, actionlint + shellcheck des 12 tâches) ; 2. en ligne (tâches des 24 h, site ouvert à 400 px
+et 1300 px dans chaque onglet, chaque vidéo : Release, fichier, miniature, champs ; journal du robot) ; 3. logique
+(publication, ordres du site, Buffer, enregistrement, santé, file d'attente) ; 4. tout revérifié (tests, site, tâches).
+Trouvé et corrigé :
+- **Réveils de GitHub sautés** : garde « toutes les 15 min » partie 3 fois en 24 h, buzz pas depuis 8 h → créneau de 19 h 00
+  manqué. **Métronome** (`metronome.yml`) : tourne en continu (5 h 40, se relance seul ; secours chaque heure ; un seul à
+  la fois), lance garde (15 min), buzz (2 h), stats (3 h) si leur dernier passage est trop ancien. Les cron restent en secours.
+- `buzz.py` : `ecrire` = module d'écriture ET fonction d'enregistrement → `liste_hashtags` plantait, le buzz n'était plus
+  regroupé par l'IA (« une vidéo = un sujet ») → module importé sous le nom `redaction`.
+- Créations en attente : un « refaire » d'une vidéo que l'auteur a gardée (À publier, publiée, écartée, `force`) est
+  oublié ; la santé ne refait plus une vidéo « À publier ».
+- Buffer : pas de 2e envoi après une absence de réponse (double publication possible) ; « Publier maintenant » respecte `force`.
+- Vérification des crédits : 5 modèles essayés par IA (limite du jour par modèle chez Gemini).
+- Site : longs messages d'erreur (onglet Santé) qui débordaient sur téléphone → `overflow-wrap: anywhere`.
+- Test `TestTousLesFichiers` : chaque fichier du robot est chargé (un fichier cassé que les autres tests n'utilisent pas
+  passait inaperçu).
+
 ## Avant d'envoyer
 `python -m unittest discover -s tests` (aucun appel réseau ni IA ; ffmpeg nécessaire pour l'essai complet). Essai sans IA :
 `SIMULATION=1 python -m robot.principal --libre "Essai"`. Site : servir `docs/` et l'ouvrir à 400 px de large.

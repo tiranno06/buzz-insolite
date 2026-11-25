@@ -1119,7 +1119,6 @@ class TestPrononciation(unittest.TestCase):
 
     def test_l_auteur_passe_avant_le_robot(self):
         from robot import prononciation as P, commun
-        ancien = P.lire if hasattr(P, "lire") else None
         vrai = commun.lire
         commun.lire = lambda n: {"mots": {"Gueye": {"dire": "Gaille", "source": "robot"}, "Newsom": {"dire": "Niouzeum", "source": "auteur"}}}
         try:
@@ -1239,3 +1238,12 @@ class TestAuditComplet(unittest.TestCase):
             self.assertEqual(len(appels), 1)                  # UN seul envoi : jamais de double publication
         finally:
             publier._gql, publier.compte = anciens
+
+
+class TestTousLesFichiers(unittest.TestCase):
+    def test_chaque_fichier_du_robot_se_charge(self):
+        """25/11 : sante.py cassé (commentaire au milieu d'une ligne) sans qu'aucun test ne le voie."""
+        import importlib, pkgutil, robot
+        for m in pkgutil.iter_modules(robot.__path__):
+            if m.name != "chatterbox_voix":                   # tourne dans son propre espace Python
+                importlib.import_module(f"robot.{m.name}")
