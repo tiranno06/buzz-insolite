@@ -185,6 +185,9 @@ def deja_en_refaire():
                     ids.add(titre.split()[1])
         except Exception:
             pass
+    # … ou qui attend déjà son tour faute d'IA disponibles (garde.json → en_attente) : pas une 2e fois (25/11)
+    ids |= {str((x.get("inputs") or {}).get("refaire")) for x in (lire("garde.json") or {}).get("en_attente") or []
+            if (x.get("inputs") or {}).get("refaire")}
     return ids
 
 

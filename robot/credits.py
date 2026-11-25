@@ -129,7 +129,11 @@ def mettre_en_attente(inputs, raison):
 
     def appliquer():
         G = lire("garde.json") or {}
-        G.setdefault("en_attente", []).append({"inputs": inputs, "demande_le": iso(), "raison": raison})
+        attente = G.setdefault("en_attente", [])
+        ref = inputs.get("refaire")
+        if ref and any((x.get("inputs") or {}).get("refaire") == ref for x in attente):
+            return                                            # même vidéo déjà en attente : pas deux fois
+        attente.append({"inputs": inputs, "demande_le": iso(), "raison": raison})
         G["credits"] = {"le": iso(), "resume": raison}
         ecrire("garde.json", G)
         noter(f"⏸️ Création mise en attente : {raison}. Elle partira toute seule dès que les IA gratuites seront de nouveau "

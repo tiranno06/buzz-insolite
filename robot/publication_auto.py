@@ -125,6 +125,19 @@ def relancer_attente(E):
     attente = E.get("en_attente") or []
     if not attente or not depot.en_ligne():
         return
+    # une vidéo à refaire qui n'existe plus (déjà refaite entre-temps, par exemple par la santé de la nuit) : oubliée
+    ids = {v["id"] for v in (lire("file.json") or {}).get("videos") or []}
+    perimees = [x for x in attente if (x.get("inputs") or {}).get("refaire") and x["inputs"]["refaire"] not in ids]
+    if perimees:
+        def oublier():
+            G = lire("garde.json") or {}
+            G["en_attente"] = [x for x in G.get("en_attente") or [] if x not in perimees]
+            ecrire("garde.json", G)
+        depot.enregistrer(oublier, "Créations en attente déjà faites : oubliées")
+        attente = [x for x in attente if x not in perimees]
+        E["en_attente"] = attente
+        if not attente:
+            return
     from . import credits
     ok, resume, _ = credits.verifier(1)
     if not ok:
