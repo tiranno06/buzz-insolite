@@ -1224,9 +1224,9 @@
    "refaite_de": "20261124-233157-1-r3"
   },
   {
-   "id": "20261124-233239-1-r6",
-   "tag": "v-20261124-233239-1-r6",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r6/buzz-20261124-233239-1-r6.mp4",
+   "id": "20261124-233239-1-r7",
+   "tag": "v-20261124-233239-1-r7",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r7/buzz-20261124-233239-1-r7.mp4",
    "titre": "CAN 2025 : Le Sénégal récupère son titre",
    "accroche": "LE TAS REND LA JUSTICE",
    "sujet_id": "af2b8dfec2",
@@ -1298,16 +1298,18 @@
    },
    "verifie": true,
    "credits": [
+    "Ben Sutherland from Crystal Palace, Lond / Wikimedia Commons, CC BY 2.0",
     "Carte : Natural Earth, OpenStreetMap",
-    "Ess25 / Wikimedia Commons, CC BY-SA 4.0",
-    "Richard Humphrey / Wikimedia Commons, CC BY-SA 2.0",
+    "Titre : franceinfo",
     "Titre : linternaute.com",
     "Wikipédia, article « Confédération africaine de football »",
     "Wikipédia, article « Coupe d'Afrique des nations de football »",
+    "Wikipédia, article « Fédération internationale de football association »",
+    "Wikipédia, article « Pape Gueye »",
     "Wikipédia, article « Sadio Mané »",
-    "Wikipédia, article « Équipe du Sénégal de football »"
+    "Wikipédia, article « Stade Prince Moulay Abdellah »"
    ],
-   "ecrans_illustres": 7,
+   "ecrans_illustres": 8,
    "ecrans_total": 12,
    "format": "buzz",
    "voix": "chatterbox-bernard",
@@ -1331,197 +1333,197 @@
     "Alors, qui aurait dû gagner selon vous ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T05:55:29+01:00",
-   "fabrication_s": 1385,
+   "cree_le": "2026-11-25T07:50:03+01:00",
+   "fabrication_s": 4229,
    "controles": {
-    "note": 75,
+    "note": 55,
     "lignes": [
      {
       "niveau": "images",
-      "ecran": 16,
+      "ecran": 17,
       "gravite": "moyen",
       "probleme": "image qui ne colle pas",
       "corrige": true,
       "essais": 3,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "solution": "image refusée gardée après un 2e avis (lien avec le sujet confirmé)"
      },
      {
       "niveau": "images",
-      "ecran": 18,
+      "ecran": 26,
       "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
+      "probleme": "Image d'archives sans lien avec le Sénégal ou la CAN 2025",
       "corrige": true,
       "essais": 3,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "solution": "image refusée gardée après un 2e avis (lien avec le sujet confirmé)"
      },
      {
       "niveau": "images",
-      "ecran": 20,
+      "ecran": 26,
       "gravite": "moyen",
-      "probleme": "image ancienne sans lien avec CAN 2025 ou TAS",
-      "corrige": true,
-      "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 21,
-      "gravite": "moyen",
-      "probleme": "scoreboard shows Tunisia vs Senegal, not Morocco",
+      "probleme": "ancienne image non pertinente",
       "corrige": true,
       "essais": 1,
-      "solution": "nouvelle image (« Senegal Africa Cup victory celebration »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "image ancienne sans lien avec CAN 2025 ou TAS",
-      "corrige": true,
-      "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "image ancienne sans lien avec CAN 2025 ou TAS",
-      "corrige": true,
-      "essais": 2,
-      "solution": "image du thème (« football trophy african cup »)"
+      "solution": "image refusée gardée après un 2e avis (lien avec le sujet confirmé)"
      },
      {
       "niveau": "images",
       "ecran": 24,
       "gravite": "moyen",
-      "probleme": "historical group photo, unrelated to CAN 2025",
-      "corrige": true,
-      "essais": 1,
-      "solution": "nouvelle image (« Sadio Mane CAN 2025 victory reaction »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 26,
-      "gravite": "moyen",
-      "probleme": "image ancienne sans lien avec le sujet",
-      "corrige": true,
-      "essais": 1,
-      "solution": "nouvelle image (« Senegal 2025 CAN victory celebration, Senegal football team 2025, TAS ruling celebration »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 19,
-      "gravite": "moyen",
       "probleme": "image qui ne colle pas",
-      "corrige": true,
+      "corrige": false,
       "essais": 1,
-      "solution": "nouvelle image (« CAF Senegal Morocco dispute »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 26,
-      "gravite": "moyen",
-      "probleme": "match différent (maillots non sénégalais)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "image du thème (« football trophy african cup »)"
+      "solution": "nouvelle image (« Sadio Mane recent reaction »)"
      },
      {
       "niveau": "images",
       "ecran": null,
       "gravite": "grave",
-      "probleme": "trop peu d'images : 7 écran(s) illustré(s) sur 12",
+      "probleme": "trop peu d'images : 8 écran(s) illustré(s) sur 12",
       "corrige": false,
       "essais": 1
+     },
+     {
+      "niveau": "video",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 3,
+      "solution": "nouvelle image (« fifa ranking football »)"
+     },
+     {
+      "niveau": "video",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": false,
+      "essais": 8,
+      "solution": "image refusée gardée après un 2e avis (lien avec le sujet confirmé)"
+     },
+     {
+      "niveau": "video",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
      }
     ],
     "sautes": [],
-    "corriges": 10,
-    "restants": 1,
-    "graves_restants": 1
+    "corriges": 7,
+    "restants": 3,
+    "graves_restants": 3
    },
    "reprises": 0,
    "preuves": [
     {
      "ecran": 1,
-     "page": "https://commons.wikimedia.org/?curid=99607767",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Ess25",
+     "page": "https://commons.wikimedia.org/?curid=52628748",
+     "licence": "CC BY 2.0",
+     "auteur": "Ben Sutherland from Crystal Palace, Lond",
      "titre": "",
-     "credit": "Ess25 / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T05:55:29+01:00"
+     "credit": "Ben Sutherland from Crystal Palace, Lond / Wikimedia Commons, CC BY 2.0",
+     "releve_le": "2026-11-25T07:50:03+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AMoulay_Abdellah_Stadium.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Stade Prince Moulay Abdellah »",
+     "releve_le": "2026-11-25T07:50:03+01:00"
     },
     {
      "ecran": 4,
-     "page": "https://commons.wikimedia.org/?curid=161783437",
-     "licence": "CC BY-SA 2.0",
-     "auteur": "Richard Humphrey",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ALe_clap_de_UNITED_PASSIONS%2C_un_film_sur_la_FIFA%2C_tournage_au_Stade_S%C3%A9bastien-Charl%C3%A9ty_%28Paris%29%2C_une_production_Leuviah-Films%2C_par_Jordan_Diow_2013_-_SD.jpg",
+     "licence": "",
+     "auteur": "",
      "titre": "",
-     "credit": "Richard Humphrey / Wikimedia Commons, CC BY-SA 2.0",
-     "releve_le": "2026-11-25T05:55:29+01:00"
+     "credit": "Wikipédia, article « Fédération internationale de football association »",
+     "releve_le": "2026-11-25T07:50:03+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3APape_Gueye_France_v_Senegal_16_June_2026-359_%28cropped%29.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Pape Gueye »",
+     "releve_le": "2026-11-25T07:50:03+01:00"
     },
     {
      "ecran": 6,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ACAF_headquarter.jpg",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ADirigeants_de_la_CAF_respectant_les_mesures_barri%C3%A8res.jpg",
      "licence": "",
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Confédération africaine de football »",
-     "releve_le": "2026-11-25T05:55:29+01:00"
-    },
-    {
-     "ecran": 8,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AAfricancup.jpg",
-     "licence": "",
-     "auteur": "",
-     "titre": "",
-     "credit": "Wikipédia, article « Équipe du Sénégal de football »",
-     "releve_le": "2026-11-25T05:55:29+01:00"
+     "releve_le": "2026-11-25T07:50:03+01:00"
     },
     {
      "ecran": 10,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AC%C3%A9l%C3%A9bration_S%C3%A9n%C3%A9gal_%2833%29.jpg",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AHome_of_FIFA_-_front.jpg",
      "licence": "",
      "auteur": "",
      "titre": "",
-     "credit": "Wikipédia, article « Coupe d'Afrique des nations de football »",
-     "releve_le": "2026-11-25T05:55:29+01:00"
+     "credit": "Wikipédia, article « Fédération internationale de football association »",
+     "releve_le": "2026-11-25T07:50:03+01:00"
     },
     {
      "ecran": 11,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ASadio_Mane_France_v_Senegal_16_June_2026-450.jpg",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AFC_Red_Bull_Salzburg_gegen_SV_Gr%C3%B6dig_04.JPG",
      "licence": "",
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Sadio Mané »",
-     "releve_le": "2026-11-25T05:55:29+01:00"
+     "releve_le": "2026-11-25T07:50:03+01:00"
     },
     {
      "ecran": 13,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ACairo_stadium_Egypt_vs_Senegal.jpg",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ACAN_1994.jpg",
      "licence": "",
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Coupe d'Afrique des nations de football »",
-     "releve_le": "2026-11-25T05:55:29+01:00"
+     "releve_le": "2026-11-25T07:50:03+01:00"
     }
    ],
-   "couverture_ms": 16056,
+   "couverture_ms": 11039,
    "durees": {
     "voix": 0,
-    "images": 10,
-    "controle_images": 1045,
-    "montage": 101,
-    "controle_final": 211,
-    "rangement": 4
+    "images": 175,
+    "controle_images": 1297,
+    "montage": 104,
+    "controle_final": 2641,
+    "rangement": 5
    },
    "refaite": {
-    "de": "20261124-233239-1-r5",
-    "etape": "controle",
+    "de": "20261124-233239-1-r6",
+    "etape": "images",
     "remarque": ""
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233239-1-r5"
+   "refaite_de": "20261124-233239-1-r6"
   }
  ]
 }

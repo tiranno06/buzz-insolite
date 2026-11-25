@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T07:50:04+01:00",
+   "niveau": "info",
+   "texte": "🔁 « CAN 2025 : Le Sénégal récupère son titre » refaite (images) : note 55/100 — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T07:26:20+01:00",
    "niveau": "info",
    "texte": "🔁 « Fascistes en Espagne : un hommage choc à Franco » refaite (images) : note 90/100 — l'ancienne version est remplacée"
