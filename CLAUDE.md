@@ -31,7 +31,13 @@ commentaires, commits, textes du site), explications simples, sans jargon.
   y prend celles du MÊME événement (2 mots en commun, puis confirmation par l'IA `CONSIGNE_MEME_EVENEMENT` ; sans IA : 3 mots),
   12 vidéos au plus. **Images fixes de l'événement** (`images_fixes`, `video.citations_photos` 3) : tirées des vidéos d'origine
   hors des extraits (les vidéos trop courtes pour un extrait d'abord), montrées en entier avec le bandeau ; placement mêlé
-  (2 extraits, 1 image…). Essai CAN : Brut + franceinfo (extraits), HugoDécrypte + 20 Minutes (images fixes). Durée TikTok : `video.duree_min` 62 s.
+  (2 extraits, 1 image…). Essai CAN : Brut + franceinfo (extraits), HugoDécrypte + 20 Minutes (images fixes).
+  **Maximum d'extraits + photos de presse** (demande de l'auteur du 25/11) : `video.citations_nombre` 12 (1 à 15) ; les
+  extraits vidéo sont répartis sur toutes les scènes possibles (le 1er en accroche), puis les images fixes meublent les
+  scènes restantes : images tirées des vidéos d'origine, puis **photos des articles** (`sources.images_de_page` : og:image,
+  twitter:image, grandes photos du corps de l'article ; `citations.photos_presse` : 600 px au moins, sans doublon d'agence
+  par empreinte `_empreinte`, confirmées par l'IA qui voit `CONSIGNE_PHOTOS_PRESSE` ; bandeau et crédit « Photo : média »).
+  Durée : le contrôle final exige 61 s au moins (TikTok paie les vidéos de PLUS d'1 minute ; texte visé 62 s). Durée TikTok : `video.duree_min` 62 s.
 - **Style validé sur l'essai « 1 an sur Mars »** : voix Piper « Tom » au départ (remplacée par Kokoro, voir plus bas), pauses de 0,18 s, silences coupés ; vraie vidéo nette au milieu + la même floutée derrière ; étiquette rouge
   « INSOLITE » + gros titre jaune en haut ; sous-titres karaoké Poppins (3 mots, le mot dit en jaune et grossi à 112 %, calé
   sur la voix par Whisper « small ») ; dernier écran « ET TOI ? dis-le en commentaire » ; crédits des images en bas.

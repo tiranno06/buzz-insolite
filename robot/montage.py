@@ -207,7 +207,7 @@ def faire_ecran(script, i, d, dossier):
     elif p.get("media") and not derniere:
         m = p["media"]
         calque(png, titre=p.get("ecran", "").upper(),
-               source=f"@{m.get('compte', 'source')}" if m.get("citation") else "")
+               source=(m.get("bandeau") or f"@{m.get('compte', 'source')}") if m.get("citation") else "")
     else:
         grand = "ET TOI ?" if derniere else (p.get("ecran") or "").upper()
         petit = "dis-le en commentaire" if derniere else ""

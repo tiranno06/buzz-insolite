@@ -496,27 +496,32 @@ def placer_citations(script, scenes, sujet, dossier, deja, journal, R, E, format
     ph = script["phrases"]
     if any((p.get("media") or {}).get("citation") for p in ph):
         return                                                # (vidéo refaite) extraits déjà là
-    nombre = int(R["video"].get("citations_nombre", 5))
-    extraits = citations.extraits(sujet, dossier, journal, nombre, deja, photos=int(R["video"].get("citations_photos", 3)))
-    if not extraits:
-        journal("  aucune citation possible (vidéos d'origine introuvables ou trop courtes)")
-        return
-    vids = [m for m in extraits if m["type"] == "video"]
-    fixes = [m for m in extraits if m["type"] == "photo"]
-    melange = []                                              # 2 extraits vidéo, 1 image fixe, 2 extraits, 1 image…
-    while vids or fixes:
-        melange += vids[:2]; vids = vids[2:]
-        melange += fixes[:1]; fixes = fixes[1:]
-    extraits = melange
+    nombre = int(R["video"].get("citations_nombre", 12))
     libres = [k for k, sc in enumerate(scenes) if "media" not in ph[sc[0]]]
     if not libres:
         return
-    pas = max(1, len(libres) / len(extraits))
-    choix = []
-    for n in range(len(extraits)):
+    # le MAXIMUM d'extraits vidéo de l'événement (demande de l'auteur du 25/11), puis des images fixes de l'événement
+    # (tirées des vidéos d'origine et des articles de presse) pour meubler les scènes restantes
+    extraits = citations.extraits(sujet, dossier, journal, min(nombre, len(libres)), deja,
+                                  photos=int(R["video"].get("citations_photos", 6)))
+    vids = [m for m in extraits if m["type"] == "video"]
+    fixes = [m for m in extraits if m["type"] == "photo"]
+    if len(vids) < len(libres):
+        fixes += citations.photos_presse(E.get("articles") or [], sujet, dossier, journal,
+                                         maxi=max(0, len(libres) - len(vids) - len(fixes) + 2))
+    if not vids and not fixes:
+        journal("  aucune vidéo ni photo de l'événement trouvée (vidéos d'origine, articles)")
+        return
+    pas = max(1, len(libres) / len(vids)) if vids else 1
+    choix_v = []
+    for n in range(len(vids)):                                # extraits vidéo répartis dans toute la vidéo (le 1er en accroche)
         k = libres[min(len(libres) - 1, int(n * pas))]
-        if k not in choix:
-            choix.append(k)
+        if k not in choix_v:
+            choix_v.append(k)
+    reste = [k for k in libres if k not in choix_v]
+    choix_f = reste[:len(fixes)]                              # images fixes : les scènes restantes
+    extraits = vids[:len(choix_v)] + fixes[:len(choix_f)]
+    choix = choix_v + choix_f
     for m, k in zip(extraits, choix):
         sc = list(scenes[k])
         total = sum(_duree_estimee(ph[j]) for j in sc)
@@ -528,7 +533,7 @@ def placer_citations(script, scenes, sujet, dossier, deja, journal, R, E, format
         for j in sc[1:]:
             ph[j]["media"] = dict(m, id=f"{m['id']}-suite{j}", suite=True, reelle=True); ph[j]["_valide"] = True
     journal(f"  {len(choix)} courte(s) citation(s) placée(s) (vidéos et images de l'événement) : "
-            + ", ".join(f"@{m['compte']}" for m in extraits[:len(choix)]))
+            + ", ".join(m.get("bandeau") or f"@{m['compte']}" for m in extraits[:len(choix)]))
 
 
 def accroche(script):

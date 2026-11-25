@@ -193,3 +193,79 @@ def extraits(sujet, dossier, journal=print, nombre=5, deja=None, photos=3):
         except OSError:
             pass
     return out
+
+
+CONSIGNE_PHOTOS_PRESSE = """On te montre des photos tirées d'articles de presse sur un événement précis. Pour CHAQUE photo, dis si
+elle montre CET événement (le lieu, les personnes, le moment) : "evenement" true ; false pour un logo, une publicité, un
+dessin, un graphique, une photo d'archive sans lien avec ce jour-là, ou un autre événement.
+Réponds uniquement en JSON : {"images": [{"n": numéro, "evenement": true/false}]}"""
+
+
+def _empreinte(chemin):
+    """Empreinte de l'image (8 × 8 gris) : la même photo d'agence reprise par plusieurs médias n'est gardée qu'une fois."""
+    from PIL import Image
+    with Image.open(chemin) as im:
+        petit = im.convert("L").resize((8, 8))
+        px = list(petit.getdata())
+    moy = sum(px) / len(px)
+    return sum(1 << k for k, p in enumerate(px) if p > moy)
+
+
+def photos_presse(articles, sujet, dossier, journal=print, maxi=6):
+    """Photos de l'événement prises dans les articles de presse (demande de l'auteur du 25/11) : photo principale et photos
+    du corps de chaque article, téléchargées, réenregistrées, sans doublon (même photo d'agence chez plusieurs médias), de
+    600 px de large au moins, puis confirmées par l'IA qui voit (montre bien CET événement). Crédit « Photo : média »."""
+    from PIL import Image
+    from . import sources
+    cand, vues = [], []
+    for k, a in enumerate(articles):
+        if len(cand) >= maxi * 2:
+            break
+        media, lien = a.get("media") or "presse", a.get("lien") or ""
+        if not lien.startswith("http") or "news.google.com" in lien or media in ("Wikipédia (contexte)", "Sujet du buzz"):
+            continue
+        urls = a.get("photos")
+        if urls is None:
+            try:
+                urls = sources.texte_article(lien, avec_images=True)[1]
+            except Exception:
+                urls = []
+        for j, u in enumerate(urls[:3]):
+            chemin = os.path.join(dossier, f"presse-photo-{k}-{j}")
+            try:
+                with open(chemin, "wb") as f:
+                    f.write(sources._ouvrir(u, timeout=30))
+                chemin = images.photo_standard(chemin)
+                with Image.open(chemin) as im:
+                    larg, haut = im.size
+                if larg < 600 or haut < 300:
+                    continue
+                e = _empreinte(chemin)
+                if any(bin(e ^ x).count("1") <= 6 for x in vues):
+                    continue
+                vues.append(e)
+                cand.append(dict(type="photo", chemin=chemin, id=f"presse-photo-{k}-{j}", citation=True, compte=media,
+                                 bandeau=f"Photo : {media}", credit=f"Photo : {media} (article cité)", page=lien,
+                                 auteur=media, licence="photo d'article de presse, source citée", origine=dict(image=u)))
+            except Exception as ex:
+                journal(f"  photo de {media} illisible ({str(ex)[:60]})")
+    if not cand:
+        return []
+    garder = {i for i in range(len(cand))}
+    try:
+        avis = {}
+        for k in range(0, len(cand), 5):
+            paquet = cand[k:k + 5]
+            d, _ = ia.regarder_json(CONSIGNE_PHOTOS_PRESSE, f"ÉVÉNEMENT : {sujet.get('titre', '')} — {sujet.get('resume', '')}",
+                                    [m["chemin"] for m in paquet], journal=journal)
+            for r in d.get("images") or []:
+                try:
+                    avis[k + int(r.get("n")) - 1] = r.get("evenement")
+                except (TypeError, ValueError):
+                    pass
+        garder = {i for i in garder if avis.get(i) is not False}
+    except Exception as ex:
+        journal(f"  photos de presse non regardées par l'IA ({str(ex)[:60]}) : toutes gardées")
+    out = [m for i, m in enumerate(cand) if i in garder][:maxi]
+    journal(f"  {len(out)} photo(s) de l'événement prises dans les articles ({', '.join(sorted({m['compte'] for m in out}))})")
+    return out

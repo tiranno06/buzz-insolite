@@ -511,8 +511,9 @@ def controle_video(fichier, script, dossier, B, journal=print, leger=False, sans
     duree, w, h, son = _probe(fichier)
     if (w, h) != (1080, 1920) or not son:
         fautifs[None] = (f"format {w}×{h}" + ("" if son else ", pas de son"), "refaire")
-    if duree < 60 and not leger and not script.get("_allonger_impossible"):     # (l'essai sans réseau est court)
-        fautifs[None] = (f"vidéo de {duree:.0f} s : moins d'1 minute (pas payée par TikTok)", "allonger")
+    if duree < 61 and not leger and not script.get("_allonger_impossible"):     # (l'essai sans réseau est court)
+        # TikTok ne paie que les vidéos de PLUS d'1 minute : 61 s au moins, avec une marge (texte visé : 62 s)
+        fautifs[None] = (f"vidéo de {duree:.0f} s : pas plus d'1 minute (pas payée par TikTok)", "allonger")
     for i in ecrans_noirs(fichier, debuts):
         if ph[i].get("media"):
             fautifs[i] = ("écran noir dans la vidéo finie", "image")

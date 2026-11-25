@@ -827,3 +827,21 @@ class TestVideosLues(unittest.TestCase):
             self.assertIn("3", [x["id"] for x in v])
         finally:
             buzz.lire, C.lire = ancien_b, ancien_c
+
+
+class TestPhotosPresse(unittest.TestCase):
+    def test_images_de_page(self):
+        from robot import sources
+        page = ('<meta property="og:image" content="https://ex.fr/photo-senegal.jpg">'
+                '<article><img src="/logo.png"><img src="/img/joueurs.jpg" width="900"><img src="/mini.jpg" width="80"></article>')
+        self.assertEqual(sources.images_de_page(page, "https://ex.fr/article"),
+                         ["https://ex.fr/photo-senegal.jpg", "https://ex.fr/img/joueurs.jpg"])
+
+    def test_empreinte_doublon(self):
+        from robot import citations as C
+        from PIL import Image
+        d = tempfile.mkdtemp()
+        a, b = os.path.join(d, "a.jpg"), os.path.join(d, "b.jpg")
+        im = Image.new("RGB", (800, 600), (200, 30, 30)); im.paste((10, 10, 200), (0, 0, 400, 600)); im.save(a)
+        im.resize((1200, 900)).save(b)
+        self.assertLessEqual(bin(C._empreinte(a) ^ C._empreinte(b)).count("1"), 6)

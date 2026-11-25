@@ -57,7 +57,7 @@ def appliquer_reglages(d):
         if k in Vd:
             R["video"][k] = bool(Vd[k])
     if "citations_nombre" in Vd:
-        R["video"]["citations_nombre"] = max(1, min(5, int(Vd["citations_nombre"])))
+        R["video"]["citations_nombre"] = max(1, min(15, int(Vd["citations_nombre"])))
     if "paralleles" in C:
         R["creation"]["paralleles"] = max(1, min(5, int(C["paralleles"])))
     F = C.get("formats") or {}

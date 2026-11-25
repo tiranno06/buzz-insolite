@@ -307,8 +307,8 @@ dialog form { position: absolute; top: 6px; right: 6px; }
         <label class="case"><input type="checkbox" id="r-transitions"> « Woosh » entre les écrans</label>
         <label class="case"><input type="checkbox" id="r-carte"> Carte animée du lieu</label>
         <label class="case"><input type="checkbox" id="r-generiques"> Images de banques (Pixabay…) quand il n'y a pas de vraie photo du sujet</label>
-        <label class="case"><input type="checkbox" id="r-citations"> Courts extraits des vidéos d'origine (10 à 15 s chacun, un par vidéo, source affichée)</label>
-        <label>Nombre d'extraits par vidéo <select id="r-citations-nb"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+        <label class="case"><input type="checkbox" id="r-citations"> Extraits et photos de l'événement (vidéos d'origine de tous les comptes suivis, photos des articles ; source affichée)</label>
+        <label>Nombre d'extraits par vidéo (au plus) <select id="r-citations-nb"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option></select></label>
         <div class="grille2">
           <label class="champ">Hashtags de la chaîne <span>ajoutés à chaque vidéo</span><input type="text" id="r-tags"></label>
           <label class="champ">Nombre de hashtags <input type="number" id="r-ntags" min="3" max="10"></label>
@@ -590,7 +590,7 @@ function remplirReglages() {
   const E = (D["buzz.json"] || {}).comptes || {};
   $("#r-comptes-etat").textContent = Object.keys(E).length ? "Dernier relevé : " + Object.entries(E).map(([k, e]) => `${e.ok ? "🟢" : "🔴"} @${k}`).join("  ") : "";
   $("#r-voix").value = V.voix || "chatterbox-bernard"; $("#r-vitesse").value = V.vitesse ?? 0.8;
-  $("#r-musique").checked = V.musique !== false; $("#r-bruitages").checked = V.bruitages !== false; $("#r-transitions").checked = !!V.transitions; $("#r-carte").checked = V.carte !== false; $("#r-generiques").checked = !!V.images_generiques; $("#r-citations").checked = V.citations !== false; $("#r-citations-nb").value = String(V.citations_nombre || 5);
+  $("#r-musique").checked = V.musique !== false; $("#r-bruitages").checked = V.bruitages !== false; $("#r-transitions").checked = !!V.transitions; $("#r-carte").checked = V.carte !== false; $("#r-generiques").checked = !!V.images_generiques; $("#r-citations").checked = V.citations !== false; $("#r-citations-nb").value = String(V.citations_nombre || 12);
   $("#r-chaine").value = P.chaine || ""; $("#r-heures-auto").checked = !!P.heures_auto;
   const MH = (D["stats.json"] || {}).meilleures_heures || [];
   $("#r-heures-stats").textContent = MH.length ? `Meilleures heures d'après tes vidéos : ${MH.join(" et ")}.` : "Les statistiques n'ont pas encore assez de vidéos (2 par heure au moins).";

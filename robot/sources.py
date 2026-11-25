@@ -79,10 +79,35 @@ class _Paragraphes(HTMLParser):
         if self.dans: self.courant.append(data)
 
 
-def texte_article(url, maxi=6000):
+def texte_article(url, maxi=6000, avec_images=False):
+    page = _ouvrir(url).decode("utf-8", "ignore")
     p = _Paragraphes()
-    p.feed(_ouvrir(url).decode("utf-8", "ignore"))
-    return "\n".join(p.morceaux)[:maxi]
+    p.feed(page)
+    texte = "\n".join(p.morceaux)[:maxi]
+    return (texte, images_de_page(page, url)) if avec_images else texte
+
+
+def images_de_page(page, url, maxi=6):
+    """Photos d'un article (demande de l'auteur du 25/11) : la photo principale (og:image, twitter:image) puis les grandes
+    photos du corps de l'article ; icônes, logos et pixels de suivi écartés."""
+    out = []
+    for motif in (r'<meta[^>]+(?:property|name)=["\'](?:og:image(?::url)?|twitter:image(?::src)?)["\'][^>]+content=["\']([^"\']+)',
+                  r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+(?:property|name)=["\'](?:og:image|twitter:image)'):
+        out += re.findall(motif, page, re.I)
+    corps = re.search(r"<article.*?</article>", page, re.I | re.S)
+    for balise in re.findall(r"<img[^>]+>", corps.group(0) if corps else "", re.I):
+        src = re.search(r'(?:data-src|src)=["\']([^"\']+)', balise)
+        larg = re.search(r'width=["\']?(\d+)', balise)
+        if src and (not larg or int(larg.group(1)) >= 400):
+            out.append(src.group(1))
+    propres = []
+    for u in out:
+        u = urllib.parse.urljoin(url, u.replace("&amp;", "&"))
+        bas = u.lower()
+        if u.startswith("http") and u not in propres and not any(x in bas for x in ("logo", "icon", "avatar", "pixel", "sprite",
+                                                                                    "placeholder", "default", ".svg", ".gif")):
+            propres.append(u)
+    return propres[:maxi]
 
 
 def bing(requete, n=12, langue="fr"):
@@ -141,13 +166,13 @@ def chercher(sujet, mots_cles=(), maxi=8, journal=print, mots_en=()):
         if titre in vus:
             continue
         vus.add(titre)
-        texte = ""
+        texte, photos = "", []
         if "news.google.com" not in lien:
             try:
-                texte = texte_article(lien)
+                texte, photos = texte_article(lien, avec_images=True)
             except Exception as e:
                 journal(f"  article de {media} illisible ({str(e)[:60]}) : son résumé seulement")
-        out.append(dict(media=media, titre=titre, lien=lien, resume=resume, texte=texte))
+        out.append(dict(media=media, titre=titre, lien=lien, resume=resume, texte=texte, photos=photos))
         if sum(1 for a in out if len(a["texte"]) > 400) >= maxi or len(out) >= maxi + 8:
             break
     out.sort(key=lambda a: -len(a["texte"]))                 # articles complets d'abord
