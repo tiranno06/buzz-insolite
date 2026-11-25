@@ -1,149 +1,149 @@
 {
- "maj": "2026-11-25T09:59:33+01:00",
+ "maj": "2026-11-25T12:43:45+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:56:46+01:00"
+   "le": "2026-11-25T12:41:31+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:56:49+01:00"
+   "le": "2026-11-25T12:41:35+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:56:53+01:00"
+   "le": "2026-11-25T12:41:40+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:56:57+01:00"
+   "le": "2026-11-25T12:41:45+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:01+01:00"
+   "le": "2026-11-25T12:41:50+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-25T09:57:04+01:00"
+   "le": "2026-11-25T12:41:54+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:07+01:00"
+   "le": "2026-11-25T12:41:59+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:11+01:00"
+   "le": "2026-11-25T12:42:03+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:14+01:00"
+   "le": "2026-11-25T12:42:08+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:18+01:00"
+   "le": "2026-11-25T12:42:12+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:21+01:00"
+   "le": "2026-11-25T12:42:16+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:25+01:00"
+   "le": "2026-11-25T12:42:21+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:28+01:00"
+   "le": "2026-11-25T12:42:25+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-25T09:57:31+01:00"
+   "le": "2026-11-25T12:42:28+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:34+01:00"
+   "le": "2026-11-25T12:42:32+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:38+01:00"
+   "le": "2026-11-25T12:42:36+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:42+01:00"
+   "le": "2026-11-25T12:42:40+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:45+01:00"
+   "le": "2026-11-25T12:42:44+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:49+01:00"
+   "le": "2026-11-25T12:42:48+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:53+01:00"
+   "le": "2026-11-25T12:42:52+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:57:56+01:00"
+   "le": "2026-11-25T12:42:56+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:58:00+01:00"
+   "le": "2026-11-25T12:43:00+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:58:03+01:00"
+   "le": "2026-11-25T12:43:04+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:58:07+01:00"
+   "le": "2026-11-25T12:43:09+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:58:11+01:00"
+   "le": "2026-11-25T12:43:12+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:58:15+01:00"
+   "le": "2026-11-25T12:43:16+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:58:19+01:00"
+   "le": "2026-11-25T12:43:20+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T09:58:22+01:00"
+   "le": "2026-11-25T12:43:24+01:00"
   }
  },
  "lues": 809,
- "retenues": 4,
+ "retenues": 3,
  "sujets": [
   {
    "titre": "Maresées exceptionnelles menacent l'Oregon et la Californie",
@@ -264,6 +264,40 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T18:19:59+01:00",
    "video_id": "20261124-203224-1"
+  },
+  {
+   "titre": "A dog and its owner were almost swept away at Cannon Beach, Oregon by king tides, which ar",
+   "resume": "A dog and its owner were almost swept away at Cannon Beach, Oregon by king tides, which are expected to cause significant coastal flooding on the West Coast. Both the man and his dog were able to reach another set of stairs and escape the surf without injury. Water levels in San Francisco topped records on Tuesday and coastal flooding could reach major to extreme levels in some areas as unusually ",
+   "mots_cles": [],
+   "hashtags": [],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711896010431204621",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7711896010431204621",
+     "vues": 15100000,
+     "jaime": 599800,
+     "commentaires": 15600,
+     "partages": 86200,
+     "date": 1795565735,
+     "texte": "A dog and its owner were almost swept away at Cannon Beach, Oregon by king tides, which are expected to cause significant coastal flooding on the West Coast. Both the man and his dog were able to reach another set of stairs and escape the surf without injury. Water levels in San Francisco topped records on Tuesday and coastal flooding could reach major to extreme levels in some areas as unusually ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711896010431204621?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "a981a70d43",
+   "score": 1001,
+   "derniere_vue": 1795607012.4707718,
+   "vues": 15100000,
+   "jaime": 599800,
+   "commentaires": 15600,
+   "hashtags_viraux": [],
+   "medias": 2,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
    "titre": "Brésil : golden retriever sauve enfant noyé",
@@ -987,6 +1021,40 @@
    "vu_le": "2026-11-25T09:59:33+01:00"
   },
   {
+   "titre": "Iranian singer Parastoo Ahmadi and eight members of her production team received a punishm",
+   "resume": "Iranian singer Parastoo Ahmadi and eight members of her production team received a punishment of 74 lashings each after a court found them guilty of \"hurting public decency\" by publishing videos of Ahmadi singing Persian folk songs online. In Iran, women are barred from singing solo in public, and doing so without a hijab is considered an even more serious offense.",
+   "mots_cles": [],
+   "hashtags": [],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711819275983490318",
+     "compte": "abcnews",
+     "url": "https://www.tiktok.com/@abcnews/video/7711819275983490318",
+     "vues": 1100000,
+     "jaime": 116400,
+     "commentaires": 5638,
+     "partages": 8587,
+     "date": 1795547871,
+     "texte": "Iranian singer Parastoo Ahmadi and eight members of her production team received a punishment of 74 lashings each after a court found them guilty of \"hurting public decency\" by publishing videos of Ahmadi singing Persian folk songs online. In Iran, women are barred from singing solo in public, and doing so without a hijab is considered an even more serious offense.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711819275983490318?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "f9da6076f5",
+   "score": 304,
+   "derniere_vue": 1795607012.4707718,
+   "vues": 1100000,
+   "jaime": 116400,
+   "commentaires": 5638,
+   "hashtags_viraux": [],
+   "medias": 9,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T12:43:45+01:00"
+  },
+  {
    "titre": "Toulouse : malaise étudiant devant Macron et polémique policière",
    "resume": "Une étudiante a fait un malaise lors d’une visite d’Emmanuel Macron à Toulouse. Parallèlement, une vidéo montre un policier volant le vélo d’une cycliste, déclenchant une vive polémique.",
    "mots_cles": [
@@ -1050,6 +1118,41 @@
    "medias": 7,
    "statut": "en_cours",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret",
+   "resume": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret leur impose des surnoms.",
+   "mots_cles": [],
+   "hashtags": [],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711838616284040470",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
+     "vues": 1600000,
+     "jaime": 292700,
+     "commentaires": 3467,
+     "partages": 36100,
+     "date": 1795552321,
+     "texte": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret leur impose des surnoms.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711838616284040470?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "29d9069d96",
+   "score": 280,
+   "derniere_vue": 1795607012.4707718,
+   "vues": 1600000,
+   "jaime": 292700,
+   "commentaires": 3467,
+   "hashtags_viraux": [],
+   "medias": 4,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
    "titre": "Leçon antiraciste de Jane Elliott en 1968 toujours pertinente",
@@ -1261,6 +1364,88 @@
    "vu_le": "2026-11-24T18:38:52+01:00",
    "reserve_le": "2026-11-24T19:50:48+01:00",
    "video_id": "20261124-195233-2"
+  },
+  {
+   "titre": "Le Tribunal Arbitral du Sport, la plus haute juridiction du sport mondial, a désigné ce ma",
+   "resume": "Le Tribunal Arbitral du Sport, la plus haute juridiction du sport mondial, a désigné ce mardi le Sénégal comme vainqueur de la Coupe d’Afrique des Nations 2025. Le Sénégal avait remporté le titre à l’issue de la finale dans un premier temps, avant de se le voir retirer par la Confédération Africaine de Football (CAF) sur tapis vert en mars. Il était reproché aux joueurs de l’équipe sénégalaise d’a",
+   "mots_cles": [],
+   "hashtags": [],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711746571976707361",
+     "compte": "hugodecrypte",
+     "url": "https://www.tiktok.com/@hugodecrypte/video/7711746571976707361",
+     "vues": 2000000,
+     "jaime": 270300,
+     "commentaires": 2213,
+     "partages": 31500,
+     "date": 1795530924,
+     "texte": "Le Tribunal Arbitral du Sport, la plus haute juridiction du sport mondial, a désigné ce mardi le Sénégal comme vainqueur de la Coupe d’Afrique des Nations 2025. Le Sénégal avait remporté le titre à l’issue de la finale dans un premier temps, avant de se le voir retirer par la Confédération Africaine de Football (CAF) sur tapis vert en mars. Il était reproché aux joueurs de l’équipe sénégalaise d’a",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711746571976707361?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "20a37a477a",
+   "score": 241,
+   "derniere_vue": 1795607012.4707718,
+   "vues": 2000000,
+   "jaime": 270300,
+   "commentaires": 2213,
+   "hashtags_viraux": [],
+   "medias": 9,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T12:43:45+01:00"
+  },
+  {
+   "titre": "Sabrina Bahsoon, known globally as Tube Girl, wants hospitals to offer a series of tests a",
+   "resume": "Sabrina Bahsoon, known globally as Tube Girl, wants hospitals to offer a series of tests as standard practice if patients suddenly develop the symptoms that led to her misdiagnosis. #TubeGirl #SabrinaBahsoon #WomensHealth #AutoImmuneDisease #BBCNews",
+   "mots_cles": [],
+   "hashtags": [
+    "tubegirl",
+    "sabrinabahsoon",
+    "womenshealth",
+    "autoimmunedisease",
+    "bbcnews"
+   ],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711799474699488534",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7711799474699488534",
+     "vues": 1500000,
+     "jaime": 122500,
+     "commentaires": 534,
+     "partages": 7012,
+     "date": 1795543212,
+     "texte": "Sabrina Bahsoon, known globally as Tube Girl, wants hospitals to offer a series of tests as standard practice if patients suddenly develop the symptoms that led to her misdiagnosis. #TubeGirl #SabrinaBahsoon #WomensHealth #AutoImmuneDisease #BBCNews",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711799474699488534?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "1918a93c92",
+   "score": 170,
+   "derniere_vue": 1795607012.4707718,
+   "vues": 1500000,
+   "jaime": 122500,
+   "commentaires": 534,
+   "hashtags_viraux": [
+    "tubegirl",
+    "sabrinabahsoon",
+    "womenshealth",
+    "autoimmunedisease",
+    "bbcnews"
+   ],
+   "medias": 5,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
    "titre": "Le galet de compression des fenêtres PVC expliqué",
@@ -1671,6 +1856,45 @@
    "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
+   "titre": "A woman was caught on a ring camera stealing a package moments after delivering it to a ho",
+   "resume": "A woman was caught on a ring camera stealing a package moments after delivering it to a home in Georgia.  The footage shows the woman dropping off the parcel, taking a photo and then snatching it before fleeing to her car.  Lululemon reimbursed the $100 Christmas gift, but warned that package theft can have a serious impact on families who cannot afford to lose valuable deliveries, particularly du",
+   "mots_cles": [],
+   "hashtags": [],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711759134198123789",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711759134198123789",
+     "vues": 2600000,
+     "jaime": 227800,
+     "commentaires": 2433,
+     "partages": 6321,
+     "date": 1795533881,
+     "texte": "A woman was caught on a ring camera stealing a package moments after delivering it to a home in Georgia.  The footage shows the woman dropping off the parcel, taking a photo and then snatching it before fleeing to her car.  Lululemon reimbursed the $100 Christmas gift, but warned that package theft can have a serious impact on families who cannot afford to lose valuable deliveries, particularly du",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711759134198123789?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "080061b2fc",
+   "score": 104,
+   "derniere_vue": 1795607012.4707718,
+   "vues": 2600000,
+   "jaime": 227800,
+   "commentaires": 2433,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": {
+    "recherche": "hugh hume",
+    "pays": "GB",
+    "trafic": "500+"
+   },
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T12:43:45+01:00"
+  },
+  {
    "titre": "Chine : homme tombe dans piscine transparente",
    "resume": "Un homme en Chine a accidentellement chuté dans une piscine en confondant sa surface avec du sol. Les images virales montrent sa chute et sa remontée avec l’aide de témoins.",
    "mots_cles": [
@@ -1721,6 +1945,41 @@
    "medias": 0,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Federal immigration officers on Saturday arrested two passengers at Seattle-Tacoma Interna",
+   "resume": "Federal immigration officers on Saturday arrested two passengers at Seattle-Tacoma International Airport as they were boarding an Alaska Airlines flight, prompting criticism from Washington’s governor and airport officials, who called the incident “distressing.” The Port of Seattle, which operates the airport, and Alaska Airlines said they did not have advance knowledge of the immigration enforcem",
+   "mots_cles": [],
+   "hashtags": [],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711127723879582989",
+     "compte": "nytimes",
+     "url": "https://www.tiktok.com/@nytimes/video/7711127723879582989",
+     "vues": 11400000,
+     "jaime": 166800,
+     "commentaires": 4004,
+     "partages": 9291,
+     "date": 1795386861,
+     "texte": "Federal immigration officers on Saturday arrested two passengers at Seattle-Tacoma International Airport as they were boarding an Alaska Airlines flight, prompting criticism from Washington’s governor and airport officials, who called the incident “distressing.” The Port of Seattle, which operates the airport, and Alaska Airlines said they did not have advance knowledge of the immigration enforcem",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711127723879582989?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "7967341cac",
+   "score": 103,
+   "derniere_vue": 1795607012.4707718,
+   "vues": 11400000,
+   "jaime": 166800,
+   "commentaires": 4004,
+   "hashtags_viraux": [],
+   "medias": 1,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
    "titre": "Leto accusé de misogynie dans GTA VI",
@@ -2042,6 +2301,53 @@
    "vu_le": "2026-11-25T02:05:25+01:00"
   },
   {
+   "titre": "Struggling to switch off a racing mind? A viral TikTok sound is gaining attention for its ",
+   "resume": "Struggling to switch off a racing mind? A viral TikTok sound is gaining attention for its supposed ability to help quiet overthinking and encourage relaxation. The audio uses a 5Hz theta binaural beat, alongside alternating sounds that move between the left and right ears, a technique known as bilateral stimulation that is also used in EMDR therapy. #overthinking #audio #viral #science #anxiety ",
+   "mots_cles": [],
+   "hashtags": [
+    "overthinking",
+    "audio",
+    "viral",
+    "science",
+    "anxiety"
+   ],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711696996100263182",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711696996100263182",
+     "vues": 2800000,
+     "jaime": 263100,
+     "commentaires": 3174,
+     "partages": 23100,
+     "date": 1795519475,
+     "texte": "Struggling to switch off a racing mind? A viral TikTok sound is gaining attention for its supposed ability to help quiet overthinking and encourage relaxation. The audio uses a 5Hz theta binaural beat, alongside alternating sounds that move between the left and right ears, a technique known as bilateral stimulation that is also used in EMDR therapy. #overthinking #audio #viral #science #anxiety ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711696996100263182?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "e18daeb1a5",
+   "score": 67,
+   "derniere_vue": 1795607012.4707718,
+   "vues": 2800000,
+   "jaime": 263100,
+   "commentaires": 3174,
+   "hashtags_viraux": [
+    "overthinking",
+    "audio",
+    "viral",
+    "science",
+    "anxiety"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T12:43:45+01:00"
+  },
+  {
    "titre": "Arrêt baron drogue El Chapo Isidro Mexique",
    "resume": "Le Mexique a arrêté Fausto Isidro Meza, alias *El Chapo Isidro*, l’un des criminels les plus recherchés par le FBI. Son interpellation a provoqué des affrontements dans l’État de Sinaloa.",
    "mots_cles": [
@@ -2195,6 +2501,41 @@
    "medias": 0,
    "statut": "nouveau",
    "vu_le": "2026-11-25T02:05:25+01:00"
+  },
+  {
+   "titre": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateforme",
+   "resume": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateformes de seconde main proposent, en apparence, des consoles de jeux dernier cri. En réalité, seule une photo du produit est mise en vente et livrée.",
+   "mots_cles": [],
+   "hashtags": [],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711847373802179873",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7711847373802179873",
+     "vues": 1600000,
+     "jaime": 95700,
+     "commentaires": 1626,
+     "partages": 29500,
+     "date": 1795554385,
+     "texte": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateformes de seconde main proposent, en apparence, des consoles de jeux dernier cri. En réalité, seule une photo du produit est mise en vente et livrée.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711847373802179873?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "4427f6581c",
+   "score": 48,
+   "derniere_vue": 1795607012.4707718,
+   "vues": 1600000,
+   "jaime": 95700,
+   "commentaires": 1626,
+   "hashtags_viraux": [],
+   "medias": 1,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
    "titre": "Hommes transgressant le code de la route séduisent",
@@ -2403,6 +2744,86 @@
    "vu_le": "2026-11-25T09:59:33+01:00"
   },
   {
+   "titre": "Psychologists suggest men who bend or break traffic rules may possess personality traits t",
+   "resume": "Psychologists suggest men who bend or break traffic rules may possess personality traits that make them more attractive as long-term partners, including confidence, assertiveness and a willingness to take risks. Experts say rule-breaking behavior can create an impression of power and high social status, potentially contributing to the appeal of the so-called ‘bad boy’ type. However, this doesn’t m",
+   "mots_cles": [],
+   "hashtags": [],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711706139641105678",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711706139641105678",
+     "vues": 1800000,
+     "jaime": 159300,
+     "commentaires": 2015,
+     "partages": 76100,
+     "date": 1795521576,
+     "texte": "Psychologists suggest men who bend or break traffic rules may possess personality traits that make them more attractive as long-term partners, including confidence, assertiveness and a willingness to take risks. Experts say rule-breaking behavior can create an impression of power and high social status, potentially contributing to the appeal of the so-called ‘bad boy’ type. However, this doesn’t m",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711706139641105678?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "ceda503d52",
+   "score": 43,
+   "derniere_vue": 1795607012.4707718,
+   "vues": 1800000,
+   "jaime": 159300,
+   "commentaires": 2015,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T12:43:45+01:00"
+  },
+  {
+   "titre": "In The Private Diary of Pope Francis, which was released this week, is a collection of the",
+   "resume": "In The Private Diary of Pope Francis, which was released this week, is a collection of the late pope's diaries edited by a longtime friend. #PopeFrancis #Rome #Religion #BBCNews",
+   "mots_cles": [],
+   "hashtags": [
+    "popefrancis",
+    "rome",
+    "religion",
+    "bbcnews"
+   ],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711845590346272022",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7711845590346272022",
+     "vues": 1300000,
+     "jaime": 109800,
+     "commentaires": 2272,
+     "partages": 9112,
+     "date": 1795553953,
+     "texte": "In The Private Diary of Pope Francis, which was released this week, is a collection of the late pope's diaries edited by a longtime friend. #PopeFrancis #Rome #Religion #BBCNews",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711845590346272022?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "47add17363",
+   "score": 43,
+   "derniere_vue": 1795607012.4707718,
+   "vues": 1300000,
+   "jaime": 109800,
+   "commentaires": 2272,
+   "hashtags_viraux": [
+    "popefrancis",
+    "rome",
+    "religion",
+    "bbcnews"
+   ],
+   "medias": 1,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T12:43:45+01:00"
+  },
+  {
    "titre": "Hommes transgressant les règles plus séduisants selon psychologues",
    "resume": "Des psychologues estiment que les hommes qui enfreignent les règles routières pourraient être perçus comme plus confiants et attractifs. Cette théorie divise les experts.",
    "mots_cles": [
@@ -2503,6 +2924,51 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
+   "titre": "Sky's political correspondent Lucy McDaid asks whether the Number 10 policy on involving i",
+   "resume": "Sky's political correspondent Lucy McDaid asks whether the Number 10 policy on involving influencers has backfired. Responding to the video and its removal, Max Balegde said his content is 'always meant to be light hearted and funny', insisted no malice was intended and apologised for 'any offence caused'. #skynews #uk #influencer #number10 ",
+   "mots_cles": [],
+   "hashtags": [
+    "skynews",
+    "uk",
+    "influencer",
+    "number10"
+   ],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711836882820254998",
+     "compte": "skynews",
+     "url": "https://www.tiktok.com/@skynews/video/7711836882820254998",
+     "vues": 1200000,
+     "jaime": 70600,
+     "commentaires": 1723,
+     "partages": 16700,
+     "date": 1795551953,
+     "texte": "Sky's political correspondent Lucy McDaid asks whether the Number 10 policy on involving influencers has backfired. Responding to the video and its removal, Max Balegde said his content is 'always meant to be light hearted and funny', insisted no malice was intended and apologised for 'any offence caused'. #skynews #uk #influencer #number10 ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711836882820254998?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "03f572610b",
+   "score": 35,
+   "derniere_vue": 1795607012.4707718,
+   "vues": 1200000,
+   "jaime": 70600,
+   "commentaires": 1723,
+   "hashtags_viraux": [
+    "skynews",
+    "uk",
+    "influencer",
+    "number10"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T12:43:45+01:00"
+  },
+  {
    "titre": "Ventes de drogues illégales dans les stations-service américaines",
    "resume": "Des produits hallucinogènes et non régulés sont vendus dans des stations-service et des *smoke shops* aux États-Unis. Le *New York Times* a testé 28 échantillons pour analyser leur contenu.",
    "mots_cles": [
@@ -2560,6 +3026,49 @@
    "medias": 1,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "A new generation of drugs is for sale inside gas station convenience stores and smoke shop",
+   "resume": "A new generation of drugs is for sale inside gas station convenience stores and smoke shops across the country. It can be difficult to know what’s actually inside these items. To better understand this phenomenon, The New York Times purchased and lab-tested 28 products. #gasstation #vape #hallucinogens",
+   "mots_cles": [],
+   "hashtags": [
+    "gasstation",
+    "vape",
+    "hallucinogens"
+   ],
+   "insolite": 5,
+   "videos": [
+    {
+     "id": "7711424511110843661",
+     "compte": "nytimes",
+     "url": "https://www.tiktok.com/@nytimes/video/7711424511110843661",
+     "vues": 1700000,
+     "jaime": 152300,
+     "commentaires": 1825,
+     "partages": 22200,
+     "date": 1795455960,
+     "texte": "A new generation of drugs is for sale inside gas station convenience stores and smoke shops across the country. It can be difficult to know what’s actually inside these items. To better understand this phenomenon, The New York Times purchased and lab-tested 28 products. #gasstation #vape #hallucinogens",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711424511110843661?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "76adbb2db7",
+   "score": 27,
+   "derniere_vue": 1795607012.4707718,
+   "vues": 1700000,
+   "jaime": 152300,
+   "commentaires": 1825,
+   "hashtags_viraux": [
+    "gasstation",
+    "vape",
+    "hallucinogens"
+   ],
+   "medias": 1,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T12:43:45+01:00"
   }
  ]
 }
