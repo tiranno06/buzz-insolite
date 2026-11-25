@@ -1,6 +1,323 @@
 {
  "videos": [
   {
+   "id": "20261125-140715-1",
+   "tag": "v-20261125-140715-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-140715-1/buzz-20261125-140715-1.mp4",
+   "titre": "Marées géantes menacent Oregon et Californie",
+   "accroche": "VAGUES MORTELLES EN COASTE",
+   "sujet_id": "b654d333fe",
+   "sujet": "Maresées exceptionnelles menacent l'Oregon et la Californie",
+   "buzz": {
+    "vues": 13100000,
+    "jaime": 534100,
+    "commentaires": 13800,
+    "score": 4226
+   },
+   "description": "Des marées record menacent la côte Ouest 🌊 Découvre les chiffres et les alertes.",
+   "question": "Et toi, que ferais-tu face à une marée record ?",
+   "hashtags": [
+    "#marées",
+    "#elniño",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 76.1,
+   "sources": [
+    {
+     "media": "lesinguliersete.fr",
+     "titre": "La Californie sous la menace de marées géantes pour Thanksgiving",
+     "lien": "https://lesinguliersete.fr/la-californie-sous-la-menace-de-marees-geantes-pour-thanksgiving/"
+    },
+    {
+     "media": "lefigaro.fr",
+     "titre": "La Californie redoute des inondations historiques sous l'effet des grandes marées, d'El Niño et de l'océan surchauffé",
+     "lien": "https://www.lefigaro.fr/international/la-californie-redoute-des-inondations-historiques-sous-l-effet-des-grandes-marees-d-el-nino-et-de-l-ocean-surchauffe-20261124"
+    },
+    {
+     "media": "yaleclimateconnections.org",
+     "titre": "What’s causing major coastal flooding in California?",
+     "lien": "https://yaleclimateconnections.org/2026/11/whats-causing-major-coastal-flooding-in-california/"
+    },
+    {
+     "media": "ftnnews.com",
+     "titre": "Thanksgiving King Tides Cancel Ferries and Trigger Coastal Flood Warnings",
+     "lien": "https://ftnnews.com/travel-news/other-news/thanksgiving-king-tides-2026-ferry-flood-warnings/"
+    },
+    {
+     "media": "lefigaro.fr",
+     "titre": "États-Unis : le gouverneur de Californie déclare l'état d'urgence face à l'arrivée d'El Niño",
+     "lien": "https://www.lefigaro.fr/international/etats-unis-le-gouverneur-de-californie-declare-l-etat-d-urgence-face-a-l-arrivee-d-el-nino-20260921"
+    },
+    {
+     "media": "reviewjournal.com",
+     "titre": "‘A nightmare’: California cities prepare for record flooding — PHOTOS",
+     "lien": "https://www.reviewjournal.com/news/nation-and-world/a-nightmare-california-cities-prepare-for-record-flooding-photos-3919008/"
+    },
+    {
+     "media": "sudouest.fr",
+     "titre": "Marées historiques, pluies torrentielles, El Niño… La ville californienne de San Francisco se prépare à un risque accru d’inondations ce mercredi",
+     "lien": "https://www.sudouest.fr/international/etats-unis/marees-historiques-pluies-torrentielles-el-nino-la-ville-californienne-de-san-francisco-se-prepare-a-un-risque-accru-d-inondations-ce-mercredi-31662333.php"
+    },
+    {
+     "media": "theguardian.com",
+     "titre": "California beaches close as record-breaking tides and major flooding loom",
+     "lien": "https://www.theguardian.com/us-news/2026/nov/25/california-flooding-high-tides"
+    },
+    {
+     "media": "msn.com",
+     "titre": "La Californie redoute de fortes inondations sous l'effet des grandes marées, d'El Niño et de l'océan surchauffé",
+     "lien": "https://www.msn.com/fr-fr/actualite/other/la-californie-redoute-de-fortes-inondations-sous-l-effet-des-grandes-mar%C3%A9es-d-el-ni%C3%B1o-et-de-l-oc%C3%A9an-surchauff%C3%A9/ar-AA2i5OnJ"
+    }
+   ],
+   "verification": {
+    "par": "gemini:gemini-flash-lite-latest",
+    "corrigees": 2,
+    "retirees": 9,
+    "problemes": [
+     "Aucun article ne mentionne un homme et son chien fuyant les flots à Cannon Beach.",
+     "nombre isolé sans contexte ni fait vérifiable",
+     "nombre isolé sans contexte ni fait vérifiable",
+     "chiffres isolés sans contexte",
+     "terme en anglais non pertinent",
+     "Cette phrase ne contient qu'une unité de mesure isolée sans contexte ni verbe, ce qui n'apporte aucun fait vérifiable.",
+     "Le nom propre 'Waymo' est donné seul sans explication ni fait associé dans cette phrase.",
+     "Le nom propre 'Daniel Lurie' est mentionné sans verbe ni information contextuelle.",
+     "Le nombre 10,000 apparaît seul sans aucun lien avec un fait présent dans les articles.",
+     "Les articles mentionnent une canicule marine régionale sur le Pacifique, mais pas un record mondial des océans du globe s'étalant sur quatre ans."
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "@cbsnews (TikTok, extrait cité)",
+    "@cbsnews (TikTok, image citée)",
+    "Carte : Natural Earth, OpenStreetMap",
+    "Photo : lefigaro.fr (article cité)",
+    "Photo : lesinguliersete.fr (article cité)",
+    "Photo : reviewjournal.com (article cité)",
+    "Photo : sudouest.fr (article cité)"
+   ],
+   "extraits_perdus": 0,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 13,
+   "ecrans_total": 13,
+   "format": "buzz",
+   "voix": "chatterbox-bernard",
+   "lieu": "Cannon Beach, Oregon",
+   "humeur": "tension",
+   "categorie": "nature",
+   "texte": [
+    "Des vagues géantes s'abattent sur la côte Ouest !",
+    "Ces marées exceptionnelles, appelées « king tides », arrivent pendant la semaine de Thanksgiving.",
+    "Le gouverneur Gavin Newsom a déclaré l'état d'urgence en Californie.",
+    "Les prévisions annoncent une surcote pouvant atteindre 45 cm selon le NWS.",
+    "Le phénomène El Niño a 75 % de chances de devenir le plus fort jamais enregistré.",
+    "À San Francisco, la baie pourrait connaître son troisième plus haut niveau jamais enregistré.",
+    "Des vagues de 6-9 m pourraient déferler sur les rivages californiens.",
+    "Les ferries de Washington State Ferries annulent 10 traversées entre le 24 et le 27 novembre.",
+    "Plus de 300 000 passagers prévoient de voyager pendant la période de Thanksgiving.",
+    "Le niveau d'eau à San Francisco pourrait être de 2,8 ft au-dessus de la normale.",
+    "Des vagues de 20-30 ft menacent les baigneurs du littoral de San Francisco.",
+    "Les autorités locales ferment les plages de Santa Cruz, Monterey et Carmel pour éviter les accidents.",
+    "Une canicule marine historique touche le Pacifique nord.",
+    "En janvier 1983, San Francisco avait atteint un niveau de marée record mesuré à 2,9 pieds au-dessus de la normale.",
+    "Et toi, que ferais-tu face à une marée record ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-25T14:30:29+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 43,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 9,
+     "refus": 19,
+     "erreurs": 3,
+     "restant_demandes": "991",
+     "limite_demandes": "1000",
+     "restant_mots": "3628"
+    },
+    "gemini": {
+     "appels": 11,
+     "refus": 22,
+     "erreurs": 7
+    },
+    "openrouter": {
+     "appels": 4,
+     "refus": 10,
+     "erreurs": 0
+    }
+   },
+   "fabrication_s": 1395,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 60 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 7,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "video",
+      "ecran": 29,
+      "gravite": "moyen",
+      "probleme": "source coupée à gauche",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     }
+    ],
+    "sautes": [],
+    "corriges": 2,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "preuves": [
+    {
+     "ecran": 1,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711896010431204621",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:30:29+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711896010431204621",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, image citée)",
+     "releve_le": "2026-11-25T14:30:29+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711896010431204621",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, image citée)",
+     "releve_le": "2026-11-25T14:30:29+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711896010431204621",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, image citée)",
+     "releve_le": "2026-11-25T14:30:29+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://lesinguliersete.fr/la-californie-sous-la-menace-de-marees-geantes-pour-thanksgiving/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "lesinguliersete.fr",
+     "titre": "",
+     "credit": "Photo : lesinguliersete.fr (article cité)",
+     "releve_le": "2026-11-25T14:30:29+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://lesinguliersete.fr/la-californie-sous-la-menace-de-marees-geantes-pour-thanksgiving/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "lesinguliersete.fr",
+     "titre": "",
+     "credit": "Photo : lesinguliersete.fr (article cité)",
+     "releve_le": "2026-11-25T14:30:29+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://www.lefigaro.fr/international/la-californie-redoute-des-inondations-historiques-sous-l-effet-des-grandes-marees-d-el-nino-et-de-l-ocean-surchauffe-20261124",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "lefigaro.fr",
+     "titre": "",
+     "credit": "Photo : lefigaro.fr (article cité)",
+     "releve_le": "2026-11-25T14:30:29+01:00"
+    },
+    {
+     "ecran": 9,
+     "page": "https://www.reviewjournal.com/news/nation-and-world/a-nightmare-california-cities-prepare-for-record-flooding-photos-3919008/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "reviewjournal.com",
+     "titre": "",
+     "credit": "Photo : reviewjournal.com (article cité)",
+     "releve_le": "2026-11-25T14:30:29+01:00"
+    },
+    {
+     "ecran": 10,
+     "page": "https://www.reviewjournal.com/news/nation-and-world/a-nightmare-california-cities-prepare-for-record-flooding-photos-3919008/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "reviewjournal.com",
+     "titre": "",
+     "credit": "Photo : reviewjournal.com (article cité)",
+     "releve_le": "2026-11-25T14:30:29+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://www.reviewjournal.com/news/nation-and-world/a-nightmare-california-cities-prepare-for-record-flooding-photos-3919008/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "reviewjournal.com",
+     "titre": "",
+     "credit": "Photo : reviewjournal.com (article cité)",
+     "releve_le": "2026-11-25T14:30:29+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://www.reviewjournal.com/news/nation-and-world/a-nightmare-california-cities-prepare-for-record-flooding-photos-3919008/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "reviewjournal.com",
+     "titre": "",
+     "credit": "Photo : reviewjournal.com (article cité)",
+     "releve_le": "2026-11-25T14:30:29+01:00"
+    },
+    {
+     "ecran": 13,
+     "page": "https://www.reviewjournal.com/news/nation-and-world/a-nightmare-california-cities-prepare-for-record-flooding-photos-3919008/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "reviewjournal.com",
+     "titre": "",
+     "credit": "Photo : reviewjournal.com (article cité)",
+     "releve_le": "2026-11-25T14:30:29+01:00"
+    },
+    {
+     "ecran": 14,
+     "page": "https://www.sudouest.fr/international/etats-unis/marees-historiques-pluies-torrentielles-el-nino-la-ville-californienne-de-san-francisco-se-prepare-a-un-risque-accru-d-inondations-ce-mercredi-31662333.php",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "sudouest.fr",
+     "titre": "",
+     "credit": "Photo : sudouest.fr (article cité)",
+     "releve_le": "2026-11-25T14:30:29+01:00"
+    }
+   ],
+   "couverture_ms": 8300,
+   "durees": {
+    "articles": 0,
+    "ecriture": 42,
+    "texte": 242,
+    "images": 160,
+    "controle_images": 3,
+    "voix": 431,
+    "montage": 119,
+    "controle_final": 527,
+    "extraits": 0,
+    "regles": 0,
+    "rangement": 5
+   },
+   "refaite": null,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261124-233239-1-r13",
    "tag": "v-20261124-233239-1-r13",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r13/buzz-20261124-233239-1-r13.mp4",
