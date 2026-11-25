@@ -294,6 +294,9 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
   même photo de presse sur 3 écrans de suite → une image FIXE ne couvre qu'une phrase, les suivantes prennent d'autres
   images de l'événement. Vidéo Seattle : excellente (14/14 écrans de l'arrestation). Non corrigé : un nom en titre
   (« BOB FERGUSON ») peut s'afficher sur le visage d'une autre personne de l'extrait.
+- **Problème d'une phrase retirée** (vidéo CAN r14 du 25/11 : la règle a retiré « 18 7 18 », mais son problème de voix
+  restait ouvert → « à vérifier » à tort) : à la fin de l'étape « regles », tout problème ouvert dont la phrase n'existe plus
+  est clos (« phrase retirée »).
 - **Rejeu d'une vraie vidéo** (`tests/test_rejeu.py`, données réelles de la CAN r10 dans `tests/donnees/rejeu_can`, sans
   réseau ni IA, ~50 s, à chaque envoi) : les règles trouvent les défauts réels, la réparation ne touche que les passages
   fautifs, refaire le texte ne perd aucun extrait, le montage ne refait que les écrans changés. Il a trouvé dès sa 1re

@@ -996,3 +996,30 @@ class TestReglesMarees(unittest.TestCase):
             C.extraits, P.simulation, C.photos_presse = ancien, ancien_sim, ancien_pp
         ids = [p["media"]["id"] for p in ph[:-1]]
         self.assertEqual(len(set(ids)), len(ids), f"la même photo sur plusieurs écrans : {ids}")
+
+
+class TestProblemeDePhraseRetiree(unittest.TestCase):
+    def test_probleme_clos_quand_la_phrase_est_retiree(self):
+        """Une vidéo en simulation dont une phrase absurde est retirée par les règles : son problème de voix est clos."""
+        from robot import principal, controle
+        os.environ["SIMULATION"] = "1"
+        vrai = principal.script_simulation
+        def script(s):
+            d = vrai(s)
+            d["phrases"].insert(5, dict(voix="18 7 18", ecrit="18 7 18", ecran="", image=""))
+            return d
+        verif = controle.controle_video
+        def faux_controle(fichier, sc, dossier, B, *a, **k):     # la voix de la phrase absurde est jugée mauvaise
+            i = next((n for n, p in enumerate(sc["phrases"]) if p["ecrit"] == "18 7 18"), None)
+            if i is not None:
+                B.ouvrir("voix", "voix et sous-titres ne correspondent pas (0%)", controle.uid(sc, i))
+            return {}
+        principal.script_simulation, controle.controle_video = script, faux_controle
+        try:
+            faites = principal.creer(1, libre="Sujet avec une phrase absurde")
+        finally:
+            principal.script_simulation, controle.controle_video = vrai, verif
+            os.environ.pop("SIMULATION", None)
+        v = faites[0]
+        self.assertNotIn("18 7 18", v["texte"])
+        self.assertFalse([l for l in v["controles"]["lignes"] if not l["corrige"] and "0%" in l["probleme"]])

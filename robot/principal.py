@@ -490,6 +490,12 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 E["duree"] = montage.monter(script, dossier, fichier)
                 journal(f"  {script.get('_ecrans_refaits', 0)} écran(s) refait(s) seulement")
             pbs = etat_regles()
+        # problème ouvert sur une phrase qui n'existe plus (retirée par une règle) : clos (vidéo CAN r14 du 25/11 : phrase
+        # absurde retirée, mais son problème de voix restait ouvert et bloquait la vidéo)
+        uids = {q.get("uid") for q in script["phrases"]}
+        for l in B.lignes:
+            if not l["corrige"] and l.get("ecran") is not None and l["ecran"] not in uids:
+                l.update(corrige=True, solution="phrase retirée")
         E["regles"] = [x["message"] for x in pbs]
         for x in pbs:
             B.ouvrir("regles", x["message"], None if x.get("ecran") is None else controle.uid(script, x["ecran"]), "grave")
