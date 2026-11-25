@@ -31,6 +31,11 @@ RETIRE = ("does not exist", "no longer available", "not found", "decommissioned"
 def _mort(fourn, modele, code, corps):
     if code in (400, 404) and any(m in corps.lower() for m in RETIRE):
         _MORTS.add((fourn, modele))
+    bas = corps.lower()
+    # fournisseur entier hors service pour ce passage (25/11 : Mistral « You need a subscription » 402 à CHAQUE appel,
+    # 111 essais perdus par vidéo ; OpenRouter « free-models-per-day » : plus rien jusqu'au lendemain) : plus essayé
+    if code in (401, 402, 403) or "per-day" in bas or "per day" in bas or "billing" in bas or "subscription" in bas:
+        _SAUTES.add(fourn)
 
 
 class AucuneIA(Exception):

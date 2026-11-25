@@ -743,8 +743,13 @@ async function suivre(nouvelle) {
     const actives = A.filter(a => a.etat === "en_cours" || a.etat === "en_attente");
     heuresDeFin(A);
     if (A.length) $("#avancement").innerHTML = `<p class="muted petit" id="av-maj" style="margin:0 0 6px;text-align:right">mis à jour à l'instant</p>` + (actives.length > 1 ? `<p class="petit" style="margin:0 0 8px"><b>${A.filter(a => a.etat === "en_cours" && a.file !== "attente").length} vidéo(s) en fabrication, ${A.filter(a => a.etat === "en_attente" || a.file === "attente").length} en file d'attente</b></p>` : "") + A.map(barre).join("");
-    else if (Date.now() - demandeLe < 5 * 60e3) $("#avancement").innerHTML = `<b>📨 Commande envoyée : les machines démarrent…</b><div class="barre"><div style="width:2%"></div></div>`;
-    $("#avancement").hidden = !A.length && Date.now() - demandeLe >= 5 * 60e3;
+    else if (Date.now() - demandeLe < 5 * 60e3) $("#avancement").innerHTML = `<b>📨 Commande envoyée : vérification des IA puis démarrage…</b><div class="barre"><div style="width:2%"></div></div>`;
+    // créations mises en attente faute d'IA gratuites disponibles (vérification des crédits avant chaque création)
+    const attente = (D["garde.json"] || {}).en_attente || [];
+    if (!A.length && attente.length && Date.now() - demandeLe >= 5 * 60e3)
+      $("#avancement").innerHTML = `<b>⏸️ ${attente.length} création(s) en attente des IA gratuites</b>
+        <p class="petit muted" style="margin:4px 0 0">${esc(attente[0].raison || "")} — elles partiront toutes seules, une à la fois, dès que les IA seront disponibles (vérifié toutes les 15 min).</p>`;
+    $("#avancement").hidden = !A.length && !attente.length && Date.now() - demandeLe >= 5 * 60e3;
     const finies = A.filter(a => a.etat !== "en_cours" && !vuesFinies.has(a.id));      // une vidéo vient de finir : liste relue
     if (finies.length) { finies.forEach(a => vuesFinies.add(a.id)); charger(); }
     avLu = Date.now();

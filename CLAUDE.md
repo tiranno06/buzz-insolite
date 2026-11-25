@@ -305,6 +305,25 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
 - **Pas de déguisement en navigateur** (demande de l'auteur du 25/11, refusée) : les téléchargements d'extraits ne se font
   jamais passer pour Chrome quand TikTok refuse (contournement d'une protection anti-robots) ; simples nouveaux essais.
 
+## Crédits des IA vérifiés AVANT chaque création (demande de l'auteur du 25/11, vidéos à 0/100)
+Cause : 5 vidéos lancées en même temps à 16 h 30 → Mistral « You need a subscription » (402) à CHAQUE appel (111 essais perdus
+par vidéo), OpenRouter « free-models-per-day », Groq et Gemini saturées → textes écrits / vérifiés par de petites IA de secours,
+« phrases » qui n'étaient que des nombres (« 74 », « 2 », « 2026 », ajoutées par la réécriture pour allonger le texte), titres
+en anglais, vidéos de 45 à 59 s. Corrections :
+- `robot/credits.py` : `verifier()` essaie chaque IA (petite question texte, puis petite image) → il faut 2 IA qui écrivent
+  (une écrit, une AUTRE vérifie) + 1 IA qui voit, et au plus `MAX_EN_MEME_TEMPS` (2) vidéos en fabrication ; raison lisible
+  (abonnement nécessaire, limite du jour, trop de demandes). Job « plan » de creer.yml (clés des IA + GH_TOKEN) : pas bon =
+  `mettre_en_attente` (garde.json → `en_attente`, une entrée par vidéo), aucune machine (`if: plan != '[]'`) ; une série
+  plus grande que les places libres part en partie, le reste attend. Garde (toutes les 15 min, clés des IA) :
+  `relancer_attente` lance la plus ancienne dès que la vérification passe (une par passage) ; créneaux automatiques vérifiés
+  aussi. Site : « ⏸️ N création(s) en attente des IA gratuites » dans le cadre d'avancement.
+- `ia._mort` : 401 / 402 / 403, « per-day », « billing », « subscription » = fournisseur entier mis de côté pour le passage.
+- Phrases ajoutées ou réécrites par l'IA (`controle_texte`, allongement) et texte de l'IA (`ecrire.normaliser`) : jamais une
+  phrase absurde (nombre seul), 5 vrais mots au moins pour un ajout.
+- Règle « texte_non_verifie » : faits non vérifiés par une 2e IA (IA saturées) = revérifiés, sinon jamais publiée.
+- LanguageTool ne touche JAMAIS une citation entre guillemets (« racli » devenu « racle » dans la vidéo GTA).
+- Unités : « 30 pieds, soit 9 mètres » → « 9 mètres » (plus « 9 m, soit 9 mètres »).
+
 ## Boutons des vidéos (demande de l'auteur du 25/11 : « comme l'autre projet », jt-auto)
 Interrupteurs `boutonsVideo` / `bascule` (classe `.btn.bascule`) : VIDES tant qu'ils ne sont pas activés (« ☐ À publier »,
 « ☐ Écarter », « 🚀 Publier maintenant »), COLORÉS seulement une fois activés (« ✅ À publier · n° k dans la file » vert,

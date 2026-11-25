@@ -58,10 +58,18 @@ jobs:
         id: plan
         env:
           LIBRE: ${{ inputs.libre }}
-        run: python -m robot.principal --plan --nombre "${{ inputs.nombre || '1' }}" --sujet "${{ inputs.sujet }}" --libre "$LIBRE" --format "${{ inputs.format || 'buzz' }}" --refaire "${{ inputs.refaire }}"
+          REMARQUE: ${{ inputs.remarque }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
+        # vérifie d'abord les crédits des IA gratuites : pas assez = création mise en attente (lancée par la garde)
+        run: python -m robot.principal --plan --nombre "${{ inputs.nombre || '1' }}" --sujet "${{ inputs.sujet }}" --libre "$LIBRE" --format "${{ inputs.format || 'buzz' }}" --refaire "${{ inputs.refaire }}" --etape "${{ inputs.etape || 'auto' }}" --remarque "$REMARQUE" --origine "${{ inputs.origine }}"
 
   creer:
     needs: plan
+    if: needs.plan.outputs.plan != '[]'    # création mise en attente (IA gratuites saturées) : aucune machine
     runs-on: ubuntu-24.04
     timeout-minutes: 350              # dont l'attente éventuelle dans la file (200 min au plus)
     strategy:

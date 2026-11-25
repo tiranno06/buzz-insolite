@@ -58,7 +58,13 @@ def _arrondi(x):
 
 
 def convertir_unites(t):
-    """« 20-30 ft » → « 6 à 9 m », « 2,8 ft » → « 0,9 m », « 300 miles » → « 483 km »."""
+    """« 20-30 ft » → « 6 à 9 m », « 2,8 ft » → « 0,9 m », « 300 miles » → « 483 km » ; déjà converti dans la phrase
+    (« 30 pieds, soit 9 mètres ») : seule la mesure française reste (« 9 mètres », vidéo de l'Arche du 25/11)."""
+    t = re.sub(rf"\b{_NOMBRE}(?:\s*(?:-|à)\s*{_NOMBRE})?\s*(?:{'|'.join(UNITES)})\b\s*,?\s*(?:soit|ou|c'est-à-dire|environ)?\s*\(?"
+               rf"(?=(?:environ\s+)?{_NOMBRE}\s*(?:m|km|kg|cm|mètres?|kilomètres?|kilos?|kilogrammes?|centimètres?)\b)", "", t or "",
+               flags=re.I)
+    if "(" not in t:                                          # parenthèse fermante restée seule : « 483 km) » → « 483 km »
+        t = re.sub(rf"({_NOMBRE}\s*(?:m|km|kg|cm|mètres?|kilomètres?|kilos?)\b)\)", r"\1", t)
     def rep(m):
         k, u = UNITES[m.group(3).lower()]
         a = float(m.group(1).replace(",", ".")) * k
@@ -133,6 +139,8 @@ def verifier(script, articles, hashtags=None, duree=None, description=None, ques
             pb.append(dict(regle="titre", ecran=i, message=f"écran {i + 1} : titre « {p['ecran']} » absent de la phrase dite"))
     if script.get("accroche") and _accroche_fautive(script["accroche"], script.get("titre", "")):
         pb.append(dict(regle="accroche", ecran=None, message=f"accroche mal écrite : « {script['accroche']} »"))
+    if script.get("verifie") is False:                       # aucune 2e IA n'a pu vérifier les faits (IA saturées)
+        pb.append(dict(regle="texte_non_verifie", ecran=None, message="faits non vérifiés par une 2e IA"))
     from .montage import REMPLACER
     for i, p in enumerate(ph):
         if any(c in REMPLACER for c in (p.get("ecrit") or "") + (p.get("ecran") or "")):
@@ -223,6 +231,14 @@ def reparer(script, problemes, articles, R, journal=print, sujet=None):
             ph[i]["ecran"] = ""; ph[i].pop("_sig", None); images_.add(i)
         elif r == "accroche":
             script["accroche"] = " ".join(str(script.get("titre") or "").upper().split()[:4]); champs.add("accroche")
+        elif r == "texte_non_verifie":                       # nouvel essai de vérification des faits
+            avant = [p.get("ecrit") for p in ph]
+            ecrire.verifier(script, articles, journal)
+            if len(ph) != len(avant):
+                return textes | set(range(len(ph))), images_ | {-1}, champs
+            textes |= {k for k, p in enumerate(ph) if p.get("ecrit") != avant[k]}
+            for k in textes:
+                _changer(ph[k], ph[k]["ecrit"])
         elif r == "caracteres" and i is not None:            # remplacés à l'affichage aussi : seul l'écran est refait
             from .montage import affichable
             for k in ("ecrit", "ecran"):

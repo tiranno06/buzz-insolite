@@ -20,10 +20,17 @@ jobs:
     env:
       BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
       GH_TOKEN: ${{ github.token }}
+      # vérification des crédits des IA avant chaque création (créations en attente, créneaux automatiques)
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Outil d'images (petite image pour vérifier les IA qui voient)
+        run: pip install -q "Pillow>=11,<14"
       - name: Publier ou créer si c'est l'heure
         run: python -m robot.publication_auto

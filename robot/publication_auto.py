@@ -46,6 +46,7 @@ def main():
         if R["publication"].get("auto") else []
     cre_dus = creneaux_dus(R["creation"]["heures"], (E.get("creation") or {}).get(jour, []), now) \
         if R["creation"].get("auto") else []
+    relancer_attente(E)                                  # créations en attente des IA : lancées dès qu'elles sont prêtes
     if not pub_dus and not cre_dus:
         print("Rien à faire maintenant.")
         return
@@ -107,9 +108,42 @@ def main():
     for h in lancer:
         format_ = format_auto(R, now, h)
         if depot.en_ligne():
+            # les crédits des IA sont vérifiés AVANT (demande de l'auteur du 25/11) : sinon la création attend
+            from . import credits
+            ok, resume, _ = credits.verifier(1)
+            if not ok:
+                credits.mettre_en_attente({"nombre": "1", "format": format_, "origine": f"auto {h}"}, resume.lstrip("⏸️ "))
+                continue
             subprocess.run(["gh", "workflow", "run", "creer.yml", "-f", "nombre=1", "-f", f"format={format_}",
                             "-f", f"origine=auto {h}"], check=False, env=dict(os.environ))
         noter(f"🤖 Création automatique lancée (créneau de {h}, format {format_}).")
+
+
+def relancer_attente(E):
+    """Créations mises en attente faute d'IA disponibles (`credits.mettre_en_attente`) : la plus ancienne est lancée dès
+    que la vérification des crédits passe (une seule par passage de la garde, pour ne pas resaturer les IA)."""
+    attente = E.get("en_attente") or []
+    if not attente or not depot.en_ligne():
+        return
+    from . import credits
+    ok, resume, _ = credits.verifier(1)
+    if not ok:
+        print(f"{len(attente)} création(s) en attente : {resume}")
+        return
+    demande = attente[0]
+
+    def appliquer():
+        G = lire("garde.json") or {}
+        G["en_attente"] = [x for x in G.get("en_attente") or [] if x != demande]
+        G["credits"] = {"le": iso(), "resume": resume}
+        ecrire("garde.json", G)
+        noter(f"▶️ Création en attente lancée : les IA gratuites sont de nouveau disponibles ({resume.lstrip('✅ ')}).")
+    depot.enregistrer(appliquer, "Création en attente lancée")
+    E["en_attente"] = attente[1:]
+    args = ["gh", "workflow", "run", "creer.yml"]
+    for k, v in (demande.get("inputs") or {}).items():
+        args += ["-f", f"{k}={v}"]
+    subprocess.run(args, check=False, env=dict(os.environ))
 
 
 SERIES = {0: ("chiffre", "LE CHIFFRE DU LUNDI", "lechiffredulundi"),

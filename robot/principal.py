@@ -867,7 +867,27 @@ def main():
     a.add_argument("--refaire", default="", help="identifiant de la vidéo à refaire en corrigeant")
     a.add_argument("--etape", default="auto", help="auto, texte, voix, images ou tout")
     a.add_argument("--remarque", default="", help="ce qui ne va pas (écrit par l'auteur)")
+    a.add_argument("--origine", default="")
     o = a.parse_args()
+    if o.plan and depot.en_ligne() and not simulation():
+        # VÉRIFICATION DES CRÉDITS DES IA AVANT DE CRÉER (demande de l'auteur du 25/11) : pas assez d'IA gratuites
+        # disponibles = la création est mise en attente (la garde la lancera d'elle-même), aucune machine ne démarre
+        from . import credits
+        n = 1 if o.refaire else max(1, min(10, o.nombre))
+        en_cours = max(0, credits.en_fabrication() - 1)          # (- 1 : cette tâche-ci)
+        ok, resume, _ = credits.verifier(n, en_cours)
+        libres = credits.places(en_cours) if ok else 0
+        if libres < n:                                         # ce qui ne peut pas partir attend (une vidéo à la fois)
+            demande = {k: v for k, v in dict(sujet=o.sujet, libre=o.libre, format=o.format, refaire=o.refaire,
+                                             etape=o.etape, remarque=o.remarque, origine=o.origine or "attente").items() if v}
+            for _ in range(n - libres):
+                credits.mettre_en_attente(dict(demande, nombre="1"), resume.lstrip("⏸️ "))
+            if not libres:
+                if os.environ.get("GITHUB_OUTPUT"):
+                    with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+                        f.write("plan=[]\nparalleles=1\n")
+                return
+            o.nombre = libres
     if o.refaire and o.plan:
         if os.environ.get("GITHUB_OUTPUT"):
             with open(os.environ["GITHUB_OUTPUT"], "a") as f:

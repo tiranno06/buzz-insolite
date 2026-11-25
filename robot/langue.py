@@ -6,6 +6,7 @@ toujours la bonne : « Les joueur » → « Le joueur »). Les noms propres ne s
 n'est changé (la vidéo se fait quand même).
 """
 import json
+import re
 import urllib.parse
 import urllib.request
 
@@ -48,9 +49,12 @@ def corriger(script, journal=print):
     for i, liste in sorted(par_phrase.items()):
         p, ecrit = ph[i], textes[i]
         reste = []
+        citations_ = [(m.start(), m.end()) for m in re.finditer(r"«[^»]*»|\"[^\"]*\"", ecrit)]
         for f in sorted(liste, key=lambda f: -f["offset"]):          # de la fin vers le début : les positions restent justes
             a = f["offset"] - debuts[i]; b = a + f["length"]
             mot = ecrit[a:b]
+            if any(x <= a < y for x, y in citations_):
+                continue                                      # CITATION entre guillemets : jamais touchée (« racli » 25/11)
             reps = [r["value"] for r in f.get("replacements") or []]
             if f["rule"]["category"]["id"] == "TYPOS":
                 if mot[:1].isupper() or not reps:

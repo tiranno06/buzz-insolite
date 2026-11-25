@@ -195,13 +195,17 @@ def controle_texte(script, articles, B, journal=print, tours=3):
                 k = int(k)
             except ValueError:
                 continue
-            if k in signalees and 0 <= k < len(ph) and str(nouv.get("voix") or "").strip():   # jamais une phrase saine
+            if k in signalees and 0 <= k < len(ph) and str(nouv.get("voix") or "").strip() \
+                    and not phrase_absurde(str(nouv.get("ecrit") or nouv["voix"])):   # jamais une phrase saine ni absurde
                 garde = {c: ph[k][c] for c in ("reponse",) if ph[k].get(c)}
                 ph[k] = dict(voix=nombres.dire_les_nombres(str(nouv["voix"])), ecrit=str(nouv.get("ecrit") or nouv["voix"]),
                              ecran=str(nouv.get("ecran") or "")[:24], image=str(nouv.get("image") or ph[k].get("image", "")), **garde)
                 refaites += 1
         for a in d.get("ajouts") or []:
-            if str(a.get("voix") or "").strip():
+            # phrase ajoutée par l'IA : une VRAIE phrase seulement (25/11, IA de secours saturée : « 74 », « 2 », « 2026 »
+            # ajoutés comme phrases → vidéos à 0/100)
+            if isinstance(a, dict) and str(a.get("voix") or "").strip() and not phrase_absurde(str(a.get("ecrit") or a["voix"])) \
+                    and len(re.findall(r"[A-Za-zÀ-ÿ]{2,}", str(a.get("ecrit") or a["voix"]))) >= 5:
                 ph.insert(len(ph) - 1, dict(voix=nombres.dire_les_nombres(str(a["voix"])), ecrit=str(a.get("ecrit") or a["voix"]),
                                             ecran=str(a.get("ecran") or "")[:24], image=str(a.get("image") or script.get("theme_image", ""))))
                 refaites += 1
@@ -666,7 +670,8 @@ def controle_texte_ajout(script, articles, journal=print):
                                               for a in articles)[:12000]
     d, _ = ia.demander_json(CONSIGNE_REECRIRE, texte, temperature=0.5, journal=journal)
     for a in d.get("ajouts") or []:
-        if str(a.get("voix") or "").strip():
+        if isinstance(a, dict) and str(a.get("voix") or "").strip() and not phrase_absurde(str(a.get("ecrit") or a["voix"])) \
+                and len(re.findall(r"[A-Za-zÀ-ÿ]{2,}", str(a.get("ecrit") or a["voix"]))) >= 5:
             ph.insert(len(ph) - 1, dict(voix=nombres.dire_les_nombres(str(a["voix"])), ecrit=str(a.get("ecrit") or a["voix"]),
                                         ecran=str(a.get("ecran") or "")[:24], image=str(a.get("image") or script.get("theme_image", "")),
                                         entite=str(a.get("entite") or "")[:80]))

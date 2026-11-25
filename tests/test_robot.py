@@ -1023,3 +1023,72 @@ class TestProblemeDePhraseRetiree(unittest.TestCase):
         v = faites[0]
         self.assertNotIn("18 7 18", v["texte"])
         self.assertFalse([l for l in v["controles"]["lignes"] if not l["corrige"] and "0%" in l["probleme"]])
+
+
+class TestCreditsIA(unittest.TestCase):
+    def _avec(self, reponses):
+        """reponses : {fournisseur: exception ou None (= répond)}"""
+        from robot import credits, ia
+        import urllib.error, io
+        def appel(fourn, modele, messages, t, m):
+            e = reponses.get(fourn)
+            if e:
+                raise urllib.error.HTTPError("u", e[0], "x", {}, io.BytesIO(e[1].encode()))
+            return '{"ok": true}'
+        ancien, env = ia._appel, dict(os.environ)
+        ia._appel = appel
+        for f in ia.ORDRE:
+            os.environ[ia.FOURNISSEURS[f]["cle"]] = "x"
+        avant_or = ia._modeles_openrouter
+        ia._modeles_openrouter = lambda vision=False: ("m:free",)
+        try:
+            return credits.verifier(1, 0, journal=lambda *_: None)
+        finally:
+            ia._appel, ia._modeles_openrouter = ancien, avant_or
+            os.environ.clear(); os.environ.update(env)
+
+    def test_saturees_mise_en_attente(self):
+        ok, resume, detail = self._avec({"mistral": (402, "You need a subscription"), "groq": (429, "Rate limit (RPD) per day"),
+                                         "gemini": (429, "quota per day"), "openrouter": (429, "free-models-per-day")})
+        self.assertFalse(ok)
+        self.assertIn("abonnement", detail["mistral"]["raison"])
+        self.assertIn("limite du jour", detail["openrouter"]["raison"])
+
+    def test_assez_d_ia(self):
+        ok, resume, detail = self._avec({"mistral": (402, "You need a subscription")})
+        self.assertTrue(ok, resume)
+
+    def test_places(self):
+        from robot import credits
+        self.assertEqual(credits.places(0), credits.MAX_EN_MEME_TEMPS)
+        self.assertEqual(credits.places(5), 0)
+
+    def test_fournisseur_sans_abonnement_plus_essaye(self):
+        from robot import ia
+        ia._SAUTES.discard("mistral")
+        ia._mort("mistral", "m", 402, '{"message":"You need a subscription to access this API."}')
+        self.assertIn("mistral", ia._SAUTES)
+        ia._SAUTES.discard("mistral")
+
+
+class TestPhrasesNombres(unittest.TestCase):
+    def test_normaliser_et_ajouts_refusent_les_nombres(self):
+        from robot import controle, ecrire, ia
+        d = {"titre": "t", "accroche": "A", "phrases": [dict(voix=f"Phrase numéro {k} avec assez de mots ici.") for k in range(9)]
+             + [dict(voix="74"), dict(voix="2026"), dict(voix="Et toi, tu en penses quoi ?")]}
+        n = ecrire.normaliser(d, {"titre": "t"}, "buzz", "x")
+        self.assertFalse([p for p in n["phrases"] if p["ecrit"] in ("74", "2026")])
+        script = {"phrases": [dict(voix="Une phrase.", ecrit="Une phrase.") for _ in range(3)] + [dict(voix="Et toi ?", ecrit="Et toi ?")]}
+        ancien = ia.demander_json
+        ia.demander_json = lambda *a, **k: ({"phrases": {}, "ajouts": [{"voix": "74"}, {"voix": "2"},
+                                             {"voix": "Les avocats ont tenté de reporter la peine."}]}, "x")
+        try:
+            B = controle.Bulletin()
+            texte_court = controle.regles_texte
+            controle.regles_texte = lambda s: [(None, "trop court", False)] if len(s["phrases"]) < 5 else []
+            controle.controle_texte(script, [], B, journal=lambda *_: None)
+        finally:
+            ia.demander_json = ancien; controle.regles_texte = texte_court
+        ecrits = [p["ecrit"] for p in script["phrases"]]
+        self.assertNotIn("74", ecrits); self.assertNotIn("2", ecrits)
+        self.assertIn("Les avocats ont tenté de reporter la peine.", ecrits)

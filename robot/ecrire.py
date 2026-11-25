@@ -158,7 +158,9 @@ def normaliser(d, sujet, format_, qui, journal=print):
     for k in ("titre", "accroche", "description", "question"):
         if isinstance(d.get(k), str):
             d[k] = affichable(d[k])
-    phrases = [p for p in d.get("phrases") or [] if str(p.get("voix") or "").strip()]
+    from .controle import phrase_absurde                     # jamais une « phrase » qui n'est qu'un nombre (25/11)
+    phrases = [p for p in d.get("phrases") or [] if isinstance(p, dict) and str(p.get("voix") or "").strip()
+               and (not phrase_absurde(str(p.get("ecrit") or p["voix"])) or "?" in str(p.get("ecrit") or ""))]
     if len(phrases) < 8:
         raise ValueError(f"texte trop court ({len(phrases)} phrases)")
     for p in phrases:
