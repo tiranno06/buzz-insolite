@@ -445,9 +445,9 @@
    "refaite_de": "20261124-233208-1"
   },
   {
-   "id": "20261124-233244-1",
-   "tag": "v-20261124-233244-1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233244-1/buzz-20261124-233244-1.mp4",
+   "id": "20261124-233244-1-r1",
+   "tag": "v-20261124-233244-1-r1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233244-1-r1/buzz-20261124-233244-1-r1.mp4",
    "titre": "Macron et l'A320 : un futur qui décolle",
    "accroche": "FRANCE EN VOL",
    "sujet_id": "67ccec0235",
@@ -517,12 +517,11 @@
    },
    "verifie": true,
    "credits": [
+    "Abujoy / Wikimedia Commons, CC BY 4.0",
     "Carte : Natural Earth, OpenStreetMap",
-    "Centers for Disease Control and Preventi / Wikimedia Commons, Public domain",
-    "Titre : actu.fr",
-    "Titre : ladepeche.fr"
+    "Matti Blume / Wikimedia Commons, CC BY-SA 4.0"
    ],
-   "ecrans_illustres": 11,
+   "ecrans_illustres": 4,
    "ecrans_total": 12,
    "format": "buzz",
    "voix": "chatterbox-bernard",
@@ -546,46 +545,100 @@
     "Prêt à voler sur l’A320 du futur ?"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T00:46:18+01:00",
-   "fabrication_s": 4414,
+   "cree_le": "2026-11-25T02:22:55+01:00",
+   "fabrication_s": 4326,
    "controles": {
-    "note": 10,
+    "note": 0,
     "lignes": [
      {
-      "niveau": "texte",
-      "ecran": 3,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": 5,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": 12,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": null,
+      "niveau": "images",
+      "ecran": 19,
       "gravite": "moyen",
-      "probleme": "texte trop court (environ 60 s, il faut plus d'1 minute)",
+      "probleme": "Image d'un avion en vol, pas d'usine ou d'assemblage A320",
+      "corrige": false,
+      "essais": 5,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "Image d'un avion en vol, pas de station d'assemblage",
+      "corrige": false,
+      "essais": 5,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "Image montre un avion en vol, pas de données de production",
       "corrige": true,
-      "essais": 1,
-      "solution": "phrase réécrite et revérifiée"
+      "essais": 4,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 2,
+      "solution": "vraie vidéo de « Airbus A350F »"
+     },
+     {
+      "niveau": "images",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "Image montre un avion en vol, pas de lien avec les aides financières",
+      "corrige": true,
+      "essais": 4,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "écran presque noir",
+      "corrige": true,
+      "essais": 3,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "image illisible",
+      "corrige": true,
+      "essais": 3,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "Image trop générique, pas spécifique à l'événement",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "Pas lié aux emplois ou recrutements, image trop générique",
+      "corrige": true,
+      "essais": 3,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
@@ -601,333 +654,124 @@
       "ecran": 17,
       "gravite": "moyen",
       "probleme": "image illisible",
-      "corrige": true,
-      "essais": 4,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 19,
-      "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 4,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 20,
-      "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 21,
-      "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 4,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "corrige": false,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
       "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 4,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 4,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 24,
-      "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 2,
-      "solution": "autre passage d'une vraie vidéo du sujet"
-     },
-     {
-      "niveau": "images",
-      "ecran": 25,
-      "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 2,
-      "solution": "autre passage d'une vraie vidéo du sujet"
-     },
-     {
-      "niveau": "images",
-      "ecran": 24,
       "gravite": "moyen",
       "probleme": "image illisible",
       "corrige": false,
       "essais": 2,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "Image d'un avion en vol, pas de technologie ou économie carburant",
+      "corrige": false,
+      "essais": 1,
       "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 25,
       "gravite": "moyen",
-      "probleme": "Avion incorrect (A350/A380, pas A320)",
-      "corrige": true,
+      "probleme": "Image d'un avion en vol, pas d'ouvriers ou usine",
+      "corrige": false,
       "essais": 1,
       "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
-      "niveau": "voix",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "mots mal prononcés",
-      "corrige": true,
-      "essais": 3,
-      "solution": "phrase simplifiée puis refaite"
-     },
-     {
-      "niveau": "voix",
-      "ecran": 29,
-      "gravite": "moyen",
-      "probleme": "voix et sous-titres ne correspondent pas (0%)",
-      "corrige": true,
-      "essais": 3,
-      "solution": "phrase retirée"
-     },
-     {
-      "niveau": "voix",
-      "ecran": 30,
-      "gravite": "moyen",
-      "probleme": "voix et sous-titres ne correspondent pas (40%)",
-      "corrige": true,
-      "essais": 5,
-      "solution": "phrase simplifiée puis refaite"
-     },
-     {
-      "niveau": "voix",
-      "ecran": 31,
-      "gravite": "moyen",
-      "probleme": "voix et sous-titres ne correspondent pas (0%)",
-      "corrige": true,
-      "essais": 3,
-      "solution": "phrase retirée"
-     },
-     {
-      "niveau": "voix",
-      "ecran": 32,
-      "gravite": "moyen",
-      "probleme": "voix et sous-titres ne correspondent pas (0%)",
-      "corrige": true,
-      "essais": 3,
-      "solution": "phrase retirée"
-     },
-     {
-      "niveau": "video",
-      "ecran": 21,
-      "gravite": "moyen",
-      "probleme": "Le sous-titre chevauche le texte de l'article",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 20,
-      "gravite": "moyen",
-      "probleme": "Le sous-titre chevauche le texte de l'article",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 19,
-      "gravite": "moyen",
-      "probleme": "Le sous-titre chevauche le texte de l'article",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 18,
-      "gravite": "moyen",
-      "probleme": "Le sous-titre chevauche le texte de l'article",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
+      "niveau": "images",
       "ecran": 26,
       "gravite": "moyen",
-      "probleme": "Texte partiellement masqué par le chevauchement",
+      "probleme": "Image d'un avion en vol, pas de profils ou recrutement aéronautique",
       "corrige": false,
-      "essais": 3,
-      "solution": "nouvelle image (« workers with tools »)"
+      "essais": 1,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": null,
+      "gravite": "grave",
+      "probleme": "trop peu d'images : 5 écran(s) illustré(s) sur 12",
+      "corrige": false,
+      "essais": 1
      },
      {
       "niveau": "video",
       "ecran": 25,
       "gravite": "moyen",
       "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 24,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 21,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 20,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 19,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 25,
-      "gravite": "moyen",
-      "probleme": "Texte partiellement masqué par le chevauchement",
       "corrige": false,
-      "essais": 1,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
-      "ecran": 24,
-      "gravite": "moyen",
-      "probleme": "Texte partiellement masqué par le chevauchement",
-      "corrige": false,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "Texte partiellement masqué par le chevauchement",
-      "corrige": false,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "Texte partiellement masqué par le chevauchement",
-      "corrige": false,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 21,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": false,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 20,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": false,
-      "essais": 1,
-      "solution": "titre raccourci"
+      "essais": 12,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
      }
     ],
-    "sautes": [
-     "regard de l'IA sur la vidéo finie (IA indisponible)"
-    ],
-    "corriges": 30,
-    "restants": 8,
+    "sautes": [],
+    "corriges": 9,
+    "restants": 9,
     "graves_restants": 9
    },
    "reprises": 0,
    "preuves": [
     {
-     "ecran": 10,
-     "page": "https://commons.wikimedia.org/?curid=61569685",
-     "licence": "Public domain",
-     "auteur": "Centers for Disease Control and Preventi",
+     "ecran": 1,
+     "page": "https://commons.wikimedia.org/?curid=83395803",
+     "licence": "CC BY 4.0",
+     "auteur": "Abujoy",
      "titre": "",
-     "credit": "Centers for Disease Control and Preventi / Wikimedia Commons, Public domain",
-     "releve_le": "2026-11-25T00:46:18+01:00"
+     "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T02:22:55+01:00"
+    },
+    {
+     "ecran": 10,
+     "page": "https://commons.wikimedia.org/?curid=83395803",
+     "licence": "CC BY 4.0",
+     "auteur": "Abujoy",
+     "titre": "",
+     "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T02:22:55+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://commons.wikimedia.org/?curid=79865480",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Matti Blume",
+     "titre": "",
+     "credit": "Matti Blume / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T02:22:55+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://commons.wikimedia.org/?curid=83395803",
+     "licence": "CC BY 4.0",
+     "auteur": "Abujoy",
+     "titre": "",
+     "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T02:22:55+01:00"
     }
    ],
-   "couverture_ms": 13895,
+   "couverture_ms": 45905,
    "durees": {
-    "articles": 8,
-    "ecriture": 77,
-    "texte": 113,
-    "images": 56,
-    "controle_images": 263,
-    "voix": 765,
-    "montage": 157,
-    "controle_final": 3258,
-    "rangement": 11
+    "voix": 0,
+    "images": 297,
+    "controle_images": 1112,
+    "montage": 77,
+    "controle_final": 2823,
+    "rangement": 7
    },
-   "refaite": null,
+   "refaite": {
+    "de": "20261124-233244-1",
+    "etape": "images",
+    "remarque": "Scènes de 5 à 10 s en vraies vidéos de toutes les sources, sans doublon"
+   },
    "statut": "a_verifier",
-   "refaite_de": "20261124-194231-1"
+   "refaite_de": "20261124-233244-1"
   },
   {
    "id": "20261124-233157-1-r1",
