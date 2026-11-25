@@ -571,9 +571,9 @@
    "refaite_de": "20261124-233208-1-r4"
   },
   {
-   "id": "20261124-233244-1-r5",
-   "tag": "v-20261124-233244-1-r5",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233244-1-r5/buzz-20261124-233244-1-r5.mp4",
+   "id": "20261124-233244-1-r6",
+   "tag": "v-20261124-233244-1-r6",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233244-1-r6/buzz-20261124-233244-1-r6.mp4",
    "titre": "Macron et l'A320 : un futur qui décolle",
    "accroche": "FRANCE EN VOL",
    "sujet_id": "67ccec0235",
@@ -645,11 +645,10 @@
    "credits": [
     "Abujoy / Wikimedia Commons, CC BY 4.0",
     "Carte : Natural Earth, OpenStreetMap",
-    "Jeremy Elson / Wikimedia Commons, CC BY-SA 3.0",
-    "Matti Blume / Wikimedia Commons, CC BY-SA 4.0",
-    "Unknown authorUnknown author or not prov / Wikimedia Commons, Public domain",
     "Wikipédia, article « Airbus A320 »",
-    "Wikipédia, article « Airbus Commercial Aircraft »"
+    "Wikipédia, article « Airbus A350 »",
+    "Wikipédia, article « Airbus Commercial Aircraft »",
+    "Wikipédia, article « Airbus Helicopters H155 »"
    ],
    "ecrans_illustres": 12,
    "ecrans_total": 12,
@@ -675,18 +674,72 @@
     "Prêt à voler sur l’A320 du futur ?"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T05:47:56+01:00",
-   "fabrication_s": 916,
+   "cree_le": "2026-11-25T07:13:22+01:00",
+   "fabrication_s": 1974,
    "controles": {
-    "note": 80,
-    "lignes": [],
-    "sautes": [
-     "regard de l'IA sur les images (IA indisponible)",
-     "regard de l'IA sur la vidéo finie (IA indisponible)"
+    "note": 90,
+    "lignes": [
+     {
+      "niveau": "images",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "image qui ne colle pas",
+      "corrige": true,
+      "essais": 1,
+      "solution": "nouvelle image (« A320 Toulouse factory interior »)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "image qui ne colle pas",
+      "corrige": true,
+      "essais": 1,
+      "solution": "image du thème (« airplane assembly factory »)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "image qui ne colle pas",
+      "corrige": true,
+      "essais": 1,
+      "solution": "nouvelle image (« A320 production stats Airbus »)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "image qui ne colle pas",
+      "corrige": true,
+      "essais": 1,
+      "solution": "nouvelle image (« A320 cargo capacity Airbus »)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "ancienne photo non liée au sujet",
+      "corrige": true,
+      "essais": 1,
+      "solution": "image du thème (« airplane assembly factory »)"
+     },
+     {
+      "niveau": "video",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "texte mal placé",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     }
     ],
-    "corriges": 0,
+    "sautes": [
+     "regard de l'IA sur les images (IA indisponible)"
+    ],
+    "corriges": 6,
     "restants": 0,
-    "graves_restants": 2
+    "graves_restants": 1
    },
    "reprises": 0,
    "preuves": [
@@ -697,7 +750,7 @@
      "auteur": "Abujoy",
      "titre": "",
      "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
-     "releve_le": "2026-11-25T05:47:56+01:00"
+     "releve_le": "2026-11-25T07:13:22+01:00"
     },
     {
      "ecran": 3,
@@ -706,34 +759,34 @@
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Airbus A320 »",
-     "releve_le": "2026-11-25T05:47:56+01:00"
+     "releve_le": "2026-11-25T07:13:22+01:00"
     },
     {
      "ecran": 4,
-     "page": "https://commons.wikimedia.org/?curid=62534882",
-     "licence": "Public domain",
-     "auteur": "Unknown authorUnknown author or not prov",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ATHK-CX_EC155B_JA08CX_RJOY_20090125-002.jpg",
+     "licence": "",
+     "auteur": "",
      "titre": "",
-     "credit": "Unknown authorUnknown author or not prov / Wikimedia Commons, Public domain",
-     "releve_le": "2026-11-25T05:47:56+01:00"
+     "credit": "Wikipédia, article « Airbus Helicopters H155 »",
+     "releve_le": "2026-11-25T07:13:22+01:00"
     },
     {
      "ecran": 5,
-     "page": "https://commons.wikimedia.org/?curid=62534882",
-     "licence": "Public domain",
-     "auteur": "Unknown authorUnknown author or not prov",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ALAH_prototype.jpg",
+     "licence": "",
+     "auteur": "",
      "titre": "",
-     "credit": "Unknown authorUnknown author or not prov / Wikimedia Commons, Public domain",
-     "releve_le": "2026-11-25T05:47:56+01:00"
+     "credit": "Wikipédia, article « Airbus Helicopters H155 »",
+     "releve_le": "2026-11-25T07:13:22+01:00"
     },
     {
      "ecran": 6,
-     "page": "https://commons.wikimedia.org/?curid=79865480",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Matti Blume",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AAir_France_A340-900_F-HUVG_%40YYZ.jpg",
+     "licence": "",
+     "auteur": "",
      "titre": "",
-     "credit": "Matti Blume / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T05:47:56+01:00"
+     "credit": "Wikipédia, article « Airbus A350 »",
+     "releve_le": "2026-11-25T07:13:22+01:00"
     },
     {
      "ecran": 7,
@@ -742,7 +795,7 @@
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Airbus Commercial Aircraft »",
-     "releve_le": "2026-11-25T05:47:56+01:00"
+     "releve_le": "2026-11-25T07:13:22+01:00"
     },
     {
      "ecran": 8,
@@ -751,7 +804,7 @@
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Airbus Commercial Aircraft »",
-     "releve_le": "2026-11-25T05:47:56+01:00"
+     "releve_le": "2026-11-25T07:13:22+01:00"
     },
     {
      "ecran": 9,
@@ -760,7 +813,7 @@
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Airbus Commercial Aircraft »",
-     "releve_le": "2026-11-25T05:47:56+01:00"
+     "releve_le": "2026-11-25T07:13:22+01:00"
     },
     {
      "ecran": 10,
@@ -769,7 +822,7 @@
      "auteur": "Abujoy",
      "titre": "",
      "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
-     "releve_le": "2026-11-25T05:47:56+01:00"
+     "releve_le": "2026-11-25T07:13:22+01:00"
     },
     {
      "ecran": 11,
@@ -778,7 +831,7 @@
      "auteur": "Abujoy",
      "titre": "",
      "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
-     "releve_le": "2026-11-25T05:47:56+01:00"
+     "releve_le": "2026-11-25T07:13:22+01:00"
     },
     {
      "ecran": 12,
@@ -787,34 +840,34 @@
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Airbus A320 »",
-     "releve_le": "2026-11-25T05:47:56+01:00"
+     "releve_le": "2026-11-25T07:13:22+01:00"
     },
     {
      "ecran": 13,
-     "page": "https://commons.wikimedia.org/?curid=16996754",
-     "licence": "CC BY-SA 3.0",
-     "auteur": "Jeremy Elson",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AEurocopter_EC_155_B_r.jpg",
+     "licence": "",
+     "auteur": "",
      "titre": "",
-     "credit": "Jeremy Elson / Wikimedia Commons, CC BY-SA 3.0",
-     "releve_le": "2026-11-25T05:47:56+01:00"
+     "credit": "Wikipédia, article « Airbus Helicopters H155 »",
+     "releve_le": "2026-11-25T07:13:22+01:00"
     }
    ],
    "couverture_ms": 13895,
    "durees": {
     "voix": 0,
-    "images": 121,
-    "controle_images": 309,
-    "montage": 100,
-    "controle_final": 370,
-    "rangement": 7
+    "images": 39,
+    "controle_images": 822,
+    "montage": 97,
+    "controle_final": 1001,
+    "rangement": 6
    },
    "refaite": {
-    "de": "20261124-233244-1-r4",
-    "etape": "images",
-    "remarque": "Images refusées par le contrôle"
+    "de": "20261124-233244-1-r5",
+    "etape": "controle",
+    "remarque": ""
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233244-1-r4"
+   "refaite_de": "20261124-233244-1-r5"
   },
   {
    "id": "20261124-233157-1-r3",
