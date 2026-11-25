@@ -1,149 +1,149 @@
 {
- "maj": "2026-11-24T20:46:45+01:00",
+ "maj": "2026-11-25T02:05:25+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:43:22+01:00"
+   "le": "2026-11-25T02:02:37+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:43:26+01:00"
+   "le": "2026-11-25T02:02:41+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:43:31+01:00"
+   "le": "2026-11-25T02:02:44+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:43:35+01:00"
+   "le": "2026-11-25T02:02:48+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:43:39+01:00"
+   "le": "2026-11-25T02:02:52+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-24T20:43:44+01:00"
+   "le": "2026-11-25T02:02:54+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:43:48+01:00"
+   "le": "2026-11-25T02:02:58+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:43:53+01:00"
+   "le": "2026-11-25T02:03:02+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:43:58+01:00"
+   "le": "2026-11-25T02:03:05+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:44:01+01:00"
+   "le": "2026-11-25T02:03:09+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:44:06+01:00"
+   "le": "2026-11-25T02:03:13+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:44:10+01:00"
+   "le": "2026-11-25T02:03:16+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:44:14+01:00"
+   "le": "2026-11-25T02:03:20+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-24T20:44:17+01:00"
+   "le": "2026-11-25T02:03:23+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:44:21+01:00"
+   "le": "2026-11-25T02:03:27+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:44:27+01:00"
+   "le": "2026-11-25T02:03:30+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:44:33+01:00"
+   "le": "2026-11-25T02:03:34+01:00"
   },
   "unilad": {
    "ok": true,
-   "videos": 30,
-   "le": "2026-11-24T20:44:38+01:00"
+   "videos": 15,
+   "le": "2026-11-25T02:03:37+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:44:42+01:00"
+   "le": "2026-11-25T02:03:42+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:44:45+01:00"
+   "le": "2026-11-25T02:03:46+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:44:49+01:00"
+   "le": "2026-11-25T02:03:49+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:44:54+01:00"
+   "le": "2026-11-25T02:03:53+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:44:58+01:00"
+   "le": "2026-11-25T02:03:56+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:45:02+01:00"
+   "le": "2026-11-25T02:04:00+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:45:07+01:00"
+   "le": "2026-11-25T02:04:03+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:45:11+01:00"
+   "le": "2026-11-25T02:04:06+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:45:15+01:00"
+   "le": "2026-11-25T02:04:10+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-24T20:45:19+01:00"
+   "le": "2026-11-25T02:04:13+01:00"
   }
  },
- "lues": 809,
- "retenues": 23,
+ "lues": 794,
+ "retenues": 4,
  "sujets": [
   {
    "titre": "CAN 2025 : Sénégal vainqueur après arbitrage TAS",
@@ -180,7 +180,9 @@
      "commentaires": 1961,
      "partages": 28700,
      "date": 1795530924,
-     "texte": "Le Tribunal Arbitral du Sport, la plus haute juridiction du sport mondial, a désigné ce mardi le Sénégal comme vainqueur de la Coupe d’Afrique des Nations 2025. Le Sénégal avait remporté le titre à l’issue de la finale dans un premier temps, avant de se le voir retirer par la Confédération Africaine de Football (CAF) sur tapis vert en mars. Il était reproché aux joueurs de l’équipe sénégalaise d’a"
+     "texte": "Le Tribunal Arbitral du Sport, la plus haute juridiction du sport mondial, a désigné ce mardi le Sénégal comme vainqueur de la Coupe d’Afrique des Nations 2025. Le Sénégal avait remporté le titre à l’issue de la finale dans un premier temps, avant de se le voir retirer par la Confédération Africaine de Football (CAF) sur tapis vert en mars. Il était reproché aux joueurs de l’équipe sénégalaise d’a",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711746571976707361?description=1&music_info=1"
     },
     {
      "id": "7711749544022723873",
@@ -191,7 +193,9 @@
      "commentaires": 5235,
      "partages": 34700,
      "date": 1795531617,
-     "texte": "Le Sénégal déclaré vainqueur de la CAn 2025, le Maroc déchu par le TAS"
+     "texte": "Le Sénégal déclaré vainqueur de la CAn 2025, le Maroc déchu par le TAS",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711749544022723873?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -242,7 +246,9 @@
      "commentaires": 2740,
      "partages": 12300,
      "date": 1795484499,
-     "texte": "A golden retriever leapt into action after a toddler jumped into a pool and began drowning in Chapada dos Guimarães, Brazil. The dog was able to help keep the child afloat until two women rescued her. #news #rescue #dog #animals "
+     "texte": "A golden retriever leapt into action after a toddler jumped into a pool and began drowning in Chapada dos Guimarães, Brazil. The dog was able to help keep the child afloat until two women rescued her. #news #rescue #dog #animals ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711547130019613966?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -297,7 +303,9 @@
      "commentaires": 3669,
      "partages": 7850,
      "date": 1795386861,
-     "texte": "Federal immigration officers on Saturday arrested two passengers at Seattle-Tacoma International Airport as they were boarding an Alaska Airlines flight, prompting criticism from Washington’s governor and airport officials, who called the incident “distressing.” The Port of Seattle, which operates the airport, and Alaska Airlines said they did not have advance knowledge of the immigration enforcem"
+     "texte": "Federal immigration officers on Saturday arrested two passengers at Seattle-Tacoma International Airport as they were boarding an Alaska Airlines flight, prompting criticism from Washington’s governor and airport officials, who called the incident “distressing.” The Port of Seattle, which operates the airport, and Alaska Airlines said they did not have advance knowledge of the immigration enforcem",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711127723879582989?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -311,6 +319,60 @@
    "medias": 15,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Policier de Miami frappe suspect lors arrestation",
+   "resume": "Un policier de Miami a été filmé frappant un suspect à cinq reprises après avoir été mordu, selon les autorités. L’incident, survenu lors du week-end d’Halloween, suscite des débats sur l’usage de la force.",
+   "mots_cles": [
+    "police",
+    "violence",
+    "Miami",
+    "arrestation",
+    "usageforce"
+   ],
+   "mots_cles_en": [
+    "police",
+    "violence",
+    "Miami",
+    "arrest",
+    "force"
+   ],
+   "hashtags": [
+    "violencepolice",
+    "arrestationhalloween",
+    "usagedelaforce",
+    "miamipolice",
+    "justiceamericaine"
+   ],
+   "insolite": 4,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711734713055972621",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7711734713055972621",
+     "vues": 1700000,
+     "jaime": 239900,
+     "commentaires": 8044,
+     "partages": 15000,
+     "date": 1795528200,
+     "texte": "A cell phone video posted on social media shows a Miami Police officer punching a suspect in the face five times before being pulled away by a fellow officer. Police say the officer was defending himself after being bitten in the inner thigh. The incident occurred during Halloween weekend after police responded early Sunday morning to a complaint that the suspect had grabbed his girlfriend’s backs",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711734713055972621?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "9dfee5f986",
+   "score": 652,
+   "derniere_vue": 1795568710.1000378,
+   "vues": 1700000,
+   "jaime": 239900,
+   "commentaires": 8044,
+   "hashtags_viraux": [],
+   "medias": 8,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T02:05:25+01:00"
   },
   {
    "titre": "GTA VI : polémique autour de Leto et Lucia",
@@ -347,7 +409,9 @@
      "commentaires": 2271,
      "partages": 6854,
      "date": 1795460341,
-     "texte": "GTA VI: le rappeur Leto est accusé de misogynie après avoir refusé de jouer Lucia #gta #gta6 #leto #lucia #anyme"
+     "texte": "GTA VI: le rappeur Leto est accusé de misogynie après avoir refusé de jouer Lucia #gta #gta6 #leto #lucia #anyme",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711443423324048662?description=1&music_info=1"
     },
     {
      "id": "7711497591934029078",
@@ -358,7 +422,9 @@
      "commentaires": 1004,
      "partages": 5304,
      "date": 1795472936,
-     "texte": "Arion Kurtaj tried to extort GTA 6-maker Rockstar Games in 2022 but has now been released from custody with the judge warning him, \"don't let this happen again\". #GTAVI #GTA6 #RockstarGames #Hacker #BBCNews"
+     "texte": "Arion Kurtaj tried to extort GTA 6-maker Rockstar Games in 2022 but has now been released from custody with the judge warning him, \"don't let this happen again\". #GTAVI #GTA6 #RockstarGames #Hacker #BBCNews",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711497591934029078?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -417,7 +483,9 @@
      "commentaires": 1476,
      "partages": 9483,
      "date": 1795519475,
-     "texte": "Struggling to switch off a racing mind? A viral TikTok sound is gaining attention for its supposed ability to help quiet overthinking and encourage relaxation. The audio uses a 5Hz theta binaural beat, alongside alternating sounds that move between the left and right ears, a technique known as bilateral stimulation that is also used in EMDR therapy. #overthinking #audio #viral #science #anxiety "
+     "texte": "Struggling to switch off a racing mind? A viral TikTok sound is gaining attention for its supposed ability to help quiet overthinking and encourage relaxation. The audio uses a 5Hz theta binaural beat, alongside alternating sounds that move between the left and right ears, a technique known as bilateral stimulation that is also used in EMDR therapy. #overthinking #audio #viral #science #anxiety ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711696996100263182?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -473,7 +541,9 @@
      "commentaires": 9398,
      "partages": 19500,
      "date": 1795475436,
-     "texte": "President Trump signed an executive order Monday directing the Justice Department to seek the death penalty for child murderers, as well as rapists and human traffickers who kill their victims, and to expedite federal executions. “Once juries have spoken, capital punishment will be swift and certain,” Trump said. The directive comes in response to California Gov. Gavin Newsom commuting the death s"
+     "texte": "President Trump signed an executive order Monday directing the Justice Department to seek the death penalty for child murderers, as well as rapists and human traffickers who kill their victims, and to expedite federal executions. “Once juries have spoken, capital punishment will be swift and certain,” Trump said. The directive comes in response to California Gov. Gavin Newsom commuting the death s",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711508210296884493?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -523,7 +593,9 @@
      "commentaires": 3705,
      "partages": 4287,
      "date": 1795527102,
-     "texte": "The Iranian regime flogged a woman singer and four members of her concert team over her performance without wearing the mandatory hijab, according to defense attorney Mostafa Nili, cited by the Norway-based Iran Human Rights (IHRNGO). CNN's Jomana Karadsheh reports."
+     "texte": "The Iranian regime flogged a woman singer and four members of her concert team over her performance without wearing the mandatory hijab, according to defense attorney Mostafa Nili, cited by the Norway-based Iran Human Rights (IHRNGO). CNN's Jomana Karadsheh reports.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711730013971680526?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -537,6 +609,114 @@
    "medias": 7,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Iran : châtiment d'une chanteuse pour hijab",
+   "resume": "Une chanteuse iranienne et quatre membres de son équipe ont été fouettées pour avoir enfreint l’obligation du voile islamique lors d’un concert. Cette affaire relance les critiques internationales sur les droits des femmes en Iran.",
+   "mots_cles": [
+    "Iran",
+    "hijab",
+    "châtiment",
+    "droits femmes",
+    "musique"
+   ],
+   "mots_cles_en": [
+    "Iran",
+    "hijab",
+    "punishment",
+    "women rights",
+    "music"
+   ],
+   "hashtags": [
+    "iranfouetteartistes",
+    "hijabobligatoire",
+    "droitsfemmesiran",
+    "culturemusicale",
+    "protestation"
+   ],
+   "insolite": 7,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711730013971680526",
+     "compte": "cnn",
+     "url": "https://www.tiktok.com/@cnn/video/7711730013971680526",
+     "vues": 1000000,
+     "jaime": 93700,
+     "commentaires": 5388,
+     "partages": 6765,
+     "date": 1795527102,
+     "texte": "The Iranian regime flogged a woman singer and four members of her concert team over her performance without wearing the mandatory hijab, according to defense attorney Mostafa Nili, cited by the Norway-based Iran Human Rights (IHRNGO). CNN's Jomana Karadsheh reports.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711730013971680526?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "5bdb54c1e2",
+   "score": 364,
+   "derniere_vue": 1795568710.1000378,
+   "vues": 1000000,
+   "jaime": 93700,
+   "commentaires": 5388,
+   "hashtags_viraux": [],
+   "medias": 10,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T02:05:25+01:00"
+  },
+  {
+   "titre": "Recherche de l'Arche de Noé en Turquie",
+   "resume": "Des chercheurs affirment avoir daté des morceaux de bois découverts en Turquie à environ 4 300 ans, correspondant à la période biblique du Déluge. Ces échantillons proviennent d’une fouille sous-marine près du mont Ararat.",
+   "mots_cles": [
+    "Arche de Noé",
+    "Turquie",
+    "fouilles",
+    "bible",
+    "archéologie"
+   ],
+   "mots_cles_en": [
+    "Noah's Ark",
+    "Turkey",
+    "excavation",
+    "Bible",
+    "archaeology"
+   ],
+   "hashtags": [
+    "archedenoe",
+    "turquiearchéo",
+    "délugebiblique",
+    "montararat",
+    "découvertehistorique"
+   ],
+   "insolite": 8,
+   "categorie": "insolite",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711679808245075214",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711679808245075214",
+     "vues": 1000000,
+     "jaime": 96100,
+     "commentaires": 6710,
+     "partages": 4722,
+     "date": 1795515420,
+     "texte": "Researchers searching for the remains of Noah’s Ark in Turkey say new laboratory tests have dated two pieces of buried wood to around 4,300 years ago, overlapping with dates traditionally associated with the biblical Flood. The samples were recovered more than 30 feet beneath the surface of the boat-shaped Durupınar formation near Mount Ararat, which the research team believes could conceal traces",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711679808245075214?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "d7e6aa1b5d",
+   "score": 323,
+   "derniere_vue": 1795568710.1000378,
+   "vues": 1000000,
+   "jaime": 96100,
+   "commentaires": 6710,
+   "hashtags_viraux": [],
+   "medias": 9,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T02:05:25+01:00"
   },
   {
    "titre": "Recherche Ark biblique : bois datés 4300 ans",
@@ -573,7 +753,9 @@
      "commentaires": 5292,
      "partages": 3392,
      "date": 1795515420,
-     "texte": "Researchers searching for the remains of Noah’s Ark in Turkey say new laboratory tests have dated two pieces of buried wood to around 4,300 years ago, overlapping with dates traditionally associated with the biblical Flood. The samples were recovered more than 30 feet beneath the surface of the boat-shaped Durupınar formation near Mount Ararat, which the research team believes could conceal traces"
+     "texte": "Researchers searching for the remains of Noah’s Ark in Turkey say new laboratory tests have dated two pieces of buried wood to around 4,300 years ago, overlapping with dates traditionally associated with the biblical Flood. The samples were recovered more than 30 feet beneath the surface of the boat-shaped Durupınar formation near Mount Ararat, which the research team believes could conceal traces",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711679808245075214?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -623,7 +805,9 @@
      "commentaires": 1218,
      "partages": 4737,
      "date": 1795459881,
-     "texte": "Une étudiante fait un malaise devant Emmanuel Macron à Toulouse. Ce lundi 23 novembre 2026, Emmanuel Macron s'est rendu sur le site d'Airbus"
+     "texte": "Une étudiante fait un malaise devant Emmanuel Macron à Toulouse. Ce lundi 23 novembre 2026, Emmanuel Macron s'est rendu sur le site d'Airbus",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711441451774758177?description=1&music_info=1"
     },
     {
      "id": "7710976210918001952",
@@ -634,7 +818,9 @@
      "commentaires": 1304,
      "partages": 6571,
      "date": 1795351553,
-     "texte": "À Toulouse, la scène fait le tour des réseaux sociaux depuis vendredi. Sur des images publiées par @le.media.toulousain, on voit un policier se jeter sur une cycliste en pleine rue, lui prendre son vélo puis pédaler tant bien que mal, la propriétaire courant derrière lui. Selon La Dépêche du Midi et ici Occitanie, l'agent poursuivait un lycéen soupçonné d'avoir lancé un projectile en marge d'une m"
+     "texte": "À Toulouse, la scène fait le tour des réseaux sociaux depuis vendredi. Sur des images publiées par @le.media.toulousain, on voit un policier se jeter sur une cycliste en pleine rue, lui prendre son vélo puis pédaler tant bien que mal, la propriétaire courant derrière lui. Selon La Dépêche du Midi et ici Occitanie, l'agent poursuivait un lycéen soupçonné d'avoir lancé un projectile en marge d'une m",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7710976210918001952?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -684,7 +870,9 @@
      "commentaires": 1790,
      "partages": 19900,
      "date": 1795455960,
-     "texte": "A new generation of drugs is for sale inside gas station convenience stores and smoke shops across the country. It can be difficult to know what’s actually inside these items. To better understand this phenomenon, The New York Times purchased and lab-tested 28 products. #gasstation #vape #hallucinogens"
+     "texte": "A new generation of drugs is for sale inside gas station convenience stores and smoke shops across the country. It can be difficult to know what’s actually inside these items. To better understand this phenomenon, The New York Times purchased and lab-tested 28 products. #gasstation #vape #hallucinogens",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711424511110843661?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -738,7 +926,9 @@
      "commentaires": 2345,
      "partages": 12300,
      "date": 1795486124,
-     "texte": "In 1968, teacher Jane Elliott introduced her “Blue Eyes, Brown Eyes” exercise to teach students about prejudice, discrimination and racism. She joined ABC News Live to reflect on the lesson and her decades of challenging people to confront discrimination."
+     "texte": "In 1968, teacher Jane Elliott introduced her “Blue Eyes, Brown Eyes” exercise to teach students about prejudice, discrimination and racism. She joined ABC News Live to reflect on the lesson and her decades of challenging people to confront discrimination.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711554120955596062?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -752,6 +942,67 @@
    "medias": 11,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Son TikTok contre le surmenage mental",
+   "resume": "Un audio TikTok utilisant des ondes theta binaurales et des sons alternés gagne en popularité pour aider à réduire l’anxiété et le surmenage. Cette technique de relaxation bilatérale séduit les internautes stressés.",
+   "mots_cles": [
+    "TikTok",
+    "relaxation",
+    "ondes theta",
+    "anxiété",
+    "sommeil"
+   ],
+   "mots_cles_en": [
+    "TikTok",
+    "relaxation",
+    "theta waves",
+    "anxiety",
+    "sleep"
+   ],
+   "hashtags": [
+    "tiktokrelaxation",
+    "ondestheta",
+    "antianxiete",
+    "sommeilprofond",
+    "binauralbeats"
+   ],
+   "insolite": 7,
+   "categorie": "sante",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711696996100263182",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711696996100263182",
+     "vues": 1800000,
+     "jaime": 157900,
+     "commentaires": 2202,
+     "partages": 15200,
+     "date": 1795519475,
+     "texte": "Struggling to switch off a racing mind? A viral TikTok sound is gaining attention for its supposed ability to help quiet overthinking and encourage relaxation. The audio uses a 5Hz theta binaural beat, alongside alternating sounds that move between the left and right ears, a technique known as bilateral stimulation that is also used in EMDR therapy. #overthinking #audio #viral #science #anxiety ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711696996100263182?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "9275e547e0",
+   "score": 270,
+   "derniere_vue": 1795568710.1000378,
+   "vues": 1800000,
+   "jaime": 157900,
+   "commentaires": 2202,
+   "hashtags_viraux": [
+    "overthinking",
+    "audio",
+    "viral",
+    "science",
+    "anxiety"
+   ],
+   "medias": 3,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T02:05:25+01:00"
   },
   {
    "titre": "Naissance des étoiles : son capturé par la NASA",
@@ -788,7 +1039,9 @@
      "commentaires": 1735,
      "partages": 18500,
      "date": 1795434961,
-     "texte": "Voici le son de la naissance d'étoiles."
+     "texte": "Voici le son de la naissance d'étoiles.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711334506657090838?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -831,7 +1084,9 @@
      "commentaires": 1691,
      "partages": 17900,
      "date": 1795434961,
-     "texte": "Voici le son de la naissance d'étoiles."
+     "texte": "Voici le son de la naissance d'étoiles.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711334506657090838?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -846,54 +1101,6 @@
    "vu_le": "2026-11-24T18:38:52+01:00",
    "reserve_le": "2026-11-24T19:50:48+01:00",
    "video_id": "20261124-195233-2"
-  },
-  {
-   "titre": "Leto accusé de misogynie dans GTA VI",
-   "resume": "Le rappeur Leto est critiqué pour son refus de jouer le personnage Lucia dans GTA VI. Les accusations de misogynie relancent le débat sur la représentation dans les jeux vidéo.",
-   "mots_cles": [
-    "GTA VI",
-    "Leto",
-    "misogynie",
-    "jeux vidéo",
-    "représentation"
-   ],
-   "hashtags": [
-    "gta6",
-    "leto",
-    "misogynie",
-    "jeuxvideo",
-    "lucia"
-   ],
-   "insolite": 5,
-   "videos": [
-    {
-     "id": "7711443423324048662",
-     "compte": "bfmtv",
-     "url": "https://www.tiktok.com/@bfmtv/video/7711443423324048662",
-     "vues": 891100,
-     "jaime": 67000,
-     "commentaires": 2016,
-     "partages": 6316,
-     "date": 1795460341,
-     "texte": "GTA VI: le rappeur Leto est accusé de misogynie après avoir refusé de jouer Lucia #gta #gta6 #leto #lucia #anyme"
-    }
-   ],
-   "id": "87dc77c9fd",
-   "score": 182,
-   "derniere_vue": 1795535043.6691308,
-   "vues": 891100,
-   "jaime": 67000,
-   "commentaires": 2016,
-   "hashtags_viraux": [
-    "gta",
-    "gta6",
-    "leto",
-    "lucia",
-    "anyme"
-   ],
-   "statut": "utilise",
-   "vu_le": "2026-11-24T16:44:03+01:00",
-   "video_id": "20261124-190104-1"
   },
   {
    "titre": "Disney : accident scooter blesse enfant en Floride",
@@ -930,7 +1137,9 @@
      "commentaires": 2332,
      "partages": 4500,
      "date": 1795524457,
-     "texte": "Recently obtained footage shows a frightening moment at Disney’s Hollywood Studios as a woman on a mobility scooter drives into a young boy, briefly trapping his leg beneath the wheel. The incident occurred in February 2025 at the Florida theme park, but the video has only recently surfaced. Thankfully, the boy was uninjured, according to the man who recorded the incident."
+     "texte": "Recently obtained footage shows a frightening moment at Disney’s Hollywood Studios as a woman on a mobility scooter drives into a young boy, briefly trapping his leg beneath the wheel. The incident occurred in February 2025 at the Florida theme park, but the video has only recently surfaced. Thankfully, the boy was uninjured, according to the man who recorded the incident.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711718692718972190?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -974,7 +1183,9 @@
      "partages": 17100,
      "date": 1795441349,
      "texte": "🪟 INFO/INFOX : Tourner le galet de compression suffirait-il à passer du mode été au mode hiver ? ➡️ Les internautes ont découvert une toute petite pièce, le galet de compression, qui se trouve sur les fenêtres en PVC. Certains affirment qu'elle permettrait de passer en \"mode hiver\" et, donc, de faire baisser la facture de chauffage. Cette pièce ne sert pas du tout à régler vos fenêtres en fonction",
-     "sous_seuils": true
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711361843385732354?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
@@ -987,56 +1198,6 @@
    "hashtags_viraux": [],
    "statut": "nouveau",
    "vu_le": "2026-11-24T18:38:52+01:00"
-  },
-  {
-   "titre": "Miami : policier frappe suspect cinq fois",
-   "resume": "Une vidéo montre un policier de Miami frappant un suspect cinq fois après avoir été mordu. La police affirme qu’il se défendait, mais l’incident relance les débats sur l’usage de la force.",
-   "mots_cles": [
-    "police",
-    "violence",
-    "Miami",
-    "usage de la force",
-    "vidéo"
-   ],
-   "mots_cles_en": [
-    "police",
-    "violence",
-    "Miami",
-    "use of force",
-    "video"
-   ],
-   "hashtags": [
-    "",
-    "p",
-    "o",
-    "l",
-    "i"
-   ],
-   "insolite": 5,
-   "videos": [
-    {
-     "id": "7711734713055972621",
-     "compte": "cbsnews",
-     "url": "https://www.tiktok.com/@cbsnews/video/7711734713055972621",
-     "vues": 959100,
-     "jaime": 133300,
-     "commentaires": 4789,
-     "partages": 7961,
-     "date": 1795528200,
-     "texte": "A cell phone video posted on social media shows a Miami Police officer punching a suspect in the face five times before being pulled away by a fellow officer. Police say the officer was defending himself after being bitten in the inner thigh. The incident occurred during Halloween weekend after police responded early Sunday morning to a complaint that the suspect had grabbed his girlfriend’s backs"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "6361d4425f",
-   "score": 148,
-   "derniere_vue": 1795549585.0168877,
-   "vues": 959100,
-   "jaime": 133300,
-   "commentaires": 4789,
-   "hashtags_viraux": [],
-   "medias": 2,
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
    "titre": "Macron inaugure nouvelle ligne Airbus A320 Toulouse",
@@ -1066,7 +1227,9 @@
      "commentaires": 1009,
      "partages": 4489,
      "date": 1795433441,
-     "texte": "Ce lundi, le président de la République s'est rendu dans l'usine d'Airbus à Toulouse dans le cadre de l'inauguration d'une nouvelle ligne d'assemblage de l'A320. #macron #lycee #airbus"
+     "texte": "Ce lundi, le président de la République s'est rendu dans l'usine d'Airbus à Toulouse dans le cadre de l'inauguration d'une nouvelle ligne d'assemblage de l'A320. #macron #lycee #airbus",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711327867719814423?description=1&music_info=1"
     }
    ],
    "id": "67ccec0235",
@@ -1113,7 +1276,9 @@
      "partages": 39500,
      "date": 1795455481,
      "texte": "Cristina Córdula s’est prêtée au jeu de la Pire interview et elle n’aurait peut-être pas dû 👀 Cristina Córdula est sur RMC avec son émission : Shopping Illimité mais également sur sa chaine YouTube : Métamorphose | Pire Interview",
-     "sous_seuils": true
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711415634198039831?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
@@ -1162,7 +1327,9 @@
      "commentaires": 2785,
      "partages": 12500,
      "date": 1795469815,
-     "texte": "A woman was chased by several turkeys in Newton, Massachusetts, on Saturday, before taking refuge in a car. Wild turkeys are common in the state, and officials have previously warned residents about encounters with the birds."
+     "texte": "A woman was chased by several turkeys in Newton, Massachusetts, on Saturday, before taking refuge in a car. Wild turkeys are common in the state, and officials have previously warned residents about encounters with the birds.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711484027240254733?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -1212,7 +1379,9 @@
      "commentaires": 1095,
      "partages": 11200,
      "date": 1795457761,
-     "texte": "Des centaines de militants fascistes se sont rassemblés en Espagne pour célébrer Franco."
+     "texte": "Des centaines de militants fascistes se sont rassemblés en Espagne pour célébrer Franco.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711432495048183062?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -1263,7 +1432,9 @@
      "commentaires": 1491,
      "partages": 3004,
      "date": 1795408507,
-     "texte": "A Donald Trump impersonator took to the stage at Ottawa's annual Parliamentary Press Gallery Dinner on November 21, poking fun at Canadian Prime Minister Mark Carney. ⠀ #markcarney #trump #impersonator #pressgallerydinner #canada"
+     "texte": "A Donald Trump impersonator took to the stage at Ottawa's annual Parliamentary Press Gallery Dinner on November 21, poking fun at Canadian Prime Minister Mark Carney. ⠀ #markcarney #trump #impersonator #pressgallerydinner #canada",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711220739503836447?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -1319,7 +1490,9 @@
      "commentaires": 2856,
      "partages": 13400,
      "date": 1795451051,
-     "texte": "A businessman in China accidentally plunged into a swimming pool after mistaking its crystal-clear surface for solid ground. CCTV footage captured the man falling into the water while walking past the pool at a property sales office in Hefei, before managing to pull himself to safety with help from a staff member. The sales office has since announced plans to install prominent warning signs after "
+     "texte": "A businessman in China accidentally plunged into a swimming pool after mistaking its crystal-clear surface for solid ground. CCTV footage captured the man falling into the water while walking past the pool at a property sales office in Hefei, before managing to pull himself to safety with help from a staff member. The sales office has since announced plans to install prominent warning signs after ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711403366508793102?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -1333,6 +1506,68 @@
    "medias": 0,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Leto accusé de misogynie dans GTA VI",
+   "resume": "Le rappeur Leto est critiqué pour avoir refusé de jouer le personnage féminin Lucia dans *GTA VI*, alimentant les débats sur la représentation des femmes dans les jeux vidéo. Le sujet divise les joueurs et les médias.",
+   "mots_cles": [
+    "GTA VI",
+    "Leto",
+    "misogynie",
+    "jeux vidéo",
+    "représentation"
+   ],
+   "mots_cles_en": [
+    "GTA VI",
+    "Leto",
+    "misogyny",
+    "video games",
+    "representation"
+   ],
+   "hashtags": [
+    "gtaviimisogynie",
+    "letoetlucia",
+    "jeuxvideoinclusifs",
+    "controversesgta",
+    "representationfemmes"
+   ],
+   "insolite": 5,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711443423324048662",
+     "compte": "bfmtv",
+     "url": "https://www.tiktok.com/@bfmtv/video/7711443423324048662",
+     "vues": 1300000,
+     "jaime": 87000,
+     "commentaires": 2469,
+     "partages": 7466,
+     "date": 1795460341,
+     "texte": "GTA VI: le rappeur Leto est accusé de misogynie après avoir refusé de jouer Lucia #gta #gta6 #leto #lucia #anyme",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711443423324048662?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "87dc77c9fd",
+   "score": 99,
+   "derniere_vue": 1795568710.1000378,
+   "vues": 1300000,
+   "jaime": 87000,
+   "commentaires": 2469,
+   "hashtags_viraux": [
+    "gta",
+    "gta6",
+    "leto",
+    "lucia",
+    "anyme"
+   ],
+   "medias": 5,
+   "statut": "utilise",
+   "vu_le": "2026-11-24T16:44:03+01:00",
+   "video_id": "20261124-190104-1"
   },
   {
    "titre": "Psychologie : les hommes qui roulent vite plus attractifs",
@@ -1369,7 +1604,9 @@
      "commentaires": 1094,
      "partages": 43200,
      "date": 1795521576,
-     "texte": "Psychologists suggest men who bend or break traffic rules may possess personality traits that make them more attractive as long-term partners, including confidence, assertiveness and a willingness to take risks. Experts say rule-breaking behavior can create an impression of power and high social status, potentially contributing to the appeal of the so-called ‘bad boy’ type. However, this doesn’t m"
+     "texte": "Psychologists suggest men who bend or break traffic rules may possess personality traits that make them more attractive as long-term partners, including confidence, assertiveness and a willingness to take risks. Experts say rule-breaking behavior can create an impression of power and high social status, potentially contributing to the appeal of the so-called ‘bad boy’ type. However, this doesn’t m",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711706139641105678?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -1419,7 +1656,9 @@
      "commentaires": 1249,
      "partages": 2657,
      "date": 1795450082,
-     "texte": "Les deux jeunes qui avaient vandalisé une statue de la Vierge à Porto-Vecchio ont été condamnés à 3 mois de prison ferme."
+     "texte": "Les deux jeunes qui avaient vandalisé une statue de la Vierge à Porto-Vecchio ont été condamnés à 3 mois de prison ferme.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711399471346617622?description=1&music_info=1"
     }
    ],
    "sous_seuils": false,
@@ -1433,6 +1672,61 @@
    "medias": 9,
    "statut": "en_cours",
    "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Vol de colis filmé par caméra de surveillance",
+   "resume": "Une femme a été filmée volant un colis peu après l’avoir livré en Géorgie, selon les images d’une caméra de porte. L’entreprise Lululemon a remboursé le cadeau de Noël mais avertit contre ce type de vols.",
+   "mots_cles": [
+    "vol colis",
+    "caméra surveillance",
+    "Géorgie",
+    "Lululemon",
+    "Noël"
+   ],
+   "mots_cles_en": [
+    "package theft",
+    "security camera",
+    "Georgia",
+    "Lululemon",
+    "Christmas"
+   ],
+   "hashtags": [
+    "volcolisnoel",
+    "camérasurveillance",
+    "lululemonarnaque",
+    "volsdomiciles",
+    "georgia"
+   ],
+   "insolite": 5,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711759134198123789",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711759134198123789",
+     "vues": 1800000,
+     "jaime": 161400,
+     "commentaires": 1706,
+     "partages": 4271,
+     "date": 1795533881,
+     "texte": "A woman was caught on a ring camera stealing a package moments after delivering it to a home in Georgia.  The footage shows the woman dropping off the parcel, taking a photo and then snatching it before fleeing to her car.  Lululemon reimbursed the $100 Christmas gift, but warned that package theft can have a serious impact on families who cannot afford to lose valuable deliveries, particularly du",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711759134198123789?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "d2fa128f0c",
+   "score": 80,
+   "derniere_vue": 1795568710.1000378,
+   "vues": 1800000,
+   "jaime": 161400,
+   "commentaires": 1706,
+   "hashtags_viraux": [],
+   "medias": 2,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T02:05:25+01:00"
   },
   {
    "titre": "Policier vole vélo à cycliste à Toulouse",
@@ -1462,7 +1756,9 @@
      "commentaires": 1270,
      "partages": 6469,
      "date": 1795351553,
-     "texte": "À Toulouse, la scène fait le tour des réseaux sociaux depuis vendredi. Sur des images publiées par @le.media.toulousain, on voit un policier se jeter sur une cycliste en pleine rue, lui prendre son vélo puis pédaler tant bien que mal, la propriétaire courant derrière lui. Selon La Dépêche du Midi et ici Occitanie, l'agent poursuivait un lycéen soupçonné d'avoir lancé un projectile en marge d'une m"
+     "texte": "À Toulouse, la scène fait le tour des réseaux sociaux depuis vendredi. Sur des images publiées par @le.media.toulousain, on voit un policier se jeter sur une cycliste en pleine rue, lui prendre son vélo puis pédaler tant bien que mal, la propriétaire courant derrière lui. Selon La Dépêche du Midi et ici Occitanie, l'agent poursuivait un lycéen soupçonné d'avoir lancé un projectile en marge d'une m",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7710976210918001952?description=1&music_info=1"
     }
    ],
    "id": "8446b43f08",
@@ -1504,7 +1800,9 @@
      "partages": 2971,
      "date": 1795442124,
      "texte": "Il était l'un des dix criminels en fuite les plus recherchés par le FBI. Le Mexique a arrêté ce vendredi 20 novembre le baron de la drogue Fausto Isidro Meza, alias \"El Chapo Isidro\". Cette interpellation a déclenché de violents affrontements dans l'État de Sinaloa, dans le nord-ouest du pays, où il opérait et a coûté la vie à quatre militaires et sept criminels présumés. #mexique #police #fbi #et",
-     "sous_seuils": true
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711365169900735766?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
@@ -1552,7 +1850,9 @@
      "partages": 2848,
      "date": 1795465302,
      "texte": "Jensen Huang redevient le directeur général et président de Nvidia, géant américain des puces, onze jours après sa démission liée à un scandale mêlant adultère, espionnage et contrebande. #nvidia#jensen#jensenhuang#ia",
-     "sous_seuils": true
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711464729171987734?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
@@ -1570,6 +1870,116 @@
    ],
    "statut": "nouveau",
    "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Gardien de stade étouffe entraîneur brésilien",
+   "resume": "Un gardien de sécurité a agrippé le cou d’un entraîneur brésilien lors d’une célébration en stade, le prenant pour un supporter. L’entraîneur, Tcheco, affirme ne pas avoir été blessé mais dénonce l’incident.",
+   "mots_cles": [
+    "stade",
+    "violence",
+    "Brésil",
+    "entraîneur",
+    "sécurité"
+   ],
+   "mots_cles_en": [
+    "stadium",
+    "violence",
+    "Brazil",
+    "coach",
+    "security"
+   ],
+   "hashtags": [
+    "violencestade",
+    "entraineurbresilien",
+    "securitestade",
+    "footballbrésil",
+    "incidentmatch"
+   ],
+   "insolite": 6,
+   "categorie": "sport",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711796767297260831",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7711796767297260831",
+     "vues": 997100,
+     "jaime": 56300,
+     "commentaires": 330,
+     "partages": 613,
+     "date": 1795542630,
+     "texte": "A security guard grabs a Brazilian soccer coach around the neck after apparently mistaking him for a fan during a wild goal celebration. Parana Clube coach Tcheco climbs onto a stadium fence to celebrate with supporters when the guard suddenly intervenes. Tcheco says he wasn’t hurt and only realized what happened after seeing the video.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711796767297260831?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "f3cbc9ab1d",
+   "score": 49,
+   "derniere_vue": 1795568710.1000378,
+   "vues": 997100,
+   "jaime": 56300,
+   "commentaires": 330,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T02:05:25+01:00"
+  },
+  {
+   "titre": "Hommes transgressant le code de la route séduisent",
+   "resume": "Une étude suggère que les hommes qui enfreignent les règles de circulation pourraient être perçus comme plus séduisants, grâce à des traits comme la confiance et l’audace. Les psychologues analysent ce phénomène social.",
+   "mots_cles": [
+    "code route",
+    "séduction",
+    "psychologie",
+    "hommes",
+    "transgression"
+   ],
+   "mots_cles_en": [
+    "traffic rules",
+    "seduction",
+    "psychology",
+    "men",
+    "transgression"
+   ],
+   "hashtags": [
+    "transgressionroute",
+    "seductionpsychologie",
+    "hommesaudacieux",
+    "comportementroute",
+    "etudepsychosociale"
+   ],
+   "insolite": 3,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711706139641105678",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7711706139641105678",
+     "vues": 1400000,
+     "jaime": 127000,
+     "commentaires": 1581,
+     "partages": 61000,
+     "date": 1795521576,
+     "texte": "Psychologists suggest men who bend or break traffic rules may possess personality traits that make them more attractive as long-term partners, including confidence, assertiveness and a willingness to take risks. Experts say rule-breaking behavior can create an impression of power and high social status, potentially contributing to the appeal of the so-called ‘bad boy’ type. However, this doesn’t m",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711706139641105678?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "37c49f1ce9",
+   "score": 47,
+   "derniere_vue": 1795568710.1000378,
+   "vues": 1400000,
+   "jaime": 127000,
+   "commentaires": 1581,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T02:05:25+01:00"
   },
   {
    "titre": "Joan revisite In Ze Boîte 20 ans après",
@@ -1600,7 +2010,9 @@
      "partages": 6001,
      "date": 1795298400,
      "texte": "Vous vous souvenez d'In Ze Boîte ? On a ramené l'animateur de Gulli, @joan , pour qu'il revienne sur cette émission culte pour toute une génération : la boîte noire, son envie de la faire revenir pour les 20 ans de la chaîne, mais aussi les répercussions et les commentaires qu'il reçoit sur son In Ze Boîte, mais pas que… | Remember",
-     "sous_seuils": true
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7710288799200333078?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
@@ -1643,7 +2055,9 @@
      "partages": 1567,
      "date": 1795428126,
      "texte": "(21/11) 🚨Entrée en bourse historique d’Anthropic.",
-     "sous_seuils": true
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711305060277292321?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
@@ -1686,7 +2100,9 @@
      "partages": 3618,
      "date": 1795338360,
      "texte": "Tout juste sacré champion de la Copa Sudamericana avec Boca Juniors ce samedi, Leandro Paredes a vécu une fin de soirée pour le moins inquiétante. En pleine interview d'après-match, l'ancien milieu du PSG s'est effondré devant les caméras, perdant connaissance quelques instants avant d'être rapidement pris en charge par les secours. Plus de peur que de mal toutefois puisque l'international argenti",
-     "sous_seuils": true
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7710919532759600416?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,

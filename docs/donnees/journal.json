@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T02:05:27+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 29 sujet(s) au-dessus des seuils — en tête : « Brésil : golden retriever sauve enfant noyé »"
+  },
+  {
    "date": "2026-11-25T01:56:06+01:00",
    "niveau": "info",
    "texte": "🔁 « Fascistes en Espagne : un hommage choc à Franco » refaite (images) : note 65/100, corrige : « Scènes de 5 à 10 s en vraies vidéos de toutes les sources, sans doublon » — l'ancienne version est remplacée"
