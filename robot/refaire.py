@@ -69,6 +69,8 @@ def restaurer(v, dossier, repo):
     with open(os.path.join(dossier, "bulletin.json"), encoding="utf-8") as f:
         lignes = json.load(f).get("lignes") or []
     for p in script["phrases"]:                       # les fichiers sont maintenant dans le nouveau dossier
+        if not p.get("media"):
+            p.pop("media", None)                      # écran de texte : une image sera cherchée
         m = p.get("media")
         if m and m.get("chemin"):
             nouveau = os.path.join(dossier, os.path.basename(m["chemin"]))
@@ -126,6 +128,8 @@ def preparer(v, sujet, etape, remarque, dossier, repo, R, journal=print):
     if etape == "images":
         cibles = ecrans_cites(remarque, len(ph)) | indices_signales(script, lignes, ("images", "video"))
         cibles = cibles or set(range(len(ph) - 1))          # rien de précis : toutes les images changent
+        # + tous les écrans SANS vraie image (écran de texte, titre de presse) : ils reçoivent enfin une vraie vidéo
+        cibles |= {i for i, p in enumerate(ph[:-1]) if not p.get("media") or (p.get("media") or {}).get("presse")}
         for i in cibles:
             m = ph[i].get("media") or {}
             if m.get("type") == "carte":
