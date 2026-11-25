@@ -3,18 +3,6 @@
   {
    "inputs": {
     "format": "buzz",
-    "refaire": "20261125-163311-1",
-    "etape": "texte",
-    "remarque": "phrases réduites à des nombres, titres en anglais, accroche en anglais, trop court",
-    "origine": "site",
-    "nombre": "1"
-   },
-   "demande_le": "2026-11-25T18:33:17+01:00",
-   "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
-  },
-  {
-   "inputs": {
-    "format": "buzz",
     "refaire": "20261125-163119-1",
     "etape": "texte",
     "remarque": "phrases réduites à des nombres (45, 15), trop court (45 s), accroche avec 'COP'",
@@ -23,18 +11,6 @@
    },
    "demande_le": "2026-11-25T18:33:29+01:00",
    "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
-  },
-  {
-   "inputs": {
-    "format": "buzz",
-    "refaire": "20261125-163355-1",
-    "etape": "auto",
-    "remarque": "Réparation automatique : à vérifier",
-    "origine": "reparation",
-    "nombre": "1"
-   },
-   "demande_le": "2026-11-25T18:37:57+01:00",
-   "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie) ; déjà 2 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
   },
   {
    "inputs": {
@@ -59,12 +35,17 @@
   }
  ],
  "credits": {
-  "le": "2026-11-25T20:27:57+01:00",
-  "resume": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
+  "le": "2026-11-25T21:37:26+01:00",
+  "resume": "✅ IA disponibles : groq, gemini ; voient : gemini"
  },
  "creation": {
   "2026-11-25": [
    "16:15"
+  ]
+ },
+ "publication": {
+  "2026-11-25": [
+   "19:00"
   ]
  }
 }
