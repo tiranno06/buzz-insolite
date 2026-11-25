@@ -512,7 +512,7 @@ function rangFile(v) {
 }
 function boutonsVideo(v) {
   const s = v.statut, att = attente(v.id), out = [];
-  if (["nouvelle", "a_publier", "echec"].includes(s))
+  if (["nouvelle", "a_publier", "echec", "a_verifier"].includes(s))   // « à vérifier » aussi : l'auteur décide
     out.push(bascule(v, "a_publier", "☐ À publier", `✅ À publier · n° ${rangFile(v)} dans la file`, s === "a_publier", "vert", "retirer"));
   if (["nouvelle", "a_publier"].includes(s))
     out.push(att === "publier_maintenant" ? `<button class="btn mini bascule attente" disabled>⏳ Envoi à TikTok…</button>`

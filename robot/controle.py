@@ -685,6 +685,7 @@ class Refusee(Exception):
 def verifier_et_envoyer(v, R, forcer=False):
     """Contrôle avant publication, puis envoi par Buffer. Lève Refusee si un problème bloque."""
     from . import publier
+    description_secours(v)
     pb = avant_publication(v, R, forcer)
     if pb:
         raise Refusee("contrôle avant publication : " + " ; ".join(pb))
@@ -729,6 +730,21 @@ def reposer_extraits(script, journal=print):
     return min(len(perdus), len(places))
 
 
+def description_secours(v):
+    """Description vide (vidéo de l'arche du 25/11) : écrite à partir du titre et de la question, au lieu de bloquer."""
+    if not str(v.get("description") or "").strip():
+        q = str(v.get("question") or "").strip()
+        v["description"] = (f"{v.get('titre', '').strip()} 👀" + (f"\n{q}" if q else "")).strip()
+    return v["description"]
+
+
+def lien_en_ligne(url):
+    """La vidéo se télécharge-t-elle ? (début du fichier seulement : GitHub répond 401 à une demande HEAD, 25/11)"""
+    req = urllib.request.Request(url, headers={"User-Agent": "buzz-insolite-robot/1.0", "Range": "bytes=0-1023"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return r.status < 400 and bool(r.read(1024))
+
+
 def avant_publication(v, R, forcer=False):
     """Liste des problèmes qui empêchent la publication (vide = on peut publier)."""
     pb = []
@@ -756,8 +772,7 @@ def avant_publication(v, R, forcer=False):
         pb.append("vidéo sans adresse publique")
     else:
         try:
-            req = urllib.request.Request(v["url"], method="HEAD", headers={"User-Agent": "buzz-insolite-robot/1.0"})
-            if urllib.request.urlopen(req, timeout=30).status >= 400:
+            if not lien_en_ligne(v["url"]):
                 pb.append("vidéo introuvable en ligne")
         except Exception as e:
             pb.append(f"vidéo injoignable ({str(e)[:60]})")

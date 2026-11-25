@@ -112,10 +112,12 @@ def appliquer(action, vid, texte):
     file = publier.mettre_a_jour(lire("file.json") or {"videos": []})
     v = _video(file, vid)
     if action == "a_publier":
+        if v.get("statut") == "a_verifier":
+            v["force"] = True              # cochée par l'auteur malgré le bulletin : publiée « quand même » à son créneau
         v.update(statut="a_publier", coche_le=iso()); v.pop("echec_publication", None)
         noter(f"✅ « {v['titre']} » ajoutée à la file de publication.")
     elif action == "retirer":
-        v["statut"] = "nouvelle"; v.pop("coche_le", None)
+        v["statut"] = "a_verifier" if v.pop("force", None) else "nouvelle"; v.pop("coche_le", None)
         noter(f"↩️ « {v['titre']} » retirée de la file de publication.")
     elif action == "ecarter":
         v["statut"] = "ecartee"
@@ -130,6 +132,8 @@ def appliquer(action, vid, texte):
             v["echec_publication"] = f"{iso()} : {str(rep)[:200]}"
             noter(f"❌ « {v['titre']} » : publication refusée ({str(rep)[:160]})", "erreur")
         else:
+            from .controle import description_secours
+            description_secours(v)
             v.update(statut="publiee", publiee_le=iso(), buffer=rep)
             noter(f"🚀 « {v['titre']} » envoyée sur TikTok" + ("" if rep.get("etiquette_ia") else
                                                                  " — sans l'étiquette IA : coche-la dans l'appli TikTok"))

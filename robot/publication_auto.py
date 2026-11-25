@@ -64,7 +64,7 @@ def main():
                 break
             deja.add(v["id"])
             try:
-                resultats[h] = (v["id"], controle.verifier_et_envoyer(v, R))
+                resultats[h] = (v["id"], controle.verifier_et_envoyer(v, R, forcer=bool(v.get("force"))))
                 break
             except controle.Refusee as e:
                 refusees[v["id"]] = str(e)
@@ -92,6 +92,7 @@ def main():
                 v.update(statut="echec", echec_publication=f"{iso()} : {str(rep)[:200]}")
                 noter(f"❌ « {v['titre']} » : publication refusée ({str(rep)[:160]})", "erreur")
             else:
+                controle.description_secours(v)
                 v.update(statut="publiee", publiee_le=iso(), buffer=rep)
                 noter(f"📤 « {v['titre']} » publiée sur TikTok (créneau de {h})."
                       + ("" if rep.get("etiquette_ia") else " Étiquette IA refusée par Buffer : coche-la dans l'appli TikTok."))

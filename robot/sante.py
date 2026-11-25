@@ -207,6 +207,8 @@ def reparer(journal=print):
                 continue
         except ValueError:
             continue
+        if v.get("force"):                       # l'auteur l'a mise « À publier » malgré le bulletin : on n'y touche plus
+            continue
         if int(v.get("reparations", 0)) >= REPARATIONS_PAR_VIDEO or v["id"] in occupees:
             continue
         raisons = []

@@ -1186,3 +1186,25 @@ class TestLimiteDuJour(unittest.TestCase):
         ia._mort("openrouter", "x:free", 429, "Rate limit exceeded: free-models-per-day")
         self.assertIn("openrouter", ia._SAUTES)
         ia._MORTS.discard(("gemini", "gemini-flash-latest")); ia._SAUTES.discard("openrouter")
+
+
+class TestPublierAVerifier(unittest.TestCase):
+    def test_description_vide_remplacee(self):
+        from robot.controle import description_secours
+        v = {"titre": "Bois de l'Arche", "description": "  ", "question": "Tu y crois ?"}
+        self.assertEqual(description_secours(v), "Bois de l'Arche 👀\nTu y crois ?")
+        self.assertEqual(description_secours({"titre": "x", "description": "déjà là"}), "déjà là")
+
+    def test_a_verifier_cochee_puis_retiree(self):
+        from robot import commande
+        file = {"videos": [{"id": "v1", "titre": "T", "statut": "a_verifier"}]}
+        anciens = commande.lire, commande.ecrire, commande.noter, commande.publier.mettre_a_jour
+        commande.lire = lambda n: file; commande.ecrire = lambda n, d: None; commande.noter = lambda *a, **k: None
+        commande.publier.mettre_a_jour = lambda f: f
+        try:
+            commande.appliquer("a_publier", "v1", "")
+            self.assertEqual(file["videos"][0]["statut"], "a_publier"); self.assertTrue(file["videos"][0]["force"])
+            commande.appliquer("retirer", "v1", "")
+            self.assertEqual(file["videos"][0]["statut"], "a_verifier"); self.assertNotIn("force", file["videos"][0])
+        finally:
+            commande.lire, commande.ecrire, commande.noter, commande.publier.mettre_a_jour = anciens

@@ -471,7 +471,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
     def regles_():
         def etat_regles():
             tags = ([f"#{script['serie_hashtag']}"] if script.get("serie_hashtag") else []) + ecrire.hashtags(script, sujet, R)
-            return regles.verifier(script, E["articles"], tags, E.get("duree"), script.get("description"), script.get("question"))
+            return regles.verifier(script, E["articles"], tags, E.get("duree"), script.get("description") or "", script.get("question"))
         pbs = etat_regles()
         for tour in range(2):
             if not pbs:

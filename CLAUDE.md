@@ -510,6 +510,16 @@ Gemini et Groq la comptent PAR MODÈLE → seul le modèle épuisé est écarté
 401 / 402 / 403 / abonnement → fournisseur entier mis de côté. Piège : le 429 de Gemini dit « check your plan and BILLING
 details » → ce n'est PAS un abonnement (avant : tout Gemini écarté, plus aucune IA qui voit).
 
+## Publier une vidéo « à vérifier » (25/11 au soir, demande de l'auteur)
+- Les vidéos « à vérifier » ont aussi l'interrupteur « ☐ À publier » (`boutonsVideo`) : cochée, elle prend `force` = publiée
+  « quand même » à son créneau (`publication_auto` → `verifier_et_envoyer(forcer=)`), la santé ne la refait plus ;
+  « retirer » la remet « à vérifier ». Les garanties qui bloquent même « quand même » restent (images, extraits, règles).
+- « Publier quand même » refusé pour « description vide » (vidéo de l'arche : la règle n'était pas vérifiée quand la
+  description MANQUAIT) → `regles.verifier` reçoit toujours une chaîne ; `controle.description_secours` (titre 👀 + question)
+  remplit une description vide au lieu de bloquer.
+- Contrôle avant publication : le lien de la vidéo était testé par HEAD (GitHub répond 401 → TOUTES les publications
+  refusées) → `controle.lien_en_ligne` lit le début du fichier.
+
 ## Avant d'envoyer
 `python -m unittest discover -s tests` (aucun appel réseau ni IA ; ffmpeg nécessaire pour l'essai complet). Essai sans IA :
 `SIMULATION=1 python -m robot.principal --libre "Essai"`. Site : servir `docs/` et l'ouvrir à 400 px de large.
