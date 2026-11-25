@@ -495,6 +495,33 @@ class TestSujetsRiches(unittest.TestCase):
         bon = images.bonne_extension(c)
         self.assertTrue(bon.endswith(".png")); self.assertTrue(os.path.exists(bon)); self.assertFalse(os.path.exists(c))
 
+    def test_photo_standard(self):
+        """JPEG CMYK (refusé par ffmpeg) → JPEG RGB standard, lisible."""
+        from robot import images
+        from PIL import Image
+        import random
+        c = os.path.join(TMP, "cmyk.jpg")
+        im = Image.new("CMYK", (400, 300))
+        im.putdata([tuple(random.randrange(256) for _ in range(4)) for _ in range(400 * 300)])
+        im.save(c, "JPEG")
+        std = images.photo_standard(c)
+        with Image.open(std) as x:
+            self.assertEqual(x.mode, "RGB")
+        self.assertEqual(images.lisible(std), "")
+
+    def test_image_d_un_autre_aspect_du_sujet_acceptee(self):
+        from robot import controle
+        s = {"phrases": [dict(ecrit="La chaîne de montage de l'A320", media=dict(type="photo", chemin="x", id="a")), dict(ecrit="Et toi ?")]}
+        garde = (controle._image_de, controle.mesures_image, controle.juger_images)
+        controle._image_de = lambda *a, **k: "x.jpg"; controle.mesures_image = lambda c: (120, 40)
+        controle.juger_images = lambda *a, **k: {0: {"rapport": "sujet", "colle": False, "probleme": "avion en vol"}}
+        B = controle.Bulletin()
+        try:
+            controle.controle_images(s, TMP, B, lambda *a: None, set(), "Airbus A320")
+        finally:
+            controle._image_de, controle.mesures_image, controle.juger_images = garde
+        self.assertFalse([l for l in B.ouverts() if l["niveau"] == "images" and l["ecran"] is not None])
+
     def test_licences(self):
         from robot import images
         self.assertTrue(images.licence_ok("https://creativecommons.org/licenses/by/3.0/"))

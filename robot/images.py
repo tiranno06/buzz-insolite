@@ -614,10 +614,10 @@ def lisible(chemin):
             debut = f.read(200).lower()
         if b"<html" in debut or b"<!doctype" in debut or debut.lstrip().startswith(b"{"):
             return "page web à la place de l'image (" + debut[:60].decode("utf-8", "ignore").strip() + ")"
-        r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=codec_type,codec_name", "-of", "csv=p=0", chemin],
-                           capture_output=True, text=True, timeout=60)
-        if "video" not in r.stdout:
-            return "format illisible (" + (r.stderr or r.stdout).strip()[:80] + ")"
+        r = subprocess.run(["ffmpeg", "-v", "error", "-i", chemin, "-frames:v", "1", "-f", "null", "-"],
+                           capture_output=True, text=True, timeout=120)   # décoder VRAIMENT une image (pas seulement lire l'en-tête)
+        if r.returncode != 0 or "Error" in r.stderr or "unsupported" in r.stderr.lower():
+            return "image impossible à décoder (" + r.stderr.strip()[-90:] + ")"
         return ""
     except Exception as e:
         return str(e)[:80]
@@ -638,11 +638,30 @@ def bonne_extension(chemin):
     return chemin
 
 
+def photo_standard(chemin):
+    """Toute photo téléchargée est ROUVERTE et réenregistrée en JPEG standard (RGB, 1920 px au plus) par Pillow, qui lit tous
+    les formats (PNG, WebP, GIF, JPEG CMYK ou progressifs…) : ffmpeg, lui, refusait sans message certains JPEG et PNG de
+    Wikipédia sur les machines de GitHub (bug du 25/11 : « image illisible » sur presque tous les écrans)."""
+    from PIL import Image
+    chemin = bonne_extension(chemin)
+    with Image.open(chemin) as im:
+        im.seek(0)
+        fond = Image.new("RGB", im.size, (0, 0, 0))
+        rgba = im.convert("RGBA")
+        fond.paste(rgba, mask=rgba.split()[-1])
+        fond.thumbnail((1920, 1920))
+        sortie = os.path.splitext(chemin)[0] + "-std.jpg"
+        fond.save(sortie, "JPEG", quality=92)
+    if sortie != chemin:
+        os.remove(chemin)
+    return sortie
+
+
 def _recuperer(m, dossier, n, deja, journal):
     chemin = os.path.join(dossier, f"media{n:02d}.jpg")
     try:
         _telecharger(m["url"], chemin)
-        chemin = bonne_extension(chemin)
+        chemin = photo_standard(chemin) if m.get("type", "photo") == "photo" else bonne_extension(chemin)
     except Exception as e:
         journal(f"    téléchargement refusé ({str(e)[:60]})")
         return False
@@ -681,7 +700,11 @@ def _trouver(requete, dossier, n, deja, journal=print, generiques=False):
             except Exception:
                 journal(f"    téléchargement refusé ({str(e)[:60]})")
                 continue
-        chemin = bonne_extension(chemin)
+        try:
+            chemin = photo_standard(chemin) if m["type"] == "photo" else bonne_extension(chemin)
+        except Exception as e:
+            journal(f"    {chercheur.__name__} : image illisible écartée ({str(e)[:60]})")
+            continue
         raison = lisible(chemin)
         if raison:
             journal(f"    {chercheur.__name__} : fichier écarté ({raison})")

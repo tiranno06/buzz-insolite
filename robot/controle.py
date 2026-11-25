@@ -242,15 +242,16 @@ def mesures_image(chemin):
 
 CONSIGNE_IMAGES = """Tu contrôles les images d'une vidéo TikTok d'actualité. Pour chaque image numérotée, on te donne la phrase
 dite pendant qu'elle s'affiche et le sujet de la vidéo. Réponds pour CHAQUE image :
-- "colle" : true si l'image montre ce dont parle la phrase OU simplement le sujet de la vidéo ou son domaine (ex. : n'importe
-  quelle vraie image d'étoiles, de nébuleuse ou de télescope pour un sujet d'astronomie ; un avion pour un sujet d'Airbus ;
-  la ville pour une actu qui s'y passe). Une image n'a PAS besoin d'illustrer mot pour mot la phrase. false SEULEMENT si
-  l'image n'a aucun rapport avec le sujet (paysage, fleur, objet au hasard, autre pays, autre événement) ;
+- "rapport" : le lien entre l'image et la vidéo : "exact" (montre ce que dit la phrase), "sujet" (montre le sujet de la
+  vidéo : la même personne, le même lieu, le même objet, même pour une autre partie de l'histoire — ex. un A320 en vol pour
+  une phrase sur sa chaîne de montage), "domaine" (même domaine : stade et supporters pour un sujet de football) ou "aucun"
+  (rien à voir : chevaux pour une élève qui fait un malaise, paysage au hasard, autre pays, autre événement) ;
+- "colle" : false SEULEMENT si "rapport" vaut "aucun" ;
 - "texte_etranger" : true si un texte incrusté en langue étrangère ou des sous-titres sont visibles ;
 - un logo ou un filigrane visible n'est PAS un problème : ne le signale pas ;
 - "probleme" : en quelques mots, sinon "" ;
 - "recherche" : si l'image ne va pas, 2 à 4 mots ANGLAIS concrets pour trouver une meilleure vidéo, sinon "".
-Réponds uniquement en JSON : {"images": [{"n": numéro, "colle": …, "texte_etranger": …, "probleme": "…", "recherche": "…"}]}"""
+Réponds uniquement en JSON : {"images": [{"n": numéro, "rapport": "…", "colle": …, "texte_etranger": …, "probleme": "…", "recherche": "…"}]}"""
 
 
 def juger_images(lots, sujet, journal=print):
@@ -380,7 +381,9 @@ def controle_images(script, dossier, B, journal=print, deja=None, sujet="", sans
                 else:
                     import time; time.sleep(60)
         for i, a in avis.items():
-            if not a.get("colle", True) or a.get("texte_etranger"):
+            rapport = str(a.get("rapport") or "").lower()
+            hors_sujet = rapport == "aucun" or (not rapport and a.get("colle") is False)   # « autre aspect du sujet » = bon
+            if hors_sujet or a.get("texte_etranger"):
                 fautifs[i] = (a.get("probleme") or "image qui ne colle pas", a.get("recherche") or "")
         for i, _, _ in lots:                               # validée par l'IA : peut servir sur un autre écran
             if i not in fautifs and (avis or sans_ia):

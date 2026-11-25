@@ -133,6 +133,11 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
   son VRAI contenu (PNG, JPEG, WebP, GIF, WebM, MP4). Cartes, logos, emblèmes, drapeaux, schémas de la galerie Wikipédia
   écartés (ce ne sont pas de vraies photos). YouTube mis de côté après 2 échecs quels qu'ils soient (« Video unavailable »).
 
+- **Suite (25/11)** : même renommés, certains JPEG (CMYK…) restaient indécodables par ffmpeg → `images.photo_standard` rouvre
+  CHAQUE photo avec Pillow et la réenregistre en JPEG RGB standard ; `lisible` décode vraiment une image. L'IA des images
+  donne un `rapport` (exact / sujet / domaine / aucun) : seule « aucun » est refusée (un A320 en vol pour une phrase sur sa
+  chaîne de montage = bon ; des chevaux pour une élève qui fait un malaise = refusé).
+
 ## Vitesse (analyse du 24/11 : vidéo GTA en 99 min, dont 86 min de voix Chatterbox)
 - Voix refaite par le contrôle final : la phrase a déjà eu 2 essais à l'étape voix, donc mots simplifiés DÈS le 1er essai,
   phrase retirée au 3e (si la vidéo reste ≥ 62 s) ; avant : jusqu'à 7 essais identiques (~1 min de Chatterbox chacun).
