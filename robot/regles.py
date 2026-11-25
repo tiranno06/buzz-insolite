@@ -7,7 +7,9 @@ refaits) et TOUTES les règles sont revérifiées, pour qu'une correction ne cas
 
 Règles : extraits perdus ; écran sans image ; même passage montré deux fois ; vidéo de plus d'1 minute ; plus de 70 %
 d'écrans illustrés ; hashtags (3 à 10, mots entiers) ; tutoiement ; dates et années présentes dans les articles ; caractères
-que la police n'affiche pas (« 1☒0 », vidéo CAN r11) ; question finale ; description.
+que la police n'affiche pas (« 1☒0 », vidéo CAN r11) ; phrase absurde (« 18 7 18 », CAN r13) ; unités anglaises converties
+(pieds, miles → m, km) ; gros titre absent de la phrase dite (« CLOSED BEACHES ») ; accroche mal écrite ; question finale ;
+description.
 """
 import re
 
@@ -41,6 +43,42 @@ def dates_douteuses(phrase, articles_bas):
         if an not in articles_bas and not any(an in d for d in out):
             out.append(an)
     return out
+
+
+# Unités anglo-saxonnes (vidéo des marées du 25/11 : « 2,8 ft », « 20-30 ft », « 2,9 pieds ») → unités françaises
+UNITES = {"ft": (0.3048, "m"), "feet": (0.3048, "m"), "foot": (0.3048, "m"), "pieds": (0.3048, "m"), "pied": (0.3048, "m"),
+          "mi": (1.609, "km"), "miles": (1.609, "km"), "mile": (1.609, "km"), "lb": (0.4536, "kg"), "lbs": (0.4536, "kg"),
+          "livres": (0.4536, "kg"), "inches": (2.54, "cm"), "inch": (2.54, "cm"), "pouces": (2.54, "cm"), "mph": (1.609, "km/h")}
+_NOMBRE = r"\d+(?:[.,]\d+)?"
+_RE_UNITE = re.compile(rf"\b({_NOMBRE})(?:\s*(?:-|à|to)\s*({_NOMBRE}))?\s*({'|'.join(sorted(UNITES, key=len, reverse=True))})\b", re.I)
+
+
+def _arrondi(x):
+    return f"{x:.0f}" if x >= 5 else f"{x:.1f}".replace(".", ",").replace(",0", "")
+
+
+def convertir_unites(t):
+    """« 20-30 ft » → « 6 à 9 m », « 2,8 ft » → « 0,9 m », « 300 miles » → « 483 km »."""
+    def rep(m):
+        k, u = UNITES[m.group(3).lower()]
+        a = float(m.group(1).replace(",", ".")) * k
+        if m.group(2):
+            b = float(m.group(2).replace(",", ".")) * k
+            return f"{_arrondi(a)} à {_arrondi(b)} {u}"
+        return f"{_arrondi(a)} {u}"
+    return _RE_UNITE.sub(rep, t or "")
+
+
+def _sans_accents(t):
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFD", (t or "").lower()) if unicodedata.category(c) != "Mn")
+
+
+def titre_hors_phrase(ecran, phrase):
+    """Mots du gros titre jaune absents de la phrase dite (titre en anglais « CLOSED BEACHES », « 10 SAILS », ou sans
+    rapport avec ce qui est dit). Les chiffres et les mots de 1 ou 2 lettres ne comptent pas."""
+    dits = set(re.findall(r"[a-z]+", _sans_accents(convertir_unites(phrase))))
+    return [m for m in re.findall(r"[a-z]{3,}", _sans_accents(ecran)) if m not in dits]
 
 
 def verifier(script, articles, hashtags=None, duree=None, description=None, question=None):
@@ -85,6 +123,16 @@ def verifier(script, articles, hashtags=None, duree=None, description=None, ques
             if douteuses:
                 pb.append(dict(regle="date", ecran=i, dates=douteuses,
                                message=f"écran {i + 1} : date absente des articles ({', '.join(douteuses)})"))
+    for i, p in enumerate(ph):
+        if controle.phrase_absurde(p.get("ecrit")):
+            pb.append(dict(regle="phrase_absurde", ecran=i, message=f"écran {i + 1} : phrase absurde (« {(p.get('ecrit') or '')[:30]} »)"))
+    for i, p in enumerate(ph):
+        if _RE_UNITE.search(p.get("ecrit") or "") or _RE_UNITE.search(p.get("ecran") or ""):
+            pb.append(dict(regle="unites", ecran=i, message=f"écran {i + 1} : unité anglaise (pieds, miles…)"))
+        if p.get("ecran") and titre_hors_phrase(p["ecran"], p.get("ecrit") or ""):
+            pb.append(dict(regle="titre", ecran=i, message=f"écran {i + 1} : titre « {p['ecran']} » absent de la phrase dite"))
+    if script.get("accroche") and _accroche_fautive(script["accroche"], script.get("titre", "")):
+        pb.append(dict(regle="accroche", ecran=None, message=f"accroche mal écrite : « {script['accroche']} »"))
     from .montage import REMPLACER
     for i, p in enumerate(ph):
         if any(c in REMPLACER for c in (p.get("ecrit") or "") + (p.get("ecran") or "")):
@@ -158,6 +206,23 @@ def reparer(script, problemes, articles, R, journal=print, sujet=None):
             if nouveau != ph[i]["ecrit"]:
                 journal(f"  règle « date », écran {i + 1} : « {ph[i]['ecrit']} » → « {nouveau} »")
                 _changer(ph[i], nouveau); textes.add(i)
+        elif r == "phrase_absurde" and i is not None and 0 < i < len(ph) - 1:
+            # la phrase est retirée (le reste de la vidéo ne bouge pas) ; écran remonté : la durée est revérifiée ensuite
+            journal(f"  règle « phrase absurde » : écran {i + 1} retiré (« {ph[i].get('ecrit', '')[:40]} »)")
+            ph.pop(i)
+            return textes, images_ | {-1}, champs              # indices décalés : on revérifie tout au tour suivant
+        elif r == "unites" and i is not None:
+            nouveau = convertir_unites(ph[i]["ecrit"])
+            if ph[i].get("ecran"):
+                ph[i]["ecran"] = convertir_unites(ph[i]["ecran"]).upper(); ph[i].pop("_sig", None); images_.add(i)
+            if nouveau != ph[i]["ecrit"]:
+                journal(f"  règle « unités », écran {i + 1} : « {ph[i]['ecrit']} » → « {nouveau} »")
+                _changer(ph[i], nouveau); textes.add(i)
+        elif r == "titre" and i is not None:            # titre absent de la phrase : retiré (seul l'écran est refait)
+            journal(f"  règle « titre », écran {i + 1} : « {ph[i]['ecran']} » retiré")
+            ph[i]["ecran"] = ""; ph[i].pop("_sig", None); images_.add(i)
+        elif r == "accroche":
+            script["accroche"] = " ".join(str(script.get("titre") or "").upper().split()[:4]); champs.add("accroche")
         elif r == "caracteres" and i is not None:            # remplacés à l'affichage aussi : seul l'écran est refait
             from .montage import affichable
             for k in ("ecrit", "ecran"):
@@ -171,6 +236,22 @@ def reparer(script, problemes, articles, R, journal=print, sujet=None):
         elif r == "hashtags":
             champs.add("hashtags")                              # recalculés par l'appelant (ecrire.hashtags, déjà corrigé)
     return textes, images_, champs
+
+
+def _accroche_fautive(accroche, titre=""):
+    """Accroche avec une faute (« VAGUES MORTELLES EN COASTE », 25/11) : relue par LanguageTool en minuscules ; un mot
+    du titre de la vidéo n'est jamais compté comme faute. Service injoignable = pas de faute signalée."""
+    try:
+        from . import langue
+        fautes = langue.verifier_texte(accroche.lower())
+    except Exception:
+        return False
+    titre_bas = _sans_accents(titre)
+    for f in fautes:
+        mot = accroche.lower()[f["offset"]:f["offset"] + f["length"]]
+        if f.get("rule", {}).get("category", {}).get("id") == "TYPOS" and _sans_accents(mot) not in titre_bas:
+            return True
+    return False
 
 
 def _changer(p, ecrit):

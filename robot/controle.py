@@ -573,6 +573,23 @@ def controle_video(fichier, script, dossier, B, journal=print, leger=False, sans
     return fautifs
 
 
+def phrase_absurde(t):
+    """Phrase qui n'en est pas une : moins de 3 vrais mots, ou surtout des chiffres (« 18 7 18 », vidéo CAN r13 du 25/11)."""
+    mots = re.findall(r"[A-Za-zÀ-ÿ]{2,}", t or "")
+    chiffres = re.findall(r"\d+", t or "")
+    return len(mots) < 3 or len(chiffres) > len(mots)
+
+
+def simplification_valable(avant, apres):
+    """Une phrase simplifiée par l'IA doit rester une vraie phrase et parler de la même chose (au moins 1 mot sur 3 de
+    l'ancienne phrase, sans compter les petits mots)."""
+    if not apres.strip() or phrase_absurde(apres):
+        return False
+    a = {m.lower() for m in re.findall(r"[A-Za-zÀ-ÿ]{4,}", avant)}
+    b = {m.lower() for m in re.findall(r"[A-Za-zÀ-ÿ]{4,}", apres)}
+    return not a or len(a & b) >= max(1, len(a) // 3)
+
+
 CONSIGNE_SIMPLIFIER = """Réécris cette phrase d'une vidéo TikTok avec des mots plus simples et plus courts, faciles à prononcer
 pour une voix de synthèse (pas de sigle, pas de nom étranger difficile si on peut l'éviter), en gardant exactement le même fait.
 Réponds uniquement en JSON : {"voix": "nombres en lettres", "ecrit": "nombres en chiffres"}"""
@@ -623,9 +640,11 @@ def corriger_ecrans(script, fautifs, dossier, B, journal=print, nom_voix="", vit
             if n in (1, 3) or n > 4:
                 try:
                     d, _ = ia.demander_json(CONSIGNE_SIMPLIFIER, p["ecrit"], temperature=0.6, journal=journal)
-                    if str(d.get("voix") or "").strip():
+                    if simplification_valable(p["ecrit"], str(d.get("ecrit") or d.get("voix") or "")):
                         p["voix"] = nombres.dire_les_nombres(str(d["voix"])); p["ecrit"] = str(d.get("ecrit") or d["voix"])
                         l["solution"] = "phrase simplifiée puis refaite"
+                    else:                                  # réponse absurde de l'IA (« 18 7 18 », vidéo CAN r13) : refusée
+                        journal(f"  écran {i + 1} : simplification refusée (« {str(d.get('ecrit') or d.get('voix'))[:40]} »)")
                 except ia.AucuneIA:
                     pass
             if n >= 3 and 0 < i < len(ph) - 1 and duree_estimee(ph[:i] + ph[i + 1:]) >= 62:

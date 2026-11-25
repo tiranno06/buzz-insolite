@@ -140,7 +140,7 @@ def choisir_sujets(n, sujet_id="", libre="", journal=print, format_="buzz"):
 def script_simulation(sujet):
     phrases = [dict(voix=t, ecrit=t, ecran=e, image="") for t, e in (
         ("Ceci est une vidéo d'essai du robot.", "ESSAI"), ("Elle ne contient aucune vraie information.", ""),
-        ("Le robot vérifie que le montage fonctionne.", "MONTAGE"), ("Les sous-titres suivent la voix mot à mot.", "KARAOKÉ"),
+        ("Le robot vérifie que le montage fonctionne.", "MONTAGE"), ("Les sous-titres suivent la voix mot à mot.", "SOUS-TITRES"),
         ("Le 24 novembre 2026, tout marche.", "24/11"), ("Les écrans de texte remplacent les images.", ""),
         ("La description et les hashtags sont prêts.", "#"), ("Fin de l'essai.", ""),
         ("Alors, toi, tu aimes ce format ? Dis-le en commentaire !", ""))]
@@ -621,8 +621,23 @@ def placer_citations(script, scenes, sujet, dossier, deja, journal, R, E, format
                 and m["type"] == "video" and total + sum(_duree_estimee(ph[j]) for j in suivante) <= m.get("duree", 0):
             sc += suivante                                    # au moins 10 s d'affilée
         ph[sc[0]]["media"] = dict(m, reelle=True); ph[sc[0]]["_valide"] = True
+        if m["type"] == "photo":
+            continue                                          # une image FIXE ne couvre qu'une phrase (voir plus bas)
         for j in sc[1:]:
             ph[j]["media"] = dict(m, id=f"{m['id']}-suite{j}", suite=True, reelle=True); ph[j]["_valide"] = True
+    # images fixes : une par phrase (vidéo des marées du 25/11 : la même photo sur 3 écrans de suite, 15 s figées) ; les
+    # phrases restantes d'une scène photo prennent d'autres images fixes de l'événement, sinon la même photo continue
+    restantes = [m for m in fixes if m not in extraits]
+    for k in choix_f:
+        for j in scenes[k][1:]:
+            if "media" in ph[j]:
+                continue
+            if restantes:
+                m = restantes.pop(0)
+                ph[j]["media"] = dict(m, reelle=True); ph[j]["_valide"] = True; extraits.append(m)
+            else:
+                prec = ph[j - 1]["media"]
+                ph[j]["media"] = dict(prec, id=f"{prec['id']}-suite{j}", suite=True); ph[j]["_valide"] = True
     journal(f"  {len(choix)} courte(s) citation(s) placée(s) (vidéos et images de l'événement) : "
             + ", ".join(m.get("bandeau") or f"@{m['compte']}" for m in extraits[:len(choix)]))
 

@@ -169,7 +169,7 @@ def preparer(v, sujet, etape, remarque, dossier, repo, R, journal=print):
             if cibles:                                      # phrase signalée : mots plus simples
                 try:
                     d, _ = ia.demander_json(controle.CONSIGNE_SIMPLIFIER, p["ecrit"], temperature=0.6, journal=journal)
-                    if str(d.get("voix") or "").strip():
+                    if controle.simplification_valable(p["ecrit"], str(d.get("ecrit") or d.get("voix") or "")):
                         p["voix"] = nombres.dire_les_nombres(str(d["voix"])); p["ecrit"] = str(d.get("ecrit") or d["voix"])
                 except ia.AucuneIA:
                     pass

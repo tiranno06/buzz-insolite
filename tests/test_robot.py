@@ -946,3 +946,53 @@ class TestAccrocheMeilleurExtrait(unittest.TestCase):
         self.assertEqual(ph[0]["media"]["compte"], "brut")                    # le mieux noté ouvre la vidéo
         comptes = [p["media"]["compte"] for p in ph[:-1] if p.get("media") and not p["media"].get("suite")]
         self.assertFalse(any(a == b for a, b in zip(comptes, comptes[1:])), comptes)
+
+
+class TestPhraseAbsurde(unittest.TestCase):
+    def test_simplification_et_regle(self):
+        from robot import controle, regles
+        self.assertTrue(controle.phrase_absurde("18 7 18"))
+        self.assertFalse(controle.phrase_absurde("Le Maroc peut encore faire appel."))
+        avant = "Le Maroc peut encore saisir le Tribunal fédéral suisse pour contester le verdict."
+        self.assertFalse(controle.simplification_valable(avant, "18 7 18"))
+        self.assertFalse(controle.simplification_valable(avant, "Il fait beau aujourd'hui à Paris."))
+        self.assertTrue(controle.simplification_valable(avant, "Le Maroc peut encore contester ce verdict en Suisse."))
+        script = {"phrases": [dict(ecrit="Le titre revient au Sénégal !", media={"type": "photo"}),
+                              dict(ecrit="18 7 18", media={"type": "photo"}),
+                              dict(ecrit="Et toi, tu en penses quoi ? Dis-le en commentaire !")]}
+        pbs = regles.verifier(script, [], None, None, "desc", "Et toi ?")
+        self.assertIn("phrase_absurde", {p["regle"] for p in pbs})
+        regles.reparer(script, [p for p in pbs if p["regle"] == "phrase_absurde"], [], {}, journal=lambda *_: None)
+        self.assertEqual(len(script["phrases"]), 2)
+        self.assertNotIn("phrase_absurde", {p["regle"] for p in regles.verifier(script, [], None, None, "desc", "Et toi ?")})
+
+
+class TestReglesMarees(unittest.TestCase):
+    def test_unites_et_titres(self):
+        from robot import regles
+        self.assertEqual(regles.convertir_unites("Le niveau sera de 2,8 ft au-dessus."), "Le niveau sera de 0,9 m au-dessus.")
+        self.assertEqual(regles.convertir_unites("Des vagues de 20-30 ft."), "Des vagues de 6 à 9 m.")
+        self.assertEqual(regles.titre_hors_phrase("CLOSED BEACHES", "Les autorités ferment les plages."), ["closed", "beaches"])
+        self.assertEqual(regles.titre_hors_phrase("GAVIN NEWSOM", "Le gouverneur Gavin Newsom a parlé."), [])
+        script = {"phrases": [dict(ecrit="Des vagues de 20-30 ft menacent les baigneurs.", ecran="20-30 FT", media={"type": "photo"}),
+                              dict(ecrit="Les autorités ferment les plages.", ecran="CLOSED BEACHES", media={"type": "photo"}),
+                              dict(ecrit="Et toi, tu ferais quoi ? Dis-le en commentaire !")]}
+        pbs = [p for p in regles.verifier(script, [], None, None, "d", "Et toi ?") if p["regle"] in ("unites", "titre")]
+        self.assertEqual({p["regle"] for p in pbs}, {"unites", "titre"})
+        regles.reparer(script, pbs, [], {}, journal=lambda *_: None)
+        self.assertEqual(script["phrases"][0]["ecrit"], "Des vagues de 6 à 9 m menacent les baigneurs.")
+        self.assertEqual(script["phrases"][1]["ecran"], "")
+
+    def test_une_image_fixe_par_phrase(self):
+        from robot import principal as P, citations as C
+        ph = [dict(ecrit="un deux trois quatre cinq six sept huit neuf dix") for _ in range(8)] + [dict(ecrit="Et toi ?")]
+        fixes = [dict(type="photo", chemin=f"p{k}.jpg", id=f"presse-{k}", citation=True, compte="m", credit="c") for k in range(8)]
+        ancien, ancien_sim, ancien_pp = C.extraits, P.simulation, C.photos_presse
+        try:
+            C.extraits = lambda *a, **k: []; C.photos_presse = lambda *a, **k: fixes; P.simulation = lambda: False
+            P.placer_citations({"phrases": ph}, P.scenes_de(ph), {"videos": []}, "/tmp", set(), lambda *_: None,
+                               {"video": {"citations": True}}, {"articles": []}, "buzz")
+        finally:
+            C.extraits, P.simulation, C.photos_presse = ancien, ancien_sim, ancien_pp
+        ids = [p["media"]["id"] for p in ph[:-1]]
+        self.assertEqual(len(set(ids)), len(ids), f"la même photo sur plusieurs écrans : {ids}")

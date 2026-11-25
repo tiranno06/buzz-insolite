@@ -285,6 +285,15 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
   accroche « TAS REND LA VICTOIRE » → jamais de sigle dans l'accroche ; question avec tiret insécable → `affichable` sur la
   question et la description ; `categorie` vide → « actualite » par défaut. Non corrigé (choix) : nos sous-titres sur
   bandeau noir peuvent tomber près des sous-titres de la vidéo d'origine (leur place change d'un média à l'autre).
+- **Analyse des vidéos du 25/11 après-midi** (CAN r13, Seattle, marées) et nouvelles règles : phrase absurde « 18 7 18 »
+  (simplification de l'IA acceptée sans contrôle) → `controle.simplification_valable` / `phrase_absurde` + règle (phrase
+  retirée) ; unités anglaises « 2,8 ft », « 20-30 ft », « 2,9 pieds » → règle « unites » (`regles.convertir_unites` :
+  pieds, miles, livres, pouces, mph → m, km, kg, cm, km/h, sans IA) ; gros titres en anglais ou hors sujet (« CLOSED BEACHES »,
+  « 10 SAILS ») → règle « titre » (`titre_hors_phrase` : chaque mot du titre doit être dans la phrase dite, sinon titre
+  retiré) ; accroche « VAGUES MORTELLES EN COASTE » → règle « accroche » (LanguageTool, sinon les 4 premiers mots du titre) ;
+  même photo de presse sur 3 écrans de suite → une image FIXE ne couvre qu'une phrase, les suivantes prennent d'autres
+  images de l'événement. Vidéo Seattle : excellente (14/14 écrans de l'arrestation). Non corrigé : un nom en titre
+  (« BOB FERGUSON ») peut s'afficher sur le visage d'une autre personne de l'extrait.
 - **Rejeu d'une vraie vidéo** (`tests/test_rejeu.py`, données réelles de la CAN r10 dans `tests/donnees/rejeu_can`, sans
   réseau ni IA, ~50 s, à chaque envoi) : les règles trouvent les défauts réels, la réparation ne touche que les passages
   fautifs, refaire le texte ne perd aucun extrait, le montage ne refait que les écrans changés. Il a trouvé dès sa 1re
