@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T23:35:48+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Pont suspendu secoué en Patagonie » (51 s, 14 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-25T23:09:40+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Malaise à Airbus : Macron suspend » (54 s, 12 écrans illustrés) — à regarder puis cocher « À publier »"

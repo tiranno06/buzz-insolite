@@ -1,6 +1,325 @@
 {
  "videos": [
   {
+   "id": "20261125-231630-1",
+   "tag": "v-20261125-231630-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-231630-1/buzz-20261125-231630-1.mp4",
+   "titre": "Pont suspendu secoué en Patagonie",
+   "accroche": "PONT SECOUÉ, VENT MORTEL",
+   "sujet_id": "1b6165168a",
+   "sujet": "Pont suspendu de Torres del Paine secoué",
+   "buzz": {
+    "vues": 5100000,
+    "jaime": 289800,
+    "commentaires": 4437,
+    "score": 775
+   },
+   "description": "Un pont suspendu secoué par des vents violents. 🚨",
+   "question": "Et toi, tu penses que les ponts suspendus sont sûrs en Patagonie ?",
+   "hashtags": [
+    "#torresdelpaine",
+    "#patagonia",
+    "#abcnews",
+    "#news",
+    "#pont",
+    "#vent",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 51.0,
+   "sources": [
+    {
+     "media": "franceinfo.fr",
+     "titre": "Au Chili, un randonneur a bravé de violentes rafales de vent sur un pont suspendu",
+     "lien": "https://www.franceinfo.fr/monde/au-chili-un-randonneur-a-brave-de-violentes-rafales-de-vent-sur-un-pont-suspendu_8297955.html"
+    },
+    {
+     "media": "ledauphine.com",
+     "titre": "Accueil Société Montagne « Ne pas lâcher prise » : la tempête se lève alors qu'il est sur un pont suspendu, il ...",
+     "lien": "https://www.ledauphine.com/societe/2026/11/25/ne-pas-lacher-prise-la-tempete-se-leve-alors-qu-il-est-sur-un-pont-suspendu-il-se-retrouve-coince"
+    },
+    {
+     "media": "dailymail.com",
+     "titre": "Moment tourist hiker clings on for dear life as rope bridge tosses around violently during freak storm in Chilean gorge",
+     "lien": "https://www.dailymail.com/news/article-16321069/tourist-hiker-clings-rope-bridge-tosses-violently-freak-storm-Chilean-gorge.html"
+    },
+    {
+     "media": "minutemirror.com.pk",
+     "titre": "German tourist clings to swaying bridge during windstorm in Chile",
+     "lien": "https://minutemirror.com.pk/german-tourist-clings-to-swaying-bridge-during-windstorm-in-chile-665602/"
+    },
+    {
+     "media": "Wikipédia (contexte)",
+     "titre": "Bataille d'Anoual",
+     "lien": "https://fr.wikipedia.org/wiki/Bataille%20d%27Anoual"
+    }
+   ],
+   "verification": {
+    "par": "gemini:gemini-flash-lite-latest",
+    "corrigees": 3,
+    "retirees": 1,
+    "problemes": [
+     "La formulation comporte une faute grammaticale (une 50 mètres) et doit être corrigée en chiffres selon les règles.",
+     "Le pont s'est renversé à 180 degrés (et non pas presque).",
+     "Aucun article ne mentionne le lancement d'une évacuation d'urgence par le parc.",
+     "La date exacte est le 11 novembre, sans précision de l'année 2026 dans les articles principaux sur la vidéo (c'est une date de publication de presse sans lien d"
+    ]
+   },
+   "verifie": false,
+   "credits": [
+    "@abcnews (TikTok, extrait cité)",
+    "@abcnews (TikTok, image citée)",
+    "@dailymail (TikTok, extrait cité)",
+    "@foxnews (TikTok, extrait cité)",
+    "@franceinfo (TikTok, extrait cité)",
+    "@tf1info (TikTok, extrait cité)",
+    "@tf1info (TikTok, image citée)",
+    "Carte : Natural Earth, OpenStreetMap"
+   ],
+   "extraits_perdus": 0,
+   "regles_non_respectees": [
+    "vidéo de 51 s : il faut PLUS d'1 minute",
+    "faits non vérifiés par une 2e IA"
+   ],
+   "ecrans_illustres": 14,
+   "ecrans_total": 14,
+   "format": "buzz",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "Torres del Paine National Park, Chile",
+   "humeur": "tension",
+   "categorie": "nature",
+   "texte": [
+    "Un pont secoué, un souffle mortel",
+    "Un touriste allemand, Henry Thomas, traversait le pont Las Guardas",
+    "Le pont se tenait à 45 mètres au-dessus d’un ravin",
+    "Le pont mesurait plus de 50 mètres de long",
+    "Des rafales ont atteint 94 kilomètres à l’heure",
+    "Un effet Venturi aurait pu dépasser 150 kilomètres à l’heure",
+    "Le pont a vibré, se retournant à 180 degrés",
+    "Henry Thomas a su s’accrocher à la corde pour ne pas tomber",
+    "Il a réussi à traverser sans blessure",
+    "Un garde forestier a fermé le pont 30 minutes plus tard",
+    "Torres del Paine est célèbre pour ses conditions météorologiques extrêmes",
+    "L’incident a ravivé les inquiétudes sur la sécurité des visiteurs",
+    "Le pont a été filmé le 11 novembre",
+    "Sa petite amie avait traversé juste avant lui sans encombre.",
+    "Le vent a surpris le randonneur alors qu'il avait parcouru un tiers du pont.",
+    "Et toi, tu penses que les ponts suspendus sont sûrs en Patagonie ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-25T23:35:48+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 5,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 1,
+     "refus": 1,
+     "erreurs": 5,
+     "restant_demandes": "999",
+     "limite_demandes": "1000",
+     "restant_mots": "1232"
+    },
+    "gemini": {
+     "appels": 2,
+     "refus": 2,
+     "erreurs": 3
+    },
+    "openrouter": {
+     "appels": 0,
+     "refus": 8,
+     "erreurs": 0
+    }
+   },
+   "fabrication_s": 1158,
+   "controles": {
+    "note": 45,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte un peu court (environ 54 s)",
+      "corrige": false,
+      "essais": 21
+     },
+     {
+      "niveau": "video",
+      "ecran": null,
+      "gravite": "grave",
+      "probleme": "vidéo de 51 s : pas plus d'1 minute (pas payée par TikTok)",
+      "corrige": true,
+      "essais": 4,
+      "solution": ""
+     },
+     {
+      "niveau": "regles",
+      "ecran": null,
+      "gravite": "grave",
+      "probleme": "faits non vérifiés par une 2e IA",
+      "corrige": false,
+      "essais": 2
+     }
+    ],
+    "sautes": [
+     "réécriture du texte par l'IA (aucune IA disponible)",
+     "regard de l'IA sur la vidéo finie (IA indisponible : aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY))"
+    ],
+    "corriges": 1,
+    "restants": 2,
+    "graves_restants": 4
+   },
+   "reprises": 0,
+   "preuves": [
+    {
+     "ecran": 1,
+     "page": "https://www.tiktok.com/@abcnews/video/7712035729592831263",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@abcnews",
+     "titre": "",
+     "credit": "@abcnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://www.tiktok.com/@abcnews/video/7712035729592831263",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@abcnews",
+     "titre": "",
+     "credit": "@abcnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@tf1info",
+     "titre": "",
+     "credit": "@tf1info (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@tf1info",
+     "titre": "",
+     "credit": "@tf1info (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://www.tiktok.com/@franceinfo/video/7711739658765470998",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@franceinfo",
+     "titre": "",
+     "credit": "@franceinfo (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://www.tiktok.com/@franceinfo/video/7711739658765470998",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@franceinfo",
+     "titre": "",
+     "credit": "@franceinfo (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://www.tiktok.com/@abcnews/video/7712035729592831263",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@abcnews",
+     "titre": "",
+     "credit": "@abcnews (TikTok, image citée)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    },
+    {
+     "ecran": 9,
+     "page": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@tf1info",
+     "titre": "",
+     "credit": "@tf1info (TikTok, image citée)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    },
+    {
+     "ecran": 10,
+     "page": "https://www.tiktok.com/@foxnews/video/7712157175216344350",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@foxnews",
+     "titre": "",
+     "credit": "@foxnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://www.tiktok.com/@foxnews/video/7712157175216344350",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@foxnews",
+     "titre": "",
+     "credit": "@foxnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://www.tiktok.com/@dailymail/video/7712132609438010637",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@dailymail",
+     "titre": "",
+     "credit": "@dailymail (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    },
+    {
+     "ecran": 13,
+     "page": "https://www.tiktok.com/@dailymail/video/7712132609438010637",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@dailymail",
+     "titre": "",
+     "credit": "@dailymail (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    },
+    {
+     "ecran": 14,
+     "page": "https://www.tiktok.com/@abcnews/video/7712035729592831263",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@abcnews",
+     "titre": "",
+     "credit": "@abcnews (TikTok, image citée)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    },
+    {
+     "ecran": 15,
+     "page": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@tf1info",
+     "titre": "",
+     "credit": "@tf1info (TikTok, image citée)",
+     "releve_le": "2026-11-25T23:35:48+01:00"
+    }
+   ],
+   "couverture_ms": 6058,
+   "durees": {
+    "articles": 0,
+    "ecriture": 7,
+    "texte": 11,
+    "voix": 44,
+    "images": 317,
+    "controle_images": 4,
+    "montage": 112,
+    "controle_final": 614,
+    "extraits": 0,
+    "regles": 57,
+    "rangement": 13
+   },
+   "refaite": null,
+   "statut": "a_verifier"
+  },
+  {
    "id": "20261125-225608-1",
    "tag": "v-20261125-225608-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-225608-1/buzz-20261125-225608-1.mp4",

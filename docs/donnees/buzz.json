@@ -544,8 +544,9 @@
    ],
    "medias": 9,
    "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-25T21:39:33+01:00"
+   "statut": "utilise",
+   "vu_le": "2026-11-25T21:39:33+01:00",
+   "video_id": "20261125-231630-1"
   },
   {
    "titre": "Explosion de lead azide à Middletown",
