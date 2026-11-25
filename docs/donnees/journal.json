@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T07:26:20+01:00",
+   "niveau": "info",
+   "texte": "🔁 « Fascistes en Espagne : un hommage choc à Franco » refaite (images) : note 90/100 — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T07:13:22+01:00",
    "niveau": "info",
    "texte": "🔁 « Macron et l'A320 : un futur qui décolle » refaite (controle) : note 90/100 — l'ancienne version est remplacée"

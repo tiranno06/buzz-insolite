@@ -870,9 +870,9 @@
    "refaite_de": "20261124-233244-1-r5"
   },
   {
-   "id": "20261124-233157-1-r3",
-   "tag": "v-20261124-233157-1-r3",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233157-1-r3/buzz-20261124-233157-1-r3.mp4",
+   "id": "20261124-233157-1-r4",
+   "tag": "v-20261124-233157-1-r4",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233157-1-r4/buzz-20261124-233157-1-r4.mp4",
    "titre": "Fascistes en Espagne : un hommage choc à Franco",
    "accroche": "FRANCO REVIENT EN FORCE",
    "sujet_id": "97a197f1f5",
@@ -947,15 +947,16 @@
    },
    "verifie": true,
    "credits": [
+    "Alexey M.\n\nMusic: \"Devastation and Reven / Wikimedia Commons, CC BY-SA 4.0",
     "Carte : Natural Earth, OpenStreetMap",
     "Titre : Le Figaro",
     "Titre : charliehebdo.fr",
     "Wikipédia, article « Exhumation de Francisco Franco »",
-    "Wikipédia, article « Loi sur la mémoire démocratique »",
+    "Wikipédia, article « Phalange espagnole »",
     "Wikipédia, article « Salut fasciste »",
-    "Wikipédia, article « Valle de los Caídos »"
+    "Wikipédia, article « Transition démocratique espagnole »"
    ],
-   "ecrans_illustres": 7,
+   "ecrans_illustres": 12,
    "ecrans_total": 15,
    "format": "buzz",
    "voix": "chatterbox-bernard",
@@ -982,10 +983,10 @@
     "Et toi, tu connaissais ce lieu de pèlerinage fasciste ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T06:18:08+01:00",
-   "fabrication_s": 2786,
+   "cree_le": "2026-11-25T07:26:20+01:00",
+   "fabrication_s": 2798,
    "controles": {
-    "note": 65,
+    "note": 90,
     "lignes": [
      {
       "niveau": "images",
@@ -993,106 +994,89 @@
       "gravite": "moyen",
       "probleme": "image qui ne colle pas",
       "corrige": true,
-      "essais": 1,
-      "solution": "nouvelle image (« protesters holding flags »)"
+      "essais": 2,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
-      "ecran": 20,
+      "ecran": 21,
       "gravite": "moyen",
       "probleme": "image qui ne colle pas",
       "corrige": true,
-      "essais": 1,
-      "solution": "image du thème (« fascist rally monument »)"
+      "essais": 2,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 22,
       "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
+      "probleme": "cimetière générique, pas Vallée des Chutes",
       "corrige": true,
       "essais": 1,
-      "solution": "image du thème (« fascist rally monument »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "image qui ne colle pas",
-      "corrige": true,
-      "essais": 1,
-      "solution": "nouvelle image (« Franco exhumation site »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 25,
-      "gravite": "moyen",
-      "probleme": "cosplay anime, rien à voir",
-      "corrige": true,
-      "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 26,
-      "gravite": "moyen",
-      "probleme": "image hors contexte, pas lié à Franco ou Espagne",
-      "corrige": true,
-      "essais": 1,
-      "solution": "nouvelle image (« government press conference »)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 27,
-      "gravite": "moyen",
-      "probleme": "propagande nazie allemande, pas espagnole",
-      "corrige": true,
-      "essais": 1,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 28,
-      "gravite": "moyen",
-      "probleme": "manifestation générique, pas Franco",
-      "corrige": true,
-      "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 30,
-      "gravite": "moyen",
-      "probleme": "enseigne Amnesty, pas lié à Franco",
-      "corrige": true,
-      "essais": 2,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 31,
-      "gravite": "moyen",
-      "probleme": "manifestation anti-fasciste moderne, pas liée à Franco ou aux années 1940",
-      "corrige": true,
-      "essais": 1,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 24,
       "gravite": "moyen",
-      "probleme": "fleurs sur tombe, pas de lien avec fascisme",
+      "probleme": "image qui ne colle pas",
       "corrige": true,
       "essais": 1,
-      "solution": "nouvelle image (« Franco rally Spain fascist symbols »)"
+      "solution": "nouvelle image (« fascist rally Spain modern »)"
      },
      {
       "niveau": "images",
-      "ecran": null,
-      "gravite": "grave",
-      "probleme": "trop peu d'images : 7 écran(s) illustré(s) sur 15",
-      "corrige": false,
-      "essais": 1
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "image qui ne colle pas",
+      "corrige": true,
+      "essais": 4,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "Cimetière sans contexte historique lié à Franco ou rassemblement fasciste",
+      "corrige": true,
+      "essais": 4,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "image qui ne colle pas",
+      "corrige": true,
+      "essais": 4,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "Image de réunion parlementaire générique sans lien avec le sujet",
+      "corrige": true,
+      "essais": 1,
+      "solution": "nouvelle image (« Spanish Francoist rally archive, Francoist elite gathering, Spanish dictatorship wealth symbols »)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 31,
+      "gravite": "moyen",
+      "probleme": "Image de manifestation anti-fasciste moderne sans lien avec le monument évoqué",
+      "corrige": true,
+      "essais": 1,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "image qui ne colle pas",
+      "corrige": true,
+      "essais": 3,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "video",
@@ -1100,99 +1084,144 @@
       "gravite": "moyen",
       "probleme": "texte mal placé",
       "corrige": true,
-      "essais": 3,
-      "solution": "nouvelle image (« massive stone cross »)"
+      "essais": 1,
+      "solution": "titre retiré"
      }
     ],
     "sautes": [
      "regard de l'IA sur les images (IA indisponible)"
     ],
-    "corriges": 12,
-    "restants": 1,
-    "graves_restants": 2
+    "corriges": 11,
+    "restants": 0,
+    "graves_restants": 1
    },
    "reprises": 0,
    "preuves": [
     {
      "ecran": 1,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ATombe_Franco.jpg",
-     "licence": "",
-     "auteur": "",
+     "page": "https://commons.wikimedia.org/?curid=55912669",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Alexey M.\n\nMusic: \"Devastation and Reven",
      "titre": "",
-     "credit": "Wikipédia, article « Valle de los Caídos »",
-     "releve_le": "2026-11-25T06:18:08+01:00"
+     "credit": "Alexey M.\n\nMusic: \"Devastation and Reven / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T07:26:20+01:00"
     },
     {
      "ecran": 3,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AValle_de_los_caidos_by_forcy-cruz_frontal_vertical.jpg",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AFalange_Members_in_Saragossa_1936_%28Retouched%29.jpg",
      "licence": "",
      "auteur": "",
      "titre": "",
-     "credit": "Wikipédia, article « Valle de los Caídos »",
-     "releve_le": "2026-11-25T06:18:08+01:00"
+     "credit": "Wikipédia, article « Phalange espagnole »",
+     "releve_le": "2026-11-25T07:26:20+01:00"
     },
     {
      "ecran": 4,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ASPA-2014-San_Lorenzo_de_El_Escorial-Valley_of_the_Fallen_%28Valle_de_los_Ca%C3%ADdos%29.jpg",
-     "licence": "",
-     "auteur": "",
+     "page": "https://commons.wikimedia.org/?curid=55912669",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Alexey M.\n\nMusic: \"Devastation and Reven",
      "titre": "",
-     "credit": "Wikipédia, article « Valle de los Caídos »",
-     "releve_le": "2026-11-25T06:18:08+01:00"
+     "credit": "Alexey M.\n\nMusic: \"Devastation and Reven / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T07:26:20+01:00"
     },
     {
      "ecran": 5,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ASacristie_Valle_de_los_Caisdos.jpg",
-     "licence": "",
-     "auteur": "",
+     "page": "https://commons.wikimedia.org/?curid=55912669",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Alexey M.\n\nMusic: \"Devastation and Reven",
      "titre": "",
-     "credit": "Wikipédia, article « Valle de los Caídos »",
-     "releve_le": "2026-11-25T06:18:08+01:00"
+     "credit": "Alexey M.\n\nMusic: \"Devastation and Reven / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T07:26:20+01:00"
     },
     {
      "ecran": 6,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ACarlos_Arias_Navarro_and_Franco_1975.jpg",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AValleDeLosCaidos_Tomb_Franco.jpg",
      "licence": "",
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Exhumation de Francisco Franco »",
-     "releve_le": "2026-11-25T06:18:08+01:00"
+     "releve_le": "2026-11-25T07:26:20+01:00"
     },
     {
      "ecran": 7,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ABundesarchiv_Bild_183-2007-0329-501%2C_Reichsgr%C3%BCndungsfeier%2C_Schulklasse.jpg",
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ABundesarchiv_Bild_101I-808-1236-08%2C_Berlin%2C_Reichstagssitzung%2C_Goebbels%2C_Ribbentrop.jpg",
      "licence": "",
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Salut fasciste »",
-     "releve_le": "2026-11-25T06:18:08+01:00"
+     "releve_le": "2026-11-25T07:26:20+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://commons.wikimedia.org/?curid=55912669",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Alexey M.\n\nMusic: \"Devastation and Reven",
+     "titre": "",
+     "credit": "Alexey M.\n\nMusic: \"Devastation and Reven / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T07:26:20+01:00"
     },
     {
      "ecran": 9,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3ACortejo-f%C3%BAnebre-abogados-Atocha.jpg",
+     "page": "https://commons.wikimedia.org/?curid=55912669",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Alexey M.\n\nMusic: \"Devastation and Reven",
+     "titre": "",
+     "credit": "Alexey M.\n\nMusic: \"Devastation and Reven / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T07:26:20+01:00"
+    },
+    {
+     "ecran": 10,
+     "page": "https://commons.wikimedia.org/?curid=55912669",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Alexey M.\n\nMusic: \"Devastation and Reven",
+     "titre": "",
+     "credit": "Alexey M.\n\nMusic: \"Devastation and Reven / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T07:26:20+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://commons.wikimedia.org/?curid=55912669",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Alexey M.\n\nMusic: \"Devastation and Reven",
+     "titre": "",
+     "credit": "Alexey M.\n\nMusic: \"Devastation and Reven / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T07:26:20+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AToledoElecciones15Jun77.jpg",
      "licence": "",
      "auteur": "",
      "titre": "",
-     "credit": "Wikipédia, article « Loi sur la mémoire démocratique »",
-     "releve_le": "2026-11-25T06:18:08+01:00"
+     "credit": "Wikipédia, article « Transition démocratique espagnole »",
+     "releve_le": "2026-11-25T07:26:20+01:00"
+    },
+    {
+     "ecran": 13,
+     "page": "https://commons.wikimedia.org/?curid=55912669",
+     "licence": "CC BY-SA 4.0",
+     "auteur": "Alexey M.\n\nMusic: \"Devastation and Reven",
+     "titre": "",
+     "credit": "Alexey M.\n\nMusic: \"Devastation and Reven / Wikimedia Commons, CC BY-SA 4.0",
+     "releve_le": "2026-11-25T07:26:20+01:00"
     }
    ],
    "couverture_ms": 20281,
    "durees": {
     "voix": 0,
-    "images": 173,
-    "controle_images": 970,
-    "montage": 138,
-    "controle_final": 1494,
-    "rangement": 4
+    "images": 215,
+    "controle_images": 1768,
+    "montage": 128,
+    "controle_final": 677,
+    "rangement": 5
    },
    "refaite": {
-    "de": "20261124-233157-1-r2",
-    "etape": "controle",
+    "de": "20261124-233157-1-r3",
+    "etape": "images",
     "remarque": ""
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233157-1-r2"
+   "refaite_de": "20261124-233157-1-r3"
   },
   {
    "id": "20261124-233239-1-r6",
