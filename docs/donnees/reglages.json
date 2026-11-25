@@ -44,7 +44,10 @@
   "bruitages": false,
   "carte": true,
   "transitions": false,
-  "images_generiques": false
+  "images_generiques": false,
+  "citations": true,
+  "citations_nombre": 12,
+  "citations_photos": 6
  },
  "publication": {
   "mode": "cocher",
@@ -58,7 +61,7 @@
   "heures_auto": true
  },
  "creation": {
-  "auto": false,
+  "auto": true,
   "par_jour": 2,
   "heures": [
    "07:15",

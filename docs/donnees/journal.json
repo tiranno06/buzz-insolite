@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T11:34:53+01:00",
+   "niveau": "info",
+   "texte": "⚙️ Réglages enregistrés."
+  },
+  {
    "date": "2026-11-25T11:26:00+01:00",
    "niveau": "info",
    "texte": "🗑️ « Macron sauveur en urgence » supprimée."
