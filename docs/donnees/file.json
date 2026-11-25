@@ -605,8 +605,9 @@
     "etape": "controle",
     "remarque": "unités en pieds à convertir, titres en anglais, accroche mal écrite, même photo sur plusieurs écrans"
    },
-   "statut": "nouvelle",
-   "refaite_de": "20261125-140715-1"
+   "statut": "a_publier",
+   "refaite_de": "20261125-140715-1",
+   "coche_le": "2026-11-25T16:13:56+01:00"
   },
   {
    "id": "20261124-233239-1-r16",

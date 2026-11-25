@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T16:13:56+01:00",
+   "niveau": "info",
+   "texte": "✅ « Marées géantes menacent Oregon et Californie » ajoutée à la file de publication."
+  },
+  {
    "date": "2026-11-25T16:10:14+01:00",
    "niveau": "info",
    "texte": "🔁 « CAN 2025 : Sénégal récupère le titre » refaite (controle) : note 90/100, corrige : « regard de l'IA sur la vidéo finie à refaire (IA saturée) » — l'ancienne version est remplacée"
