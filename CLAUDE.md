@@ -262,6 +262,12 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
   remplacés par une statue, des timbres moldaves et des écrans de texte) : `refaire.preparer` (texte) range les extraits de
   l'ancienne version dans `script["_citations_reserve"]` ; `placer_citations` les repose d'abord sur les phrases nouvelles,
   puis complète par de nouveaux extraits (il ne s'arrête plus dès qu'un extrait existe déjà).
+- **AUCUN extrait perdu** (exigence de l'auteur du 25/11) : chaque extrait vidéo trouvé est noté (`script["_citations_toutes"]`,
+  archivé avec ses fichiers pour « Refaire ») ; étape « extraits » après le contrôle final : `controle.extraits_perdus` (extrait
+  trouvé mais plus à l'écran alors qu'un écran montre autre chose) → `reposer_extraits` (écran de texte d'abord, puis titre
+  de presse, puis photo / vidéo qui n'est pas de l'événement ; jamais la carte ni la question) → vidéo remontée, revérifiée
+  (2 tours). Il en reste = problème GRAVE (« à vérifier ») et `avant_publication` refuse TOUJOURS (même « Publier quand
+  même ») ; `extraits_perdus` dans la fiche, badge sur le site.
 - **Pas de déguisement en navigateur** (demande de l'auteur du 25/11, refusée) : les téléchargements d'extraits ne se font
   jamais passer pour Chrome quand TikTok refuse (contournement d'une protection anti-robots) ; simples nouveaux essais.
 

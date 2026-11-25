@@ -31,7 +31,7 @@ def archiver(script, articles, bulletin, dossier, vid):
     """Archive du travail (rangée dans la Release). Renvoie son chemin."""
     chemin = os.path.join(dossier, f"travail-{vid}.tar.gz")
     with open(os.path.join(dossier, "script.json"), "w", encoding="utf-8") as f:
-        json.dump({k: v for k, v in script.items() if not k.startswith("_") or k in ("_musique", "_reserve", "_citations_reserve")}, f,
+        json.dump({k: v for k, v in script.items() if not k.startswith("_") or k in ("_musique", "_reserve", "_citations_reserve", "_citations_toutes")}, f,
                   ensure_ascii=False, default=str)
     with open(os.path.join(dossier, "articles.json"), "w", encoding="utf-8") as f:
         json.dump(articles, f, ensure_ascii=False)
@@ -39,6 +39,8 @@ def archiver(script, articles, bulletin, dossier, vid):
         json.dump(bulletin, f, ensure_ascii=False)
     medias = {os.path.basename(p["media"]["chemin"]) for p in script["phrases"]
               if (p.get("media") or {}).get("chemin") and os.path.exists(p["media"]["chemin"])}
+    medias |= {os.path.basename(m["chemin"]) for m in (script.get("_citations_toutes") or []) + (script.get("_citations_reserve") or [])
+               if m.get("chemin") and os.path.exists(m["chemin"])}    # extraits non montrés : gardés pour les refaire
     taille = sum(os.path.getsize(os.path.join(dossier, m)) for m in medias if os.path.exists(os.path.join(dossier, m)))
     with tarfile.open(chemin, "w:gz") as t:
         for nom in ("script.json", "articles.json", "bulletin.json"):
@@ -68,6 +70,10 @@ def restaurer(v, dossier, repo):
         articles = json.load(f)
     with open(os.path.join(dossier, "bulletin.json"), encoding="utf-8") as f:
         lignes = json.load(f).get("lignes") or []
+    for cle in ("_citations_toutes", "_citations_reserve"):  # extraits de l'événement : dans le nouveau dossier aussi
+        for m in script.get(cle) or []:
+            if m.get("chemin"):
+                m["chemin"] = os.path.join(dossier, os.path.basename(m["chemin"]))
     for p in script["phrases"]:                       # les fichiers sont maintenant dans le nouveau dossier
         if not p.get("media"):
             p.pop("media", None)                      # écran de texte : une image sera cherchée
@@ -180,6 +186,8 @@ def preparer(v, sujet, etape, remarque, dossier, repo, R, journal=print):
                 nouveau[k] = script[k]
         if reserve:
             nouveau["_citations_reserve"] = reserve
+        if script.get("_citations_toutes"):
+            nouveau["_citations_toutes"] = script["_citations_toutes"]
         script = nouveau
         faites = ["articles", "ecriture"]                   # le texte corrigé repasse le contrôle des faits
     etat = dict(vid=v["_nouvel_id"], dossier=dossier, t0=time.time(), B=controle.Bulletin(), faites=faites,

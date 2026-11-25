@@ -448,6 +448,22 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
             a_revoir = {i for i, p in enumerate(script["phrases"]) if avant.get(p.get("uid")) != p.get("_sig")}
             journal(f"  {script.get('_ecrans_refaits', 0)} écran(s) refait(s), le reste de la vidéo est inchangé")
     etape("controle_final", 87, controle_final)
+
+    # ---------- 6 bis. AUCUN extrait perdu (exigence de l'auteur du 25/11) : remis à l'écran, vidéo remontée, revérifiée
+    def extraits():
+        for essai in range(2):
+            if not controle.reposer_extraits(script, journal):
+                break
+            E["duree"] = montage.monter(script, dossier, fichier)
+        perdus = controle.extraits_perdus(script)
+        E["extraits_perdus"] = len(perdus)
+        if perdus:
+            B.ouvrir("video", f"{len(perdus)} extrait(s) de l'événement perdu(s) : " + ", ".join("@" + str(m.get("compte")) for m in perdus),
+                     None, "grave")
+        else:
+            B.fermer("video", None)
+    if not simulation():
+        etape("extraits", 93, extraits)
     bulletin = B.resume()
     journal(f"  bulletin : note {bulletin['note']}/100, {bulletin['corriges']} correction(s), "
             f"{bulletin['restants']} problème(s) restant(s), {len(bulletin['sautes'])} contrôle(s) non fait(s)")
@@ -473,6 +489,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 sources=[dict(media=a["media"], titre=a["titre"], lien=a["lien"]) for a in articles_],
                 verification=script.get("verification"), verifie=script.get("verifie", False),
                 credits=sorted({p["media"]["credit"] for p in script["phrases"] if p.get("media")}),
+                extraits_perdus=E.get("extraits_perdus", 0),
                 ecrans_illustres=controle.part_illustree(script)[0], ecrans_total=controle.part_illustree(script)[1], format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""),
                 humeur=script.get("humeur", ""), categorie=sujet.get("categorie", ""), texte=[p["ecrit"] for p in script["phrases"]],
                 essai=simulation(), cree_le=iso(), ia_quotas={k: dict(v) for k, v in ia.QUOTAS.items()}, fabrication_s=round(time.time() - E["t0"]), controles=bulletin,
@@ -549,6 +566,10 @@ def placer_citations(script, scenes, sujet, dossier, deja, journal, R, E, format
     choix_f = reste[:len(fixes)]                              # images fixes : les scènes restantes
     extraits = vids[:len(choix_v)] + fixes[:len(choix_f)]
     choix = choix_v + choix_f
+    # tous les extraits trouvés sont NOTÉS : la fin de la fabrication vérifie qu'aucun n'a été perdu en route
+    connus = {controle._base(m) for m in script.get("_citations_toutes") or []}
+    script.setdefault("_citations_toutes", []).extend(dict(m, suite=False) for m in vids + reserve
+                                                      if m["type"] == "video" and controle._base(m) not in connus)
     for m, k in zip(extraits, choix):
         sc = list(scenes[k])
         total = sum(_duree_estimee(ph[j]) for j in sc)
@@ -605,7 +626,8 @@ def preuves_licences(script):
 ETAPES = {"articles": "Lecture des articles de presse", "ecriture": "Écriture du texte",
           "texte": "Contrôle 1/4 : vérification des faits et du texte", "voix": "Voix et calage des mots (contrôle 2/4)",
           "images": "Recherche des vraies images", "controle_images": "Contrôle 3/4 : les images", "montage": "Montage",
-          "controle_final": "Contrôle 4/4 : la vidéo finie", "rangement": "Rangement de la vidéo"}
+          "controle_final": "Contrôle 4/4 : la vidéo finie", "extraits": "Contrôle : aucun extrait de l'événement perdu",
+          "rangement": "Rangement de la vidéo"}
 
 
 def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz", attendre=None):

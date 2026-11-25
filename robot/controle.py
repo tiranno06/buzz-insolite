@@ -667,6 +667,44 @@ def verifier_et_envoyer(v, R, forcer=False):
     return publier.envoyer(v, R)
 
 
+# ------------------------------------------------------------------ extraits perdus (exigence de l'auteur du 25/11)
+def _base(m):
+    return str((m or {}).get("id", "")).split("-suite")[0]
+
+
+def extraits_perdus(script):
+    """Extraits VIDÉO de l'événement trouvés pour cette vidéo (`script["_citations_toutes"]`) qui ne sont PLUS à l'écran
+    alors qu'un écran montre autre chose qu'un extrait (photo, titre de presse, écran de texte…) : ils ont été « perdus »
+    en route (vidéo CAN r10 du 25/11 : texte refait, extraits BBC / franceinfo remplacés par des timbres)."""
+    ph = script["phrases"]
+    montres = {_base(p.get("media")) for p in ph if (p.get("media") or {}).get("citation")}
+    places = [i for i, p in enumerate(ph[:-1]) if not (p.get("media") or {}).get("citation")
+              and (p.get("media") or {}).get("type") != "carte"]
+    perdus = [m for m in script.get("_citations_toutes") or [] if m.get("type") == "video" and _base(m) not in montres
+              and m.get("chemin") and os.path.exists(m["chemin"])]
+    return perdus[:len(places)]
+
+
+def reposer_extraits(script, journal=print):
+    """Remet chaque extrait perdu à l'écran, à la place de ce qui montre le moins l'événement : écran de texte d'abord,
+    puis titre de presse, puis photo ou vidéo qui n'est pas de l'événement (jamais la carte ni la question finale).
+    Renvoie le nombre d'extraits remis."""
+    perdus = extraits_perdus(script)
+    if not perdus:
+        return 0
+    ph = script["phrases"]
+
+    def rang(i):
+        m = ph[i].get("media") or {}
+        return 0 if not m else 1 if m.get("presse") else 2 if m.get("type") == "photo" else 3
+    places = sorted([i for i, p in enumerate(ph[:-1]) if not (p.get("media") or {}).get("citation")
+                     and (p.get("media") or {}).get("type") != "carte"], key=lambda i: (rang(i), i))
+    for m, i in zip(perdus, places):
+        ph[i]["media"] = dict(m, suite=False, reelle=True); ph[i]["_valide"] = True; ph[i].pop("_sig", None)
+        journal(f"  extrait perdu remis à l'écran {i + 1} : @{m.get('compte')} ({_base(m)})")
+    return min(len(perdus), len(places))
+
+
 def avant_publication(v, R, forcer=False):
     """Liste des problèmes qui empêchent la publication (vide = on peut publier)."""
     pb = []
@@ -679,6 +717,8 @@ def avant_publication(v, R, forcer=False):
     total = v.get("ecrans_total") or max(1, len(v.get("texte") or []) - 1)
     if (v.get("ecrans_illustres") or 0) < 0.7 * total:
         pb.append(f"trop peu de vraies images ({v.get('ecrans_illustres') or 0} écran(s) illustré(s) sur {total}) : à refaire")
+    if v.get("extraits_perdus"):                          # JAMAIS publiée avec des extraits perdus, même « quand même »
+        pb.append(f"{v['extraits_perdus']} extrait(s) de l'événement perdu(s) : à refaire")
     if (v.get("duree") or 0) < 58:
         pb.append(f"vidéo trop courte ({v.get('duree', 0):.0f} s)")
     if not str(v.get("description") or "").strip():
