@@ -207,7 +207,8 @@ def _pousser(texte):
                 d = json.loads(_git("cat-file", "-p", sha))
                 maj = datetime.datetime.fromisoformat(d["maj"])
                 # vidéo finie ou en erreur : affichée 30 min puis effacée ; en cours / en attente : 2 h sans nouvelles = plantée
-                duree = datetime.timedelta(minutes=30) if d.get("etat") in ("fini", "erreur") else datetime.timedelta(hours=2)
+                duree = (datetime.timedelta(minutes=1) if d.get("etat") == "annulee" else
+                         datetime.timedelta(minutes=30) if d.get("etat") in ("fini", "erreur") else datetime.timedelta(hours=2))
                 if maintenant() - maj < duree:
                     garde.append(f"100644 blob {sha}\t{fichier}")
             except Exception:
@@ -228,3 +229,22 @@ def _pousser_sur(texte):
     except subprocess.CalledProcessError:
         time.sleep(2)
         _pousser(texte)
+
+
+def annuler():
+    """Fabrication annulée sur GitHub (étape « if: cancelled() » de creer.yml) : la barre de cette machine disparaît."""
+    moi = _nom()
+    for f, (_, d) in _lire_branche().items():
+        if f == moi:
+            _etat.clear(); _etat.update(d)
+            _etat["debut_s"] = time.time()
+            _etat.update(etat="annulee", etape="Fabrication annulée", detail="")
+            _envoyer(force=True)
+            return
+
+
+if __name__ == "__main__":
+    import sys
+    if "--annuler" in sys.argv:
+        annuler()
+

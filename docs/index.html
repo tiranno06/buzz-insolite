@@ -630,7 +630,23 @@ async function lireAvancements() {
   const fichiers = (await r.json()).filter(f => f.name.endsWith(".json"));
   const out = await Promise.all(fichiers.map(f => fetch(`https://api.github.com/repos/${c.repo}/contents/${f.name}?ref=avancement&t=${Date.now()}`,
     { headers: { ...h, Accept: "application/vnd.github.raw+json" } }).then(x => x.ok ? x.json() : null).catch(() => null)));
-  return out.filter(a => a && Date.now() - new Date(a.maj).getTime() < (a.etat === "en_cours" ? 30 : 5) * 60e3).sort((a, b) => (a.debut || "").localeCompare(b.debut || ""));
+  // Une fabrication ANNULÉE ou plantée sur GitHub n'a pas pu effacer sa barre : on ne garde que celles dont la tâche GitHub
+  // tourne vraiment (bug du 25/11 : 11 « en fabrication » affichées pour 4 réelles).
+  const actives = await tachesActives(c, h);
+  return out.filter(a => a && Date.now() - new Date(a.maj).getTime() < (a.etat === "en_cours" ? 30 : 5) * 60e3)
+    .filter(a => a.etat !== "en_cours" || !actives || !a.run || actives.has(String(a.run)))
+    .sort((a, b) => (a.debut || "").localeCompare(b.debut || ""));
+}
+async function tachesActives(c, h) {
+  try {
+    const ids = new Set();
+    for (const st of ["in_progress", "queued"]) {
+      const r = await fetch(`https://api.github.com/repos/${c.repo}/actions/workflows/creer.yml/runs?status=${st}&per_page=50`, { headers: h });
+      if (!r.ok) return null;
+      (await r.json()).workflow_runs.forEach(x => ids.add(String(x.id)));
+    }
+    return ids;
+  } catch { return null; }
 }
 // Heure de fin prévue de CHAQUE vidéo (demande de l'auteur du 24/11) : en fabrication = heure du relevé + temps restant ;
 // en file d'attente = elle prend la première place libérée, puis dure le temps moyen d'une vidéo (page Santé).

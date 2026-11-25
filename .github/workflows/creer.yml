@@ -125,3 +125,6 @@ jobs:
           REFAIRE: ${{ inputs.refaire }}
           ETAPE: ${{ inputs.etape || 'auto' }}
           REMARQUE: ${{ inputs.remarque }}
+      - name: "Fabrication annulée, barre d'avancement retirée du site"
+        if: cancelled()
+        run: python -m robot.avancement --annuler

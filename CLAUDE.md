@@ -129,6 +129,12 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
 - File commune : 5 vidéos en même temps au plus (`creation.paralleles`) ; les autres attendent leur tour ; le site affiche
   l'heure de fin prévue de chaque vidéo (`heuresDeFin` : temps restant, ou première place libérée + durée moyenne réelle).
 
+## Barres fantômes (bug du 25/11 : « 11 vidéos en fabrication » pour 4 réelles)
+Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.finir` : sa barre restait « en_cours » jusqu'à
+30 min sur le site. Corrigé : le site ne garde une barre « en cours » que si sa tâche GitHub tourne vraiment
+(`tachesActives` : runs in_progress / queued de creer.yml) ; creer.yml a une étape `if: cancelled()` qui marque la barre
+« annulee » (`python -m robot.avancement --annuler`), effacée au bout d'1 min.
+
 ## Liens des vidéos d'origine (24/11 : « vidéo indisponible » sur TikTok)
 Les liens étaient bons (34/34 vérifiés) : TikTok affiche « vidéo indisponible » sur téléphone hors de l'appli, sans compte,
 ou pour une vidéo supprimée / réservée aux adultes. Le site ouvre maintenant la vidéo dans le LECTEUR OFFICIEL de TikTok
