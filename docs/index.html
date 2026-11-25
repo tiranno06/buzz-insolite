@@ -500,7 +500,7 @@ function carteVideo(v) {
       ${v.essai ? "" : `<details style="margin-top:8px"><summary class="petit">🔁 Refaire en corrigeant</summary>
         <p class="petit muted">Le robot reprend tout le travail de cette vidéo et ne refait que ce qui ne va pas, en le CORRIGEANT (jamais à l'identique). La nouvelle version remplace celle-ci.</p>
         <label class="champ petit">Que refaire ? <select id="re-${v.id}"><option value="auto">🤖 Ce qui pose problème (choisi par le robot)</option>
-          <option value="images">🖼️ Les images</option><option value="voix">🎙️ La voix</option><option value="texte">✍️ Le texte</option><option value="tout">🔄 Toute la vidéo (nouvelle version)</option></select></label>
+          <option value="controle">🛡️ Seulement les contrôles (vidéo gardée)</option><option value="images">🖼️ Les images</option><option value="voix">🎙️ La voix</option><option value="texte">✍️ Le texte</option><option value="tout">🔄 Toute la vidéo (nouvelle version)</option></select></label>
         <label class="champ petit">Qu'est-ce qui ne va pas ? (facultatif, ex. « écran 3 hors sujet, accroche trop longue »)<input type="text" id="rm-${v.id}"></label>
         <button class="btn mini primaire" data-a="refaire" data-id="${v.id}">🔁 Refaire</button></details>`}
       ${v.refaite_de ? `<p class="petit muted">🔁 Version refaite (${esc(v.refaite?.etape || "")}${v.refaite?.remarque ? " : « " + esc(v.refaite.remarque) + " »" : ""})</p>` : ""}

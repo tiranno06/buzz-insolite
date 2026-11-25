@@ -26,7 +26,7 @@ on:
         description: "Identifiant d'une vidéo à REFAIRE en corrigeant (facultatif)"
         default: ""
       etape:
-        description: "Ce qu'on refait : auto, texte, voix, images ou tout"
+        description: "Ce qu'on refait : auto, controle, texte, voix, images ou tout"
         default: "auto"
       remarque:
         description: "Ce qui ne va pas dans la vidéo à refaire (facultatif)"

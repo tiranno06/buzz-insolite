@@ -23,7 +23,7 @@ from . import controle, ecrire, ia, nombres
 from . import voix as V
 from .commun import ROBOT_UA
 
-ETAPES_REFAIRE = ("auto", "texte", "voix", "images", "tout")
+ETAPES_REFAIRE = ("auto", "controle", "texte", "voix", "images", "tout")
 TAILLE_MAX_MEDIAS = 400 * 1024 * 1024               # au-delà, les images ne sont pas gardées (elles seront recherchées)
 
 
@@ -93,6 +93,8 @@ def etape_auto(v):
         return "images"
     if "voix" in niveaux:
         return "voix"
+    if (v.get("controles") or {}).get("sautes"):         # seul un contrôle n'a pas pu se faire : on le refait, rien d'autre
+        return "controle"
     return "tout"
 
 
@@ -125,7 +127,9 @@ def preparer(v, sujet, etape, remarque, dossier, repo, R, journal=print):
                  for i in [next((k for k, p in enumerate(ph) if p.get("uid") == l.get("ecran")), -1)]]
     faites = ["articles", "ecriture", "texte"]
 
-    if etape == "images":
+    if etape == "controle":                               # tout est gardé ; écrans vides complétés ; contrôles refaits
+        journal("  vidéo gardée telle quelle : seuls les contrôles sont refaits (et les écrans vides complétés)")
+    elif etape == "images":
         cibles = ecrans_cites(remarque, len(ph)) | indices_signales(script, lignes, ("images", "video"))
         cibles = cibles or set(range(len(ph) - 1))          # rien de précis : toutes les images changent
         # + tous les écrans SANS vraie image (écran de texte, titre de presse) : ils reçoivent enfin une vraie vidéo
@@ -171,6 +175,6 @@ def preparer(v, sujet, etape, remarque, dossier, repo, R, journal=print):
         faites = ["articles", "ecriture"]                   # le texte corrigé repasse le contrôle des faits
     etat = dict(vid=v["_nouvel_id"], dossier=dossier, t0=time.time(), B=controle.Bulletin(), faites=faites,
                 articles=articles, script=script, deja=deja, refaite=dict(de=v["id"], etape=etape, remarque=remarque))
-    if etape not in ("images", "tout"):                     # images gardées : pas de nouvelle recherche de vidéos du sujet
+    if etape not in ("images", "tout", "controle"):         # images gardées : pas de nouvelle recherche de vidéos du sujet
         etat.update(clips=[], presse_faite=True, carte_faite=True)
     return etat, etape
