@@ -515,16 +515,22 @@ def placer_citations(script, scenes, sujet, dossier, deja, journal, R, E, format
         return
     E["citations_faites"] = True
     ph = script["phrases"]
-    if any((p.get("media") or {}).get("citation") for p in ph):
-        return                                                # (vidéo refaite) extraits déjà là
     nombre = int(R["video"].get("citations_nombre", 12))
     libres = [k for k, sc in enumerate(scenes) if "media" not in ph[sc[0]]]
     if not libres:
         return
+    # (vidéo refaite) les extraits de l'ancienne version qui ne sont plus montrés sont REPOSÉS d'abord sur les phrases
+    # nouvelles (vidéo CAN r10 du 25/11 : texte refait, extraits BBC / franceinfo perdus, remplacés par des timbres)
+    montres = {str((p.get("media") or {}).get("id", "")).split("-suite")[0] for p in ph if (p.get("media") or {}).get("citation")}
+    reserve = [m for m in script.pop("_citations_reserve", []) if m.get("chemin") and os.path.exists(m["chemin"])
+               and str(m.get("id")) not in montres]
     # le MAXIMUM d'extraits vidéo de l'événement (demande de l'auteur du 25/11), puis des images fixes de l'événement
     # (tirées des vidéos d'origine et des articles de presse) pour meubler les scènes restantes
-    extraits = citations.extraits(sujet, dossier, journal, min(nombre, len(libres)), deja,
-                                  photos=int(R["video"].get("citations_photos", 6)))
+    extraits = reserve if len(reserve) >= len(libres) else reserve + citations.extraits(
+        sujet, dossier, journal, min(nombre, len(libres)) - len([m for m in reserve if m["type"] == "video"]),
+        deja | {m["id"] for m in reserve} | montres, photos=int(R["video"].get("citations_photos", 6)))
+    if reserve:
+        journal(f"  {len(reserve)} extrait(s) de l'ancienne version reposé(s) sur les phrases nouvelles")
     vids = [m for m in extraits if m["type"] == "video"]
     fixes = [m for m in extraits if m["type"] == "photo"]
     if len(vids) < len(libres):

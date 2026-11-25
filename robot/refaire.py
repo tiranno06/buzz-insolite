@@ -31,7 +31,7 @@ def archiver(script, articles, bulletin, dossier, vid):
     """Archive du travail (rangée dans la Release). Renvoie son chemin."""
     chemin = os.path.join(dossier, f"travail-{vid}.tar.gz")
     with open(os.path.join(dossier, "script.json"), "w", encoding="utf-8") as f:
-        json.dump({k: v for k, v in script.items() if not k.startswith("_") or k in ("_musique", "_reserve")}, f,
+        json.dump({k: v for k, v in script.items() if not k.startswith("_") or k in ("_musique", "_reserve", "_citations_reserve")}, f,
                   ensure_ascii=False, default=str)
     with open(os.path.join(dossier, "articles.json"), "w", encoding="utf-8") as f:
         json.dump(articles, f, ensure_ascii=False)
@@ -157,6 +157,13 @@ def preparer(v, sujet, etape, remarque, dossier, repo, R, journal=print):
                     pass
         journal(f"  {len(cibles) or len(ph)} phrase(s) redite(s)")
     else:                                                   # texte ou tout : l'IA corrige le texte
+        # extraits des vidéos d'origine de l'ancienne version, gardés en réserve pour les phrases nouvelles
+        vus, reserve = set(), []
+        for p in ph:
+            m = p.get("media") or {}
+            base = str(m.get("id", "")).split("-suite")[0]
+            if m.get("citation") and base not in vus and etape == "texte":
+                vus.add(base); reserve.append(dict(m, id=base, suite=False))
         nouveau = ecrire.refaire_texte(sujet, articles, script, problemes, remarque, tout=etape == "tout",
                                        journal=journal, format_=v.get("format") or "buzz")
         anciens = {p["ecrit"]: p for p in ph}
@@ -171,6 +178,8 @@ def preparer(v, sujet, etape, remarque, dossier, repo, R, journal=print):
         for k in ("voix_utilisee", "_musique"):
             if k in script:
                 nouveau[k] = script[k]
+        if reserve:
+            nouveau["_citations_reserve"] = reserve
         script = nouveau
         faites = ["articles", "ecriture"]                   # le texte corrigé repasse le contrôle des faits
     etat = dict(vid=v["_nouvel_id"], dossier=dossier, t0=time.time(), B=controle.Bulletin(), faites=faites,
