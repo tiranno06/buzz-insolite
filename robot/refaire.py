@@ -89,6 +89,18 @@ def restaurer(v, dossier, repo):
     return script, articles, lignes
 
 
+def reserve_extraits(ph):
+    """Extraits des vidéos d'origine montrés dans l'ancienne version (un par extrait), gardés en réserve pour les phrases
+    nouvelles quand le texte est refait (aucun extrait perdu)."""
+    vus, reserve = set(), []
+    for p in ph:
+        m = p.get("media") or {}
+        base = str(m.get("id", "")).split("-suite")[0]
+        if m.get("citation") and base not in vus:
+            vus.add(base); reserve.append(dict(m, id=base, suite=False))
+    return reserve
+
+
 def etape_auto(v):
     """Ce qu'il faut refaire d'après les problèmes restés ouverts dans le bulletin."""
     ouverts = [l for l in (v.get("controles") or {}).get("lignes") or [] if not l.get("corrige")]
@@ -163,13 +175,7 @@ def preparer(v, sujet, etape, remarque, dossier, repo, R, journal=print):
                     pass
         journal(f"  {len(cibles) or len(ph)} phrase(s) redite(s)")
     else:                                                   # texte ou tout : l'IA corrige le texte
-        # extraits des vidéos d'origine de l'ancienne version, gardés en réserve pour les phrases nouvelles
-        vus, reserve = set(), []
-        for p in ph:
-            m = p.get("media") or {}
-            base = str(m.get("id", "")).split("-suite")[0]
-            if m.get("citation") and base not in vus and etape == "texte":
-                vus.add(base); reserve.append(dict(m, id=base, suite=False))
+        reserve = reserve_extraits(ph) if etape == "texte" else []
         nouveau = ecrire.refaire_texte(sujet, articles, script, problemes, remarque, tout=etape == "tout",
                                        journal=journal, format_=v.get("format") or "buzz")
         anciens = {p["ecrit"]: p for p in ph}

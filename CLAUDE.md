@@ -268,6 +268,17 @@ Une fabrication ANNULÉE (ou tuée par GitHub) n'appelait jamais `avancement.fin
   de presse, puis photo / vidéo qui n'est pas de l'événement ; jamais la carte ni la question) → vidéo remontée, revérifiée
   (2 tours). Il en reste = problème GRAVE (« à vérifier ») et `avant_publication` refuse TOUJOURS (même « Publier quand
   même ») ; `extraits_perdus` dans la fiche, badge sur le site.
+- **Règles de chaque vidéo** (`robot/regles.py`, étape « regles » après « extraits ») : extraits perdus, écran sans image,
+  même passage deux fois, plus d'1 minute, 70 % illustrés, hashtags (3 à 10, mots entiers), tutoiement (citations entre
+  guillemets exclues), dates / années présentes dans les articles (sinon corrigées par l'IA, ou l'année douteuse retirée),
+  question finale, description. `reparer` ne corrige QUE les passages fautifs (voix refaite pour ces phrases seulement,
+  seuls ces écrans remontés), puis TOUT est revérifié (2 tours) ; il reste une règle = grave, `regles_non_respectees`,
+  jamais publiée (`avant_publication`), badge 📏 sur le site.
+- **Rejeu d'une vraie vidéo** (`tests/test_rejeu.py`, données réelles de la CAN r10 dans `tests/donnees/rejeu_can`, sans
+  réseau ni IA, ~50 s, à chaque envoi) : les règles trouvent les défauts réels, la réparation ne touche que les passages
+  fautifs, refaire le texte ne perd aucun extrait, le montage ne refait que les écrans changés. Il a trouvé dès sa 1re
+  exécution 2 vrais défauts : son silencieux qui faisait planter le réglage du volume (`sons.niveau`), image sans crédit
+  qui faisait planter le montage. **Toute modification doit garder ce rejeu au vert.**
 - **Pas de déguisement en navigateur** (demande de l'auteur du 25/11, refusée) : les téléchargements d'extraits ne se font
   jamais passer pour Chrome quand TikTok refuse (contournement d'une protection anti-robots) ; simples nouveaux essais.
 

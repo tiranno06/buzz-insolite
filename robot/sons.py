@@ -140,6 +140,10 @@ def niveau(entree, sortie, cible=-14.0):
                         "-f", "null", "-"], capture_output=True, text=True)
     try:
         m = json.loads(r.stderr[r.stderr.rindex("{"):r.stderr.rindex("}") + 1])
+        if "inf" in str(m.get("input_i", "")).lower() or "inf" in str(m.get("target_offset", "")).lower():
+            # son entièrement silencieux (trouvé par le rejeu de la vidéo CAN le 25/11 : ffmpeg plantait) : copié tel quel
+            subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", entree, "-ar", "44100", "-ac", "2", sortie], check=True)
+            return
         filtre = (f"loudnorm=I={cible}:TP=-1.5:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:"
                   f"measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true")
     except (ValueError, KeyError):

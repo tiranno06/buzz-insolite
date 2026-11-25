@@ -1,0 +1,287 @@
+{
+ "titre": "Sénégal champion CAN 2025 : le twist fou",
+ "accroche": "TITRE VOLÉ RENDU",
+ "description": "Le Sénégal récupère enfin son titre de champion d'Afrique après un rebondissement incroyable ! 🏆 Qui aurait dû gagner selon toi ?",
+ "question": "Et toi, tu penses que le Sénégal méritait vraiment ce titre ?",
+ "hashtags": [
+  "can2025",
+  "sénégalchampion",
+  "footballafricain",
+  "tas"
+ ],
+ "theme_image": "football trophy court",
+ "lieu": "Rabat, Maroc",
+ "coordonnees": [
+  34.0289,
+  -6.8619
+ ],
+ "humeur": "tension",
+ "phrases": [
+  {
+   "voix": "Le Sénégal champion de la CAN deux mille vingt-cinq",
+   "ecrit": "Le Sénégal champion de la CAN 2025",
+   "ecran": "",
+   "entite": "Coupe d'Afrique des Nations 2025",
+   "image": "football trophy celebration",
+   "reponse": "",
+   "uid": 27,
+   "media": {
+    "type": "video",
+    "id": "citation-7711946839339191583-0",
+    "citation": true,
+    "compte": "aljazeeraenglish",
+    "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+    "debut": 0,
+    "duree": 15.0,
+    "reelle": true,
+    "chemin": "citation-7711946839339191583-0.mp4"
+   },
+   "_valide": true,
+   "duree": 2.640635
+  },
+  {
+   "voix": "Tu savais que le Sénégal avait gagné la finale sur le terrain le dix-huit janvier deux mille vingt-cinq ?",
+   "ecrit": "Tu savais que le Sénégal avait gagné la finale sur le terrain le 18 janvier 2025 ?",
+   "ecran": "18 JANVIER",
+   "entite": "Finale de la Coupe d'Afrique des Nations 2025",
+   "image": "football match final",
+   "reponse": "",
+   "uid": 28,
+   "media": {
+    "type": "photo",
+    "id": "commons-144538103",
+    "credit": "feguifoot / Wikimedia Commons, Public domain",
+    "chemin": "media51-std.jpg"
+   },
+   "_valide": true,
+   "duree": 5.586259
+  },
+  {
+   "voix": "Mais le jury d'appel de la CAF lui a retiré le titre en mars deux mille vingt-six après un penalty contesté.",
+   "ecrit": "Mais le jury d'appel de la CAF lui a retiré le titre en mars 2026 après un penalty contesté.",
+   "ecran": "",
+   "entite": "Confédération Africaine de Football",
+   "image": "football referee whistle",
+   "reponse": "",
+   "uid": 29,
+   "media": {
+    "type": "photo",
+    "id": "wiki-Fichier:CAF_headquarter.jpg",
+    "credit": "Wikipédia, article « Confédération africaine de football »",
+    "chemin": "media29-std.jpg"
+   },
+   "_valide": true,
+   "duree": 6.015397,
+   "_garde_2e_avis": true
+  },
+  {
+   "voix": "Les joueurs sénégalais avaient quitté le terrain pour protester contre un penalty litigieux.",
+   "ecrit": "Les joueurs sénégalais avaient quitté le terrain pour protester contre un penalty litigieux.",
+   "ecran": "",
+   "entite": "Protestation des joueurs de football",
+   "image": "football players leaving pitch",
+   "reponse": "",
+   "uid": 30,
+   "media": {
+    "type": "photo",
+    "id": "commons-161783437",
+    "credit": "Richard Humphrey / Wikimedia Commons, CC BY-SA 2.0",
+    "chemin": "media30-std.jpg"
+   },
+   "_valide": true,
+   "duree": 4.159637
+  },
+  {
+   "voix": "Le Maroc a raté son penalty, puis Pape Gueye a marqué en prolongation pour le Sénégal.",
+   "ecrit": "Le Maroc a raté son penalty, puis Pape Gueye a marqué en prolongation pour le Sénégal.",
+   "ecran": "",
+   "entite": "Pape Gueye",
+   "image": "football player scoring",
+   "reponse": "",
+   "uid": 31,
+   "media": null,
+   "_valide": true,
+   "duree": 5.253175
+  },
+  {
+   "voix": "La CAF a déclaré le Sénégal forfait sur un score de trois-zéro pour le Maroc.",
+   "ecrit": "La CAF a déclaré le Sénégal forfait sur un score de 3-0 pour le Maroc.",
+   "ecran": "3-0",
+   "entite": "Décision disciplinaire de la CAF",
+   "image": "football scoreboard",
+   "reponse": "",
+   "uid": 32,
+   "media": {
+    "type": "photo",
+    "id": "commons-115743991",
+    "credit": "Post of Moldova / Wikimedia Commons, Public domain",
+    "chemin": "media85-std.jpg"
+   },
+   "_valide": true,
+   "duree": 3.773469
+  },
+  {
+   "voix": "Le Sénégal a porté l’affaire devant le TAS, qui a rendu sa décision le vingt-quatre novembre deux mille vingt-six.",
+   "ecrit": "Le Sénégal a porté l’affaire devant le TAS, qui a rendu sa décision le 24 novembre 2026.",
+   "ecran": "24 NOVEMBRE 2026",
+   "entite": "Tribunal Arbitral du Sport",
+   "image": "courtroom gavel",
+   "reponse": "",
+   "media": null,
+   "uid": 20,
+   "duree": 5.720635,
+   "_valide": true
+  },
+  {
+   "voix": "Résultat : le Sénégal est officiellement champion d’Afrique avec une victoire un-zéro validée.",
+   "ecrit": "Résultat : le Sénégal est officiellement champion d’Afrique avec une victoire 1-0 validée.",
+   "ecran": "1-0",
+   "entite": "Résultat sportif de la CAN 2025",
+   "image": "football trophy awarded",
+   "reponse": "",
+   "uid": 33,
+   "media": {
+    "type": "photo",
+    "id": "wiki-Fichier:Dirigeants_de_la_CAF_respectant_les_mesures_barrières.jpg",
+    "credit": "Wikipédia, article « Confédération africaine de football »",
+    "chemin": "media87-std.jpg"
+   },
+   "_valide": true,
+   "duree": 4.945669
+  },
+  {
+   "voix": "Le Maroc a dénoncé un 'incident' avant le verdict, mais le TAS a confirmé la victoire du Sénégal.",
+   "ecrit": "Le Maroc a dénoncé un 'incident' avant le verdict, mais le TAS a confirmé la victoire du Sénégal.",
+   "ecran": "",
+   "entite": "Incident dénoncé par la Fédération Royale Marocaine de Football",
+   "image": "football referee reviewing",
+   "reponse": "",
+   "uid": 34,
+   "media": {
+    "type": "video",
+    "id": "citation-7711946839339191583-0-p10",
+    "citation": true,
+    "compte": "aljazeeraenglish",
+    "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+    "debut": 10,
+    "duree": 15.0,
+    "suite": false,
+    "reelle": true,
+    "chemin": "citation-7711946839339191583-0.mp4"
+   },
+   "_valide": true,
+   "duree": 5.207347
+  },
+  {
+   "voix": "Le président de la Fédération sénégalaise Abdoulaye Fall a dédié ce titre à Aïda Faye Samb, une supporteuse décédée.",
+   "ecrit": "Le président de la Fédération sénégalaise Abdoulaye Fall a dédié ce titre à Aïda Faye Samb, une supporteuse décédée.",
+   "ecran": "AÏDA FAYE",
+   "entite": "Aïda Faye Samb",
+   "image": "football fan portrait",
+   "reponse": "",
+   "uid": 35,
+   "media": {
+    "type": "video",
+    "id": "citation-7711946839339191583-2-p10",
+    "citation": true,
+    "compte": "aljazeeraenglish",
+    "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+    "debut": 10,
+    "duree": 15.0,
+    "suite": false,
+    "reelle": true,
+    "chemin": "citation-7711946839339191583-2.mp4"
+   },
+   "_valide": true,
+   "duree": 6.622971
+  },
+  {
+   "voix": "Le Sénégal a enfin sa deuxième étoile en CAN, après des mois de bataille juridique.",
+   "ecrit": "Le Sénégal a enfin sa deuxième étoile en CAN, après des mois de bataille juridique.",
+   "ecran": "",
+   "entite": "Coupe d'Afrique des Nations",
+   "image": "football stars medal",
+   "reponse": "",
+   "media": {
+    "type": "video",
+    "id": "citation-7711946839339191583-2",
+    "citation": true,
+    "compte": "aljazeeraenglish",
+    "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+    "debut": 0,
+    "duree": 15.0,
+    "reelle": true,
+    "chemin": "citation-7711946839339191583-2.mp4"
+   },
+   "uid": 26,
+   "duree": 4.144717,
+   "_valide": true
+  },
+  {
+   "voix": "La CAF a finalement respecté la décision du TAS et confirmé le Sénégal comme champion.",
+   "ecrit": "La CAF a finalement respecté la décision du TAS et confirmé le Sénégal comme champion.",
+   "ecran": "CAF",
+   "entite": "Confédération Africaine de Football",
+   "image": "football federation logo",
+   "reponse": "",
+   "uid": 36,
+   "media": {
+    "type": "video",
+    "id": "citation-7711946839339191583-2-suite11",
+    "citation": true,
+    "compte": "aljazeeraenglish",
+    "credit": "@aljazeeraenglish (TikTok, extrait cité)",
+    "debut": 4.32,
+    "duree": 15.0,
+    "suite": true,
+    "reelle": true,
+    "chemin": "citation-7711946839339191583-2.mp4"
+   },
+   "_valide": true,
+   "duree": 5.218594
+  },
+  {
+   "voix": "Alors, tu trouves que le Sénégal méritait vraiment ce titre ? Dis-le en commentaire !",
+   "ecrit": "Alors, tu trouves que le Sénégal méritait vraiment ce titre ? Dis-le en commentaire !",
+   "ecran": "",
+   "entite": "",
+   "image": "football fans cheering",
+   "reponse": "",
+   "uid": 37,
+   "media": null,
+   "duree": 5.005556
+  }
+ ],
+ "sources": [
+  "linternaute.com",
+  "franceinfo.fr",
+  "seneweb.com",
+  "afriquesports.net",
+  "msn.com",
+  "leparisien.fr"
+ ],
+ "format": "buzz",
+ "auteur_ia": "mistral:ministral-14b-2512",
+ "voix_utilisee": "chatterbox-bernard",
+ "verifie": true,
+ "verification": {
+  "par": "mistral:ministral-14b-2512",
+  "corrigees": 6,
+  "retirees": 0,
+  "problemes": [
+   "Contient une affirmation subjective (« titre volé ») non attestée dans les articles ; les faits doivent rester neutres",
+   "La date de la finale est incorrecte (18 janvier 2025, pas 2026).",
+   "La CAF n'a pas retiré le titre en mars 2026, mais le jury d'appel de la CAF l'a fait le 17 mars 2026.",
+   "La CAF n'a pas annulé la victoire du Sénégal, mais a déclaré le Sénégal forfait sur un score de 3-0 pour le Maroc.",
+   "La décision du TAS a été rendue le 24 novembre 2026, mais le Sénégal a porté l'affaire devant le TAS après la décision du jury d'appel de la CAF en mars 2026.",
+   "Le Maroc a dénoncé un 'incident' avant le verdict du TAS, mais cela n'a pas empêché la confirmation de la victoire du Sénégal.",
+   "Phrase non neutre et sollicitant une opinion subjective, ce qui est interdit."
+  ]
+ },
+ "images_generiques": false,
+ "entite_sujet": "Confédération Africaine de Football",
+ "musique": true,
+ "bruitages": false,
+ "transitions": false,
+ "sources_ecran": "Sources : linternaute.com, franceinfo, seneweb.com, afriquesports.net"
+}

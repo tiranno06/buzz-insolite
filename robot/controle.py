@@ -717,6 +717,8 @@ def avant_publication(v, R, forcer=False):
     total = v.get("ecrans_total") or max(1, len(v.get("texte") or []) - 1)
     if (v.get("ecrans_illustres") or 0) < 0.7 * total:
         pb.append(f"trop peu de vraies images ({v.get('ecrans_illustres') or 0} écran(s) illustré(s) sur {total}) : à refaire")
+    if v.get("regles_non_respectees"):                    # règles de la vidéo (robot/regles.py) : jamais publiée sans elles
+        pb.append("règle(s) non respectée(s) : " + " ; ".join(v["regles_non_respectees"])[:200])
     if v.get("extraits_perdus"):                          # JAMAIS publiée avec des extraits perdus, même « quand même »
         pb.append(f"{v['extraits_perdus']} extrait(s) de l'événement perdu(s) : à refaire")
     if (v.get("duree") or 0) < 58:

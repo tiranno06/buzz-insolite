@@ -486,7 +486,8 @@ function carteVideo(v) {
       + (v.buffer ? `<span class="petit ${v.buffer.etiquette_ia ? "muted" : ""}">${v.buffer.etiquette_ia ? "🤖 étiquette IA cochée" : "⚠️ étiquette IA à cocher dans l'appli TikTok"}</span>` : "")
       + (v.retiree_le ? `<span class="petit">🚨 retirée de TikTok</span>` : "")
   }[v.statut] || "";
-  const perdus = v.extraits_perdus ? `<p class="petit"><b>🎞️ ${v.extraits_perdus} extrait(s) de l'événement perdu(s)</b> : publication bloquée, à refaire.</p>` : "";
+  const perdus = (v.extraits_perdus ? `<p class="petit"><b>🎞️ ${v.extraits_perdus} extrait(s) de l'événement perdu(s)</b> : publication bloquée, à refaire.</p>` : "")
+    + ((v.regles_non_respectees || []).length ? `<p class="petit"><b>📏 Règle(s) non respectée(s)</b> (publication bloquée) : ${v.regles_non_respectees.map(esc).join(" ; ")}</p>` : "");
   return `<div class="card video">
     <button class="vignette" style="background-image:url('${mini}')" data-play="${esc(v.url)}" aria-label="Regarder"></button>
     <div>
@@ -559,7 +560,7 @@ function rendreJournal() {
   $("#journal").innerHTML = ((D["journal.json"] || {}).evenements || []).filter(e => !seulement || e.niveau !== "info").slice(0, 120).map(e =>
     `<li><time>${quand(e.date)}</time>${e.niveau === "erreur" ? "⚠️ " : ""}${esc(e.texte)}</li>`).join("");
 }
-const NOMS_ETAPES = { articles: "Articles", extraits: "Extraits vérifiés", ecriture: "Écriture", texte: "Vérification du texte", voix: "Voix", images: "Images",
+const NOMS_ETAPES = { articles: "Articles", extraits: "Extraits vérifiés", regles: "Règles vérifiées", ecriture: "Écriture", texte: "Vérification du texte", voix: "Voix", images: "Images",
   controle_images: "Contrôle des images", montage: "Montage", controle_final: "Contrôle final", rangement: "Rangement", total: "⏱️ Vidéo entière" };
 function rendreSante() {
   const S = D["sante.json"] || {};

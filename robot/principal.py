@@ -18,7 +18,7 @@ import urllib.error
 import time
 import traceback
 
-from . import citations, langue, refaire, avancement, buzz, carte, controle, depot, ecrire, ia, images, montage, sources
+from . import citations, langue, refaire, regles, avancement, buzz, carte, controle, depot, ecrire, ia, images, montage, sources
 from . import voix as V
 from .commun import MINIATURES, SORTIE, ecrire as ecrire_donnees, iso, lire, maintenant, noter, reglages, simulation
 
@@ -464,6 +464,38 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
             B.fermer("video", None)
     if not simulation():
         etape("extraits", 93, extraits)
+
+    # ---------- 6 ter. RÈGLES vérifiées sur la vidéo entière (demande de l'auteur du 25/11) : seuls les passages fautifs
+    # sont corrigés (voix refaite pour les seules phrases changées, seuls les écrans changés remontés), puis TOUT est
+    # revérifié pour qu'une correction ne casse rien ailleurs ; il reste une règle cassée = « à vérifier », jamais publiée
+    def regles_():
+        def etat_regles():
+            tags = ([f"#{script['serie_hashtag']}"] if script.get("serie_hashtag") else []) + ecrire.hashtags(script, sujet, R)
+            return regles.verifier(script, E["articles"], tags, E.get("duree"), script.get("description"), script.get("question"))
+        pbs = etat_regles()
+        for tour in range(2):
+            if not pbs:
+                break
+            journal(f"  règles (tour {tour + 1}) : " + " ; ".join(x["message"] for x in pbs))
+            textes, images_, champs = regles.reparer(script, pbs, E["articles"], R, journal, sujet)
+            if textes:                                       # voix refaite pour ces phrases SEULEMENT (mémoire des voix)
+                a_dire = [script["phrases"][i] for i in sorted(textes)]
+                if simulation():
+                    for q in a_dire:
+                        q["duree"], q["mots"] = voix_simulation(q, q["son"])
+                else:
+                    V.preparer(a_dire, E.get("nom_voix", R["video"]["voix"]), E.get("vitesse", 0.8), journal,
+                               memoire=os.path.join(dossier, "memoire_voix"))
+            if textes or images_:
+                E["duree"] = montage.monter(script, dossier, fichier)
+                journal(f"  {script.get('_ecrans_refaits', 0)} écran(s) refait(s) seulement")
+            pbs = etat_regles()
+        E["regles"] = [x["message"] for x in pbs]
+        for x in pbs:
+            B.ouvrir("regles", x["message"], None if x.get("ecran") is None else controle.uid(script, x["ecran"]), "grave")
+        if not pbs:
+            journal("  ✅ toutes les règles sont respectées")
+    etape("regles", 94, regles_)
     bulletin = B.resume()
     journal(f"  bulletin : note {bulletin['note']}/100, {bulletin['corriges']} correction(s), "
             f"{bulletin['restants']} problème(s) restant(s), {len(bulletin['sautes'])} contrôle(s) non fait(s)")
@@ -489,7 +521,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 sources=[dict(media=a["media"], titre=a["titre"], lien=a["lien"]) for a in articles_],
                 verification=script.get("verification"), verifie=script.get("verifie", False),
                 credits=sorted({p["media"]["credit"] for p in script["phrases"] if p.get("media")}),
-                extraits_perdus=E.get("extraits_perdus", 0),
+                extraits_perdus=E.get("extraits_perdus", 0), regles_non_respectees=E.get("regles", []),
                 ecrans_illustres=controle.part_illustree(script)[0], ecrans_total=controle.part_illustree(script)[1], format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""),
                 humeur=script.get("humeur", ""), categorie=sujet.get("categorie", ""), texte=[p["ecrit"] for p in script["phrases"]],
                 essai=simulation(), cree_le=iso(), ia_quotas={k: dict(v) for k, v in ia.QUOTAS.items()}, fabrication_s=round(time.time() - E["t0"]), controles=bulletin,
@@ -568,8 +600,8 @@ def placer_citations(script, scenes, sujet, dossier, deja, journal, R, E, format
     choix = choix_v + choix_f
     # tous les extraits trouvés sont NOTÉS : la fin de la fabrication vérifie qu'aucun n'a été perdu en route
     connus = {controle._base(m) for m in script.get("_citations_toutes") or []}
-    script.setdefault("_citations_toutes", []).extend(dict(m, suite=False) for m in vids + reserve
-                                                      if m["type"] == "video" and controle._base(m) not in connus)
+    script.setdefault("_citations_toutes", []).extend(dict(m, suite=False) for m in vids + fixes + reserve
+                                                      if controle._base(m) not in connus)
     for m, k in zip(extraits, choix):
         sc = list(scenes[k])
         total = sum(_duree_estimee(ph[j]) for j in sc)
@@ -627,6 +659,7 @@ ETAPES = {"articles": "Lecture des articles de presse", "ecriture": "Écriture d
           "texte": "Contrôle 1/4 : vérification des faits et du texte", "voix": "Voix et calage des mots (contrôle 2/4)",
           "images": "Recherche des vraies images", "controle_images": "Contrôle 3/4 : les images", "montage": "Montage",
           "controle_final": "Contrôle 4/4 : la vidéo finie", "extraits": "Contrôle : aucun extrait de l'événement perdu",
+          "regles": "Contrôle : toutes les règles de la vidéo",
           "rangement": "Rangement de la vidéo"}
 
 

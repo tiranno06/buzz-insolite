@@ -300,7 +300,7 @@ def monter(script, dossier, sortie, suivi=None):
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0", "-i", os.path.join(dossier, "ecrans.txt"),
                     "-c", "copy", images], check=True)
 
-    credits_ = sorted({p["media"]["credit"] for p in ph if p.get("media")})
+    credits_ = sorted({p["media"]["credit"] for p in ph if (p.get("media") or {}).get("credit")})
     texte_credits = ("Images : " + " · ".join(credits_))[:150] if credits_ else ""
     ass = os.path.join(dossier, "st.ass")
     with open(ass, "w", encoding="utf-8") as f:
