@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-25T13:47:25+01:00",
+ "maj": "2026-11-25T18:37:38+01:00",
  "ia": [
   {
    "nom": "mistral",
@@ -18,8 +18,8 @@
   },
   {
    "nom": "openrouter",
-   "ok": true,
-   "detail": "openrouter:inclusionai/ling-3.2-flash:free"
+   "ok": false,
+   "detail": "openrouter nvidia/nemotron-3-ultra-550b-a55b:free 429 : {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model "
   }
  ],
  "sources": [
@@ -36,7 +36,7 @@
   {
    "nom": "Internet Archive (vidéos libres)",
    "ok": true,
-   "detail": "6 vidéos"
+   "detail": "3 vidéos"
   },
   {
    "nom": "Wikimedia Commons",
@@ -95,52 +95,76 @@
   "foxnews": 0
  },
  "durees": {
-  "controle_images": 4,
-  "rangement": 9,
-  "images": 11,
-  "voix": 0,
-  "regles": 316,
-  "montage": 183,
+  "articles": 0,
+  "controle_images": 242,
+  "regles": 30,
+  "montage": 136,
+  "controle_final": 514,
+  "texte": 136,
   "extraits": 0,
-  "controle_final": 557,
-  "total": 1091
+  "images": 175,
+  "voix": 161,
+  "rangement": 33,
+  "ecriture": 186,
+  "total": 1552
  },
  "creations_24h": {
-  "reussies": 24,
-  "ratees": 1,
-  "en_cours": 1
+  "reussies": 23,
+  "ratees": 0,
+  "en_cours": 3
  },
  "quotas": {
   "mistral": {
    "appels": 0,
    "refus": 0,
-   "erreurs": 11,
+   "erreurs": 290,
    "restant_minute": "0",
    "sature": false
   },
   "groq": {
-   "appels": 3,
-   "refus": 0,
-   "erreurs": 3,
+   "appels": 42,
+   "refus": 116,
+   "erreurs": 29,
    "restant_demandes": "999",
    "limite_demandes": "1000",
    "restant_mots": "7578",
-   "sature": false
+   "sature": true
   },
   "gemini": {
-   "appels": 3,
-   "refus": 7,
-   "erreurs": 3,
+   "appels": 78,
+   "refus": 210,
+   "erreurs": 133,
    "sature": true
   },
   "openrouter": {
-   "appels": 2,
-   "refus": 8,
+   "appels": 8,
+   "refus": 261,
    "erreurs": 0,
    "sature": true
   }
  },
  "reparations": [
+  {
+   "id": "20261125-163119-1",
+   "titre": "Policier de Miami frappe suspect",
+   "etape": "auto",
+   "raison": "Réparation automatique : texte un peu court (environ 45 s) ; écran presque noir ; montre des enfants avec un policier sans rapport",
+   "le": "2026-11-25T18:37:34+01:00"
+  },
+  {
+   "id": "20261125-163311-1",
+   "titre": "Iran: Lashes for a Hijab-Free Song",
+   "etape": "auto",
+   "raison": "Réparation automatique : accroche mal écrite : « FLOGGING FOR MUSIC » ; écran 15 : titre « June 2026 » absent de la phrase dite ; écran 16 : phrase absurde (« 2 »)",
+   "le": "2026-11-25T18:37:36+01:00"
+  },
+  {
+   "id": "20261125-163355-1",
+   "titre": "Bois de l'Arche, 4300 ans",
+   "etape": "auto",
+   "raison": "Réparation automatique : à vérifier",
+   "le": "2026-11-25T18:37:38+01:00"
+  },
   {
    "id": "20261124-233239-1",
    "titre": "CAN 2025 : Le Sénégal récupère son titre",
@@ -157,5 +181,5 @@
   }
  ],
  "sujets_remis": 0,
- "resume": "⚠️ En panne : mistral"
+ "resume": "⚠️ En panne : mistral, openrouter"
 }

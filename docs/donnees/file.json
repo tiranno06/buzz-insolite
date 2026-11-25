@@ -539,7 +539,8 @@
     "rangement": 5
    },
    "refaite": null,
-   "statut": "a_verifier"
+   "statut": "a_verifier",
+   "reparations": 1
   },
   {
    "id": "20261125-163311-1",
@@ -1044,7 +1045,8 @@
     "rangement": 34
    },
    "refaite": null,
-   "statut": "a_verifier"
+   "statut": "a_verifier",
+   "reparations": 1
   },
   {
    "id": "20261125-163355-1",
@@ -1376,7 +1378,8 @@
     "rangement": 79
    },
    "refaite": null,
-   "statut": "a_verifier"
+   "statut": "a_verifier",
+   "reparations": 1
   },
   {
    "id": "20261125-163234-1",
