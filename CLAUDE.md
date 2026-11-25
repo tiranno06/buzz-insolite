@@ -148,6 +148,9 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
   autre manifestation du même thème = « sujet » ou « domaine », doute = « domaine ». Avant l'écran de texte, `deuxieme_avis`
   remontre l'image refusée (`_rejetees`, copie `rejeteeNN-k.jpg`) avec une question large (lien même lointain) : gardée =
   `_garde_2e_avis`, plus rejugée, problème fermé.
+- **IA qui voit « indisponible » (25/11)** : 3 vidéos sur 4 sans regard de l'IA (5 vidéos à la fois, Gemini en panne).
+  4e fournisseur : OpenRouter, modèles gratuits qui voient les images (`_modeles_openrouter(vision=True)`) ; attente
+  croissante (1, 2, 3, 4 min) ; la raison exacte est écrite dans le journal et dans le bulletin.
 
 ## Vitesse (analyse du 24/11 : vidéo GTA en 99 min, dont 86 min de voix Chatterbox)
 - Voix refaite par le contrôle final : la phrase a déjà eu 2 essais à l'étape voix, donc mots simplifiés DÈS le 1er essai,

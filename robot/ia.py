@@ -41,12 +41,14 @@ def disponibles():
     return [f for f in ORDRE if os.environ.get(FOURNISSEURS[f]["cle"]) and f not in _SAUTES]
 
 
-def _modeles_openrouter():
-    """Modèles gratuits du moment (ils changent souvent) : les plus grands d'abord."""
+def _modeles_openrouter(vision=False):
+    """Modèles gratuits du moment (ils changent souvent) : les plus grands d'abord. vision=True : seulement ceux qui voient
+    les images (4e fournisseur pour le contrôle des images, 25/11)."""
     try:
         req = urllib.request.Request("https://openrouter.ai/api/v1/models", headers={"User-Agent": ROBOT_UA})
         d = json.loads(urllib.request.urlopen(req, timeout=20).read())
-        libres = [m for m in d.get("data", []) if str(m.get("id", "")).endswith(":free")]
+        libres = [m for m in d.get("data", []) if str(m.get("id", "")).endswith(":free")
+                  and (not vision or "image" in ((m.get("architecture") or {}).get("input_modalities") or []))]
         libres.sort(key=lambda m: -(m.get("context_length") or 0))
         return tuple(m["id"] for m in libres[:6])
     except Exception:
@@ -143,9 +145,10 @@ def regarder_json(consigne, texte, images, journal=print, exclure=()):
     contenu = [{"type": "text", "text": texte}] + [{"type": "image_url", "image_url": {"url": _image_b64(c)}} for c in images[:5]]
     messages = [{"role": "system", "content": consigne}, {"role": "user", "content": contenu}]
     derniere = "aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY)"
-    for fourn in [f for f in ("gemini", "mistral", "groq") if os.environ.get(FOURNISSEURS[f]["cle"]) and f not in exclure
-                  and f not in _SAUTES]:
-        for modele in [m for m in VISION[fourn] if (fourn, m) not in _MORTS]:
+    for fourn in [f for f in ("gemini", "mistral", "groq", "openrouter") if os.environ.get(FOURNISSEURS[f]["cle"])
+                  and f not in exclure and f not in _SAUTES]:
+        modeles = _modeles_openrouter(vision=True) if fourn == "openrouter" else VISION[fourn]
+        for modele in [m for m in modeles if (fourn, m) not in _MORTS]:
             for essai in range(2):
                 try:
                     rep = _appel(fourn, modele, messages, 0.1, 2500)
@@ -160,4 +163,5 @@ def regarder_json(consigne, texte, images, journal=print, exclure=()):
                 except (ValueError, urllib.error.URLError, TimeoutError, OSError) as e:
                     derniere = f"{fourn} {modele} : {str(e)[:120]}"
                     break
+    journal(f"    ⚠️ aucune IA qui voit n'a répondu (dernière erreur : {derniere[:200]})")
     raise AucuneIA(derniere)

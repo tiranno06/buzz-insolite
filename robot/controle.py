@@ -413,15 +413,15 @@ def controle_images(script, dossier, B, journal=print, deja=None, sujet="", sans
         avis = {}
         if sans_ia and tour == 0:
             B.saute("regard de l'IA sur les images (mode secours)")
-        for essai in range(0 if sans_ia else 3):          # IA occupée : on attend et on réessaie avant d'abandonner
+        for essai in range(0 if sans_ia else 5):          # IA occupée (5 vidéos à la fois) : on attend de plus en plus
             try:
                 avis = juger_images(lots, sujet, journal) if lots else {}
                 break
-            except ia.AucuneIA:
-                if essai == 2:
-                    B.saute("regard de l'IA sur les images (IA indisponible)")
+            except ia.AucuneIA as e:
+                if essai == 4:
+                    B.saute(f"regard de l'IA sur les images (IA indisponible : {str(e)[:120]})")
                 else:
-                    import time; time.sleep(60)
+                    import time; time.sleep(60 * (essai + 1))
         for i, a in avis.items():
             rapport = str(a.get("rapport") or "").lower()
             hors_sujet = rapport == "aucun" or (not rapport and a.get("colle") is False)   # « autre aspect du sujet » = bon
@@ -554,11 +554,11 @@ def controle_video(fichier, script, dossier, B, journal=print, leger=False, sans
                         action = "image" if deja_vu and deja_vu.get("essais", 1) >= 2 else "titre"
                         fautifs[n] = (r.get("probleme") or "texte mal placé", action)
             break
-        except ia.AucuneIA:
+        except ia.AucuneIA as e:
             if essai == 2:
-                B.saute("regard de l'IA sur la vidéo finie (IA indisponible)")
+                B.saute(f"regard de l'IA sur la vidéo finie (IA indisponible : {str(e)[:120]})")
             else:
-                import time; time.sleep(60)
+                import time; time.sleep(60 * (essai + 1))
     return fautifs
 
 
