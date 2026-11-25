@@ -1379,7 +1379,8 @@
    },
    "refaite": null,
    "statut": "a_verifier",
-   "reparations": 1
+   "reparations": 1,
+   "echec_publication": "2026-11-25T20:51:23+01:00 : contrôle avant publication : description vide"
   },
   {
    "id": "20261125-163234-1",

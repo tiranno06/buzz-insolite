@@ -1,10 +1,10 @@
 {
- "maj": "2026-11-25T20:27:33+01:00",
+ "maj": "2026-11-25T20:51:37+01:00",
  "ia": [
   {
    "nom": "mistral",
    "ok": false,
-   "detail": "mistral ministral-8b-latest 402 : {\"object\":\"error\",\"message\":\"You need a subscription to access this API.\",\"type\":\"billing_no_api_budget_configured\",\"param\":nu"
+   "detail": "mistral ministral-8b-2512 402 : {\"object\":\"error\",\"message\":\"You need a subscription to access this API.\",\"type\":\"billing_no_api_budget_configured\",\"param\":null"
   },
   {
    "nom": "groq",
@@ -19,14 +19,14 @@
   {
    "nom": "openrouter",
    "ok": false,
-   "detail": "openrouter nvidia/nemotron-3-ultra-550b-a55b:free 429 : {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model "
+   "detail": "openrouter recursive/flint-v1.0:free 429 : {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per "
   }
  ],
  "sources": [
   {
    "nom": "Presse (Bing Actualités)",
    "ok": true,
-   "detail": "2 articles"
+   "detail": "5 articles"
   },
   {
    "nom": "PeerTube (vidéos libres)",
@@ -36,7 +36,7 @@
   {
    "nom": "Internet Archive (vidéos libres)",
    "ok": true,
-   "detail": "7 vidéos"
+   "detail": "5 vidéos"
   },
   {
    "nom": "Wikimedia Commons",
@@ -95,23 +95,23 @@
   "foxnews": 0
  },
  "durees": {
-  "images": 175,
-  "texte": 136,
-  "extraits": 0,
-  "ecriture": 186,
-  "articles": 0,
-  "rangement": 33,
-  "voix": 161,
-  "montage": 136,
   "controle_final": 514,
-  "regles": 30,
+  "voix": 161,
   "controle_images": 242,
+  "montage": 136,
+  "extraits": 0,
+  "articles": 0,
+  "ecriture": 186,
+  "regles": 30,
+  "texte": 136,
+  "rangement": 33,
+  "images": 175,
   "total": 1552
  },
  "creations_24h": {
-  "reussies": 25,
+  "reussies": 26,
   "ratees": 0,
-  "en_cours": 1
+  "en_cours": 0
  },
  "quotas": {
   "mistral": {
