@@ -468,7 +468,7 @@ const NIV = { texte: "📝 Texte", voix: "🗣️ Voix", images: "🖼️ Images
 function bulletin(v) {
   const C = v.controles; if (!C) return "";
   const L = (C.lignes || []).map(l => `<li>${l.corrige ? "✅" : l.gravite === "grave" ? "❌" : "⚠️"} ${NIV[l.niveau] || l.niveau}${l.ecran != null ? ` (écran ${l.ecran + 1})` : ""} : ${esc(l.probleme)}${l.corrige ? " — corrigé" : ""}</li>`).join("");
-  return `<details style="margin-top:8px"${C.graves_restants ? " open" : ""}><summary class="petit">🛡️ Contrôle qualité : ${C.note}/100 · ${C.corriges} correction(s)${C.graves_restants ? ` · ❌ ${C.graves_restants} défaut(s) grave(s)` : ""}</summary>
+  return `<details style="margin-top:8px"><summary class="petit">🛡️ Contrôle qualité : ${C.note}/100 · ${C.corriges} correction(s)${C.graves_restants ? ` · ❌ ${C.graves_restants} défaut(s) grave(s)` : ""}</summary>
     <ul class="petit">${L || "<li>✅ Aucun problème trouvé aux 4 contrôles.</li>"}${(C.sautes || []).map(s => `<li>⏭️ Contrôle non fait : ${esc(s)}</li>`).join("")}</ul></details>`;
 }
 function carteVideo(v) {

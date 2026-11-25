@@ -275,33 +275,50 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
         deja = E.setdefault("deja", set())
         deja |= avancement.medias_des_autres()               # jamais les mêmes passages que les autres vidéos en construction
         script["images_generiques"] = R["video"].get("images_generiques", False)
-        if "clips" not in E:                                  # VRAIES vidéos du sujet (licence libre), avant tout le reste
+        if "clips" not in E:                                  # VRAIES vidéos du sujet (licence libre), de TOUTES les sources
             E["clips"] = [] if simulation() or format_ in MULTI else \
-                images.videos_du_sujet(sujet["titre"], sujet.get("mots_cles") or [], dossier, journal, ecrans=len(script["phrases"]),
-                                       mots_en=sujet.get("mots_cles_en") or [])
-        for i, p in enumerate(script["phrases"][:-1]):
-            if "media" not in p and E["clips"]:
-                p["media"] = E["clips"].pop(0); deja.add(p["media"]["id"])
-        # Puis des vidéos libres de CHAQUE personne / lieu / objet cité (demande de l'auteur du 24/11 : des bouts de vraies
-        # vidéos collés l'un après l'autre ; les photos ne servent qu'en dernier recours).
-        if not simulation():
+                images.videos_du_sujet(sujet["titre"], sujet.get("mots_cles") or [], dossier, journal, maxi=5,
+                                       ecrans=len(script["phrases"]), mots_en=sujet.get("mots_cles_en") or [])
+        ph = script["phrases"]
+        # Composition voulue par l'auteur (24/11) : SURTOUT des morceaux de vraies vidéos de 5 à 10 s (un passage de 10 s
+        # couvre 1 ou 2 phrases, `suite`), et AUSSI quelques images fixes (1 écran sur 4 : vraie photo de la personne / du
+        # lieu cité). Chaque écran reçoit sa recherche (bug corrigé le 24/11 : seule la dernière phrase était cherchée).
+        fixes = {i for i in range(3, len(ph) - 1, 4)}           # écrans 4, 8, 12… : image fixe si une vraie photo existe
+
+        def donner_clip(i, clip):
+            ph[i]["media"] = clip; deja.add(clip["id"])
+            j = i + 1                                         # la phrase suivante continue le MÊME morceau (5 à 10 s)
+            if j < len(ph) - 1 and "media" not in ph[j] and j not in fixes and \
+                    controle.duree_estimee([ph[i], ph[j]]) <= 10.5:
+                ph[j]["media"] = dict(clip, id=clip["id"] + "-suite", suite=True)
+
+        for i, p in enumerate(ph[:-1]):
+            if "media" in p:
+                continue
+            if i in fixes and p.get("entite") and not simulation():
+                m = images.trouver_photo(p.get("entite"), dossier, p["uid"], deja, journal)
+                if m:
+                    p["media"] = m; continue
+            if E["clips"]:
+                donner_clip(i, E["clips"].pop(0))
+        if not simulation():                                  # puis des vidéos libres de chaque personne / lieu / objet cité
             entites = E.setdefault("entites_faites", [])
-            restantes = [p for p in script["phrases"][:-1] if "media" not in p and p.get("entite")]
-            for k, nom in enumerate(dict.fromkeys(p["entite"] for p in restantes)):
+            for nom in dict.fromkeys(p["entite"] for p in ph[:-1] if "media" not in p and p.get("entite")):
                 if nom in entites or len(entites) >= 6:
                     continue
-                besoin = [p for p in restantes if p["entite"] == nom and "media" not in p]
+                besoin = [i for i, p in enumerate(ph[:-1]) if p.get("entite") == nom and "media" not in p]
                 clips = images.videos_du_sujet(nom, [], dossier, journal, maxi=1, ecrans=len(besoin),
                                                prefixe=f"entite{len(entites)}", deja=deja)
                 entites.append(nom)
-                for p in besoin:
-                    if clips:
-                        p["media"] = clips.pop(0); deja.add(p["media"]["id"])
+                for i in besoin:
+                    if clips and "media" not in ph[i]:
+                        donner_clip(i, clips.pop(0))
+        for i, p in enumerate(ph[:-1]):                       # écrans restants : chacun sa recherche (photo, vidéo libre)
             if "media" not in p:
                 p["media"] = None if simulation() else images.trouver(
                     p["image"], dossier, p["uid"], deja, journal, script.get("theme_image", ""),
                     entite=p.get("entite", ""), generiques=script["images_generiques"])
-                avancement.progres(52 + 10 * (i + 1) / len(script["phrases"]))
+            avancement.progres(52 + 10 * (i + 1) / len(ph))
         script.setdefault("_reserve", []).extend(E["clips"]); E["clips"] = []   # passages de réserve pour le contrôle
         noms = [p.get("entite") for p in script["phrases"] if p.get("entite")]
         script["entite_sujet"] = max(set(noms), key=noms.count) if noms else ""

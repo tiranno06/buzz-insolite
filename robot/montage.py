@@ -199,6 +199,15 @@ def _signature(script, i, d):
     return f"{d:.3f}|{m.get('id') or m.get('type') or ''}|{m.get('debut', '')}|{p.get('ecran', '')}|{p.get('reponse', '')}|{i == len(script['phrases']) - 1}"
 
 
+def enchainer(ph, debuts):
+    """Un morceau de vidéo qui CONTINUE sur la phrase suivante (5 à 10 s d'affilée) : l'écran suivant reprend la vidéo là où
+    le précédent s'est arrêté (pas de saut en arrière)."""
+    for i in range(1, len(ph)):
+        m, avant = ph[i].get("media") or {}, ph[i - 1].get("media") or {}
+        if m.get("suite") and avant.get("chemin") == m.get("chemin"):
+            m["debut"] = round(avant.get("debut", 0) + (debuts[i] - debuts[i - 1]), 2)
+
+
 def monter(script, dossier, sortie, suivi=None):
     """script["phrases"][i] doit avoir : son, duree, mots, media (ou None), ecran. Renvoie la durée de la vidéo.
     Un écran déjà fabriqué dont rien n'a changé (durée, image, titre) est gardé tel quel : une correction ne refait que les
@@ -209,6 +218,7 @@ def monter(script, dossier, sortie, suivi=None):
     # coupes d'écran PILE sur le rythme de la musique : le silence entre deux phrases varie de 0,08 à 0,45 s
     sons.caler_pauses(ph, sons.battements(script["_musique"]) if script.get("_musique") else [], PAUSE)
     debuts, total = debuts_et_total(ph)
+    enchainer(ph, debuts)
     silences = {}
     for p in ph:
         cle = f"{p['_pause']:.3f}"

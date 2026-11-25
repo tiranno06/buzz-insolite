@@ -101,6 +101,20 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
   compte plus, `_image_deja_bonne` ne reprend qu'une image VALIDÉE par l'IA (`_valide`), vidéo d'abord, jamais un titre ;
   2 titres de presse au plus ; 4) mauvaise page Wikipédia (« Yosemite » pour Franco) → titre de la page vérifié.
 
+## Composition des vidéos (demande de l'auteur du 25/11)
+- **Surtout des morceaux de vraies vidéos de 5 à 10 s** : passages de 10 s (`images.PASSAGE`) ; un morceau couvre 1 ou 2
+  phrases (`donner_clip` : la phrase suivante reçoit le même morceau avec `suite`, si les 2 phrases font ≤ 10,5 s estimées ;
+  `montage.enchainer` fait reprendre la vidéo là où l'écran d'avant s'est arrêté). **Et des images fixes** : 1 écran sur 4
+  (écrans 4, 8, 12…) prend la vraie photo Wikipédia de l'entité citée (`images.trouver_photo`), sinon une vidéo.
+- **Toutes les sources** : vidéos du sujet prises à tour de rôle dans chaque source (YouTube CC, PeerTube, Internet Archive,
+  Vimeo, Commons), 5 au plus, titres copiés d'une source à l'autre essayés en dernier ; articles : 8 au plus,
+  `sources.sans_doublons` (même lien, même titre ou 60 % des mots en commun = copie d'agence : le plus complet gardé),
+  chaque article a sa part de place pour l'IA qui écrit (`ecrire._articles_texte`), consigne « rassemble les infos de tous
+  les articles sans répéter ».
+- **Bug corrigé le 25/11** : depuis l'ajout des vidéos d'entités, la recherche d'image (Wikipédia, Commons) ne se faisait plus
+  que pour la DERNIÈRE phrase (boucle cassée) → écrans vides puis titres de presse. Chaque écran a de nouveau sa recherche.
+- Site : le bulletin du contrôle qualité est toujours replié (demande de l'auteur du 25/11).
+
 ## Vitesse (analyse du 24/11 : vidéo GTA en 99 min, dont 86 min de voix Chatterbox)
 - Voix refaite par le contrôle final : la phrase a déjà eu 2 essais à l'étape voix, donc mots simplifiés DÈS le 1er essai,
   phrase retirée au 3e (si la vidéo reste ≥ 62 s) ; avant : jusqu'à 7 essais identiques (~1 min de Chatterbox chacun).

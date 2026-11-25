@@ -17,6 +17,8 @@ REGLES_SUJET = """Règles à respecter quel que soit le sujet :
 CONSIGNE = """Tu écris le texte d'une vidéo TikTok de 60 à 75 secondes pour la chaîne française « Buzz et insolite ».
 Public : francophones de 15 à 40 ans. Style : rythmé, phrases courtes, langage simple, effet « tu savais ? ».
 Reste centré sur le SUJET qui buzze : chaque phrase doit en parler (pas de digression sur un autre thème).
+Rassemble les informations de TOUS les articles (chacun apporte souvent un détail différent), sans jamais répéter deux fois
+la même information.
 Structure :
 1. Accroche choc dans la 1re phrase (moins de 12 mots) qui donne envie de rester.
 2. Les faits, du plus étonnant au plus précis (lieu, date, chiffres).
@@ -60,8 +62,10 @@ Ne signale PAS les phrases bonnes. Réponds uniquement en JSON :
 {"problemes": [{"phrase": numéro, "raison": "…", "correction": "phrase corrigée (nombres en chiffres) ou vide pour la retirer"}]}"""
 
 
-def _articles_texte(articles):
-    return "\n\n".join(f"[{a['media']}] {a['titre']}\n{a.get('texte') or a.get('resume')}" for a in articles)[:14000]
+def _articles_texte(articles, total=16000):
+    """Tous les articles, chacun avec sa part de place (avant : les premiers prenaient tout et les autres étaient coupés)."""
+    part = max(1200, total // max(1, len(articles)))
+    return "\n\n".join(f"[{a['media']}] {a['titre']}\n{(a.get('texte') or a.get('resume') or '')[:part]}" for a in articles)[:total]
 
 
 def nettoyer_hashtag(h):

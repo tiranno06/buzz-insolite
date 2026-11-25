@@ -97,7 +97,7 @@ def bing(requete, n=12, langue="fr"):
     return out
 
 
-def chercher(sujet, mots_cles=(), maxi=6, journal=print, mots_en=()):
+def chercher(sujet, mots_cles=(), maxi=8, journal=print, mots_en=()):
     """Articles qui parlent du sujet : [{media, titre, lien, resume, texte}] (les plus proches d'abord)."""
     voulus = _mots(sujet + " " + " ".join(mots_cles))
     candidats = []
@@ -209,7 +209,25 @@ def chercher_large(sujet, mots_cles=(), videos=(), journal=print, minimum=2500, 
                              texte="\n".join(descriptions)[:3000]))
     if not articles:
         articles.append(dict(media="Sujet du buzz", titre=sujet, lien="", resume=sujet, texte=sujet))
-    return articles
+    return sans_doublons(articles, journal)
+
+
+def sans_doublons(articles, journal=print):
+    """Toutes les sources, mais JAMAIS deux fois la même information (demande de l'auteur du 24/11) : même adresse, même
+    titre, ou texte copié d'une agence (60 % des mots identiques) → on garde l'article le plus complet."""
+    def mots(a):
+        return set(_mots((a.get("texte") or a.get("resume") or "")[:1500]))
+    garde = []
+    for a in sorted(articles, key=lambda a: -len(a.get("texte") or "")):
+        ma = mots(a)
+        double = next((g for g in garde if (a.get("lien") and a.get("lien") == g.get("lien")) or
+                       a.get("titre", "").strip().lower() == g.get("titre", "").strip().lower() or
+                       (ma and len(ma & mots(g)) / max(1, min(len(ma), len(mots(g)))) >= 0.6)), None)
+        if not double:
+            garde.append(a)
+    if len(garde) < len(articles):
+        journal(f"  {len(articles) - len(garde)} article(s) en double écarté(s) : {len(garde)} source(s) différente(s) réunies")
+    return garde
 
 
 def richesse(articles):

@@ -261,6 +261,7 @@ def carte_presse(article, chemin):
 
 
 # ------------------------------------------------------------------ vraies vidéos du sujet (demande de l'auteur du 24/11)
+PASSAGE = 10                                          # morceaux de vraie vidéo de 10 s (un écran en prend 5 à 10 s)
 YT_CC = "https://www.youtube.com/results?search_query={q}&sp=EgIwAQ%253D%253D"      # filtre « Creative Commons » de YouTube
 MOTS_VIDES = {"le", "la", "les", "un", "une", "des", "du", "de", "et", "en", "à", "au", "aux", "pour", "sur", "dans", "par", "avec",
               "son", "sa", "ses", "qui", "que", "est", "ce", "cette", "plus", "après", "vidéo", "video", "fou", "folle", "choc"}
@@ -472,10 +473,21 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, 
         journal(f"  vidéos du sujet ({nom}) : {len(trouves)} trouvée(s), {bons} sur le sujet")
     candidats = filtrer_par_ia(sujet, mots_en, candidats, journal)
     candidats.sort(key=lambda x: -x[0])
+    # TOUTES les sources mélangées (demande de l'auteur du 24/11) : à tour de rôle, la meilleure de chaque source, et le même
+    # titre trouvé sur deux sources (copie) n'est gardé qu'une fois
+    par_source, titres_vus, copies = {}, set(), []
+    for x in candidats:
+        cle_titre = " ".join(sorted(_mots_sujet(x[1]["titre"])))[:80]
+        if cle_titre and cle_titre in titres_vus:
+            copies.append(x); continue                     # copie : essayée seulement si l'original est refusé
+        titres_vus.add(cle_titre)
+        par_source.setdefault(x[1]["source"], []).append(x)
+    candidats = [L[k] for k in range(max(map(len, par_source.values()), default=0)) for L in par_source.values() if k < len(L)]
+    candidats += copies
     out, prises, youtube_refuse = [], 0, False
     essais = 0
     for _, c in candidats:                                 # TOUS les candidats (essai du 24/11 : les 8 premiers étaient
-        if prises >= maxi or essais >= 10:                 # des YouTube refusés, PeerTube n'était jamais essayé)
+        if prises >= maxi or essais >= 14:                 # des YouTube refusés, PeerTube n'était jamais essayé)
             break
         if c["source"] == "YouTube":
             if youtube_refuse or YOUTUBE["refuse"]:
@@ -499,7 +511,8 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, 
             essais += 1
         duree = float(c["duree"] or 0)
         debut = 3 if duree > 40 else 0
-        fin = debut + 6 * ecrans + 2 if not duree else min(duree, debut + 6 * ecrans + 2)
+        longueur = PASSAGE * max(3, ecrans // max(1, maxi)) + 2      # assez de morceaux de 10 s pour cette vidéo
+        fin = debut + longueur if not duree else min(duree, debut + longueur)
         chemin = os.path.join(dossier, f"{prefixe}-{prises}.mp4")
         try:
             _telecharger_passage(c, debut, fin, duree, chemin, journal)
@@ -510,11 +523,11 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, 
             continue
         prises += 1
         auteur = (c["auteur"] or c["source"])[:40]
-        for k in range(max(1, int(reelle // 6))):
-            out.append(dict(type="video", chemin=chemin, debut=6 * k, duree=reelle, id=f"{c['cle']}-{k}", url=c["page"],
+        for k in range(max(1, int(reelle // PASSAGE))):
+            out.append(dict(type="video", chemin=chemin, debut=PASSAGE * k, duree=reelle, id=f"{c['cle']}-{k}", url=c["page"],
                             page=c["page"], licence=c["licence"], auteur=auteur, titre_source=c["titre"][:120],
                             credit=f"Vidéo : {auteur} ({c['source']}, {c['licence']})", reelle=True))
-        journal(f"  vraie vidéo du sujet : « {c['titre'][:70]} » de {auteur} ({c['source']}, {c['licence']}, {int(reelle // 6)} passages)")
+        journal(f"  vraie vidéo du sujet : « {c['titre'][:70]} » de {auteur} ({c['source']}, {c['licence']}, {int(reelle // PASSAGE)} morceaux de {PASSAGE} s)")
     try:                                                   # Wikimedia Commons : vidéos libres, recherche en français
         m = commons_video(" ".join(sorted(voulus, key=len, reverse=True)[:3]), set(deja or ()))
         if m and m["id"] not in vus:
@@ -524,8 +537,8 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, 
             except Exception:
                 chemin = chemin[:-5] + "." + m["secours"].rsplit(".", 1)[-1].lower(); _telecharger(m["secours"], chemin)
             reelle = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", chemin]))
-            for k in range(max(1, min(4, int(reelle // 6)))):
-                out.append(dict(m, chemin=chemin, debut=6 * k, duree=reelle, id=f"{m['id']}-{k}", reelle=True))
+            for k in range(max(1, min(4, int(reelle // PASSAGE)))):
+                out.append(dict(m, chemin=chemin, debut=PASSAGE * k, duree=reelle, id=f"{m['id']}-{k}", reelle=True))
             journal(f"  vraie vidéo du sujet : Wikimedia Commons ({m['credit'][:60]})")
     except Exception as e:
         journal(f"  vidéos du sujet (Wikimedia Commons) : {str(e)[:80]}")
@@ -541,6 +554,17 @@ def videos_du_sujet(sujet, mots_cles, dossier, journal=print, maxi=3, ecrans=8, 
 def shutil_which(nom):
     import shutil
     return shutil.which(nom)
+
+
+def trouver_photo(entite, dossier, n, deja, journal=print):
+    """Vraie photo FIXE de la personne / du lieu / de l'objet (galerie de son article Wikipédia), ou None."""
+    try:
+        m = wikipedia_media(entite, deja)
+        if m and _recuperer(m, dossier, n, deja, journal):
+            return m
+    except Exception as e:
+        journal(f"    photo de « {entite} » : {str(e)[:80]}")
+    return None
 
 
 def trouver(requete, dossier, n, deja, journal=print, theme="", entite="", generiques=False):

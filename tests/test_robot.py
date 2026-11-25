@@ -455,7 +455,7 @@ class TestSujetsRiches(unittest.TestCase):
         self.assertTrue(any("PeerTube" in c["credit"] for c in clips))                  # sujet ; P2 : chaîne de télé
         self.assertEqual(clips[0]["id"].split("-")[0] != clips[1]["id"].split("-")[0], True)   # passages alternés
         clips = [c for c in clips if c["id"].startswith("yt-")]
-        self.assertEqual([c["debut"] for c in clips], [0, 6, 12, 18, 24])
+        self.assertEqual([c["debut"] for c in clips], [0, 10, 20])                    # morceaux de 10 s
         self.assertIn("CC BY", clips[0]["credit"])
 
     def test_vimeo_licences_libres(self):
@@ -602,6 +602,25 @@ class TestJamaisSansImages(unittest.TestCase):
             (images._ytdlp, images.shutil_which, images.subprocess.check_output, images._json, images.commons_video) = garde
             images.YOUTUBE["refuse"] = False
         self.assertTrue(clips); self.assertTrue(all("PeerTube" in c["credit"] for c in clips))
+
+
+class TestComposition(unittest.TestCase):
+    def test_morceaux_continus(self):
+        """Un morceau de 10 s couvre deux phrases : la 2e reprend la vidéo là où la 1re s'arrête."""
+        from robot import montage
+        clip = dict(type="video", chemin="c.mp4", debut=20, id="pt-x-2")
+        ph = [dict(media=clip), dict(media=dict(clip, id="pt-x-2-suite", suite=True)), dict(media=None)]
+        montage.enchainer(ph, [0.0, 4.3, 8.9])
+        self.assertEqual(ph[1]["media"]["debut"], 24.3)
+
+    def test_articles_sans_doublons(self):
+        from robot import sources
+        texte = "Le président a inauguré la nouvelle ligne d'assemblage de l'avion à Toulouse devant les ouvriers " * 5
+        A = [dict(media="a.fr", titre="Macron à Toulouse", lien="u1", texte=texte),
+             dict(media="b.fr", titre="Inauguration chez Airbus", lien="u2", texte=texte + " Une phrase de plus."),
+             dict(media="c.fr", titre="Autre angle", lien="u3", texte="Les syndicats dénoncent les cadences et les salaires " * 8)]
+        garde = sources.sans_doublons(A, journal=lambda *a: None)
+        self.assertEqual(sorted(a["media"] for a in garde), ["b.fr", "c.fr"])     # copie d'agence écartée, la plus complète gardée
 
 
 class TestParallele(unittest.TestCase):
