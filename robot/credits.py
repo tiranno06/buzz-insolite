@@ -30,10 +30,9 @@ def _pixel():
 
 
 def _essai_texte(fourn):
-    F = ia.FOURNISSEURS[fourn]
-    modeles = ia._modeles_openrouter() if fourn == "openrouter" else F["modeles"]
+    modeles = ia.modeles(fourn)
     derniere = "aucun modèle"
-    for modele in [m for m in modeles if (fourn, m) not in ia._MORTS][:2]:
+    for modele in [m for m in modeles if (fourn, m) not in ia._MORTS][:3]:
         try:
             ia._appel(fourn, modele, [{"role": "user", "content": 'Réponds en json : {"ok": true}'}], 0, 20)
             return True, modele
@@ -43,11 +42,11 @@ def _essai_texte(fourn):
 
 
 def _essai_image(fourn):
-    modeles = ia._modeles_openrouter(vision=True) if fourn == "openrouter" else ia.VISION.get(fourn, ())
+    modeles = ia.modeles(fourn, vision=True)
     contenu = [{"type": "text", "text": 'Réponds en json : {"ok": true}'},
                {"type": "image_url", "image_url": {"url": "data:image/jpeg;base64," + _pixel()}}]
     derniere = "aucun modèle"
-    for modele in [m for m in modeles if (fourn, m) not in ia._MORTS][:2]:
+    for modele in [m for m in modeles if (fourn, m) not in ia._MORTS][:3]:
         try:
             ia._appel(fourn, modele, [{"role": "user", "content": contenu}], 0, 20)
             return True, modele

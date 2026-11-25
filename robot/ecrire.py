@@ -220,7 +220,7 @@ def verifier(script, articles, journal=print, seulement=None):
     script["verification"] = {"par": qui, "corrigees": avant["corrigees"] + corrigees, "retirees": avant["retirees"] + retirees,
                               "problemes": (avant["problemes"] + [str(p.get("raison", ""))[:160] for p in d.get("problemes") or []])[:10]}
     journal(f"  vérifié par {qui} : {corrigees} phrase(s) corrigée(s), {retirees} retirée(s)")
-    if any(x in qui for x in ("20b", "8b", "lite", "mini", "small")) and not script.get("_verif_double"):
+    if any(x in qui for x in ("20b", "14b", "8b", "7b", "lite", "mini", "small", "instant", "nemo")) and not script.get("_verif_double"):
         # petit modèle (vidéo CAN du 25/11 : « président sénégalais » pour le président de la FÉDÉRATION, laissé passer
         # par un modèle 20b) : 2e vérification par un autre fournisseur
         script["_verif_double"] = True

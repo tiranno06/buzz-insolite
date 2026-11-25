@@ -14,11 +14,13 @@ from .commun import ROBOT_UA
 
 FOURNISSEURS = {
     "mistral": dict(cle="MISTRAL_API_KEY", url="https://api.mistral.ai/v1/chat/completions",
-                    modeles=("mistral-small-latest", "ministral-14b-2512", "ministral-8b-latest")),
+                    modeles=("mistral-small-latest", "mistral-medium-latest", "ministral-14b-2512", "ministral-8b-latest",
+                             "open-mistral-nemo")),
     "groq": dict(cle="GROQ_API_KEY", url="https://api.groq.com/openai/v1/chat/completions",
-                 modeles=("llama-3.3-70b-versatile", "openai/gpt-oss-120b", "openai/gpt-oss-20b")),
+                 modeles=("llama-3.3-70b-versatile", "openai/gpt-oss-120b", "moonshotai/kimi-k2-instruct-0905", "qwen/qwen3-32b",
+                          "openai/gpt-oss-20b", "llama-3.1-8b-instant")),
     "gemini": dict(cle="GEMINI_API_KEY", url="https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
-                   modeles=("gemini-flash-latest", "gemini-flash-lite-latest")),
+                   modeles=("gemini-flash-latest", "gemini-2.5-flash", "gemini-flash-lite-latest", "gemini-2.5-flash-lite")),
     "openrouter": dict(cle="OPENROUTER_API_KEY", url="https://openrouter.ai/api/v1/chat/completions", modeles=()),
 }
 ORDRE = ("mistral", "groq", "gemini", "openrouter")
@@ -55,9 +57,72 @@ def _modeles_openrouter(vision=False):
         libres = [m for m in d.get("data", []) if str(m.get("id", "")).endswith(":free")
                   and (not vision or "image" in ((m.get("architecture") or {}).get("input_modalities") or []))]
         libres.sort(key=lambda m: -(m.get("context_length") or 0))
-        return tuple(m["id"] for m in libres[:6])
+        return tuple(m["id"] for m in libres[:8])
     except Exception:
         return ()
+
+
+# ------------------------------------------------------------------ modèles de secours trouvés en ligne (25/11)
+# Les fournisseurs retirent des modèles sans prévenir (Groq : llama-4-maverick, 25/11 → plus aucune IA qui voit). On lit
+# donc la liste OFFICIELLE des modèles de chaque fournisseur (avec la clé) : les modèles préférés qui n'existent plus sont
+# sautés, et d'autres modèles gratuits du même fournisseur sont ajoutés derrière, en secours.
+_EN_LIGNE = {}
+LISTES = {"mistral": "https://api.mistral.ai/v1/models", "groq": "https://api.groq.com/openai/v1/models",
+          "gemini": "https://generativelanguage.googleapis.com/v1beta/openai/models"}
+EXCLUS = ("embed", "tts", "whisper", "audio", "guard", "moderation", "ocr", "image-generation", "live", "native",
+          "transcri", "realtime", "codestral", "devstral", "compound", "prompt-guard", "safeguard", "orpheus", "veo",
+          "imagen", "learnlm", "gemma-3n", "robotics", "computer-use", "nano")
+SECOURS_MAX = 4
+
+
+def _liste_en_ligne(fourn):
+    """{modèle: infos} publiés par le fournisseur, ou None (inconnu : alors on essaie la liste préférée telle quelle)."""
+    if fourn not in _EN_LIGNE:
+        _EN_LIGNE[fourn] = None
+        cle = os.environ.get(FOURNISSEURS[fourn]["cle"], "")
+        if fourn in LISTES and len(cle) >= 16 and not os.environ.get("SIMULATION"):
+            try:
+                req = urllib.request.Request(LISTES[fourn], headers={"Authorization": f"Bearer {cle}", "User-Agent": ROBOT_UA})
+                d = json.loads(urllib.request.urlopen(req, timeout=20).read())
+                out = {}
+                for m in d.get("data") or []:
+                    if m.get("active") is False or m.get("deprecation"):
+                        continue
+                    out[str(m.get("id", "")).removeprefix("models/")] = m
+                _EN_LIGNE[fourn] = out or None
+            except Exception:
+                pass
+    return _EN_LIGNE[fourn]
+
+
+def _secours_ok(fourn, mid, info, vision):
+    bas = mid.lower()
+    if any(x in bas for x in EXCLUS):
+        return False
+    if fourn == "gemini":
+        return "gemini" in bas and "flash" in bas and "preview" not in bas and "exp" not in bas
+    if fourn == "mistral":
+        cap = info.get("capabilities") or {}
+        return bool(cap.get("completion_chat", True)) and (not vision or bool(cap.get("vision")))
+    if fourn == "groq":
+        if vision:
+            return "llama-4" in bas or "vision" in bas or "-vl" in bas
+        return (info.get("context_window") or 0) >= 8000
+    return False
+
+
+def modeles(fourn, vision=False):
+    """Modèles à essayer, dans l'ordre : les préférés encore publiés, puis des modèles de secours du même fournisseur."""
+    if fourn == "openrouter":
+        return _modeles_openrouter(vision=vision)
+    prefs = tuple(VISION.get(fourn, ())) if vision else tuple(FOURNISSEURS[fourn]["modeles"])
+    en_ligne = _liste_en_ligne(fourn)
+    if not en_ligne:
+        return prefs
+    garde = [m for m in prefs if m in en_ligne]
+    secours = sorted((m for m, i in en_ligne.items() if m not in garde and _secours_ok(fourn, m, i, vision)),
+                     key=lambda m: (-(en_ligne[m].get("context_window") or en_ligne[m].get("max_context_length") or 0), m))
+    return tuple(garde + secours[:SECOURS_MAX])
 
 
 def _objet(x):
@@ -133,8 +198,7 @@ def demander_json(consigne, texte, temperature=0.7, max_tokens=4000, exclure=(),
     messages = [{"role": "system", "content": consigne}, {"role": "user", "content": texte}]
     derniere = "aucune clé d'IA gratuite (secrets MISTRAL_API_KEY, GROQ_API_KEY, GEMINI_API_KEY, OPENROUTER_API_KEY)"
     for fourn in [f for f in disponibles() if f not in exclure]:
-        modeles = _modeles_openrouter() if fourn == "openrouter" else FOURNISSEURS[fourn]["modeles"]
-        for modele in [m for m in modeles if (fourn, m) not in _MORTS]:
+        for modele in [m for m in modeles(fourn) if (fourn, m) not in _MORTS]:
             for essai in range(3):
                 try:
                     rep = _appel(fourn, modele, messages, temperature, max_tokens)
@@ -161,9 +225,9 @@ def demander_json(consigne, texte, temperature=0.7, max_tokens=4000, exclure=(),
 
 
 # ------------------------------------------------------------------ IA qui voit les images (contrôle qualité)
-VISION = {"gemini": ("gemini-flash-latest", "gemini-flash-lite-latest"),
-          "mistral": ("mistral-small-latest", "ministral-14b-2512"),
-          "groq": ("meta-llama/llama-4-scout-17b-16e-instruct", "meta-llama/llama-4-maverick-17b-128e-instruct")}
+VISION = {"gemini": ("gemini-flash-latest", "gemini-2.5-flash", "gemini-flash-lite-latest", "gemini-2.5-flash-lite"),
+          "mistral": ("mistral-small-latest", "mistral-medium-latest", "pixtral-12b-latest", "ministral-14b-2512"),
+          "groq": ("meta-llama/llama-4-scout-17b-16e-instruct",)}      # maverick retiré par Groq le 25/11
 
 
 def _image_b64(chemin):
@@ -179,8 +243,7 @@ def regarder_json(consigne, texte, images, journal=print, exclure=()):
     derniere = "aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY)"
     for fourn in [f for f in ("gemini", "mistral", "groq", "openrouter") if os.environ.get(FOURNISSEURS[f]["cle"])
                   and f not in exclure and f not in _SAUTES]:
-        modeles = _modeles_openrouter(vision=True) if fourn == "openrouter" else VISION[fourn]
-        for modele in [m for m in modeles if (fourn, m) not in _MORTS]:
+        for modele in [m for m in modeles(fourn, vision=True) if (fourn, m) not in _MORTS]:
             for essai in range(2):
                 try:
                     rep = _appel(fourn, modele, messages, 0.1, 2500)

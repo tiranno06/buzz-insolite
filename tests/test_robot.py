@@ -1128,3 +1128,43 @@ class TestPrononciation(unittest.TestCase):
         finally:
             commun.lire = vrai; P.oublier_cache()
         self.assertEqual(d["Gueye"], "Gaille"); self.assertEqual(d["Newsom"], "Niouzeum")
+
+
+class TestModelesDeSecours(unittest.TestCase):
+    def test_retires_sautes_et_secours_ajoutes(self):
+        from robot import ia
+        ancien = dict(ia._EN_LIGNE)
+        ia._EN_LIGNE.update({
+            "groq": {"llama-3.3-70b-versatile": {"context_window": 131072}, "meta-llama/llama-4-scout-17b-16e-instruct": {},
+                     "meta-llama/llama-4-nouveau": {"context_window": 131072}, "whisper-large-v3": {},
+                     "playai-tts": {}, "nouveau-modele": {"context_window": 32000}},
+            "mistral": {"mistral-small-latest": {"capabilities": {"vision": True}},
+                        "pixtral-large-latest": {"capabilities": {"vision": True, "completion_chat": True}},
+                        "mistral-embed": {"capabilities": {}}},
+            "gemini": {"gemini-flash-latest": {}, "gemini-3-flash": {}, "gemini-2.5-flash-preview-tts": {},
+                       "text-embedding-004": {}}})
+        try:
+            g = ia.modeles("groq")
+            self.assertEqual(g[0], "llama-3.3-70b-versatile")              # préféré encore publié, en tête
+            self.assertNotIn("openai/gpt-oss-120b", g)                     # préféré retiré : sauté
+            self.assertIn("nouveau-modele", g)                             # secours ajouté
+            self.assertFalse({"whisper-large-v3", "playai-tts"} & set(g))
+            gv = ia.modeles("groq", vision=True)
+            self.assertEqual(gv[0], "meta-llama/llama-4-scout-17b-16e-instruct")
+            self.assertIn("meta-llama/llama-4-nouveau", gv)
+            self.assertNotIn("nouveau-modele", gv)
+            mv = ia.modeles("mistral", vision=True)
+            self.assertEqual(mv, ("mistral-small-latest", "pixtral-large-latest"))
+            gm = ia.modeles("gemini", vision=True)
+            self.assertEqual(gm, ("gemini-flash-latest", "gemini-3-flash"))
+        finally:
+            ia._EN_LIGNE.clear(); ia._EN_LIGNE.update(ancien)
+
+    def test_liste_inconnue_garde_les_preferes(self):
+        from robot import ia
+        ancien = dict(ia._EN_LIGNE)
+        ia._EN_LIGNE["groq"] = None
+        try:
+            self.assertEqual(ia.modeles("groq"), ia.FOURNISSEURS["groq"]["modeles"])
+        finally:
+            ia._EN_LIGNE.clear(); ia._EN_LIGNE.update(ancien)

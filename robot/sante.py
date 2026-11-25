@@ -267,6 +267,9 @@ def main():
     precedent = lire("sante.json") or {}
     journal = print
     reparer_brouillons(journal)
+    for f in ia.ORDRE:                     # modèles réellement disponibles (préférés encore publiés + secours trouvés en ligne)
+        if os.environ.get(ia.FOURNISSEURS[f]["cle"]):
+            journal(f"  modèles {f} : texte {', '.join(ia.modeles(f)) or 'aucun'} ; images {', '.join(ia.modeles(f, vision=True)) or 'aucun'}")
     ias, sources_, buffer_ = verifier_ia(), verifier_sources(), verifier_buffer()
     series, pauses = comptes_et_pauses(precedent)
     videos = (lire("file.json") or {}).get("videos") or []

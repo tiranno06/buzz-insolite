@@ -498,6 +498,14 @@ introuvable (404) pour le site et pour Buffer. `depot.publier_release` appelle m
 `isDraft`, sinon `gh release edit --draft=false`, puis le lien de la vidéo doit répondre) ; la santé (`sante.reparer_brouillons`)
 rend publiques chaque nuit les Releases restées en brouillon.
 
+## Modèles d'IA de secours (25/11 au soir, demande de l'auteur)
+Groq a retiré `llama-4-maverick` (404) et Gemini ne répondait plus : plus aucune IA qui voit. `ia.modeles(fournisseur, vision=)`
+lit la liste OFFICIELLE des modèles de chaque fournisseur avec sa clé (`LISTES`, une fois par passage, `_EN_LIGNE`) : modèles
+préférés (`FOURNISSEURS[...]["modeles"]`, `VISION`, listes allongées) encore publiés d'abord, puis jusqu'à 4 modèles de secours
+du même fournisseur (`_secours_ok` : Gemini « flash », Mistral selon `capabilities.vision`, Groq « llama-4 / vision / -vl »
+pour les images ; jamais embed / tts / whisper / guard…). Liste illisible = liste préférée telle quelle. OpenRouter : 8
+modèles gratuits. La santé écrit dans son journal les modèles retenus pour chaque IA.
+
 ## Avant d'envoyer
 `python -m unittest discover -s tests` (aucun appel réseau ni IA ; ffmpeg nécessaire pour l'essai complet). Essai sans IA :
 `SIMULATION=1 python -m robot.principal --libre "Essai"`. Site : servir `docs/` et l'ouvrir à 400 px de large.
