@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T03:10:22+01:00",
+   "niveau": "info",
+   "texte": "🔁 « Macron et l'A320 : un futur qui décolle » refaite (images) : note 10/100, corrige : « Images illisibles : il faut des scènes de vraies vidéos et photos » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-25T03:00:24+01:00",
    "niveau": "info",
    "texte": "🔁 « CAN 2025 : Le Sénégal récupère son titre » refaite (images) : note 75/100, corrige : « Images illisibles : il faut des scènes de vraies vidéos et photos » — l'ancienne version est remplacée"

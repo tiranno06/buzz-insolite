@@ -445,9 +445,9 @@
    "refaite_de": "20261124-233208-1"
   },
   {
-   "id": "20261124-233244-1-r2",
-   "tag": "v-20261124-233244-1-r2",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233244-1-r2/buzz-20261124-233244-1-r2.mp4",
+   "id": "20261124-233244-1-r3",
+   "tag": "v-20261124-233244-1-r3",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233244-1-r3/buzz-20261124-233244-1-r3.mp4",
    "titre": "Macron et l'A320 : un futur qui décolle",
    "accroche": "FRANCE EN VOL",
    "sujet_id": "67ccec0235",
@@ -519,9 +519,10 @@
    "credits": [
     "Abujoy / Wikimedia Commons, CC BY 4.0",
     "Carte : Natural Earth, OpenStreetMap",
-    "Wikipédia, article « Airbus A320 »"
+    "Wikipédia, article « Airbus A320 »",
+    "Wikipédia, article « Airbus A350 »"
    ],
-   "ecrans_illustres": 3,
+   "ecrans_illustres": 12,
    "ecrans_total": 12,
    "format": "buzz",
    "voix": "chatterbox-bernard",
@@ -545,73 +546,64 @@
     "Prêt à voler sur l’A320 du futur ?"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T02:45:27+01:00",
-   "fabrication_s": 1125,
+   "cree_le": "2026-11-25T03:10:21+01:00",
+   "fabrication_s": 1207,
    "controles": {
-    "note": 55,
+    "note": 10,
     "lignes": [
      {
       "niveau": "images",
       "ecran": 19,
       "gravite": "moyen",
-      "probleme": "Image montre un avion en vol, pas une usine ou hall d'assemblage",
-      "corrige": true,
-      "essais": 4,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "probleme": "Image d'un avion en vol, pas d'assemblage en usine",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 20,
       "gravite": "moyen",
-      "probleme": "Image montre des avions au sol, pas une station d'assemblage d'ailes",
-      "corrige": true,
-      "essais": 4,
+      "probleme": "Image d'un avion en vol, pas de station d'assemblage",
+      "corrige": false,
+      "essais": 5,
       "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 21,
       "gravite": "moyen",
-      "probleme": "image illisible (media84.jpg : )",
-      "corrige": true,
-      "essais": 3,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "image illisible (media85.jpg : )",
-      "corrige": true,
-      "essais": 4,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "Image montre un avion en vol, pas lié aux aides financières",
-      "corrige": true,
-      "essais": 4,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "probleme": "Image d'un avion en vol, pas de données production",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 24,
       "gravite": "moyen",
-      "probleme": "image illisible (media87.jpg : )",
-      "corrige": true,
-      "essais": 3,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "probleme": "Image d'un avion en vol, pas de détails techniques",
+      "corrige": false,
+      "essais": 5,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 25,
       "gravite": "moyen",
-      "probleme": "écran presque noir",
+      "probleme": "Avion non Airbus A320, modèle incorrect",
       "corrige": true,
-      "essais": 3,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "essais": 4,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 28,
+      "gravite": "moyen",
+      "probleme": "scenario spatial hors sujet",
+      "corrige": true,
+      "essais": 4,
+      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
@@ -624,62 +616,54 @@
      },
      {
       "niveau": "images",
-      "ecran": 26,
-      "gravite": "moyen",
-      "probleme": "No relation to aeronautics workforce",
-      "corrige": true,
-      "essais": 3,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 27,
-      "gravite": "moyen",
-      "probleme": "image illisible (media90.jpg : )",
-      "corrige": true,
-      "essais": 2,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 28,
-      "gravite": "moyen",
-      "probleme": "image illisible (media91.jpg : )",
-      "corrige": false,
-      "essais": 3,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
       "ecran": 17,
       "gravite": "moyen",
-      "probleme": "image illisible (media50.jpg : )",
+      "probleme": "écran presque noir",
       "corrige": false,
       "essais": 2,
       "solution": "image du thème (« airplane assembly factory »)"
      },
      {
       "niveau": "images",
-      "ecran": 27,
+      "ecran": 23,
       "gravite": "moyen",
-      "probleme": "Image montre un avion en vol, pas lié aux emplois ou recrutements",
-      "corrige": true,
-      "essais": 1,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
+      "probleme": "image illisible (media56.jpg : )",
+      "corrige": false,
+      "essais": 2,
+      "solution": "image du thème (« airplane assembly factory »)"
      },
      {
       "niveau": "images",
-      "ecran": null,
-      "gravite": "grave",
-      "probleme": "trop peu d'images : 3 écran(s) illustré(s) sur 12",
+      "ecran": 26,
+      "gravite": "moyen",
+      "probleme": "image illisible (media89.jpg : )",
       "corrige": false,
-      "essais": 1
+      "essais": 2,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "image illisible (media90.jpg : )",
+      "corrige": false,
+      "essais": 2,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "Image d'un avion en vol, pas de cargo A320",
+      "corrige": false,
+      "essais": 1,
+      "solution": "nouvelle image (« Airbus A320 cargo plane »)"
      }
     ],
     "sautes": [],
-    "corriges": 11,
-    "restants": 3,
-    "graves_restants": 3
+    "corriges": 3,
+    "restants": 9,
+    "graves_restants": 9
    },
    "reprises": 0,
    "preuves": [
@@ -690,16 +674,97 @@
      "auteur": "Abujoy",
      "titre": "",
      "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
-     "releve_le": "2026-11-25T02:45:27+01:00"
+     "releve_le": "2026-11-25T03:10:21+01:00"
     },
     {
-     "ecran": 4,
-     "page": "https://commons.wikimedia.org/wiki/Fichier%3AAirbus_A320_family.JPG",
+     "ecran": 3,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AHS-BBQ_ETOPS_%2816814460076%29.jpg",
      "licence": "",
      "auteur": "",
      "titre": "",
      "credit": "Wikipédia, article « Airbus A320 »",
-     "releve_le": "2026-11-25T02:45:27+01:00"
+     "releve_le": "2026-11-25T03:10:21+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://commons.wikimedia.org/?curid=83395803",
+     "licence": "CC BY 4.0",
+     "auteur": "Abujoy",
+     "titre": "",
+     "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T03:10:21+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://commons.wikimedia.org/?curid=83395803",
+     "licence": "CC BY 4.0",
+     "auteur": "Abujoy",
+     "titre": "",
+     "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T03:10:21+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AAir_France_A340-900_F-HUVG_%40YYZ.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Airbus A350 »",
+     "releve_le": "2026-11-25T03:10:21+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AA320_Sharklets_%281%29.JPG",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Airbus A320 »",
+     "releve_le": "2026-11-25T03:10:21+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://commons.wikimedia.org/?curid=83395803",
+     "licence": "CC BY 4.0",
+     "auteur": "Abujoy",
+     "titre": "",
+     "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T03:10:21+01:00"
+    },
+    {
+     "ecran": 9,
+     "page": "https://commons.wikimedia.org/?curid=83395803",
+     "licence": "CC BY 4.0",
+     "auteur": "Abujoy",
+     "titre": "",
+     "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T03:10:21+01:00"
+    },
+    {
+     "ecran": 10,
+     "page": "https://commons.wikimedia.org/?curid=83395803",
+     "licence": "CC BY 4.0",
+     "auteur": "Abujoy",
+     "titre": "",
+     "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T03:10:21+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://commons.wikimedia.org/?curid=83395803",
+     "licence": "CC BY 4.0",
+     "auteur": "Abujoy",
+     "titre": "",
+     "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T03:10:21+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://commons.wikimedia.org/?curid=83395803",
+     "licence": "CC BY 4.0",
+     "auteur": "Abujoy",
+     "titre": "",
+     "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
+     "releve_le": "2026-11-25T03:10:21+01:00"
     },
     {
      "ecran": 13,
@@ -708,25 +773,25 @@
      "auteur": "Abujoy",
      "titre": "",
      "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
-     "releve_le": "2026-11-25T02:45:27+01:00"
+     "releve_le": "2026-11-25T03:10:21+01:00"
     }
    ],
    "couverture_ms": 13895,
    "durees": {
     "voix": 0,
-    "images": 179,
-    "controle_images": 698,
-    "montage": 56,
-    "controle_final": 177,
-    "rangement": 6
+    "images": 104,
+    "controle_images": 731,
+    "montage": 138,
+    "controle_final": 212,
+    "rangement": 8
    },
    "refaite": {
-    "de": "20261124-233244-1-r1",
+    "de": "20261124-233244-1-r2",
     "etape": "images",
-    "remarque": "Il faut des scènes de vraies vidéos de 5 à 10 s"
+    "remarque": "Images illisibles : il faut des scènes de vraies vidéos et photos"
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233244-1-r1"
+   "refaite_de": "20261124-233244-1-r2"
   },
   {
    "id": "20261124-233157-1-r2",
