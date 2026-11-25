@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T21:28:32+01:00",
+   "niveau": "info",
+   "texte": "✅ « Bois de l'Arche, 4300 ans » ajoutée à la file de publication."
+  },
+  {
    "date": "2026-11-25T21:08:02+01:00",
    "niveau": "info",
    "texte": "🔁 « Peine de mort accélérée : Trump » refaite (images) : note 100/100, corrige : « Réparation automatique : Le sujet abordé (logements abordables / Newsom) ne correspond pas à l'ordre sur  ; Le sujet bifurque sur le logement abordable (« affordable housing »), hors sujet » — l'ancienne version est remplacée"

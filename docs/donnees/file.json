@@ -1378,9 +1378,10 @@
     "rangement": 79
    },
    "refaite": null,
-   "statut": "a_verifier",
+   "statut": "a_publier",
    "reparations": 1,
-   "echec_publication": "2026-11-25T20:51:23+01:00 : contrôle avant publication : description vide"
+   "force": true,
+   "coche_le": "2026-11-25T21:28:32+01:00"
   },
   {
    "id": "20261125-163234-1-r1",
