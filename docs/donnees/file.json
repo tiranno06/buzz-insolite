@@ -609,9 +609,9 @@
    "refaite_de": "20261125-140715-1"
   },
   {
-   "id": "20261124-233239-1-r14",
-   "tag": "v-20261124-233239-1-r14",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r14/buzz-20261124-233239-1-r14.mp4",
+   "id": "20261124-233239-1-r15",
+   "tag": "v-20261124-233239-1-r15",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r15/buzz-20261124-233239-1-r15.mp4",
    "titre": "CAN 2025 : Sénégal récupère le titre",
    "accroche": "SÉNÉGAL REPREND LA CUP",
    "sujet_id": "af2b8dfec2",
@@ -730,51 +730,39 @@
     "Et toi, que penses-tu de ce revirement judiciaire ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T15:36:54+01:00",
+   "cree_le": "2026-11-25T15:57:26+01:00",
    "ia_quotas": {
     "gemini": {
-     "appels": 2,
+     "appels": 1,
      "refus": 8,
-     "erreurs": 8
+     "erreurs": 6
     },
     "mistral": {
      "appels": 0,
      "refus": 0,
-     "erreurs": 12,
+     "erreurs": 6,
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 2,
+     "appels": 0,
      "refus": 0,
-     "erreurs": 3,
-     "restant_demandes": "999",
-     "limite_demandes": "1000",
-     "restant_mots": "5339"
+     "erreurs": 2
     },
     "openrouter": {
-     "appels": 7,
-     "refus": 22,
+     "appels": 1,
+     "refus": 21,
      "erreurs": 0
     }
    },
-   "fabrication_s": 1417,
+   "fabrication_s": 829,
    "controles": {
-    "note": 65,
+    "note": 90,
     "lignes": [
-     {
-      "niveau": "voix",
-      "ecran": 28,
-      "gravite": "grave",
-      "probleme": "voix et sous-titres ne correspondent pas (0%)",
-      "corrige": false,
-      "essais": 4,
-      "solution": "voix refaite"
-     },
      {
       "niveau": "video",
       "ecran": 19,
       "gravite": "moyen",
-      "probleme": "Les sous-titres blancs sont illisibles sur le fond et se superposent aux crédits.",
+      "probleme": "Sous-titres blancs en bas illisibles",
       "corrige": true,
       "essais": 1,
       "solution": "titre raccourci"
@@ -783,7 +771,7 @@
       "niveau": "video",
       "ecran": 18,
       "gravite": "moyen",
-      "probleme": "Le titre jaune chevauche le texte d'origine 'Brut.' et le sous-titre blanc chevauche le texte rouge.",
+      "probleme": "Titre jaune sur fond clair (Brut) et sous-titres rouges illisibles",
       "corrige": true,
       "essais": 1,
       "solution": "titre raccourci"
@@ -792,7 +780,7 @@
       "niveau": "video",
       "ecran": 17,
       "gravite": "moyen",
-      "probleme": "Le sous-titre blanc chevauche le texte rouge en bas.",
+      "probleme": "Sous-titres rouges sur fond rouge illisibles et chevauchement",
       "corrige": true,
       "essais": 1,
       "solution": "titre retiré"
@@ -801,18 +789,18 @@
       "niveau": "video",
       "ecran": 15,
       "gravite": "moyen",
-      "probleme": "Le sous-titre blanc chevauche le texte rouge en dessous.",
+      "probleme": "Sous-titres blancs illisibles sur le fond sombre",
       "corrige": true,
       "essais": 1,
       "solution": "titre raccourci"
      }
     ],
     "sautes": [
-     "regard de l'IA sur la vidéo finie (IA indisponible : openrouter nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free : pas de JSON dans la réponse)"
+     "regard de l'IA sur la vidéo finie (IA indisponible : openrouter nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free 429 : {\"error\":{\"message\":\"Rate limit exceeded: free-model)"
     ],
     "corriges": 4,
-    "restants": 1,
-    "graves_restants": 2
+    "restants": 0,
+    "graves_restants": 1
    },
    "reprises": 0,
    "preuves": [
@@ -823,7 +811,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T15:36:54+01:00"
+     "releve_le": "2026-11-25T15:57:26+01:00"
     },
     {
      "ecran": 3,
@@ -832,7 +820,7 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T15:36:54+01:00"
+     "releve_le": "2026-11-25T15:57:26+01:00"
     },
     {
      "ecran": 4,
@@ -841,7 +829,7 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T15:36:54+01:00"
+     "releve_le": "2026-11-25T15:57:26+01:00"
     },
     {
      "ecran": 5,
@@ -850,7 +838,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T15:36:54+01:00"
+     "releve_le": "2026-11-25T15:57:26+01:00"
     },
     {
      "ecran": 6,
@@ -859,7 +847,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T15:36:54+01:00"
+     "releve_le": "2026-11-25T15:57:26+01:00"
     },
     {
      "ecran": 7,
@@ -868,7 +856,7 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T15:36:54+01:00"
+     "releve_le": "2026-11-25T15:57:26+01:00"
     },
     {
      "ecran": 8,
@@ -877,7 +865,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T15:36:54+01:00"
+     "releve_le": "2026-11-25T15:57:26+01:00"
     },
     {
      "ecran": 9,
@@ -886,7 +874,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T15:36:54+01:00"
+     "releve_le": "2026-11-25T15:57:26+01:00"
     },
     {
      "ecran": 10,
@@ -895,7 +883,7 @@
      "auteur": "@franceinfo",
      "titre": "",
      "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T15:36:54+01:00"
+     "releve_le": "2026-11-25T15:57:26+01:00"
     },
     {
      "ecran": 11,
@@ -904,7 +892,7 @@
      "auteur": "@franceinfo",
      "titre": "",
      "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T15:36:54+01:00"
+     "releve_le": "2026-11-25T15:57:26+01:00"
     },
     {
      "ecran": 12,
@@ -913,7 +901,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T15:36:54+01:00"
+     "releve_le": "2026-11-25T15:57:26+01:00"
     },
     {
      "ecran": 13,
@@ -922,27 +910,27 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T15:36:54+01:00"
+     "releve_le": "2026-11-25T15:57:26+01:00"
     }
    ],
    "couverture_ms": 800,
    "durees": {
-    "images": 10,
+    "voix": 0,
+    "images": 11,
     "controle_images": 5,
-    "voix": 51,
-    "montage": 112,
-    "controle_final": 1187,
+    "montage": 162,
+    "controle_final": 635,
     "extraits": 0,
-    "regles": 45,
-    "rangement": 8
+    "regles": 1,
+    "rangement": 7
    },
    "refaite": {
-    "de": "20261124-233239-1-r13",
+    "de": "20261124-233239-1-r14",
     "etape": "controle",
-    "remarque": "phrase absurde 18 7 18 à retirer"
+    "remarque": "problème de voix d'une phrase déjà retirée"
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233239-1-r13"
+   "refaite_de": "20261124-233239-1-r14"
   }
  ]
 }
