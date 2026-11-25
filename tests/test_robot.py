@@ -804,3 +804,26 @@ class TestPlusieursExtraits(unittest.TestCase):
         self.assertEqual(len(m), 4)
         self.assertTrue(all(b - a >= 15 for a, b in zip(m, m[1:])))
         self.assertEqual(len(C.moments([], 24, 10, max(1, int(24 * C.PART_TOTALE // 10)))), 1)   # vidéo de 24 s : 1 seul
+
+
+class TestVideosLues(unittest.TestCase):
+    def test_stock_et_meme_evenement(self):
+        from robot import buzz, citations as C
+        ancien_b, ancien_c = buzz.lire, C.lire
+        try:
+            buzz.lire = lambda n: {"videos": [dict(id="1", compte="a", url="u1", date=time.time(), texte="vieux")]}
+            lues = buzz.garder_videos_lues([dict(id="2", compte="b", url="u2", date=time.time(), texte="Sénégal TAS titre CAN")])
+            self.assertEqual({v["id"] for v in lues}, {"1", "2"})
+            C.lire = lambda n: {"videos": lues + [dict(id="3", compte="c", url="u3", texte="Sénégal vainqueur, récupère son titre")]}
+            def sans_ia(*a, **k):
+                raise RuntimeError("pas d'IA")
+            ancien_ia = C.ia.demander_json; C.ia.demander_json = sans_ia
+            try:
+                v = C.videos_du_meme_evenement({"titre": "CAN : Sénégal vainqueur après TAS", "mots_cles": ["Sénégal", "TAS", "titre"],
+                                                "videos": [dict(id="9", url="u9", vues=5)]}, journal=lambda *_: None)
+            finally:
+                C.ia.demander_json = ancien_ia
+            self.assertEqual([x["id"] for x in v][0], "9")
+            self.assertIn("3", [x["id"] for x in v])
+        finally:
+            buzz.lire, C.lire = ancien_b, ancien_c

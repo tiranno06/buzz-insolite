@@ -497,10 +497,17 @@ def placer_citations(script, scenes, sujet, dossier, deja, journal, R, E, format
     if any((p.get("media") or {}).get("citation") for p in ph):
         return                                                # (vidéo refaite) extraits déjà là
     nombre = int(R["video"].get("citations_nombre", 5))
-    extraits = citations.extraits(sujet, dossier, journal, nombre, deja)
+    extraits = citations.extraits(sujet, dossier, journal, nombre, deja, photos=int(R["video"].get("citations_photos", 3)))
     if not extraits:
         journal("  aucune citation possible (vidéos d'origine introuvables ou trop courtes)")
         return
+    vids = [m for m in extraits if m["type"] == "video"]
+    fixes = [m for m in extraits if m["type"] == "photo"]
+    melange = []                                              # 2 extraits vidéo, 1 image fixe, 2 extraits, 1 image…
+    while vids or fixes:
+        melange += vids[:2]; vids = vids[2:]
+        melange += fixes[:1]; fixes = fixes[1:]
+    extraits = melange
     libres = [k for k, sc in enumerate(scenes) if "media" not in ph[sc[0]]]
     if not libres:
         return
@@ -515,12 +522,13 @@ def placer_citations(script, scenes, sujet, dossier, deja, journal, R, E, format
         total = sum(_duree_estimee(ph[j]) for j in sc)
         suivante = scenes[k + 1] if k + 1 < len(scenes) and k + 1 not in choix else []
         if total < 10 and suivante and "media" not in ph[suivante[0]] and 1 not in suivante \
-                and total + sum(_duree_estimee(ph[j]) for j in suivante) <= m["duree"]:
+                and m["type"] == "video" and total + sum(_duree_estimee(ph[j]) for j in suivante) <= m.get("duree", 0):
             sc += suivante                                    # au moins 10 s d'affilée
         ph[sc[0]]["media"] = dict(m, reelle=True); ph[sc[0]]["_valide"] = True
         for j in sc[1:]:
             ph[j]["media"] = dict(m, id=f"{m['id']}-suite{j}", suite=True, reelle=True); ph[j]["_valide"] = True
-    journal(f"  {len(choix)} courte(s) citation(s) placée(s) : " + ", ".join(f"@{m['compte']}" for m in extraits[:len(choix)]))
+    journal(f"  {len(choix)} courte(s) citation(s) placée(s) (vidéos et images de l'événement) : "
+            + ", ".join(f"@{m['compte']}" for m in extraits[:len(choix)]))
 
 
 def accroche(script):

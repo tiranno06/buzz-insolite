@@ -59,7 +59,7 @@ REGLAGES_DEFAUT = {
     },
     "video": {"voix": "chatterbox-bernard", "vitesse": 0.80, "duree_min": 62, "musique": True, "bruitages": False, "transitions": False, "carte": True,
               "images_generiques": False,
-              "citations": True, "citations_nombre": 5},  # courtes citations des vidéos d'origine (25/11)           # banques d'images (Pixabay…) : coupées, seulement les vrais sujets
+              "citations": True, "citations_nombre": 5, "citations_photos": 3},  # courtes citations des vidéos d'origine (25/11)           # banques d'images (Pixabay…) : coupées, seulement les vrais sujets
     "publication": {"mode": "cocher",                 # cocher = tu coches « À publier » ; auto = tout part sans toi
                     "auto": True, "heures": ["12:30", "19:00"], "compte": "",
                     "chaine": "",                     # pseudo TikTok de la chaîne (statistiques)

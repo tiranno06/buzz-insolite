@@ -25,7 +25,13 @@ commentaires, commits, textes du site), explications simples, sans jargon.
   bandeau court « @compte » sous le titre (`calque(source=)`, raccourci à la demande de l'auteur du 25/11), crédit + preuve « courte citation ». Le 1er
   extrait sur l'accroche, les autres répartis ; scène trop courte prolongée par la suivante. Pas jugés par l'IA des
   images (c'est l'événement lui-même) ; gardés par « Refaire » (images). Vidéo entière jamais gardée. Le reste de la
-  vidéo : notre texte, notre voix, les images libres. Durée TikTok : `video.duree_min` 62 s.
+  vidéo : notre texte, notre voix, les images libres.
+  **Toutes les sources** (demande de l'auteur du 25/11) : le relevé du buzz garde TOUTES les vidéos lues sur les 28 comptes
+  (`buzz.garder_videos_lues` → `docs/donnees/videos_lues.json`, 7 jours, même sous les seuils) ; `citations.videos_du_meme_evenement`
+  y prend celles du MÊME événement (2 mots en commun, puis confirmation par l'IA `CONSIGNE_MEME_EVENEMENT` ; sans IA : 3 mots),
+  12 vidéos au plus. **Images fixes de l'événement** (`images_fixes`, `video.citations_photos` 3) : tirées des vidéos d'origine
+  hors des extraits (les vidéos trop courtes pour un extrait d'abord), montrées en entier avec le bandeau ; placement mêlé
+  (2 extraits, 1 image…). Essai CAN : Brut + franceinfo (extraits), HugoDécrypte + 20 Minutes (images fixes). Durée TikTok : `video.duree_min` 62 s.
 - **Style validé sur l'essai « 1 an sur Mars »** : voix Piper « Tom » au départ (remplacée par Kokoro, voir plus bas), pauses de 0,18 s, silences coupés ; vraie vidéo nette au milieu + la même floutée derrière ; étiquette rouge
   « INSOLITE » + gros titre jaune en haut ; sous-titres karaoké Poppins (3 mots, le mot dit en jaune et grossi à 112 %, calé
   sur la voix par Whisper « small ») ; dernier écran « ET TOI ? dis-le en commentaire » ; crédits des images en bas.

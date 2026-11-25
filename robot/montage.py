@@ -107,7 +107,13 @@ def ecran(media, duree, png, sortie, dossier):
             print(f"    carte impossible ({str(e)[:80]}) : écran de texte", flush=True)
             media = None
     haut_net = int(W / 1.1) // 2 * 2
-    if media and media["type"] == "video" and media.get("citation"):
+    if media and media["type"] == "photo" and media.get("citation"):
+        # image fixe tirée d'une vidéo d'origine : montrée en ENTIER (logo visible), sur fond flou
+        vf = (f"[0:v]split[a][b];[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},boxblur=30:2,"
+              f"eq=brightness=-0.2,fps={IPS}[fond];[b]scale={W}:{H - 120}:force_original_aspect_ratio=decrease,fps={IPS}[net];"
+              f"[fond][net]overlay=(W-w)/2:(H-h)/2[v];[v][1:v]overlay=0:0,format=yuv420p[s]")
+        entree = ["-loop", "1", "-i", media["chemin"]]
+    elif media and media["type"] == "video" and media.get("citation"):
         # courte citation : la vidéo d'origine ENTIÈRE à l'écran (ni recadrée ni floutée : son logo reste visible),
         # sur un fond flou de la même vidéo
         debut = media.get("debut", 0) if (media.get("duree") or 99) > duree + media.get("debut", 0) else 0

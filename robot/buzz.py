@@ -53,6 +53,17 @@ def videos_du_compte(pseudo, n=30):
     return []
 
 
+def garder_videos_lues(toutes, jours=7):
+    """Toutes les vidéos lues sur TOUS les comptes suivis (pas seulement celles au-dessus des seuils), gardées 7 jours :
+    les courtes citations y cherchent d'autres vidéos du MÊME événement (demande de l'auteur du 25/11)."""
+    limite = time.time() - jours * 86400
+    stock = {v["id"]: v for v in (lire("videos_lues.json") or {}).get("videos") or [] if (v.get("date") or time.time()) >= limite}
+    for v in toutes:
+        if (v.get("date") or time.time()) >= limite:
+            stock[v["id"]] = {k: v.get(k) for k in ("id", "compte", "url", "vues", "date")} | {"texte": (v.get("texte") or "")[:300]}
+    return sorted(stock.values(), key=lambda v: -(v.get("date") or 0))
+
+
 def virales(videos, B, now=None):
     """Vidéos au-dessus des seuils, assez récentes."""
     now = now or time.time()
@@ -237,6 +248,7 @@ def relever(journal=print):
         journal(f"  @{p} : {len(vids)} vidéos lues" if vids else f"  @{p} : rien lu (compte introuvable ou TikTok refuse)")
         toutes += vids
         time.sleep(1.5)
+    lues = garder_videos_lues(toutes)                       # TOUTES les vidéos lues, pour les extraits (25/11)
     retenues = virales(toutes, B)
     journal(f"{len(toutes)} vidéos lues, {len(retenues)} au-dessus des seuils "
             f"({B['vues_min']:,} vues, {B['jaime_min']:,} j'aime, {B['commentaires_min']:,} commentaires)")
@@ -269,7 +281,7 @@ def relever(journal=print):
         time.sleep(0.5)
     ancien = lire("buzz.json") or {}
     d = {"maj": iso(), "comptes": etat, "lues": len(toutes), "retenues": len(retenues),
-         "sujets": fusionner(ancien.get("sujets") or [], sujets)}
+         "sujets": fusionner(ancien.get("sujets") or [], sujets), "_lues": lues}
     verifier_liens(d["sujets"], journal)                    # anciens sujets compris (vidéos supprimées depuis)
     return d, (len(toutes) == 0 and len(etat) >= 3)
 
@@ -280,6 +292,9 @@ def main():
 
     def appliquer():
         d, panne = resultat.get("d") or relever_et_garder()
+        lues = d.pop("_lues", None)
+        if lues is not None:
+            ecrire("videos_lues.json", {"maj": iso(), "videos": lues})
         ecrire("buzz.json", d)
         nouveaux = [s for s in d["sujets"] if s["statut"] == "nouveau"]
         if panne:

@@ -15,7 +15,8 @@ import os
 import re
 import subprocess
 
-from . import images
+from . import ia, images
+from .commun import lire
 
 DUREE_MIN, DUREE_MAX, PART_MAX, ORIGINE_MIN = 10.0, 15.0, 0.4, 20.0
 PART_TOTALE = 0.5                                        # ensemble repris d'une même vidéo : la moitié au plus
@@ -69,24 +70,79 @@ def moments(changements, d, lg, nombre):
     return sorted(pris)
 
 
-def extraits(sujet, dossier, journal=print, nombre=5, deja=None):
+CONSIGNE_MEME_EVENEMENT = """On te donne un événement d'actualité précis et une liste numérotée de descriptions de vidéos TikTok
+de médias. Garde SEULEMENT les vidéos qui parlent de CE MÊME événement précis (même fait, même lieu, mêmes personnes, même
+moment) ; écarte celles qui parlent d'un autre événement, même proche (autre match, autre affaire, autre discours).
+Réponds uniquement en JSON : {"garder": [numéros]}"""
+
+
+def videos_du_meme_evenement(sujet, journal=print, maxi=12):
+    """Vidéos de l'événement sur TOUS les comptes suivis (demande de l'auteur du 25/11) : les vidéos virales du sujet, puis
+    toutes les autres vidéos lues ces 7 jours (videos_lues.json, même sous les seuils) qui parlent du MÊME événement
+    (mots en commun, puis confirmation par l'IA)."""
+    connues = [v for v in sujet.get("videos") or [] if v.get("url") and not v.get("indisponible")]
+    ids = {str(v.get("id")) for v in connues}
+    voulus = images._mots_sujet(" ".join([sujet.get("titre", "")] + list(sujet.get("mots_cles") or [])
+                                         + list(sujet.get("mots_cles_en") or [])))
+    stock = (lire("videos_lues.json") or {}).get("videos") or []
+    cand = []
+    for v in stock:
+        if str(v.get("id")) in ids or not v.get("url"):
+            continue
+        commun = len(voulus & images._mots_sujet(v.get("texte") or ""))
+        if commun >= 2:
+            cand.append((commun, v))
+    cand = [v for _, v in sorted(cand, key=lambda x: (-x[0], -(x[1].get("vues") or 0)))[:25]]
+    autres = []
+    if cand:
+        texte = f"ÉVÉNEMENT : {sujet.get('titre', '')} — {sujet.get('resume', '')}\n" + "\n".join(
+            f"{i}. @{v.get('compte')} : {(v.get('texte') or '')[:250]}" for i, v in enumerate(cand))
+        try:
+            d, _ = ia.demander_json(CONSIGNE_MEME_EVENEMENT, texte, temperature=0.1, journal=journal)
+            garder = d.get("garder") if isinstance(d, dict) else d
+            autres = [cand[int(n)] for n in garder or [] if str(n).isdigit() and int(n) < len(cand)]
+        except Exception as e:                                # IA indisponible : seulement les vidéos très proches
+            journal(f"  tri des autres vidéos par l'IA impossible ({str(e)[:80]}) : mots en commun seulement")
+            autres = [v for v in cand if len(voulus & images._mots_sujet(v.get("texte") or "")) >= 3]
+    connues.sort(key=lambda v: -(v.get("vues") or 0))
+    autres.sort(key=lambda v: -(v.get("vues") or 0))
+    journal(f"  vidéos de l'événement : {len(connues)} du sujet + {len(autres)} d'autres comptes suivis"
+            + (f" ({', '.join('@' + str(v.get('compte')) for v in autres[:8])})" if autres else ""))
+    return (connues + autres)[:maxi]
+
+
+def images_fixes(brut, d, pris, lg, nombre, dossier, base):
+    """Images fixes de l'événement tirées de la vidéo d'origine, à des moments qui ne sont PAS dans les extraits."""
+    out, t = [], d * 0.15
+    pas = max(1.0, d * 0.7 / (nombre + 1))
+    while len(out) < nombre and t < d * 0.9:
+        if all(not (a - 1 <= t <= a + lg + 1) for a in pris):
+            chemin = os.path.join(dossier, f"{base}-image{len(out)}.jpg")
+            r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.2f}", "-i", brut, "-frames:v", "1", "-q:v", "2", chemin],
+                               capture_output=True, timeout=120)
+            if r.returncode == 0 and not images.lisible(chemin):
+                out.append((t, chemin))
+        t += pas
+    return out
+
+
+def extraits(sujet, dossier, journal=print, nombre=5, deja=None, photos=3):
     """Extraits de 10 à 15 s des vidéos d'origine du sujet (les plus vues d'abord), `nombre` au plus : d'abord un par vidéo,
     puis d'autres passages des mêmes vidéos (autorisé par l'auteur le 25/11) tant que l'ensemble repris d'une vidéo reste
     sous la MOITIÉ de sa durée (une vidéo de 24 s ne donne donc qu'un extrait)."""
     deja = deja if deja is not None else set()
-    videos = [v for v in sujet.get("videos") or [] if v.get("url") and not v.get("indisponible")]
-    videos.sort(key=lambda v: -(v.get("vues") or 0))
+    videos = videos_du_meme_evenement(sujet, journal)
     plans = []                                                # (vidéo, fichier, durée, longueur, [débuts])
-    for v in videos[:8]:
+    for v in videos:
         brut = os.path.join(dossier, f"origine-{v.get('id', len(plans))}.mp4")
         try:
             if not os.path.exists(brut):
                 images._ytdlp(["-f", "mp4/best", "--max-filesize", "300M", "--no-playlist", "-o", brut, v["url"]], timeout=240)
             d = _duree(brut)
             lg = duree_extrait(d)
-            if not lg:
-                journal(f"  citation @{v.get('compte')} : vidéo de {d:.0f} s, trop courte pour un extrait de 10 s")
-                os.remove(brut); continue
+            if not lg:                                        # trop courte pour un extrait : images fixes seulement
+                journal(f"  citation @{v.get('compte')} : vidéo de {d:.0f} s, trop courte pour un extrait de 10 s (images fixes seulement)")
+                plans.append((v, brut, d, 0, [])); continue
             n_max = max(1, int(d * PART_TOTALE // lg))
             plans.append((v, brut, d, lg, moments(_changements(brut), d, lg, n_max)))
         except Exception as e:
@@ -117,6 +173,20 @@ def extraits(sujet, dossier, journal=print, nombre=5, deja=None):
                         origine=dict(duree=round(d, 1), debut=debut, longueur=lg)))
         deja.add(cle)
         journal(f"  ✓ citation @{compte} : {lg:.0f} s à partir de {debut:.0f} s (vidéo de {d:.0f} s)")
+    # images fixes de l'événement (« photos »), tirées des vidéos d'origine hors des extraits, une vidéo après l'autre
+    fixes = []
+    for v, brut, d, lg, debuts in sorted(plans, key=lambda p: bool(p[4])):   # vidéos sans extrait d'abord
+        if len(fixes) >= photos:
+            break
+        pris = [m["origine"]["debut"] for m in out if m["page"] == v["url"]]
+        for t, chemin in images_fixes(brut, d, pris, lg, min(2, photos - len(fixes)), dossier, f"citation-{v.get('id', 'x')}"):
+            compte = v.get("compte") or "source"
+            fixes.append(dict(type="photo", chemin=chemin, id=os.path.basename(chemin)[:-4], citation=True, compte=compte,
+                              credit=f"@{compte} (TikTok, image citée)", page=v["url"], auteur=f"@{compte}",
+                              licence="courte citation (source visible, logo non flouté)", origine=dict(duree=round(d, 1), image_a=round(t, 1))))
+    if fixes:
+        journal(f"  {len(fixes)} image(s) fixe(s) de l'événement tirée(s) des vidéos d'origine")
+    out += fixes
     for p in plans:                                           # la vidéo entière n'est jamais gardée
         try:
             os.remove(p[1])
