@@ -136,8 +136,8 @@ def preparer(v, sujet, etape, remarque, dossier, repo, R, journal=print):
         cibles |= {i for i, p in enumerate(ph[:-1]) if not p.get("media") or (p.get("media") or {}).get("presse")}
         for i in cibles:
             m = ph[i].get("media") or {}
-            if m.get("type") == "carte":
-                continue
+            if m.get("type") == "carte" or (m.get("citation") and i not in ecrans_cites(remarque, len(ph))):
+                continue                                    # carte et courtes citations gardées
             if m.get("id"):
                 deja.add(m["id"]); deja.add(str(m["id"]).rsplit("-", 1)[0])   # l'ancienne image est interdite
             ph[i].pop("media", None)

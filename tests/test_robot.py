@@ -758,3 +758,40 @@ class TestDeuxiemeAvis(unittest.TestCase):
             self.assertFalse(controle.deuxieme_avis(script, 0, "CAN", journal=lambda *_: None))
         finally:
             ia.regarder_json = ancien
+
+
+class TestCitations(unittest.TestCase):
+    def test_longueur_et_moment(self):
+        from robot import citations as C
+        self.assertEqual(C.duree_extrait(15), 0)            # moins de 20 s : pas citée
+        self.assertEqual(C.duree_extrait(24), 10.0)
+        self.assertEqual(C.duree_extrait(30), 12.0)
+        self.assertEqual(C.duree_extrait(120), 15.0)
+        d = C.meilleur_moment([50, 51, 52, 53, 54], 100, 10)
+        self.assertTrue(44 <= d <= 50)
+
+    def test_placement(self):
+        from robot import principal as P, citations as C
+        ph = [dict(ecrit="un deux trois quatre cinq six sept huit neuf dix onze douze") for _ in range(12)] + [dict(ecrit="Et toi ?")]
+        script = {"phrases": ph}
+        scenes = P.scenes_de(ph)
+        ext = [dict(type="video", chemin="x.mp4", duree=12, debut=0, id=f"citation-{k}", citation=True, compte=f"c{k}",
+                    credit="c") for k in range(4)]
+        ancien, ancien_sim = C.extraits, P.simulation
+        try:
+            C.extraits = lambda *a, **k: ext
+            P.simulation = lambda: False
+            P.placer_citations(script, scenes, {"videos": []}, "/tmp", set(), lambda *_: None,
+                               {"video": {"citations": True}}, {}, "buzz")
+        finally:
+            C.extraits, P.simulation = ancien, ancien_sim
+        cites = [p for p in ph if (p.get("media") or {}).get("citation")]
+        self.assertTrue(ph[0]["media"]["citation"])         # l'accroche est une citation
+        self.assertEqual(len({p["media"]["chemin"] + p["media"]["id"].split("-suite")[0] for p in cites}), 4)
+
+    def test_bandeau_source(self):
+        from robot import montage
+        import tempfile
+        f = os.path.join(tempfile.mkdtemp(), "c.png")
+        montage.calque(f, titre="TEST", source="Images : @brutofficiel (TikTok)")
+        self.assertTrue(os.path.getsize(f) > 0)

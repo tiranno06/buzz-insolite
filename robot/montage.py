@@ -58,8 +58,9 @@ def logo_rond():
     return _logo[0]
 
 
-def calque(chemin, titre="", grand="", petit="", etiquette="INSOLITE", coul=JAUNE, bas=""):
-    """Textes posés sur l'image (fond transparent), et le logo de la chaîne en haut à droite."""
+def calque(chemin, titre="", grand="", petit="", etiquette="INSOLITE", coul=JAUNE, bas="", source=""):
+    """Textes posés sur l'image (fond transparent), et le logo de la chaîne en haut à droite. `source` : bandeau
+    « Images : @compte (TikTok) » bien visible pendant une courte citation (la source n'est jamais cachée)."""
     im = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im); f = police(46)
     lg = logo_rond()
     if lg:
@@ -67,6 +68,12 @@ def calque(chemin, titre="", grand="", petit="", etiquette="INSOLITE", coul=JAUN
     if etiquette:
         d.rounded_rectangle([60, 185, 60 + d.textlength(etiquette, font=f) + 60, 265], 22, fill=ROUGE, outline=BLANC, width=3)
         d.text((90, 189), etiquette, font=f, fill=BLANC)
+    if source:
+        fs = police(34)
+        larg = min(W - 2 * MARGE_COTES, d.textlength(source, font=fs) + 40)
+        y = 470 if titre else 300                       # sous le gros titre, loin des textes de la vidéo d'origine
+        d.rounded_rectangle([60, y, 60 + larg, y + 60], 14, fill=(0, 0, 0, 200), outline=BLANC, width=2)
+        d.text((80, y + 7), source, font=fs, fill=BLANC)
     larg = W - 2 * MARGE_COTES                         # jamais sous la colonne de boutons de TikTok
     if titre:
         _centre(d, 330, titre, police(_ajuste(d, titre, 104, larg)), coul)
@@ -100,7 +107,15 @@ def ecran(media, duree, png, sortie, dossier):
             print(f"    carte impossible ({str(e)[:80]}) : écran de texte", flush=True)
             media = None
     haut_net = int(W / 1.1) // 2 * 2
-    if media and media["type"] == "video":
+    if media and media["type"] == "video" and media.get("citation"):
+        # courte citation : la vidéo d'origine ENTIÈRE à l'écran (ni recadrée ni floutée : son logo reste visible),
+        # sur un fond flou de la même vidéo
+        debut = media.get("debut", 0) if (media.get("duree") or 99) > duree + media.get("debut", 0) else 0
+        vf = (f"[0:v]split[a][b];[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},boxblur=25:2,"
+              f"eq=brightness=-0.18,fps={IPS}[fond];[b]scale={W}:{H - 120}:force_original_aspect_ratio=decrease,fps={IPS}[net];"
+              f"[fond][net]overlay=(W-w)/2:(H-h)/2[v];[v][1:v]overlay=0:0,format=yuv420p[s]")
+        entree = ["-stream_loop", "-1", "-ss", str(debut), "-i", media["chemin"]]
+    elif media and media["type"] == "video":
         debut = media.get("debut", 0) if (media.get("duree") or 99) > duree + media.get("debut", 0) else 0
         vf = (f"[0:v]split[a][b];[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},boxblur=25:2,"
               f"eq=brightness=-0.18,fps={IPS}[fond];[b]crop=w='min(iw,ih*1.1)':h=ih:x='(iw-min(iw,ih*1.1))/2':y=0,scale={W}:{haut_net},"
@@ -184,7 +199,9 @@ def faire_ecran(script, i, d, dossier):
         calque(png, grand="VRAI !" if vrai else "FAUX !", petit=(p.get("ecran") or "").upper(),
                coul=(80, 220, 120) if vrai else (255, 80, 90))
     elif p.get("media") and not derniere:
-        calque(png, titre=p.get("ecran", "").upper())
+        m = p["media"]
+        calque(png, titre=p.get("ecran", "").upper(),
+               source=f"Images : @{m.get('compte', 'source')} (TikTok)" if m.get("citation") else "")
     else:
         grand = "ET TOI ?" if derniere else (p.get("ecran") or "").upper()
         petit = "dis-le en commentaire" if derniere else ""

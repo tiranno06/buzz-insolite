@@ -15,9 +15,16 @@ commentaires, commits, textes du site), explications simples, sans jargon.
   (`sources.bing(langue="en")`) et vidéos libres cherchées aussi en anglais ; la vidéo reste en français. Seuils du buzz : ≥ 500 000 vues, ≥ 10 000 j'aime, ≥ 1 000
   commentaires (réglables sur le site). « Rien à éviter » comme sujet, mais les règles légales restent (pas de nom de victime
   ni de mineur, présomption d'innocence, faits vérifiés) : `ecrire.REGLES_SUJET`.
-- **Jamais la vidéo d'un autre compte** : on ne garde que le SUJET et les chiffres d'une vidéo virale ; les faits viennent de
-  la presse, les images de banques libres. C'est ce qui rend la chaîne originale et payable par TikTok (Creator Rewards :
-  vidéos de plus d'1 minute, `video.duree_min` 62 s).
+- **Courtes citations des vidéos d'origine** (choix de l'auteur du 25/11, après explication des risques ; remplace « jamais
+  la vidéo d'un autre compte ») : `robot/citations.py` + `principal.placer_citations`. UN extrait de 10 à 15 s par vidéo
+  virale d'origine du sujet (`sujet["videos"]`, les plus vues d'abord, `video.citations_nombre` 5 au plus, un par vidéo :
+  4 ou 5 extraits = 4 ou 5 vidéos différentes), 40 % de la vidéo au plus (10 s au moins ; vidéo de moins de 20 s non
+  citée), moment où l'image bouge le plus (`meilleur_moment`), son d'origine coupé, vidéo montrée en ENTIER (ni recadrée
+  ni floutée : logo et encadré du journaliste visibles — l'auteur demandait de les flouter : REFUSÉ, cela cache la source),
+  bandeau « Images : @compte (TikTok) » sous le titre (`calque(source=)`), crédit + preuve « courte citation ». Le 1er
+  extrait sur l'accroche, les autres répartis ; scène trop courte prolongée par la suivante. Pas jugés par l'IA des
+  images (c'est l'événement lui-même) ; gardés par « Refaire » (images). Vidéo entière jamais gardée. Le reste de la
+  vidéo : notre texte, notre voix, les images libres. Durée TikTok : `video.duree_min` 62 s.
 - **Style validé sur l'essai « 1 an sur Mars »** : voix Piper « Tom » au départ (remplacée par Kokoro, voir plus bas), pauses de 0,18 s, silences coupés ; vraie vidéo nette au milieu + la même floutée derrière ; étiquette rouge
   « INSOLITE » + gros titre jaune en haut ; sous-titres karaoké Poppins (3 mots, le mot dit en jaune et grossi à 112 %, calé
   sur la voix par Whisper « small ») ; dernier écran « ET TOI ? dis-le en commentaire » ; crédits des images en bas.

@@ -408,6 +408,8 @@ def controle_images(script, dossier, B, journal=print, deja=None, sujet="", sans
                 fautifs[i] = ("écran presque noir", "")
             elif net < 6:
                 fautifs[i] = ("image unie ou floue", "")
+            elif m.get("citation"):                        # extrait de la vidéo d'origine : c'est l'événement lui-même
+                p["_valide"] = True
             else:
                 lots.append((i, img, p["ecrit"]))
         avis = {}

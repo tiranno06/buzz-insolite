@@ -18,7 +18,7 @@ import urllib.error
 import time
 import traceback
 
-from . import refaire, avancement, buzz, carte, controle, depot, ecrire, ia, images, montage, sources
+from . import citations, refaire, avancement, buzz, carte, controle, depot, ecrire, ia, images, montage, sources
 from . import voix as V
 from .commun import MINIATURES, SORTIE, ecrire as ecrire_donnees, iso, lire, maintenant, noter, reglages, simulation
 
@@ -288,6 +288,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
         # morceau de vraie vidéo (qui continue d'une phrase à l'autre) ou une vraie photo ; jamais deux fois le même morceau.
         scenes = E.get("scenes") or scenes_de(ph)
         E["scenes"] = scenes
+        placer_citations(script, scenes, sujet, dossier, deja, journal, R, E, format_)
 
         def donner(scene, m):
             ph[scene[0]]["media"] = m; deja.add(m["id"])
@@ -479,6 +480,47 @@ def scenes_de(ph, mini=5.0, maxi=10.0):
     if cur:
         scenes.append(cur)
     return scenes
+
+
+def _duree_estimee(p):
+    return len(re.findall(r"\w+", p.get("voix") or p.get("ecrit") or "")) / 3.5 + 0.18
+
+
+def placer_citations(script, scenes, sujet, dossier, deja, journal, R, E, format_):
+    """Courtes citations des vidéos d'origine (voir robot/citations.py) : 4 ou 5 extraits de 10 à 15 s, un par vidéo
+    d'origine, répartis dans la vidéo (le 1er sur l'accroche). Une scène trop courte est prolongée par la suivante pour
+    montrer au moins 10 s d'affilée (sans dépasser la longueur de l'extrait)."""
+    if E.get("citations_faites") or simulation() or format_ in MULTI or not R["video"].get("citations", True):
+        return
+    E["citations_faites"] = True
+    ph = script["phrases"]
+    if any((p.get("media") or {}).get("citation") for p in ph):
+        return                                                # (vidéo refaite) extraits déjà là
+    nombre = int(R["video"].get("citations_nombre", 5))
+    extraits = citations.extraits(sujet, dossier, journal, nombre, deja)
+    if not extraits:
+        journal("  aucune citation possible (vidéos d'origine introuvables ou trop courtes)")
+        return
+    libres = [k for k, sc in enumerate(scenes) if "media" not in ph[sc[0]]]
+    if not libres:
+        return
+    pas = max(1, len(libres) / len(extraits))
+    choix = []
+    for n in range(len(extraits)):
+        k = libres[min(len(libres) - 1, int(n * pas))]
+        if k not in choix:
+            choix.append(k)
+    for m, k in zip(extraits, choix):
+        sc = list(scenes[k])
+        total = sum(_duree_estimee(ph[j]) for j in sc)
+        suivante = scenes[k + 1] if k + 1 < len(scenes) and k + 1 not in choix else []
+        if total < 10 and suivante and "media" not in ph[suivante[0]] and 1 not in suivante \
+                and total + sum(_duree_estimee(ph[j]) for j in suivante) <= m["duree"]:
+            sc += suivante                                    # au moins 10 s d'affilée
+        ph[sc[0]]["media"] = dict(m, reelle=True); ph[sc[0]]["_valide"] = True
+        for j in sc[1:]:
+            ph[j]["media"] = dict(m, id=f"{m['id']}-suite{j}", suite=True, reelle=True); ph[j]["_valide"] = True
+    journal(f"  {len(choix)} courte(s) citation(s) placée(s) : " + ", ".join(f"@{m['compte']}" for m in extraits[:len(choix)]))
 
 
 def accroche(script):

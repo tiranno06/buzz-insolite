@@ -53,9 +53,11 @@ def appliquer_reglages(d):
         R["publication"]["chaine"] = str(P["chaine"]).strip().lstrip("@")[:60]
     if "heures_auto" in P:
         R["publication"]["heures_auto"] = bool(P["heures_auto"])
-    for k in ("musique", "bruitages", "transitions", "carte", "images_generiques"):
+    for k in ("musique", "bruitages", "transitions", "carte", "images_generiques", "citations"):
         if k in Vd:
             R["video"][k] = bool(Vd[k])
+    if "citations_nombre" in Vd:
+        R["video"]["citations_nombre"] = max(1, min(5, int(Vd["citations_nombre"])))
     if "paralleles" in C:
         R["creation"]["paralleles"] = max(1, min(5, int(C["paralleles"])))
     F = C.get("formats") or {}
