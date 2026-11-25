@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T21:37:26+01:00",
+   "niveau": "info",
+   "texte": "▶️ Création en attente lancée : les IA gratuites sont de nouveau disponibles (IA disponibles : groq, gemini ; voient : gemini)."
+  },
+  {
    "date": "2026-11-25T21:28:32+01:00",
    "niveau": "info",
    "texte": "✅ « Bois de l'Arche, 4300 ans » ajoutée à la file de publication."
