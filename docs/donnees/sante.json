@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-25T20:55:46+01:00",
+ "maj": "2026-11-25T21:00:34+01:00",
  "ia": [
   {
    "nom": "mistral",
@@ -95,23 +95,23 @@
   "foxnews": 0
  },
  "durees": {
-  "extraits": 0,
-  "texte": 136,
   "controle_final": 514,
-  "voix": 161,
-  "montage": 136,
-  "images": 175,
-  "ecriture": 186,
-  "regles": 30,
-  "controle_images": 242,
-  "articles": 0,
   "rangement": 33,
+  "regles": 30,
+  "articles": 0,
+  "voix": 161,
+  "controle_images": 242,
+  "montage": 136,
+  "extraits": 0,
+  "images": 175,
+  "texte": 136,
+  "ecriture": 186,
   "total": 1552
  },
  "creations_24h": {
-  "reussies": 26,
+  "reussies": 25,
   "ratees": 0,
-  "en_cours": 0
+  "en_cours": 1
  },
  "quotas": {
   "mistral": {
@@ -127,7 +127,7 @@
    "erreurs": 29,
    "restant_demandes": "999",
    "limite_demandes": "1000",
-   "restant_mots": "7578",
+   "restant_mots": "7752",
    "sature": true
   },
   "gemini": {
@@ -144,6 +144,13 @@
   }
  },
  "reparations": [
+  {
+   "id": "20261125-163234-1",
+   "titre": "Peine de mort accélérée : Trump",
+   "etape": "images",
+   "raison": "Réparation automatique : Le sujet abordé (logements abordables / Newsom) ne correspond pas à l'ordre sur  ; Le sujet bifurque sur le logement abordable (« affordable housing »), hors sujet",
+   "le": "2026-11-25T21:00:09+01:00"
+  },
   {
    "id": "20261125-163217-1",
    "titre": "Leto Lucia et la polémique GTA VI",
