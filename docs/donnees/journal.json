@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T14:32:43+01:00",
+   "niveau": "info",
+   "texte": "⚙️ Réglages enregistrés."
+  },
+  {
    "date": "2026-11-25T14:30:30+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Marées géantes menacent Oregon et Californie » (76 s, 13 écrans illustrés) — à regarder puis cocher « À publier »"
