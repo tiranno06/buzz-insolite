@@ -492,6 +492,12 @@ récentes les plus vues juste en dessous (« sous_seuils », score divisé par 2
 - **Réglages GitHub interdits depuis une session Claude** (proxy) : activer Pages et écrire les secrets se font à la main par
   l'auteur. Secrets : `BUFFER_API_KEY`, `PEXELS_API_KEY` (facultatif), `PIXABAY_API_KEY`, `MISTRAL_API_KEY`, `GROQ_API_KEY`, `GEMINI_API_KEY`, `OPENROUTER_API_KEY`, `VIMEO_TOKEN` (facultatif).
 
+## Vidéos invisibles sur le site (25/11 au soir)
+3 vidéos fabriquées en même temps (Arche, Trump, GTA) avaient leur Release restée en BROUILLON sur GitHub : fichier
+introuvable (404) pour le site et pour Buffer. `depot.publier_release` appelle maintenant `rendre_publique` (vérifie
+`isDraft`, sinon `gh release edit --draft=false`, puis le lien de la vidéo doit répondre) ; la santé (`sante.reparer_brouillons`)
+rend publiques chaque nuit les Releases restées en brouillon.
+
 ## Avant d'envoyer
 `python -m unittest discover -s tests` (aucun appel réseau ni IA ; ffmpeg nécessaire pour l'essai complet). Essai sans IA :
 `SIMULATION=1 python -m robot.principal --libre "Essai"`. Site : servir `docs/` et l'ouvrir à 400 px de large.

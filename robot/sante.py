@@ -247,9 +247,26 @@ def debloquer_sujets():
     return B, remis
 
 
+def reparer_brouillons(journal=print):
+    """Vidéos dont la Release est restée en brouillon (invisibles sur le site et pour Buffer) : rendues publiques."""
+    if not depot.en_ligne():
+        return []
+    faites = []
+    for tag in depot.releases_brouillon():
+        try:
+            depot.rendre_publique(tag)
+            faites.append(tag)
+        except Exception as e:
+            journal(f"  {tag} toujours en brouillon ({str(e)[:80]})")
+    if faites:
+        noter(f"🩺 {len(faites)} vidéo(s) rendue(s) de nouveau visible(s) sur le site (restées en brouillon sur GitHub).", "attention")
+    return faites
+
+
 def main():
     precedent = lire("sante.json") or {}
     journal = print
+    reparer_brouillons(journal)
     ias, sources_, buffer_ = verifier_ia(), verifier_sources(), verifier_buffer()
     series, pauses = comptes_et_pauses(precedent)
     videos = (lire("file.json") or {}).get("videos") or []

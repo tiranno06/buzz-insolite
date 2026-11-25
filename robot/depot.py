@@ -61,7 +61,46 @@ def publier_release(tag, titre, fichiers):
         if essai == 2:
             raise RuntimeError(f"impossible de ranger la vidéo dans la Release {tag}")
         time.sleep(15 * (essai + 1))
-    return f"https://github.com/{depot()}/releases/download/{tag}/{os.path.basename(fichiers[0])}"
+    url = f"https://github.com/{depot()}/releases/download/{tag}/{os.path.basename(fichiers[0])}"
+    rendre_publique(tag, url)
+    return url
+
+
+def rendre_publique(tag, url=None, essais=5):
+    """La Release doit être PUBLIQUE (pas un brouillon) et la vidéo téléchargeable (25/11 : 3 vidéos faites en même temps
+    restées en brouillon → « vidéo introuvable » sur le site et pour Buffer). Vérifié, et corrigé si besoin."""
+    import json as _json
+    import urllib.request
+    for essai in range(essais):
+        r = subprocess.run(["gh", "release", "view", tag, "--json", "isDraft"], cwd=RACINE, capture_output=True, text=True)
+        try:
+            brouillon = _json.loads(r.stdout or "{}").get("isDraft")
+        except ValueError:
+            brouillon = None
+        if brouillon:
+            subprocess.run(["gh", "release", "edit", tag, "--draft=false"], cwd=RACINE, capture_output=True)
+        elif brouillon is False:
+            if not url:
+                return True
+            try:
+                req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "buzz-insolite-robot"})
+                if urllib.request.urlopen(req, timeout=30).status < 400:
+                    return True
+            except Exception:
+                pass
+        time.sleep(10 * (essai + 1))
+    raise RuntimeError(f"la Release {tag} n'est pas publique (brouillon) : vidéo introuvable en ligne")
+
+
+def releases_brouillon():
+    """Tags des Releases restées en brouillon (vidéos invisibles sur le site)."""
+    import json as _json
+    r = subprocess.run(["gh", "release", "list", "--limit", "100", "--json", "tagName,isDraft"], cwd=RACINE,
+                       capture_output=True, text=True)
+    try:
+        return [x["tagName"] for x in _json.loads(r.stdout or "[]") if x.get("isDraft")]
+    except ValueError:
+        return []
 
 
 def supprimer_release(tag):
