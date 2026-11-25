@@ -11,10 +11,22 @@
    },
    "demande_le": "2026-11-25T18:33:17+01:00",
    "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
+  },
+  {
+   "inputs": {
+    "format": "buzz",
+    "refaire": "20261125-163119-1",
+    "etape": "texte",
+    "remarque": "phrases réduites à des nombres (45, 15), trop court (45 s), accroche avec 'COP'",
+    "origine": "site",
+    "nombre": "1"
+   },
+   "demande_le": "2026-11-25T18:33:29+01:00",
+   "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
   }
  ],
  "credits": {
-  "le": "2026-11-25T18:33:17+01:00",
+  "le": "2026-11-25T18:33:29+01:00",
   "resume": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
  }
 }
