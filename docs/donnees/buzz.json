@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-25T21:39:33+01:00",
+ "maj": "2026-11-25T22:59:59+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:37:21+01:00"
+   "le": "2026-11-25T22:57:51+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:37:26+01:00"
+   "le": "2026-11-25T22:57:55+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:37:30+01:00"
+   "le": "2026-11-25T22:57:59+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:37:34+01:00"
+   "le": "2026-11-25T22:58:03+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:37:38+01:00"
+   "le": "2026-11-25T22:58:07+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-25T21:37:41+01:00"
+   "le": "2026-11-25T22:58:10+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:37:46+01:00"
+   "le": "2026-11-25T22:58:14+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:37:50+01:00"
+   "le": "2026-11-25T22:58:17+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:37:54+01:00"
+   "le": "2026-11-25T22:58:22+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:37:58+01:00"
+   "le": "2026-11-25T22:58:25+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:02+01:00"
+   "le": "2026-11-25T22:58:29+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:06+01:00"
+   "le": "2026-11-25T22:58:34+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:10+01:00"
+   "le": "2026-11-25T22:58:37+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-25T21:38:14+01:00"
+   "le": "2026-11-25T22:58:41+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:18+01:00"
+   "le": "2026-11-25T22:58:44+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:23+01:00"
+   "le": "2026-11-25T22:58:48+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:26+01:00"
+   "le": "2026-11-25T22:58:52+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:30+01:00"
+   "le": "2026-11-25T22:58:55+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:34+01:00"
+   "le": "2026-11-25T22:58:59+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:38+01:00"
+   "le": "2026-11-25T22:59:03+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:42+01:00"
+   "le": "2026-11-25T22:59:09+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:46+01:00"
+   "le": "2026-11-25T22:59:13+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:50+01:00"
+   "le": "2026-11-25T22:59:18+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:53+01:00"
+   "le": "2026-11-25T22:59:21+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:38:58+01:00"
+   "le": "2026-11-25T22:59:25+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:39:02+01:00"
+   "le": "2026-11-25T22:59:28+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:39:06+01:00"
+   "le": "2026-11-25T22:59:32+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T21:39:10+01:00"
+   "le": "2026-11-25T22:59:36+01:00"
   }
  },
  "lues": 809,
@@ -548,26 +548,22 @@
    "vu_le": "2026-11-25T21:39:33+01:00"
   },
   {
-   "titre": "Afghanistan : nouvelles règles de noms pour femmes",
-   "resume": "Un décret afghan impose aux femmes l'usage de surnoms au lieu de leurs prénoms. Cette mesure suscite des critiques de la part des organisations de droits humains.",
+   "titre": "Afghanistan : nouvelles règles imposent surnoms aux femmes",
+   "resume": "Un décret récemment publié oblige les femmes afghanes à ne plus porter de nom officiel, mais à utiliser des surnoms attribués par les autorités. Cette mesure suscite de vives critiques de la part des organisations de droits humains.",
    "mots_cles": [
     "Afghanistan",
-    "femmes",
     "décret",
-    "surnoms",
-    "droits humains"
+    "droits des femmes"
    ],
    "mots_cles_en": [
     "Afghanistan",
-    "women",
     "decree",
-    "nicknames",
-    "human rights"
+    "women's rights"
    ],
    "hashtags": [
     "afghanistan",
-    "femmes",
-    "decret"
+    "droitsfemmes",
+    "décret"
    ],
    "insolite": 7,
    "categorie": "societe",
@@ -577,10 +573,10 @@
      "id": "7711838616284040470",
      "compte": "brutofficiel",
      "url": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
-     "vues": 2600000,
-     "jaime": 472700,
-     "commentaires": 5120,
-     "partages": 53000,
+     "vues": 2700000,
+     "jaime": 493500,
+     "commentaires": 5319,
+     "partages": 54800,
      "date": 1795552321,
      "texte": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret leur impose des surnoms.",
      "indisponible": false,
@@ -588,17 +584,17 @@
     }
    ],
    "sous_seuils": false,
-   "id": "74c3a73a89",
-   "score": 699,
-   "derniere_vue": 1795639162.5313458,
-   "vues": 2600000,
-   "jaime": 472700,
-   "commentaires": 5120,
+   "id": "8553112fc8",
+   "score": 700,
+   "derniere_vue": 1795643989.07539,
+   "vues": 2700000,
+   "jaime": 493500,
+   "commentaires": 5319,
    "hashtags_viraux": [],
-   "medias": 8,
+   "medias": 16,
    "tendance": null,
    "statut": "nouveau",
-   "vu_le": "2026-11-25T21:39:33+01:00"
+   "vu_le": "2026-11-25T22:59:59+01:00"
   },
   {
    "titre": "Policier de Miami frappe suspect lors arrestation",
@@ -789,28 +785,26 @@
    "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
-   "titre": "Affaire Christopher Payne : justice japonaise remise en cause",
-   "resume": "Christopher Payne, arrêté au Japon en 2021, voit sa condamnation annulée et un nouveau procès ordonné. Son dossier alimente le débat sur le système de « justice otage » japonais.",
+   "titre": "Affaire Christopher Payne : justice « otage » au Japon",
+   "resume": "Christopher Payne, arrêté au Japon en 2021, a vu sa condamnation annulée l'année dernière, mais reste incarcéré en attendant un nouveau procès. Son dossier met en lumière le système de « hostage justice » japonais.",
    "mots_cles": [
     "Christopher Payne",
     "Japon",
-    "justice otage",
-    "condamnation",
-    "réexamen"
+    "justice",
+    "hostage justice"
    ],
    "mots_cles_en": [
     "Christopher Payne",
     "Japan",
-    "hostage justice",
-    "conviction",
-    "retrial"
+    "justice system",
+    "hostage justice"
    ],
    "hashtags": [
     "japon",
     "justice",
     "hostagejustice"
    ],
-   "insolite": 6,
+   "insolite": 7,
    "categorie": "societe",
    "ville_france": "",
    "videos": [
@@ -818,10 +812,10 @@
      "id": "7712046743042526478",
      "compte": "cnn",
      "url": "https://www.tiktok.com/@cnn/video/7712046743042526478",
-     "vues": 2200000,
-     "jaime": 270200,
-     "commentaires": 3895,
-     "partages": 9123,
+     "vues": 2300000,
+     "jaime": 296000,
+     "commentaires": 4262,
+     "partages": 10200,
      "date": 1795600812,
      "texte": "American Christopher Payne was arrested in Japan in 2021 for a crime he's always denied committing. His conviction was overturned last year and a retrial was ordered, but he remains behind bars. His lawyers say his case highlights Japan's \"hostage justice\" system, where suspects can be detained for lengthy periods without charge. Japan's Ministry of Justice has repeatedly rejected allegations of \"",
      "sous_seuils": true,
@@ -830,17 +824,17 @@
     }
    ],
    "sous_seuils": true,
-   "id": "a7dc3d3e3e",
-   "score": 429,
-   "derniere_vue": 1795639162.5313458,
-   "vues": 2200000,
-   "jaime": 270200,
-   "commentaires": 3895,
+   "id": "1e5be40e16",
+   "score": 434,
+   "derniere_vue": 1795643989.07539,
+   "vues": 2300000,
+   "jaime": 296000,
+   "commentaires": 4262,
    "hashtags_viraux": [],
-   "medias": 5,
+   "medias": 4,
    "tendance": null,
    "statut": "nouveau",
-   "vu_le": "2026-11-25T21:39:33+01:00"
+   "vu_le": "2026-11-25T22:59:59+01:00"
   },
   {
    "titre": "Arrestations controversées à l'aéroport de Seattle",
@@ -1369,6 +1363,58 @@
    "medias": 7,
    "statut": "en_cours",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Étude britannique : baisse du sexe, hausse du porno",
+   "resume": "Une enquête nationale révèle que les jeunes adultes britanniques ont moins de relations sexuelles que les générations précédentes, tout en augmentant leur consommation de pornographie et de sexting. C’est la première fois que le sondage Natsal couvre ces aspects.",
+   "mots_cles": [
+    "Étude sexuelle",
+    "Royaume-Uni",
+    "sexting",
+    "pornographie"
+   ],
+   "mots_cles_en": [
+    "sexual study",
+    "UK",
+    "sexting",
+    "pornography"
+   ],
+   "hashtags": [
+    "sexualité",
+    "royaumeuni",
+    "sexting"
+   ],
+   "insolite": 4,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712064128998821142",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7712064128998821142",
+     "vues": 2000000,
+     "jaime": 129600,
+     "commentaires": 3129,
+     "partages": 71400,
+     "date": 1795604839,
+     "texte": "British people, particularly teens and young adults, are having less or no sex compared to past generations, but lots are watching porn and sexting, a major study indicated. It is the first time The National Survey of Sexual Attitudes and Lifestyles' (Natsal) research into general public sex lives has asked about online behaviours. The latest results were published in The Lancet and were based on ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712064128998821142?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "51c5facde7",
+   "score": 296,
+   "derniere_vue": 1795643989.07539,
+   "vues": 2000000,
+   "jaime": 129600,
+   "commentaires": 3129,
+   "hashtags_viraux": [],
+   "medias": 5,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T22:59:59+01:00"
   },
   {
    "titre": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret",
@@ -2701,26 +2747,24 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
-   "titre": "Arnaque consoles de jeux à l'approche de Noël",
-   "resume": "Des annonces frauduleuses sur les plateformes de seconde main proposent des consoles neuves, mais seules des photos sont livrées. Les consommateurs sont mis en garde contre ce type d'escroquerie.",
+   "titre": "Arnaque de Noël : consoles vendues sans produit",
+   "resume": "Des annonces sur des plateformes de seconde main proposent des consoles de jeux dernier cri, mais seules des photos sont livrées, aucune console réelle. La fraude se répand à l'approche des fêtes.",
    "mots_cles": [
     "arnaque",
-    "consoles",
     "Noël",
-    "seconde main",
-    "fraude"
+    "consoles",
+    "seconde main"
    ],
    "mots_cles_en": [
     "scam",
-    "consoles",
     "Christmas",
-    "secondhand",
-    "fraud"
+    "consoles",
+    "secondhand"
    ],
    "hashtags": [
     "arnaque",
-    "consoles",
-    "noel"
+    "noël",
+    "consoles"
    ],
    "insolite": 5,
    "categorie": "societe",
@@ -2730,10 +2774,10 @@
      "id": "7711847373802179873",
      "compte": "tf1info",
      "url": "https://www.tiktok.com/@tf1info/video/7711847373802179873",
-     "vues": 2200000,
-     "jaime": 150600,
-     "commentaires": 2368,
-     "partages": 44700,
+     "vues": 2300000,
+     "jaime": 156900,
+     "commentaires": 2448,
+     "partages": 46500,
      "date": 1795554385,
      "texte": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateformes de seconde main proposent, en apparence, des consoles de jeux dernier cri. En réalité, seule une photo du produit est mise en vente et livrée.",
      "sous_seuils": true,
@@ -2742,17 +2786,17 @@
     }
    ],
    "sous_seuils": true,
-   "id": "c4b593899e",
+   "id": "057e1c3ebd",
    "score": 49,
-   "derniere_vue": 1795639162.5313458,
-   "vues": 2200000,
-   "jaime": 150600,
-   "commentaires": 2368,
+   "derniere_vue": 1795643989.07539,
+   "vues": 2300000,
+   "jaime": 156900,
+   "commentaires": 2448,
    "hashtags_viraux": [],
    "medias": 2,
    "tendance": null,
    "statut": "nouveau",
-   "vu_le": "2026-11-25T21:39:33+01:00"
+   "vu_le": "2026-11-25T22:59:59+01:00"
   },
   {
    "titre": "Gardien de stade étouffe entraîneur brésilien",
@@ -3194,6 +3238,63 @@
    "hashtags_viraux": [],
    "statut": "nouveau",
    "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Politique d'influenceurs du Number 10 critiquée",
+   "resume": "Le correspondant politique de Sky News interroge l'efficacité de la politique du gouvernement britannique visant à impliquer les influenceurs, après la suppression d'une vidéo polémique. Le créateur a présenté des excuses publiques.",
+   "mots_cles": [
+    "Number 10",
+    "influenceurs",
+    "politique britannique",
+    "controverse"
+   ],
+   "mots_cles_en": [
+    "Number 10",
+    "influencers",
+    "UK policy",
+    "controversy"
+   ],
+   "hashtags": [
+    "influenceurs",
+    "gouvernement",
+    "ukpolitics"
+   ],
+   "insolite": 3,
+   "categorie": "politique",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711836882820254998",
+     "compte": "skynews",
+     "url": "https://www.tiktok.com/@skynews/video/7711836882820254998",
+     "vues": 2000000,
+     "jaime": 123000,
+     "commentaires": 2597,
+     "partages": 27900,
+     "date": 1795551953,
+     "texte": "Sky's political correspondent Lucy McDaid asks whether the Number 10 policy on involving influencers has backfired. Responding to the video and its removal, Max Balegde said his content is 'always meant to be light hearted and funny', insisted no malice was intended and apologised for 'any offence caused'. #skynews #uk #influencer #number10 ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711836882820254998?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "13e962f8c0",
+   "score": 38,
+   "derniere_vue": 1795643989.07539,
+   "vues": 2000000,
+   "jaime": 123000,
+   "commentaires": 2597,
+   "hashtags_viraux": [
+    "skynews",
+    "uk",
+    "influencer",
+    "number10"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T22:59:59+01:00"
   },
   {
    "titre": "Sky's political correspondent Lucy McDaid asks whether the Number 10 policy on involving i",

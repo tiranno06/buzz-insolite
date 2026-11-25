@@ -1,6 +1,16 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T23:00:03+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 46 sujet(s) au-dessus des seuils — en tête : « Pont suspendu de Torres del Paine secoué »"
+  },
+  {
+   "date": "2026-11-25T22:59:59+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 46 sujet(s) au-dessus des seuils — en tête : « Pont suspendu de Torres del Paine secoué »"
+  },
+  {
    "date": "2026-11-25T22:59:04+01:00",
    "niveau": "info",
    "texte": "✅ « Toulouse : policier empiète sur un vélo » ajoutée à la file de publication."
