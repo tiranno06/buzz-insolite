@@ -2,18 +2,6 @@
  "en_attente": [
   {
    "inputs": {
-    "format": "buzz",
-    "refaire": "20261125-163119-1",
-    "etape": "texte",
-    "remarque": "phrases réduites à des nombres (45, 15), trop court (45 s), accroche avec 'COP'",
-    "origine": "site",
-    "nombre": "1"
-   },
-   "demande_le": "2026-11-25T18:33:29+01:00",
-   "raison": "1 IA qui écrit disponible (il en faut 2 : une écrit, une autre vérifie)"
-  },
-  {
-   "inputs": {
     "nombre": "1",
     "format": "buzz",
     "origine": "auto 16:15"
@@ -57,8 +45,8 @@
   }
  ],
  "credits": {
-  "le": "2026-11-25T21:49:16+01:00",
-  "resume": "déjà 3 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
+  "le": "2026-11-25T22:07:42+01:00",
+  "resume": "✅ IA disponibles : groq, gemini ; voient : gemini"
  },
  "creation": {
   "2026-11-25": [

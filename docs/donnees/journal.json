@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T22:07:42+01:00",
+   "niveau": "info",
+   "texte": "▶️ Création en attente lancée : les IA gratuites sont de nouveau disponibles (IA disponibles : groq, gemini ; voient : gemini)."
+  },
+  {
    "date": "2026-11-25T22:00:29+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Condamnation vandalisme Vierge Porto-Vecchio » (43 s, 8 écrans illustrés) — à regarder puis cocher « À publier »"
