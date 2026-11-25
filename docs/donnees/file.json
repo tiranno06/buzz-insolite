@@ -543,11 +543,11 @@
    "reparations": 1
   },
   {
-   "id": "20261125-163311-1",
-   "tag": "v-20261125-163311-1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-163311-1/buzz-20261125-163311-1.mp4",
-   "titre": "Iran: Lashes for a Hijab-Free Song",
-   "accroche": "FLOGGING FOR MUSIC",
+   "id": "20261125-163311-1-r1",
+   "tag": "v-20261125-163311-1-r1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-163311-1-r1/buzz-20261125-163311-1-r1.mp4",
+   "titre": "Flagellation pour chant sans hijab",
+   "accroche": "CHANT SANS HIJAB",
    "sujet_id": "d08608b6cc",
    "sujet": "Iran : flagellation pour performance sans hijab obligatoire",
    "buzz": {
@@ -556,16 +556,16 @@
     "commentaires": 3705,
     "score": 366
    },
-   "description": "Un chanteur iranien et son équipe ont été fouettés pour avoir chanté sans hijab. 🔥",
-   "question": "Et toi, que penses-tu de la répression des artistes en Iran ?",
+   "description": "Une chanteuse iranienne a été fouettée pour avoir chanté sans voile. 😲",
+   "question": "Et toi, que penses-tu de cette répression ?",
    "hashtags": [
     "#iran",
-    "#hijab",
+    "#parastooahmadi",
     "#insolite",
     "#actu",
     "#buzz"
    ],
-   "duree": 59.5,
+   "duree": 69.2,
    "sources": [
     {
      "media": "foxnews.com",
@@ -610,16 +610,13 @@
    ],
    "verification": {
     "par": "gemini:gemini-flash-lite-latest",
-    "corrigees": 2,
-    "retirees": 4,
+    "corrigees": 3,
+    "retirees": 1,
     "problemes": [
-     "La phrase ne contient qu'une date isolée sans contexte ni affirmation vérifiable.",
-     "La phrase ne contient qu'une date isolée sans contexte ni affirmation vérifiable.",
-     "L'âge de 29 ans est bien mentionné mais rien n'indique qu'elle soit la plus jeune à subir une telle punition.",
-     "La phrase \"Qom court\" est incompréhensible et ne correspond pas aux faits des articles.",
-     "L'expression en anglais \"offending public decency\" n'est pas traduite ou intégrée correctement dans le flux en français de la vidéo.",
-     "La date exacte fournie par les articles pour la vidéo est décembre 2024, sans préciser le 11 décembre.",
-     "L'intervention d'Amnesty International n'est pas mentionnée dans les articles fournis."
+     "Les articles mentionnent que la vidéo a dépassé 3,2 millions de vues, mais ne précisent pas qu'elle les a atteints en moins d'un mois.",
+     "Les articles indiquent qu'elle a 29 ans, mais ne disent pas qu'elle est la plus jeune à subir une telle peine.",
+     "Amnesty International n'est pas mentionnée dans les articles fournis.",
+     "Roya Heshmati a subi des coups de fouet mais les articles ne disent pas qu'elle est militante."
     ]
    },
    "verifie": true,
@@ -627,118 +624,67 @@
     "@bfmtv (TikTok, extrait cité)",
     "@brutofficiel (TikTok, extrait cité)",
     "@cnn (TikTok, extrait cité)",
-    "@franceinfo (TikTok, extrait cité)",
-    "Carte : Natural Earth, OpenStreetMap"
+    "@franceinfo (TikTok, extrait cité)"
    ],
    "extraits_perdus": 0,
-   "regles_non_respectees": [
-    "vidéo de 59 s : il faut PLUS d'1 minute",
-    "écran 15 : phrase absurde (« 74 »)",
-    "écran 16 : phrase absurde (« 2 »)",
-    "écran 17 : phrase absurde (« 2026 »)",
-    "écran 2 : titre « 23 NOV » absent de la phrase dite",
-    "écran 5 : titre « 3.2 MILLION » absent de la phrase dite",
-    "écran 6 : titre « FOUR » absent de la phrase dite",
-    "écran 8 : titre « 2 YEARS » absent de la phrase dite",
-    "écran 14 : titre « Refus de report » absent de la phrase dite",
-    "écran 15 : titre « June 2026 » absent de la phrase dite",
-    "accroche mal écrite : « FLOGGING FOR MUSIC »"
-   ],
-   "ecrans_illustres": 16,
-   "ecrans_total": 16,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 15,
+   "ecrans_total": 15,
    "format": "buzz",
    "voix": "kokoro-ff_siwis",
    "lieu": "Qom, Iran",
    "humeur": "tension",
    "categorie": "actualite",
    "texte": [
-    "Tu sais que la chanteuse Parastoo Ahmadi a reçu 74 coups de fouet ?",
-    "Le jugement a eu lieu à l'unité de Qom le lundi 23 novembre 2026.",
-    "Elle a refusé de porter un hijab lors d'un concert viral sur YouTube.",
-    "Le clip a été filmé au caravansérail historique Deir-e Gachin, près de Qom.",
-    "Le concert a attiré plus de 3,2 millions de vues en ligne.",
-    "Quatre de ses musiciens l'ont accompagnée, tous sans hijab.",
-    "Chaque membre de l'équipe a subi la même punition.",
-    "Il a interdit de voyager à l'étranger pendant deux ans.",
-    "Il a aussi interdit toute activité artistique.",
-    "Le sang de cette affaire a alimenté la colère des artistes iraniens.",
-    "Les autorités iraniennes ont exécuté la sentence immédiatement, sans délai.",
-    "Parastoo Ahmadi a 29 ans, ce qui la rend la plus jeune à subir une telle punition.",
-    "atteinte à la décence publique",
-    "Les avocats ont tenté de reporter la flagellation, mais le pouvoir a refusé.",
-    "74",
-    "2",
-    "2026",
-    "Et toi, que penses-tu de la répression des artistes en Iran ? Dis-le en commentaire !"
+    "Tu sais que Parastoo Ahmadi a reçu 74 coups de fouet ?",
+    "La sentence a été exécutée le 23 novembre 2026 à Qom.",
+    "Elle était accusée d’avoir chanté sans hijab lors d’un concert diffusé sur YouTube.",
+    "Le clip a été tourné au caravansérail historique Deir-e Gachin, près de la ville sainte.",
+    "La vidéo a dépassé 3 200 000 vues.",
+    "Quatre musiciens l’accompagnaient, tous aussi flagellés de 74 coups.",
+    "Le groupe complet, 5 personnes, a reçu la même punition.",
+    "Le tribunal a aussi interdit à chacun de voyager à l’étranger pendant 2 ans.",
+    "L’avocat de la défense, Mostafa Nili, a déclaré que toute tentative de report avait été refusée.",
+    "Les autorités ont justifié la sanction comme une atteinte à la décence publique.",
+    "Cette affaire a déclenché une vague de protestations parmi les artistes iraniens.",
+    "Des organisations internationales appellent à sanctionner le régime pour ces châtiments corporels.",
+    "D'autres personnes ont subi le même sort, comme Roya Heshmati.",
+    "Quatre musiciens l accompagnaient, notamment les artistes Soheil Faghih Nasiri, Amin Taheri et Amirali Pirnia.",
+    "Le producteur Mohsen Lashkari faisait aussi partie des personnes condamnées par la justice.",
+    "Et toi, que penses-tu de cette répression ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T17:13:13+01:00",
+   "cree_le": "2026-11-25T22:00:12+01:00",
    "ia_quotas": {
     "mistral": {
      "appels": 0,
      "refus": 0,
-     "erreurs": 68,
+     "erreurs": 5,
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 12,
-     "refus": 30,
-     "erreurs": 3,
-     "restant_demandes": "999",
+     "appels": 3,
+     "refus": 2,
+     "erreurs": 5,
+     "restant_demandes": "997",
      "limite_demandes": "1000",
-     "restant_mots": "7600"
+     "restant_mots": "1376"
     },
     "gemini": {
-     "appels": 14,
-     "refus": 36,
-     "erreurs": 22
+     "appels": 4,
+     "refus": 2,
+     "erreurs": 3
     },
     "openrouter": {
      "appels": 0,
-     "refus": 48,
+     "refus": 8,
      "erreurs": 0
     }
    },
-   "fabrication_s": 2403,
+   "fabrication_s": 1219,
    "controles": {
-    "note": 0,
+    "note": 65,
     "lignes": [
-     {
-      "niveau": "texte",
-      "ecran": 0,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": 11,
-      "gravite": "info",
-      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
-     {
-      "niveau": "texte",
-      "ecran": null,
-      "gravite": "moyen",
-      "probleme": "texte trop court (environ 56 s, il faut plus d'1 minute)",
-      "corrige": true,
-      "essais": 6,
-      "solution": "phrase réécrite et revérifiée"
-     },
-     {
-      "niveau": "texte",
-      "ecran": 14,
-      "gravite": "info",
-      "probleme": "phrase en double",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
-     },
      {
       "niveau": "texte",
       "ecran": null,
@@ -747,15 +693,6 @@
       "corrige": true,
       "essais": 3,
       "solution": "phrase réécrite et revérifiée"
-     },
-     {
-      "niveau": "texte",
-      "ecran": 18,
-      "gravite": "info",
-      "probleme": "phrase en double",
-      "corrige": true,
-      "essais": 1,
-      "solution": "corrigé automatiquement"
      },
      {
       "niveau": "texte",
@@ -768,120 +705,29 @@
      },
      {
       "niveau": "voix",
-      "ecran": 38,
+      "ecran": 31,
       "gravite": "grave",
-      "probleme": "voix et sous-titres ne correspondent pas (50%)",
+      "probleme": "voix et sous-titres ne correspondent pas (53%)",
+      "corrige": false,
+      "essais": 4,
+      "solution": "voix refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 25,
+      "gravite": "grave",
+      "probleme": "voix et sous-titres ne correspondent pas (55%)",
       "corrige": true,
       "essais": 3,
       "solution": "phrase retirée"
-     },
-     {
-      "niveau": "video",
-      "ecran": 24,
-      "gravite": "moyen",
-      "probleme": "chevauchement des sous-titres noirs et blancs rendant le texte illisible",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 23,
-      "gravite": "moyen",
-      "probleme": "titre coupé sur le bord droit",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "video",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "titre coupé sur le bord droit",
-      "corrige": true,
-      "essais": 1,
-      "solution": "titre raccourci"
-     },
-     {
-      "niveau": "regles",
-      "ecran": null,
-      "gravite": "grave",
-      "probleme": "accroche mal écrite : « FLOGGING FOR MUSIC »",
-      "corrige": false,
-      "essais": 2
-     },
-     {
-      "niveau": "regles",
-      "ecran": 37,
-      "gravite": "grave",
-      "probleme": "écran 15 : titre « June 2026 » absent de la phrase dite",
-      "corrige": false,
-      "essais": 2
-     },
-     {
-      "niveau": "regles",
-      "ecran": 39,
-      "gravite": "grave",
-      "probleme": "écran 16 : phrase absurde (« 2 »)",
-      "corrige": false,
-      "essais": 1
-     },
-     {
-      "niveau": "regles",
-      "ecran": 40,
-      "gravite": "grave",
-      "probleme": "écran 17 : phrase absurde (« 2026 »)",
-      "corrige": false,
-      "essais": 1
-     },
-     {
-      "niveau": "regles",
-      "ecran": 22,
-      "gravite": "grave",
-      "probleme": "écran 2 : titre « 23 NOV » absent de la phrase dite",
-      "corrige": false,
-      "essais": 1
-     },
-     {
-      "niveau": "regles",
-      "ecran": 25,
-      "gravite": "grave",
-      "probleme": "écran 5 : titre « 3.2 MILLION » absent de la phrase dite",
-      "corrige": false,
-      "essais": 1
-     },
-     {
-      "niveau": "regles",
-      "ecran": 26,
-      "gravite": "grave",
-      "probleme": "écran 6 : titre « FOUR » absent de la phrase dite",
-      "corrige": false,
-      "essais": 1
-     },
-     {
-      "niveau": "regles",
-      "ecran": 28,
-      "gravite": "grave",
-      "probleme": "écran 8 : titre « 2 YEARS » absent de la phrase dite",
-      "corrige": false,
-      "essais": 1
-     },
-     {
-      "niveau": "regles",
-      "ecran": 35,
-      "gravite": "grave",
-      "probleme": "écran 14 : titre « Refus de report » absent de la phrase dite",
-      "corrige": false,
-      "essais": 1
      }
     ],
     "sautes": [
-     "réécriture du texte par l'IA (aucune IA disponible)",
-     "regard de l'IA sur la vidéo finie (IA indisponible : openrouter nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free 429 : {\"error\":{\"message\":\"Rate limit exceeded: free-model)"
+     "regard de l'IA sur la vidéo finie (IA indisponible : aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY))"
     ],
-    "corriges": 11,
-    "restants": 9,
-    "graves_restants": 11
+    "corriges": 3,
+    "restants": 1,
+    "graves_restants": 2
    },
    "reprises": 0,
    "preuves": [
@@ -892,7 +738,16 @@
      "auteur": "@cnn",
      "titre": "",
      "credit": "@cnn (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "releve_le": "2026-11-25T22:00:12+01:00"
+    },
+    {
+     "ecran": 2,
+     "page": "https://www.tiktok.com/@cnn/video/7711730013971680526",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cnn",
+     "titre": "",
+     "credit": "@cnn (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T22:00:12+01:00"
     },
     {
      "ecran": 3,
@@ -901,7 +756,7 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "releve_le": "2026-11-25T22:00:12+01:00"
     },
     {
      "ecran": 4,
@@ -910,7 +765,7 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "releve_le": "2026-11-25T22:00:12+01:00"
     },
     {
      "ecran": 5,
@@ -919,7 +774,7 @@
      "auteur": "@bfmtv",
      "titre": "",
      "credit": "@bfmtv (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "releve_le": "2026-11-25T22:00:12+01:00"
     },
     {
      "ecran": 6,
@@ -928,7 +783,7 @@
      "auteur": "@bfmtv",
      "titre": "",
      "credit": "@bfmtv (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "releve_le": "2026-11-25T22:00:12+01:00"
     },
     {
      "ecran": 7,
@@ -937,7 +792,7 @@
      "auteur": "@franceinfo",
      "titre": "",
      "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "releve_le": "2026-11-25T22:00:12+01:00"
     },
     {
      "ecran": 8,
@@ -946,7 +801,7 @@
      "auteur": "@franceinfo",
      "titre": "",
      "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "releve_le": "2026-11-25T22:00:12+01:00"
     },
     {
      "ecran": 9,
@@ -955,16 +810,16 @@
      "auteur": "@cnn",
      "titre": "",
      "credit": "@cnn (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "releve_le": "2026-11-25T22:00:12+01:00"
     },
     {
      "ecran": 10,
-     "page": "https://www.tiktok.com/@cnn/video/7711730013971680526",
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711807420770618646",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@cnn",
+     "auteur": "@brutofficiel",
      "titre": "",
-     "credit": "@cnn (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T22:00:12+01:00"
     },
     {
      "ecran": 11,
@@ -973,16 +828,16 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "releve_le": "2026-11-25T22:00:12+01:00"
     },
     {
      "ecran": 12,
-     "page": "https://www.tiktok.com/@brutofficiel/video/7711807420770618646",
+     "page": "https://www.tiktok.com/@bfmtv/video/7711738124463770902",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@brutofficiel",
+     "auteur": "@bfmtv",
      "titre": "",
-     "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "credit": "@bfmtv (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T22:00:12+01:00"
     },
     {
      "ecran": 13,
@@ -991,16 +846,16 @@
      "auteur": "@bfmtv",
      "titre": "",
      "credit": "@bfmtv (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "releve_le": "2026-11-25T22:00:12+01:00"
     },
     {
      "ecran": 14,
-     "page": "https://www.tiktok.com/@bfmtv/video/7711738124463770902",
+     "page": "https://www.tiktok.com/@franceinfo/video/7711776280454139158",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@bfmtv",
+     "auteur": "@franceinfo",
      "titre": "",
-     "credit": "@bfmtv (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "credit": "@franceinfo (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T22:00:12+01:00"
     },
     {
      "ecran": 15,
@@ -1009,44 +864,28 @@
      "auteur": "@franceinfo",
      "titre": "",
      "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
-    },
-    {
-     "ecran": 16,
-     "page": "https://www.tiktok.com/@franceinfo/video/7711776280454139158",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@franceinfo",
-     "titre": "",
-     "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
-    },
-    {
-     "ecran": 17,
-     "page": "https://www.tiktok.com/@franceinfo/video/7711776280454139158",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@franceinfo",
-     "titre": "",
-     "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T17:13:13+01:00"
+     "releve_le": "2026-11-25T22:00:12+01:00"
     }
    ],
    "couverture_ms": 800,
    "durees": {
-    "articles": 0,
-    "ecriture": 708,
-    "texte": 255,
-    "voix": 92,
-    "images": 269,
-    "controle_images": 4,
-    "montage": 127,
-    "controle_final": 839,
+    "texte": 35,
+    "images": 2,
+    "controle_images": 6,
+    "voix": 68,
+    "montage": 134,
+    "controle_final": 881,
     "extraits": 0,
-    "regles": 90,
-    "rangement": 34
+    "regles": 76,
+    "rangement": 7
    },
-   "refaite": null,
+   "refaite": {
+    "de": "20261125-163311-1",
+    "etape": "texte",
+    "remarque": "phrases réduites à des nombres, titres en anglais, accroche en anglais, trop court"
+   },
    "statut": "a_verifier",
-   "reparations": 1
+   "refaite_de": "20261125-163311-1"
   },
   {
    "id": "20261125-163355-1",
