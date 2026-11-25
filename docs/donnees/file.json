@@ -894,8 +894,15 @@
     "etape": "controle",
     "remarque": "regard de l'IA sur la vidéo finie à refaire (IA saturée)"
    },
-   "statut": "a_verifier",
-   "refaite_de": "20261124-233239-1-r15"
+   "statut": "publiee",
+   "refaite_de": "20261124-233239-1-r15",
+   "publiee_le": "2026-11-25T16:14:08+01:00",
+   "buffer": {
+    "id": "6b06fb30c0142952c331d57e",
+    "compte": "buzz.insolite",
+    "quand": null,
+    "etiquette_ia": true
+   }
   }
  ]
 }

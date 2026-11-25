@@ -1,6 +1,16 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T16:14:08+01:00",
+   "niveau": "info",
+   "texte": "🚀 « CAN 2025 : Sénégal récupère le titre » envoyée sur TikTok"
+  },
+  {
+   "date": "2026-11-25T16:14:04+01:00",
+   "niveau": "info",
+   "texte": "🚀 « CAN 2025 : Sénégal récupère le titre » envoyée sur TikTok"
+  },
+  {
    "date": "2026-11-25T16:14:03+01:00",
    "niveau": "info",
    "texte": "✅ « Arrestation choquante à Seattle » ajoutée à la file de publication."
