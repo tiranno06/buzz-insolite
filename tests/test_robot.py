@@ -735,3 +735,26 @@ class TestFichiers(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestDeuxiemeAvis(unittest.TestCase):
+    def test_image_gardee_ou_ecran_de_texte(self):
+        import tempfile
+        from robot import controle, ia
+        d = tempfile.mkdtemp()
+        img = os.path.join(d, "r.jpg"); vid = os.path.join(d, "v.mp4")
+        for f in (img, vid):
+            open(f, "wb").write(b"x")
+        m = dict(type="video", chemin=vid, id="a", debut=0)
+        script = {"titre": "CAN", "phrases": [dict(ecrit="Le Sénégal gagne.", _rejetees=[dict(media=m, img=img)]),
+                                              dict(ecrit="Et toi ?")]}
+        ancien = ia.regarder_json
+        try:
+            ia.regarder_json = lambda *a, **k: ({"garder": True, "raison": "même équipe"}, "x")
+            self.assertTrue(controle.deuxieme_avis(script, 0, "CAN", journal=lambda *_: None))
+            self.assertEqual(script["phrases"][0]["media"]["chemin"], vid)
+            script["phrases"][0].pop("media")
+            ia.regarder_json = lambda *a, **k: ({"garder": False}, "x")
+            self.assertFalse(controle.deuxieme_avis(script, 0, "CAN", journal=lambda *_: None))
+        finally:
+            ia.regarder_json = ancien

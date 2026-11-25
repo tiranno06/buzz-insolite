@@ -78,7 +78,7 @@ def restaurer(v, dossier, repo):
                 m["chemin"] = nouveau
             else:
                 p.pop("media")                         # image non gardée : elle sera recherchée de nouveau
-        for k in ("mots", "son", "duree", "_sig", "_essais_image", "_voix_defaut"):
+        for k in ("mots", "son", "duree", "_sig", "_essais_image", "_voix_defaut", "_rejetees", "_garde_2e_avis"):
             p.pop(k, None)
     return script, articles, lignes
 

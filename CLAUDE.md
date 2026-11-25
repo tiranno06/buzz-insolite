@@ -143,6 +143,12 @@ d'un autre écran à un autre moment (`_image_deja_bonne`) → écran de texte s
   vidéos (PeerTube, Internet Archive). Une IA qui répond par une LISTE au lieu d'un objet faisait planter le contrôle des
   images (3 essais puis mode secours, vidéo « à vérifier ») → `ia._objet` range la liste sous les clés habituelles.
 
+- **Deuxième avis (25/11)** : l'IA des images, enfin disponible, refusait encore de bonnes images (photo d'archive de l'équipe
+  du Sénégal, manifestation antifasciste pour Franco) → CAN 11 → 7 écrans illustrés. `CONSIGNE_IMAGES` : archive / autre match /
+  autre manifestation du même thème = « sujet » ou « domaine », doute = « domaine ». Avant l'écran de texte, `deuxieme_avis`
+  remontre l'image refusée (`_rejetees`, copie `rejeteeNN-k.jpg`) avec une question large (lien même lointain) : gardée =
+  `_garde_2e_avis`, plus rejugée, problème fermé.
+
 ## Vitesse (analyse du 24/11 : vidéo GTA en 99 min, dont 86 min de voix Chatterbox)
 - Voix refaite par le contrôle final : la phrase a déjà eu 2 essais à l'étape voix, donc mots simplifiés DÈS le 1er essai,
   phrase retirée au 3e (si la vidéo reste ≥ 62 s) ; avant : jusqu'à 7 essais identiques (~1 min de Chatterbox chacun).

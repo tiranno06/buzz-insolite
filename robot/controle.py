@@ -18,6 +18,7 @@ statut « a_verifier » : jamais publiée automatiquement.
 import json
 import os
 import re
+import shutil
 import subprocess
 import urllib.request
 
@@ -252,7 +253,10 @@ dite pendant qu'elle s'affiche et le sujet de la vidéo. Réponds pour CHAQUE im
 - "rapport" : le lien entre l'image et la vidéo : "exact" (montre ce que dit la phrase), "sujet" (montre le sujet de la
   vidéo : la même personne, le même lieu, le même objet, même pour une autre partie de l'histoire — ex. un A320 en vol pour
   une phrase sur sa chaîne de montage), "domaine" (même domaine : stade et supporters pour un sujet de football) ou "aucun"
-  (rien à voir : chevaux pour une élève qui fait un malaise, paysage au hasard, autre pays, autre événement) ;
+  (rien à voir : chevaux pour une élève qui fait un malaise, paysage au hasard, sujet sans aucun lien) ;
+- une photo d'ARCHIVE ou ANCIENNE de la même personne, équipe, pays ou lieu = "sujet" ; un autre match de la même équipe,
+  une autre manifestation sur le même thème, un autre discours de la même personne = "sujet" ou "domaine", JAMAIS "aucun" ;
+- en cas de doute entre "domaine" et "aucun", choisis "domaine" : un spectateur doit pouvoir voir un lien, même lointain ;
 - "colle" : false SEULEMENT si "rapport" vaut "aucun" ;
 - "texte_etranger" : true si un texte incrusté en langue étrangère ou des sous-titres sont visibles ;
 - un logo ou un filigrane visible n'est PAS un problème : ne le signale pas ;
@@ -303,7 +307,36 @@ def _image_deja_bonne(script, i):
     return None
 
 
-def nouvelle_image(script, i, dossier, deja, journal, recherche=""):
+CONSIGNE_DEUXIEME_AVIS = """Une vidéo TikTok d'actualité n'a trouvé AUCUNE autre image pour un écran. Sans cette image, l'écran
+sera un simple fond de couleur avec du texte. On te montre l'image refusée, la phrase dite et le sujet. Question : un
+spectateur peut-il voir un lien, même lointain, entre l'image et le sujet (même personne, équipe, pays, lieu, thème, époque) ?
+Réponds "garder" : true si oui ; false seulement si l'image n'a vraiment rien à voir (ex. des chevaux pour un malaise
+d'élève) ou si elle est choquante ou trompeuse. Réponds uniquement en JSON : {"garder": true/false, "raison": "…"}"""
+
+
+def deuxieme_avis(script, i, sujet, journal=print):
+    """Dernier recours avant l'écran de texte : l'image refusée la plus récente est montrée de nouveau à une IA avec une
+    question plus large (lien même lointain). Si elle est gardée, l'écran garde une vraie image. Renvoie True si gardée."""
+    p = script["phrases"][i]
+    for r in reversed(p.get("_rejetees") or []):
+        m, img = r.get("media") or {}, r.get("img")
+        if not img or not os.path.exists(img) or not m.get("chemin") or not os.path.exists(m["chemin"]):
+            continue
+        if any(q is not p and (q.get("media") or {}).get("chemin") == m["chemin"]
+               and (q.get("media") or {}).get("debut", 0) == m.get("debut", 0) for q in script["phrases"]):
+            continue                                       # déjà montrée ailleurs : jamais de doublon
+        try:
+            d, _ = ia.regarder_json(CONSIGNE_DEUXIEME_AVIS, f"SUJET : {sujet}\nPHRASE : « {p['ecrit']} »", [img], journal=journal)
+        except ia.AucuneIA:
+            return False
+        if d.get("garder") is True:
+            p["media"] = m; p["_garde_2e_avis"] = True; p["_valide"] = True
+            journal(f"    écran {i + 1} : image gardée après un 2e avis ({str(d.get('raison') or '')[:60]})")
+            return True
+    return False
+
+
+def nouvelle_image(script, i, dossier, deja, journal, recherche="", sujet=""):
     """Échelle de solutions pour une image fautive (demande de l'auteur du 24/11 : plus jamais une vidéo sans images) :
     1) recherche proposée par l'IA ; 2) vraies vidéos libres de ce dont parle la phrase ; 3) passages de réserve des vidéos du
     sujet ; 4) le thème général du sujet ; 5) une vraie image déjà acceptée sur un autre écran (autre moment de la vidéo) ;
@@ -343,9 +376,11 @@ def nouvelle_image(script, i, dossier, deja, journal, recherche=""):
         p["media"] = m
         return quoi
     if n >= 5:
+        if deuxieme_avis(script, i, sujet or script.get("titre", ""), journal):
+            return "image refusée gardée après un 2e avis (lien avec le sujet confirmé)"
         p["media"] = None
-        return "écran de texte (aucune image dans toute la vidéo)"
-    return nouvelle_image(script, i, dossier, deja, journal, recherche)       # solution suivante tout de suite
+        return "écran de texte (aucune autre image trouvée)"
+    return nouvelle_image(script, i, dossier, deja, journal, recherche, sujet)       # solution suivante tout de suite
 
 
 def part_illustree(script):
@@ -390,6 +425,8 @@ def controle_images(script, dossier, B, journal=print, deja=None, sujet="", sans
         for i, a in avis.items():
             rapport = str(a.get("rapport") or "").lower()
             hors_sujet = rapport == "aucun" or (not rapport and a.get("colle") is False)   # « autre aspect du sujet » = bon
+            if script["phrases"][i].get("_garde_2e_avis") and not a.get("texte_etranger"):
+                continue                                   # déjà jugée deux fois : gardée (sinon boucle sans fin)
             if hors_sujet or a.get("texte_etranger"):
                 fautifs[i] = (a.get("probleme") or "image qui ne colle pas", a.get("recherche") or "")
         for i, _, _ in lots:                               # validée par l'IA : peut servir sur un autre écran
@@ -403,9 +440,17 @@ def controle_images(script, dossier, B, journal=print, deja=None, sujet="", sans
             break
         journal(f"  contrôle des images (tour {tour + 1}) : {len(fautifs)} écran(s) à changer : "
                 + ", ".join(f"écran {i + 1} ({str(pb)[:50]})" for i, (pb, _) in fautifs.items()))
+        images_lues = {i: img for i, img, _ in lots}
         for i, (probleme, recherche) in fautifs.items():
+            p = script["phrases"][i]
+            if p.get("media") and i in images_lues:         # gardée en mémoire pour un éventuel 2e avis
+                copie = os.path.join(dossier, f"rejetee{i:02d}-{len(p.get('_rejetees') or [])}.jpg")
+                shutil.copyfile(images_lues[i], copie)       # l'image du contrôle est réécrite au tour suivant
+                p.setdefault("_rejetees", []).append(dict(media=p["media"], img=copie))
             l = B.ouvrir("images", probleme, uid(script, i))
-            l["solution"] = nouvelle_image(script, i, dossier, deja, journal, recherche)
+            l["solution"] = nouvelle_image(script, i, dossier, deja, journal, recherche, sujet)
+            if p.get("_garde_2e_avis"):
+                B.fermer("images", uid(script, i))
     illustres, total = part_illustree(script)              # une vidéo presque sans images n'a JAMAIS 100/100
     journal(f"  écrans illustrés : {illustres}/{total}")
     if total and illustres < 0.7 * total:
