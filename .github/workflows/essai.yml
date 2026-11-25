@@ -1,0 +1,66 @@
+name: Essai complet de la nuit
+run-name: "Essai de la nuit"
+# Amélioration 16 du 25/11 : chaque maillon de la fabrication est essayé pour de vrai chaque nuit (sans publier ni ajouter
+# de vidéo), pour trouver une panne AVANT les vraies vidéos. Résultat dans l'onglet 🩺 Santé.
+on:
+  schedule:
+    - cron: "47 1 * * *"         # 02 h 47 à Paris l'hiver, avant la santé de 04 h 17
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: essai-nuit
+  cancel-in-progress: false
+jobs:
+  essai:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - uses: astral-sh/setup-uv@v6   # installation des outils bien plus rapide (amélioration 12 du 25/11)
+      - name: Retrouver ffmpeg, voix et Whisper déjà téléchargés
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/paquets-ffmpeg
+            ~/.cache/buzz-insolite
+            ~/.cache/buzz-modeles
+          key: outils-v1-${{ hashFiles('requirements.txt') }}
+      - name: Installer ffmpeg
+        timeout-minutes: 25
+        run: bash outils/installer_ffmpeg.sh
+      - name: Installer les bibliothèques
+        run: uv pip install --system -q -r requirements.txt || pip install -q -r requirements.txt
+      - name: Installer yt-dlp et deno (vraies vidéos du sujet sous licence libre, YouTube Creative Commons)
+        run: uv pip install --system -q -U "yt-dlp[default]" || pip install -q -U yt-dlp
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Retrouver la voix d'homme déjà installée (Chatterbox et son modèle)
+        id: cache-chatterbox
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/venv-chatterbox
+            ~/.cache/huggingface
+          key: chatterbox-v1-py312-0.1.7
+      - name: Installer la voix d'homme (Chatterbox, espace à part)
+        if: steps.cache-chatterbox.outputs.cache-hit != 'true'
+        timeout-minutes: 25
+        run: |
+          python -m venv ~/venv-chatterbox
+          ~/venv-chatterbox/bin/pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          ~/venv-chatterbox/bin/pip install -q chatterbox-tts==0.1.7
+          ~/venv-chatterbox/bin/python -c "from chatterbox.mtl_tts import ChatterboxMultilingualTTS as M; M.from_pretrained(device='cpu')"
+      - name: Essayer chaque maillon
+        run: python -m robot.essai_nuit

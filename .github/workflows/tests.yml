@@ -3,6 +3,7 @@ name: Tests
 on:
   push:
     paths: ["robot/**", "tests/**", "docs/index.html", ".github/workflows/**"]
+  pull_request:                  # mises à jour proposées par Dependabot : testées avant d'être acceptées
   workflow_dispatch:
 
 permissions:
@@ -21,6 +22,6 @@ jobs:
       - name: Installer ffmpeg
         run: bash outils/installer_ffmpeg.sh
       - name: Installer les bibliothèques
-        run: uv pip install --system -q Pillow pyyaml || pip install -q Pillow pyyaml
+        run: uv pip install --system -q -r requirements.txt pyyaml || pip install -q -r requirements.txt pyyaml
       - name: Tests (aucun appel réseau ni IA)
         run: python -m unittest discover -s tests -v
