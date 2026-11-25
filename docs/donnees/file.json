@@ -1,9 +1,9 @@
 {
  "videos": [
   {
-   "id": "20261124-233239-1-r11",
-   "tag": "v-20261124-233239-1-r11",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r11/buzz-20261124-233239-1-r11.mp4",
+   "id": "20261124-233239-1-r12",
+   "tag": "v-20261124-233239-1-r12",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233239-1-r12/buzz-20261124-233239-1-r12.mp4",
    "titre": "CAN 2025 : TAS redonne titre",
    "accroche": "TAS REND LA VICTOIRE",
    "sujet_id": "af2b8dfec2",
@@ -23,7 +23,7 @@
     "#actu",
     "#buzz"
    ],
-   "duree": 69.9,
+   "duree": 66.4,
    "sources": [
     {
      "media": "linternaute.com",
@@ -80,11 +80,13 @@
     "@aljazeeraenglish (TikTok, extrait cité)",
     "@bfmtv (TikTok, extrait cité)",
     "@brutofficiel (TikTok, extrait cité)",
-    "@franceinfo (TikTok, extrait cité)"
+    "@franceinfo (TikTok, extrait cité)",
+    "Carte : Natural Earth, OpenStreetMap"
    ],
    "extraits_perdus": 0,
-   "ecrans_illustres": 13,
-   "ecrans_total": 13,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 12,
+   "ecrans_total": 12,
    "format": "buzz",
    "voix": "chatterbox-bernard",
    "lieu": "Rabat, Maroc",
@@ -92,52 +94,57 @@
    "categorie": "",
    "texte": [
     "Le tribunal a redonné la coupe au Sénégal !",
-    "La finale s’est jouée le 18 janvier 2026 à Rabat.",
-    "Sur le terrain, le Sénégal menait 1‑0 grâce à Pape Gueye en prolongation.",
+    "La finale s’est jouée le 18 janvier à Rabat.",
+    "Sur le terrain, le Sénégal menait 1-0 grâce à Pape Gueye en prolongation.",
     "Avant ce but, les joueurs sénégalais ont quitté le gazon pour protester contre un penalty contesté.",
     "Le penalty a été tiré par Brahim Diaz, qui l’a manqué.",
-    "Après la confusion, le match s’est terminé 1‑0, mais la CAF a ensuite déclaré un forfait 3‑0 en faveur du Maroc.",
-    "Cette sanction a été prise le 17 mars 2026, invoquant les articles 82 et 84 du règlement.",
+    "Après la confusion, le match s’est terminé 1-0, mais la CAF a ensuite déclaré un forfait 3-0 en faveur du Maroc.",
+    "Cette sanction a été prise, invoquant les articles 82 et 84 du règlement.",
     "La FSF a contesté cette décision devant le Tribunal arbitral du sport à Lausanne.",
-    "Le mardi 24 novembre 2026, le TAS a rendu son verdict à l’unanimité.",
-    "Le tribunal a annulé le forfait et a rétabli la victoire 1‑0 du Sénégal.",
+    "Le mardi 24 novembre, le TAS a rendu son verdict à l’unanimité.",
+    "Le tribunal a annulé le forfait et a rétabli la victoire 1-0 du Sénégal.",
     "Abdoulaye Fall, président de la fédération sénégalaise, a dédié la deuxième étoile à Aïda Faye Samb.",
     "La CAF a déclaré respecter la décision du TAS et prendre toutes les mesures nécessaires.",
     "Le Maroc peut encore faire appel de cette décision devant le Tribunal fédéral suisse.",
-    "Et toi, que penses‑tu de ce revirement judiciaire ? Dis‑le en commentaire !"
+    "Et toi, que penses-tu de ce revirement judiciaire ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T12:51:31+01:00",
+   "cree_le": "2026-11-25T13:14:09+01:00",
    "ia_quotas": {
+    "gemini": {
+     "appels": 3,
+     "refus": 7,
+     "erreurs": 3
+    },
     "mistral": {
      "appels": 0,
      "refus": 0,
-     "erreurs": 12,
+     "erreurs": 11,
      "restant_minute": "0"
     },
     "groq": {
      "appels": 3,
-     "refus": 2,
-     "erreurs": 1,
+     "refus": 0,
+     "erreurs": 3,
      "restant_demandes": "997",
      "limite_demandes": "1000",
-     "restant_mots": "2957"
+     "restant_mots": "6881"
     },
-    "gemini": {
-     "appels": 23,
-     "refus": 45,
-     "erreurs": 3
+    "openrouter": {
+     "appels": 2,
+     "refus": 8,
+     "erreurs": 0
     }
    },
-   "fabrication_s": 1323,
+   "fabrication_s": 1091,
    "controles": {
     "note": 100,
     "lignes": [
      {
       "niveau": "video",
-      "ecran": 18,
+      "ecran": 23,
       "gravite": "moyen",
-      "probleme": "sous-titres originaux illisibles",
+      "probleme": "Sous-titres blancs peu lisibles sous le bandeau noir et sources en bas très serrées.",
       "corrige": true,
       "essais": 1,
       "solution": "titre retiré"
@@ -146,7 +153,7 @@
       "niveau": "video",
       "ecran": 17,
       "gravite": "moyen",
-      "probleme": "sous-titres originaux illisibles",
+      "probleme": "sous-titres en bas superposés et illisibles",
       "corrige": true,
       "essais": 1,
       "solution": "titre retiré"
@@ -155,32 +162,23 @@
       "niveau": "video",
       "ecran": 16,
       "gravite": "moyen",
-      "probleme": "titre avec caractères corrompus (1X0)",
+      "probleme": "sous-titres en bas illisibles et se superposent",
       "corrige": true,
       "essais": 1,
       "solution": "titre raccourci"
      },
      {
       "niveau": "video",
-      "ecran": 15,
-      "gravite": "moyen",
-      "probleme": "Le sous-titre en bas chevauche les crédits et est illisible",
-      "corrige": true,
-      "essais": 2,
-      "solution": "titre retiré"
-     },
-     {
-      "niveau": "video",
       "ecran": 14,
       "gravite": "moyen",
-      "probleme": "sous-titres originaux illisibles sous le bandeau noir",
+      "probleme": "sous-titres en bas chevauchent l'image et sont illisibles",
       "corrige": true,
       "essais": 1,
       "solution": "titre retiré"
      }
     ],
     "sautes": [],
-    "corriges": 5,
+    "corriges": 4,
     "restants": 0,
     "graves_restants": 0
    },
@@ -193,16 +191,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T12:51:31+01:00"
-    },
-    {
-     "ecran": 2,
-     "page": "https://www.tiktok.com/@aljazeeraenglish/video/7711946839339191583",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@aljazeeraenglish",
-     "titre": "",
-     "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T12:51:31+01:00"
+     "releve_le": "2026-11-25T13:14:09+01:00"
     },
     {
      "ecran": 3,
@@ -211,7 +200,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T12:51:31+01:00"
+     "releve_le": "2026-11-25T13:14:09+01:00"
     },
     {
      "ecran": 4,
@@ -220,7 +209,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T12:51:31+01:00"
+     "releve_le": "2026-11-25T13:14:09+01:00"
     },
     {
      "ecran": 5,
@@ -229,7 +218,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T12:51:31+01:00"
+     "releve_le": "2026-11-25T13:14:09+01:00"
     },
     {
      "ecran": 6,
@@ -238,7 +227,7 @@
      "auteur": "@aljazeeraenglish",
      "titre": "",
      "credit": "@aljazeeraenglish (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T12:51:31+01:00"
+     "releve_le": "2026-11-25T13:14:09+01:00"
     },
     {
      "ecran": 7,
@@ -247,7 +236,7 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T12:51:31+01:00"
+     "releve_le": "2026-11-25T13:14:09+01:00"
     },
     {
      "ecran": 8,
@@ -256,7 +245,7 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T12:51:31+01:00"
+     "releve_le": "2026-11-25T13:14:09+01:00"
     },
     {
      "ecran": 9,
@@ -265,7 +254,7 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T12:51:31+01:00"
+     "releve_le": "2026-11-25T13:14:09+01:00"
     },
     {
      "ecran": 10,
@@ -274,7 +263,7 @@
      "auteur": "@franceinfo",
      "titre": "",
      "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T12:51:31+01:00"
+     "releve_le": "2026-11-25T13:14:09+01:00"
     },
     {
      "ecran": 11,
@@ -283,7 +272,7 @@
      "auteur": "@franceinfo",
      "titre": "",
      "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T12:51:31+01:00"
+     "releve_le": "2026-11-25T13:14:09+01:00"
     },
     {
      "ecran": 12,
@@ -292,7 +281,7 @@
      "auteur": "@bfmtv",
      "titre": "",
      "credit": "@bfmtv (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T12:51:31+01:00"
+     "releve_le": "2026-11-25T13:14:09+01:00"
     },
     {
      "ecran": 13,
@@ -301,27 +290,27 @@
      "auteur": "@bfmtv",
      "titre": "",
      "credit": "@bfmtv (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T12:51:31+01:00"
+     "releve_le": "2026-11-25T13:14:09+01:00"
     }
    ],
-   "couverture_ms": 6581,
+   "couverture_ms": 5839,
    "durees": {
-    "texte": 59,
-    "voix": 454,
-    "images": 604,
+    "voix": 0,
+    "images": 11,
     "controle_images": 4,
-    "montage": 147,
-    "controle_final": 486,
+    "montage": 183,
+    "controle_final": 557,
     "extraits": 0,
-    "rangement": 10
+    "regles": 316,
+    "rangement": 9
    },
    "refaite": {
-    "de": "20261124-233239-1-r10",
-    "etape": "texte",
-    "remarque": "la finale de la CAN 2025 a eu lieu le 18 janvier 2026 (pas 2025) : vérifier la date dans les articles ; garder le maximum d'extraits vidéo de l'événement"
+    "de": "20261124-233239-1-r11",
+    "etape": "controle",
+    "remarque": "titres 1-0 et 3-0 affichés avec un carré (tiret que la police n'a pas)"
    },
    "statut": "nouvelle",
-   "refaite_de": "20261124-233239-1-r10"
+   "refaite_de": "20261124-233239-1-r11"
   }
  ]
 }
