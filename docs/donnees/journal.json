@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-25T20:55:48+01:00",
+   "niveau": "attention",
+   "texte": "🩺 Santé du robot : ⚠️ En panne : mistral, openrouter"
+  },
+  {
    "date": "2026-11-25T20:51:38+01:00",
    "niveau": "attention",
    "texte": "🩺 Santé du robot : ⚠️ En panne : mistral, openrouter"

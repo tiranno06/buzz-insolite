@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-25T20:51:37+01:00",
+ "maj": "2026-11-25T20:55:46+01:00",
  "ia": [
   {
    "nom": "mistral",
@@ -95,17 +95,17 @@
   "foxnews": 0
  },
  "durees": {
+  "extraits": 0,
+  "texte": 136,
   "controle_final": 514,
   "voix": 161,
-  "controle_images": 242,
   "montage": 136,
-  "extraits": 0,
-  "articles": 0,
+  "images": 175,
   "ecriture": 186,
   "regles": 30,
-  "texte": 136,
+  "controle_images": 242,
+  "articles": 0,
   "rangement": 33,
-  "images": 175,
   "total": 1552
  },
  "creations_24h": {
