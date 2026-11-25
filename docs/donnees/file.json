@@ -1,6 +1,317 @@
 {
  "videos": [
   {
+   "id": "20261125-140606-2",
+   "tag": "v-20261125-140606-2",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-140606-2/buzz-20261125-140606-2.mp4",
+   "titre": "Arrestation choquante à Seattle",
+   "accroche": "CHOC À SEATTLE",
+   "sujet_id": "575a12c120",
+   "sujet": "États-Unis : arrestation passagers à l’aéroport de Seattle",
+   "buzz": {
+    "vues": 9500000,
+    "jaime": 133000,
+    "commentaires": 3669,
+    "score": 824
+   },
+   "description": "🚨 Une vidéo virale montre l'ICE arrêter deux passagers à Seattle. Découvre les détails.",
+   "question": "Et toi, que penses-tu de ces arrestations ? Dis-le en commentaire !",
+   "hashtags": [
+    "#seattle",
+    "#ice",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 67.7,
+   "sources": [
+    {
+     "media": "franceinfo.fr",
+     "titre": "Une police de l'immigration \"hors de contrôle\" : aux États-Unis, une arrestation dans un aéroport relance la polémique sur les méthodes de l'ICE",
+     "lien": "https://www.franceinfo.fr/replay-radio/d-un-monde-a-l-autre/une-police-de-l-immigration-hors-de-controle-aux-etats-unis-une-arrestation-dans-un-aeroport-relance-la-polemique-sur-les-methodes-de-l-ice_8273897.html"
+    },
+    {
+     "media": "lefigaro.fr",
+     "titre": "États-Unis : l'ICE est «hors de contrôle», estime un gouverneur démocrate",
+     "lien": "https://www.lefigaro.fr/international/etats-unis-l-ice-est-hors-de-controle-estime-un-gouverneur-democrate-20261122"
+    },
+    {
+     "media": "fr.news.yahoo.com",
+     "titre": "Aux États-Unis, ces deux nouvelles arrestations de l’ICE suscitent un tollé et une vive émotion",
+     "lien": "https://fr.news.yahoo.com/sport/%C3%A9tats-unis-deux-nouvelles-arrestations-131601103.html"
+    },
+    {
+     "media": "cnn.com",
+     "titre": "Lawyer: Father and daughter detained by ICE at Seattle airport were traveling to family baptism",
+     "lien": "https://www.cnn.com/2026/11/22/us/seattle-airport-ice-arrests"
+    },
+    {
+     "media": "ledauphine.com",
+     "titre": "États-Unis À Seattle, l’ICE de nouveau critiquée après la violente arrestation de deux personnes",
+     "lien": "https://www.ledauphine.com/societe/2026/11/23/a-seattle-l-ice-de-nouveau-critiquee-apres-la-violente-arrestation-de-deux-personnes"
+    },
+    {
+     "media": "msn.com",
+     "titre": "États-Unis : l'ICE à nouveau sous le feu des critiques après une arrestation musclée à Seattle",
+     "lien": "https://www.msn.com/fr-fr/actualite/france/%C3%A9tats-unis-lice-%C3%A0-nouveau-sous-le-feu-des-critiques-apr%C3%A8s-une-arrestation-muscl%C3%A9e-%C3%A0-seattle/ar-AA2hZ7T7"
+    }
+   ],
+   "verification": {
+    "par": "groq:openai/gpt-oss-120b",
+    "corrigees": 4,
+    "retirees": 0,
+    "problemes": [
+     "Les articles indiquent seulement que son visa n'est plus valable / a dépassé la durée de validité, sans préciser « depuis plusieurs mois ».",
+     "Utilisation du nom d'une personne détenue, ce qui contrevient aux règles de ne pas nommer les victimes",
+     "Utilisation du nom d'une personne détenue, ce qui contrevient aux règles de ne pas nommer les victimes",
+     "Utilisation du nom d'une personne détenue, ce qui contrevient aux règles de ne pas nommer les victimes"
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "@cbsnews (TikTok, extrait cité)",
+    "@leparisien (TikTok, extrait cité)",
+    "@nytimes (TikTok, extrait cité)",
+    "@washingtonpost (TikTok, extrait cité)"
+   ],
+   "extraits_perdus": 0,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 14,
+   "ecrans_total": 14,
+   "format": "buzz",
+   "voix": "chatterbox-bernard",
+   "lieu": "",
+   "humeur": "tension",
+   "categorie": "actualite",
+   "texte": [
+    "Une arrestation choc à l'aéroport de Seattle !",
+    "Samedi 21 novembre, des agents ont saisi deux passagers sur la passerelle d'embarquement.",
+    "Le père et sa fille ont été arrêtés.",
+    "Les officiers portaient des masques noirs, ce qui pourrait enfreindre la loi de l'État sur la dissimulation du visage.",
+    "Le père est un ressortissant mexicain dont le visa n'était plus valable.",
+    "La fille, également en situation irrégulière, a jeté un café chaud sur un agent, entraînant une accusation d'agression.",
+    "Ils prenaient un vol Alaska Airlines à destination de Los Angeles pour assister à un baptême en Californie.",
+    "Le décollage a été retardé à cause de l'intervention des forces de l'immigration.",
+    "Les passagers ont filmé la scène, la vidéo ayant recueilli des millions de vues sur les réseaux sociaux.",
+    "Le gouverneur Bob Ferguson a qualifié l'ICE de complètement hors de contrôle.",
+    "Le Port de Seattle a déclaré être révolté par l'usage de la force sur la passerelle.",
+    "Alaska Airlines a indiqué être préoccupée mais n'intervient pas dans les contrôles d'immigration.",
+    "L'ICE a affirmé mener une opération ciblée contre un étranger en situation irrégulière.",
+    "Le père et la fille sont maintenant détenus au centre de traitement de l'ICE à Tacoma.",
+    "Et toi, que penses-tu de ces arrestations ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-25T14:33:21+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 17,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 4,
+     "refus": 3,
+     "erreurs": 3,
+     "restant_demandes": "996",
+     "limite_demandes": "1000",
+     "restant_mots": "2186"
+    },
+    "gemini": {
+     "appels": 13,
+     "refus": 26,
+     "erreurs": 5
+    },
+    "openrouter": {
+     "appels": 1,
+     "refus": 2,
+     "erreurs": 0
+    }
+   },
+   "fabrication_s": 1635,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "video",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "sous-titres superposés illisibles",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "sous-titre chevauche et illisible au milieu",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "Sous-titres partiellement masqués ou se chevauchent en bas",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     }
+    ],
+    "sautes": [],
+    "corriges": 3,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "preuves": [
+    {
+     "ecran": 1,
+     "page": "https://www.tiktok.com/@nytimes/video/7711127723879582989",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@nytimes",
+     "titre": "",
+     "credit": "@nytimes (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    },
+    {
+     "ecran": 2,
+     "page": "https://www.tiktok.com/@nytimes/video/7711127723879582989",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@nytimes",
+     "titre": "",
+     "credit": "@nytimes (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://www.tiktok.com/@leparisien/video/7711334840968236320",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@leparisien",
+     "titre": "",
+     "credit": "@leparisien (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://www.tiktok.com/@leparisien/video/7711334840968236320",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@leparisien",
+     "titre": "",
+     "credit": "@leparisien (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711826610587979021",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711826610587979021",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://www.tiktok.com/@washingtonpost/video/7711505610545597710",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@washingtonpost",
+     "titre": "",
+     "credit": "@washingtonpost (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://www.tiktok.com/@leparisien/video/7711334840968236320",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@leparisien",
+     "titre": "",
+     "credit": "@leparisien (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    },
+    {
+     "ecran": 9,
+     "page": "https://www.tiktok.com/@leparisien/video/7711334840968236320",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@leparisien",
+     "titre": "",
+     "credit": "@leparisien (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    },
+    {
+     "ecran": 10,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711826610587979021",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://www.tiktok.com/@cbsnews/video/7711826610587979021",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cbsnews",
+     "titre": "",
+     "credit": "@cbsnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://www.tiktok.com/@washingtonpost/video/7711505610545597710",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@washingtonpost",
+     "titre": "",
+     "credit": "@washingtonpost (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    },
+    {
+     "ecran": 13,
+     "page": "https://www.tiktok.com/@washingtonpost/video/7711505610545597710",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@washingtonpost",
+     "titre": "",
+     "credit": "@washingtonpost (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    },
+    {
+     "ecran": 14,
+     "page": "https://www.tiktok.com/@leparisien/video/7711334840968236320",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@leparisien",
+     "titre": "",
+     "credit": "@leparisien (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T14:33:21+01:00"
+    }
+   ],
+   "couverture_ms": 4527,
+   "durees": {
+    "articles": 0,
+    "ecriture": 10,
+    "texte": 38,
+    "images": 439,
+    "controle_images": 8,
+    "voix": 859,
+    "montage": 185,
+    "controle_final": 520,
+    "extraits": 0,
+    "regles": 0,
+    "rangement": 7
+   },
+   "refaite": null,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261125-140715-1",
    "tag": "v-20261125-140715-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-140715-1/buzz-20261125-140715-1.mp4",
