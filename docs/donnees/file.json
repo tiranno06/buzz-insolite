@@ -445,9 +445,9 @@
    "refaite_de": "20261124-233208-1"
   },
   {
-   "id": "20261124-233244-1-r1",
-   "tag": "v-20261124-233244-1-r1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233244-1-r1/buzz-20261124-233244-1-r1.mp4",
+   "id": "20261124-233244-1-r2",
+   "tag": "v-20261124-233244-1-r2",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261124-233244-1-r2/buzz-20261124-233244-1-r2.mp4",
    "titre": "Macron et l'A320 : un futur qui décolle",
    "accroche": "FRANCE EN VOL",
    "sujet_id": "67ccec0235",
@@ -519,9 +519,9 @@
    "credits": [
     "Abujoy / Wikimedia Commons, CC BY 4.0",
     "Carte : Natural Earth, OpenStreetMap",
-    "Matti Blume / Wikimedia Commons, CC BY-SA 4.0"
+    "Wikipédia, article « Airbus A320 »"
    ],
-   "ecrans_illustres": 4,
+   "ecrans_illustres": 3,
    "ecrans_total": 12,
    "format": "buzz",
    "voix": "chatterbox-bernard",
@@ -545,52 +545,52 @@
     "Prêt à voler sur l’A320 du futur ?"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T02:22:55+01:00",
-   "fabrication_s": 4326,
+   "cree_le": "2026-11-25T02:45:27+01:00",
+   "fabrication_s": 1125,
    "controles": {
-    "note": 0,
+    "note": 55,
     "lignes": [
      {
       "niveau": "images",
       "ecran": 19,
       "gravite": "moyen",
-      "probleme": "Image d'un avion en vol, pas d'usine ou d'assemblage A320",
-      "corrige": false,
-      "essais": 5,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 20,
-      "gravite": "moyen",
-      "probleme": "Image d'un avion en vol, pas de station d'assemblage",
-      "corrige": false,
-      "essais": 5,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 21,
-      "gravite": "moyen",
-      "probleme": "Image montre un avion en vol, pas de données de production",
+      "probleme": "Image montre un avion en vol, pas une usine ou hall d'assemblage",
       "corrige": true,
       "essais": 4,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
+      "ecran": 20,
+      "gravite": "moyen",
+      "probleme": "Image montre des avions au sol, pas une station d'assemblage d'ailes",
+      "corrige": true,
+      "essais": 4,
+      "solution": "vraie image d'un autre écran, à un autre moment"
+     },
+     {
+      "niveau": "images",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "image illisible (media84.jpg : )",
+      "corrige": true,
+      "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
       "ecran": 22,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "image illisible (media85.jpg : )",
       "corrige": true,
-      "essais": 2,
-      "solution": "vraie vidéo de « Airbus A350F »"
+      "essais": 4,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
       "ecran": 23,
       "gravite": "moyen",
-      "probleme": "Image montre un avion en vol, pas de lien avec les aides financières",
+      "probleme": "Image montre un avion en vol, pas lié aux aides financières",
       "corrige": true,
       "essais": 4,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -599,10 +599,10 @@
       "niveau": "images",
       "ecran": 24,
       "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "image illisible (media87.jpg : )",
       "corrige": true,
       "essais": 3,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
@@ -611,22 +611,22 @@
       "probleme": "écran presque noir",
       "corrige": true,
       "essais": 3,
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 30,
+      "gravite": "moyen",
+      "probleme": "image illisible (media92.jpg : )",
+      "corrige": true,
+      "essais": 2,
       "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 26,
       "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
-      "essais": 3,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 30,
-      "gravite": "moyen",
-      "probleme": "Image trop générique, pas spécifique à l'événement",
+      "probleme": "No relation to aeronautics workforce",
       "corrige": true,
       "essais": 3,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
@@ -635,87 +635,51 @@
       "niveau": "images",
       "ecran": 27,
       "gravite": "moyen",
-      "probleme": "Pas lié aux emplois ou recrutements, image trop générique",
+      "probleme": "image illisible (media90.jpg : )",
       "corrige": true,
-      "essais": 3,
+      "essais": 2,
       "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": 28,
       "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": true,
+      "probleme": "image illisible (media91.jpg : )",
+      "corrige": false,
       "essais": 3,
-      "solution": "vraie image d'un autre écran, à un autre moment"
+      "solution": "écran de texte (aucune image dans toute la vidéo)"
      },
      {
       "niveau": "images",
       "ecran": 17,
       "gravite": "moyen",
-      "probleme": "image illisible",
-      "corrige": false,
-      "essais": 3,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 22,
-      "gravite": "moyen",
-      "probleme": "image illisible",
+      "probleme": "image illisible (media50.jpg : )",
       "corrige": false,
       "essais": 2,
+      "solution": "image du thème (« airplane assembly factory »)"
+     },
+     {
+      "niveau": "images",
+      "ecran": 27,
+      "gravite": "moyen",
+      "probleme": "Image montre un avion en vol, pas lié aux emplois ou recrutements",
+      "corrige": true,
+      "essais": 1,
       "solution": "écran de texte (aucune image dans toute la vidéo)"
-     },
-     {
-      "niveau": "images",
-      "ecran": 24,
-      "gravite": "moyen",
-      "probleme": "Image d'un avion en vol, pas de technologie ou économie carburant",
-      "corrige": false,
-      "essais": 1,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 25,
-      "gravite": "moyen",
-      "probleme": "Image d'un avion en vol, pas d'ouvriers ou usine",
-      "corrige": false,
-      "essais": 1,
-      "solution": "vraie image d'un autre écran, à un autre moment"
-     },
-     {
-      "niveau": "images",
-      "ecran": 26,
-      "gravite": "moyen",
-      "probleme": "Image d'un avion en vol, pas de profils ou recrutement aéronautique",
-      "corrige": false,
-      "essais": 1,
-      "solution": "vraie image d'un autre écran, à un autre moment"
      },
      {
       "niveau": "images",
       "ecran": null,
       "gravite": "grave",
-      "probleme": "trop peu d'images : 5 écran(s) illustré(s) sur 12",
+      "probleme": "trop peu d'images : 3 écran(s) illustré(s) sur 12",
       "corrige": false,
       "essais": 1
-     },
-     {
-      "niveau": "video",
-      "ecran": 25,
-      "gravite": "moyen",
-      "probleme": "texte mal placé",
-      "corrige": false,
-      "essais": 12,
-      "solution": "écran de texte (aucune image dans toute la vidéo)"
      }
     ],
     "sautes": [],
-    "corriges": 9,
-    "restants": 9,
-    "graves_restants": 9
+    "corriges": 11,
+    "restants": 3,
+    "graves_restants": 3
    },
    "reprises": 0,
    "preuves": [
@@ -726,52 +690,43 @@
      "auteur": "Abujoy",
      "titre": "",
      "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
-     "releve_le": "2026-11-25T02:22:55+01:00"
+     "releve_le": "2026-11-25T02:45:27+01:00"
     },
     {
-     "ecran": 10,
+     "ecran": 4,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AAirbus_A320_family.JPG",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Airbus A320 »",
+     "releve_le": "2026-11-25T02:45:27+01:00"
+    },
+    {
+     "ecran": 13,
      "page": "https://commons.wikimedia.org/?curid=83395803",
      "licence": "CC BY 4.0",
      "auteur": "Abujoy",
      "titre": "",
      "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
-     "releve_le": "2026-11-25T02:22:55+01:00"
-    },
-    {
-     "ecran": 11,
-     "page": "https://commons.wikimedia.org/?curid=79865480",
-     "licence": "CC BY-SA 4.0",
-     "auteur": "Matti Blume",
-     "titre": "",
-     "credit": "Matti Blume / Wikimedia Commons, CC BY-SA 4.0",
-     "releve_le": "2026-11-25T02:22:55+01:00"
-    },
-    {
-     "ecran": 12,
-     "page": "https://commons.wikimedia.org/?curid=83395803",
-     "licence": "CC BY 4.0",
-     "auteur": "Abujoy",
-     "titre": "",
-     "credit": "Abujoy / Wikimedia Commons, CC BY 4.0",
-     "releve_le": "2026-11-25T02:22:55+01:00"
+     "releve_le": "2026-11-25T02:45:27+01:00"
     }
    ],
-   "couverture_ms": 45905,
+   "couverture_ms": 13895,
    "durees": {
     "voix": 0,
-    "images": 297,
-    "controle_images": 1112,
-    "montage": 77,
-    "controle_final": 2823,
-    "rangement": 7
+    "images": 179,
+    "controle_images": 698,
+    "montage": 56,
+    "controle_final": 177,
+    "rangement": 6
    },
    "refaite": {
-    "de": "20261124-233244-1",
+    "de": "20261124-233244-1-r1",
     "etape": "images",
-    "remarque": "Scènes de 5 à 10 s en vraies vidéos de toutes les sources, sans doublon"
+    "remarque": "Il faut des scènes de vraies vidéos de 5 à 10 s"
    },
    "statut": "a_verifier",
-   "refaite_de": "20261124-233244-1"
+   "refaite_de": "20261124-233244-1-r1"
   },
   {
    "id": "20261124-233157-1-r2",
