@@ -1,6 +1,359 @@
 {
  "videos": [
   {
+   "id": "20261125-163217-1",
+   "tag": "v-20261125-163217-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-163217-1/buzz-20261125-163217-1.mp4",
+   "titre": "Leto Lucia et la polémique GTA VI",
+   "accroche": "LÉTO REFUSE LUCIA",
+   "sujet_id": "3df3587aba",
+   "sujet": "GTA VI : polémique autour de Leto et Lucia",
+   "buzz": {
+    "vues": 2100000,
+    "jaime": 130100,
+    "commentaires": 3275,
+    "score": 523
+   },
+   "description": "Le rappeur Leto a décliné le rôle de Lucia dans GTA VI, déclenchant un tollé. 🔥",
+   "question": "Et toi, que penses-tu du refus de Leto ?",
+   "hashtags": [
+    "#gta6",
+    "#leto",
+    "#gta",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 65.7,
+   "sources": [
+    {
+     "media": "sudouest.fr",
+     "titre": "« GTA VI » : le jeu phénomène de Rockstar déferle sur les réseaux sociaux, marques et politiques font de la récupération",
+     "lien": "https://www.sudouest.fr/sciences-et-technologie/jeux-video/gta-vi-le-jeu-phenomene-de-rockstar-deferle-les-reseaux-sociaux-inspire-les-marques-et-les-politiques-31604582.php"
+    },
+    {
+     "media": "lamontagne.fr",
+     "titre": "“Non, je joue pas la racli” : ces hommes, comme le rappeur Leto, qui refusent d’incarner le personnage féminin de GTA 6",
+     "lien": "https://www.lamontagne.fr/france-monde/actualites/non-je-joue-pas-la-racli-ces-hommes-comme-le-rappeur-leto-qui-refusent-dincarner-le-personnage-feminin-de-gta-6_15090602/"
+    },
+    {
+     "media": "actu.orange.fr",
+     "titre": "GTA VI: le rappeur Leto est accusé de misogynie après avoir refusé de jouer Lucia",
+     "lien": "https://actu.orange.fr/videos/societe/gta-vi-le-rappeur-leto-est-accuse-de-misogynie-apres-avoir-refuse-de-jouer-lucia-CNT000002u153Q.html"
+    },
+    {
+     "media": "msn.com",
+     "titre": "Comment GTA VI relance le débat sur le sexisme dans les jeux vidéo… et agace les masculinistes",
+     "lien": "https://www.msn.com/fr-fr/actualite/other/comment-gta-vi-relance-le-d%C3%A9bat-sur-le-sexisme-dans-les-jeux-vid%C3%A9o-et-agace-les-masculinistes/ar-AA2i8X9A"
+    },
+    {
+     "media": "Google Actualités",
+     "titre": "Comment GTA VI relance le débat sur le sexisme dans les jeux vidéo… et agace les masculinistes - Ouest-France",
+     "lien": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNckVadWI0anpWTl9vLThmZ3J4ZTBYekZ2OURrSDI3aElPbnZLLW5WZXF2cUNNTWFra29vWkdHdXE0YXJaZUFwNkRTRGc2aHlKbHZ3Nm16RE5Ia1BPU1ZFa3lGakJwUmQyZ2FiMFZsV19jZXQ2TmlEdUh4UEFKWjVkS3NheXFuSzVGeDJ6ZnoyWVlCR2FORFZlaDVCSU02d01wdWtubzZRdWpwc0JzY0pMVzYxeEVtc2FISGFwank3ajVnMjJKOTlKOTZXdzgyVDVrYkFkVVNFVmtZQUhPeFdZa2J1ZlE3Y0ZVT1Iydk9OQ2Z6Uk5YQnlqLTRaVGNwV0xfamdKR1RHVUpmSmlBNWVPdmNn?oc=5"
+    }
+   ],
+   "verification": {
+    "par": "groq:openai/gpt-oss-20b",
+    "corrigees": 1,
+    "retirees": 0,
+    "problemes": [
+     "Les articles disent que Leto est visé par des critiques sur son attitude et accusé de misogynie, mais ne mentionnent pas le chiffre ou l'expression 'Des millier"
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "@bbcnews (TikTok, extrait cité)",
+    "@bbcnews (TikTok, image citée)",
+    "@bfmtv (TikTok, extrait cité)",
+    "@bfmtv (TikTok, image citée)",
+    "Photo : lamontagne.fr (article cité)",
+    "Photo : sudouest.fr (article cité)"
+   ],
+   "extraits_perdus": 0,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 14,
+   "ecrans_total": 14,
+   "format": "buzz",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "",
+   "humeur": "tension",
+   "categorie": "actualite",
+   "texte": [
+    "Leto a refusé Lucia, et ça a explosé !",
+    "L’incident a été relayé le 24 novembre 2026.",
+    "Lors d’un live Twitch avec le streamer Anyme, le rappeur a refusé de jouer le personnage féminin.",
+    "Il a crié « Non, non, je ne joue pas la racle », puis a rendu la manette.",
+    "Cette attitude a déclenché des accusations de misogynie sur les réseaux.",
+    "Son refus a provoqué de nombreuses critiques sur les réseaux sociaux.",
+    "Grand Theft Auto VI permet de choisir entre le héros Jason et la nouvelle héroïne Lucia.",
+    "Certains hommes voient Lucia comme une « girl boss » qui relègue Jason au second plan.",
+    "Des utilisateurs ont qualifié le jeu d’« rituel d’humiliation pour les gamers masculins ».",
+    "Le Haut Conseil à l’Égalité signale que ces propos pèsent directement sur les femmes.",
+    "En France, les femmes représentaient 49 % des joueurs en 2025.",
+    "En 24 h, plus de 2,6 millions de messages ont parlé de GTA VI.",
+    "Ce chiffre dépasse même le nombre de posts générés par le lancement de la Coupe du Monde 2026.",
+    "Le débat sur la représentation féminine dans les jeux vidéo a été relancé.",
+    "Et toi, que penses-tu du refus de Leto ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-25T16:52:44+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 23,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 2,
+     "refus": 2,
+     "erreurs": 3,
+     "restant_demandes": "998",
+     "limite_demandes": "1000",
+     "restant_mots": "2242"
+    },
+    "gemini": {
+     "appels": 7,
+     "refus": 27,
+     "erreurs": 16
+    },
+    "openrouter": {
+     "appels": 0,
+     "refus": 42,
+     "erreurs": 0
+    }
+   },
+   "fabrication_s": 1227,
+   "controles": {
+    "note": 90,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 12,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "2 faute(s) d'orthographe ou de grammaire corrigée(s)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "LanguageTool + IA"
+     },
+     {
+      "niveau": "video",
+      "ecran": 24,
+      "gravite": "moyen",
+      "probleme": "Sous-titres flous et superposés sur le milieu de l'image, chevauchement entre le titre et le fond.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 19,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre central est entièrement flouté et illisible.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 18,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre est complètement flou et illisible.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre central est entièrement flouté et illisible.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 16,
+      "gravite": "moyen",
+      "probleme": "Le titre jaune '24 NOVEMBRE' recouvre le visage de la personne du milieu.",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 15,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre est complètement flou et illisible.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     }
+    ],
+    "sautes": [
+     "regard de l'IA sur la vidéo finie (IA indisponible : openrouter nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free 429 : {\"error\":{\"message\":\"Rate limit exceeded: free-model)"
+    ],
+    "corriges": 8,
+    "restants": 0,
+    "graves_restants": 1
+   },
+   "reprises": 0,
+   "preuves": [
+    {
+     "ecran": 1,
+     "page": "https://www.tiktok.com/@bfmtv/video/7711443423324048662",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@bfmtv",
+     "titre": "",
+     "credit": "@bfmtv (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    },
+    {
+     "ecran": 2,
+     "page": "https://www.tiktok.com/@bfmtv/video/7711443423324048662",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@bfmtv",
+     "titre": "",
+     "credit": "@bfmtv (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://www.tiktok.com/@bbcnews/video/7711497591934029078",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@bbcnews",
+     "titre": "",
+     "credit": "@bbcnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://www.tiktok.com/@bfmtv/video/7711443423324048662",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@bfmtv",
+     "titre": "",
+     "credit": "@bfmtv (TikTok, image citée)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://www.sudouest.fr/sciences-et-technologie/jeux-video/gta-vi-le-jeu-phenomene-de-rockstar-deferle-les-reseaux-sociaux-inspire-les-marques-et-les-politiques-31604582.php",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "sudouest.fr",
+     "titre": "",
+     "credit": "Photo : sudouest.fr (article cité)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://www.tiktok.com/@bfmtv/video/7711443423324048662",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@bfmtv",
+     "titre": "",
+     "credit": "@bfmtv (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://www.tiktok.com/@bfmtv/video/7711443423324048662",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@bfmtv",
+     "titre": "",
+     "credit": "@bfmtv (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://www.tiktok.com/@bfmtv/video/7711443423324048662",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@bfmtv",
+     "titre": "",
+     "credit": "@bfmtv (TikTok, image citée)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    },
+    {
+     "ecran": 9,
+     "page": "https://www.lamontagne.fr/france-monde/actualites/non-je-joue-pas-la-racli-ces-hommes-comme-le-rappeur-leto-qui-refusent-dincarner-le-personnage-feminin-de-gta-6_15090602/",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "lamontagne.fr",
+     "titre": "",
+     "credit": "Photo : lamontagne.fr (article cité)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    },
+    {
+     "ecran": 10,
+     "page": "https://www.tiktok.com/@bbcnews/video/7711497591934029078",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@bbcnews",
+     "titre": "",
+     "credit": "@bbcnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://www.tiktok.com/@bbcnews/video/7711497591934029078",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@bbcnews",
+     "titre": "",
+     "credit": "@bbcnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://www.tiktok.com/@bbcnews/video/7711497591934029078",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@bbcnews",
+     "titre": "",
+     "credit": "@bbcnews (TikTok, image citée)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    },
+    {
+     "ecran": 13,
+     "page": "https://www.tiktok.com/@bfmtv/video/7711443423324048662",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@bfmtv",
+     "titre": "",
+     "credit": "@bfmtv (TikTok, extrait cité)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    },
+    {
+     "ecran": 14,
+     "page": "https://www.tiktok.com/@bbcnews/video/7711497591934029078",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@bbcnews",
+     "titre": "",
+     "credit": "@bbcnews (TikTok, image citée)",
+     "releve_le": "2026-11-25T16:52:44+01:00"
+    }
+   ],
+   "couverture_ms": 23741,
+   "durees": {
+    "articles": 0,
+    "ecriture": 19,
+    "texte": 6,
+    "voix": 50,
+    "images": 192,
+    "controle_images": 2,
+    "montage": 111,
+    "controle_final": 778,
+    "extraits": 0,
+    "regles": 1,
+    "rangement": 83
+   },
+   "refaite": null,
+   "statut": "a_verifier"
+  },
+  {
    "id": "20261125-140606-2",
    "tag": "v-20261125-140606-2",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-140606-2/buzz-20261125-140606-2.mp4",
