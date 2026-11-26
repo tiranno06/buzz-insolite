@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-26T11:07:58+01:00",
+   "niveau": "info",
+   "texte": "🧪 Essai de la nuit : tout fonctionne"
+  },
+  {
    "date": "2026-11-26T11:00:43+01:00",
    "niveau": "attention",
    "texte": "🛡️ « Pont suspendu secoué en Patagonie » non publiée : contrôle avant publication : règle(s) non respectée(s) : vidéo de 51 s : il faut PLUS d'1 minute ; faits non vérifiés par une 2e IA ; vidéo trop courte (51 s)"
