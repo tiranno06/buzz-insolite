@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-25T21:00:34+01:00",
+ "maj": "2026-11-26T13:27:55+01:00",
  "ia": [
   {
    "nom": "mistral",
@@ -18,8 +18,8 @@
   },
   {
    "nom": "openrouter",
-   "ok": false,
-   "detail": "openrouter recursive/flint-v1.0:free 429 : {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per "
+   "ok": true,
+   "detail": "openrouter:particle-ai/particle-1:free"
   }
  ],
  "sources": [
@@ -36,7 +36,7 @@
   {
    "nom": "Internet Archive (vidéos libres)",
    "ok": true,
-   "detail": "5 vidéos"
+   "detail": "6 vidéos"
   },
   {
    "nom": "Wikimedia Commons",
@@ -95,55 +95,76 @@
   "foxnews": 0
  },
  "durees": {
-  "controle_final": 514,
-  "rangement": 33,
-  "regles": 30,
-  "articles": 0,
-  "voix": 161,
-  "controle_images": 242,
-  "montage": 136,
+  "texte": 63,
+  "ecriture": 43,
   "extraits": 0,
-  "images": 175,
-  "texte": 136,
-  "ecriture": 186,
-  "total": 1552
+  "rangement": 15,
+  "articles": 0,
+  "images": 123,
+  "voix": 58,
+  "montage": 112,
+  "controle_final": 563,
+  "controle_images": 81,
+  "regles": 44,
+  "total": 1085
  },
  "creations_24h": {
-  "reussies": 25,
+  "reussies": 27,
   "ratees": 0,
-  "en_cours": 1
+  "en_cours": 3
  },
  "quotas": {
   "mistral": {
    "appels": 0,
    "refus": 0,
-   "erreurs": 290,
+   "erreurs": 133,
    "restant_minute": "0",
    "sature": false
   },
   "groq": {
-   "appels": 42,
-   "refus": 116,
-   "erreurs": 29,
+   "appels": 40,
+   "refus": 46,
+   "erreurs": 58,
    "restant_demandes": "999",
    "limite_demandes": "1000",
-   "restant_mots": "7752",
+   "restant_mots": "7711",
    "sature": true
   },
   "gemini": {
-   "appels": 78,
-   "refus": 210,
-   "erreurs": 133,
+   "appels": 50,
+   "refus": 102,
+   "erreurs": 73,
    "sature": true
   },
   "openrouter": {
-   "appels": 8,
-   "refus": 261,
+   "appels": 46,
+   "refus": 244,
    "erreurs": 0,
    "sature": true
   }
  },
  "reparations": [
+  {
+   "id": "20261125-231630-1",
+   "titre": "Pont suspendu secoué en Patagonie",
+   "etape": "auto",
+   "raison": "Réparation automatique : texte un peu court (environ 54 s) ; faits non vérifiés par une 2e IA",
+   "le": "2026-11-26T13:27:51+01:00"
+  },
+  {
+   "id": "20261125-225608-1",
+   "titre": "Malaise à Airbus : Macron suspend",
+   "etape": "auto",
+   "raison": "Réparation automatique : texte un peu court (environ 53 s) ; faits non vérifiés par une 2e IA",
+   "le": "2026-11-26T13:27:53+01:00"
+  },
+  {
+   "id": "20261125-222618-1",
+   "titre": "Explosion drone à Middletown",
+   "etape": "auto",
+   "raison": "Réparation automatique : voix et sous-titres ne correspondent pas (33%) ; voix et sous-titres ne correspondent pas (48%) ; voix et sous-titres ne correspondent pas (38%)",
+   "le": "2026-11-26T13:27:55+01:00"
+  },
   {
    "id": "20261125-163234-1",
    "titre": "Peine de mort accélérée : Trump",
@@ -195,59 +216,5 @@
   }
  ],
  "sujets_remis": 0,
- "resume": "⚠️ En panne : mistral, openrouter",
- "essai_nuit": {
-  "le": "2026-11-26T11:07:57+01:00",
-  "resultats": [
-   {
-    "nom": "Tests du code (montage compris)",
-    "ok": true,
-    "detail": "Ran 106 tests in 82.552s  OK",
-    "duree_s": 83.6
-   },
-   {
-    "nom": "Voix d'homme (Chatterbox)",
-    "ok": true,
-    "detail": "3.2 s de voix",
-    "duree_s": 50.5
-   },
-   {
-    "nom": "Calage des mots (Whisper)",
-    "ok": true,
-    "detail": "7 mots entendus",
-    "duree_s": 0.2
-   },
-   {
-    "nom": "Téléchargement d'une vidéo TikTok d'origine",
-    "ok": true,
-    "detail": "@reuters : 62 s",
-    "duree_s": 1.7
-   },
-   {
-    "nom": "Recadrage et agrandissement (OpenCV)",
-    "ok": true,
-    "detail": "visage : 0.47200000286102295, photo agrandie",
-    "duree_s": 0.9
-   },
-   {
-    "nom": "Orthographe (LanguageTool)",
-    "ok": true,
-    "detail": "1 faute(s) vue(s)",
-    "duree_s": 0.5
-   },
-   {
-    "nom": "IA qui écrit",
-    "ok": true,
-    "detail": "groq:openai/gpt-oss-120b",
-    "duree_s": 2.6
-   },
-   {
-    "nom": "IA qui voit",
-    "ok": true,
-    "detail": "gemini:gemini-flash-lite-latest",
-    "duree_s": 28.0
-   }
-  ],
-  "ok": true
- }
+ "resume": "⚠️ En panne : mistral"
 }

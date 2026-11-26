@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-26T13:27:57+01:00",
+   "niveau": "attention",
+   "texte": "🩺 Santé du robot : ⚠️ En panne : mistral ; 3 vidéo(s) en réparation"
+  },
+  {
    "date": "2026-11-26T13:26:30+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 66 sujet(s) au-dessus des seuils — en tête : « GTA 6 : buzz autour du jeu »"
