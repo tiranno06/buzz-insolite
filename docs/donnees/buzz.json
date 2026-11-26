@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-26T07:23:17+01:00",
+ "maj": "2026-11-26T09:24:28+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:21:27+01:00"
+   "le": "2026-11-26T09:22:32+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:21:31+01:00"
+   "le": "2026-11-26T09:22:36+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:21:34+01:00"
+   "le": "2026-11-26T09:22:39+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:21:38+01:00"
+   "le": "2026-11-26T09:22:43+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:21:41+01:00"
+   "le": "2026-11-26T09:22:47+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-26T07:21:44+01:00"
+   "le": "2026-11-26T09:22:49+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:21:48+01:00"
+   "le": "2026-11-26T09:22:53+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:21:51+01:00"
+   "le": "2026-11-26T09:22:56+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:21:55+01:00"
+   "le": "2026-11-26T09:22:59+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:21:58+01:00"
+   "le": "2026-11-26T09:23:03+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:02+01:00"
+   "le": "2026-11-26T09:23:06+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:06+01:00"
+   "le": "2026-11-26T09:23:10+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:09+01:00"
+   "le": "2026-11-26T09:23:13+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-26T07:22:12+01:00"
+   "le": "2026-11-26T09:23:16+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:16+01:00"
+   "le": "2026-11-26T09:23:20+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:20+01:00"
+   "le": "2026-11-26T09:23:23+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:23+01:00"
+   "le": "2026-11-26T09:23:27+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:27+01:00"
+   "le": "2026-11-26T09:23:30+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:30+01:00"
+   "le": "2026-11-26T09:23:33+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:34+01:00"
+   "le": "2026-11-26T09:23:37+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:37+01:00"
+   "le": "2026-11-26T09:23:40+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:41+01:00"
+   "le": "2026-11-26T09:23:44+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:44+01:00"
+   "le": "2026-11-26T09:23:47+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:47+01:00"
+   "le": "2026-11-26T09:23:50+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:51+01:00"
+   "le": "2026-11-26T09:23:54+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:54+01:00"
+   "le": "2026-11-26T09:24:00+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:22:58+01:00"
+   "le": "2026-11-26T09:24:03+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T07:23:01+01:00"
+   "le": "2026-11-26T09:24:06+01:00"
   }
  },
  "lues": 809,
@@ -643,15 +643,29 @@
      "sous_seuils": true,
      "indisponible": false,
      "lecteur": "https://www.tiktok.com/player/v1/7712035729592831263?description=1&music_info=1"
+    },
+    {
+     "id": "7712157175216344350",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712157175216344350",
+     "vues": 4700000,
+     "jaime": 190100,
+     "commentaires": 4616,
+     "partages": 45000,
+     "date": 1795626527,
+     "texte": "Terrifying footage shows a German tourist fighting to stay on his feet as powerful winds violently toss a suspension bridge in Chile’s Patagonia region. Henry Thomas spreads his legs for balance and clings to the cable handrails while carrying a 40-pound backpack. His girlfriend had crossed safely just moments earlier. The frightening encounter unfolds during a seven-day trek through Torres del Pa",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712157175216344350?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
    "id": "1b6165168a",
    "score": 775,
    "derniere_vue": 1795639162.5313458,
-   "vues": 5100000,
-   "jaime": 289800,
-   "commentaires": 4437,
+   "vues": 9800000,
+   "jaime": 479900,
+   "commentaires": 9053,
    "hashtags_viraux": [
     "abcnews",
     "news"
@@ -875,6 +889,62 @@
    "video_id": "20261125-163119-1"
   },
   {
+   "titre": "Christ Rédempteur semble flotter dans le brouillard",
+   "resume": "Des images montrent le Christ Rédempteur à Rio de Janeiro entouré d'un épais brouillard, donnant l'impression qu'il flotte au-dessus des nuages. La scène a été capturée avec un iPhone par le photographe Marcio Amaro.",
+   "mots_cles": [
+    "C",
+    "h",
+    "r",
+    "i",
+    "s",
+    "t"
+   ],
+   "mots_cles_en": [
+    "C",
+    "h",
+    "r",
+    "i",
+    "s",
+    "t"
+   ],
+   "hashtags": [
+    "christredeemer",
+    "rio",
+    "brouillard",
+    "clouds"
+   ],
+   "insolite": 7,
+   "categorie": "nature",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712210525609889054",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712210525609889054",
+     "vues": 4400000,
+     "jaime": 955800,
+     "commentaires": 8004,
+     "partages": 97800,
+     "date": 1795647600,
+     "texte": "WATCH: Brazil’s Christ the Redeemer appears to float above the clouds as a massive wave of mist cascades down Corcovado mountain in Rio de Janeiro. Photographer Marcio Amaro filmed the euphoric moment on his iPhone, capturing what looks like a waterfall of clouds pouring around the landmark. The rare visual comes from a weather phenomenon called orographic lift, where moist ocean air pushes over t",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712210525609889054?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "7238c88c57",
+   "score": 622,
+   "derniere_vue": 1795681459.0605276,
+   "vues": 4400000,
+   "jaime": 955800,
+   "commentaires": 8004,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T09:24:28+01:00"
+  },
+  {
    "titre": "GTA6 viral : caméraman Oscar",
    "resume": "Un caméraman a reçu un Oscar pour une vidéo GTA6 viral.",
    "mots_cles": [
@@ -945,28 +1015,31 @@
    "vu_le": "2026-11-26T01:00:57+01:00"
   },
   {
-   "titre": "GTA 6 : caméraman acclamé, hommage à l’orque",
-   "resume": "Une séquence filmée pour GTA 6 a reçu des éloges, certains la qualifiant d'« Oscar ». Le jeu inclut également un clin d’œil à l’orque Tokitae, capturée dans le Vice City Oceanarium.",
+   "titre": "GTA 6 : caméraman viral et hommage à l’orque",
+   "resume": "Un caméraman a réalisé une séquence qui a rapidement fait le tour du web, tandis que les développeurs de GTA 6 ont intégré un hommage à l’orque Tokitae dans le jeu. Les deux vidéos ont généré de nombreux commentaires parmi les joueurs.",
    "mots_cles": [
-    "GTA 6",
-    "caméraman",
-    "Oscar",
-    "orque",
-    "Tokitae"
+    "G",
+    "T",
+    "A",
+    "6",
+    ",",
+    " "
    ],
    "mots_cles_en": [
-    "GTA 6",
-    "cameraman",
-    "Oscar",
-    "orca",
-    "Tokitae"
+    "G",
+    "T",
+    "A",
+    "6",
+    ",",
+    " "
    ],
    "hashtags": [
     "gta6",
     "gaming",
-    "orque"
+    "viral",
+    "orca"
    ],
-   "insolite": 4,
+   "insolite": 6,
    "categorie": "culture",
    "ville_france": "",
    "videos": [
@@ -974,10 +1047,10 @@
      "id": "7712092395827137806",
      "compte": "dailymail",
      "url": "https://www.tiktok.com/@dailymail/video/7712092395827137806",
-     "vues": 5800000,
-     "jaime": 741800,
-     "commentaires": 7083,
-     "partages": 118900,
+     "vues": 6900000,
+     "jaime": 886800,
+     "commentaires": 8105,
+     "partages": 140200,
      "date": 1795611455,
      "texte": "The cameraman deserves an Oscar 👏😭 🎥 @GTAboy AWAL  #gta6 #gaming #viral #rockstargames #gta",
      "indisponible": false,
@@ -987,10 +1060,10 @@
      "id": "7712145580939693325",
      "compte": "dailymail",
      "url": "https://www.tiktok.com/@dailymail/video/7712145580939693325",
-     "vues": 1300000,
-     "jaime": 211700,
-     "commentaires": 823,
-     "partages": 7349,
+     "vues": 1600000,
+     "jaime": 260600,
+     "commentaires": 904,
+     "partages": 9077,
      "date": 1795623836,
      "texte": "Players have spotted what appears to be a tribute to Tokitae, also known as Lolita, in GTA 6's Vice City Oceanarium, which features a captive orca and a side mission to free it. The real-life whale was captured off Washington state in 1970 and spent 53 years at Miami Seaquarium before dying in August 2023, aged 57. The Easter egg comes as GTA 6 enjoys a record-breaking launch following years of an",
      "sous_seuils": true,
@@ -999,12 +1072,12 @@
     }
    ],
    "sous_seuils": false,
-   "id": "5ce098f5bf",
-   "score": 542,
-   "derniere_vue": 1795665759.1095665,
-   "vues": 7100000,
-   "jaime": 953500,
-   "commentaires": 7906,
+   "id": "4e7217c157",
+   "score": 576,
+   "derniere_vue": 1795681459.0605276,
+   "vues": 8500000,
+   "jaime": 1147400,
+   "commentaires": 9009,
    "hashtags_viraux": [
     "gta6",
     "gaming",
@@ -1015,7 +1088,7 @@
    "medias": 0,
    "tendance": null,
    "statut": "nouveau",
-   "vu_le": "2026-11-26T05:02:42+01:00"
+   "vu_le": "2026-11-26T09:24:28+01:00"
   },
   {
    "titre": "GTA VI : polémique autour de Leto et Lucia",
@@ -2312,62 +2385,6 @@
    "vu_le": "2026-11-24T18:38:52+01:00",
    "reserve_le": "2026-11-24T19:50:48+01:00",
    "video_id": "20261124-195233-2"
-  },
-  {
-   "titre": "Christ Rédempteur semble flotter dans la brume de Rio",
-   "resume": "Une vague de nuages a enveloppé le sommet du Corcovado, donnant l’impression que la statue flotte. Le phénomène a été filmé depuis un iPhone.",
-   "mots_cles": [
-    "R",
-    "i",
-    "o",
-    ",",
-    " ",
-    "C"
-   ],
-   "mots_cles_en": [
-    "R",
-    "i",
-    "o",
-    ",",
-    " ",
-    "C"
-   ],
-   "hashtags": [
-    "rio",
-    "christredeemer",
-    "brume"
-   ],
-   "insolite": 6,
-   "categorie": "nature",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712210525609889054",
-     "compte": "foxnews",
-     "url": "https://www.tiktok.com/@foxnews/video/7712210525609889054",
-     "vues": 2500000,
-     "jaime": 512500,
-     "commentaires": 4691,
-     "partages": 58200,
-     "date": 1795647600,
-     "texte": "WATCH: Brazil’s Christ the Redeemer appears to float above the clouds as a massive wave of mist cascades down Corcovado mountain in Rio de Janeiro. Photographer Marcio Amaro filmed the euphoric moment on his iPhone, capturing what looks like a waterfall of clouds pouring around the landmark. The rare visual comes from a weather phenomenon called orographic lift, where moist ocean air pushes over t",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712210525609889054?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "86b40e01e0",
-   "score": 246,
-   "derniere_vue": 1795666956.3074105,
-   "vues": 2500000,
-   "jaime": 512500,
-   "commentaires": 4691,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T05:22:43+01:00"
   },
   {
    "titre": "Le Tribunal Arbitral du Sport, la plus haute juridiction du sport mondial, a désigné ce ma",
