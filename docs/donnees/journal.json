@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-26T11:25:28+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 62 sujet(s) au-dessus des seuils — en tête : « Afghanistan: femmes sans noms imposés par décret »"
+  },
+  {
    "date": "2026-11-26T11:07:58+01:00",
    "niveau": "info",
    "texte": "🧪 Essai de la nuit : tout fonctionne"

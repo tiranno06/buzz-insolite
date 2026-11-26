@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-26T09:24:28+01:00",
+ "maj": "2026-11-26T11:25:26+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:22:32+01:00"
+   "le": "2026-11-26T11:23:31+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:22:36+01:00"
+   "le": "2026-11-26T11:23:35+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:22:39+01:00"
+   "le": "2026-11-26T11:23:39+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:22:43+01:00"
+   "le": "2026-11-26T11:23:43+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:22:47+01:00"
+   "le": "2026-11-26T11:23:47+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-26T09:22:49+01:00"
+   "le": "2026-11-26T11:23:50+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:22:53+01:00"
+   "le": "2026-11-26T11:23:53+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:22:56+01:00"
+   "le": "2026-11-26T11:23:57+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:22:59+01:00"
+   "le": "2026-11-26T11:24:01+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:03+01:00"
+   "le": "2026-11-26T11:24:04+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:06+01:00"
+   "le": "2026-11-26T11:24:08+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:10+01:00"
+   "le": "2026-11-26T11:24:11+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:13+01:00"
+   "le": "2026-11-26T11:24:16+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-26T09:23:16+01:00"
+   "le": "2026-11-26T11:24:19+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:20+01:00"
+   "le": "2026-11-26T11:24:22+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:23+01:00"
+   "le": "2026-11-26T11:24:25+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:27+01:00"
+   "le": "2026-11-26T11:24:29+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:30+01:00"
+   "le": "2026-11-26T11:24:33+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:33+01:00"
+   "le": "2026-11-26T11:24:37+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:37+01:00"
+   "le": "2026-11-26T11:24:40+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:40+01:00"
+   "le": "2026-11-26T11:24:43+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:44+01:00"
+   "le": "2026-11-26T11:24:48+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:47+01:00"
+   "le": "2026-11-26T11:24:51+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:50+01:00"
+   "le": "2026-11-26T11:24:55+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:23:54+01:00"
+   "le": "2026-11-26T11:24:58+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:24:00+01:00"
+   "le": "2026-11-26T11:25:02+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:24:03+01:00"
+   "le": "2026-11-26T11:25:05+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T09:24:06+01:00"
+   "le": "2026-11-26T11:25:09+01:00"
   }
  },
  "lues": 809,
@@ -376,63 +376,6 @@
    "vu_le": "2026-11-26T01:00:57+01:00",
    "reserve_le": "2026-11-26T07:16:59+01:00",
    "video_id": "20261126-071929-1"
-  },
-  {
-   "titre": "Afghanistan : nouvelles règles imposent surnoms aux femmes",
-   "resume": "Un décret récent oblige les femmes afghanes à ne plus porter de prénom officiel, mais à utiliser des surnoms attribués par les autorités. Cette mesure suscite de vives critiques au niveau international.",
-   "mots_cles": [
-    "Afghanistan",
-    "décret",
-    "surnoms femmes",
-    "droits des femmes",
-    "loi"
-   ],
-   "mots_cles_en": [
-    "Afghanistan",
-    "decree",
-    "female nicknames",
-    "women's rights",
-    "law"
-   ],
-   "hashtags": [
-    "afghanistan",
-    "droitsfemmes",
-    "decret"
-   ],
-   "insolite": 7,
-   "categorie": "societe",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7711838616284040470",
-     "compte": "brutofficiel",
-     "url": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
-     "vues": 3000000,
-     "jaime": 532300,
-     "commentaires": 5775,
-     "partages": 58100,
-     "date": 1795552321,
-     "texte": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret leur impose des surnoms.",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7711838616284040470?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "8553112fc8",
-   "score": 942,
-   "derniere_vue": 1795674194.6870873,
-   "vues": 3000000,
-   "jaime": 532300,
-   "commentaires": 5775,
-   "hashtags_viraux": [],
-   "medias": 10,
-   "tendance": {
-    "recherche": "douanes",
-    "pays": "FR",
-    "trafic": "10000+"
-   },
-   "statut": "nouveau",
-   "vu_le": "2026-11-25T22:59:59+01:00"
   },
   {
    "titre": "Brésil : golden retriever sauve enfant noyé",
@@ -943,6 +886,82 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-26T09:24:28+01:00"
+  },
+  {
+   "titre": "GTA 6 : vidéos virales et hommage à l’orque",
+   "resume": "Deux vidéos liées à GTA 6 ont fait le buzz : un caméraman a reçu les félicitations d’un Oscar pour ses images, et le jeu inclut un clin d’œil à l’orque Tokitae. Ces contenus suscitent l'engouement des joueurs et des observateurs.",
+   "mots_cles": [
+    "G",
+    "T",
+    "A",
+    "6",
+    ",",
+    " "
+   ],
+   "mots_cles_en": [
+    "G",
+    "T",
+    "A",
+    "6",
+    ",",
+    " "
+   ],
+   "hashtags": [
+    "gta6",
+    "viral",
+    "orque",
+    "gaming"
+   ],
+   "insolite": 7,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712092395827137806",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712092395827137806",
+     "vues": 7300000,
+     "jaime": 945900,
+     "commentaires": 8610,
+     "partages": 146300,
+     "date": 1795611455,
+     "texte": "The cameraman deserves an Oscar 👏😭 🎥 @GTAboy AWAL  #gta6 #gaming #viral #rockstargames #gta",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712092395827137806?description=1&music_info=1"
+    },
+    {
+     "id": "7712145580939693325",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712145580939693325",
+     "vues": 1700000,
+     "jaime": 278900,
+     "commentaires": 904,
+     "partages": 9846,
+     "date": 1795623836,
+     "texte": "Players have spotted what appears to be a tribute to Tokitae, also known as Lolita, in GTA 6's Vice City Oceanarium, which features a captive orca and a side mission to free it. The real-life whale was captured off Washington state in 1970 and spent 53 years at Miami Seaquarium before dying in August 2023, aged 57. The Easter egg comes as GTA 6 enjoys a record-breaking launch following years of an",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712145580939693325?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "9df8621e5c",
+   "score": 588,
+   "derniere_vue": 1795688721.8146834,
+   "vues": 9000000,
+   "jaime": 1224800,
+   "commentaires": 9514,
+   "hashtags_viraux": [
+    "gta6",
+    "gaming",
+    "viral",
+    "rockstargames",
+    "gta"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T11:25:26+01:00"
   },
   {
    "titre": "GTA6 viral : caméraman Oscar",
@@ -2631,6 +2650,63 @@
    "medias": 7,
    "statut": "nouveau",
    "vu_le": "2026-11-25T09:59:33+01:00"
+  },
+  {
+   "titre": "Afghanistan : nouvelles règles imposent surnoms aux femmes",
+   "resume": "Deuxième décret oblige les femmes afghanes à ne plus porter leur prénom officiel, mais à utiliser un surnom attribué par les autorités. Cette mesure suscite de vives critiques de la part des organisations de droits humains.",
+   "mots_cles": [
+    "A",
+    "f",
+    "g",
+    "h",
+    "a",
+    "n"
+   ],
+   "mots_cles_en": [
+    "A",
+    "f",
+    "g",
+    "h",
+    "a",
+    "n"
+   ],
+   "hashtags": [
+    "afghanistan",
+    "femmes",
+    "droits",
+    "décret",
+    "surnoms"
+   ],
+   "insolite": 8,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711838616284040470",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
+     "vues": 3200000,
+     "jaime": 562600,
+     "commentaires": 6157,
+     "partages": 60500,
+     "date": 1795552321,
+     "texte": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret leur impose des surnoms.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711838616284040470?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "8553112fc8",
+   "score": 159,
+   "derniere_vue": 1795688721.8146834,
+   "vues": 3200000,
+   "jaime": 562600,
+   "commentaires": 6157,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T22:59:59+01:00"
   },
   {
    "titre": "Disney : accident scooter blesse enfant en Floride",
