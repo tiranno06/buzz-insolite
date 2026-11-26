@@ -711,11 +711,11 @@
    "reparations": 1
   },
   {
-   "id": "20261125-225608-1",
-   "tag": "v-20261125-225608-1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-225608-1/buzz-20261125-225608-1.mp4",
-   "titre": "Malaise à Airbus : Macron suspend",
-   "accroche": "MALAIS DE MACRON À",
+   "id": "20261125-225608-1-r1",
+   "tag": "v-20261125-225608-1-r1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-225608-1-r1/buzz-20261125-225608-1-r1.mp4",
+   "titre": "Malaise d’une lycéenne chez Airbus",
+   "accroche": "ÉVANOUISSANT EN DIRECT",
    "sujet_id": "d5f66101fb",
    "sujet": "Étudiante fait malaise devant Emmanuel Macron",
    "buzz": {
@@ -724,8 +724,8 @@
     "commentaires": 1420,
     "score": 81
    },
-   "description": "Un malaise inattendu pendant la visite d'Emmanuel Macron à Toulouse. 🔥 Découvrez les détails !",
-   "question": "Et toi, penses-tu que les discours publics doivent être plus sûrs ?",
+   "description": "Une lycéenne s’effondre pendant le discours d’Emmanuel Macron à Airbus. 😲",
+   "question": "Et toi, que penses-tu de la sécurité lors des grands discours ?",
    "hashtags": [
     "#macron",
     "#airbus",
@@ -733,7 +733,7 @@
     "#actu",
     "#buzz"
    ],
-   "duree": 54.2,
+   "duree": 61.2,
    "sources": [
     {
      "media": "actu.fr",
@@ -791,8 +791,18 @@
      "lien": "https://fr.wikipedia.org/wiki/Liste%20des%20voyages%20pr%C3%A9sidentiels%20%C3%A0%20l%27%C3%A9tranger%20d%27Emmanuel%20Macron"
     }
    ],
-   "verification": null,
-   "verifie": false,
+   "verification": {
+    "par": "groq:openai/gpt-oss-120b",
+    "corrigees": 2,
+    "retirees": 2,
+    "problemes": [
+     "Les articles indiquent que le malaise des deux membres de la Garde républicaine a eu lieu lors d'une autre occasion (la cérémonie d'accueil du président slovaqu",
+     "L'article ne mentionne pas qu'un verre d'eau a été offert, seulement qu'un agent de sécurité s'est approché de la lycéenne",
+     "Aucun des articles ne rapporte d'applaudissements ni de tension persistante après la reprise du discours",
+     "Les articles ne précisent pas que l'étudiante était debout depuis plus d’une heure avant son malaise"
+    ]
+   },
+   "verifie": true,
    "credits": [
     "@20minutesfrance (TikTok, extrait cité)",
     "@20minutesfrance (TikTok, image citée)",
@@ -800,39 +810,34 @@
     "@brutofficiel (TikTok, image citée)",
     "@leparisien (TikTok, extrait cité)",
     "@leparisien (TikTok, image citée)",
-    "Carte : Natural Earth, OpenStreetMap"
+    "Photo : actu.fr (article cité)"
    ],
    "extraits_perdus": 0,
-   "regles_non_respectees": [
-    "vidéo de 54 s : il faut PLUS d'1 minute",
-    "description : « vous » au lieu de « tu »",
-    "faits non vérifiés par une 2e IA"
-   ],
+   "regles_non_respectees": [],
    "ecrans_illustres": 12,
    "ecrans_total": 12,
    "format": "buzz",
    "voix": "kokoro-ff_siwis",
-   "lieu": "Toulouse, France",
+   "lieu": "Blagnac, France",
    "humeur": "tension",
    "categorie": "faits_divers",
    "texte": [
-    "Une lycéenne a failli s'effondrer devant Macron !",
-    "Le 23 novembre 2026, la visite d'Emmanuel Macron à Toulouse a été interrompue.",
-    "À l'usine Airbus de Blagnac, une jeune fille a perdu connaissance.",
-    "Le président a dû suspendre son discours en quelques minutes.",
-    "Les autorités n'ont pas encore précisé les causes du malaise.",
-    "Macron avait prévu de parler du soutien à la filière aéronautique.",
-    "Des dirigeants européens, dont Guillaume Faury, étaient présents.",
-    "L'incident rappelle celui du 11 novembre, quand deux gardes républicains ont fait un malaise.",
-    "Les images diffusées montrent un agent de sécurité tendant un verre d'eau.",
-    "Le malaise a surgi alors que Macron s'adressait aux salariés.",
-    "Les responsables ont demandé une enquête médicale pour l'étudiante.",
-    "Le président a déclaré qu'il se souciera de la santé publique.",
-    "Macron a annoncé 350 millions d'euros de soutien à la recherche aéronautique civile.",
-    "Et toi, penses-tu que les discours publics doivent être plus sûrs ? Dis-le en commentaire !"
+    "Une lycéenne s’évanouit sous les yeux d’Emmanuel Macron !",
+    "C’est le lundi 23 novembre 2026, au site Airbus de Blagnac, près de Toulouse.",
+    "Le président était là pour annoncer 350 millions d’euros d’aides à l’aéronautique.",
+    "Guillaume Faury, le PDG d’Airbus, était présent aux côtés de Carole Delga et d’Olivier Andriès.",
+    "Pendant son discours, une lycéenne de la salle a perdu connaissance, le visage pâle.",
+    "Un agent de sécurité s’est approché d’elle.",
+    "Macron a immédiatement suspendu son intervention, quelques minutes seulement.",
+    "Les caméras de l’Élysée ont diffusé le moment en direct sur le réseau X.",
+    "Les raisons du malaise n’ont pas été communiquées, aucune cause identifiée.",
+    "Ce n’est pas le premier incident, puisque deux membres de la Garde républicaine s’étaient également affaiblis par le passé.",
+    "Après l’incident, le président a repris son discours pour souligner l’importance du soutien à l’industrie aéronautique.",
+    "Le site d’assemblage où l’incident s’est produit travaille sur l’A320 et prépare le lancement de l’A350F cargo.",
+    "Et toi, que penses-tu de la sécurité lors des grands discours ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T23:09:40+01:00",
+   "cree_le": "2026-11-26T13:53:53+01:00",
    "ia_quotas": {
     "mistral": {
      "appels": 0,
@@ -841,61 +846,73 @@
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 2,
+     "appels": 3,
      "refus": 3,
-     "erreurs": 5,
-     "restant_demandes": "998",
+     "erreurs": 3,
+     "restant_demandes": "999",
      "limite_demandes": "1000",
-     "restant_mots": "950"
+     "restant_mots": "4028"
     },
     "gemini": {
-     "appels": 0,
-     "refus": 2,
-     "erreurs": 2
-    },
-    "openrouter": {
-     "appels": 0,
-     "refus": 8,
-     "erreurs": 0
+     "appels": 5,
+     "refus": 1,
+     "erreurs": 3
     }
    },
-   "fabrication_s": 812,
+   "fabrication_s": 458,
    "controles": {
-    "note": 45,
+    "note": 100,
     "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 11,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
      {
       "niveau": "texte",
       "ecran": null,
       "gravite": "moyen",
-      "probleme": "texte un peu court (environ 53 s)",
-      "corrige": false,
-      "essais": 21
+      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
      },
      {
       "niveau": "video",
-      "ecran": null,
-      "gravite": "grave",
-      "probleme": "vidéo de 54 s : pas plus d'1 minute (pas payée par TikTok)",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "Texte en bas superposé avec les sources et mentions légales",
       "corrige": true,
-      "essais": 4,
-      "solution": ""
+      "essais": 1,
+      "solution": "titre retiré"
      },
      {
-      "niveau": "regles",
-      "ecran": null,
-      "gravite": "grave",
-      "probleme": "faits non vérifiés par une 2e IA",
-      "corrige": false,
-      "essais": 3
+      "niveau": "video",
+      "ecran": 23,
+      "gravite": "moyen",
+      "probleme": "Sous-titres superposés et illisibles",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 21,
+      "gravite": "moyen",
+      "probleme": "chevauchement et illisibilité du sous-titre blanc avec le texte du crédit",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
      }
     ],
-    "sautes": [
-     "réécriture du texte par l'IA (aucune IA disponible)",
-     "regard de l'IA sur la vidéo finie (IA indisponible : aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY))"
-    ],
-    "corriges": 1,
-    "restants": 2,
-    "graves_restants": 4
+    "sautes": [],
+    "corriges": 5,
+    "restants": 0,
+    "graves_restants": 0
    },
    "reprises": 0,
    "preuves": [
@@ -906,16 +923,25 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:09:40+01:00"
+     "releve_le": "2026-11-26T13:53:53+01:00"
+    },
+    {
+     "ecran": 2,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711441451774758177",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T13:53:53+01:00"
     },
     {
      "ecran": 3,
-     "page": "https://www.tiktok.com/@leparisien/video/7711379726224330016",
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711441451774758177",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@leparisien",
+     "auteur": "@brutofficiel",
      "titre": "",
-     "credit": "@leparisien (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:09:40+01:00"
+     "credit": "@brutofficiel (TikTok, image citée)",
+     "releve_le": "2026-11-26T13:53:53+01:00"
     },
     {
      "ecran": 4,
@@ -924,16 +950,16 @@
      "auteur": "@leparisien",
      "titre": "",
      "credit": "@leparisien (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:09:40+01:00"
+     "releve_le": "2026-11-26T13:53:53+01:00"
     },
     {
      "ecran": 5,
-     "page": "https://www.tiktok.com/@brutofficiel/video/7711441451774758177",
+     "page": "https://www.tiktok.com/@leparisien/video/7711379726224330016",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@brutofficiel",
+     "auteur": "@leparisien",
      "titre": "",
-     "credit": "@brutofficiel (TikTok, image citée)",
-     "releve_le": "2026-11-25T23:09:40+01:00"
+     "credit": "@leparisien (TikTok, image citée)",
+     "releve_le": "2026-11-26T13:53:53+01:00"
     },
     {
      "ecran": 6,
@@ -942,7 +968,7 @@
      "auteur": "@leparisien",
      "titre": "",
      "credit": "@leparisien (TikTok, image citée)",
-     "releve_le": "2026-11-25T23:09:40+01:00"
+     "releve_le": "2026-11-26T13:53:53+01:00"
     },
     {
      "ecran": 7,
@@ -951,7 +977,7 @@
      "auteur": "@20minutesfrance",
      "titre": "",
      "credit": "@20minutesfrance (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:09:40+01:00"
+     "releve_le": "2026-11-26T13:53:53+01:00"
     },
     {
      "ecran": 8,
@@ -960,7 +986,7 @@
      "auteur": "@20minutesfrance",
      "titre": "",
      "credit": "@20minutesfrance (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:09:40+01:00"
+     "releve_le": "2026-11-26T13:53:53+01:00"
     },
     {
      "ecran": 9,
@@ -969,16 +995,16 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, image citée)",
-     "releve_le": "2026-11-25T23:09:40+01:00"
+     "releve_le": "2026-11-26T13:53:53+01:00"
     },
     {
      "ecran": 10,
-     "page": "https://www.tiktok.com/@20minutesfrance/video/7711442726604016918",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@20minutesfrance",
+     "page": "https://actu.fr/occitanie/toulouse_31555/direct-emmanuel-macron-chez-airbus-coulisses-temps-forts-annonces-suivez-sa-visite-a-toulouse_65086880.html",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "actu.fr",
      "titre": "",
-     "credit": "@20minutesfrance (TikTok, image citée)",
-     "releve_le": "2026-11-25T23:09:40+01:00"
+     "credit": "Photo : actu.fr (article cité)",
+     "releve_le": "2026-11-26T13:53:53+01:00"
     },
     {
      "ecran": 11,
@@ -987,44 +1013,37 @@
      "auteur": "@brutofficiel",
      "titre": "",
      "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:09:40+01:00"
+     "releve_le": "2026-11-26T13:53:53+01:00"
     },
     {
      "ecran": 12,
-     "page": "https://www.tiktok.com/@brutofficiel/video/7711441451774758177",
+     "page": "https://www.tiktok.com/@20minutesfrance/video/7711442726604016918",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@brutofficiel",
+     "auteur": "@20minutesfrance",
      "titre": "",
-     "credit": "@brutofficiel (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:09:40+01:00"
-    },
-    {
-     "ecran": 13,
-     "page": "https://www.tiktok.com/@leparisien/video/7711379726224330016",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@leparisien",
-     "titre": "",
-     "credit": "@leparisien (TikTok, image citée)",
-     "releve_le": "2026-11-25T23:09:40+01:00"
+     "credit": "@20minutesfrance (TikTok, image citée)",
+     "releve_le": "2026-11-26T13:53:53+01:00"
     }
    ],
-   "couverture_ms": 25157,
+   "couverture_ms": 3620,
    "durees": {
-    "articles": 0,
-    "ecriture": 6,
-    "texte": 35,
+    "texte": 68,
+    "images": 11,
+    "controle_images": 5,
     "voix": 43,
-    "images": 140,
-    "controle_images": 3,
-    "montage": 91,
-    "controle_final": 502,
+    "montage": 109,
+    "controle_final": 173,
     "extraits": 0,
-    "regles": 2,
-    "rangement": 10
+    "regles": 45,
+    "rangement": 6
    },
-   "refaite": null,
-   "statut": "a_verifier",
-   "reparations": 1
+   "refaite": {
+    "de": "20261125-225608-1",
+    "etape": "texte",
+    "remarque": "Réparation automatique : texte un peu court (environ 53 s) ; faits non vérifiés par une 2e IA"
+   },
+   "statut": "nouvelle",
+   "refaite_de": "20261125-225608-1"
   },
   {
    "id": "20261125-224006-1",
