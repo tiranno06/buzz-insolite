@@ -1,6 +1,393 @@
 {
  "videos": [
   {
+   "id": "20261126-071929-1",
+   "tag": "v-20261126-071929-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261126-071929-1/buzz-20261126-071929-1.mp4",
+   "titre": "Femmes afghanes privées de leurs noms",
+   "accroche": "FEMMES AFGHANES PRIVÉES DE",
+   "sujet_id": "86dbe583a7",
+   "sujet": "Décret afghan impose surnoms aux femmes",
+   "buzz": {
+    "vues": 2900000,
+    "jaime": 512300,
+    "commentaires": 5519,
+    "score": 1052
+   },
+   "description": "🚨 Les talibans imposent le surnom « Bibi » aux femmes. Découvre ce qui se passe dans le nord.",
+   "question": "Et toi, que penses-tu de cette mesure ?",
+   "hashtags": [
+    "#afghanistan",
+    "#taliban",
+    "#décret",
+    "#femmes",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 86.6,
+   "sources": [
+    {
+     "media": "amnestyusa.org",
+     "titre": "Afghanistan: New Code Enabling Child Marriage Compounds Dismal Situation for Women’s and Girls’ Rights",
+     "lien": "https://www.amnestyusa.org/press-releases/afghanistan-new-code-enabling-child-marriage-compounds-dismal-situation-for-womens-and-girls-rights/"
+    },
+    {
+     "media": "ladepeche.fr",
+     "titre": "En Afghanistan, les talibans interdisent aux femmes d'utiliser leur nom sur les documents officiels et doivent être désignées par un même surnom",
+     "lien": "https://www.ladepeche.fr/2026/11/23/en-afghanistan-les-talibans-interdisent-aux-femmes-dutiliser-leur-nom-sur-les-documents-officiels-et-doivent-etre-designees-par-un-meme-surnom-13667306.php"
+    },
+    {
+     "media": "ledauphine.com",
+     "titre": "Afghanistan « Dépouillées de leur humanité » : des femmes privées de leur nom par un décret des talibans",
+     "lien": "https://www.ledauphine.com/societe/2026/11/25/depouillees-de-leur-humanite-des-femmes-privees-de-leur-nom-par-un-decret-des-talibans"
+    },
+    {
+     "media": "nbcnews.com",
+     "titre": "Afghanistan’s new penal code sets 15 days in prison for wife-beating, 5 months for animal fights",
+     "lien": "https://www.nbcnews.com/world/asia/afghanistans-new-penal-code-sets-15-days-prison-wife-beating-5-months-rcna260928"
+    },
+    {
+     "media": "fr.news.yahoo.com",
+     "titre": "En Afghanistan, un décret ordonne de remplacer le nom des femmes par des surnoms",
+     "lien": "https://fr.news.yahoo.com/afghanistan-d%C3%A9cret-ordonne-remplacer-nom-104139126.html"
+    },
+    {
+     "media": "letemps.ch",
+     "titre": "Elles doivent s’appeler «Bibi»: en Afghanistan, un décret ordonne de remplacer le nom des femmes par des surnoms",
+     "lien": "https://www.letemps.ch/monde/asie-oceanie/elles-doivent-toutes-s-appeler-bibi-en-afghanistan-un-decret-ordonne-de-remplacer-le-nom-des-femmes-par-des-surnoms"
+    },
+    {
+     "media": "toulouse7.com",
+     "titre": "En Afghanistan des Talibans, les femmes sont aussi privées de soins",
+     "lien": "https://toulouse7.com/2026/11/23/en-afghanistan-des-talibans-les-femmes-sont-aussi-privees-de-soins/"
+    },
+    {
+     "media": "fr.news.yahoo.com",
+     "titre": "En Afghanistan, les femmes privées de leur nom suite à un décret qui acte leur déshumanisation ?",
+     "lien": "https://fr.news.yahoo.com/sport/afghanistan-femmes-priv%C3%A9es-nom-suite-093058976.html"
+    },
+    {
+     "media": "msn.com",
+     "titre": "‘Women and girls left vulnerable to abuse’: UN calls for Taliban's new marriage decree to be reversed",
+     "lien": "https://www.msn.com/en-in/news/world/women-and-girls-left-vulnerable-to-abuse-un-calls-for-taliban-s-new-marriage-decree-to-be-reversed/ar-AA262CG7"
+    }
+   ],
+   "verification": {
+    "par": "openrouter:inclusionai/ling-3.2-flash:free",
+    "corrigees": 8,
+    "retirees": 1,
+    "problemes": [
+     "La phrase généralise à toutes les femmes afghanes et à tous les documents officiels ; les articles parlent de la province de Balkh et surtout des documents médi",
+     "Les articles indiquent que la mesure a été révélée le 12 novembre par Zan Times, pas qu’un décret a été publié ce jour-là dans la gazette officielle.",
+     "Ce sont les journalistes du Zan Times, et non El País, qui indiquent que le surnom doit figurer sur les ordonnances médicales.",
+     "Amnesty International ne qualifie pas cette règle de « déshumanisation » ; cette formulation vient d’une militante afghane citée dans les articles.",
+     "Le chiffre « quatre cent soixante‑dix, soixante‑neuf » (470, 69) n'apparaît dans aucun article et ne correspond à aucun fait rapporté (décrets, dates, peines, n",
+     "Aucun article ne mentionne une telle règle sur les médecins hommes et un accompagnateur masculin ; ce fait est inventé.",
+     "Les articles indiquent que les femmes sont exclues des formations médicales, mais aucune date de décembre 2024 n'est mentionnée.",
+     "Le chiffre de 78 % d'Afghanes ni scolarisées, ni employées, ni en formation n'apparaît dans aucun article.",
+     "Lalah Osmany est citée pour la formule sur la « déshumanisation » et les surnoms animaux, pas sur un risque d'erreurs médicales lié aux ordonnances."
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "@20minutesfrance (TikTok, extrait cité)",
+    "@20minutesfrance (TikTok, image citée)",
+    "@brutofficiel (TikTok, extrait cité)",
+    "@brutofficiel (TikTok, image citée)",
+    "Carte : Natural Earth, OpenStreetMap",
+    "Photo : fr.news.yahoo.com (article cité)",
+    "Unknown photographer / Wikimedia Commons, Public domain",
+    "Wikipédia, article « Afghanistan »"
+   ],
+   "extraits_perdus": 0,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 16,
+   "ecrans_total": 16,
+   "format": "vrai_faux",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "Balkh, Afghanistan",
+   "humeur": "tension",
+   "categorie": "politique",
+   "texte": [
+    "Vrai ou faux ? Dans la province de Balkh.",
+    "Les femmes doivent désormais être appelées « Bibi » sur les documents médicaux.",
+    "Réponds en commentaire avant la fin !",
+    "Le décret a été révélé le 12 novembre par le média afghan en exil Zan Times.",
+    "Il s’applique dans la province du nord, Balkh.",
+    "Les hôpitaux, cliniques et cabinets médicaux doivent remplacer le prénom des patientes par le surnom « Bibi ».",
+    "Le surnom « Bibi » signifie « grand-mère » ou « femme âgée » dans la culture afghane.",
+    "Cette mesure a été révélée par le média afghan en exil Zan Times, en collaboration avec The Guardian.",
+    "Les journalistes du Zan Times ont noté que le surnom doit figurer sur les ordonnances médicales.",
+    "Des militantes afghanes en exil dénoncent que certains surnoms utilisés sont dégradants, comme « chèvre » ou « bétail ».",
+    "Une militante afghane en exil dénonce une mesure qui « dépouille » les femmes de leur humanité.",
+    "Depuis 2021, les talibans ont déjà édicté plus d’une centaine de décrets restreignant les droits des femmes.",
+    "Cette nouvelle interdiction vient s’ajouter aux interdictions d’accès à l’éducation et à l’emploi.",
+    "En Afghanistan, les femmes, exclues des formations médicales, font face à des obstacles croissants pour accéder aux soins et aux soignants masculins.",
+    "Les talibans ont exclu les femmes des formations médicales, aggravant la pénurie de soignantes.",
+    "Selon ONU Femmes, plus de 22 millions de femmes afghanes sont confrontées à des obstacles grandissants pour accéder aux soins.",
+    "La militante Lalah Osmany dénonce une mesure qui « dépouille » les femmes de leur humanité.",
+    "Et toi, que penses-tu de cette mesure ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-26T08:02:39+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 5,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 6,
+     "refus": 4,
+     "erreurs": 5,
+     "restant_demandes": "998",
+     "limite_demandes": "1000",
+     "restant_mots": "3043"
+    },
+    "gemini": {
+     "appels": 0,
+     "refus": 2,
+     "erreurs": 2
+    },
+    "openrouter": {
+     "appels": 38,
+     "refus": 77,
+     "erreurs": 0
+    }
+   },
+   "fabrication_s": 2591,
+   "controles": {
+    "note": 90,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 11,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 0,
+      "gravite": "moyen",
+      "probleme": "accroche trop longue (plus de 15 mots) : on perd le spectateur",
+      "corrige": true,
+      "essais": 4,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 2,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "images",
+      "ecran": 36,
+      "gravite": "moyen",
+      "probleme": "aucun lien avec la militante",
+      "corrige": true,
+      "essais": 1,
+      "solution": "image du thème (« hospital documents »)"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 22,
+      "gravite": "grave",
+      "probleme": "voix et sous-titres ne correspondent pas (0%)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase retirée"
+     }
+    ],
+    "sautes": [
+     "regard de l'IA sur la vidéo finie (IA indisponible : openrouter nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free : pas de JSON dans la réponse)"
+    ],
+    "corriges": 6,
+    "restants": 0,
+    "graves_restants": 1
+   },
+   "reprises": 0,
+   "preuves": [
+    {
+     "ecran": 1,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, image citée)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, image citée)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, image citée)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, image citée)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://www.tiktok.com/@20minutesfrance/video/7712046805982203158",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@20minutesfrance",
+     "titre": "",
+     "credit": "@20minutesfrance (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://www.tiktok.com/@20minutesfrance/video/7712046805982203158",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@20minutesfrance",
+     "titre": "",
+     "credit": "@20minutesfrance (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 9,
+     "page": "https://www.tiktok.com/@20minutesfrance/video/7712046805982203158",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@20minutesfrance",
+     "titre": "",
+     "credit": "@20minutesfrance (TikTok, image citée)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 10,
+     "page": "https://www.tiktok.com/@20minutesfrance/video/7712046805982203158",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@20minutesfrance",
+     "titre": "",
+     "credit": "@20minutesfrance (TikTok, image citée)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://www.tiktok.com/@20minutesfrance/video/7712046805982203158",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@20minutesfrance",
+     "titre": "",
+     "credit": "@20minutesfrance (TikTok, image citée)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 13,
+     "page": "https://fr.news.yahoo.com/sport/afghanistan-femmes-priv%C3%A9es-nom-suite-093058976.html",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "fr.news.yahoo.com",
+     "titre": "",
+     "credit": "Photo : fr.news.yahoo.com (article cité)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 14,
+     "page": "https://commons.wikimedia.org/?curid=24034674",
+     "licence": "Public domain",
+     "auteur": "Unknown photographer",
+     "titre": "",
+     "credit": "Unknown photographer / Wikimedia Commons, Public domain",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 15,
+     "page": "https://www.tiktok.com/@20minutesfrance/video/7712046805982203158",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@20minutesfrance",
+     "titre": "",
+     "credit": "@20minutesfrance (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 16,
+     "page": "https://www.tiktok.com/@20minutesfrance/video/7712046805982203158",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@20minutesfrance",
+     "titre": "",
+     "credit": "@20minutesfrance (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    },
+    {
+     "ecran": 17,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3AAfghan_market_teeming_with_vendors_and_shoppers_2-4-09.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Afghanistan »",
+     "releve_le": "2026-11-26T08:02:39+01:00"
+    }
+   ],
+   "couverture_ms": 8299,
+   "durees": {
+    "articles": 0,
+    "ecriture": 9,
+    "texte": 216,
+    "voix": 54,
+    "images": 332,
+    "controle_images": 167,
+    "montage": 138,
+    "controle_final": 1641,
+    "extraits": 0,
+    "regles": 59,
+    "rangement": 7
+   },
+   "refaite": null,
+   "statut": "a_verifier"
+  },
+  {
    "id": "20261125-231630-1",
    "tag": "v-20261125-231630-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-231630-1/buzz-20261125-231630-1.mp4",

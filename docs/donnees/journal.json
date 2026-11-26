@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-26T08:02:40+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Femmes afghanes privées de leurs noms » (87 s, 16 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-26T07:23:19+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 59 sujet(s) au-dessus des seuils — en tête : « Afghanistan : les femmes privées de nom officiel »"

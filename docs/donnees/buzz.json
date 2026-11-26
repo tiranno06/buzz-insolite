@@ -372,9 +372,10 @@
     "pays": "FR",
     "trafic": "100+"
    },
-   "statut": "en_cours",
+   "statut": "utilise",
    "vu_le": "2026-11-26T01:00:57+01:00",
-   "reserve_le": "2026-11-26T07:16:59+01:00"
+   "reserve_le": "2026-11-26T07:16:59+01:00",
+   "video_id": "20261126-071929-1"
   },
   {
    "titre": "Afghanistan : nouvelles règles imposent surnoms aux femmes",
