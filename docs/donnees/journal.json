@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-26T03:01:46+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 58 sujet(s) au-dessus des seuils — en tête : « Décret afghan impose surnoms aux femmes »"
+  },
+  {
    "date": "2026-11-26T01:00:59+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 56 sujet(s) au-dessus des seuils — en tête : « Décret afghan impose surnoms aux femmes »"

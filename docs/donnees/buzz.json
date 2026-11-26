@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-26T01:00:57+01:00",
+ "maj": "2026-11-26T03:01:44+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:58:49+01:00"
+   "le": "2026-11-26T02:59:43+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:58:53+01:00"
+   "le": "2026-11-26T02:59:47+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:58:57+01:00"
+   "le": "2026-11-26T02:59:50+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:00+01:00"
+   "le": "2026-11-26T02:59:54+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:03+01:00"
+   "le": "2026-11-26T02:59:58+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-26T00:59:06+01:00"
+   "le": "2026-11-26T03:00:01+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:10+01:00"
+   "le": "2026-11-26T03:00:05+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:13+01:00"
+   "le": "2026-11-26T03:00:08+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:17+01:00"
+   "le": "2026-11-26T03:00:12+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:20+01:00"
+   "le": "2026-11-26T03:00:16+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:25+01:00"
+   "le": "2026-11-26T03:00:20+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:29+01:00"
+   "le": "2026-11-26T03:00:23+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:32+01:00"
+   "le": "2026-11-26T03:00:26+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-26T00:59:36+01:00"
+   "le": "2026-11-26T03:00:30+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:39+01:00"
+   "le": "2026-11-26T03:00:34+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:43+01:00"
+   "le": "2026-11-26T03:00:37+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:46+01:00"
+   "le": "2026-11-26T03:00:41+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:50+01:00"
+   "le": "2026-11-26T03:00:45+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:53+01:00"
+   "le": "2026-11-26T03:00:49+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T00:59:57+01:00"
+   "le": "2026-11-26T03:00:52+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T01:00:00+01:00"
+   "le": "2026-11-26T03:00:56+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T01:00:04+01:00"
+   "le": "2026-11-26T03:01:00+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T01:00:08+01:00"
+   "le": "2026-11-26T03:01:03+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T01:00:11+01:00"
+   "le": "2026-11-26T03:01:07+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T01:00:15+01:00"
+   "le": "2026-11-26T03:01:10+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T01:00:19+01:00"
+   "le": "2026-11-26T03:01:14+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T01:00:22+01:00"
+   "le": "2026-11-26T03:01:18+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T01:00:26+01:00"
+   "le": "2026-11-26T03:01:22+01:00"
   }
  },
  "lues": 809,
@@ -706,6 +706,57 @@
    "vu_le": "2026-11-25T22:59:59+01:00"
   },
   {
+   "titre": "Afghanistan : les femmes privées de nom officiel",
+   "resume": "Un nouveau décret impose aux femmes afghanes des surnoms au lieu de leurs prénoms. Cette mesure suscite de vives critiques au niveau international.",
+   "mots_cles": [
+    "Afghanistan",
+    "décret",
+    "femmes",
+    "surnoms"
+   ],
+   "mots_cles_en": [
+    "Afghanistan",
+    "decree",
+    "women",
+    "nicknames"
+   ],
+   "hashtags": [
+    "afghanistan",
+    "droitsfemmes",
+    "decret"
+   ],
+   "insolite": 8,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711838616284040470",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
+     "vues": 2900000,
+     "jaime": 520300,
+     "commentaires": 5624,
+     "partages": 57100,
+     "date": 1795552321,
+     "texte": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret leur impose des surnoms.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711838616284040470?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "4a8bdd2107",
+   "score": 693,
+   "derniere_vue": 1795658494.9964848,
+   "vues": 2900000,
+   "jaime": 520300,
+   "commentaires": 5624,
+   "hashtags_viraux": [],
+   "medias": 8,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T03:01:44+01:00"
+  },
+  {
    "titre": "Explosion de lead azide à Middletown",
    "resume": "Une explosion de lead azide a été filmée par drone à Middletown, avec coordination militaire.",
    "mots_cles": [
@@ -1118,6 +1169,58 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-25T22:59:59+01:00"
+  },
+  {
+   "titre": "Vent violent fait vaciller un pont suspendu en Patagonie",
+   "resume": "Un touriste allemand a lutté pour garder l'équilibre sur un pont suspendu sous des rafales puissantes au Chili. La vidéo montre la scène avec un sac de 40 livres.",
+   "mots_cles": [
+    "Patagonie",
+    "vent violent",
+    "pont suspendu",
+    "touriste allemand"
+   ],
+   "mots_cles_en": [
+    "Patagonia",
+    "strong winds",
+    "suspension bridge",
+    "German tourist"
+   ],
+   "hashtags": [
+    "patagonia",
+    "ventviolent",
+    "pont"
+   ],
+   "insolite": 6,
+   "categorie": "nature",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712157175216344350",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712157175216344350",
+     "vues": 2600000,
+     "jaime": 107800,
+     "commentaires": 2680,
+     "partages": 24000,
+     "date": 1795626527,
+     "texte": "Terrifying footage shows a German tourist fighting to stay on his feet as powerful winds violently toss a suspension bridge in Chile’s Patagonia region. Henry Thomas spreads his legs for balance and clings to the cable handrails while carrying a 40-pound backpack. His girlfriend had crossed safely just moments earlier. The frightening encounter unfolds during a seven-day trek through Torres del Pa",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712157175216344350?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "cfef8a366b",
+   "score": 429,
+   "derniere_vue": 1795658494.9964848,
+   "vues": 2600000,
+   "jaime": 107800,
+   "commentaires": 2680,
+   "hashtags_viraux": [],
+   "medias": 11,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T03:01:44+01:00"
   },
   {
    "titre": "Arrestations controversées à l'aéroport de Seattle",
@@ -1749,6 +1852,57 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-25T22:59:59+01:00"
+  },
+  {
+   "titre": "Étude : les jeunes britanniques ont moins de relations sexuelles",
+   "resume": "Le National Survey of Sexual Attitudes and Lifestyles révèle une baisse des rapports sexuels chez les adolescents et jeunes adultes au Royaume-Uni. La consommation de pornographie et le sexting restent élevés.",
+   "mots_cles": [
+    "Étude sexuelle",
+    "Jeunes britanniques",
+    "pornographie",
+    "sexting"
+   ],
+   "mots_cles_en": [
+    "sexual study",
+    "British youth",
+    "pornography",
+    "sexting"
+   ],
+   "hashtags": [
+    "sexualite",
+    "jeunes"
+   ],
+   "insolite": 5,
+   "categorie": "sante",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712064128998821142",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7712064128998821142",
+     "vues": 2300000,
+     "jaime": 144700,
+     "commentaires": 3451,
+     "partages": 78600,
+     "date": 1795604839,
+     "texte": "British people, particularly teens and young adults, are having less or no sex compared to past generations, but lots are watching porn and sexting, a major study indicated. It is the first time The National Survey of Sexual Attitudes and Lifestyles' (Natsal) research into general public sex lives has asked about online behaviours. The latest results were published in The Lancet and were based on ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712064128998821142?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "7821d346e4",
+   "score": 280,
+   "derniere_vue": 1795658494.9964848,
+   "vues": 2300000,
+   "jaime": 144700,
+   "commentaires": 3451,
+   "hashtags_viraux": [],
+   "medias": 7,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T03:01:44+01:00"
   },
   {
    "titre": "Leçon antiraciste de Jane Elliott en 1968 toujours pertinente",
@@ -2964,6 +3118,62 @@
    "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
+   "titre": "Nouvelles drogues vendues dans les stations-service américaines",
+   "resume": "Des produits contenant des substances hallucinogènes sont commercialisés dans les stations-service et boutiques de vape aux États-Unis. Le New York Times a acheté et testé 28 échantillons.",
+   "mots_cles": [
+    "drogues de rue",
+    "stations-service",
+    "vape",
+    "substances hallucinogènes"
+   ],
+   "mots_cles_en": [
+    "street drugs",
+    "gas stations",
+    "vape",
+    "hallucinogens"
+   ],
+   "hashtags": [
+    "drogues",
+    "gasstations",
+    "vape"
+   ],
+   "insolite": 7,
+   "categorie": "sante",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711424511110843661",
+     "compte": "nytimes",
+     "url": "https://www.tiktok.com/@nytimes/video/7711424511110843661",
+     "vues": 1700000,
+     "jaime": 159700,
+     "commentaires": 1928,
+     "partages": 23600,
+     "date": 1795455960,
+     "texte": "A new generation of drugs is for sale inside gas station convenience stores and smoke shops across the country. It can be difficult to know what’s actually inside these items. To better understand this phenomenon, The New York Times purchased and lab-tested 28 products. #gasstation #vape #hallucinogens Correction: This video contains an inaccurate illustration referring to the molecule mitragynine",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711424511110843661?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "d1cd721a38",
+   "score": 96,
+   "derniere_vue": 1795658494.9964848,
+   "vues": 1700000,
+   "jaime": 159700,
+   "commentaires": 1928,
+   "hashtags_viraux": [
+    "gasstation",
+    "vape",
+    "hallucinogens"
+   ],
+   "medias": 5,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T03:01:44+01:00"
+  },
+  {
    "titre": "Condamnation pour vandalisme statue Vierge Porto-Vecchio",
    "resume": "Deux jeunes ont été condamnés à trois mois de prison ferme pour avoir vandalisé une statue de la Vierge à Porto-Vecchio. L’affaire relance le débat sur la liberté d’expression et le respect des symboles religieux.",
    "mots_cles": [
@@ -3115,60 +3325,6 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T16:44:03+01:00",
    "video_id": "20261125-224006-1"
-  },
-  {
-   "titre": "Jeunes britanniques : moins de sexe",
-   "resume": "Une étude Natsal révèle que les jeunes britanniques ont moins de relations sexuelles. Ils consomment davantage de pornographie et de sexting.",
-   "mots_cles": [
-    "jeunes britanniques",
-    "sexe",
-    "pornographie",
-    "sexting",
-    "Natsal"
-   ],
-   "mots_cles_en": [
-    "British teens",
-    "sex",
-    "pornography",
-    "sexting",
-    "Natsal"
-   ],
-   "hashtags": [
-    "britishteens",
-    "sex",
-    "porn"
-   ],
-   "insolite": 4,
-   "categorie": "societe",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712064128998821142",
-     "compte": "bbcnews",
-     "url": "https://www.tiktok.com/@bbcnews/video/7712064128998821142",
-     "vues": 2000000,
-     "jaime": 129900,
-     "commentaires": 3136,
-     "partages": 71600,
-     "date": 1795604839,
-     "texte": "British people, particularly teens and young adults, are having less or no sex compared to past generations, but lots are watching porn and sexting, a major study indicated. It is the first time The National Survey of Sexual Attitudes and Lifestyles' (Natsal) research into general public sex lives has asked about online behaviours. The latest results were published in The Lancet and were based on ",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712064128998821142?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "b5361044b3",
-   "score": 73,
-   "derniere_vue": 1795644149.7443585,
-   "vues": 2000000,
-   "jaime": 129900,
-   "commentaires": 3136,
-   "hashtags_viraux": [],
-   "medias": 1,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
    "titre": "Vol de colis filmé par caméra de surveillance",
@@ -3371,58 +3527,6 @@
    ],
    "statut": "nouveau",
    "vu_le": "2026-11-24T18:38:52+01:00"
-  },
-  {
-   "titre": "Arnaque de Noël : consoles vendues sans produit",
-   "resume": "Des annonces sur des plateformes de seconde main proposent des consoles de jeux dernier cri, mais seules des photos sont livrées, aucune console réelle. La fraude se répand à l'approche des fêtes.",
-   "mots_cles": [
-    "arnaque",
-    "Noël",
-    "consoles",
-    "seconde main"
-   ],
-   "mots_cles_en": [
-    "scam",
-    "Christmas",
-    "consoles",
-    "secondhand"
-   ],
-   "hashtags": [
-    "arnaque",
-    "noël",
-    "consoles"
-   ],
-   "insolite": 5,
-   "categorie": "societe",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7711847373802179873",
-     "compte": "tf1info",
-     "url": "https://www.tiktok.com/@tf1info/video/7711847373802179873",
-     "vues": 2300000,
-     "jaime": 156900,
-     "commentaires": 2448,
-     "partages": 46500,
-     "date": 1795554385,
-     "texte": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateformes de seconde main proposent, en apparence, des consoles de jeux dernier cri. En réalité, seule une photo du produit est mise en vente et livrée.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7711847373802179873?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "057e1c3ebd",
-   "score": 49,
-   "derniere_vue": 1795643989.07539,
-   "vues": 2300000,
-   "jaime": 156900,
-   "commentaires": 2448,
-   "hashtags_viraux": [],
-   "medias": 2,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-25T22:59:59+01:00"
   },
   {
    "titre": "Gardien de stade étouffe entraîneur brésilien",
@@ -3684,6 +3788,58 @@
    "medias": 2,
    "statut": "nouveau",
    "vu_le": "2026-11-25T09:59:33+01:00"
+  },
+  {
+   "titre": "Arnaque de Noël : consoles vendues sans produit",
+   "resume": "Des annonces sur des plateformes de seconde main proposent des consoles neuves mais n'envoient qu'une simple photo. Les acheteurs se retrouvent sans le produit commandé.",
+   "mots_cles": [
+    "arnaque",
+    "Noël",
+    "consoles",
+    "seconde main"
+   ],
+   "mots_cles_en": [
+    "scam",
+    "Christmas",
+    "consoles",
+    "secondhand"
+   ],
+   "hashtags": [
+    "arnaque",
+    "noel",
+    "consoles"
+   ],
+   "insolite": 3,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711847373802179873",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7711847373802179873",
+     "vues": 2400000,
+     "jaime": 163100,
+     "commentaires": 2530,
+     "partages": 48500,
+     "date": 1795554385,
+     "texte": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateformes de seconde main proposent, en apparence, des consoles de jeux dernier cri. En réalité, seule une photo du produit est mise en vente et livrée.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711847373802179873?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "057e1c3ebd",
+   "score": 43,
+   "derniere_vue": 1795658494.9964848,
+   "vues": 2400000,
+   "jaime": 163100,
+   "commentaires": 2530,
+   "hashtags_viraux": [],
+   "medias": 2,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T22:59:59+01:00"
   },
   {
    "titre": "Psychologists suggest men who bend or break traffic rules may possess personality traits t",
@@ -3968,65 +4124,6 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-25T12:43:45+01:00"
-  },
-  {
-   "titre": "Ventes de drogues illégales dans les stations-service américaines",
-   "resume": "Des produits hallucinogènes et non régulés sont vendus dans des stations-service et des *smoke shops* aux États-Unis. Le *New York Times* a testé 28 échantillons pour analyser leur contenu.",
-   "mots_cles": [
-    "drogues illégales",
-    "stations-service",
-    "hallucinogènes",
-    "NYT",
-    "vape"
-   ],
-   "mots_cles_en": [
-    "illegal drugs",
-    "gas stations",
-    "hallucinogens",
-    "NYT",
-    "vape"
-   ],
-   "hashtags": [
-    "",
-    "d",
-    "r",
-    "o",
-    "g"
-   ],
-   "insolite": 7,
-   "categorie": "sante",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7711424511110843661",
-     "compte": "nytimes",
-     "url": "https://www.tiktok.com/@nytimes/video/7711424511110843661",
-     "vues": 1600000,
-     "jaime": 150800,
-     "commentaires": 1813,
-     "partages": 22000,
-     "date": 1795455960,
-     "texte": "A new generation of drugs is for sale inside gas station convenience stores and smoke shops across the country. It can be difficult to know what’s actually inside these items. To better understand this phenomenon, The New York Times purchased and lab-tested 28 products. #gasstation #vape #hallucinogens",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7711424511110843661?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "0d13d1583a",
-   "score": 29,
-   "derniere_vue": 1795597155.4223838,
-   "vues": 1600000,
-   "jaime": 150800,
-   "commentaires": 1813,
-   "hashtags_viraux": [
-    "gasstation",
-    "vape",
-    "hallucinogens"
-   ],
-   "medias": 1,
-   "statut": "nouveau",
-   "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
    "titre": "A new generation of drugs is for sale inside gas station convenience stores and smoke shop",
