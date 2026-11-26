@@ -386,8 +386,9 @@
    "hashtags_viraux": [],
    "medias": 0,
    "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T15:24:57+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-26T15:24:57+01:00",
+   "reserve_le": "2026-11-26T16:28:38+01:00"
   },
   {
    "titre": "Décret afghan impose surnoms aux femmes",
@@ -590,8 +591,9 @@
    ],
    "medias": 0,
    "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T15:24:57+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-26T15:24:57+01:00",
+   "reserve_le": "2026-11-26T16:28:38+01:00"
   },
   {
    "titre": "GTA 6 : buzz autour du jeu",
@@ -679,8 +681,9 @@
    ],
    "medias": 0,
    "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T13:26:29+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-26T13:26:29+01:00",
+   "reserve_le": "2026-11-26T16:28:38+01:00"
   },
   {
    "titre": "États-Unis : arrestation passagers à l’aéroport de Seattle",
