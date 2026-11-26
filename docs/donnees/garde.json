@@ -1,20 +1,7 @@
 {
- "en_attente": [
-  {
-   "inputs": {
-    "format": "buzz",
-    "refaire": "20261125-231630-1",
-    "etape": "auto",
-    "remarque": "Réparation automatique : texte un peu court (environ 54 s) ; faits non vérifiés par une 2e IA",
-    "origine": "reparation",
-    "nombre": "1"
-   },
-   "demande_le": "2026-11-26T13:31:11+01:00",
-   "raison": "déjà 2 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
-  }
- ],
+ "en_attente": [],
  "credits": {
-  "le": "2026-11-26T13:57:55+01:00",
+  "le": "2026-11-26T14:10:19+01:00",
   "resume": "✅ IA disponibles : groq, gemini ; voient : gemini"
  },
  "creation": {
