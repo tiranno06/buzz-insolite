@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-26T10:59:40+01:00",
+   "niveau": "info",
+   "texte": "✅ « Femmes afghanes privées de leurs noms » ajoutée à la file de publication."
+  },
+  {
    "date": "2026-11-26T09:24:29+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 61 sujet(s) au-dessus des seuils — en tête : « Afghanistan : nouvelles règles imposent surnoms aux femmes »"

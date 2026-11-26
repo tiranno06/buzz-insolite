@@ -385,7 +385,9 @@
     "rangement": 7
    },
    "refaite": null,
-   "statut": "a_verifier"
+   "statut": "a_publier",
+   "force": true,
+   "coche_le": "2026-11-26T10:59:40+01:00"
   },
   {
    "id": "20261125-231630-1",
