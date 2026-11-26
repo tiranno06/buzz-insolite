@@ -706,7 +706,8 @@
     "rangement": 13
    },
    "refaite": null,
-   "statut": "a_verifier"
+   "statut": "a_verifier",
+   "echec_publication": "2026-11-26T11:00:43+01:00 : contrôle avant publication : règle(s) non respectée(s) : vidéo de 51 s : il faut PLUS d'1 minute ; faits non vérifiés par une 2e IA ; vidéo trop courte (51 s)"
   },
   {
    "id": "20261125-225608-1",
