@@ -3876,8 +3876,15 @@
     "rangement": 7
    },
    "refaite": null,
-   "statut": "a_publier",
-   "coche_le": "2026-11-25T16:14:45+01:00"
+   "statut": "publiee",
+   "coche_le": "2026-11-25T16:14:45+01:00",
+   "publiee_le": "2026-11-26T12:39:27+01:00",
+   "buffer": {
+    "id": "6b081a6434411d121c436471",
+    "compte": "buzz.insolite",
+    "quand": null,
+    "etiquette_ia": true
+   }
   },
   {
    "id": "20261125-140715-1-r1",
