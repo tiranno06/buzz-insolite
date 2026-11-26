@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-26T17:23:54+01:00",
+ "maj": "2026-11-26T19:24:57+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:21:45+01:00"
+   "le": "2026-11-26T19:22:36+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:21:50+01:00"
+   "le": "2026-11-26T19:22:40+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:21:53+01:00"
+   "le": "2026-11-26T19:22:44+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:21:57+01:00"
+   "le": "2026-11-26T19:22:49+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:22:00+01:00"
+   "le": "2026-11-26T19:22:53+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-26T17:22:03+01:00"
+   "le": "2026-11-26T19:22:56+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:22:07+01:00"
+   "le": "2026-11-26T19:23:01+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:22:11+01:00"
+   "le": "2026-11-26T19:23:05+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:22:14+01:00"
+   "le": "2026-11-26T19:23:10+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:22:18+01:00"
+   "le": "2026-11-26T19:23:14+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:22:22+01:00"
+   "le": "2026-11-26T19:23:18+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:22:25+01:00"
+   "le": "2026-11-26T19:23:22+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:22:29+01:00"
+   "le": "2026-11-26T19:23:27+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-26T17:22:33+01:00"
+   "le": "2026-11-26T19:23:30+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:22:36+01:00"
+   "le": "2026-11-26T19:23:34+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:22:40+01:00"
+   "le": "2026-11-26T19:23:38+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:22:44+01:00"
+   "le": "2026-11-26T19:23:42+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:22:48+01:00"
+   "le": "2026-11-26T19:23:47+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:22:57+01:00"
+   "le": "2026-11-26T19:23:52+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:23:01+01:00"
+   "le": "2026-11-26T19:23:56+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:23:05+01:00"
+   "le": "2026-11-26T19:24:01+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:23:08+01:00"
+   "le": "2026-11-26T19:24:05+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:23:12+01:00"
+   "le": "2026-11-26T19:24:09+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:23:15+01:00"
+   "le": "2026-11-26T19:24:15+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:23:19+01:00"
+   "le": "2026-11-26T19:24:18+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:23:23+01:00"
+   "le": "2026-11-26T19:24:23+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:23:27+01:00"
+   "le": "2026-11-26T19:24:27+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T17:23:31+01:00"
+   "le": "2026-11-26T19:24:31+01:00"
   }
  },
  "lues": 809,
@@ -1638,15 +1638,29 @@
      "sous_seuils": true,
      "indisponible": false,
      "lecteur": "https://www.tiktok.com/player/v1/7712157175216344350?description=1&music_info=1"
+    },
+    {
+     "id": "7712182765873040663",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
+     "vues": 1300000,
+     "jaime": 61600,
+     "commentaires": 779,
+     "partages": 11800,
+     "date": 1795632482,
+     "texte": "L'IMAGE DU JOUR - 😱 Grosse frayeur pour un randonneur allemand en Patagonie, au Chili. Alors qu'il traversait une passerelle suspendue, de violentes rafales de vent ont fait dangereusement osciller le pont. Avec un sac de 18 kilos sur le dos, le touriste s'est agrippé aux câbles pour tenter de garder son équilibre. Une scène vertigineuse filmée par un autre randonneur.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712182765873040663?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
    "id": "cfef8a366b",
    "score": 429,
    "derniere_vue": 1795658494.9964848,
-   "vues": 2600000,
-   "jaime": 107800,
-   "commentaires": 2680,
+   "vues": 3900000,
+   "jaime": 169400,
+   "commentaires": 3459,
    "hashtags_viraux": [],
    "medias": 11,
    "tendance": null,
@@ -3205,56 +3219,6 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
-   "titre": "Explosion d’un camion-citerne à Giza",
-   "resume": "Un camion transportant des produits pétroliers s’est renversé à Giza, déclenchant un incendie qui a fait au moins 31 morts. Les secours luttent contre les flammes et les victimes sont évacuées.",
-   "mots_cles": [
-    "camion-citerne",
-    "Giza",
-    "incendie"
-   ],
-   "mots_cles_en": [
-    "tanker truck",
-    "Giza",
-    "fire"
-   ],
-   "hashtags": [
-    "camionciterne",
-    "giza",
-    "incendie"
-   ],
-   "insolite": 6,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712258353673620749",
-     "compte": "cnn",
-     "url": "https://www.tiktok.com/@cnn/video/7712258353673620749",
-     "vues": 1300000,
-     "jaime": 63300,
-     "commentaires": 1818,
-     "partages": 10100,
-     "date": 1795650088,
-     "texte": "A tanker truck carrying petroleum products crashed in Egypt’s Giza governorate Wednesday, igniting a massive fire that killed at least 31 people and injured 21 others, according to the Egyptian Ministry of Health and Population.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712258353673620749?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "4dbea4c292",
-   "score": 143,
-   "derniere_vue": 1795710224.174458,
-   "vues": 1300000,
-   "jaime": 63300,
-   "commentaires": 1818,
-   "hashtags_viraux": [],
-   "medias": 16,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T17:23:54+01:00"
-  },
-  {
    "titre": "Massachusetts : femme poursuivie par des dindes sauvages",
    "resume": "Une femme a été poursuivie par des dindes sauvages avant de se réfugier dans une voiture. Les autorités rappellent que ces animaux, bien que sauvages, peuvent être agressifs.",
    "mots_cles": [
@@ -3524,6 +3488,68 @@
    "medias": 22,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Escalator s’emballe à l’université BRAC",
+   "resume": "Un escalier mécanique a soudainement accéléré, forçant les étudiants à sauter pour éviter d’être emportés. L’incident s’est produit en décembre 2025 à la BRAC University, au Bangladesh.",
+   "mots_cles": [
+    "e",
+    "s",
+    "c",
+    "a",
+    "l",
+    "a"
+   ],
+   "mots_cles_en": [
+    "e",
+    "s",
+    "c",
+    "a",
+    "l",
+    "a"
+   ],
+   "hashtags": [
+    "escalator",
+    "acceleration",
+    "bangladesh"
+   ],
+   "insolite": 6,
+   "categorie": "insolite",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712510013171911949",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
+     "vues": 1000000,
+     "jaime": 53000,
+     "commentaires": 704,
+     "partages": 4293,
+     "date": 1795708700,
+     "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712510013171911949?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "d098a2b243",
+   "score": 106,
+   "derniere_vue": 1795717485.4852874,
+   "vues": 1000000,
+   "jaime": 53000,
+   "commentaires": 704,
+   "hashtags_viraux": [
+    "bangladesh",
+    "viral",
+    "escalator",
+    "hardnews",
+    "news"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T19:24:57+01:00"
   },
   {
    "titre": "Randonneur allemand menacé par vents en Patagonie",
@@ -4189,6 +4215,62 @@
    "vu_le": "2026-11-25T02:05:25+01:00"
   },
   {
+   "titre": "Chute du cours de l’or expliquée",
+   "resume": "Une vidéo analyse les raisons de la baisse du prix de l’or en fin d’année. Les facteurs incluent la hausse des taux d’intérêt et la force du dollar.",
+   "mots_cles": [
+    "o",
+    "r",
+    ",",
+    " ",
+    "c",
+    "o"
+   ],
+   "mots_cles_en": [
+    "g",
+    "o",
+    "l",
+    "d",
+    ",",
+    " "
+   ],
+   "hashtags": [
+    "gold",
+    "price",
+    "drop"
+   ],
+   "insolite": 3,
+   "categorie": "economie",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712432953673927969",
+     "compte": "hugodecrypte",
+     "url": "https://www.tiktok.com/@hugodecrypte/video/7712432953673927969",
+     "vues": 1300000,
+     "jaime": 131500,
+     "commentaires": 543,
+     "partages": 15600,
+     "date": 1795690736,
+     "texte": "(25/11) 🚨Comment expliquer la chute du cours de l’or ? ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712432953673927969?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "2a969b3422",
+   "score": 67,
+   "derniere_vue": 1795717485.4852874,
+   "vues": 1300000,
+   "jaime": 131500,
+   "commentaires": 543,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T19:24:57+01:00"
+  },
+  {
    "titre": "Struggling to switch off a racing mind? A viral TikTok sound is gaining attention for its ",
    "resume": "Struggling to switch off a racing mind? A viral TikTok sound is gaining attention for its supposed ability to help quiet overthinking and encourage relaxation. The audio uses a 5Hz theta binaural beat, alongside alternating sounds that move between the left and right ears, a technique known as bilateral stimulation that is also used in EMDR therapy. #overthinking #audio #viral #science #anxiety ",
    "mots_cles": [],
@@ -4284,6 +4366,61 @@
    ],
    "statut": "nouveau",
    "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Système IA déclenche inondation à station de ski",
+   "resume": "Un dispositif anti-incendie alimenté par IA a activé un canon à eau, inondant un stand de restauration au Wanlong Ski Resort en Chine. La scène a été largement partagée sur les réseaux.",
+   "mots_cles": [
+    "I",
+    "A",
+    ",",
+    " ",
+    "s",
+    "y"
+   ],
+   "mots_cles_en": [
+    "A",
+    "I",
+    ",",
+    " ",
+    "f",
+    "i"
+   ],
+   "hashtags": [
+    "firesuppression",
+    "ski"
+   ],
+   "insolite": 7,
+   "categorie": "tech",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712432376709680398",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712432376709680398",
+     "vues": 1100000,
+     "jaime": 101800,
+     "commentaires": 1806,
+     "partages": 19900,
+     "date": 1795690673,
+     "texte": "AI really said better safe than sorry 😂 An AI-powered fire suppression system caused chaos at a food stall in a Chinese ski resort after triggering its ceiling-mounted water cannon and soaking the counter. The incident happened at Wanlong Ski Resort in Hebei province, with footage showing the powerful jet of water blasting the stall as startled customers looked on. Resort managers later said the s",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712432376709680398?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "81d0ed5e5f",
+   "score": 64,
+   "derniere_vue": 1795717485.4852874,
+   "vues": 1100000,
+   "jaime": 101800,
+   "commentaires": 1806,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T19:24:57+01:00"
   },
   {
    "titre": "GTA 6 rend hommage à l’orque Lolita",
@@ -4998,6 +5135,62 @@
    "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
+   "titre": "Explosion d’un camion-citerne à Giza",
+   "resume": "Un camion transportant des produits pétroliers a percuté et pris feu dans la gouvernorat de Giza, en Égypte. Au moins 31 personnes sont décédées et 21 blessées.",
+   "mots_cles": [
+    "c",
+    "a",
+    "m",
+    "i",
+    "o",
+    "n"
+   ],
+   "mots_cles_en": [
+    "t",
+    "a",
+    "n",
+    "k",
+    "e",
+    "r"
+   ],
+   "hashtags": [
+    "tankerfire",
+    "giza",
+    "egypt"
+   ],
+   "insolite": 6,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712258353673620749",
+     "compte": "cnn",
+     "url": "https://www.tiktok.com/@cnn/video/7712258353673620749",
+     "vues": 1400000,
+     "jaime": 68900,
+     "commentaires": 1939,
+     "partages": 11000,
+     "date": 1795650088,
+     "texte": "A tanker truck carrying petroleum products crashed in Egypt’s Giza governorate Wednesday, igniting a massive fire that killed at least 31 people and injured 21 others, according to the Egyptian Ministry of Health and Population.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712258353673620749?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "4dbea4c292",
+   "score": 35,
+   "derniere_vue": 1795717485.4852874,
+   "vues": 1400000,
+   "jaime": 68900,
+   "commentaires": 1939,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T17:23:54+01:00"
+  },
+  {
    "titre": "Accident de camion-citerne à Gizeh",
    "resume": "Un camion-citerne transportant des produits pétroliers a percuté à Gizeh, Égypte, provoquant un incendie meurtrier. Au moins 31 personnes sont décédées.",
    "mots_cles": [
@@ -5161,6 +5354,118 @@
    "vu_le": "2026-11-26T13:26:29+01:00"
   },
   {
+   "titre": "TAS sacrifie le titre AFCON au Sénégal",
+   "resume": "Le Tribunal Arbitral du Sport a confirmé le Sénégal champion de la Coupe d’Afrique des Nations 2025 après la décision de la CAF. Le titre avait été initialement retiré puis réattribué.",
+   "mots_cles": [
+    "T",
+    "A",
+    "S",
+    ",",
+    " ",
+    "A"
+   ],
+   "mots_cles_en": [
+    "C",
+    "A",
+    "S",
+    ",",
+    " ",
+    "A"
+   ],
+   "hashtags": [
+    "tas",
+    "afcon",
+    "senegal"
+   ],
+   "insolite": 4,
+   "categorie": "sport",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711746571976707361",
+     "compte": "hugodecrypte",
+     "url": "https://www.tiktok.com/@hugodecrypte/video/7711746571976707361",
+     "vues": 2000000,
+     "jaime": 273600,
+     "commentaires": 2211,
+     "partages": 31600,
+     "date": 1795530924,
+     "texte": "Le Tribunal Arbitral du Sport, la plus haute juridiction du sport mondial, a désigné ce mardi le Sénégal comme vainqueur de la Coupe d’Afrique des Nations 2025. Le Sénégal avait remporté le titre à l’issue de la finale dans un premier temps, avant de se le voir retirer par la Confédération Africaine de Football (CAF) sur tapis vert en mars. Il était reproché aux joueurs de l’équipe sénégalaise d’a",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711746571976707361?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "05829624e4",
+   "score": 31,
+   "derniere_vue": 1795717485.4852874,
+   "vues": 2000000,
+   "jaime": 273600,
+   "commentaires": 2211,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T19:24:57+01:00"
+  },
+  {
+   "titre": "Effondrement du quai Pacifica à Californie",
+   "resume": "Une partie du célèbre Pacifica Pier s’est effondrée sous l’action de marées de roi et de vagues puissantes. Le quai de 335 mètres est fermé indéfiniment pour des réparations.",
+   "mots_cles": [
+    "P",
+    "a",
+    "c",
+    "i",
+    "f",
+    "i"
+   ],
+   "mots_cles_en": [
+    "P",
+    "a",
+    "c",
+    "i",
+    "f",
+    "i"
+   ],
+   "hashtags": [
+    "pacificapiercollapse",
+    "california",
+    "pier"
+   ],
+   "insolite": 6,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712263407784758558",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712263407784758558",
+     "vues": 1100000,
+     "jaime": 52800,
+     "commentaires": 1245,
+     "partages": 5280,
+     "date": 1795651263,
+     "texte": "WATCH: Dramatic video shows a massive section of Northern California’s iconic Pacifica Pier crashing into the ocean as powerful king tides and towering waves pound the Bay Area coastline. The 1,100-foot pier is now closed indefinitely after Wednesday’s collapse, while surging water floods nearby streets, forces road closures and creates dangerous conditions across the city.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712263407784758558?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "88dcd4b1e3",
+   "score": 28,
+   "derniere_vue": 1795717485.4852874,
+   "vues": 1100000,
+   "jaime": 52800,
+   "commentaires": 1245,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T19:24:57+01:00"
+  },
+  {
    "titre": "A new generation of drugs is for sale inside gas station convenience stores and smoke shop",
    "resume": "A new generation of drugs is for sale inside gas station convenience stores and smoke shops across the country. It can be difficult to know what’s actually inside these items. To better understand this phenomenon, The New York Times purchased and lab-tested 28 products. #gasstation #vape #hallucinogens",
    "mots_cles": [],
@@ -5202,6 +5507,118 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-25T12:43:45+01:00"
+  },
+  {
+   "titre": "Vague emporte homme et chien à Cannon Beach",
+   "resume": "Une grosse vague a submergé un promeneur et son chien sur la plage de Cannon Beach, Oregon. L’incident a été filmé et partagé largement.",
+   "mots_cles": [
+    "C",
+    "a",
+    "n",
+    "n",
+    "o",
+    "n"
+   ],
+   "mots_cles_en": [
+    "C",
+    "a",
+    "n",
+    "n",
+    "o",
+    "n"
+   ],
+   "hashtags": [
+    "cannonbeach",
+    "wave",
+    "dog"
+   ],
+   "insolite": 5,
+   "categorie": "nature",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712159161118723350",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7712159161118723350",
+     "vues": 1100000,
+     "jaime": 47300,
+     "commentaires": 414,
+     "partages": 2801,
+     "date": 1795626961,
+     "texte": "Une vague emporte brutalement un homme et son chien à Cannon Beach, aux États-Unis.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712159161118723350?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "b9860fdcbf",
+   "score": 21,
+   "derniere_vue": 1795717485.4852874,
+   "vues": 1100000,
+   "jaime": 47300,
+   "commentaires": 414,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T19:24:57+01:00"
+  },
+  {
+   "titre": "Bunker de cannabis découvert sous balançoire en Andalousie",
+   "resume": "La garde civile espagnole a mis au jour un bunker de 180 m² rempli de plants de cannabis caché sous une balançoire près de Grenade. Cinq personnes ont été arrêtées.",
+   "mots_cles": [
+    "c",
+    "a",
+    "n",
+    "n",
+    "a",
+    "b"
+   ],
+   "mots_cles_en": [
+    "c",
+    "a",
+    "n",
+    "n",
+    "a",
+    "b"
+   ],
+   "hashtags": [
+    "cannabis",
+    "bunker",
+    "andalusia"
+   ],
+   "insolite": 7,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712124144191540502",
+     "compte": "ouestfrance",
+     "url": "https://www.tiktok.com/@ouestfrance/video/7712124144191540502",
+     "vues": 964000,
+     "jaime": 26800,
+     "commentaires": 160,
+     "partages": 7236,
+     "date": 1795618813,
+     "texte": "😱 La balançoire et la cabane cachaient une trappe. Près de Grenade, en Andalousie, la Garde civile espagnole a découvert mardi 17 novembre 2026 un bunker de 180 m² rempli de plants de cannabis, caché sous une balançoire et une cabane d'enfants. Cinq personnes ont été arrêtées.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712124144191540502?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "67476a2949",
+   "score": 17,
+   "derniere_vue": 1795717485.4852874,
+   "vues": 964000,
+   "jaime": 26800,
+   "commentaires": 160,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T19:24:57+01:00"
   },
   {
    "titre": "R N B O I chante Hymne à l'amour à l'Olympia",
@@ -5251,6 +5668,62 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-26T01:00:57+01:00"
+  },
+  {
+   "titre": "R N B O I rend hommage à Céline Dion",
+   "resume": "Le groupe R N B O I a interprété « Hymne à l’amour » de Céline Dion lors de son concert à l’Olympia. Le public a chaleureusement accueilli la performance.",
+   "mots_cles": [
+    "R",
+    " ",
+    "N",
+    " ",
+    "B",
+    " "
+   ],
+   "mots_cles_en": [
+    "R",
+    " ",
+    "N",
+    " ",
+    "B",
+    " "
+   ],
+   "hashtags": [
+    "rnboi",
+    "celineolympia",
+    "concert"
+   ],
+   "insolite": 4,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711499579513965857",
+     "compte": "konbini",
+     "url": "https://www.tiktok.com/@konbini/video/7711499579513965857",
+     "vues": 1100000,
+     "jaime": 122000,
+     "commentaires": 336,
+     "partages": 12500,
+     "date": 1795473419,
+     "texte": "@R N B O I se la joue Céline Dion pour débuter son concert à l’Olympia en reprenant « Hymne à l’amour » d’Édith Piaf, et la salle adore.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711499579513965857?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "b36f25f34f",
+   "score": 13,
+   "derniere_vue": 1795717485.4852874,
+   "vues": 1100000,
+   "jaime": 122000,
+   "commentaires": 336,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T19:24:57+01:00"
   }
  ]
 }

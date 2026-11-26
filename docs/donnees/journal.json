@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-26T19:25:00+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 79 sujet(s) au-dessus des seuils — en tête : « GTA 6 : buzz autour du jeu »"
+  },
+  {
    "date": "2026-11-26T19:12:30+01:00",
    "niveau": "info",
    "texte": "📤 « Bois de l'Arche, 4300 ans » publiée sur TikTok (créneau de 19:00)."
