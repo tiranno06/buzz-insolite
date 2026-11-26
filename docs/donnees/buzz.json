@@ -1,214 +1,150 @@
 {
- "maj": "2026-11-26T21:25:21+01:00",
+ "maj": "2026-11-26T23:26:47+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:23:34+01:00"
+   "le": "2026-11-26T23:24:28+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:23:37+01:00"
+   "le": "2026-11-26T23:24:33+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:23:41+01:00"
+   "le": "2026-11-26T23:24:38+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:23:44+01:00"
+   "le": "2026-11-26T23:24:42+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:23:47+01:00"
+   "le": "2026-11-26T23:24:47+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-26T21:23:50+01:00"
+   "le": "2026-11-26T23:24:51+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:23:54+01:00"
+   "le": "2026-11-26T23:24:55+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:23:57+01:00"
+   "le": "2026-11-26T23:25:00+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:01+01:00"
+   "le": "2026-11-26T23:25:05+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:05+01:00"
+   "le": "2026-11-26T23:25:09+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:09+01:00"
+   "le": "2026-11-26T23:25:14+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:12+01:00"
+   "le": "2026-11-26T23:25:20+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:16+01:00"
+   "le": "2026-11-26T23:25:23+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-26T21:24:19+01:00"
+   "le": "2026-11-26T23:25:28+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:22+01:00"
+   "le": "2026-11-26T23:25:32+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:26+01:00"
+   "le": "2026-11-26T23:25:36+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:29+01:00"
+   "le": "2026-11-26T23:25:40+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:33+01:00"
+   "le": "2026-11-26T23:25:45+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:37+01:00"
+   "le": "2026-11-26T23:25:49+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:40+01:00"
+   "le": "2026-11-26T23:25:53+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:43+01:00"
+   "le": "2026-11-26T23:25:57+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:47+01:00"
+   "le": "2026-11-26T23:26:01+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:50+01:00"
+   "le": "2026-11-26T23:26:05+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:54+01:00"
+   "le": "2026-11-26T23:26:09+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:24:57+01:00"
+   "le": "2026-11-26T23:26:13+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:25:00+01:00"
+   "le": "2026-11-26T23:26:18+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:25:04+01:00"
+   "le": "2026-11-26T23:26:22+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T21:25:07+01:00"
+   "le": "2026-11-26T23:26:27+01:00"
   }
  },
  "lues": 809,
  "retenues": 1,
  "sujets": [
-  {
-   "titre": "Christ Rédempteur apparaît au-dessus des nuages",
-   "resume": "Une vague de brume a enveloppé le mont Corcovado, donnant l'illusion que la statue du Christ Rédempteur flotte dans le ciel. Le phénomène a été filmé depuis un iPhone par le photographe Marcio Amaro.",
-   "mots_cles": [
-    "Christ Rédempteur",
-    "nuages",
-    "Rio de Janeiro"
-   ],
-   "mots_cles_en": [
-    "Christ the Redeemer",
-    "clouds",
-    "Rio"
-   ],
-   "hashtags": [
-    "christredeemer",
-    "clouds",
-    "rio",
-    "insolite"
-   ],
-   "insolite": 8,
-   "categorie": "insolite",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712210525609889054",
-     "compte": "foxnews",
-     "url": "https://www.tiktok.com/@foxnews/video/7712210525609889054",
-     "vues": 7600000,
-     "jaime": 1700000,
-     "commentaires": 13500,
-     "partages": 171000,
-     "date": 1795647600,
-     "texte": "WATCH: Brazil’s Christ the Redeemer appears to float above the clouds as a massive wave of mist cascades down Corcovado mountain in Rio de Janeiro. Photographer Marcio Amaro filmed the euphoric moment on his iPhone, capturing what looks like a waterfall of clouds pouring around the landmark. The rare visual comes from a weather phenomenon called orographic lift, where moist ocean air pushes over t",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712210525609889054?description=1&music_info=1"
-    },
-    {
-     "id": "7712406425690983694",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712406425690983694",
-     "vues": 1900000,
-     "jaime": 410900,
-     "commentaires": 3019,
-     "partages": 21800,
-     "date": 1795684610,
-     "texte": "A man in Rio de Janeiro captured a breathtaking sight of Christ the Redeemer appearing above a blanket of rolling clouds, describing the moment as a ‘gift from God’. Marcio Amaro was visiting his late godfather-in-law’s vacant property with his wife and cousin when his cousin spotted the extraordinary view from the house. Even his wife, who had lived there all her life, had never witnessed anythin",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712406425690983694?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "8d1c74a7b1",
-   "score": 5549,
-   "derniere_vue": 1795710224.174458,
-   "vues": 9500000,
-   "jaime": 2110900,
-   "commentaires": 16519,
-   "hashtags_viraux": [],
-   "medias": 10,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-26T17:23:54+01:00"
-  },
   {
    "titre": "Maresées exceptionnelles menacent l'Oregon et la Californie",
    "resume": "Des inondations côtières graves ont forcé un homme et son chien à fuir des vagues géantes à Cannon Beach, Oregon. Les autorités alertent sur des risques similaires en Californie.",
@@ -1729,6 +1665,61 @@
    "vu_le": "2026-11-26T05:22:43+01:00"
   },
   {
+   "titre": "Christ le Rédempteur apparaît au-dessus des nuages",
+   "resume": "Un homme a filmé le Christ du Corcovado émergeant d'un voile de nuages à Rio. Il décrit ce phénomène comme un « cadeau de Dieu ».",
+   "mots_cles": [
+    "C",
+    "h",
+    "r",
+    "i",
+    "s",
+    "t"
+   ],
+   "mots_cles_en": [
+    "C",
+    "h",
+    "r",
+    "i",
+    "s",
+    "t"
+   ],
+   "hashtags": [
+    "christredeemer",
+    "nuages",
+    "miracle"
+   ],
+   "insolite": 8,
+   "categorie": "insolite",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712406425690983694",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712406425690983694",
+     "vues": 3600000,
+     "jaime": 773400,
+     "commentaires": 5811,
+     "partages": 38900,
+     "date": 1795684610,
+     "texte": "A man in Rio de Janeiro captured a breathtaking sight of Christ the Redeemer appearing above a blanket of rolling clouds, describing the moment as a ‘gift from God’. Marcio Amaro was visiting his late godfather-in-law’s vacant property with his wife and cousin when his cousin spotted the extraordinary view from the house. Even his wife, who had lived there all her life, had never witnessed anythin",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712406425690983694?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "8d1c74a7b1",
+   "score": 412,
+   "derniere_vue": 1795732000.8349352,
+   "vues": 3600000,
+   "jaime": 773400,
+   "commentaires": 5811,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "sans_source",
+   "vu_le": "2026-11-26T17:23:54+01:00"
+  },
+  {
    "titre": "Arrestations controversées à l'aéroport de Seattle",
    "resume": "Deux passagers ont été arrêtés à Seattle-Tacoma avant leur vol, provoquant une vive réaction des autorités locales. L’incident soulève des questions sur les pratiques migratoires.",
    "mots_cles": [
@@ -2867,6 +2858,68 @@
    "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
+   "titre": "Escalator de l'Université BRAC accélère dangereusement",
+   "resume": "Des étudiants ont dû sauter lorsqu'un escalier roulant s'est mis à fonctionner à grande vitesse. L'incident a été filmé en décembre 2025 à l'Université BRAC au Bangladesh.",
+   "mots_cles": [
+    "e",
+    "s",
+    "c",
+    "a",
+    "l",
+    "a"
+   ],
+   "mots_cles_en": [
+    "e",
+    "s",
+    "c",
+    "a",
+    "l",
+    "a"
+   ],
+   "hashtags": [
+    "escalator",
+    "accident",
+    "université"
+   ],
+   "insolite": 6,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712510013171911949",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
+     "vues": 3000000,
+     "jaime": 198900,
+     "commentaires": 1979,
+     "partages": 13600,
+     "date": 1795708700,
+     "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712510013171911949?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "d3a7488a47",
+   "score": 169,
+   "derniere_vue": 1795732000.8349352,
+   "vues": 3000000,
+   "jaime": 198900,
+   "commentaires": 1979,
+   "hashtags_viraux": [
+    "bangladesh",
+    "viral",
+    "escalator",
+    "hardnews",
+    "news"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T23:26:47+01:00"
+  },
+  {
    "titre": "Arnaque consoles neuves à Noël",
    "resume": "Des annonces sur des sites de seconde main proposent des consoles de jeux neuves, mais seules des photos sont livrées aux acheteurs. Les victimes se retrouvent sans produit après paiement.",
    "mots_cles": [
@@ -3219,6 +3272,62 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
+   "titre": "Octogénaire place autocollant anti-gouvernemental à Tirana",
+   "resume": "Une femme de 80 ans, surnommée « Mère de la Révolution », a collé un sticker sur le bouclier d'un policier anti-émeute à Tirana. Elle participe aux manifestations étudiantes contre le gouvernement albanais.",
+   "mots_cles": [
+    "m",
+    "a",
+    "n",
+    "i",
+    "f",
+    "e"
+   ],
+   "mots_cles_en": [
+    "p",
+    "r",
+    "o",
+    "t",
+    "e",
+    "s"
+   ],
+   "hashtags": [
+    "protestation",
+    "albanie",
+    "mèrederevolution"
+   ],
+   "insolite": 5,
+   "categorie": "politique",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712518579266014494",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712518579266014494",
+     "vues": 2200000,
+     "jaime": 222300,
+     "commentaires": 1273,
+     "partages": 6827,
+     "date": 1795710676,
+     "texte": "An 80-year-old protester walks right up to Albanian riot police and places an anti-government sticker on an officer’s shield. Known as the “Mother of the Revolution,” the woman joins student-led demonstrations in Tirana as protesters mark nearly 200 consecutive day of anti-government rallies. The sticker carries a message directed at Socialist Prime Minister Edi Rama.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712518579266014494?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "54d53fcaee",
+   "score": 144,
+   "derniere_vue": 1795732000.8349352,
+   "vues": 2200000,
+   "jaime": 222300,
+   "commentaires": 1273,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T23:26:47+01:00"
+  },
+  {
    "titre": "Massachusetts : femme poursuivie par des dindes sauvages",
    "resume": "Une femme a été poursuivie par des dindes sauvages avant de se réfugier dans une voiture. Les autorités rappellent que ces animaux, bien que sauvages, peuvent être agressifs.",
    "mots_cles": [
@@ -3488,68 +3597,6 @@
    "medias": 22,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
-  },
-  {
-   "titre": "Escalator s’emballe à l’université BRAC",
-   "resume": "Un escalier mécanique a soudainement accéléré, forçant les étudiants à sauter pour éviter d’être emportés. L’incident s’est produit en décembre 2025 à la BRAC University, au Bangladesh.",
-   "mots_cles": [
-    "e",
-    "s",
-    "c",
-    "a",
-    "l",
-    "a"
-   ],
-   "mots_cles_en": [
-    "e",
-    "s",
-    "c",
-    "a",
-    "l",
-    "a"
-   ],
-   "hashtags": [
-    "escalator",
-    "acceleration",
-    "bangladesh"
-   ],
-   "insolite": 6,
-   "categorie": "insolite",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712510013171911949",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
-     "vues": 1000000,
-     "jaime": 53000,
-     "commentaires": 704,
-     "partages": 4293,
-     "date": 1795708700,
-     "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712510013171911949?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "d098a2b243",
-   "score": 106,
-   "derniere_vue": 1795717485.4852874,
-   "vues": 1000000,
-   "jaime": 53000,
-   "commentaires": 704,
-   "hashtags_viraux": [
-    "bangladesh",
-    "viral",
-    "escalator",
-    "hardnews",
-    "news"
-   ],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T19:24:57+01:00"
   },
   {
    "titre": "Randonneur allemand menacé par vents en Patagonie",
@@ -4158,6 +4205,61 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T16:44:03+01:00",
    "video_id": "20261125-224006-1"
+  },
+  {
+   "titre": "Système IA déclenche canon à eau au ski chinois",
+   "resume": "Un dispositif anti-incendie automatisé a activé un canon à eau, inondant un stand de restauration à la station de ski de Wanlong, Hebei. La scène a rapidement fait le tour des réseaux sociaux.",
+   "mots_cles": [
+    "I",
+    "A",
+    ",",
+    " ",
+    "s",
+    "y"
+   ],
+   "mots_cles_en": [
+    "A",
+    "I",
+    ",",
+    " ",
+    "f",
+    "i"
+   ],
+   "hashtags": [
+    "ski",
+    "incendie"
+   ],
+   "insolite": 7,
+   "categorie": "tech",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712432376709680398",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712432376709680398",
+     "vues": 1700000,
+     "jaime": 161800,
+     "commentaires": 2493,
+     "partages": 30400,
+     "date": 1795690673,
+     "texte": "AI really said better safe than sorry 😂 An AI-powered fire suppression system caused chaos at a food stall in a Chinese ski resort after triggering its ceiling-mounted water cannon and soaking the counter. The incident happened at Wanlong Ski Resort in Hebei province, with footage showing the powerful jet of water blasting the stall as startled customers looked on. Resort managers later said the s",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712432376709680398?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "2604b8dc44",
+   "score": 74,
+   "derniere_vue": 1795732000.8349352,
+   "vues": 1700000,
+   "jaime": 161800,
+   "commentaires": 2493,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T23:26:47+01:00"
   },
   {
    "titre": "Vol de colis filmé par caméra de surveillance",

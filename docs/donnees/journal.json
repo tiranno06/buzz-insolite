@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-26T23:26:51+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 81 sujet(s) au-dessus des seuils — en tête : « GTA 6 : buzz autour du jeu »"
+  },
+  {
    "date": "2026-11-26T21:25:23+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 79 sujet(s) au-dessus des seuils — en tête : « GTA 6 : buzz autour du jeu »"
