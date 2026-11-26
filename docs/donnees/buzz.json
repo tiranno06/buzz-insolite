@@ -1,150 +1,214 @@
 {
- "maj": "2026-11-26T15:24:57+01:00",
+ "maj": "2026-11-26T17:23:54+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:22:43+01:00"
+   "le": "2026-11-26T17:21:45+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:22:48+01:00"
+   "le": "2026-11-26T17:21:50+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:22:51+01:00"
+   "le": "2026-11-26T17:21:53+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:22:55+01:00"
+   "le": "2026-11-26T17:21:57+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:22:59+01:00"
+   "le": "2026-11-26T17:22:00+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-26T15:23:02+01:00"
+   "le": "2026-11-26T17:22:03+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:23:07+01:00"
+   "le": "2026-11-26T17:22:07+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:23:11+01:00"
+   "le": "2026-11-26T17:22:11+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:23:15+01:00"
+   "le": "2026-11-26T17:22:14+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:23:18+01:00"
+   "le": "2026-11-26T17:22:18+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:23:23+01:00"
+   "le": "2026-11-26T17:22:22+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:23:27+01:00"
+   "le": "2026-11-26T17:22:25+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:23:31+01:00"
+   "le": "2026-11-26T17:22:29+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-26T15:23:35+01:00"
+   "le": "2026-11-26T17:22:33+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:23:38+01:00"
+   "le": "2026-11-26T17:22:36+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:23:43+01:00"
+   "le": "2026-11-26T17:22:40+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:23:48+01:00"
+   "le": "2026-11-26T17:22:44+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:23:51+01:00"
+   "le": "2026-11-26T17:22:48+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:23:56+01:00"
+   "le": "2026-11-26T17:22:57+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:24:00+01:00"
+   "le": "2026-11-26T17:23:01+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:24:04+01:00"
+   "le": "2026-11-26T17:23:05+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:24:08+01:00"
+   "le": "2026-11-26T17:23:08+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:24:12+01:00"
+   "le": "2026-11-26T17:23:12+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:24:16+01:00"
+   "le": "2026-11-26T17:23:15+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:24:20+01:00"
+   "le": "2026-11-26T17:23:19+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:24:24+01:00"
+   "le": "2026-11-26T17:23:23+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:24:28+01:00"
+   "le": "2026-11-26T17:23:27+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T15:24:32+01:00"
+   "le": "2026-11-26T17:23:31+01:00"
   }
  },
  "lues": 809,
- "retenues": 2,
+ "retenues": 1,
  "sujets": [
+  {
+   "titre": "Christ Rédempteur apparaît au-dessus des nuages",
+   "resume": "Une vague de brume a enveloppé le mont Corcovado, donnant l'illusion que la statue du Christ Rédempteur flotte dans le ciel. Le phénomène a été filmé depuis un iPhone par le photographe Marcio Amaro.",
+   "mots_cles": [
+    "Christ Rédempteur",
+    "nuages",
+    "Rio de Janeiro"
+   ],
+   "mots_cles_en": [
+    "Christ the Redeemer",
+    "clouds",
+    "Rio"
+   ],
+   "hashtags": [
+    "christredeemer",
+    "clouds",
+    "rio",
+    "insolite"
+   ],
+   "insolite": 8,
+   "categorie": "insolite",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712210525609889054",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712210525609889054",
+     "vues": 7600000,
+     "jaime": 1700000,
+     "commentaires": 13500,
+     "partages": 171000,
+     "date": 1795647600,
+     "texte": "WATCH: Brazil’s Christ the Redeemer appears to float above the clouds as a massive wave of mist cascades down Corcovado mountain in Rio de Janeiro. Photographer Marcio Amaro filmed the euphoric moment on his iPhone, capturing what looks like a waterfall of clouds pouring around the landmark. The rare visual comes from a weather phenomenon called orographic lift, where moist ocean air pushes over t",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712210525609889054?description=1&music_info=1"
+    },
+    {
+     "id": "7712406425690983694",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712406425690983694",
+     "vues": 1900000,
+     "jaime": 410900,
+     "commentaires": 3019,
+     "partages": 21800,
+     "date": 1795684610,
+     "texte": "A man in Rio de Janeiro captured a breathtaking sight of Christ the Redeemer appearing above a blanket of rolling clouds, describing the moment as a ‘gift from God’. Marcio Amaro was visiting his late godfather-in-law’s vacant property with his wife and cousin when his cousin spotted the extraordinary view from the house. Even his wife, who had lived there all her life, had never witnessed anythin",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712406425690983694?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "8d1c74a7b1",
+   "score": 5549,
+   "derniere_vue": 1795710224.174458,
+   "vues": 9500000,
+   "jaime": 2110900,
+   "commentaires": 16519,
+   "hashtags_viraux": [],
+   "medias": 10,
+   "tendance": null,
+   "statut": "sans_source",
+   "vu_le": "2026-11-26T17:23:54+01:00"
+  },
   {
    "titre": "Maresées exceptionnelles menacent l'Oregon et la Californie",
    "resume": "Des inondations côtières graves ont forcé un homme et son chien à fuir des vagues géantes à Cannon Beach, Oregon. Les autorités alertent sur des risques similaires en Californie.",
@@ -319,76 +383,6 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T18:19:59+01:00",
    "video_id": "20261124-203224-1"
-  },
-  {
-   "titre": "Christ Rédempteur survolé par nuages mystiques",
-   "resume": "Un photographe a filmé le monument brésilien semblant flotter au-dessus d’un voile de nuages. La vidéo, prise avec un iPhone, a rapidement fait le tour du web.",
-   "mots_cles": [
-    "C",
-    "h",
-    "r",
-    "i",
-    "s",
-    "t"
-   ],
-   "mots_cles_en": [
-    "C",
-    "h",
-    "r",
-    "i",
-    "s",
-    "t"
-   ],
-   "hashtags": [
-    "christredeemer",
-    "rio",
-    "clouds"
-   ],
-   "insolite": 8,
-   "categorie": "insolite",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712210525609889054",
-     "compte": "foxnews",
-     "url": "https://www.tiktok.com/@foxnews/video/7712210525609889054",
-     "vues": 6500000,
-     "jaime": 1500000,
-     "commentaires": 11700,
-     "partages": 147500,
-     "date": 1795647600,
-     "texte": "WATCH: Brazil’s Christ the Redeemer appears to float above the clouds as a massive wave of mist cascades down Corcovado mountain in Rio de Janeiro. Photographer Marcio Amaro filmed the euphoric moment on his iPhone, capturing what looks like a waterfall of clouds pouring around the landmark. The rare visual comes from a weather phenomenon called orographic lift, where moist ocean air pushes over t",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712210525609889054?description=1&music_info=1"
-    },
-    {
-     "id": "7712406425690983694",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712406425690983694",
-     "vues": 1100000,
-     "jaime": 236400,
-     "commentaires": 1912,
-     "partages": 13000,
-     "date": 1795684610,
-     "texte": "A man in Rio de Janeiro captured a breathtaking sight of Christ the Redeemer appearing above a blanket of rolling clouds, describing the moment as a ‘gift from God’. Marcio Amaro was visiting his late godfather-in-law’s vacant property with his wife and cousin when his cousin spotted the extraordinary view from the house. Even his wife, who had lived there all her life, had never witnessed anythin",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712406425690983694?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "aa23f6d8b9",
-   "score": 1217,
-   "derniere_vue": 1795703084.609837,
-   "vues": 7600000,
-   "jaime": 1736400,
-   "commentaires": 13612,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-26T15:24:57+01:00",
-   "reserve_le": "2026-11-26T16:28:38+01:00"
   },
   {
    "titre": "Décret afghan impose surnoms aux femmes",
@@ -923,6 +917,70 @@
    "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
+   "titre": "Parade Thanksgiving de Macy's reportée",
+   "resume": "Pour la première fois, la célèbre parade de Thanksgiving à New York est déplacée au samedi à cause d'une tempête. La décision intervient après que le mauvais temps a menacé la sécurité des participants.",
+   "mots_cles": [
+    "Macy's Parade",
+    "Thanksgiving",
+    "report"
+   ],
+   "mots_cles_en": [
+    "Macy's Parade",
+    "Thanksgiving",
+    "postponement"
+   ],
+   "hashtags": [
+    "macysparde",
+    "thanksgiving",
+    "report"
+   ],
+   "insolite": 4,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712278929360407822",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7712278929360407822",
+     "vues": 2700000,
+     "jaime": 292400,
+     "commentaires": 2629,
+     "partages": 10100,
+     "date": 1795654887,
+     "texte": "“I don’t feel like it’s really Thanksgiving,” a kid who lives near the Macy’s Thanksgiving Parade route in New York City said after learning the parade had been postponed for the first time ever to Saturday because of the weather.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712278929360407822?description=1&music_info=1"
+    },
+    {
+     "id": "7712222434350402830",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712222434350402830",
+     "vues": 1800000,
+     "jaime": 185300,
+     "commentaires": 1508,
+     "partages": 13200,
+     "date": 1795641725,
+     "texte": "The Macy's Thanksgiving Day Parade will happen on a Saturday for the first time in history. A storm set to hit New York on Thursday morning is postponing the parade, which will now take place two days later. In 1971, inclement weather grounded the parade's balloons, and the parade didn't happen from 1942-1944 due to World War II. This is the first time the parade has been postponed. Wind gusts are",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712222434350402830?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "8476cc946b",
+   "score": 733,
+   "derniere_vue": 1795710224.174458,
+   "vues": 4500000,
+   "jaime": 477700,
+   "commentaires": 4137,
+   "hashtags_viraux": [],
+   "medias": 9,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T17:23:54+01:00"
+  },
+  {
    "titre": "Afghanistan : les femmes privées de nom officiel",
    "resume": "Un nouveau décret impose aux femmes afghanes des surnoms au lieu de leurs prénoms. Cette mesure suscite de vives critiques au niveau international.",
    "mots_cles": [
@@ -1432,71 +1490,6 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T20:46:45+01:00",
    "video_id": "20261125-163217-1"
-  },
-  {
-   "titre": "Parade Macy's reportée à cause d'une tempête",
-   "resume": "La parade de Thanksgiving de Macy's est reportée de deux jours à cause d'une tempête prévue à New York.",
-   "mots_cles": [
-    "Macy's",
-    "parade",
-    "tempête",
-    "New York"
-   ],
-   "mots_cles_en": [
-    "Macy's",
-    "parade",
-    "storm",
-    "New York"
-   ],
-   "hashtags": [
-    "macys",
-    "parade"
-   ],
-   "insolite": 2,
-   "categorie": "culture",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712222434350402830",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712222434350402830",
-     "vues": 1200000,
-     "jaime": 120900,
-     "commentaires": 965,
-     "partages": 9877,
-     "date": 1795641725,
-     "texte": "The Macy's Thanksgiving Day Parade will happen on a Saturday for the first time in history. A storm set to hit New York on Thursday morning is postponing the parade, which will now take place two days later. In 1971, inclement weather grounded the parade's balloons, and the parade didn't happen from 1942-1944 due to World War II. This is the first time the parade has been postponed. Wind gusts are",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712222434350402830?description=1&music_info=1"
-    },
-    {
-     "id": "7712278929360407822",
-     "compte": "cbsnews",
-     "url": "https://www.tiktok.com/@cbsnews/video/7712278929360407822",
-     "vues": 1700000,
-     "jaime": 181100,
-     "commentaires": 1486,
-     "partages": 6280,
-     "date": 1795654887,
-     "texte": "“I don’t feel like it’s really Thanksgiving,” a kid who lives near the Macy’s Thanksgiving Parade route in New York City said after learning the parade had been postponed for the first time ever to Saturday because of the weather.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712278929360407822?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "c0dd94e409",
-   "score": 498,
-   "derniere_vue": 1795651243.7286372,
-   "vues": 2900000,
-   "jaime": 302000,
-   "commentaires": 2451,
-   "hashtags_viraux": [],
-   "medias": 10,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T01:00:57+01:00"
   },
   {
    "titre": "Son TikTok pour arrêter les pensées intrusives",
@@ -2860,6 +2853,56 @@
    "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
+   "titre": "Arnaque consoles neuves à Noël",
+   "resume": "Des annonces sur des sites de seconde main proposent des consoles de jeux neuves, mais seules des photos sont livrées aux acheteurs. Les victimes se retrouvent sans produit après paiement.",
+   "mots_cles": [
+    "arnaque",
+    "consoles",
+    "Noël"
+   ],
+   "mots_cles_en": [
+    "scam",
+    "consoles",
+    "Christmas"
+   ],
+   "hashtags": [
+    "arnaque",
+    "consoles",
+    "noel"
+   ],
+   "insolite": 5,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711847373802179873",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7711847373802179873",
+     "vues": 2800000,
+     "jaime": 189600,
+     "commentaires": 2821,
+     "partages": 56400,
+     "date": 1795554385,
+     "texte": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateformes de seconde main proposent, en apparence, des consoles de jeux dernier cri. En réalité, seule une photo du produit est mise en vente et livrée.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711847373802179873?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "0794a61fac",
+   "score": 163,
+   "derniere_vue": 1795710224.174458,
+   "vues": 2800000,
+   "jaime": 189600,
+   "commentaires": 2821,
+   "hashtags_viraux": [],
+   "medias": 4,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T17:23:54+01:00"
+  },
+  {
    "titre": "Le galet de compression des fenêtres PVC expliqué",
    "resume": "Une rumeur virale affirme qu’un petit galet sur les fenêtres PVC permettrait de passer en mode hiver. Les experts démentent cette théorie.",
    "mots_cles": [
@@ -3162,6 +3205,56 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
+   "titre": "Explosion d’un camion-citerne à Giza",
+   "resume": "Un camion transportant des produits pétroliers s’est renversé à Giza, déclenchant un incendie qui a fait au moins 31 morts. Les secours luttent contre les flammes et les victimes sont évacuées.",
+   "mots_cles": [
+    "camion-citerne",
+    "Giza",
+    "incendie"
+   ],
+   "mots_cles_en": [
+    "tanker truck",
+    "Giza",
+    "fire"
+   ],
+   "hashtags": [
+    "camionciterne",
+    "giza",
+    "incendie"
+   ],
+   "insolite": 6,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712258353673620749",
+     "compte": "cnn",
+     "url": "https://www.tiktok.com/@cnn/video/7712258353673620749",
+     "vues": 1300000,
+     "jaime": 63300,
+     "commentaires": 1818,
+     "partages": 10100,
+     "date": 1795650088,
+     "texte": "A tanker truck carrying petroleum products crashed in Egypt’s Giza governorate Wednesday, igniting a massive fire that killed at least 31 people and injured 21 others, according to the Egyptian Ministry of Health and Population.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712258353673620749?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "4dbea4c292",
+   "score": 143,
+   "derniere_vue": 1795710224.174458,
+   "vues": 1300000,
+   "jaime": 63300,
+   "commentaires": 1818,
+   "hashtags_viraux": [],
+   "medias": 16,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T17:23:54+01:00"
+  },
+  {
    "titre": "Massachusetts : femme poursuivie par des dindes sauvages",
    "resume": "Une femme a été poursuivie par des dindes sauvages avant de se réfugier dans une voiture. Les autorités rappellent que ces animaux, bien que sauvages, peuvent être agressifs.",
    "mots_cles": [
@@ -3212,6 +3305,56 @@
    "medias": 3,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "TAS proclame le Sénégal champion de l’AFCON 2025",
+   "resume": "Le Tribunal Arbitral du Sport a confirmé le Sénégal comme vainqueur de la Coupe d’Afrique des Nations 2025 après une contestation. La décision intervient suite à la rétractation du titre initialement attribué à une autre équipe.",
+   "mots_cles": [
+    "TAS",
+    "Sénégal",
+    "AFCON 2025"
+   ],
+   "mots_cles_en": [
+    "CAS",
+    "Senegal",
+    "AFCON 2025"
+   ],
+   "hashtags": [
+    "tas",
+    "senegal",
+    "afcon2025"
+   ],
+   "insolite": 5,
+   "categorie": "sport",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711746571976707361",
+     "compte": "hugodecrypte",
+     "url": "https://www.tiktok.com/@hugodecrypte/video/7711746571976707361",
+     "vues": 2000000,
+     "jaime": 273500,
+     "commentaires": 2206,
+     "partages": 31600,
+     "date": 1795530924,
+     "texte": "Le Tribunal Arbitral du Sport, la plus haute juridiction du sport mondial, a désigné ce mardi le Sénégal comme vainqueur de la Coupe d’Afrique des Nations 2025. Le Sénégal avait remporté le titre à l’issue de la finale dans un premier temps, avant de se le voir retirer par la Confédération Africaine de Football (CAF) sur tapis vert en mars. Il était reproché aux joueurs de l’équipe sénégalaise d’a",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711746571976707361?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "fb728e009b",
+   "score": 132,
+   "derniere_vue": 1795710224.174458,
+   "vues": 2000000,
+   "jaime": 273500,
+   "commentaires": 2206,
+   "hashtags_viraux": [],
+   "medias": 14,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T17:23:54+01:00"
   },
   {
    "titre": "Espagne : rassemblement fasciste célébrant Franco",
@@ -3265,6 +3408,64 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T18:38:52+01:00",
    "video_id": "20261124-211029-1"
+  },
+  {
+   "titre": "Sénatrice australienne amène bébé à la Chambre",
+   "resume": "La sénatrice Fatima Payman a présenté son enfant pendant une séance du parlement australien, illustrant la conciliation entre maternité et fonctions législatives. La scène a rapidement fait le tour des réseaux sociaux.",
+   "mots_cles": [
+    "Australie",
+    "sénatrice",
+    "bébé",
+    "parlement"
+   ],
+   "mots_cles_en": [
+    "Australia",
+    "senator",
+    "baby",
+    "parliament"
+   ],
+   "hashtags": [
+    "australie",
+    "senateur",
+    "bebe"
+   ],
+   "insolite": 6,
+   "categorie": "politique",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712153821559917838",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712153821559917838",
+     "vues": 1100000,
+     "jaime": 118500,
+     "commentaires": 1220,
+     "partages": 1384,
+     "date": 1795625744,
+     "texte": "Australian Senator Fatima Payman brought her baby into Parliament, combining her parliamentary duties with motherhood. Fellow independent senator Lidia Thorpe was seen entertaining six-month-old Aliyah with a game of peekaboo during the session. #australia #motherhood #viral #peekaboo #hardnews 🎥 Parliament of Australia",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712153821559917838?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "8fdebd1f38",
+   "score": 117,
+   "derniere_vue": 1795710224.174458,
+   "vues": 1100000,
+   "jaime": 118500,
+   "commentaires": 1220,
+   "hashtags_viraux": [
+    "australia",
+    "motherhood",
+    "viral",
+    "peekaboo",
+    "hardnews"
+   ],
+   "medias": 10,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T17:23:54+01:00"
   },
   {
    "titre": "Impersonnateur Trump moque Carney au Canada",
@@ -3323,6 +3524,56 @@
    "medias": 22,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Randonneur allemand menacé par vents en Patagonie",
+   "resume": "Un alpiniste a failli perdre l’équilibre sur une passerelle suspendue à cause de rafales violentes en Patagonie chilienne. Il s’est agrippé aux câbles pour éviter la chute.",
+   "mots_cles": [
+    "Patagonie",
+    "randonneur",
+    "rafales"
+   ],
+   "mots_cles_en": [
+    "Patagonia",
+    "hiker",
+    "gusts"
+   ],
+   "hashtags": [
+    "patagonie",
+    "randonnee",
+    "vent"
+   ],
+   "insolite": 5,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712182765873040663",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
+     "vues": 1200000,
+     "jaime": 57800,
+     "commentaires": 744,
+     "partages": 11400,
+     "date": 1795632482,
+     "texte": "L'IMAGE DU JOUR - 😱 Grosse frayeur pour un randonneur allemand en Patagonie, au Chili. Alors qu'il traversait une passerelle suspendue, de violentes rafales de vent ont fait dangereusement osciller le pont. Avec un sac de 18 kilos sur le dos, le touriste s'est agrippé aux câbles pour tenter de garder son équilibre. Une scène vertigineuse filmée par un autre randonneur.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712182765873040663?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "c13f30b2ce",
+   "score": 105,
+   "derniere_vue": 1795710224.174458,
+   "vues": 1200000,
+   "jaime": 57800,
+   "commentaires": 744,
+   "hashtags_viraux": [],
+   "medias": 7,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T17:23:54+01:00"
   },
   {
    "titre": "A woman was caught on a ring camera stealing a package moments after delivering it to a ho",
@@ -4035,6 +4286,56 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
+   "titre": "GTA 6 rend hommage à l’orque Lolita",
+   "resume": "Dans le jeu GTA 6, un oceanarium virtuel inclut une mission pour libérer une orque, rappelant le cas réel de Tokitae. Les joueurs ont remarqué ce clin d’œil au célèbre animal captif.",
+   "mots_cles": [
+    "GTA 6",
+    "orque",
+    "hommage"
+   ],
+   "mots_cles_en": [
+    "GTA 6",
+    "orca",
+    "tribute"
+   ],
+   "hashtags": [
+    "gta6",
+    "orque",
+    "hommage"
+   ],
+   "insolite": 6,
+   "categorie": "tech",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712145580939693325",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712145580939693325",
+     "vues": 2100000,
+     "jaime": 339700,
+     "commentaires": 1106,
+     "partages": 12800,
+     "date": 1795623836,
+     "texte": "Players have spotted what appears to be a tribute to Tokitae, also known as Lolita, in GTA 6's Vice City Oceanarium, which features a captive orca and a side mission to free it. The real-life whale was captured off Washington state in 1970 and spent 53 years at Miami Seaquarium before dying in August 2023, aged 57. The Easter egg comes as GTA 6 enjoys a record-breaking launch following years of an",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712145580939693325?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "27ee0dab81",
+   "score": 64,
+   "derniere_vue": 1795710224.174458,
+   "vues": 2100000,
+   "jaime": 339700,
+   "commentaires": 1106,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T17:23:54+01:00"
+  },
+  {
    "titre": "Jensen Huang revient diriger Nvidia après scandale",
    "resume": "Jensen Huang, PDG de Nvidia, est revenu à la tête de l’entreprise après sa démission liée à un scandale impliquant adultère, espionnage et contrebande. Son retour relance les débats éthiques dans la tech.",
    "mots_cles": [
@@ -4458,58 +4759,6 @@
    "vu_le": "2026-11-26T13:26:29+01:00"
   },
   {
-   "titre": "Arnaque de Noël : consoles vendues sans produit",
-   "resume": "Des annonces sur des plateformes de seconde main proposent des consoles neuves mais n'envoient qu'une simple photo. Les acheteurs se retrouvent sans le produit commandé.",
-   "mots_cles": [
-    "arnaque",
-    "Noël",
-    "consoles",
-    "seconde main"
-   ],
-   "mots_cles_en": [
-    "scam",
-    "Christmas",
-    "consoles",
-    "secondhand"
-   ],
-   "hashtags": [
-    "arnaque",
-    "noel",
-    "consoles"
-   ],
-   "insolite": 3,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7711847373802179873",
-     "compte": "tf1info",
-     "url": "https://www.tiktok.com/@tf1info/video/7711847373802179873",
-     "vues": 2400000,
-     "jaime": 163100,
-     "commentaires": 2530,
-     "partages": 48500,
-     "date": 1795554385,
-     "texte": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateformes de seconde main proposent, en apparence, des consoles de jeux dernier cri. En réalité, seule une photo du produit est mise en vente et livrée.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7711847373802179873?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "057e1c3ebd",
-   "score": 43,
-   "derniere_vue": 1795658494.9964848,
-   "vues": 2400000,
-   "jaime": 163100,
-   "commentaires": 2530,
-   "hashtags_viraux": [],
-   "medias": 2,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-25T22:59:59+01:00"
-  },
-  {
    "titre": "Psychologists suggest men who bend or break traffic rules may possess personality traits t",
    "resume": "Psychologists suggest men who bend or break traffic rules may possess personality traits that make them more attractive as long-term partners, including confidence, assertiveness and a willingness to take risks. Experts say rule-breaking behavior can create an impression of power and high social status, potentially contributing to the appeal of the so-called ‘bad boy’ type. However, this doesn’t m",
    "mots_cles": [],
@@ -4749,62 +4998,6 @@
    "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
-   "titre": "Explosion d'un camion-citerne à Giza, Égypte",
-   "resume": "Un camion transportant des produits pétroliers a pris feu à Giza, faisant au moins 31 morts et 21 blessés. Les autorités locales ont déclaré l’incident comme une tragédie majeure.",
-   "mots_cles": [
-    "c",
-    "a",
-    "m",
-    "i",
-    "o",
-    "n"
-   ],
-   "mots_cles_en": [
-    "t",
-    "a",
-    "n",
-    "k",
-    "e",
-    "r"
-   ],
-   "hashtags": [
-    "tanker",
-    "giza",
-    "fire"
-   ],
-   "insolite": 6,
-   "categorie": "societe",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712258353673620749",
-     "compte": "cnn",
-     "url": "https://www.tiktok.com/@cnn/video/7712258353673620749",
-     "vues": 1200000,
-     "jaime": 57600,
-     "commentaires": 1677,
-     "partages": 9183,
-     "date": 1795650088,
-     "texte": "A tanker truck carrying petroleum products crashed in Egypt’s Giza governorate Wednesday, igniting a massive fire that killed at least 31 people and injured 21 others, according to the Egyptian Ministry of Health and Population.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712258353673620749?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "a4b9880b85",
-   "score": 35,
-   "derniere_vue": 1795703084.609837,
-   "vues": 1200000,
-   "jaime": 57600,
-   "commentaires": 1677,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T15:24:57+01:00"
-  },
-  {
    "titre": "Accident de camion-citerne à Gizeh",
    "resume": "Un camion-citerne transportant des produits pétroliers a percuté à Gizeh, Égypte, provoquant un incendie meurtrier. Au moins 31 personnes sont décédées.",
    "mots_cles": [
@@ -4966,180 +5159,6 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-26T13:26:29+01:00"
-  },
-  {
-   "titre": "Sénégal champion d'Afrique 2025 confirmé",
-   "resume": "Le Tribunal Arbitral du Sport a confirmé le Sénégal comme vainqueur de la CAN 2025 après un litige. La décision tranche la controverse autour du titre initialement retiré.",
-   "mots_cles": [
-    "S",
-    "é",
-    "n",
-    "é",
-    "g",
-    "a"
-   ],
-   "mots_cles_en": [
-    "S",
-    "e",
-    "n",
-    "e",
-    "g",
-    "a"
-   ],
-   "hashtags": [
-    "senegal",
-    "can2025",
-    "sport"
-   ],
-   "insolite": 3,
-   "categorie": "sport",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7711746571976707361",
-     "compte": "hugodecrypte",
-     "url": "https://www.tiktok.com/@hugodecrypte/video/7711746571976707361",
-     "vues": 2000000,
-     "jaime": 273400,
-     "commentaires": 2211,
-     "partages": 31600,
-     "date": 1795530924,
-     "texte": "Le Tribunal Arbitral du Sport, la plus haute juridiction du sport mondial, a désigné ce mardi le Sénégal comme vainqueur de la Coupe d’Afrique des Nations 2025. Le Sénégal avait remporté le titre à l’issue de la finale dans un premier temps, avant de se le voir retirer par la Confédération Africaine de Football (CAF) sur tapis vert en mars. Il était reproché aux joueurs de l’équipe sénégalaise d’a",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7711746571976707361?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "7d9d9770cd",
-   "score": 31,
-   "derniere_vue": 1795703084.609837,
-   "vues": 2000000,
-   "jaime": 273400,
-   "commentaires": 2211,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T15:24:57+01:00"
-  },
-  {
-   "titre": "Randonneur allemand menacé par vent en Patagonie",
-   "resume": "Un trekkeur a failli être emporté par de violentes rafales sur une passerelle suspendue au Chili. Il a dû s’agripper aux câbles pour survivre.",
-   "mots_cles": [
-    "P",
-    "a",
-    "t",
-    "a",
-    "g",
-    "o"
-   ],
-   "mots_cles_en": [
-    "P",
-    "a",
-    "t",
-    "a",
-    "g",
-    "o"
-   ],
-   "hashtags": [
-    "patagonia",
-    "hiker",
-    "wind"
-   ],
-   "insolite": 6,
-   "categorie": "nature",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712182765873040663",
-     "compte": "tf1info",
-     "url": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
-     "vues": 1200000,
-     "jaime": 54400,
-     "commentaires": 718,
-     "partages": 11000,
-     "date": 1795632482,
-     "texte": "L'IMAGE DU JOUR - 😱 Grosse frayeur pour un randonneur allemand en Patagonie, au Chili. Alors qu'il traversait une passerelle suspendue, de violentes rafales de vent ont fait dangereusement osciller le pont. Avec un sac de 18 kilos sur le dos, le touriste s'est agrippé aux câbles pour tenter de garder son équilibre. Une scène vertigineuse filmée par un autre randonneur.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712182765873040663?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "9c7cfa29a7",
-   "score": 28,
-   "derniere_vue": 1795703084.609837,
-   "vues": 1200000,
-   "jaime": 54400,
-   "commentaires": 718,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T15:24:57+01:00"
-  },
-  {
-   "titre": "Senatrice australienne amène son bébé au parlement",
-   "resume": "La sénatrice Fatima Payman a présenté son nourrisson lors d’une séance parlementaire, illustrant la conciliation travail‑famille. La scène a suscité de nombreuses réactions sur les réseaux.",
-   "mots_cles": [
-    "A",
-    "u",
-    "s",
-    "t",
-    "r",
-    "a"
-   ],
-   "mots_cles_en": [
-    "A",
-    "u",
-    "s",
-    "t",
-    "r",
-    "a"
-   ],
-   "hashtags": [
-    "australia",
-    "parliament",
-    "baby"
-   ],
-   "insolite": 5,
-   "categorie": "politique",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712153821559917838",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712153821559917838",
-     "vues": 1000000,
-     "jaime": 111100,
-     "commentaires": 1164,
-     "partages": 1314,
-     "date": 1795625744,
-     "texte": "Australian Senator Fatima Payman brought her baby into Parliament, combining her parliamentary duties with motherhood. Fellow independent senator Lidia Thorpe was seen entertaining six-month-old Aliyah with a game of peekaboo during the session. #australia #motherhood #viral #peekaboo #hardnews 🎥 Parliament of Australia",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712153821559917838?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "21833923ce",
-   "score": 27,
-   "derniere_vue": 1795703084.609837,
-   "vues": 1000000,
-   "jaime": 111100,
-   "commentaires": 1164,
-   "hashtags_viraux": [
-    "australia",
-    "motherhood",
-    "viral",
-    "peekaboo",
-    "hardnews"
-   ],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T15:24:57+01:00"
   },
   {
    "titre": "A new generation of drugs is for sale inside gas station convenience stores and smoke shop",
