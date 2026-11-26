@@ -1,149 +1,149 @@
 {
- "maj": "2026-11-26T11:25:26+01:00",
+ "maj": "2026-11-26T13:26:29+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:23:31+01:00"
+   "le": "2026-11-26T13:24:43+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:23:35+01:00"
+   "le": "2026-11-26T13:24:46+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:23:39+01:00"
+   "le": "2026-11-26T13:24:49+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:23:43+01:00"
+   "le": "2026-11-26T13:24:52+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:23:47+01:00"
+   "le": "2026-11-26T13:24:56+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-26T11:23:50+01:00"
+   "le": "2026-11-26T13:24:58+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:23:53+01:00"
+   "le": "2026-11-26T13:25:01+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:23:57+01:00"
+   "le": "2026-11-26T13:25:05+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:01+01:00"
+   "le": "2026-11-26T13:25:08+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:04+01:00"
+   "le": "2026-11-26T13:25:11+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:08+01:00"
+   "le": "2026-11-26T13:25:14+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:11+01:00"
+   "le": "2026-11-26T13:25:17+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:16+01:00"
+   "le": "2026-11-26T13:25:21+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-26T11:24:19+01:00"
+   "le": "2026-11-26T13:25:23+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:22+01:00"
+   "le": "2026-11-26T13:25:26+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:25+01:00"
+   "le": "2026-11-26T13:25:29+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:29+01:00"
+   "le": "2026-11-26T13:25:32+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:33+01:00"
+   "le": "2026-11-26T13:25:35+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:37+01:00"
+   "le": "2026-11-26T13:25:38+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:40+01:00"
+   "le": "2026-11-26T13:25:41+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:43+01:00"
+   "le": "2026-11-26T13:25:44+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:48+01:00"
+   "le": "2026-11-26T13:25:48+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:51+01:00"
+   "le": "2026-11-26T13:25:51+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:55+01:00"
+   "le": "2026-11-26T13:25:54+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:24:58+01:00"
+   "le": "2026-11-26T13:25:57+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:25:02+01:00"
+   "le": "2026-11-26T13:26:00+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:25:05+01:00"
+   "le": "2026-11-26T13:26:03+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T11:25:09+01:00"
+   "le": "2026-11-26T13:26:06+01:00"
   }
  },
  "lues": 809,
- "retenues": 4,
+ "retenues": 3,
  "sujets": [
   {
    "titre": "Maresées exceptionnelles menacent l'Oregon et la Californie",
@@ -434,6 +434,95 @@
    "statut": "sans_source",
    "vu_le": "2026-11-24T20:46:45+01:00",
    "reserve_le": "2026-11-25T22:24:23+01:00"
+  },
+  {
+   "titre": "GTA 6 : buzz autour du jeu",
+   "resume": "Des vidéos virales autour de GTA 6 circulent, dont un caméraman salué comme Oscar et un hommage à l’orque Tokitae dans le jeu. Certains joueurs refusent même d’y jouer.",
+   "mots_cles": [
+    "G",
+    "T",
+    "A",
+    " ",
+    "6",
+    ","
+   ],
+   "mots_cles_en": [
+    "G",
+    "T",
+    "A",
+    " ",
+    "6",
+    ","
+   ],
+   "hashtags": [
+    "gta6",
+    "viral",
+    "gaming"
+   ],
+   "insolite": 6,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712092395827137806",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712092395827137806",
+     "vues": 7800000,
+     "jaime": 1000000,
+     "commentaires": 9106,
+     "partages": 152900,
+     "date": 1795611455,
+     "texte": "The cameraman deserves an Oscar 👏😭 🎥 @GTAboy AWAL  #gta6 #gaming #viral #rockstargames #gta",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712092395827137806?description=1&music_info=1"
+    },
+    {
+     "id": "7712145580939693325",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712145580939693325",
+     "vues": 1800000,
+     "jaime": 295100,
+     "commentaires": 964,
+     "partages": 10700,
+     "date": 1795623836,
+     "texte": "Players have spotted what appears to be a tribute to Tokitae, also known as Lolita, in GTA 6's Vice City Oceanarium, which features a captive orca and a side mission to free it. The real-life whale was captured off Washington state in 1970 and spent 53 years at Miami Seaquarium before dying in August 2023, aged 57. The Easter egg comes as GTA 6 enjoys a record-breaking launch following years of an",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712145580939693325?description=1&music_info=1"
+    },
+    {
+     "id": "7712224897614859542",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7712224897614859542",
+     "vues": 1300000,
+     "jaime": 158000,
+     "commentaires": 1648,
+     "partages": 9001,
+     "date": 1795642261,
+     "texte": "Il refuse de jouer à GTA VI @petitnuagetv",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712224897614859542?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "e92f072db0",
+   "score": 866,
+   "derniere_vue": 1795695977.3247025,
+   "vues": 10900000,
+   "jaime": 1453100,
+   "commentaires": 11718,
+   "hashtags_viraux": [
+    "gta6",
+    "gaming",
+    "viral",
+    "rockstargames",
+    "gta"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T13:26:29+01:00"
   },
   {
    "titre": "États-Unis : arrestation passagers à l’aéroport de Seattle",
@@ -832,8 +921,8 @@
    "video_id": "20261125-163119-1"
   },
   {
-   "titre": "Christ Rédempteur semble flotter dans le brouillard",
-   "resume": "Des images montrent le Christ Rédempteur à Rio de Janeiro entouré d'un épais brouillard, donnant l'impression qu'il flotte au-dessus des nuages. La scène a été capturée avec un iPhone par le photographe Marcio Amaro.",
+   "titre": "Christ Rédempteur flottant dans le brouillard",
+   "resume": "Une vague de brouillard a enveloppé le Christ Rédempteur à Rio, donnant l'impression qu'il flotte. La scène a été filmée avec un iPhone.",
    "mots_cles": [
     "C",
     "h",
@@ -852,9 +941,8 @@
    ],
    "hashtags": [
     "christredeemer",
-    "rio",
     "brouillard",
-    "clouds"
+    "rio"
    ],
    "insolite": 7,
    "categorie": "nature",
@@ -864,10 +952,10 @@
      "id": "7712210525609889054",
      "compte": "foxnews",
      "url": "https://www.tiktok.com/@foxnews/video/7712210525609889054",
-     "vues": 4400000,
-     "jaime": 955800,
-     "commentaires": 8004,
-     "partages": 97800,
+     "vues": 5600000,
+     "jaime": 1300000,
+     "commentaires": 10100,
+     "partages": 127600,
      "date": 1795647600,
      "texte": "WATCH: Brazil’s Christ the Redeemer appears to float above the clouds as a massive wave of mist cascades down Corcovado mountain in Rio de Janeiro. Photographer Marcio Amaro filmed the euphoric moment on his iPhone, capturing what looks like a waterfall of clouds pouring around the landmark. The rare visual comes from a weather phenomenon called orographic lift, where moist ocean air pushes over t",
      "indisponible": false,
@@ -875,17 +963,17 @@
     }
    ],
    "sous_seuils": false,
-   "id": "7238c88c57",
-   "score": 622,
-   "derniere_vue": 1795681459.0605276,
-   "vues": 4400000,
-   "jaime": 955800,
-   "commentaires": 8004,
+   "id": "9f8d8d3c5e",
+   "score": 638,
+   "derniere_vue": 1795695977.3247025,
+   "vues": 5600000,
+   "jaime": 1300000,
+   "commentaires": 10100,
    "hashtags_viraux": [],
    "medias": 0,
    "tendance": null,
    "statut": "nouveau",
-   "vu_le": "2026-11-26T09:24:28+01:00"
+   "vu_le": "2026-11-26T13:26:29+01:00"
   },
   {
    "titre": "GTA 6 : vidéos virales et hommage à l’orque",
@@ -1220,15 +1308,29 @@
      "sous_seuils": true,
      "indisponible": false,
      "lecteur": "https://www.tiktok.com/player/v1/7712222434350402830?description=1&music_info=1"
+    },
+    {
+     "id": "7712278929360407822",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7712278929360407822",
+     "vues": 1700000,
+     "jaime": 181100,
+     "commentaires": 1486,
+     "partages": 6280,
+     "date": 1795654887,
+     "texte": "“I don’t feel like it’s really Thanksgiving,” a kid who lives near the Macy’s Thanksgiving Parade route in New York City said after learning the parade had been postponed for the first time ever to Saturday because of the weather.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712278929360407822?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
    "id": "c0dd94e409",
    "score": 498,
    "derniere_vue": 1795651243.7286372,
-   "vues": 1200000,
-   "jaime": 120900,
-   "commentaires": 965,
+   "vues": 2900000,
+   "jaime": 302000,
+   "commentaires": 2451,
    "hashtags_viraux": [],
    "medias": 10,
    "tendance": null,
@@ -4139,6 +4241,62 @@
    "vu_le": "2026-11-26T05:22:43+01:00"
   },
   {
+   "titre": "Activiste juif confronte ancien chef du Mossad",
+   "resume": "Un activiste juif a interpellé David Barnea, ex‑chef du Mossad, au parlement allemand, le liant aux attaques au Liban 2024. L’incident a eu lieu lors d’un petit déjeuner parlementaire.",
+   "mots_cles": [
+    "a",
+    "c",
+    "t",
+    "i",
+    "v",
+    "i"
+   ],
+   "mots_cles_en": [
+    "a",
+    "c",
+    "t",
+    "i",
+    "v",
+    "i"
+   ],
+   "hashtags": [
+    "mossad",
+    "activiste",
+    "germany"
+   ],
+   "insolite": 6,
+   "categorie": "politique",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712145596550843678",
+     "compte": "aljazeeraenglish",
+     "url": "https://www.tiktok.com/@aljazeeraenglish/video/7712145596550843678",
+     "vues": 1200000,
+     "jaime": 180200,
+     "commentaires": 3976,
+     "partages": 9154,
+     "date": 1795627800,
+     "texte": "A Jewish activist has confronted former Mossad chief David Barnea in Germany’s parliament, accusing him of responsibility for the 2024 Lebanon pager attacks. Barnea was attending a closed-door parliamentary breakfast with German lawmakers titled ‘Behind the Scenes of Mossad’.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712145596550843678?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "5345ed4c86",
+   "score": 43,
+   "derniere_vue": 1795695977.3247025,
+   "vues": 1200000,
+   "jaime": 180200,
+   "commentaires": 3976,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T13:26:29+01:00"
+  },
+  {
    "titre": "Arnaque de Noël : consoles vendues sans produit",
    "resume": "Des annonces sur des plateformes de seconde main proposent des consoles neuves mais n'envoient qu'une simple photo. Les acheteurs se retrouvent sans le produit commandé.",
    "mots_cles": [
@@ -4430,6 +4588,62 @@
    "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
+   "titre": "Accident de camion-citerne à Gizeh",
+   "resume": "Un camion-citerne transportant des produits pétroliers a percuté à Gizeh, Égypte, provoquant un incendie meurtrier. Au moins 31 personnes sont décédées.",
+   "mots_cles": [
+    "a",
+    "c",
+    "c",
+    "i",
+    "d",
+    "e"
+   ],
+   "mots_cles_en": [
+    "a",
+    "c",
+    "c",
+    "i",
+    "d",
+    "e"
+   ],
+   "hashtags": [
+    "accident",
+    "camionciterne",
+    "egypte"
+   ],
+   "insolite": 5,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712258353673620749",
+     "compte": "cnn",
+     "url": "https://www.tiktok.com/@cnn/video/7712258353673620749",
+     "vues": 1100000,
+     "jaime": 50700,
+     "commentaires": 1513,
+     "partages": 8026,
+     "date": 1795650088,
+     "texte": "A tanker truck carrying petroleum products crashed in Egypt’s Giza governorate Wednesday, igniting a massive fire that killed at least 31 people and injured 21 others, according to the Egyptian Ministry of Health and Population.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712258353673620749?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "2d75f51181",
+   "score": 35,
+   "derniere_vue": 1795695977.3247025,
+   "vues": 1100000,
+   "jaime": 50700,
+   "commentaires": 1513,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T13:26:29+01:00"
+  },
+  {
    "titre": "Sky's political correspondent Lucy McDaid asks whether the Number 10 policy on involving i",
    "resume": "Sky's political correspondent Lucy McDaid asks whether the Number 10 policy on involving influencers has backfired. Responding to the video and its removal, Max Balegde said his content is 'always meant to be light hearted and funny', insisted no malice was intended and apologised for 'any offence caused'. #skynews #uk #influencer #number10 ",
    "mots_cles": [],
@@ -4473,6 +4687,68 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-25T12:43:45+01:00"
+  },
+  {
+   "titre": "Poundland menace de 11 000 emplois",
+   "resume": "La chaîne de magasins Poundland risque de perdre 11 000 postes après l'absence d'acheteur. La situation inquiète le commerce de proximité.",
+   "mots_cles": [
+    "P",
+    "o",
+    "u",
+    "n",
+    "d",
+    "l"
+   ],
+   "mots_cles_en": [
+    "P",
+    "o",
+    "u",
+    "n",
+    "d",
+    "l"
+   ],
+   "hashtags": [
+    "poundland",
+    "emplois",
+    "commerce"
+   ],
+   "insolite": 3,
+   "categorie": "economie",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712143724171578646",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7712143724171578646",
+     "vues": 1300000,
+     "jaime": 118600,
+     "commentaires": 1625,
+     "partages": 14500,
+     "date": 1795623364,
+     "texte": "11,000 jobs are at risk, after its owners failed to find a buyer to keep it in business. #Poundland #HighStreet #Shopping #BreakingNews #BBCNews",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712143724171578646?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "c935fb3763",
+   "score": 32,
+   "derniere_vue": 1795695977.3247025,
+   "vues": 1300000,
+   "jaime": 118600,
+   "commentaires": 1625,
+   "hashtags_viraux": [
+    "poundland",
+    "highstreet",
+    "shopping",
+    "breakingnews",
+    "bbcnews"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T13:26:29+01:00"
   },
   {
    "titre": "A new generation of drugs is for sale inside gas station convenience stores and smoke shop",
