@@ -1347,9 +1347,9 @@
    "coche_le": "2026-11-25T22:59:04+01:00"
   },
   {
-   "id": "20261125-222618-1",
-   "tag": "v-20261125-222618-1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-222618-1/buzz-20261125-222618-1.mp4",
+   "id": "20261125-222618-1-r1",
+   "tag": "v-20261125-222618-1-r1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-222618-1-r1/buzz-20261125-222618-1-r1.mp4",
    "titre": "Explosion drone à Middletown",
    "accroche": "EXPLOSION DRONE À MIDDLETOWN",
    "sujet_id": "25c51d115d",
@@ -1373,7 +1373,7 @@
     "#actu",
     "#buzz"
    ],
-   "duree": 68.4,
+   "duree": 65.2,
    "sources": [
     {
      "media": "newsweek.com",
@@ -1416,8 +1416,19 @@
      "lien": "https://www.clarin.com/us-news/did-they-detonate-the-lead-in-iowa-containment-update-air-monitoring-evacuations-and-safety-guidance-after-controlled-blast-in-middletown_0_LlFm7hop5m.html"
     }
    ],
-   "verification": null,
-   "verifie": false,
+   "verification": {
+    "par": "groq:openai/gpt-oss-120b",
+    "corrigees": 4,
+    "retirees": 1,
+    "problemes": [
+     "Le nom du produit chimique est le plomb azide (lead azide) et non lead acid.",
+     "Les fûts contiennent de l'azoture de plomb et non des 'rounds' (munitions).",
+     "Rien dans les articles ne mentionne que l'armée a coordonné le vol de drone avec la police et les forces armées.",
+     "21 personnes ont bien évacué, mais les articles ne parlent pas d'une zone de 8 km nettoyée.",
+     "La consigne était de rester à l'intérieur dans un rayon de 20 miles (soit environ 32 km) en attendant le feu vert."
+    ]
+   },
+   "verifie": true,
    "credits": [
     "@cnn (TikTok, extrait cité)",
     "@cnn (TikTok, image citée)",
@@ -1425,11 +1436,9 @@
     "Photo : newsweek.com (article cité)"
    ],
    "extraits_perdus": 0,
-   "regles_non_respectees": [
-    "faits non vérifiés par une 2e IA"
-   ],
-   "ecrans_illustres": 14,
-   "ecrans_total": 14,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 13,
+   "ecrans_total": 13,
    "format": "buzz",
    "voix": "kokoro-ff_siwis",
    "lieu": "Middletown, Iowa, États-Unis",
@@ -1438,23 +1447,22 @@
    "texte": [
     "Tu as vu l'explosion capturée par drone ?",
     "Le drone a filmé les deux explosions à l'usine de munitions de l'armée américaine.",
-    "The explosion released about 5 tons of lead acid.",
-    "68 barrels containing more than 9,700 rounds explore.",
+    "about 5 tons of lead azide",
+    "68 barrels containing more than 9,700 pounds of degraded lead azide.",
     "The two detonations rang around 9 a.m., Central Time.",
-    "The day was November 25, 2026.",
-    "The Army coordinated the drone flight with police and the armed forces.",
+    "It was November 25, 2026.",
     "Specialists from the 71st Ordnance Group carried out the detonation.",
     "Earth berms, sand blocks and a water wall of 100,000 gallons surrounded the site.",
     "The EPA collected over 1,200 samples before the blast.",
     "Sensors showed no airborne lead for the first 15 minutes.",
-    "A white smoke column rose, then the plume dissipâtes in un der an hour.",
-    "21 people évacuées, a five-mile zone was cleared.",
-    "Residents within a 20-mile radius must stay inside until the all-clean.",
+    "A white smoke column rose then the cloud cleared in under 1 hour",
+    "21 personnes ont été évacuées de leur domicile.",
+    "People living within 32 km must stay inside until they receive an all-clear.",
     "Trump said the mitigation measures far exceeded expectations.",
     "Et toi, que penses-tu de cette opération ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T22:40:58+01:00",
+   "cree_le": "2026-11-26T14:17:30+01:00",
    "ia_quotas": {
     "mistral": {
      "appels": 0,
@@ -1463,58 +1471,44 @@
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 7,
-     "refus": 2,
-     "erreurs": 7,
-     "restant_demandes": "992",
+     "appels": 21,
+     "refus": 1,
+     "erreurs": 17,
+     "restant_demandes": "991",
      "limite_demandes": "1000",
-     "restant_mots": "967"
+     "restant_mots": "7544"
     },
     "gemini": {
-     "appels": 0,
+     "appels": 17,
      "refus": 2,
-     "erreurs": 2
-    },
-    "openrouter": {
-     "appels": 0,
-     "refus": 8,
-     "erreurs": 0
+     "erreurs": 10
     }
    },
-   "fabrication_s": 879,
+   "fabrication_s": 1041,
    "controles": {
-    "note": 0,
+    "note": 25,
     "lignes": [
-     {
-      "niveau": "texte",
-      "ecran": null,
-      "gravite": "moyen",
-      "probleme": "5 faute(s) d'orthographe ou de grammaire corrigée(s)",
-      "corrige": true,
-      "essais": 1,
-      "solution": "LanguageTool + IA"
-     },
      {
       "niveau": "voix",
       "ecran": 29,
       "gravite": "grave",
-      "probleme": "voix et sous-titres ne correspondent pas (33%)",
+      "probleme": "voix et sous-titres ne correspondent pas (52%)",
       "corrige": false,
       "essais": 4,
-      "solution": "voix refaite"
-     },
-     {
-      "niveau": "voix",
-      "ecran": 28,
-      "gravite": "grave",
-      "probleme": "voix et sous-titres ne correspondent pas (48%)",
-      "corrige": false,
-      "essais": 4,
-      "solution": "voix refaite"
+      "solution": "phrase simplifiée puis refaite"
      },
      {
       "niveau": "voix",
       "ecran": 27,
+      "gravite": "grave",
+      "probleme": "voix et sous-titres ne correspondent pas (26%)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase simplifiée puis refaite"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 21,
       "gravite": "grave",
       "probleme": "voix et sous-titres ne correspondent pas (38%)",
       "corrige": false,
@@ -1523,46 +1517,18 @@
      },
      {
       "niveau": "voix",
-      "ecran": 21,
-      "gravite": "grave",
-      "probleme": "voix et sous-titres ne correspondent pas (59%)",
-      "corrige": false,
-      "essais": 4,
-      "solution": "voix refaite"
-     },
-     {
-      "niveau": "voix",
-      "ecran": 19,
-      "gravite": "grave",
-      "probleme": "voix et sous-titres ne correspondent pas (55%)",
-      "corrige": false,
-      "essais": 4,
-      "solution": "voix refaite"
-     },
-     {
-      "niveau": "voix",
       "ecran": 18,
       "gravite": "grave",
-      "probleme": "voix et sous-titres ne correspondent pas (40%)",
+      "probleme": "voix et sous-titres ne correspondent pas (53%)",
       "corrige": false,
       "essais": 4,
-      "solution": "voix refaite"
-     },
-     {
-      "niveau": "regles",
-      "ecran": null,
-      "gravite": "grave",
-      "probleme": "faits non vérifiés par une 2e IA",
-      "corrige": false,
-      "essais": 1
+      "solution": "phrase simplifiée puis refaite"
      }
     ],
-    "sautes": [
-     "regard de l'IA sur la vidéo finie (IA indisponible : aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY))"
-    ],
+    "sautes": [],
     "corriges": 1,
-    "restants": 7,
-    "graves_restants": 8
+    "restants": 3,
+    "graves_restants": 3
    },
    "reprises": 0,
    "preuves": [
@@ -1573,7 +1539,7 @@
      "auteur": "@cnn",
      "titre": "",
      "credit": "@cnn (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
+     "releve_le": "2026-11-26T14:17:30+01:00"
     },
     {
      "ecran": 3,
@@ -1582,7 +1548,7 @@
      "auteur": "@cnn",
      "titre": "",
      "credit": "@cnn (TikTok, image citée)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
+     "releve_le": "2026-11-26T14:17:30+01:00"
     },
     {
      "ecran": 4,
@@ -1591,7 +1557,7 @@
      "auteur": "newsweek.com",
      "titre": "",
      "credit": "Photo : newsweek.com (article cité)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
+     "releve_le": "2026-11-26T14:17:30+01:00"
     },
     {
      "ecran": 5,
@@ -1600,7 +1566,7 @@
      "auteur": "@cnn",
      "titre": "",
      "credit": "@cnn (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
+     "releve_le": "2026-11-26T14:17:30+01:00"
     },
     {
      "ecran": 6,
@@ -1609,25 +1575,25 @@
      "auteur": "@cnn",
      "titre": "",
      "credit": "@cnn (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
+     "releve_le": "2026-11-26T14:17:30+01:00"
     },
     {
      "ecran": 7,
-     "page": "https://www.tiktok.com/@cnn/video/7712141092535176478",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@cnn",
-     "titre": "",
-     "credit": "@cnn (TikTok, image citée)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
-    },
-    {
-     "ecran": 8,
      "page": "https://www.newsweek.com/us-army-video-iowa-explosion-site-maps-fallout-lead-azide-12766387",
      "licence": "photo d'article de presse, source citée",
      "auteur": "newsweek.com",
      "titre": "",
      "credit": "Photo : newsweek.com (article cité)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
+     "releve_le": "2026-11-26T14:17:30+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://www.tiktok.com/@cnn/video/7711922115238219022",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@cnn",
+     "titre": "",
+     "credit": "@cnn (TikTok, image citée)",
+     "releve_le": "2026-11-26T14:17:30+01:00"
     },
     {
      "ecran": 9,
@@ -1635,8 +1601,8 @@
      "licence": "courte citation (source visible, logo non flouté)",
      "auteur": "@cnn",
      "titre": "",
-     "credit": "@cnn (TikTok, image citée)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
+     "credit": "@cnn (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T14:17:30+01:00"
     },
     {
      "ecran": 10,
@@ -1645,7 +1611,7 @@
      "auteur": "@cnn",
      "titre": "",
      "credit": "@cnn (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
+     "releve_le": "2026-11-26T14:17:30+01:00"
     },
     {
      "ecran": 11,
@@ -1653,8 +1619,8 @@
      "licence": "courte citation (source visible, logo non flouté)",
      "auteur": "@cnn",
      "titre": "",
-     "credit": "@cnn (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
+     "credit": "@cnn (TikTok, image citée)",
+     "releve_le": "2026-11-26T14:17:30+01:00"
     },
     {
      "ecran": 12,
@@ -1663,16 +1629,16 @@
      "auteur": "@cnn",
      "titre": "",
      "credit": "@cnn (TikTok, image citée)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
+     "releve_le": "2026-11-26T14:17:30+01:00"
     },
     {
      "ecran": 13,
-     "page": "https://www.tiktok.com/@cnn/video/7711922115238219022",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@cnn",
+     "page": "https://www.newsweek.com/us-army-video-iowa-explosion-site-maps-fallout-lead-azide-12766387",
+     "licence": "photo d'article de presse, source citée",
+     "auteur": "newsweek.com",
      "titre": "",
-     "credit": "@cnn (TikTok, image citée)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
+     "credit": "Photo : newsweek.com (article cité)",
+     "releve_le": "2026-11-26T14:17:30+01:00"
     },
     {
      "ecran": 14,
@@ -1681,35 +1647,27 @@
      "auteur": "newsweek.com",
      "titre": "",
      "credit": "Photo : newsweek.com (article cité)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
-    },
-    {
-     "ecran": 15,
-     "page": "https://www.newsweek.com/us-army-video-iowa-explosion-site-maps-fallout-lead-azide-12766387",
-     "licence": "photo d'article de presse, source citée",
-     "auteur": "newsweek.com",
-     "titre": "",
-     "credit": "Photo : newsweek.com (article cité)",
-     "releve_le": "2026-11-25T22:40:58+01:00"
+     "releve_le": "2026-11-26T14:17:30+01:00"
     }
    ],
-   "couverture_ms": 17031,
+   "couverture_ms": 16321,
    "durees": {
-    "articles": 0,
-    "ecriture": 11,
-    "texte": 32,
-    "images": 41,
-    "controle_images": 2,
-    "voix": 62,
-    "montage": 93,
-    "controle_final": 604,
+    "images": 1,
+    "controle_images": 3,
+    "voix": 56,
+    "montage": 112,
+    "controle_final": 675,
     "extraits": 0,
-    "regles": 57,
-    "rangement": 7
+    "regles": 182,
+    "rangement": 4
    },
-   "refaite": null,
+   "refaite": {
+    "de": "20261125-222618-1",
+    "etape": "voix",
+    "remarque": "Réparation automatique : voix et sous-titres ne correspondent pas (33%) ; voix et sous-titres ne correspondent pas (48%) ; voix et sous-titres ne correspondent pas (38%)"
+   },
    "statut": "a_verifier",
-   "reparations": 1
+   "refaite_de": "20261125-222618-1"
   },
   {
    "id": "20261125-214937-1",
