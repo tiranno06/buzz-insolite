@@ -1,149 +1,149 @@
 {
- "maj": "2026-11-26T13:26:29+01:00",
+ "maj": "2026-11-26T15:24:57+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:24:43+01:00"
+   "le": "2026-11-26T15:22:43+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:24:46+01:00"
+   "le": "2026-11-26T15:22:48+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:24:49+01:00"
+   "le": "2026-11-26T15:22:51+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:24:52+01:00"
+   "le": "2026-11-26T15:22:55+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:24:56+01:00"
+   "le": "2026-11-26T15:22:59+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-26T13:24:58+01:00"
+   "le": "2026-11-26T15:23:02+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:01+01:00"
+   "le": "2026-11-26T15:23:07+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:05+01:00"
+   "le": "2026-11-26T15:23:11+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:08+01:00"
+   "le": "2026-11-26T15:23:15+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:11+01:00"
+   "le": "2026-11-26T15:23:18+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:14+01:00"
+   "le": "2026-11-26T15:23:23+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:17+01:00"
+   "le": "2026-11-26T15:23:27+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:21+01:00"
+   "le": "2026-11-26T15:23:31+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-26T13:25:23+01:00"
+   "le": "2026-11-26T15:23:35+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:26+01:00"
+   "le": "2026-11-26T15:23:38+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:29+01:00"
+   "le": "2026-11-26T15:23:43+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:32+01:00"
+   "le": "2026-11-26T15:23:48+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:35+01:00"
+   "le": "2026-11-26T15:23:51+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:38+01:00"
+   "le": "2026-11-26T15:23:56+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:41+01:00"
+   "le": "2026-11-26T15:24:00+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:44+01:00"
+   "le": "2026-11-26T15:24:04+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:48+01:00"
+   "le": "2026-11-26T15:24:08+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:51+01:00"
+   "le": "2026-11-26T15:24:12+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:54+01:00"
+   "le": "2026-11-26T15:24:16+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:25:57+01:00"
+   "le": "2026-11-26T15:24:20+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:26:00+01:00"
+   "le": "2026-11-26T15:24:24+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:26:03+01:00"
+   "le": "2026-11-26T15:24:28+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T13:26:06+01:00"
+   "le": "2026-11-26T15:24:32+01:00"
   }
  },
  "lues": 809,
- "retenues": 3,
+ "retenues": 2,
  "sujets": [
   {
    "titre": "Maresées exceptionnelles menacent l'Oregon et la Californie",
@@ -321,6 +321,75 @@
    "video_id": "20261124-203224-1"
   },
   {
+   "titre": "Christ Rédempteur survolé par nuages mystiques",
+   "resume": "Un photographe a filmé le monument brésilien semblant flotter au-dessus d’un voile de nuages. La vidéo, prise avec un iPhone, a rapidement fait le tour du web.",
+   "mots_cles": [
+    "C",
+    "h",
+    "r",
+    "i",
+    "s",
+    "t"
+   ],
+   "mots_cles_en": [
+    "C",
+    "h",
+    "r",
+    "i",
+    "s",
+    "t"
+   ],
+   "hashtags": [
+    "christredeemer",
+    "rio",
+    "clouds"
+   ],
+   "insolite": 8,
+   "categorie": "insolite",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712210525609889054",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712210525609889054",
+     "vues": 6500000,
+     "jaime": 1500000,
+     "commentaires": 11700,
+     "partages": 147500,
+     "date": 1795647600,
+     "texte": "WATCH: Brazil’s Christ the Redeemer appears to float above the clouds as a massive wave of mist cascades down Corcovado mountain in Rio de Janeiro. Photographer Marcio Amaro filmed the euphoric moment on his iPhone, capturing what looks like a waterfall of clouds pouring around the landmark. The rare visual comes from a weather phenomenon called orographic lift, where moist ocean air pushes over t",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712210525609889054?description=1&music_info=1"
+    },
+    {
+     "id": "7712406425690983694",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712406425690983694",
+     "vues": 1100000,
+     "jaime": 236400,
+     "commentaires": 1912,
+     "partages": 13000,
+     "date": 1795684610,
+     "texte": "A man in Rio de Janeiro captured a breathtaking sight of Christ the Redeemer appearing above a blanket of rolling clouds, describing the moment as a ‘gift from God’. Marcio Amaro was visiting his late godfather-in-law’s vacant property with his wife and cousin when his cousin spotted the extraordinary view from the house. Even his wife, who had lived there all her life, had never witnessed anythin",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712406425690983694?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "aa23f6d8b9",
+   "score": 1217,
+   "derniere_vue": 1795703084.609837,
+   "vues": 7600000,
+   "jaime": 1736400,
+   "commentaires": 13612,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T15:24:57+01:00"
+  },
+  {
    "titre": "Décret afghan impose surnoms aux femmes",
    "resume": "Un nouveau décret en Afghanistan oblige les femmes à porter des surnoms, supprimant leurs noms personnels.",
    "mots_cles": [
@@ -434,6 +503,95 @@
    "statut": "sans_source",
    "vu_le": "2026-11-24T20:46:45+01:00",
    "reserve_le": "2026-11-25T22:24:23+01:00"
+  },
+  {
+   "titre": "GTA VI : nouvelles révélations et controverses",
+   "resume": "Des séquences inédites du prochain GTA VI circulent sur les réseaux, suscitant l'enthousiasme et des débats. Un joueur refuse même d’y jouer, tandis qu’un hommage à une orque disparue apparaît dans le jeu.",
+   "mots_cles": [
+    "G",
+    "T",
+    "A",
+    " ",
+    "V",
+    "I"
+   ],
+   "mots_cles_en": [
+    "G",
+    "T",
+    "A",
+    " ",
+    "V",
+    "I"
+   ],
+   "hashtags": [
+    "gtavi",
+    "gaming",
+    "viral"
+   ],
+   "insolite": 6,
+   "categorie": "tech",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712092395827137806",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712092395827137806",
+     "vues": 8300000,
+     "jaime": 1100000,
+     "commentaires": 9707,
+     "partages": 162800,
+     "date": 1795611455,
+     "texte": "The cameraman deserves an Oscar 👏😭 🎥 @GTAboy AWAL  #gta6 #gaming #viral #rockstargames #gta",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712092395827137806?description=1&music_info=1"
+    },
+    {
+     "id": "7712145580939693325",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712145580939693325",
+     "vues": 1900000,
+     "jaime": 315200,
+     "commentaires": 1035,
+     "partages": 11700,
+     "date": 1795623836,
+     "texte": "Players have spotted what appears to be a tribute to Tokitae, also known as Lolita, in GTA 6's Vice City Oceanarium, which features a captive orca and a side mission to free it. The real-life whale was captured off Washington state in 1970 and spent 53 years at Miami Seaquarium before dying in August 2023, aged 57. The Easter egg comes as GTA 6 enjoys a record-breaking launch following years of an",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712145580939693325?description=1&music_info=1"
+    },
+    {
+     "id": "7712224897614859542",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7712224897614859542",
+     "vues": 1400000,
+     "jaime": 174700,
+     "commentaires": 1775,
+     "partages": 9624,
+     "date": 1795642261,
+     "texte": "Il refuse de jouer à GTA VI @petitnuagetv",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712224897614859542?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "5e732d15c7",
+   "score": 875,
+   "derniere_vue": 1795703084.609837,
+   "vues": 11600000,
+   "jaime": 1589900,
+   "commentaires": 12517,
+   "hashtags_viraux": [
+    "gta6",
+    "gaming",
+    "viral",
+    "rockstargames",
+    "gta"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T15:24:57+01:00"
   },
   {
    "titre": "GTA 6 : buzz autour du jeu",
@@ -4588,6 +4746,62 @@
    "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
+   "titre": "Explosion d'un camion-citerne à Giza, Égypte",
+   "resume": "Un camion transportant des produits pétroliers a pris feu à Giza, faisant au moins 31 morts et 21 blessés. Les autorités locales ont déclaré l’incident comme une tragédie majeure.",
+   "mots_cles": [
+    "c",
+    "a",
+    "m",
+    "i",
+    "o",
+    "n"
+   ],
+   "mots_cles_en": [
+    "t",
+    "a",
+    "n",
+    "k",
+    "e",
+    "r"
+   ],
+   "hashtags": [
+    "tanker",
+    "giza",
+    "fire"
+   ],
+   "insolite": 6,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712258353673620749",
+     "compte": "cnn",
+     "url": "https://www.tiktok.com/@cnn/video/7712258353673620749",
+     "vues": 1200000,
+     "jaime": 57600,
+     "commentaires": 1677,
+     "partages": 9183,
+     "date": 1795650088,
+     "texte": "A tanker truck carrying petroleum products crashed in Egypt’s Giza governorate Wednesday, igniting a massive fire that killed at least 31 people and injured 21 others, according to the Egyptian Ministry of Health and Population.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712258353673620749?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "a4b9880b85",
+   "score": 35,
+   "derniere_vue": 1795703084.609837,
+   "vues": 1200000,
+   "jaime": 57600,
+   "commentaires": 1677,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T15:24:57+01:00"
+  },
+  {
    "titre": "Accident de camion-citerne à Gizeh",
    "resume": "Un camion-citerne transportant des produits pétroliers a percuté à Gizeh, Égypte, provoquant un incendie meurtrier. Au moins 31 personnes sont décédées.",
    "mots_cles": [
@@ -4749,6 +4963,180 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-26T13:26:29+01:00"
+  },
+  {
+   "titre": "Sénégal champion d'Afrique 2025 confirmé",
+   "resume": "Le Tribunal Arbitral du Sport a confirmé le Sénégal comme vainqueur de la CAN 2025 après un litige. La décision tranche la controverse autour du titre initialement retiré.",
+   "mots_cles": [
+    "S",
+    "é",
+    "n",
+    "é",
+    "g",
+    "a"
+   ],
+   "mots_cles_en": [
+    "S",
+    "e",
+    "n",
+    "e",
+    "g",
+    "a"
+   ],
+   "hashtags": [
+    "senegal",
+    "can2025",
+    "sport"
+   ],
+   "insolite": 3,
+   "categorie": "sport",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711746571976707361",
+     "compte": "hugodecrypte",
+     "url": "https://www.tiktok.com/@hugodecrypte/video/7711746571976707361",
+     "vues": 2000000,
+     "jaime": 273400,
+     "commentaires": 2211,
+     "partages": 31600,
+     "date": 1795530924,
+     "texte": "Le Tribunal Arbitral du Sport, la plus haute juridiction du sport mondial, a désigné ce mardi le Sénégal comme vainqueur de la Coupe d’Afrique des Nations 2025. Le Sénégal avait remporté le titre à l’issue de la finale dans un premier temps, avant de se le voir retirer par la Confédération Africaine de Football (CAF) sur tapis vert en mars. Il était reproché aux joueurs de l’équipe sénégalaise d’a",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711746571976707361?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "7d9d9770cd",
+   "score": 31,
+   "derniere_vue": 1795703084.609837,
+   "vues": 2000000,
+   "jaime": 273400,
+   "commentaires": 2211,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T15:24:57+01:00"
+  },
+  {
+   "titre": "Randonneur allemand menacé par vent en Patagonie",
+   "resume": "Un trekkeur a failli être emporté par de violentes rafales sur une passerelle suspendue au Chili. Il a dû s’agripper aux câbles pour survivre.",
+   "mots_cles": [
+    "P",
+    "a",
+    "t",
+    "a",
+    "g",
+    "o"
+   ],
+   "mots_cles_en": [
+    "P",
+    "a",
+    "t",
+    "a",
+    "g",
+    "o"
+   ],
+   "hashtags": [
+    "patagonia",
+    "hiker",
+    "wind"
+   ],
+   "insolite": 6,
+   "categorie": "nature",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712182765873040663",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
+     "vues": 1200000,
+     "jaime": 54400,
+     "commentaires": 718,
+     "partages": 11000,
+     "date": 1795632482,
+     "texte": "L'IMAGE DU JOUR - 😱 Grosse frayeur pour un randonneur allemand en Patagonie, au Chili. Alors qu'il traversait une passerelle suspendue, de violentes rafales de vent ont fait dangereusement osciller le pont. Avec un sac de 18 kilos sur le dos, le touriste s'est agrippé aux câbles pour tenter de garder son équilibre. Une scène vertigineuse filmée par un autre randonneur.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712182765873040663?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "9c7cfa29a7",
+   "score": 28,
+   "derniere_vue": 1795703084.609837,
+   "vues": 1200000,
+   "jaime": 54400,
+   "commentaires": 718,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T15:24:57+01:00"
+  },
+  {
+   "titre": "Senatrice australienne amène son bébé au parlement",
+   "resume": "La sénatrice Fatima Payman a présenté son nourrisson lors d’une séance parlementaire, illustrant la conciliation travail‑famille. La scène a suscité de nombreuses réactions sur les réseaux.",
+   "mots_cles": [
+    "A",
+    "u",
+    "s",
+    "t",
+    "r",
+    "a"
+   ],
+   "mots_cles_en": [
+    "A",
+    "u",
+    "s",
+    "t",
+    "r",
+    "a"
+   ],
+   "hashtags": [
+    "australia",
+    "parliament",
+    "baby"
+   ],
+   "insolite": 5,
+   "categorie": "politique",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712153821559917838",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712153821559917838",
+     "vues": 1000000,
+     "jaime": 111100,
+     "commentaires": 1164,
+     "partages": 1314,
+     "date": 1795625744,
+     "texte": "Australian Senator Fatima Payman brought her baby into Parliament, combining her parliamentary duties with motherhood. Fellow independent senator Lidia Thorpe was seen entertaining six-month-old Aliyah with a game of peekaboo during the session. #australia #motherhood #viral #peekaboo #hardnews 🎥 Parliament of Australia",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712153821559917838?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "21833923ce",
+   "score": 27,
+   "derniere_vue": 1795703084.609837,
+   "vues": 1000000,
+   "jaime": 111100,
+   "commentaires": 1164,
+   "hashtags_viraux": [
+    "australia",
+    "motherhood",
+    "viral",
+    "peekaboo",
+    "hardnews"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T15:24:57+01:00"
   },
   {
    "titre": "A new generation of drugs is for sale inside gas station convenience stores and smoke shop",
