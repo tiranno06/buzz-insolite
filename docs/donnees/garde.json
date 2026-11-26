@@ -11,10 +11,22 @@
    },
    "demande_le": "2026-11-26T13:28:24+01:00",
    "raison": "déjà 2 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
+  },
+  {
+   "inputs": {
+    "format": "buzz",
+    "refaire": "20261125-222618-1",
+    "etape": "auto",
+    "remarque": "Réparation automatique : voix et sous-titres ne correspondent pas (33%) ; voix et sous-titres ne correspondent pas (48%) ; voix et sous-titres ne correspondent pas (38%)",
+    "origine": "reparation",
+    "nombre": "1"
+   },
+   "demande_le": "2026-11-26T13:28:33+01:00",
+   "raison": "déjà 2 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
   }
  ],
  "credits": {
-  "le": "2026-11-26T13:28:24+01:00",
+  "le": "2026-11-26T13:28:33+01:00",
   "resume": "déjà 2 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
  },
  "creation": {
