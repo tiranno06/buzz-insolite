@@ -1,15 +1,50 @@
 {
- "maj": "2026-11-26T21:03:23+01:00",
- "videos_mesurees": 1,
+ "maj": "2026-11-27T00:04:36+01:00",
+ "videos_mesurees": 2,
  "vues_total": 0,
  "vues_mediane": 0,
  "heures": [],
  "meilleures_heures": [],
- "formats": [],
+ "formats": [
+  {
+   "nom": "buzz",
+   "videos": 2,
+   "vues_moyennes": 0,
+   "vues_mediane": 0
+  }
+ ],
  "categories": [],
  "humeurs": [],
- "hashtags": [],
+ "hashtags": [
+  {
+   "nom": "#insolite",
+   "videos": 2,
+   "vues_moyennes": 0,
+   "vues_mediane": 0
+  },
+  {
+   "nom": "#actu",
+   "videos": 2,
+   "vues_moyennes": 0,
+   "vues_mediane": 0
+  },
+  {
+   "nom": "#buzz",
+   "videos": 2,
+   "vues_moyennes": 0,
+   "vues_mediane": 0
+  }
+ ],
  "top": [
+  {
+   "id": "20261125-140715-1-r1",
+   "titre": "Marées géantes menacent Oregon et Californie",
+   "vues": 0,
+   "jaime": 0,
+   "commentaires": 0,
+   "partages": 0,
+   "maj": "2026-11-27T00:04:36+01:00"
+  },
   {
    "id": "20261124-233239-1-r16",
    "titre": "CAN 2025 : Sénégal récupère le titre",
@@ -17,7 +52,7 @@
    "jaime": 0,
    "commentaires": 0,
    "partages": 0,
-   "maj": "2026-11-26T21:03:23+01:00"
+   "maj": "2026-11-27T00:04:36+01:00"
   }
  ],
  "chaine": "buzz.insolite",
