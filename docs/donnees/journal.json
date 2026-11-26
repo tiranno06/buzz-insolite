@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-26T14:23:44+01:00",
+   "niveau": "info",
+   "texte": "🔁 « Pont suspendu secoué en Patagonie » refaite (texte) : note 100/100, corrige : « Réparation automatique : texte un peu court (environ 54 s) ; faits non vérifiés par une 2e IA » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-26T14:17:31+01:00",
    "niveau": "info",
    "texte": "🔁 « Explosion drone à Middletown » refaite (voix) : note 25/100, corrige : « Réparation automatique : voix et sous-titres ne correspondent pas (33%) ; voix et sous-titres ne correspondent pas (48%) ; voix et sous-titres ne correspondent pas (38%) » — l'ancienne version est remplacée"

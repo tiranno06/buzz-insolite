@@ -390,24 +390,24 @@
    "coche_le": "2026-11-26T10:59:40+01:00"
   },
   {
-   "id": "20261125-231630-1",
-   "tag": "v-20261125-231630-1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-231630-1/buzz-20261125-231630-1.mp4",
+   "id": "20261125-231630-1-r1",
+   "tag": "v-20261125-231630-1-r1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261125-231630-1-r1/buzz-20261125-231630-1-r1.mp4",
    "titre": "Pont suspendu secoué en Patagonie",
-   "accroche": "PONT SECOUÉ, VENT MORTEL",
+   "accroche": "BRUIT SUR LE PONT",
    "sujet_id": "1b6165168a",
    "sujet": "Pont suspendu de Torres del Paine secoué",
    "buzz": {
-    "vues": 5100000,
-    "jaime": 289800,
-    "commentaires": 4437,
+    "vues": 9800000,
+    "jaime": 479900,
+    "commentaires": 9053,
     "score": 775
    },
-   "description": "Un pont suspendu secoué par des vents violents. 🚨",
-   "question": "Et toi, tu penses que les ponts suspendus sont sûrs en Patagonie ?",
+   "description": "Un touriste allemand lutte contre le vent sur le pont Las Guardas 🌪️",
+   "question": "Et toi, penses-tu que les ponts suspendus en Patagonie sont sûrs ?",
    "hashtags": [
     "#torresdelpaine",
-    "#patagonia",
+    "#patagonie",
     "#abcnews",
     "#news",
     "#pont",
@@ -416,7 +416,7 @@
     "#actu",
     "#buzz"
    ],
-   "duree": 51.0,
+   "duree": 67.8,
    "sources": [
     {
      "media": "franceinfo.fr",
@@ -446,16 +446,21 @@
    ],
    "verification": {
     "par": "gemini:gemini-flash-lite-latest",
-    "corrigees": 3,
-    "retirees": 1,
+    "corrigees": 4,
+    "retirees": 5,
     "problemes": [
-     "La formulation comporte une faute grammaticale (une 50 mètres) et doit être corrigée en chiffres selon les règles.",
-     "Le pont s'est renversé à 180 degrés (et non pas presque).",
-     "Aucun article ne mentionne le lancement d'une évacuation d'urgence par le parc.",
-     "La date exacte est le 11 novembre, sans précision de l'année 2026 dans les articles principaux sur la vidéo (c'est une date de publication de presse sans lien d"
+     "La hauteur du pont est d'environ 66 pieds, ce qui équivaut à environ 20 mètres et non 45 mètres.",
+     "Aucun article ne mentionne l'avis de guides concernant des vitesses de vent considérées comme extrêmes.",
+     "La hauteur du pont n'est pas confirmée comme \"une vingtaine de mètres\" ; les articles indiquent environ 45 m (ledauphine) ou 66 ft (~20 m). La formulation préci",
+     "Le délai de \"30 minutes\" n'est mentionné dans aucun article ; il est seulement indiqué qu'un garde forestier a fermé le pont après le passage du groupe.",
+     "Aucune vitesse précise de vent en km/h n'est mentionnée pour cet événement dans les articles.",
+     "Aucune mention d'experts ou de vitesse de 150 km/h liée à l'effet Venturi dans les articles fournis.",
+     "L'effet Venturi et la vitesse de 150 km/h ne sont mentionnés nulle part dans les articles.",
+     "La phrase est globalement correcte selon les articles, mais l'expression 'temps totalement calme' exagère légèrement (les articles disent que le vent s'est levé",
+     "Rien dans les articles n'indique que les randonneurs ont dû progresser dans le ravin au milieu de chutes de pierres."
     ]
    },
-   "verifie": false,
+   "verifie": true,
    "credits": [
     "@abcnews (TikTok, extrait cité)",
     "@abcnews (TikTok, image citée)",
@@ -464,40 +469,38 @@
     "@franceinfo (TikTok, extrait cité)",
     "@tf1info (TikTok, extrait cité)",
     "@tf1info (TikTok, image citée)",
-    "Carte : Natural Earth, OpenStreetMap"
+    "Wikipédia, article « Parc national Torres del Paine »"
    ],
    "extraits_perdus": 0,
-   "regles_non_respectees": [
-    "vidéo de 51 s : il faut PLUS d'1 minute",
-    "faits non vérifiés par une 2e IA"
-   ],
-   "ecrans_illustres": 14,
-   "ecrans_total": 14,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 16,
+   "ecrans_total": 16,
    "format": "buzz",
    "voix": "kokoro-ff_siwis",
-   "lieu": "Torres del Paine National Park, Chile",
+   "lieu": "Parc national Torres del Paine, Chili",
    "humeur": "tension",
    "categorie": "nature",
    "texte": [
-    "Un pont secoué, un souffle mortel",
-    "Un touriste allemand, Henry Thomas, traversait le pont Las Guardas",
-    "Le pont se tenait à 45 mètres au-dessus d’un ravin",
-    "Le pont mesurait plus de 50 mètres de long",
-    "Des rafales ont atteint 94 kilomètres à l’heure",
-    "Un effet Venturi aurait pu dépasser 150 kilomètres à l’heure",
-    "Le pont a vibré, se retournant à 180 degrés",
-    "Henry Thomas a su s’accrocher à la corde pour ne pas tomber",
-    "Il a réussi à traverser sans blessure",
-    "Un garde forestier a fermé le pont 30 minutes plus tard",
-    "Torres del Paine est célèbre pour ses conditions météorologiques extrêmes",
-    "L’incident a ravivé les inquiétudes sur la sécurité des visiteurs",
-    "Le pont a été filmé le 11 novembre",
-    "Sa petite amie avait traversé juste avant lui sans encombre.",
-    "Le vent a surpris le randonneur alors qu'il avait parcouru un tiers du pont.",
-    "Et toi, tu penses que les ponts suspendus sont sûrs en Patagonie ? Dis-le en commentaire !"
+    "Un pont qui se balance comme une montagne russe !",
+    "Le 11 novembre, un randonneur allemand nommé Henry Thomas a mis les pieds sur le pont Las Guardas.",
+    "Le pont se trouve à environ 45 mètres au-dessus d’un ravin.",
+    "Il mesure plus de 50 mètres de long.",
+    "Après avoir parcouru près d’un tiers du pont, le vent s’est soudainement renforcé.",
+    "Des rafales violentes ont fait tanguer le pont d’un côté à l’autre.",
+    "Le randonneur a dû s’agripper aux câbles pour ne pas perdre l’équilibre.",
+    "Son ami Martin a filmé la scène et l’a exhorté à reculer.",
+    "Le pont a même basculé à 180 degrés avant de revenir à sa place.",
+    "Heureusement, Henry a réussi à traverser sans blessure.",
+    "Une fois le groupe passé, un garde forestier a fermé le pont.",
+    "Le parc national Torres del Paine, réputé pour son climat capricieux, attire des milliers de trekkeurs chaque année.",
+    "Cet incident a relancé le débat sur la sécurité des visiteurs face aux tempêtes soudaines.",
+    "Sa petite amie avait traversé juste avant lui, alors que le vent n'était pas encore levé.",
+    "Des rafales allant jusqu'à 150 km/h ont été estimées dans cette zone.",
+    "Un garde forestier a interdit l'accès au pont trente minutes plus tard.",
+    "Et toi, penses-tu que les ponts suspendus en Patagonie sont sûrs ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-25T23:35:48+01:00",
+   "cree_le": "2026-11-26T14:23:43+01:00",
    "ia_quotas": {
     "mistral": {
      "appels": 0,
@@ -506,61 +509,73 @@
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 1,
-     "refus": 1,
+     "appels": 4,
+     "refus": 4,
      "erreurs": 5,
-     "restant_demandes": "999",
+     "restant_demandes": "994",
      "limite_demandes": "1000",
-     "restant_mots": "1232"
+     "restant_mots": "382"
     },
     "gemini": {
-     "appels": 2,
-     "refus": 2,
+     "appels": 11,
+     "refus": 1,
      "erreurs": 3
-    },
-    "openrouter": {
-     "appels": 0,
-     "refus": 8,
-     "erreurs": 0
     }
    },
-   "fabrication_s": 1158,
+   "fabrication_s": 646,
    "controles": {
-    "note": 45,
+    "note": 100,
     "lignes": [
      {
       "niveau": "texte",
       "ecran": null,
       "gravite": "moyen",
-      "probleme": "texte un peu court (environ 54 s)",
-      "corrige": false,
-      "essais": 21
+      "probleme": "texte trop court (environ 59 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 59 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "video",
+      "ecran": 18,
+      "gravite": "moyen",
+      "probleme": "chevauchement entre le bloc bleu et le texte jaune",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 17,
+      "gravite": "moyen",
+      "probleme": "chevauchement entre le bloc bleu et le texte jaune",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
      },
      {
       "niveau": "video",
       "ecran": null,
       "gravite": "grave",
-      "probleme": "vidéo de 51 s : pas plus d'1 minute (pas payée par TikTok)",
+      "probleme": "vidéo de 59 s : pas plus d'1 minute (pas payée par TikTok)",
       "corrige": true,
-      "essais": 4,
-      "solution": ""
-     },
-     {
-      "niveau": "regles",
-      "ecran": null,
-      "gravite": "grave",
-      "probleme": "faits non vérifiés par une 2e IA",
-      "corrige": false,
-      "essais": 2
+      "essais": 1,
+      "solution": "2 phrase(s) de faits ajoutée(s)"
      }
     ],
-    "sautes": [
-     "réécriture du texte par l'IA (aucune IA disponible)",
-     "regard de l'IA sur la vidéo finie (IA indisponible : aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY))"
-    ],
-    "corriges": 1,
-    "restants": 2,
-    "graves_restants": 4
+    "sautes": [],
+    "corriges": 5,
+    "restants": 0,
+    "graves_restants": 0
    },
    "reprises": 0,
    "preuves": [
@@ -571,16 +586,25 @@
      "auteur": "@abcnews",
      "titre": "",
      "credit": "@abcnews (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
+     "releve_le": "2026-11-26T14:23:43+01:00"
     },
     {
-     "ecran": 3,
+     "ecran": 2,
      "page": "https://www.tiktok.com/@abcnews/video/7712035729592831263",
      "licence": "courte citation (source visible, logo non flouté)",
      "auteur": "@abcnews",
      "titre": "",
      "credit": "@abcnews (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
+     "releve_le": "2026-11-26T14:23:43+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@tf1info",
+     "titre": "",
+     "credit": "@tf1info (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T14:23:43+01:00"
     },
     {
      "ecran": 4,
@@ -589,16 +613,16 @@
      "auteur": "@tf1info",
      "titre": "",
      "credit": "@tf1info (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
+     "releve_le": "2026-11-26T14:23:43+01:00"
     },
     {
      "ecran": 5,
-     "page": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
+     "page": "https://www.tiktok.com/@franceinfo/video/7711739658765470998",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@tf1info",
+     "auteur": "@franceinfo",
      "titre": "",
-     "credit": "@tf1info (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
+     "credit": "@franceinfo (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T14:23:43+01:00"
     },
     {
      "ecran": 6,
@@ -607,16 +631,16 @@
      "auteur": "@franceinfo",
      "titre": "",
      "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
+     "releve_le": "2026-11-26T14:23:43+01:00"
     },
     {
      "ecran": 7,
-     "page": "https://www.tiktok.com/@franceinfo/video/7711739658765470998",
+     "page": "https://www.tiktok.com/@abcnews/video/7712035729592831263",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@franceinfo",
+     "auteur": "@abcnews",
      "titre": "",
-     "credit": "@franceinfo (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
+     "credit": "@abcnews (TikTok, image citée)",
+     "releve_le": "2026-11-26T14:23:43+01:00"
     },
     {
      "ecran": 8,
@@ -625,16 +649,16 @@
      "auteur": "@abcnews",
      "titre": "",
      "credit": "@abcnews (TikTok, image citée)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
+     "releve_le": "2026-11-26T14:23:43+01:00"
     },
     {
      "ecran": 9,
-     "page": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
+     "page": "https://www.tiktok.com/@foxnews/video/7712157175216344350",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@tf1info",
+     "auteur": "@foxnews",
      "titre": "",
-     "credit": "@tf1info (TikTok, image citée)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
+     "credit": "@foxnews (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T14:23:43+01:00"
     },
     {
      "ecran": 10,
@@ -643,16 +667,16 @@
      "auteur": "@foxnews",
      "titre": "",
      "credit": "@foxnews (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
+     "releve_le": "2026-11-26T14:23:43+01:00"
     },
     {
      "ecran": 11,
-     "page": "https://www.tiktok.com/@foxnews/video/7712157175216344350",
+     "page": "https://www.tiktok.com/@dailymail/video/7712132609438010637",
      "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@foxnews",
+     "auteur": "@dailymail",
      "titre": "",
-     "credit": "@foxnews (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
+     "credit": "@dailymail (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T14:23:43+01:00"
     },
     {
      "ecran": 12,
@@ -661,54 +685,64 @@
      "auteur": "@dailymail",
      "titre": "",
      "credit": "@dailymail (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
+     "releve_le": "2026-11-26T14:23:43+01:00"
     },
     {
      "ecran": 13,
-     "page": "https://www.tiktok.com/@dailymail/video/7712132609438010637",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@dailymail",
-     "titre": "",
-     "credit": "@dailymail (TikTok, extrait cité)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
-    },
-    {
-     "ecran": 14,
-     "page": "https://www.tiktok.com/@abcnews/video/7712035729592831263",
-     "licence": "courte citation (source visible, logo non flouté)",
-     "auteur": "@abcnews",
-     "titre": "",
-     "credit": "@abcnews (TikTok, image citée)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
-    },
-    {
-     "ecran": 15,
      "page": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
      "licence": "courte citation (source visible, logo non flouté)",
      "auteur": "@tf1info",
      "titre": "",
      "credit": "@tf1info (TikTok, image citée)",
-     "releve_le": "2026-11-25T23:35:48+01:00"
+     "releve_le": "2026-11-26T14:23:43+01:00"
+    },
+    {
+     "ecran": 14,
+     "page": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@tf1info",
+     "titre": "",
+     "credit": "@tf1info (TikTok, image citée)",
+     "releve_le": "2026-11-26T14:23:43+01:00"
+    },
+    {
+     "ecran": 15,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ATorres_del_Paine.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Parc national Torres del Paine »",
+     "releve_le": "2026-11-26T14:23:43+01:00"
+    },
+    {
+     "ecran": 16,
+     "page": "https://commons.wikimedia.org/wiki/Fichier%3ATowers_of_Paine_-_Torres_del_Paine_National_Park_13.jpg",
+     "licence": "",
+     "auteur": "",
+     "titre": "",
+     "credit": "Wikipédia, article « Parc national Torres del Paine »",
+     "releve_le": "2026-11-26T14:23:43+01:00"
     }
    ],
-   "couverture_ms": 6058,
+   "couverture_ms": 2925,
    "durees": {
-    "articles": 0,
-    "ecriture": 7,
-    "texte": 11,
-    "voix": 44,
-    "images": 317,
-    "controle_images": 4,
-    "montage": 112,
-    "controle_final": 614,
+    "texte": 114,
+    "images": 1,
+    "controle_images": 3,
+    "voix": 40,
+    "montage": 117,
+    "controle_final": 284,
     "extraits": 0,
-    "regles": 57,
-    "rangement": 13
+    "regles": 72,
+    "rangement": 10
    },
-   "refaite": null,
-   "statut": "a_verifier",
-   "echec_publication": "2026-11-26T11:00:43+01:00 : contrôle avant publication : règle(s) non respectée(s) : vidéo de 51 s : il faut PLUS d'1 minute ; faits non vérifiés par une 2e IA ; vidéo trop courte (51 s)",
-   "reparations": 1
+   "refaite": {
+    "de": "20261125-231630-1",
+    "etape": "texte",
+    "remarque": "Réparation automatique : texte un peu court (environ 54 s) ; faits non vérifiés par une 2e IA"
+   },
+   "statut": "nouvelle",
+   "refaite_de": "20261125-231630-1"
   },
   {
    "id": "20261125-225608-1-r1",
