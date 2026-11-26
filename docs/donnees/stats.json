@@ -1,6 +1,6 @@
 {
- "maj": "2026-11-26T13:39:44+01:00",
- "videos_mesurees": 0,
+ "maj": "2026-11-26T16:41:18+01:00",
+ "videos_mesurees": 1,
  "vues_total": 0,
  "vues_mediane": 0,
  "heures": [],
@@ -9,7 +9,17 @@
  "categories": [],
  "humeurs": [],
  "hashtags": [],
- "top": [],
+ "top": [
+  {
+   "id": "20261124-233239-1-r16",
+   "titre": "CAN 2025 : Sénégal récupère le titre",
+   "vues": 0,
+   "jaime": 0,
+   "commentaires": 0,
+   "partages": 0,
+   "maj": "2026-11-26T16:41:18+01:00"
+  }
+ ],
  "chaine": "buzz.insolite",
  "lues": 3,
  "retrouvees": 3
