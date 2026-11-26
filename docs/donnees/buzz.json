@@ -431,7 +431,7 @@
     "pays": "FR",
     "trafic": "10000+"
    },
-   "statut": "en_cours",
+   "statut": "nouveau",
    "vu_le": "2026-11-25T22:59:59+01:00"
   },
   {
@@ -712,9 +712,8 @@
    "hashtags_viraux": [],
    "medias": 15,
    "tendance": null,
-   "statut": "en_cours",
-   "vu_le": "2026-11-25T23:02:41+01:00",
-   "reserve_le": "2026-11-26T07:16:59+01:00"
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
    "titre": "Afghanistan : les femmes privées de nom officiel",
