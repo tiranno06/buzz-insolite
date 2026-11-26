@@ -1,149 +1,149 @@
 {
- "maj": "2026-11-25T23:02:41+01:00",
+ "maj": "2026-11-26T01:00:57+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:00:23+01:00"
+   "le": "2026-11-26T00:58:49+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:00:27+01:00"
+   "le": "2026-11-26T00:58:53+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:00:32+01:00"
+   "le": "2026-11-26T00:58:57+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:00:36+01:00"
+   "le": "2026-11-26T00:59:00+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:00:39+01:00"
+   "le": "2026-11-26T00:59:03+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-25T23:00:42+01:00"
+   "le": "2026-11-26T00:59:06+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:00:47+01:00"
+   "le": "2026-11-26T00:59:10+01:00"
   },
   "lemondefr": {
    "ok": true,
-   "videos": 15,
-   "le": "2026-11-25T23:00:51+01:00"
+   "videos": 30,
+   "le": "2026-11-26T00:59:13+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:00:55+01:00"
+   "le": "2026-11-26T00:59:17+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:01:00+01:00"
+   "le": "2026-11-26T00:59:20+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:01:05+01:00"
+   "le": "2026-11-26T00:59:25+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:01:10+01:00"
+   "le": "2026-11-26T00:59:29+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:01:14+01:00"
+   "le": "2026-11-26T00:59:32+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-25T23:01:19+01:00"
+   "le": "2026-11-26T00:59:36+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:01:23+01:00"
+   "le": "2026-11-26T00:59:39+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:01:26+01:00"
+   "le": "2026-11-26T00:59:43+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:01:31+01:00"
+   "le": "2026-11-26T00:59:46+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:01:35+01:00"
+   "le": "2026-11-26T00:59:50+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:01:39+01:00"
+   "le": "2026-11-26T00:59:53+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:01:44+01:00"
+   "le": "2026-11-26T00:59:57+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:01:49+01:00"
+   "le": "2026-11-26T01:00:00+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:01:53+01:00"
+   "le": "2026-11-26T01:00:04+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:01:57+01:00"
+   "le": "2026-11-26T01:00:08+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:02:03+01:00"
+   "le": "2026-11-26T01:00:11+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:02:07+01:00"
+   "le": "2026-11-26T01:00:15+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:02:12+01:00"
+   "le": "2026-11-26T01:00:19+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:02:16+01:00"
+   "le": "2026-11-26T01:00:22+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-25T23:02:20+01:00"
+   "le": "2026-11-26T01:00:26+01:00"
   }
  },
- "lues": 794,
- "retenues": 4,
+ "lues": 809,
+ "retenues": 3,
  "sujets": [
   {
    "titre": "Maresées exceptionnelles menacent l'Oregon et la Californie",
@@ -319,6 +319,61 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T18:19:59+01:00",
    "video_id": "20261124-203224-1"
+  },
+  {
+   "titre": "Décret afghan impose surnoms aux femmes",
+   "resume": "Un nouveau décret en Afghanistan oblige les femmes à porter des surnoms, supprimant leurs noms personnels.",
+   "mots_cles": [
+    "Afghanistan",
+    "décret",
+    "femmes",
+    "surnoms"
+   ],
+   "mots_cles_en": [
+    "Afghanistan",
+    "decree",
+    "women",
+    "aliases"
+   ],
+   "hashtags": [
+    "afghanistan",
+    "décret",
+    "femmes"
+   ],
+   "insolite": 7,
+   "categorie": "politique",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711838616284040470",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711838616284040470",
+     "vues": 2900000,
+     "jaime": 512300,
+     "commentaires": 5519,
+     "partages": 56400,
+     "date": 1795552321,
+     "texte": "Dans cette région d’Afghanistan, les femmes n’ont désormais plus de nom, un nouveau décret leur impose des surnoms.",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711838616284040470?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "86dbe583a7",
+   "score": 1052,
+   "derniere_vue": 1795651243.7286372,
+   "vues": 2900000,
+   "jaime": 512300,
+   "commentaires": 5519,
+   "hashtags_viraux": [],
+   "medias": 13,
+   "tendance": {
+    "recherche": "aurore bergé",
+    "pays": "FR",
+    "trafic": "100+"
+   },
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T01:00:57+01:00"
   },
   {
    "titre": "Brésil : golden retriever sauve enfant noyé",
@@ -549,62 +604,6 @@
    "video_id": "20261125-231630-1"
   },
   {
-   "titre": "Explosion de lead azide à Middletown",
-   "resume": "Une explosion de lead azide a eu lieu à Middletown, capturée par un drone. Les autorités ont coordonné la sécurité et l'intervention.",
-   "mots_cles": [
-    "explosion lead azide",
-    "Middletown",
-    "drone",
-    "sécurité",
-    "incendie"
-   ],
-   "mots_cles_en": [
-    "lead azide explosion",
-    "Middletown",
-    "drone",
-    "safety",
-    "fire"
-   ],
-   "hashtags": [
-    "explosion",
-    "drone",
-    "middletown"
-   ],
-   "insolite": 5,
-   "categorie": "sante",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712141092535176478",
-     "compte": "cnn",
-     "url": "https://www.tiktok.com/@cnn/video/7712141092535176478",
-     "vues": 1500000,
-     "jaime": 120300,
-     "commentaires": 6889,
-     "partages": 22700,
-     "date": 1795622785,
-     "texte": "Drone video shows the moment of the Middletown lead azide explosion. The drone stayed outside of restricted airspace for the duration of its flight, and drone operator James Wilson coordinated with the Army and police beforehand. #iowa #drone",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712141092535176478?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "416ea80eff",
-   "score": 773,
-   "derniere_vue": 1795644149.7443585,
-   "vues": 1500000,
-   "jaime": 120300,
-   "commentaires": 6889,
-   "hashtags_viraux": [
-    "iowa",
-    "drone"
-   ],
-   "medias": 7,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-25T23:02:41+01:00"
-  },
-  {
    "titre": "Afghanistan: femmes sans noms imposés par décret",
    "resume": "Un nouveau décret afghan impose des surnoms aux femmes, les privant de leurs noms personnels. Cette mesure a suscité des réactions internationales.",
    "mots_cles": [
@@ -707,6 +706,59 @@
    "vu_le": "2026-11-25T22:59:59+01:00"
   },
   {
+   "titre": "Explosion de lead azide à Middletown",
+   "resume": "Une explosion de lead azide a été filmée par drone à Middletown, avec coordination militaire.",
+   "mots_cles": [
+    "Middletown",
+    "explosion",
+    "lead azide",
+    "drone"
+   ],
+   "mots_cles_en": [
+    "Middletown",
+    "explosion",
+    "lead azide",
+    "drone"
+   ],
+   "hashtags": [
+    "explosion",
+    "drone"
+   ],
+   "insolite": 5,
+   "categorie": "science",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712141092535176478",
+     "compte": "cnn",
+     "url": "https://www.tiktok.com/@cnn/video/7712141092535176478",
+     "vues": 1600000,
+     "jaime": 131700,
+     "commentaires": 7284,
+     "partages": 24000,
+     "date": 1795622785,
+     "texte": "Drone video shows the moment of the Middletown lead azide explosion. The drone stayed outside of restricted airspace for the duration of its flight, and drone operator James Wilson coordinated with the Army and police beforehand. #iowa #drone",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712141092535176478?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "416ea80eff",
+   "score": 679,
+   "derniere_vue": 1795651243.7286372,
+   "vues": 1600000,
+   "jaime": 131700,
+   "commentaires": 7284,
+   "hashtags_viraux": [
+    "iowa",
+    "drone"
+   ],
+   "medias": 8,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-25T23:02:41+01:00"
+  },
+  {
    "titre": "Policier de Miami frappe suspect lors arrestation",
    "resume": "Un policier de Miami a été filmé frappant un suspect à cinq reprises après avoir été mordu, selon les autorités. L’incident, survenu lors du week-end d’Halloween, suscite des débats sur l’usage de la force.",
    "mots_cles": [
@@ -760,6 +812,76 @@
    "statut": "utilise",
    "vu_le": "2026-11-25T02:05:25+01:00",
    "video_id": "20261125-163119-1"
+  },
+  {
+   "titre": "GTA6 viral : caméraman Oscar",
+   "resume": "Un caméraman a reçu un Oscar pour une vidéo GTA6 viral.",
+   "mots_cles": [
+    "GTA6",
+    "gaming",
+    "viral",
+    "caméraman"
+   ],
+   "mots_cles_en": [
+    "GTA6",
+    "gaming",
+    "viral",
+    "camera"
+   ],
+   "hashtags": [
+    "gta6",
+    "gaming"
+   ],
+   "insolite": 4,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712092395827137806",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712092395827137806",
+     "vues": 4500000,
+     "jaime": 587100,
+     "commentaires": 5877,
+     "partages": 90900,
+     "date": 1795611455,
+     "texte": "The cameraman deserves an Oscar 👏😭 🎥 @GTAboy AWAL  #gta6 #gaming #viral #rockstargames #gta",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712092395827137806?description=1&music_info=1"
+    },
+    {
+     "id": "7711791926239874326",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711791926239874326",
+     "vues": 988000,
+     "jaime": 117700,
+     "commentaires": 657,
+     "partages": 7379,
+     "date": 1795541461,
+     "texte": "Cet homme a pris 7 ans de prison, notamment pour avoir fait fuiter les premières images de GTA VI.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711791926239874326?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "59c42f44f0",
+   "score": 584,
+   "derniere_vue": 1795651243.7286372,
+   "vues": 5488000,
+   "jaime": 704800,
+   "commentaires": 6534,
+   "hashtags_viraux": [
+    "gta6",
+    "gaming",
+    "viral",
+    "rockstargames",
+    "gta"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T01:00:57+01:00"
   },
   {
    "titre": "GTA VI : polémique autour de Leto et Lucia",
@@ -835,6 +957,57 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T20:46:45+01:00",
    "video_id": "20261125-163217-1"
+  },
+  {
+   "titre": "Parade Macy's reportée à cause d'une tempête",
+   "resume": "La parade de Thanksgiving de Macy's est reportée de deux jours à cause d'une tempête prévue à New York.",
+   "mots_cles": [
+    "Macy's",
+    "parade",
+    "tempête",
+    "New York"
+   ],
+   "mots_cles_en": [
+    "Macy's",
+    "parade",
+    "storm",
+    "New York"
+   ],
+   "hashtags": [
+    "macys",
+    "parade"
+   ],
+   "insolite": 2,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712222434350402830",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712222434350402830",
+     "vues": 1200000,
+     "jaime": 120900,
+     "commentaires": 965,
+     "partages": 9877,
+     "date": 1795641725,
+     "texte": "The Macy's Thanksgiving Day Parade will happen on a Saturday for the first time in history. A storm set to hit New York on Thursday morning is postponing the parade, which will now take place two days later. In 1971, inclement weather grounded the parade's balloons, and the parade didn't happen from 1942-1944 due to World War II. This is the first time the parade has been postponed. Wind gusts are",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712222434350402830?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "c0dd94e409",
+   "score": 498,
+   "derniere_vue": 1795651243.7286372,
+   "vues": 1200000,
+   "jaime": 120900,
+   "commentaires": 965,
+   "hashtags_viraux": [],
+   "medias": 10,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T01:00:57+01:00"
   },
   {
    "titre": "Son TikTok pour arrêter les pensées intrusives",
@@ -1000,6 +1173,57 @@
    "medias": 17,
    "statut": "nouveau",
    "vu_le": "2026-11-25T09:59:33+01:00"
+  },
+  {
+   "titre": "Brigade suspendue Chile : vents violents",
+   "resume": "Un touriste allemand lutte pour rester debout sur un pont suspendu en Patagonie chilienne sous vents violents.",
+   "mots_cles": [
+    "Chile",
+    "Patagonie",
+    "pont suspendu",
+    "vents"
+   ],
+   "mots_cles_en": [
+    "Chile",
+    "Patagonia",
+    "suspension bridge",
+    "winds"
+   ],
+   "hashtags": [
+    "chile",
+    "patagonia"
+   ],
+   "insolite": 6,
+   "categorie": "nature",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712157175216344350",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712157175216344350",
+     "vues": 1900000,
+     "jaime": 78100,
+     "commentaires": 1924,
+     "partages": 16000,
+     "date": 1795626527,
+     "texte": "Terrifying footage shows a German tourist fighting to stay on his feet as powerful winds violently toss a suspension bridge in Chile’s Patagonia region. Henry Thomas spreads his legs for balance and clings to the cable handrails while carrying a 40-pound backpack. His girlfriend had crossed safely just moments earlier. The frightening encounter unfolds during a seven-day trek through Torres del Pa",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712157175216344350?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "04747e76b7",
+   "score": 375,
+   "derniere_vue": 1795651243.7286372,
+   "vues": 1900000,
+   "jaime": 78100,
+   "commentaires": 1924,
+   "hashtags_viraux": [],
+   "medias": 13,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T01:00:57+01:00"
   },
   {
    "titre": "Trump signe ordre pour peine de mort accélérée",
@@ -1827,6 +2051,61 @@
    "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
+   "titre": "Gordon Ramsay pilote Top Gear",
+   "resume": "Gordon Ramsay prend le volant sur Top Gear, accompagné de co-présentateurs non annoncés.",
+   "mots_cles": [
+    "Gordon Ramsay",
+    "Top Gear",
+    "voiture"
+   ],
+   "mots_cles_en": [
+    "Gordon Ramsay",
+    "Top Gear",
+    "car"
+   ],
+   "hashtags": [
+    "topgear",
+    "ramsay"
+   ],
+   "insolite": 2,
+   "categorie": "tech",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712166157859425558",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7712166157859425558",
+     "vues": 1100000,
+     "jaime": 94500,
+     "commentaires": 1003,
+     "partages": 8554,
+     "date": 1795628595,
+     "texte": "Gordon Ramsay will take the driving seat alongside co-presenters who have yet to be announced. Credit: Top Gear/BBC Studios Entertainment Productions #TopGear #GordonRamsay #Driving #Cars#BBCNews",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712166157859425558?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "55d99537e2",
+   "score": 237,
+   "derniere_vue": 1795651243.7286372,
+   "vues": 1100000,
+   "jaime": 94500,
+   "commentaires": 1003,
+   "hashtags_viraux": [
+    "topgear",
+    "gordonramsay",
+    "driving",
+    "cars",
+    "bbcnews"
+   ],
+   "medias": 7,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T01:00:57+01:00"
+  },
+  {
    "titre": "Arnaque consoles jeux en ligne",
    "resume": "Des annonces sur les plateformes de seconde main vendent des consoles de jeux fictives. Les victimes reçoivent uniquement une photo du produit.",
    "mots_cles": [
@@ -2460,6 +2739,57 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-25T12:43:45+01:00"
+  },
+  {
+   "titre": "Chanteuse iranienne fouettée pour sans voile",
+   "resume": "Une chanteuse iranienne a reçu 74 coups de fouet pour avoir chanté sans voile, avec épaules dénudées.",
+   "mots_cles": [
+    "Iran",
+    "chanteuse",
+    "fouettée",
+    "voile"
+   ],
+   "mots_cles_en": [
+    "Iran",
+    "singer",
+    "whipped",
+    "veil"
+   ],
+   "hashtags": [
+    "iran",
+    "chanteuse"
+   ],
+   "insolite": 8,
+   "categorie": "politique",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711807420770618646",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7711807420770618646",
+     "vues": 983200,
+     "jaime": 120200,
+     "commentaires": 1815,
+     "partages": 7596,
+     "date": 1795545061,
+     "texte": "En Iran, cette chanteuse a reçu 74 coups de fouet pour avoir chanté sans voile, les épaules dénudées et du rouge sur les lèvres.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711807420770618646?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "6abb00f9ad",
+   "score": 100,
+   "derniere_vue": 1795651243.7286372,
+   "vues": 983200,
+   "jaime": 120200,
+   "commentaires": 1815,
+   "hashtags_viraux": [],
+   "medias": 14,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T01:00:57+01:00"
   },
   {
    "titre": "Leto accusé de misogynie dans GTA VI",
@@ -3740,6 +4070,55 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-25T12:43:45+01:00"
+  },
+  {
+   "titre": "R N B O I chante Hymne à l'amour à l'Olympia",
+   "resume": "R N B O I interprète Hymne à l'amour d'Édith Piaf à l'Olympia, suscitant l'enthousiasme.",
+   "mots_cles": [
+    "R N B O I",
+    "Olympia",
+    "Hymne à l'amour"
+   ],
+   "mots_cles_en": [
+    "R N B O I",
+    "Olympia",
+    "Hymne à l'amour"
+   ],
+   "hashtags": [
+    "olympia",
+    "rnb"
+   ],
+   "insolite": 1,
+   "categorie": "culture",
+   "ville_france": "Paris",
+   "videos": [
+    {
+     "id": "7711499579513965857",
+     "compte": "konbini",
+     "url": "https://www.tiktok.com/@konbini/video/7711499579513965857",
+     "vues": 1100000,
+     "jaime": 119000,
+     "commentaires": 326,
+     "partages": 12200,
+     "date": 1795473419,
+     "texte": "@R N B O I se la joue Céline Dion pour débuter son concert à l’Olympia en reprenant « Hymne à l’amour » d’Édith Piaf, et la salle adore.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711499579513965857?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "f99197c8c9",
+   "score": 14,
+   "derniere_vue": 1795651243.7286372,
+   "vues": 1100000,
+   "jaime": 119000,
+   "commentaires": 326,
+   "hashtags_viraux": [],
+   "medias": 1,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T01:00:57+01:00"
   }
  ]
 }
