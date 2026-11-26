@@ -23,10 +23,22 @@
    },
    "demande_le": "2026-11-26T13:28:33+01:00",
    "raison": "déjà 2 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
+  },
+  {
+   "inputs": {
+    "format": "buzz",
+    "refaire": "20261125-231630-1",
+    "etape": "auto",
+    "remarque": "Réparation automatique : texte un peu court (environ 54 s) ; faits non vérifiés par une 2e IA",
+    "origine": "reparation",
+    "nombre": "1"
+   },
+   "demande_le": "2026-11-26T13:31:11+01:00",
+   "raison": "déjà 2 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
   }
  ],
  "credits": {
-  "le": "2026-11-26T13:28:33+01:00",
+  "le": "2026-11-26T13:31:11+01:00",
   "resume": "déjà 2 vidéo(s) en fabrication (au plus 2 à la fois avec les IA gratuites)"
  },
  "creation": {
