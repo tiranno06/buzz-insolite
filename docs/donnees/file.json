@@ -3267,10 +3267,17 @@
     "rangement": 79
    },
    "refaite": null,
-   "statut": "a_publier",
+   "statut": "publiee",
    "reparations": 1,
    "force": true,
-   "coche_le": "2026-11-25T21:28:32+01:00"
+   "coche_le": "2026-11-25T21:28:32+01:00",
+   "publiee_le": "2026-11-26T19:12:30+01:00",
+   "buffer": {
+    "id": "6b0876839068b6e07952c16c",
+    "compte": "buzz.insolite",
+    "quand": null,
+    "etiquette_ia": true
+   }
   },
   {
    "id": "20261125-163234-1-r1",

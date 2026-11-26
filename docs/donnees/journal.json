@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-26T19:12:30+01:00",
+   "niveau": "info",
+   "texte": "📤 « Bois de l'Arche, 4300 ans » publiée sur TikTok (créneau de 19:00)."
+  },
+  {
    "date": "2026-11-26T17:23:56+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 71 sujet(s) au-dessus des seuils — en tête : « GTA 6 : buzz autour du jeu »"
