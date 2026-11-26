@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-26T03:01:44+01:00",
+ "maj": "2026-11-26T05:02:42+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T02:59:43+01:00"
+   "le": "2026-11-26T05:00:43+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T02:59:47+01:00"
+   "le": "2026-11-26T05:00:47+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T02:59:50+01:00"
+   "le": "2026-11-26T05:00:52+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T02:59:54+01:00"
+   "le": "2026-11-26T05:00:56+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T02:59:58+01:00"
+   "le": "2026-11-26T05:01:00+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-26T03:00:01+01:00"
+   "le": "2026-11-26T05:01:02+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:05+01:00"
+   "le": "2026-11-26T05:01:06+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:08+01:00"
+   "le": "2026-11-26T05:01:10+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:12+01:00"
+   "le": "2026-11-26T05:01:13+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:16+01:00"
+   "le": "2026-11-26T05:01:17+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:20+01:00"
+   "le": "2026-11-26T05:01:21+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:23+01:00"
+   "le": "2026-11-26T05:01:25+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:26+01:00"
+   "le": "2026-11-26T05:01:29+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-26T03:00:30+01:00"
+   "le": "2026-11-26T05:01:32+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:34+01:00"
+   "le": "2026-11-26T05:01:37+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:37+01:00"
+   "le": "2026-11-26T05:01:40+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:41+01:00"
+   "le": "2026-11-26T05:01:44+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:45+01:00"
+   "le": "2026-11-26T05:01:48+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:49+01:00"
+   "le": "2026-11-26T05:01:52+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:52+01:00"
+   "le": "2026-11-26T05:01:56+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:00:56+01:00"
+   "le": "2026-11-26T05:01:59+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:01:00+01:00"
+   "le": "2026-11-26T05:02:03+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:01:03+01:00"
+   "le": "2026-11-26T05:02:07+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:01:07+01:00"
+   "le": "2026-11-26T05:02:11+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:01:10+01:00"
+   "le": "2026-11-26T05:02:15+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:01:14+01:00"
+   "le": "2026-11-26T05:02:19+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:01:18+01:00"
+   "le": "2026-11-26T05:02:23+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T03:01:22+01:00"
+   "le": "2026-11-26T05:02:26+01:00"
   }
  },
  "lues": 809,
@@ -933,6 +933,79 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-26T01:00:57+01:00"
+  },
+  {
+   "titre": "GTA 6 : caméraman acclamé, hommage à l’orque",
+   "resume": "Une séquence filmée pour GTA 6 a reçu des éloges, certains la qualifiant d'« Oscar ». Le jeu inclut également un clin d’œil à l’orque Tokitae, capturée dans le Vice City Oceanarium.",
+   "mots_cles": [
+    "GTA 6",
+    "caméraman",
+    "Oscar",
+    "orque",
+    "Tokitae"
+   ],
+   "mots_cles_en": [
+    "GTA 6",
+    "cameraman",
+    "Oscar",
+    "orca",
+    "Tokitae"
+   ],
+   "hashtags": [
+    "gta6",
+    "gaming",
+    "orque"
+   ],
+   "insolite": 4,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712092395827137806",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712092395827137806",
+     "vues": 5800000,
+     "jaime": 741800,
+     "commentaires": 7083,
+     "partages": 118900,
+     "date": 1795611455,
+     "texte": "The cameraman deserves an Oscar 👏😭 🎥 @GTAboy AWAL  #gta6 #gaming #viral #rockstargames #gta",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712092395827137806?description=1&music_info=1"
+    },
+    {
+     "id": "7712145580939693325",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712145580939693325",
+     "vues": 1300000,
+     "jaime": 211700,
+     "commentaires": 823,
+     "partages": 7349,
+     "date": 1795623836,
+     "texte": "Players have spotted what appears to be a tribute to Tokitae, also known as Lolita, in GTA 6's Vice City Oceanarium, which features a captive orca and a side mission to free it. The real-life whale was captured off Washington state in 1970 and spent 53 years at Miami Seaquarium before dying in August 2023, aged 57. The Easter egg comes as GTA 6 enjoys a record-breaking launch following years of an",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712145580939693325?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "5ce098f5bf",
+   "score": 542,
+   "derniere_vue": 1795665759.1095665,
+   "vues": 7100000,
+   "jaime": 953500,
+   "commentaires": 7906,
+   "hashtags_viraux": [
+    "gta6",
+    "gaming",
+    "viral",
+    "rockstargames",
+    "gta"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T05:02:42+01:00"
   },
   {
    "titre": "GTA VI : polémique autour de Leto et Lucia",
