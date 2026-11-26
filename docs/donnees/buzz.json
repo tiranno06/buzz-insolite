@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-26T05:02:42+01:00",
+ "maj": "2026-11-26T05:22:43+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:00:43+01:00"
+   "le": "2026-11-26T05:20:52+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:00:47+01:00"
+   "le": "2026-11-26T05:20:55+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:00:52+01:00"
+   "le": "2026-11-26T05:20:59+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:00:56+01:00"
+   "le": "2026-11-26T05:21:02+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:00+01:00"
+   "le": "2026-11-26T05:21:06+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-26T05:01:02+01:00"
+   "le": "2026-11-26T05:21:09+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:06+01:00"
+   "le": "2026-11-26T05:21:12+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:10+01:00"
+   "le": "2026-11-26T05:21:16+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:13+01:00"
+   "le": "2026-11-26T05:21:19+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:17+01:00"
+   "le": "2026-11-26T05:21:22+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:21+01:00"
+   "le": "2026-11-26T05:21:26+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:25+01:00"
+   "le": "2026-11-26T05:21:29+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:29+01:00"
+   "le": "2026-11-26T05:21:33+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-26T05:01:32+01:00"
+   "le": "2026-11-26T05:21:36+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:37+01:00"
+   "le": "2026-11-26T05:21:39+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:40+01:00"
+   "le": "2026-11-26T05:21:43+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:44+01:00"
+   "le": "2026-11-26T05:21:46+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:48+01:00"
+   "le": "2026-11-26T05:21:50+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:52+01:00"
+   "le": "2026-11-26T05:21:53+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:56+01:00"
+   "le": "2026-11-26T05:21:57+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:01:59+01:00"
+   "le": "2026-11-26T05:22:00+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:02:03+01:00"
+   "le": "2026-11-26T05:22:04+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:02:07+01:00"
+   "le": "2026-11-26T05:22:07+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:02:11+01:00"
+   "le": "2026-11-26T05:22:10+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:02:15+01:00"
+   "le": "2026-11-26T05:22:14+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:02:19+01:00"
+   "le": "2026-11-26T05:22:17+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:02:23+01:00"
+   "le": "2026-11-26T05:22:21+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-26T05:02:26+01:00"
+   "le": "2026-11-26T05:22:24+01:00"
   }
  },
  "lues": 809,
@@ -1296,6 +1296,67 @@
    "vu_le": "2026-11-26T03:01:44+01:00"
   },
   {
+   "titre": "Le caméraman de GTA 6 acclamé comme Oscar",
+   "resume": "Un vidéaste a partagé une séquence de GTA 6 qui a reçu des éloges massifs sur les réseaux. La communauté le qualifie d’œuvre digne d’un Oscar.",
+   "mots_cles": [
+    "G",
+    "T",
+    "A",
+    " ",
+    "6",
+    ","
+   ],
+   "mots_cles_en": [
+    "G",
+    "T",
+    "A",
+    " ",
+    "6",
+    ","
+   ],
+   "hashtags": [
+    "gta6",
+    "viral",
+    "gaming"
+   ],
+   "insolite": 4,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712092395827137806",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712092395827137806",
+     "vues": 5900000,
+     "jaime": 753600,
+     "commentaires": 7164,
+     "partages": 121100,
+     "date": 1795611455,
+     "texte": "The cameraman deserves an Oscar 👏😭 🎥 @GTAboy AWAL  #gta6 #gaming #viral #rockstargames #gta",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712092395827137806?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "702bde8c41",
+   "score": 419,
+   "derniere_vue": 1795666956.3074105,
+   "vues": 5900000,
+   "jaime": 753600,
+   "commentaires": 7164,
+   "hashtags_viraux": [
+    "gta6",
+    "gaming",
+    "viral",
+    "rockstargames",
+    "gta"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T05:22:43+01:00"
+  },
+  {
    "titre": "Arrestations controversées à l'aéroport de Seattle",
    "resume": "Deux passagers ont été arrêtés à Seattle-Tacoma avant leur vol, provoquant une vive réaction des autorités locales. L’incident soulève des questions sur les pratiques migratoires.",
    "mots_cles": [
@@ -2241,6 +2302,62 @@
    "vu_le": "2026-11-24T18:38:52+01:00",
    "reserve_le": "2026-11-24T19:50:48+01:00",
    "video_id": "20261124-195233-2"
+  },
+  {
+   "titre": "Christ Rédempteur semble flotter dans la brume de Rio",
+   "resume": "Une vague de nuages a enveloppé le sommet du Corcovado, donnant l’impression que la statue flotte. Le phénomène a été filmé depuis un iPhone.",
+   "mots_cles": [
+    "R",
+    "i",
+    "o",
+    ",",
+    " ",
+    "C"
+   ],
+   "mots_cles_en": [
+    "R",
+    "i",
+    "o",
+    ",",
+    " ",
+    "C"
+   ],
+   "hashtags": [
+    "rio",
+    "christredeemer",
+    "brume"
+   ],
+   "insolite": 6,
+   "categorie": "nature",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712210525609889054",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712210525609889054",
+     "vues": 2500000,
+     "jaime": 512500,
+     "commentaires": 4691,
+     "partages": 58200,
+     "date": 1795647600,
+     "texte": "WATCH: Brazil’s Christ the Redeemer appears to float above the clouds as a massive wave of mist cascades down Corcovado mountain in Rio de Janeiro. Photographer Marcio Amaro filmed the euphoric moment on his iPhone, capturing what looks like a waterfall of clouds pouring around the landmark. The rare visual comes from a weather phenomenon called orographic lift, where moist ocean air pushes over t",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712210525609889054?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "86b40e01e0",
+   "score": 246,
+   "derniere_vue": 1795666956.3074105,
+   "vues": 2500000,
+   "jaime": 512500,
+   "commentaires": 4691,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T05:22:43+01:00"
   },
   {
    "titre": "Le Tribunal Arbitral du Sport, la plus haute juridiction du sport mondial, a désigné ce ma",
@@ -3861,6 +3978,62 @@
    "medias": 2,
    "statut": "nouveau",
    "vu_le": "2026-11-25T09:59:33+01:00"
+  },
+  {
+   "titre": "Arnaque de consoles de jeu pendant les fêtes",
+   "resume": "Des annonces sur des sites de seconde main proposent des consoles neuves, mais seules des photos sont livrées. Les consommateurs sont mis en garde avant Noël.",
+   "mots_cles": [
+    "a",
+    "r",
+    "n",
+    "a",
+    "q",
+    "u"
+   ],
+   "mots_cles_en": [
+    "s",
+    "c",
+    "a",
+    "m",
+    ",",
+    " "
+   ],
+   "hashtags": [
+    "arnaque",
+    "consoles",
+    "noël"
+   ],
+   "insolite": 6,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7711847373802179873",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7711847373802179873",
+     "vues": 2400000,
+     "jaime": 164700,
+     "commentaires": 2545,
+     "partages": 49000,
+     "date": 1795554385,
+     "texte": "À l'approche de Noël, gare à cette nouvelle arnaque. Plusieurs annonces sur les plateformes de seconde main proposent, en apparence, des consoles de jeux dernier cri. En réalité, seule une photo du produit est mise en vente et livrée.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7711847373802179873?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "4815392a1c",
+   "score": 45,
+   "derniere_vue": 1795666956.3074105,
+   "vues": 2400000,
+   "jaime": 164700,
+   "commentaires": 2545,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T05:22:43+01:00"
   },
   {
    "titre": "Arnaque de Noël : consoles vendues sans produit",
