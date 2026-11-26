@@ -1,6 +1,323 @@
 {
  "videos": [
   {
+   "id": "20261126-163041-1",
+   "tag": "v-20261126-163041-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261126-163041-1/buzz-20261126-163041-1.mp4",
+   "titre": "GTA VI piraté : tout le buzz",
+   "accroche": "PIRATAGE GTA VI",
+   "sujet_id": "5e732d15c7",
+   "sujet": "GTA VI : nouvelles révélations et controverses",
+   "buzz": {
+    "vues": 11600000,
+    "jaime": 1589900,
+    "commentaires": 12517,
+    "score": 875
+   },
+   "description": "🚨 Le piratage de GTA VI s’accélère, découvre les détails !",
+   "question": "Et toi, tu pensais que GTA VI était à l’abri des piratages ?",
+   "hashtags": [
+    "#gta6",
+    "#rockstargames",
+    "#gaming",
+    "#gtavi",
+    "#viral",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 78.2,
+   "sources": [
+    {
+     "media": "franceinfo",
+     "titre": "\"La pensée anti-juifs obsédait Jordan Bardella\" : ce qu'il faut retenir des nouvelles révélations sur des écrits antisémites attribués au patron du Rassemblement national",
+     "lien": "https://www.franceinfo.fr/politique/jordan-bardella/la-pensee-anti-juifs-obsedait-jordan-bardella-ce-qu-il-faut-retenir-des-nouvelles-revelations-sur-des-ecrits-antisemites-attribues-au-patron-du-rassemblement-national_8300919.html#xtor=RSS-3-[lestitres]"
+    },
+    {
+     "media": "Le Figaro",
+     "titre": "Écrits antisémites : après de nouvelles accusations, Jordan Bardella «dénonce une entreprise de persécution»",
+     "lien": "https://www.lefigaro.fr/politique/ecrits-antisemites-de-nouveaux-elements-compromettants-attribues-a-jordan-bardella-par-le-monde-et-mediapart-20261126"
+    },
+    {
+     "media": "Euronews",
+     "titre": "Écrits antisémites : de nouvelles révélations visent Jordan Bardella",
+     "lien": "https://fr.euronews.com/2026/11/26/ecrits-antisemites-nouvelles-revelations-visant-jordan-bardella"
+    },
+    {
+     "media": "Le Parisien",
+     "titre": "Écrits antisémites : Jordan Bardella réitère sa « contestation formelle » après de nouvelles révélations",
+     "lien": "https://www.leparisien.fr/politique/propos-antisemites-jordan-bardella-reitere-sa-contestation-formelle-apres-de-nouvelles-revelations-26-11-2026-CNNLKUAGSJDGRGHZTSC5ES2LKY.php"
+    },
+    {
+     "media": "msn.com",
+     "titre": "GTA 6 à 30 fps sur PC et version PS5 piratée : les mauvaises nouvelles s’accumulent pour Rockstar",
+     "lien": "https://www.msn.com/fr-fr/gaming/consules-de-jeu/gta-6-%C3%A0-30-fps-sur-pc-et-version-ps5-pirat%C3%A9e-les-mauvaises-nouvelles-s-accumulent-pour-rockstar/ar-AA2igErV"
+    }
+   ],
+   "verification": {
+    "par": "gemini:gemini-flash-lite-latest",
+    "corrigees": 0,
+    "retirees": 15,
+    "problemes": [
+     "Information non présente dans les articles fournis.",
+     "Information non présente dans les articles fournis.",
+     "Information non présente dans les articles fournis.",
+     "Information non présente dans les articles fournis.",
+     "Information non présente dans les articles fournis.",
+     "Information non présente dans les articles fournis.",
+     "Information non présente dans les articles fournis.",
+     "Information non présente dans les articles fournis.",
+     "Information non présente dans les articles fournis.",
+     "Information non présente dans les articles fournis."
+    ]
+   },
+   "verifie": true,
+   "credits": [
+    "@brutofficiel (TikTok, extrait cité)",
+    "@brutofficiel (TikTok, image citée)",
+    "@dailymail (TikTok, extrait cité)",
+    "@dailymail (TikTok, image citée)"
+   ],
+   "extraits_perdus": 0,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 12,
+   "ecrans_total": 12,
+   "format": "buzz",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "",
+   "humeur": "tension",
+   "categorie": "tech",
+   "texte": [
+    "GTA VI piraté en 30 fps, c’est réel !",
+    "2 mois après les premières révélations de Mediapart, le site d'investigation et Le Monde publient de nouveaux messages attribués à Jordan Bardella",
+    "Ces écrits datant de 2013 contiennent des propos antisémites que le président du Rassemblement national conteste formellement",
+    "Le journal Le Monde a fait certifier cette conversation par un huissier pour prouver son authenticité et son intégrité",
+    "Face à ces accusations, le dirigeant politique dénonce une véritable entreprise de persécution et porte plainte",
+    "Ces nouveaux extraits dévoilés par les journaux proviennent d'une conversation Facebook de l'époque lycéenne",
+    "L'avocat du président du Rassemblement national a rappelé que son client conteste fermement ces accusations",
+    "Cette conversation provient d'un ancien camarade de lycée de Jordan Bardella qui souhaite protéger son anonymat",
+    "Les messages évoquent notamment des propos visant des personnalités politiques et des banquiers",
+    "Le patron du parti d'extrême droite a déjà déposé deux plaintes contre le site Mediapart",
+    "Le journal Le Monde a listé pas moins de dix-neuf éléments concordants entre les messages et les déclarations publiques de Jordan Bardella.",
+    "Ces publications identiques ont été retrouvées sur son compte Facebook privé et sur son compte Twitter public.",
+    "Tu pensais que GTA VI était à l’abri des piratages ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-26T16:46:33+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 5,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 7,
+     "refus": 4,
+     "erreurs": 4,
+     "restant_demandes": "997",
+     "limite_demandes": "1000",
+     "restant_mots": "400"
+    },
+    "gemini": {
+     "appels": 19,
+     "refus": 1,
+     "erreurs": 4
+    }
+   },
+   "fabrication_s": 952,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 55 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 11,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 55 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "video",
+      "ecran": 25,
+      "gravite": "moyen",
+      "probleme": "Texte coupé en bas (GTA VI était)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 22,
+      "gravite": "moyen",
+      "probleme": "Le bandeau noir en bas chevauche et masque une partie du texte d'origine, rendant le tout illisible.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     },
+     {
+      "niveau": "video",
+      "ecran": 16,
+      "gravite": "moyen",
+      "probleme": "chevauchement sous-titres",
+      "corrige": true,
+      "essais": 2,
+      "solution": "titre retiré"
+     },
+     {
+      "niveau": "video",
+      "ecran": 14,
+      "gravite": "moyen",
+      "probleme": "Le sous-titre jaune est superposé sur le bandeau DailyMail avec un autre texte.",
+      "corrige": true,
+      "essais": 1,
+      "solution": "titre raccourci"
+     }
+    ],
+    "sautes": [],
+    "corriges": 6,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "preuves": [
+    {
+     "ecran": 1,
+     "page": "https://www.tiktok.com/@dailymail/video/7712092395827137806",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@dailymail",
+     "titre": "",
+     "credit": "@dailymail (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T16:46:33+01:00"
+    },
+    {
+     "ecran": 2,
+     "page": "https://www.tiktok.com/@dailymail/video/7712092395827137806",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@dailymail",
+     "titre": "",
+     "credit": "@dailymail (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T16:46:33+01:00"
+    },
+    {
+     "ecran": 3,
+     "page": "https://www.tiktok.com/@dailymail/video/7712145580939693325",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@dailymail",
+     "titre": "",
+     "credit": "@dailymail (TikTok, image citée)",
+     "releve_le": "2026-11-26T16:46:33+01:00"
+    },
+    {
+     "ecran": 4,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7712224897614859542",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T16:46:33+01:00"
+    },
+    {
+     "ecran": 5,
+     "page": "https://www.tiktok.com/@dailymail/video/7712145580939693325",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@dailymail",
+     "titre": "",
+     "credit": "@dailymail (TikTok, image citée)",
+     "releve_le": "2026-11-26T16:46:33+01:00"
+    },
+    {
+     "ecran": 6,
+     "page": "https://www.tiktok.com/@dailymail/video/7712092395827137806",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@dailymail",
+     "titre": "",
+     "credit": "@dailymail (TikTok, image citée)",
+     "releve_le": "2026-11-26T16:46:33+01:00"
+    },
+    {
+     "ecran": 7,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7712224897614859542",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T16:46:33+01:00"
+    },
+    {
+     "ecran": 8,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7712224897614859542",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T16:46:33+01:00"
+    },
+    {
+     "ecran": 9,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7712224897614859542",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, image citée)",
+     "releve_le": "2026-11-26T16:46:33+01:00"
+    },
+    {
+     "ecran": 10,
+     "page": "https://www.tiktok.com/@dailymail/video/7712092395827137806",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@dailymail",
+     "titre": "",
+     "credit": "@dailymail (TikTok, image citée)",
+     "releve_le": "2026-11-26T16:46:33+01:00"
+    },
+    {
+     "ecran": 11,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7712224897614859542",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, extrait cité)",
+     "releve_le": "2026-11-26T16:46:33+01:00"
+    },
+    {
+     "ecran": 12,
+     "page": "https://www.tiktok.com/@brutofficiel/video/7712224897614859542",
+     "licence": "courte citation (source visible, logo non flouté)",
+     "auteur": "@brutofficiel",
+     "titre": "",
+     "credit": "@brutofficiel (TikTok, image citée)",
+     "releve_le": "2026-11-26T16:46:33+01:00"
+    }
+   ],
+   "couverture_ms": 800,
+   "durees": {
+    "articles": 0,
+    "ecriture": 9,
+    "texte": 309,
+    "voix": 49,
+    "images": 72,
+    "controle_images": 2,
+    "montage": 111,
+    "controle_final": 354,
+    "extraits": 0,
+    "regles": 72,
+    "rangement": 7
+   },
+   "refaite": null,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261126-071929-1",
    "tag": "v-20261126-071929-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261126-071929-1/buzz-20261126-071929-1.mp4",

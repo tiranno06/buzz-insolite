@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-26T16:46:33+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « GTA VI piraté : tout le buzz » (78 s, 12 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-26T15:24:59+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 72 sujet(s) au-dessus des seuils — en tête : « Christ Rédempteur survolé par nuages mystiques »"
