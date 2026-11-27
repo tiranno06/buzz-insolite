@@ -530,7 +530,7 @@ function boutonsVideo(v) {
     out.push(`<button class="btn mini bascule on bleu" disabled aria-pressed="true">📤 Publiée${v.publiee_le ? " · " + quand(v.publiee_le) : ""}</button>`);
     out.push(`<button class="btn mini" data-a="lien" data-id="${v.id}">🔗 Ajouter le lien TikTok</button>`);
     if (v.buffer) out.push(`<span class="petit ${v.buffer.etiquette_ia ? "muted" : ""}">${v.buffer.etiquette_ia ? "🤖 étiquette IA cochée" : "⚠️ étiquette IA à cocher dans l'appli TikTok"}</span>`);
-    if (v.retiree_le) out.push(`<span class="petit">🚨 retirée de TikTok</span>`);
+    if (v.retiree_le) out.push(`<span class="petit">${v.supprimee_par_auteur ? "🗑️ supprimée de TikTok par toi" : "🚨 retirée de TikTok"}</span>`);
   }
   return out.join("");
 }
