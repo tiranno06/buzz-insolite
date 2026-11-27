@@ -1,6 +1,16 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T22:43:00+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 86 sujet(s) au-dessus des seuils — en tête : « Afghanistan : les femmes privées de nom officiel »"
+  },
+  {
+   "date": "2026-11-27T22:42:56+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 86 sujet(s) au-dessus des seuils — en tête : « Afghanistan : les femmes privées de nom officiel »"
+  },
+  {
    "date": "2026-11-27T21:21:49+01:00",
    "niveau": "info",
    "texte": "🔁 « Incendie meurtrier sur le Ring Road » refaite (images) : note 100/100, corrige : « fracture three-pinata, feu three.quarks, modèles Quaternius » — l'ancienne version est remplacée"
@@ -989,16 +999,6 @@
    "date": "2026-11-24T21:25:19+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Macron et l'A320 : un bond historique » (84 s, 3 écrans illustrés) — à regarder puis cocher « À publier »"
-  },
-  {
-   "date": "2026-11-24T21:08:29+01:00",
-   "niveau": "info",
-   "texte": "🗑️ « Macron et Airbus : un record fou ! » supprimée."
-  },
-  {
-   "date": "2026-11-24T21:08:27+01:00",
-   "niveau": "info",
-   "texte": "🗑️ « Écoutez la naissance des étoiles ! » supprimée."
   }
  ]
 }
