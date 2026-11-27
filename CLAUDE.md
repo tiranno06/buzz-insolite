@@ -1,5 +1,7 @@
 # Buzz Insolite (buzz-insolite)
 
+**LANGUE OBLIGATOIRE : toujours répondre à l'auteur EN FRANÇAIS** (messages, explications, résumés, questions), sans exception, même après une reprise de conversation ou un résumé automatique (exigence de l'auteur du 27/11).
+
 Robot de vidéos TikTok « Buzz et insolite » : il repère les actualités du monde entier qui buzzent sur TikTok, écrit
 une vidéo ORIGINALE sur le sujet (articles de presse + vraies images libres de droits + voix de synthèse) et la publie par Buffer.
 Projet frère de `jt-auto` (@petitsdramas) et `grok-tiktok`. Le propriétaire est débutant : tout en français (code,
