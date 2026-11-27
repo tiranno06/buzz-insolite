@@ -578,6 +578,12 @@ logo, mise en page) : même recette, notre identité (rouge et jaune du logo sur
   `personnes` (proportion « 3 sur 10 ») ; « mot » 2 fois au plus, 5 types différents demandés ; textes sous un visuel ≤ 60
   signes ; `_unite_du_texte` (unité « millions / milliards / % » reprise de la phrase) ; secours = pictogramme selon les mots
   (`PICTOS`) ; titre ajusté sur 2 lignes (`TITRE_MAX`), jamais sous le logo ; étiquettes placées sous le titre.
+- **2e vraie vidéo (27/11, « Parade Macy's reportée », 71 s, 100/100)** : manette 🎮 pour NBC (« jeu » dans « jeudi ») →
+  pictogrammes par mots ENTIERS ; « PARMI BUZZ », « 5 novembre » 12 s sur des phrases sans rapport → secours = une scène
+  par phrase, jamais une date ni une année comme chiffre, noms propres / sigles d'abord ; l'IA n'avait placé que 5 scènes
+  pour 15 phrases → elle recommence si moins de 80 % des phrases sont placées (`_couvre`) ; phrases sur une « attaque
+  iranienne au Qatar » (article financier mélangeant plusieurs actus) → `CONSIGNE_VERIF` : phrase HORS SUJET retirée même
+  si elle est vraie.
 
 ## IA de secours ajoutées (26/11, demande de l'auteur « n'as-tu pas trouvé d'autres IA de secours ? »)
 Listes communautaires (awesome-free-llm-apis) relues ; retenues = gratuites, sans carte, usage commercial non interdit :

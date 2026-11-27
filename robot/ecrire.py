@@ -63,6 +63,8 @@ Contrôle EN PARTICULIER : la FONCTION exacte de chaque personne (président DE 
 les dates, les scores, les chiffres, qui a fait quoi, un même chiffre ou score redit dans plusieurs phrases (à retirer
 des phrases suivantes), et les phrases qui se contredisent entre elles (ex. « le Maroc a marqué…
 mais le Sénégal a gagné » sans explication).
+Une phrase HORS SUJET est à RETIRER (correction "") même si elle est vraie : un article mélange parfois plusieurs actualités
+(vidéo Macy's du 27/11 : « une attaque iranienne sur un complexe gazier au Qatar » dans une vidéo sur une parade à New York).
 Une phrase est à CORRIGER si un fait est faux, exagéré ou absent des articles : donne alors une CORRECTION fidèle aux articles
 (même longueur, même style). Ne retire une phrase (correction "") que si aucune correction honnête n'est possible.
 Signale aussi toute phrase qui ne respecte pas ces règles :

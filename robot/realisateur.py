@@ -30,7 +30,8 @@ COULEURS = ("orange", "rouge", "jaune", "bleu", "vert", "violet", "gris")
 CONSIGNE = """Tu es le réalisateur d'une vidéo TikTok d'actualité où TOUT est fabriqué en animation (comme une infographie
 animée) : cartes, gros chiffres, frises, petites reconstitutions 3D style maquette. AUCUNE photo ni vidéo réelle.
 On te donne les phrases numérotées de la voix off (déjà vérifiées) et les faits des articles.
-Découpe les phrases en SCÈNES qui se suivent (chaque phrase dans une seule scène, dans l'ordre, 1 à 3 phrases par scène ;
+Découpe TOUTES les phrases en SCÈNES qui se suivent (CHAQUE numéro de phrase dans une scène, dans l'ordre, 1 ou 2 phrases par
+scène, donc environ autant de scènes que de phrases divisées par 1,5 ;
 change d'image souvent : une scène dure 3 à 8 secondes). Types de scènes :
 - "carte" : {"zone": "france"|"europe"|"monde"|"usa", "departements": [{"code": "39", "couleur": "orange", "etiquette": "JURA"}],
   "pays": [{"iso": "EGY", "couleur": "rouge", "etiquette": "ÉGYPTE"}], "lieux": ["Saint-Claude"], "effet": "pluie"|"neige"|"orage"|null,
@@ -106,25 +107,30 @@ def _lieu(nom, cache):
 def _secours(script, i, j):
     """Scène sûre pour les phrases i..j : le 1er chiffre dit, sinon 1 à 3 mots forts de la phrase."""
     t = " ".join(p["ecrit"] for p in script["phrases"][i:j + 1])
-    m = re.search(r"(\d[\d  ]*(?:[.,]\d+)?)\s*(%|mm|km/h|km|kg|m|°C|°|ans|morts|blessés|euros|€|millions|milliards)?", t)
+    mois = "janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre"
+    m = next((x for x in re.finditer(r"(\d[\d  ]*(?:[.,]\d+)?)\s*(%|mm|km/h|km|kg|m|°C|°|ans|morts|blessés|euros|€|dollars|millions|milliards|personnes|habitants)?", t)
+              if not re.match(rf"\s*(?:{mois}|h\b)", t[x.end(1):]) and not (re.fullmatch(r"(19|20)\d\d", x.group(1).strip()) and not x.group(2))), None)
     if m:
         reste = t[m.end():].strip(" ,.").split()
         return dict(type="chiffre", valeur=m.group(1).strip(), unite=m.group(2) or (reste[0] if reste and len(reste[0]) < 12 else ""),
                     texte="")
-    mots = [w for w in re.findall(r"[A-Za-zÀ-ÿ'-]{4,}", t) if w.lower() not in MOTS_VIDES][:3]
+    tous = re.findall(r"[A-Za-zÀ-ÿ'-]{3,}", t)
+    # d'abord les noms propres et sigles (NBC, Instagram, Mario), sinon le plus long mot qui n'est pas un verbe conjugué
+    propres = [w for k, w in enumerate(tous) if (w.isupper() and len(w) >= 2) or (k and w[0].isupper())]
+    noms = sorted([w for w in tous if len(w) >= 5 and w.lower() not in MOTS_VIDES
+                   and not re.search(r"(era|erait|ait|aient|ent|ons|ez|ra|é|és|ée|ées)$", w.lower())], key=len, reverse=True)
+    mots = (propres or noms)[:2]
     bas = t.lower()
-    emoji = next((e for cles, e in PICTOS if any(c in bas for c in cles)), "")
-    if emoji:
-        return dict(type="icone", emoji=emoji, valeur=" ".join(mots[:2]).upper(), texte="")
-    return dict(type="mot", valeur=" ".join(mots[:2]).upper() or "…", texte="")
+    emoji = next((e for cles, e in PICTOS if any(re.search(r"(?<![a-zà-ÿ])" + re.escape(c.strip()), bas) for c in cles)), "📰")
+    return dict(type="icone", emoji=emoji, valeur=(mots[0] if mots else "").upper(), texte="")
 
 
 PICTOS = [(("police", "gendarm", "arrêt", "interpell"), "🚔"), (("hôpital", "médec", "santé", "malade", "soin"), "🏥"),
-          (("tribunal", "juge", "procès", "condamn", "justice"), "⚖️"), (("pluie", "orage", "inond"), "🌧️"), (("neige", "froid", "gel"), "❄️"),
+          (("tribunal", "juge", "procès", "condamn", "justice"), "⚖️"), (("pluie", "orage", "inond"), "🌧️"), (("vent", "tempête", "rafale"), "💨"), (("défilé", "parade", "fête", "ballon"), "🎈"), (("neige", "froid", "gel"), "❄️"),
           (("feu", "incendie", "brûl", "flamme"), "🔥"), (("voiture", "route", "accident", "camion"), "🚗"), (("avion", "vol ", "aéroport"), "✈️"),
           (("bateau", "navire", "mer ", "cargo"), "🚢"), (("argent", "euro", "prix", "dollar", "coût"), "💶"), (("école", "élève", "université", "étud"), "🎓"),
           (("femme", "fille"), "👩"), (("enfant", "bébé"), "👶"), (("loi", "décret", "règle", "interdi"), "📜"), (("téléphone", "message", "réseau"), "📱"),
-          (("jeu", "console", "gta"), "🎮"), (("animal", "chien", "chat"), "🐾"), (("guerre", "armée", "soldat", "militaire"), "🪖"),
+          (("jeu vidéo", "jeux vidéo", "console", "gta"), "🎮"), (("animal", "chien", "chat"), "🐾"), (("guerre", "armée", "soldat", "militaire"), "🪖"),
           (("vote", "élection", "président", "gouvernement"), "🏛️"), (("question", "et toi"), "💬")]
 
 
@@ -214,11 +220,14 @@ def valider(d, script, articles, journal=print):
             raison = "déjà 2 mots seuls"
         if raison:
             journal(f"  réalisation, phrases {i}-{j} : {raison} → scène de secours")
-            sc = dict(_secours(script, i, j), phrases=sc["phrases"], etiquettes=sc.get("etiquettes"))
+            for x in range(i, j + 1):                    # une scène sûre par phrase
+                scenes.append(dict(_secours(script, x, x), phrases=[x], etiquettes=sc.get("etiquettes") if x == i else None))
+            couvertes = j + 1
+            continue
         scenes.append(sc)
         couvertes = j + 1
-    while couvertes < n:                                # phrases restées sans scène
-        j = min(n - 1, couvertes + 1)
+    while couvertes < n:                                # phrases restées sans scène : une scène sûre par phrase
+        j = couvertes
         scenes.append(dict(_secours(script, couvertes, j), phrases=list(range(couvertes, j + 1))))
         couvertes = j + 1
     der = scenes[-1]                                    # la dernière phrase : toujours la question, seule
@@ -243,10 +252,22 @@ def valider(d, script, articles, journal=print):
                 cles=cles, scenes=scenes)
 
 
+def _couvre(d, n):
+    return len({int(x) for sc in d.get("scenes") or [] if isinstance(sc, dict) for x in sc.get("phrases") or []
+                if str(x).isdigit() and int(x) < n})
+
+
 def realiser(script, articles, journal=print):
-    """Storyboard validé (l'IA, sinon uniquement des scènes sûres)."""
+    """Storyboard validé (l'IA, sinon uniquement des scènes sûres). L'IA qui oublie des phrases refait une fois (vidéo
+    Macy's du 27/11 : 5 scènes pour 15 phrases)."""
+    n = len(script["phrases"])
     try:
         d = storyboard(script, articles, journal)
+        if _couvre(d, n) < 0.8 * n:
+            journal(f"  réalisation : {_couvre(d, n)} phrase(s) sur {n} placées, l'IA recommence")
+            d2 = storyboard(script, articles, journal)
+            if _couvre(d2, n) > _couvre(d, n):
+                d = d2
     except Exception as e:
         journal(f"  réalisation par l'IA impossible ({str(e)[:100]}) : scènes simples")
         d = {}

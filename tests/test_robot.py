@@ -1327,3 +1327,12 @@ class TestIADeSecours(unittest.TestCase):
             self.assertIn("github", ia.VISION_ORDRE)
         finally:
             ia._EN_LIGNE.clear(); ia._EN_LIGNE.update(ancien); os.environ.clear(); os.environ.update(env)
+
+
+class TestScenesDeSecours(unittest.TestCase):
+    def test_ni_date_ni_faux_pictogramme(self):
+        from robot import realisateur as R
+        f = lambda x: R._secours({"phrases": [{"ecrit": x}]}, 0, 0)
+        self.assertEqual(f("Le compte a publié le 5 novembre 2025 un visuel.")["type"], "icone")   # une date n'est pas un « chiffre »
+        self.assertNotEqual(f("NBC diffusera un replay jeudi.")["emoji"], "🎮")                     # « jeu » dans « jeudi »
+        self.assertEqual(f("Le report pourrait coûter 2000 dollars.")["unite"], "dollars")
