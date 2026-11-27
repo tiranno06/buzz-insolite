@@ -18,6 +18,7 @@ import subprocess
 from . import ia
 from .commun import RACINE
 
+BASES = ("carte", "3d", "photo")                    # décors qui restent à l'écran (le moteur pose le reste par-dessus)
 TYPES = ("carte", "chiffre", "frise", "citation", "barres", "3d", "question", "mot", "icone", "document", "calendrier", "personnes")
 UNITES_FORTES = ("millions", "million", "milliards", "milliard", "mille", "%", "pour cent")
 OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "bateau", "train", "batiment", "arbre", "personne",
@@ -27,13 +28,21 @@ ACTIONS_3D = ("avancer", "heurter", "changer_voie", "tourner", "se_coucher", "br
 DECORS = ("autoroute", "route", "ville", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio")
 COULEURS = ("orange", "rouge", "jaune", "bleu", "vert", "violet", "gris")
 
-CONSIGNE = """Tu es le réalisateur d'une vidéo TikTok d'actualité où TOUT est fabriqué en animation (comme une infographie
-animée) : cartes, gros chiffres, frises, petites reconstitutions 3D style maquette. AUCUNE photo ni vidéo réelle.
+CONSIGNE = """Tu es le réalisateur d'une vidéo TikTok d'actualité où TOUT est fabriqué en animation, comme les chaînes
+curioverse.actu et vudenhaut.fr : la Terre vue du ciel (carte satellite), petites reconstitutions 3D style maquette, avec
+des chiffres et étiquettes posés PAR-DESSUS. AUCUNE photo ni vidéo réelle.
+PRINCIPE : un DÉCOR reste toujours à l'écran et bouge en continu ("carte" ou "3d") ; les autres scènes (chiffre, icone,
+document, calendrier, personnes, frise, barres, citation, mot) s'affichent PAR-DESSUS le dernier décor, qui continue derrière.
+Donc : la 1re scène est un DÉCOR (la carte qui zoome sur le lieu, ou la reconstitution 3D) ; change de décor 1 à 3 fois dans
+la vidéo (ex. carte du lieu → reconstitution 3D de l'événement → carte du bilan) ; entre deux décors, 1 à 3 encadrés.
+Un événement physique (accident, incendie, crash, naufrage, déraillement, tempête sur une route) = une reconstitution "3d"
+quand les articles décrivent ce qui s'est passé. Une alerte météo, un pays, une région = "carte" (avec "nuit": true si les
+faits se passent la nuit : on voit alors les lumières des villes).
 On te donne les phrases numérotées de la voix off (déjà vérifiées) et les faits des articles.
 Découpe TOUTES les phrases en SCÈNES qui se suivent (CHAQUE numéro de phrase dans une scène, dans l'ordre, 1 ou 2 phrases par
 scène, donc environ autant de scènes que de phrases divisées par 1,5 ;
 change d'image souvent : une scène dure 3 à 8 secondes). Types de scènes :
-- "carte" : {"zone": "france"|"europe"|"monde"|"usa", "departements": [{"code": "39", "couleur": "orange", "etiquette": "JURA"}],
+- "carte" (DÉCOR) : {"zone": "france"|"europe"|"monde"|"usa", "nuit": false, "departements": [{"code": "39", "couleur": "orange", "etiquette": "JURA"}],
   "pays": [{"iso": "EGY", "couleur": "rouge", "etiquette": "ÉGYPTE"}], "lieux": ["Saint-Claude"], "effet": "pluie"|"neige"|"orage"|null,
   "fleche": {"de": "Brest", "vers": "Strasbourg"}} — pour situer l'événement, une alerte météo, un trajet ;
 - "chiffre" : {"valeur": "31", "unite": "morts", "texte": "selon le ministère"} — UN chiffre clé tiré du texte ;
@@ -46,7 +55,7 @@ change d'image souvent : une scène dure 3 à 8 secondes). Types de scènes :
 - "frise" : {"etapes": [{"heure": "18 h", "texte": "..."}]} — chronologie (3 étapes au plus) ;
 - "citation" : {"texte": "phrase EXACTE prononcée, copiée des articles", "auteur": "qui l'a dite"} ;
 - "barres" : {"barres": [{"texte": "Hier", "valeur": 9, "unite": "départements"}, {"texte": "Demain", "valeur": 60}]} ;
-- "3d" : reconstitution d'un accident ou d'un événement décrit PRÉCISÉMENT par les articles (sinon n'en fais pas) :
+- "3d" (DÉCOR) : reconstitution d'un accident ou d'un événement décrit PRÉCISÉMENT par les articles (sinon n'en fais pas) :
   {"decor": "autoroute"|"route"|"ville"|"mer"|"port"|"piste"|"voie_ferree"|"campagne", "moment": "jour"|"soir"|"nuit",
    "objets": [{"id": "camion", "type": "citerne", "voie": 2, "position": 0, "couleur": "#ffffff"}],
    "actions": [{"objet": "camion", "faire": "avancer", "phrase": 3, "duree": 3, "vers_position": 60},
@@ -248,8 +257,15 @@ def valider(d, script, articles, journal=print):
     for k, v in (d.get("cles") or {}).items():
         if str(k).isdigit() and int(k) < n:
             cles[int(k)] = [str(m) for m in (v if isinstance(v, list) else [v]) if str(m).lower() in script["phrases"][int(k)]["ecrit"].lower()][:2]
+    lieu = None
+    for nom in [str(script.get("lieu") or "").split(",")[0].strip(), str(script.get("lieu") or "").strip()]:
+        if nom and not lieu:
+            l_ = _lieu(nom, cache)
+            lieu = dict(nom=nom, lat=l_["lat"], lon=l_["lon"]) if l_ else None
+    nuit = any(sc.get("nuit") for sc in scenes if sc["type"] == "carte") or bool(
+        re.search(r"\b(nuit|soir|soirée|minuit|nocturne)\b", " ".join(p["ecrit"] for p in script["phrases"][:4]).lower()))
     return dict(titre=titre, lieu_date=str(d.get("lieu_date") or "")[:40].upper(), source=str(d.get("source") or "")[:110],
-                cles=cles, scenes=scenes)
+                cles=cles, scenes=scenes, lieu=lieu, nuit=nuit)
 
 
 def _couvre(d, n):
@@ -295,7 +311,8 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
             s["departements"] = [dict(x, a=0.4 + 0.25 * n) for n, x in enumerate(sc.get("departements") or [])]
             s["pays"] = [dict(x, a=0.4 + 0.25 * n) for n, x in enumerate(sc.get("pays") or [])]
             s["points"] = [dict(p, a=1.0 + 0.4 * n) for n, p in enumerate(sc.get("points") or [])]
-            s["mention"] = "Carte : Natural Earth, IGN" + (f" · {mention_source}" if mention_source else "")
+            s["mention"] = "Images : NASA · Carte : Natural Earth, IGN" + (f" · {mention_source}" if mention_source else "")
+            s["nuit"] = bool(sc.get("nuit")) or bool(anim.get("nuit"))
         if sc["type"] == "3d":
             voies = 6 if sc.get("decor") == "autoroute" else 2
             objets = []
@@ -319,6 +336,13 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
                            dict(a=max(2.0, d_), pos=[-24, 24, 32], suivre=principal)]
             s["mention"] = "Reconstitution 3D · illustration" + (f" d'après {mention_source}" if mention_source else "")
         scenes.append(s)
+    if scenes and scenes[0]["type"] not in BASES:        # jamais un encadré sur du vide : la carte du lieu dessous
+        fin_ = next((x["debut"] for x in scenes if x["type"] in BASES), total)
+        lieu = anim.get("lieu")
+        scenes.insert(0, dict(type="carte", debut=0, fin=round(fin_, 3), implicite=True, nuit=bool(anim.get("nuit")),
+                              zone="monde" if not lieu else None, points=[dict(lieu, a=1.0)] if lieu else [],
+                              depart_zoom=8 if lieu else 1.4, zoom_duree=4.0, marge=6 if lieu else 1.2,
+                              mention="Images : NASA (Blue Marble)"))
     return dict(ips=30, duree=round(total, 3), titre=anim["titre"], lieu_date=anim["lieu_date"], source=anim["source"],
                 etiquette=script.get("etiquette") or "BUZZ INSOLITE", mots=mots, scenes=scenes)
 

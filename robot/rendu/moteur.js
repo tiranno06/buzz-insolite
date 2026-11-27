@@ -76,8 +76,43 @@ const ZONES = {                            // vues toutes prêtes (longitude oue
   france: [-5.3, 41.2, 9.8, 51.3], monde: [-170, -58, 190, 78], europe: [-12, 34, 35, 66], usa: [-126, 23, -66, 50],
 };
 
+// ------------------------------------------------------------------ fond satellite NASA (domaine public)
+// Blue Marble (jour) ou lumières des villes (nuit), servies par rendre.mjs (/tuile/…, gardées en cache). Toutes les tuiles
+// nécessaires au zoom de la scène sont chargées AVANT la 1re image : chaque image est complète et toujours la même.
+export const SAT = { jour: { couche: "BlueMarble_NextGeneration", ext: "jpeg" }, nuit: { couche: "VIIRS_Black_Marble", ext: "png" } };
+const TUILES = new Map();
+const zoomPour = s => Math.max(2, Math.min(8, Math.ceil(Math.log2(s / 256))));
+function tuilesVisibles(z, cx0, cy0, s) {
+  const n = 2 ** z, hw = W / 2 / s, hh = H / 2 / s, out = [];
+  for (let x = Math.floor((cx0 - hw) * n); x <= Math.floor((cx0 + hw) * n); x++)
+    for (let y = Math.max(0, Math.floor((cy0 - hh) * n)); y <= Math.min(n - 1, Math.floor((cy0 + hh) * n)); y++) out.push([z, ((x % n) + n) % n, y, x]);
+  return out;
+}
+function tuile(fond, z, x, y) {
+  const cle = `${fond}/${z}/${x}/${y}`;
+  if (!TUILES.has(cle)) {
+    const im = new Image(), { couche, ext } = SAT[fond];
+    im._pret = new Promise(ok => { im.onload = ok; im.onerror = ok; });
+    im.src = `/tuile/${couche}/${z}/${y}/${x}.${ext}`;
+    TUILES.set(cle, im);
+  }
+  return TUILES.get(cle);
+}
+function dessinerSatellite(cx, fond, cx0, cy0, s) {
+  const z = zoomPour(s), n = 2 ** z;
+  for (const [zz, x, y, xbrut] of tuilesVisibles(z, cx0, cy0, s)) {
+    let im = tuile(fond, zz, x, y);
+    if (im.naturalWidth) { cx.drawImage(im, xbrut / n, y / n, 1.003 / n, 1.003 / n); continue; }
+    for (let k = 1; k <= 3 && zz - k >= 1; k++) {   // tuile absente : celle du zoom au-dessus, agrandie
+      const m = 2 ** k, p = tuile(fond, zz - k, Math.floor(x / m), Math.floor(y / m));
+      if (p.naturalWidth) { const t = 256 / m; cx.drawImage(p, (x % m) * t, (y % m) * t, t, t, xbrut / n, y / n, 1.003 / n, 1.003 / n); break; }
+    }
+  }
+}
+
 // ------------------------------------------------------------------ les scènes
 const TYPES = {};
+export const BASES = new Set(["carte", "3d", "photo"]);   // le « monde » qui reste à l'écran ; le reste s'affiche PAR-DESSUS
 
 // ---- CARTE : pays / départements colorés, villes, flèche, pluie / neige, zoom lent
 TYPES.carte = async (sc, couche) => {
@@ -101,7 +136,8 @@ TYPES.carte = async (sc, couche) => {
   let b = [1, 1, 0, 0];
   for (const z of allumes) b = boite(z.g, b);
   for (const p of points) b = [Math.min(b[0], p.xy[0]), Math.min(b[1], p.xy[1]), Math.max(b[2], p.xy[0]), Math.max(b[3], p.xy[1])];
-  if (b[2] <= b[0]) { const z = ZONES[sc.zone] || ZONES.france; const [x0, y1] = merc(z[0], z[1]), [x1, y0] = merc(z[2], z[3]); b = [x0, y0, x1, y1]; }
+  // rien de coloré ni aucun lieu : la zone demandée (un lieu seul = un point : on zoome dessus)
+  if (!allumes.length && !points.length) { const z = ZONES[sc.zone] || ZONES.france; const [x0, y1] = merc(z[0], z[1]), [x1, y0] = merc(z[2], z[3]); b = [x0, y0, x1, y1]; }
   const zw = ZONE.droite - ZONE.gauche, zh = ZONE.bas - ZONE.haut;
   const largeur = Math.max(b[2] - b[0], (b[3] - b[1]) * zw / zh, 0.0025) * (sc.marge ?? 1.35);
   const fin = { x: (b[0] + b[2]) / 2, y: (b[1] + b[3]) / 2, s: zw / largeur };
@@ -111,6 +147,15 @@ TYPES.carte = async (sc, couche) => {
   if (sc.effet === "pluie" || sc.effet === "orage")
     for (const z of allumes) { const bb = boite(z.g); for (let i = 0; i < 7; i++) taches.push({ x: mix(bb[0], bb[2], rnd()), y: mix(bb[1], bb[3], rnd()), r: 0.25 + rnd() * 0.35, ph: rnd() * 6 }); }
   const gouttes = Array.from({ length: 220 }, () => ({ x: rnd() * W, y: rnd() * H, v: 0.7 + rnd() * 0.6, l: 18 + rnd() * 26 }));
+  const fondSat = sc.satellite === false ? null : (sc.nuit ? "nuit" : "jour");
+  if (fondSat) {                           // toutes les tuiles du zoom, chargées d'avance (et celles du zoom au-dessus)
+    const a_charger = new Map();
+    for (let i = 0; i <= 24; i++) {
+      const k = ease.douce(i / 24), s = Math.exp(mix(Math.log(debut.s), Math.log(fin.s), k)) * 1.06;
+      for (const [z, x, y] of tuilesVisibles(zoomPour(s), fin.x, fin.y, s)) { a_charger.set(`${z}/${x}/${y}`, [z, x, y]); a_charger.set(`${z - 1}/${x >> 1}/${y >> 1}`, [z - 1, x >> 1, y >> 1]); }
+    }
+    await Promise.all([...a_charger.values()].filter(([z]) => z >= 1).map(([z, x, y]) => tuile(fondSat, z, x, y)._pret));
+  }
   const reperes = points.map(p => { const e = el("div", "repere", couche, echapper(p.nom)); return e; });
   const etiqs = allumes.filter(z => z.etiquette).map(z => {
     const e = el("div", "repere", couche, echapper(z.etiquette)); const bb = boite(z.g); e._xy = [(bb[0] + bb[2]) / 2, (bb[1] + bb[3]) / 2]; e._a = z.a; return e; });
@@ -125,12 +170,20 @@ TYPES.carte = async (sc, couche) => {
     cx.fillStyle = fond; cx.fillRect(0, 0, W, H);
     cx.setTransform(s, 0, 0, s, ox, oy);
     cx.lineJoin = "round";
-    cx.fillStyle = "#1a2640"; cx.strokeStyle = "rgba(160,180,220,.35)"; cx.lineWidth = 1.4 / s;
-    for (const z of tous) { cx.fill(z.p); cx.stroke(z.p); }
-    if (deps.length) { cx.fillStyle = "#22314f"; cx.strokeStyle = "rgba(200,215,255,.22)"; cx.lineWidth = 1.2 / s; for (const z of deps) { cx.fill(z.p); cx.stroke(z.p); } }
+    if (fondSat) {                           // vraie Terre vue du ciel, un peu assombrie pour que les couleurs ressortent
+      cx.fillStyle = "#1a2640"; for (const z of tous) cx.fill(z.p);
+      dessinerSatellite(cx, fondSat, fin.x, fin.y, s);
+      cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.fillStyle = fondSat === "nuit" ? "rgba(30,45,90,.10)" : "rgba(6,12,28,.34)"; cx.fillRect(0, 0, W, H); cx.restore();
+      cx.strokeStyle = fondSat === "nuit" ? "rgba(140,180,255,.55)" : "rgba(255,255,255,.45)"; cx.lineWidth = 1.8 / s; for (const z of tous) cx.stroke(z.p);
+      if (deps.length) { cx.strokeStyle = "rgba(255,255,255,.22)"; cx.lineWidth = 1.1 / s; for (const z of deps) cx.stroke(z.p); }
+    } else {
+      cx.fillStyle = "#1a2640"; cx.strokeStyle = "rgba(160,180,220,.35)"; cx.lineWidth = 1.4 / s;
+      for (const z of tous) { cx.fill(z.p); cx.stroke(z.p); }
+      if (deps.length) { cx.fillStyle = "#22314f"; cx.strokeStyle = "rgba(200,215,255,.22)"; cx.lineWidth = 1.2 / s; for (const z of deps) { cx.fill(z.p); cx.stroke(z.p); } }
+    }
     for (const z of allumes) {
       const p = ease.sortie(prog(t, z.a, 0.6)); if (p <= 0) continue;
-      cx.save(); cx.globalAlpha = 0.25 + 0.6 * p; cx.shadowColor = z.couleur; cx.shadowBlur = 40 * p;
+      cx.save(); cx.globalAlpha = (fondSat ? 0.18 : 0.25) + (fondSat ? 0.32 : 0.6) * p; cx.shadowColor = z.couleur; cx.shadowBlur = 40 * p;
       cx.fillStyle = z.couleur; cx.fill(z.p); cx.restore();
       cx.strokeStyle = z.couleur; cx.lineWidth = 3.5 / s; cx.globalAlpha = p; cx.stroke(z.p); cx.globalAlpha = 1;
     }
@@ -168,6 +221,13 @@ TYPES.carte = async (sc, couche) => {
   };
 };
 
+// voile sombre et doux derrière un encadré : on lit le chiffre, et le décor continue de bouger derrière
+function voile(cx, y, t) {
+  cx.clearRect(0, 0, W, H);
+  const g = cx.createRadialGradient(W / 2, y, 60, W / 2, y, 620); g.addColorStop(0, "rgba(5,9,20,.62)"); g.addColorStop(1, "rgba(5,9,20,0)");
+  cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+}
+
 // ---- CHIFFRE : un gros nombre qui défile, son unité, une phrase
 TYPES.chiffre = async (sc, couche) => {
   const bloc = el("div", "chiffre", couche); bloc.style.top = (sc.y ?? 620) + "px";
@@ -185,10 +245,7 @@ TYPES.chiffre = async (sc, couche) => {
     bloc.style.transform = `scale(${mix(0.82, 1, ease.ressort(prog(t, 0, 0.5))) * (1 + 0.04 * prog(t, 0, duree))})`;
     bloc.style.opacity = borne(prog(t, 0, 0.25));
     apparition(tx, t, 0.6, { echelle: false });
-    cx.clearRect(0, 0, W, H);                // halo qui respire derrière le chiffre
-    const r = 380 + 30 * Math.sin(t * 1.7), y = (sc.y ?? 620) + 130;
-    const g = cx.createRadialGradient(W / 2, y, 0, W / 2, y, r); g.addColorStop(0, couleur(sc.couleur || "rouge") + "66"); g.addColorStop(1, "#0000");
-    cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+    voile(cx, (sc.y ?? 620) + 130, t);
   };
 };
 
@@ -241,10 +298,7 @@ TYPES.icone = async (sc, couche) => {
     p.style.opacity = borne(prog(t, 0, 0.2));
     if (v) apparition(v, t, 0.35, { echelle: true });
     if (tx) apparition(tx, t, 0.6, { echelle: false });
-    cx.clearRect(0, 0, W, H);
-    const y = (sc.y ?? 520) + 150, r = 330 + 20 * Math.sin(t * 1.6);
-    const g = cx.createRadialGradient(W / 2, y, 0, W / 2, y, r); g.addColorStop(0, couleur(sc.couleur || "jaune") + "55"); g.addColorStop(1, "#0000");
-    cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+    voile(cx, (sc.y ?? 520) + 200, t);
   };
 };
 TYPES.mot = (sc, couche) => (sc.emoji ? TYPES.icone(sc, couche) : TYPES.chiffre(sc, couche));
@@ -320,7 +374,7 @@ TYPES.barres = async (sc, couche) => {
 TYPES["3d"] = (sc, couche) => creer3d(sc, couche, THREE);
 
 // ------------------------------------------------------------------ habillage : titre, sous-titres, étiquettes, source
-let SB = null, SCENES = [], GROUPES = [];
+let SB = null, SCENES = [], GROUPES = [], DUREE = 0;
 const $ = s => document.querySelector(s);
 
 function groupes(mots) {                  // sous-titres : 2 lignes de ~18 signes au plus, coupés aux pauses et à la ponctuation
@@ -369,6 +423,11 @@ window.charger = async sb => {
     });
     SCENES.push({ sc, couche, dessiner, etiqs });
   }
+  DUREE = sb.duree || Math.max(...sb.scenes.map(s => s.fin));
+  SCENES.forEach((s, i) => {                 // un décor reste jusqu'au décor suivant (les encadrés passent par-dessus)
+    const suivant = SCENES.slice(i + 1).find(x => BASES.has(x.sc.type));
+    s.finDecor = suivant ? suivant.sc.debut : DUREE;
+  });
   await document.fonts.ready;
   const ti = $("#titre");                    // gros titre : jamais plus de 2 lignes (il chevauchait les étiquettes)
   for (TITRE_MAX = 78; TITRE_MAX > 46; TITRE_MAX -= 2) { ti.style.fontSize = TITRE_MAX + "px"; if (ti.offsetHeight <= TITRE_MAX * 1.02 * 2 + 6) break; }
@@ -377,17 +436,26 @@ window.charger = async sb => {
 let TITRE_MAX = 78;
 
 window.rendre = t => {
-  SCENES.forEach(({ sc, couche, dessiner, etiqs }, i) => {
-    const fin = sc.fin, visible = t >= sc.debut - 0.001 && t < fin + FONDU;
+  // encadré (chiffre, pictogramme, document…) affiché : le décor derrière s'assombrit un peu, sans jamais disparaître
+  const voileDecor = Math.max(0, ...SCENES.filter(s => !BASES.has(s.sc.type) && s.sc.type !== "question" && t >= s.sc.debut && t < s.sc.fin + FONDU)
+    .map(s => Math.min(prog(t, s.sc.debut, FONDU), 1 - prog(t, s.sc.fin, FONDU))));
+  SCENES.forEach(({ sc, couche, dessiner, etiqs, finDecor }, i) => {
+    const base = BASES.has(sc.type), fin = base ? finDecor : sc.fin, visible = t >= sc.debut - 0.001 && t < fin + FONDU;
     couche.style.display = visible ? "block" : "none";
     if (!visible) return;
-    const entree = i === 0 ? 1 : ease.sortie(prog(t, sc.debut, FONDU)), sortie = i === SCENES.length - 1 ? 1 : 1 - prog(t, fin, FONDU);
+    const entree = i === 0 || (base && sc.debut === 0) ? 1 : ease.sortie(prog(t, sc.debut, FONDU)),
+          sortie = fin >= DUREE - 0.01 ? 1 : 1 - prog(t, fin, FONDU);
     couche.style.opacity = Math.min(entree, sortie);
     couche.style.transform = `scale(${mix(1.04, 1, entree)})`;    // petite poussée à chaque nouvelle scène
+    if (base) couche.style.filter = voileDecor > 0 ? `brightness(${1 - 0.35 * voileDecor}) saturate(${1 - 0.25 * voileDecor})` : "none";
     const tl = t - sc.debut;
-    dessiner(tl, fin - sc.debut);
+    dessiner(tl, (base ? finDecor : fin) - sc.debut);
     const basTitre = $("#entete").getBoundingClientRect().bottom;   // étiquettes juste sous le titre (qui rétrécit)
-    etiqs.forEach((e, n) => { if (e._auto) e.style.top = Math.max(ZONE.haut - 20, basTitre + 22) + n * 66 + "px"; apparition(e, tl, e._a); });
+    etiqs.forEach((e, n) => {
+      if (e._auto) e.style.top = Math.max(ZONE.haut - 20, basTitre + 22) + n * 66 + "px";
+      apparition(e, tl, e._a);
+      if (base && voileDecor > 0) e.style.opacity = String(+e.style.opacity * (1 - voileDecor));   // l'encadré prend la place
+    });
   });
   // titre : grand au début (l'accroche), puis plus petit pour laisser la place
   const ti = $("#titre"), p = ease.douce(prog(t, SB.titre_reduit ?? 3.0, 0.6));

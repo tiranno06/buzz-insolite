@@ -21,7 +21,30 @@ const PROC = Math.max(1, +(opt("processus") || Math.max(1, Math.floor(os.cpus().
 // petit serveur local : le navigateur refuse de lire les fichiers (cartes, polices) directement sur le disque
 const TYPES = { ".html": "text/html", ".js": "text/javascript", ".mjs": "text/javascript", ".json": "application/json", ".geojson": "application/json",
   ".ttf": "font/ttf", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp" };
+// tuiles satellite de la NASA (GIBS, domaine public) : téléchargées une fois, gardées en cache sur le disque
+const CACHE_TUILES = path.join(process.env.ROBOT_CACHE || path.join(os.homedir(), ".cache", "buzz-insolite"), "tuiles");
+async function servirTuile(url, r) {
+  const m = url.match(/^\/tuile\/(BlueMarble_NextGeneration|VIIRS_Black_Marble)\/(\d+)\/(\d+)\/(\d+)\.(jpeg|png)$/);
+  if (!m) { r.writeHead(404); return r.end(); }
+  const [, couche, z, y, x, ext] = m, fichier = path.join(CACHE_TUILES, couche, z, y, `${x}.${ext}`);
+  try {
+    if (!fs.existsSync(fichier)) {
+      const date = couche === "VIIRS_Black_Marble" ? "2016-01-01/" : "";
+      const src = `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/${couche}/default/${date}GoogleMapsCompatible_Level8/${z}/${y}/${x}.${ext}`;
+      let rep = null;
+      for (let essai = 0; essai < 3 && !(rep && rep.ok); essai++) {
+        rep = await fetch(src, { headers: { "User-Agent": "buzz-insolite-robot" } }).catch(() => null);
+        if (!(rep && rep.ok)) await new Promise(ok => setTimeout(ok, 800 * (essai + 1)));
+      }
+      if (!rep || !rep.ok) { r.writeHead(404); return r.end(); }
+      fs.mkdirSync(path.dirname(fichier), { recursive: true });
+      fs.writeFileSync(fichier, Buffer.from(await rep.arrayBuffer()));
+    }
+    r.writeHead(200, { "Content-Type": ext === "png" ? "image/png" : "image/jpeg" }); fs.createReadStream(fichier).pipe(r);
+  } catch { r.writeHead(404); r.end(); }
+}
 const serveur = http.createServer((q, r) => {
+  if (q.url.startsWith("/tuile/")) return servirTuile(q.url, r);
   const p = path.join(RACINE, decodeURIComponent(q.url.split("?")[0]));
   if (!p.startsWith(RACINE) || !fs.existsSync(p) || fs.statSync(p).isDirectory()) { r.writeHead(404); return r.end(); }
   r.writeHead(200, { "Content-Type": TYPES[path.extname(p)] || "application/octet-stream" }); fs.createReadStream(p).pipe(r);

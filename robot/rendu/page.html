@@ -20,7 +20,11 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--
 body { font-family: "Poppins", sans-serif; color: var(--blanc); -webkit-font-smoothing: antialiased; }
 #video { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(120% 80% at 50% 35%, var(--nuit2), var(--nuit)); }
 canvas { position: absolute; inset: 0; width: 1080px; height: 1920px; }
-#calque, #scenes { position: absolute; inset: 0; }
+#calque, #scenes, #voiles { position: absolute; inset: 0; }
+/* dégradés sombres en haut (titre) et en bas (sous-titres) : toujours lisibles, quel que soit le décor */
+#voiles { pointer-events: none; background:
+  linear-gradient(180deg, rgba(4,8,18,.78) 0, rgba(4,8,18,.45) 330px, rgba(4,8,18,0) 560px),
+  linear-gradient(0deg, rgba(4,8,18,.82) 0, rgba(4,8,18,.55) 520px, rgba(4,8,18,0) 780px); }
 .couche { position: absolute; inset: 0; will-change: opacity, transform; }
 
 /* ---------- habillage fixe (zones libres de TikTok : rien au-dessus de y = 160, rien à droite de x = 950) ---------- */
@@ -105,6 +109,7 @@ canvas { position: absolute; inset: 0; width: 1080px; height: 1920px; }
 <body>
 <div id="video">
   <div id="scenes"></div>
+  <div id="voiles"></div>
   <div id="calque">
     <div id="entete"><div id="marque"><span class="pastille">BUZZ INSOLITE</span><span class="lieu"></span></div><div id="titre"></div></div>
     <div id="logo"></div>

@@ -1300,11 +1300,14 @@ class TestRealisateur(unittest.TestCase):
             {"phrases": [5], "type": "question", "texte": "?"}]}
         debuts = [0, 3, 6, 9, 12, 15]
         sb = R.pour_rendu(anim, s, debuts, [], 19.0)
-        self.assertEqual([(x["debut"], x["fin"]) for x in sb["scenes"]], [(0, 6), (6, 15), (15, 19.0)])
-        act = sb["scenes"][1]["actions"][0]
-        self.assertEqual(act["a"], 3); self.assertEqual(act["vers"], [50.0, sb["scenes"][1]["objets"][0]["z"]])
-        self.assertEqual(sb["scenes"][1]["reperes"][0]["a"], 0)
-        self.assertTrue(sb["scenes"][1]["mention"].startswith("Reconstitution 3D"))
+        self.assertTrue(sb["scenes"][0]["implicite"])                  # un encadré n'est jamais posé sur du vide : carte dessous
+        self.assertEqual((sb["scenes"][0]["debut"], sb["scenes"][0]["fin"]), (0, 6))
+        sc = sb["scenes"][1:]
+        self.assertEqual([(x["debut"], x["fin"]) for x in sc], [(0, 6), (6, 15), (15, 19.0)])
+        act = sc[1]["actions"][0]
+        self.assertEqual(act["a"], 3); self.assertEqual(act["vers"], [50.0, sc[1]["objets"][0]["z"]])
+        self.assertEqual(sc[1]["reperes"][0]["a"], 0)
+        self.assertTrue(sc[1]["mention"].startswith("Reconstitution 3D"))
 
 
 class TestIADeSecours(unittest.TestCase):

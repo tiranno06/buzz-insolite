@@ -120,6 +120,8 @@ const FABRIQUES = {
     const tex = texFenetres(T, o.graine || 5, o.nuit !== false); tex.repeat.set(l / 8, h / 16);
     const m = new T.MeshLambertMaterial({ map: tex, emissive: 0xffffff, emissiveMap: o.nuit !== false ? tex : null, emissiveIntensity: o.nuit !== false ? 0.55 : 0 });
     const b = boite(T, l, h, o.profondeur || 12, m); b.position.y = h / 2; g.add(b);
+    const toit = boite(T, l + 0.6, 0.8, (o.profondeur || 12) + 0.6, lambert(T, "#3b4150")); toit.position.y = h + 0.4; g.add(toit);
+    if ((o.graine || 0) % 3 === 0) { const c = boite(T, l * 0.3, 2.5, 3, lambert(T, "#4a505e")); c.position.set(l * 0.15, h + 2, 0); g.add(c); }
     g.userData.taille = [l, h, o.profondeur || 12]; return g;
   },
   arbre(T, o) {
@@ -152,7 +154,11 @@ const FABRIQUES = {
 function decor(T, scene, sc) {
   const d = sc.decor || "autoroute", nuit = (sc.moment || "soir") !== "jour";
   const ciel = { jour: [0x9cc9ff, 0xdfeeff], soir: [0x1d2a4a, 0x3b4f7a], nuit: [0x070b16, 0x141d33] }[sc.moment || "soir"];
-  scene.background = new T.Color(ciel[0]); scene.fog = new T.Fog(ciel[1], 120, sc.brouillard || 420);
+  // ciel en dégradé (horizon plus clair) et brume : la profondeur d'une vraie maquette filmée
+  const degrade = { jour: ["#5d9be0", "#cfe4ff"], soir: ["#0f1a33", "#4a5d8c"], nuit: ["#03060f", "#1a2442"] }[sc.moment || "soir"];
+  scene.background = texture(T, 4, 256, (c, w, h) => { const g = c.createLinearGradient(0, 0, 0, h); g.addColorStop(0, degrade[0]); g.addColorStop(0.75, degrade[1]); g.addColorStop(1, degrade[1]); c.fillStyle = g; c.fillRect(0, 0, w, h); });
+  scene.background.wrapS = scene.background.wrapT = T.ClampToEdgeWrapping; scene.background.repeat.set(1, 1);
+  scene.fog = new T.Fog(ciel[1], 140, sc.brouillard || 480);
   scene.add(new T.HemisphereLight(nuit ? 0x8fa6d6 : 0xffffff, nuit ? 0x1a1f2b : 0x6d6a5f, nuit ? 1.1 : 1.6));
   const soleil = new T.DirectionalLight(nuit ? 0xb7c7ff : 0xffffff, nuit ? 1.2 : 2.2); soleil.position.set(-60, 120, 40); scene.add(soleil);
   const sol = (c, w = 2000, h = 2000) => { const m = new T.Mesh(new T.PlaneGeometry(w, h), new T.MeshLambertMaterial({ color: c })); m.rotation.x = -Math.PI / 2; m.position.y = -0.02; scene.add(m); return m; };
@@ -165,11 +171,23 @@ function decor(T, scene, sc) {
     if (d === "autoroute") { const m = FABRIQUES.muret(T, { longueur: 1200 }); m.position.z = 0; m.visible = sc.terre_plein !== false; scene.add(m); }
     if (d !== "route" || sc.batiments) for (let x = -300; x < 300; x += 16 + r() * 10) for (const cote of [-1, 1]) {
       if (r() < 0.2 || (cote > 0 && sc.cote_camera !== false && r() < 0.75)) continue;   // côté caméra : peu d'immeubles (vue dégagée)
-      const b = FABRIQUES.batiment(T, { hauteur: 10 + r() * 30, largeur: 10 + r() * 8, graine: Math.floor(r() * 99), nuit });
+      const b = FABRIQUES.batiment(T, { hauteur: r() < 0.15 ? 40 + r() * 30 : 8 + r() * 26, largeur: 9 + r() * 10, profondeur: 9 + r() * 8,
+                                        graine: Math.floor(r() * 99), nuit });
       b.position.set(x, 0, cote * (larg / 2 + 12 + r() * 10) + (cote > 0 ? 25 : 0)); if (cote > 0) b.scale.y = 0.5; scene.add(b);
     }
     if (d === "route") for (let x = -300; x < 300; x += 8 + r() * 14) for (const cote of [-1, 1]) { const a = FABRIQUES.arbre(T, {}); a.position.set(x, 0, cote * (larg / 2 + 4 + r() * 20)); scene.add(a); }
-    for (let x = -300; x < 300; x += 40) if (nuit) { const l = new T.PointLight(0xffc977, 40, 40, 2); l.position.set(x, 9, larg / 2 + 1); scene.add(l); }
+    // trottoirs, lampadaires (ampoule lumineuse, sans vraie lumière : le rendu reste rapide), arbres
+    for (const cote of [-1, 1]) { const t_ = boite(T, 1200, 0.25, 3, lambert(T, "#8a8f98")); t_.position.set(0, 0.12, cote * (larg / 2 + 1.5)); scene.add(t_); }
+    const mat_poteau = lambert(T, "#5b6270"), mat_ampoule = new T.MeshBasicMaterial({ color: nuit ? 0xffd58a : 0xdddddd });
+    const halo = new T.SpriteMaterial({ map: texture(T, 64, 64, c => { const g = c.createRadialGradient(32, 32, 0, 32, 32, 32); g.addColorStop(0, "rgba(255,210,140,.9)"); g.addColorStop(1, "rgba(255,210,140,0)"); c.fillStyle = g; c.fillRect(0, 0, 64, 64); }), blending: T.AdditiveBlending, depthWrite: false, transparent: true });
+    for (let x = -300; x < 300; x += 30) for (const cote of [-1, 1]) {
+      const p_ = boite(T, 0.25, 9, 0.25, mat_poteau); p_.position.set(x, 4.5, cote * (larg / 2 + 0.6)); scene.add(p_);
+      const b_ = boite(T, 1.6, 0.25, 0.5, mat_ampoule); b_.position.set(x, 9, cote * (larg / 2 - 0.2)); scene.add(b_);
+      if (nuit) { const h_ = new T.Sprite(halo); h_.scale.set(9, 9, 1); h_.position.set(x, 8.6, cote * (larg / 2 - 0.2)); scene.add(h_);
+        const tache = new T.Mesh(new T.CircleGeometry(4, 24), new T.MeshBasicMaterial({ color: 0xffc977, transparent: true, opacity: 0.12, depthWrite: false }));
+        tache.rotation.x = -Math.PI / 2; tache.position.set(x, 0.05, cote * (larg / 2 - 2)); scene.add(tache); }
+    }
+    scene.userData.voies = { larg, n: voies };
   } else if (d === "mer" || d === "port" || d === "plage") {
     const eau = sol(0x1f5f8b, 3000, 3000); eau.material = new T.MeshLambertMaterial({ color: 0x1b5a86, emissive: 0x06223a });
     scene.userData.eau = eau;
@@ -231,6 +249,24 @@ export async function creer3d(sc, couche, T) {
     ombre.rotation.x = -Math.PI / 2; ombre.position.y = 0.03; const ta = g.userData.taille || [4, 2, 2]; ombre.scale.set(ta[0] * 0.6, ta[2] * 0.75, 1); scene.add(ombre); g.userData.ombre = ombre;
     if (o.flou_vitesse) g.userData.flou = true;
   }
+  // CIRCULATION : des véhicules roulent tout seuls sur les voies où la reconstitution ne se passe pas (la scène vit)
+  const trafic = [];
+  if (scene.userData.voies && sc.trafic !== false) {
+    const { larg, n } = scene.userData.voies, rr = hasard((sc.graine || 5) * 31 + 7);
+    const zObjets = objets.filter(o => !["batiment", "arbre", "muret", "mur"].includes(o.type)).map(o => o.z || 0);
+    const COUL = ["#d9dde4", "#2d3436", "#c0392b", "#2980b9", "#f1c40f", "#7f8c8d", "#ecf0f1", "#16a085"];
+    for (let v = 0; v < n; v++) {
+      const z = -larg / 2 + (v + 0.5) * 3.6;
+      // jamais à travers l'accident : ni sur une voie de la reconstitution, ni sur sa chaussée (autoroute : l'autre sens roule)
+      if (zObjets.some(zo => Math.abs(zo - z) < 2.6 || (n > 2 && Math.sign(zo || -1) === Math.sign(z)))) continue;
+      const sens = n > 2 ? (z < 0 ? 1 : -1) : (v ? -1 : 1);
+      for (let k = 0; k < 4; k++) {
+        const type = rr() < 0.15 ? "camion" : rr() < 0.15 ? "bus" : "voiture";
+        const g = FABRIQUES[type](T, { couleur: COUL[Math.floor(rr() * COUL.length)] }); g.rotation.y = sens > 0 ? 0 : Math.PI; scene.add(g);
+        trafic.push({ g, z, sens, x0: -300 + rr() * 600, v: (sens > 0 ? 1 : -1) * (14 + rr() * 10) });
+      }
+    }
+  }
   // flammes et fumée : un lot de particules par objet qui brûle
   const particules = {};
   for (const a of actions.filter(a => a.faire === "bruler" || a.faire === "exploser")) {
@@ -281,6 +317,10 @@ export async function creer3d(sc, couche, T) {
         const k = (q.fumee ? mix(2.5, 9, u) : mix(2.2, 0.4, u)) * q.taille * force * (e.explose >= 0 && t - e.explose < 0.6 ? 2 : 1);
         q.s.scale.set(k, k * (q.fumee ? 1 : 1.5), 1);
       }
+    }
+    for (const c of trafic) {                 // ralentit puis s'arrête près d'un accident (feu, véhicule couché)
+      let x = ((c.x0 + c.v * t) % 600 + 900) % 600 - 300;
+      c.g.position.set(x, 0, c.z); for (const w of c.g.userData.roues || []) w.rotation.y = -c.v * t / 0.4;
     }
     if (scene.userData.eau) scene.userData.eau.position.y = -0.02 + Math.sin(t) * 0.05;
     const { p, c } = posCam(t);

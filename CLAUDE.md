@@ -585,6 +585,25 @@ logo, mise en page) : même recette, notre identité (rouge et jaune du logo sur
   iranienne au Qatar » (article financier mélangeant plusieurs actus) → `CONSIGNE_VERIF` : phrase HORS SUJET retirée même
   si elle est vraie.
 
+## Nouveau style, version 2 : « au niveau de curioverse » (27/11, demande de l'auteur)
+Constat après les 2 premières vidéos : nos scènes étaient des DIAPOSITIVES séparées sur fond vide ; chez curioverse et
+vudenhaut, un DÉCOR (Terre vue du ciel ou maquette 3D) reste à l'écran et bouge en continu, les chiffres et étiquettes
+s'affichent PAR-DESSUS. Refait ainsi :
+- **Décor permanent** (`moteur.js`, `BASES` = carte, 3d, photo) : un décor reste jusqu'au décor suivant (`finDecor`) ;
+  les encadrés (chiffre, icone, document, calendrier, personnes, frise, barres, citation, mot) passent par-dessus, le décor
+  s'assombrit un peu (`voileDecor`) et ses étiquettes s'effacent. Voile sombre doux derrière un encadré (`voile`).
+  Dégradés sombres en haut et en bas (`#voiles`) : titre et sous-titres toujours lisibles.
+- **Carte satellite de la NASA** (domaine public) : Blue Marble (jour) ou lumières des villes VIIRS (nuit), tuiles GIBS
+  EPSG:3857 niveau 8 au plus, servies par `rendre.mjs` (`/tuile/…`, cache `~/.cache/buzz-insolite/tuiles`) et TOUTES
+  chargées avant la 1re image (`tuilesVisibles`, zoom au-dessus en secours) ; frontières et départements par-dessus.
+  EOX Sentinel-2 cloudless ÉCARTÉ : licence commerciale payante exigée (même les années « CC BY » sont ambiguës).
+- `realisateur.py` : consigne « décor + encadrés » (1re scène = décor, 1 à 3 décors, 3D pour un événement physique,
+  `nuit`) ; `pour_rendu` ajoute une CARTE DU LIEU implicite sous le 1er encadré (`implicite`, zoom ×8 sur le lieu géocodé
+  `anim["lieu"]`, nuit si les 1res phrases parlent de nuit / soir).
+- **3D plus vivante** (`scenes3d.js`) : ciel en dégradé, trottoirs, lampadaires avec halo (sans vraies lumières : rendu
+  rapide), immeubles variés avec toits, CIRCULATION automatique sur les voies libres (jamais sur la chaussée de l'accident).
+- Bug : un lieu seul (un point) était pris pour « rien à montrer » → la carte ne zoomait pas.
+
 ## IA de secours ajoutées (26/11, demande de l'auteur « n'as-tu pas trouvé d'autres IA de secours ? »)
 Listes communautaires (awesome-free-llm-apis) relues ; retenues = gratuites, sans carte, usage commercial non interdit :
 - **GitHub Models** (`github`) : jeton de la tâche (`GITHUB_MODELS_TOKEN: ${{ github.token }}`, permission `models: read`),
