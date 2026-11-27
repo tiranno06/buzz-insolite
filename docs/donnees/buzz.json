@@ -1,150 +1,226 @@
 {
- "maj": "2026-11-27T16:04:17+01:00",
+ "maj": "2026-11-27T18:05:37+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:02:12+01:00"
+   "le": "2026-11-27T18:03:22+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:02:16+01:00"
+   "le": "2026-11-27T18:03:26+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:02:20+01:00"
+   "le": "2026-11-27T18:03:30+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:02:24+01:00"
+   "le": "2026-11-27T18:03:35+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:02:30+01:00"
+   "le": "2026-11-27T18:03:39+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-27T16:02:33+01:00"
+   "le": "2026-11-27T18:03:43+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:02:37+01:00"
+   "le": "2026-11-27T18:03:47+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:02:42+01:00"
+   "le": "2026-11-27T18:03:52+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:02:46+01:00"
+   "le": "2026-11-27T18:03:58+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:02:50+01:00"
+   "le": "2026-11-27T18:04:02+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:02:54+01:00"
+   "le": "2026-11-27T18:04:08+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:02:58+01:00"
+   "le": "2026-11-27T18:04:12+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:02+01:00"
+   "le": "2026-11-27T18:04:16+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-27T16:03:06+01:00"
+   "le": "2026-11-27T18:04:19+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:09+01:00"
+   "le": "2026-11-27T18:04:24+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:13+01:00"
+   "le": "2026-11-27T18:04:29+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:18+01:00"
+   "le": "2026-11-27T18:04:33+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:22+01:00"
+   "le": "2026-11-27T18:04:37+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:26+01:00"
+   "le": "2026-11-27T18:04:41+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:30+01:00"
+   "le": "2026-11-27T18:04:45+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:34+01:00"
+   "le": "2026-11-27T18:04:49+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:37+01:00"
+   "le": "2026-11-27T18:04:54+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:42+01:00"
+   "le": "2026-11-27T18:04:58+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:45+01:00"
+   "le": "2026-11-27T18:05:02+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:49+01:00"
+   "le": "2026-11-27T18:05:06+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:55+01:00"
+   "le": "2026-11-27T18:05:09+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:03:59+01:00"
+   "le": "2026-11-27T18:05:13+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T16:04:03+01:00"
+   "le": "2026-11-27T18:05:17+01:00"
   }
  },
  "lues": 809,
- "retenues": 1,
+ "retenues": 2,
  "sujets": [
+  {
+   "titre": "Semi-remorque dérape entre deux bretelles en Ohio",
+   "resume": "Un semi-remorque a perdu le contrôle en tentant de tourner, traversant le vide entre deux bretelles d'une sortie d'autoroute en Ohio. Aucun blessé n'a été signalé et le véhicule a été remis sur la route.",
+   "mots_cles": [
+    "Ohio",
+    "semi-remorque",
+    "accident autoroute"
+   ],
+   "mots_cles_en": [
+    "Ohio",
+    "semi-truck",
+    "highway accident"
+   ],
+   "hashtags": [
+    "ohio",
+    "semiremorque",
+    "accident"
+   ],
+   "insolite": 4,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712677404224834829",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7712677404224834829",
+     "vues": 16800000,
+     "jaime": 988900,
+     "commentaires": 12700,
+     "partages": 115800,
+     "date": 1795747666,
+     "texte": "Video from the Ohio Department of Transportation shows the moment a semi-truck lost control while attempting to turn, skidding across the gap between two off-ramps. Authorities were able to pull the truck back onto the road and tow it away. No injuries were reported. #truck #ohio #accident #drive ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712677404224834829?description=1&music_info=1"
+    },
+    {
+     "id": "7712718110955932950",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7712718110955932950",
+     "vues": 905700,
+     "jaime": 12500,
+     "commentaires": 223,
+     "partages": 1277,
+     "date": 1795757121,
+     "texte": "No injuries were reported during the incident in Ohio on Thanksgiving, and authorities were able to pull the truck back onto the road, according to the BBC's US partner, CBS News. #Thanksgiving #USNews #WeatherWarning #Ohio #BBCNews",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712718110955932950?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "a53d428936",
+   "score": 8126,
+   "derniere_vue": 1795799130.8794088,
+   "vues": 17705700,
+   "jaime": 1001400,
+   "commentaires": 12923,
+   "hashtags_viraux": [
+    "ohio",
+    "truck",
+    "accident",
+    "drive",
+    "thanksgiving",
+    "usnews",
+    "weatherwarning",
+    "bbcnews"
+   ],
+   "medias": 8,
+   "tendance": {
+    "recherche": "toledo vs ohio",
+    "pays": "US",
+    "trafic": "2000+"
+   },
+   "statut": "sans_source",
+   "vu_le": "2026-11-27T18:05:37+01:00"
+  },
   {
    "titre": "Maresées exceptionnelles menacent l'Oregon et la Californie",
    "resume": "Des inondations côtières graves ont forcé un homme et son chien à fuir des vagues géantes à Cannon Beach, Oregon. Les autorités alertent sur des risques similaires en Californie.",
@@ -200,66 +276,6 @@
    "vu_le": "2026-11-25T09:59:33+01:00",
    "reserve_le": "2026-11-25T14:04:44+01:00",
    "video_id": "20261125-140715-1"
-  },
-  {
-   "titre": "Semi-remorque dérape sur échangeur en Ohio",
-   "resume": "Une semi-remorque a perdu le contrôle en tentant de tourner sur un échangeur autoroutier de l'Ohio, glissant entre deux bretelles. Aucun blessé n'a été signalé après que les autorités ont remis le camion sur la route.",
-   "mots_cles": [
-    "Ohio",
-    "semi-remorque",
-    "accident",
-    "échangeur",
-    "transport"
-   ],
-   "mots_cles_en": [
-    "Ohio",
-    "semi-truck",
-    "accident",
-    "ramp",
-    "transportation"
-   ],
-   "hashtags": [
-    "ohio",
-    "semirremorque",
-    "accident",
-    "autoroute",
-    "tiktok"
-   ],
-   "insolite": 4,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712677404224834829",
-     "compte": "cbsnews",
-     "url": "https://www.tiktok.com/@cbsnews/video/7712677404224834829",
-     "vues": 9200000,
-     "jaime": 536500,
-     "commentaires": 6338,
-     "partages": 57700,
-     "date": 1795747666,
-     "texte": "Video from the Ohio Department of Transportation shows the moment a semi-truck lost control while attempting to turn, skidding across the gap between two off-ramps. Authorities were able to pull the truck back onto the road and tow it away. No injuries were reported. #truck #ohio #accident #drive ",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712677404224834829?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "6aac7e3e8a",
-   "score": 3867,
-   "derniere_vue": 1795770130.7928336,
-   "vues": 9200000,
-   "jaime": 536500,
-   "commentaires": 6338,
-   "hashtags_viraux": [
-    "truck",
-    "ohio",
-    "accident",
-    "drive"
-   ],
-   "medias": 6,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-27T10:02:16+01:00"
   },
   {
    "titre": "King tides menacent Cannon Beach, Oregon",
@@ -379,80 +395,6 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T18:19:59+01:00",
    "video_id": "20261124-203224-1"
-  },
-  {
-   "titre": "Christ le Rédempteur au-dessus des nuages à Rio",
-   "resume": "Un visiteur a filmé le Christ Rédempteur semblant flotter au-dessus d'un voile de nuages à Rio de Janeiro. La scène a été décrite comme un « cadeau de Dieu ».",
-   "mots_cles": [
-    "Rio",
-    "Christ Rédempteur",
-    "nuages",
-    "phénomène",
-    "vidéo"
-   ],
-   "mots_cles_en": [
-    "Rio",
-    "Christ the Redeemer",
-    "clouds",
-    "phenomenon",
-    "video"
-   ],
-   "hashtags": [
-    "riodejaneiro",
-    "christredeemer",
-    "nuages",
-    "miracle",
-    "tiktok"
-   ],
-   "insolite": 8,
-   "categorie": "nature",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712406425690983694",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712406425690983694",
-     "vues": 5500000,
-     "jaime": 1100000,
-     "commentaires": 7783,
-     "partages": 54100,
-     "date": 1795684610,
-     "texte": "A man in Rio de Janeiro captured a breathtaking sight of Christ the Redeemer appearing above a blanket of rolling clouds, describing the moment as a ‘gift from God’. Marcio Amaro was visiting his late godfather-in-law’s vacant property with his wife and cousin when his cousin spotted the extraordinary view from the house. Even his wife, who had lived there all her life, had never witnessed anythin",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712406425690983694?description=1&music_info=1"
-    },
-    {
-     "id": "7712413595132333326",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712413595132333326",
-     "vues": 1400000,
-     "jaime": 261100,
-     "commentaires": 2344,
-     "partages": 13300,
-     "date": 1795686311,
-     "texte": "This is absolutely breathtaking 🥹 Marcio Amaro captured the breathtaking sight of Christ the Redeemer appearing to float above a sea of clouds in Rio de Janeiro, describing it as a ‘gift from God’. He spotted the incredible view while visiting a family property with his wife and cousin, who were equally stunned by the rare sight. 📸 Marcio Amaro via Storyful #riodejaneiro #brazil #jesus #christther",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712413595132333326?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "c093dd05c8",
-   "score": 2005,
-   "derniere_vue": 1795770130.7928336,
-   "vues": 6900000,
-   "jaime": 1361100,
-   "commentaires": 10127,
-   "hashtags_viraux": [
-    "riodejaneiro",
-    "brazil",
-    "jesus",
-    "christther"
-   ],
-   "medias": 5,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-27T08:15:09+01:00"
   },
   {
    "titre": "Décret afghan impose surnoms aux femmes",
@@ -1377,6 +1319,55 @@
    "video_id": "20261127-100236-1"
   },
   {
+   "titre": "Christ le Rédempteur vu au-dessus des nuages",
+   "resume": "Une vidéo prise depuis un hélicoptère montre la statue du Christ le Rédempteur semblant flotter au-dessus d'un océan de nuages à Rio de Janeiro. Le cliché met en avant la majesté du monument et la beauté du paysage urbain.",
+   "mots_cles": [
+    "Christ le Rédempteur",
+    "Rio",
+    "hélicoptère"
+   ],
+   "mots_cles_en": [
+    "Christ the Redeemer",
+    "Rio",
+    "helicopter"
+   ],
+   "hashtags": [
+    "christredeemer",
+    "rio",
+    "nuages"
+   ],
+   "insolite": 6,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712775661743557902",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712775661743557902",
+     "vues": 3700000,
+     "jaime": 893200,
+     "commentaires": 5417,
+     "partages": 53800,
+     "date": 1795770583,
+     "texte": "Helicopter footage captures a breathtaking view of Christ the Redeemer seemingly floating above a sea of clouds in Rio de Janeiro, Brazil, as the aircraft flies high above the city. The iconic statue, which stands atop Mount Corcovado, overlooks Rio and is a symbol of Christianity. The person who shared the footage described the experience as witnessing ‘something divine’. 🎥 Instagtam / cheezewino",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712775661743557902?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "c093dd05c8",
+   "score": 602,
+   "derniere_vue": 1795799130.8794088,
+   "vues": 3700000,
+   "jaime": 893200,
+   "commentaires": 5417,
+   "hashtags_viraux": [],
+   "medias": 1,
+   "tendance": null,
+   "statut": "sans_source",
+   "vu_le": "2026-11-27T08:15:09+01:00"
+  },
+  {
    "titre": "GTA 6 : vidéos virales et hommage à l’orque",
    "resume": "Deux vidéos liées à GTA 6 ont fait le buzz : un caméraman a reçu les félicitations d’un Oscar pour ses images, et le jeu inclut un clin d’œil à l’orque Tokitae. Ces contenus suscitent l'engouement des joueurs et des observateurs.",
    "mots_cles": [
@@ -1600,6 +1591,62 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-26T09:24:28+01:00"
+  },
+  {
+   "titre": "Escalator accéléré force étudiants à sauter à Dhaka",
+   "resume": "Un escalier roulant de l'Université BRAC à Dhaka s'est mis à fonctionner à grande vitesse, obligeant les étudiants à sauter pour éviter d'être emportés. L'incident a été filmé en décembre 2025 et a suscité l'inquiétude.",
+   "mots_cles": [
+    "Escalator",
+    "Bangladesh",
+    "université BRAC"
+   ],
+   "mots_cles_en": [
+    "escalator",
+    "Bangladesh",
+    "BRAC University"
+   ],
+   "hashtags": [
+    "escalator",
+    "bangladesh",
+    "universite"
+   ],
+   "insolite": 5,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712510013171911949",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
+     "vues": 6700000,
+     "jaime": 441300,
+     "commentaires": 4431,
+     "partages": 32300,
+     "date": 1795708700,
+     "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712510013171911949?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "4c70f22a00",
+   "score": 565,
+   "derniere_vue": 1795799130.8794088,
+   "vues": 6700000,
+   "jaime": 441300,
+   "commentaires": 4431,
+   "hashtags_viraux": [
+    "bangladesh",
+    "viral",
+    "escalator",
+    "hardnews",
+    "news"
+   ],
+   "medias": 9,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T18:05:37+01:00"
   },
   {
    "titre": "GTA VI : polémique autour de Leto et Lucia",
@@ -3216,60 +3263,61 @@
    "vu_le": "2026-11-27T14:03:04+01:00"
   },
   {
-   "titre": "Escalier roulant accéléré force étudiants à sauter",
-   "resume": "À l'Université BRAC au Bangladesh, un escalateur a soudainement augmenté sa vitesse, obligeant les étudiants à sauter pour éviter d'être emportés. L'incident a été filmé et partagé en ligne.",
+   "titre": "Homme et chien s’échappent indemnes en Oregon",
+   "resume": "Un homme et son chien ont réussi à s'échapper sans blessure après un incident signalé par la police en Oregon. Les circonstances exactes de l'événement restent floues.",
    "mots_cles": [
-    "escalator",
-    "Bangladesh",
-    "accident"
+    "Oregon",
+    "homme",
+    "chien",
+    "police"
    ],
    "mots_cles_en": [
-    "escalator",
-    "Bangladesh",
-    "accident"
+    "Oregon",
+    "man",
+    "dog",
+    "police"
    ],
    "hashtags": [
-    "escalator",
-    "bangladesh",
-    "accident"
+    "oregon",
+    "chien",
+    "incident"
    ],
-   "insolite": 5,
+   "insolite": 3,
    "categorie": "faits_divers",
    "ville_france": "",
    "videos": [
     {
-     "id": "7712510013171911949",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
-     "vues": 4000000,
-     "jaime": 272100,
-     "commentaires": 2668,
-     "partages": 18000,
-     "date": 1795708700,
-     "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
+     "id": "7712614655172054294",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7712614655172054294",
+     "vues": 2000000,
+     "jaime": 70700,
+     "commentaires": 642,
+     "partages": 1787,
+     "date": 1795733022,
+     "texte": "Warning: Contains strong language. Both the man and his dog escaped unharmed, police said. #Oregon #US #Dog #BBCNews",
      "sous_seuils": true,
      "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712510013171911949?description=1&music_info=1"
+     "lecteur": "https://www.tiktok.com/player/v1/7712614655172054294?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
-   "id": "2816735afa",
-   "score": 171,
-   "derniere_vue": 1795741973.2761145,
-   "vues": 4000000,
-   "jaime": 272100,
-   "commentaires": 2668,
+   "id": "251d240191",
+   "score": 173,
+   "derniere_vue": 1795799130.8794088,
+   "vues": 2000000,
+   "jaime": 70700,
+   "commentaires": 642,
    "hashtags_viraux": [
-    "bangladesh",
-    "viral",
-    "escalator",
-    "hardnews",
-    "news"
+    "oregon",
+    "us",
+    "dog",
+    "bbcnews"
    ],
-   "medias": 0,
+   "medias": 11,
    "tendance": null,
    "statut": "nouveau",
-   "vu_le": "2026-11-27T02:13:07+01:00"
+   "vu_le": "2026-11-27T18:05:37+01:00"
   },
   {
    "titre": "Sabrina Bahsoon, known globally as Tube Girl, wants hospitals to offer a series of tests a",
@@ -3535,61 +3583,6 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-25T22:59:59+01:00"
-  },
-  {
-   "titre": "Oregon : homme et chien échappent à incident",
-   "resume": "Un homme et son chien ont été impliqués dans un incident signalé par la police dans l’Oregon, mais sont ressortis indemnes. Les détails de l’événement restent peu clairs.",
-   "mots_cles": [
-    "Oregon",
-    "police",
-    "chien"
-   ],
-   "mots_cles_en": [
-    "Oregon",
-    "police",
-    "dog"
-   ],
-   "hashtags": [
-    "oregon",
-    "incident",
-    "chien"
-   ],
-   "insolite": 3,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712614655172054294",
-     "compte": "bbcnews",
-     "url": "https://www.tiktok.com/@bbcnews/video/7712614655172054294",
-     "vues": 1500000,
-     "jaime": 57100,
-     "commentaires": 504,
-     "partages": 1336,
-     "date": 1795733022,
-     "texte": "Warning: Contains strong language. Both the man and his dog escaped unharmed, police said. #Oregon #US #Dog #BBCNews",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712614655172054294?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "2aab6bba75",
-   "score": 156,
-   "derniere_vue": 1795784574.4820123,
-   "vues": 1500000,
-   "jaime": 57100,
-   "commentaires": 504,
-   "hashtags_viraux": [
-    "oregon",
-    "us",
-    "dog",
-    "bbcnews"
-   ],
-   "medias": 8,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-27T14:03:04+01:00"
   },
   {
    "titre": "Explosion d’un camion-citerne à Giza",
