@@ -47,7 +47,8 @@
   "images_generiques": false,
   "citations": true,
   "citations_nombre": 12,
-  "citations_photos": 6
+  "citations_photos": 6,
+  "style": "anime"
  },
  "publication": {
   "mode": "cocher",

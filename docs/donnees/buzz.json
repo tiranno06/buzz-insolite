@@ -1103,9 +1103,9 @@
    "hashtags_viraux": [],
    "medias": 8,
    "tendance": null,
-   "statut": "echec",
+   "statut": "nouveau",
    "vu_le": "2026-11-26T03:01:44+01:00",
-   "reserve_le": "2026-11-27T07:34:14+01:00"
+   "deja_remis": true
   },
   {
    "titre": "Explosion de lead azide à Middletown",

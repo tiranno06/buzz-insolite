@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-26T13:27:55+01:00",
+ "maj": "2026-11-27T13:10:15+01:00",
  "ia": [
   {
    "nom": "mistral",
@@ -15,6 +15,26 @@
    "nom": "gemini",
    "ok": true,
    "detail": "gemini:gemini-flash-lite-latest"
+  },
+  {
+   "nom": "github",
+   "ok": false,
+   "detail": "github openai/gpt-4.1-nano : Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+   "nom": "cerebras",
+   "ok": false,
+   "detail": "pas de clé (facultatif)"
+  },
+  {
+   "nom": "cloudflare",
+   "ok": false,
+   "detail": "pas de clé (facultatif)"
+  },
+  {
+   "nom": "zai",
+   "ok": false,
+   "detail": "pas de clé (facultatif)"
   },
   {
    "nom": "openrouter",
@@ -36,7 +56,7 @@
   {
    "nom": "Internet Archive (vidéos libres)",
    "ok": true,
-   "detail": "6 vidéos"
+   "detail": "7 vidéos"
   },
   {
    "nom": "Wikimedia Commons",
@@ -95,50 +115,72 @@
   "foxnews": 0
  },
  "durees": {
-  "texte": 63,
-  "ecriture": 43,
-  "extraits": 0,
-  "rangement": 15,
+  "controle_final": 170,
   "articles": 0,
-  "images": 123,
-  "voix": 58,
-  "montage": 112,
-  "controle_final": 563,
-  "controle_images": 81,
-  "regles": 44,
-  "total": 1085
+  "montage": 978,
+  "images": 16,
+  "regles": 1,
+  "texte": 108,
+  "rangement": 6,
+  "voix": 49,
+  "ecriture": 17,
+  "total": 1378
  },
  "creations_24h": {
-  "reussies": 27,
+  "reussies": 12,
   "ratees": 0,
-  "en_cours": 3
+  "en_cours": 1
  },
  "quotas": {
   "mistral": {
    "appels": 0,
    "refus": 0,
-   "erreurs": 133,
+   "erreurs": 25,
    "restant_minute": "0",
    "sature": false
   },
   "groq": {
-   "appels": 40,
-   "refus": 46,
-   "erreurs": 58,
+   "appels": 15,
+   "refus": 11,
+   "erreurs": 22,
    "restant_demandes": "999",
    "limite_demandes": "1000",
-   "restant_mots": "7711",
+   "restant_mots": "7751",
    "sature": true
   },
   "gemini": {
-   "appels": 50,
-   "refus": 102,
-   "erreurs": 73,
-   "sature": true
+   "appels": 49,
+   "refus": 4,
+   "erreurs": 22,
+   "sature": false
+  },
+  "github": {
+   "appels": 0,
+   "refus": 0,
+   "erreurs": 0,
+   "sature": false
+  },
+  "cerebras": {
+   "appels": 0,
+   "refus": 0,
+   "erreurs": 0,
+   "sature": false
+  },
+  "cloudflare": {
+   "appels": 0,
+   "refus": 0,
+   "erreurs": 0,
+   "sature": false
+  },
+  "zai": {
+   "appels": 0,
+   "refus": 0,
+   "erreurs": 0,
+   "sature": false
   },
   "openrouter": {
-   "appels": 46,
-   "refus": 244,
+   "appels": 5,
+   "refus": 13,
    "erreurs": 0,
    "sature": true
   }
@@ -215,60 +257,6 @@
    "le": "2026-11-24T23:33:25+01:00"
   }
  ],
- "sujets_remis": 0,
- "resume": "⚠️ En panne : mistral",
- "essai_nuit": {
-  "le": "2026-11-27T11:33:33+01:00",
-  "resultats": [
-   {
-    "nom": "Tests du code (montage compris)",
-    "ok": false,
-    "detail": "Command '['/opt/hostedtoolcache/Python/3.12.16/x64/bin/python', '-m', 'unittest', 'discover', '-s', 'tests']' timed out after 1200 seconds",
-    "duree_s": 1200.1
-   },
-   {
-    "nom": "Voix d'homme (Chatterbox)",
-    "ok": true,
-    "detail": "3.8 s de voix",
-    "duree_s": 66.2
-   },
-   {
-    "nom": "Calage des mots (Whisper)",
-    "ok": true,
-    "detail": "7 mots entendus",
-    "duree_s": 0.3
-   },
-   {
-    "nom": "Téléchargement d'une vidéo TikTok d'origine",
-    "ok": true,
-    "detail": "@bbcnews : 85 s",
-    "duree_s": 2.6
-   },
-   {
-    "nom": "Recadrage et agrandissement (OpenCV)",
-    "ok": true,
-    "detail": "visage : 0.6050000190734863, photo agrandie",
-    "duree_s": 1.1
-   },
-   {
-    "nom": "Orthographe (LanguageTool)",
-    "ok": true,
-    "detail": "1 faute(s) vue(s)",
-    "duree_s": 0.7
-   },
-   {
-    "nom": "IA qui écrit",
-    "ok": true,
-    "detail": "groq:openai/gpt-oss-120b",
-    "duree_s": 8.3
-   },
-   {
-    "nom": "IA qui voit",
-    "ok": true,
-    "detail": "gemini:gemini-flash-lite-latest",
-    "duree_s": 20.2
-   }
-  ],
-  "ok": false
- }
+ "sujets_remis": 1,
+ "resume": "⚠️ En panne : mistral, github, cerebras, cloudflare, zai"
 }
