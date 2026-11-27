@@ -1,6 +1,46 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T08:15:11+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 83 sujet(s) au-dessus des seuils — en tête : « Semi-remorque perd le contrôle sur autoroute Ohio »"
+  },
+  {
+   "date": "2026-11-27T08:08:21+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Explosion géante de l'armée en Iowa » (66 s, 15 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
+   "date": "2026-11-27T07:56:26+01:00",
+   "niveau": "erreur",
+   "texte": "❌ « Afghanistan : les femmes privées de nom officiel » : vidéo impossible après 4 tentatives (sujet suivant)"
+  },
+  {
+   "date": "2026-11-27T07:53:20+01:00",
+   "niveau": "attention",
+   "texte": "🔁 « Afghanistan : les femmes privées de nom officiel » : étape ratée (list index out of range) — reprise 4/4 à cette étape en mode secours"
+  },
+  {
+   "date": "2026-11-27T07:50:13+01:00",
+   "niveau": "attention",
+   "texte": "🔁 « Afghanistan : les femmes privées de nom officiel » : étape ratée (list index out of range) — reprise 3/4 à cette étape"
+  },
+  {
+   "date": "2026-11-27T07:47:09+01:00",
+   "niveau": "attention",
+   "texte": "🔁 « Afghanistan : les femmes privées de nom officiel » : étape ratée (list index out of range) — reprise 2/4 à cette étape"
+  },
+  {
+   "date": "2026-11-27T06:14:31+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 84 sujet(s) au-dessus des seuils — en tête : « Afghanistan : les femmes privées de nom officiel »"
+  },
+  {
+   "date": "2026-11-27T04:14:08+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 83 sujet(s) au-dessus des seuils — en tête : « Afghanistan : les femmes privées de nom officiel »"
+  },
+  {
    "date": "2026-11-27T03:00:00+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Parade Macy's reportée: premier report » (71 s, 15 écrans illustrés) — à regarder puis cocher « À publier »"
