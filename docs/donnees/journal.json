@@ -1,6 +1,26 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T07:56:26+01:00",
+   "niveau": "erreur",
+   "texte": "❌ « Afghanistan : les femmes privées de nom officiel » : vidéo impossible après 4 tentatives (sujet suivant)"
+  },
+  {
+   "date": "2026-11-27T07:53:20+01:00",
+   "niveau": "attention",
+   "texte": "🔁 « Afghanistan : les femmes privées de nom officiel » : étape ratée (list index out of range) — reprise 4/4 à cette étape en mode secours"
+  },
+  {
+   "date": "2026-11-27T07:50:13+01:00",
+   "niveau": "attention",
+   "texte": "🔁 « Afghanistan : les femmes privées de nom officiel » : étape ratée (list index out of range) — reprise 3/4 à cette étape"
+  },
+  {
+   "date": "2026-11-27T07:47:09+01:00",
+   "niveau": "attention",
+   "texte": "🔁 « Afghanistan : les femmes privées de nom officiel » : étape ratée (list index out of range) — reprise 2/4 à cette étape"
+  },
+  {
    "date": "2026-11-27T06:14:31+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 84 sujet(s) au-dessus des seuils — en tête : « Afghanistan : les femmes privées de nom officiel »"
