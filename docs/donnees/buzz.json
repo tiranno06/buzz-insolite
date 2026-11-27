@@ -1,148 +1,148 @@
 {
- "maj": "2026-11-27T00:17:46+01:00",
+ "maj": "2026-11-27T02:13:07+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:15:38+01:00"
+   "le": "2026-11-27T02:10:53+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:15:42+01:00"
+   "le": "2026-11-27T02:10:56+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:15:45+01:00"
+   "le": "2026-11-27T02:11:00+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:15:48+01:00"
+   "le": "2026-11-27T02:11:04+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:15:52+01:00"
+   "le": "2026-11-27T02:11:07+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-27T00:15:56+01:00"
+   "le": "2026-11-27T02:11:10+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:00+01:00"
+   "le": "2026-11-27T02:11:14+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:04+01:00"
+   "le": "2026-11-27T02:11:18+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:08+01:00"
+   "le": "2026-11-27T02:11:23+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:12+01:00"
+   "le": "2026-11-27T02:11:27+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:16+01:00"
+   "le": "2026-11-27T02:11:31+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:21+01:00"
+   "le": "2026-11-27T02:11:34+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:25+01:00"
+   "le": "2026-11-27T02:11:38+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-27T00:16:28+01:00"
+   "le": "2026-11-27T02:11:41+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:32+01:00"
+   "le": "2026-11-27T02:11:45+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:35+01:00"
+   "le": "2026-11-27T02:11:48+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:40+01:00"
+   "le": "2026-11-27T02:11:52+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:43+01:00"
+   "le": "2026-11-27T02:11:56+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:48+01:00"
+   "le": "2026-11-27T02:12:00+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:53+01:00"
+   "le": "2026-11-27T02:12:04+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:16:57+01:00"
+   "le": "2026-11-27T02:12:08+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:17:01+01:00"
+   "le": "2026-11-27T02:12:12+01:00"
   },
   "skynews": {
    "ok": true,
-   "videos": 15,
-   "le": "2026-11-27T00:17:05+01:00"
+   "videos": 30,
+   "le": "2026-11-27T02:12:15+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:17:08+01:00"
+   "le": "2026-11-27T02:12:19+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:17:11+01:00"
+   "le": "2026-11-27T02:12:23+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:17:16+01:00"
+   "le": "2026-11-27T02:12:27+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:17:19+01:00"
+   "le": "2026-11-27T02:12:31+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T00:17:22+01:00"
+   "le": "2026-11-27T02:12:36+01:00"
   }
  },
- "lues": 794,
+ "lues": 809,
  "retenues": 1,
  "sujets": [
   {
@@ -322,16 +322,16 @@
   },
   {
    "titre": "Christ le Rédempteur apparaît au-dessus des nuages",
-   "resume": "Un visiteur a filmé le monument brésilien enveloppé de nuages, créant un effet spectaculaire. La scène a été décrite comme un « cadeau de Dieu ».",
+   "resume": "Un homme a filmé le Christ Rédempteur qui semble surgir au-dessus d'un voile de nuages à Rio de Janeiro. Il décrit ce phénomène comme un « cadeau de Dieu ».",
    "mots_cles": [
-    "Christ le Rédempteur",
-    "nuages",
-    "Rio"
+    "Christ Rédempteur",
+    "Rio",
+    "nuages"
    ],
    "mots_cles_en": [
     "Christ the Redeemer",
-    "clouds",
-    "Rio"
+    "Rio",
+    "clouds"
    ],
    "hashtags": [
     "christredeemer",
@@ -346,10 +346,10 @@
      "id": "7712406425690983694",
      "compte": "dailymail",
      "url": "https://www.tiktok.com/@dailymail/video/7712406425690983694",
-     "vues": 3800000,
-     "jaime": 809900,
-     "commentaires": 6044,
-     "partages": 40500,
+     "vues": 4200000,
+     "jaime": 889200,
+     "commentaires": 6504,
+     "partages": 43800,
      "date": 1795684610,
      "texte": "A man in Rio de Janeiro captured a breathtaking sight of Christ the Redeemer appearing above a blanket of rolling clouds, describing the moment as a ‘gift from God’. Marcio Amaro was visiting his late godfather-in-law’s vacant property with his wife and cousin when his cousin spotted the extraordinary view from the house. Even his wife, who had lived there all her life, had never witnessed anythin",
      "indisponible": false,
@@ -358,13 +358,13 @@
    ],
    "sous_seuils": false,
    "id": "8d1c74a7b1",
-   "score": 1607,
-   "derniere_vue": 1795735055.5051353,
-   "vues": 3800000,
-   "jaime": 809900,
-   "commentaires": 6044,
+   "score": 1618,
+   "derniere_vue": 1795741973.2761145,
+   "vues": 4200000,
+   "jaime": 889200,
+   "commentaires": 6504,
    "hashtags_viraux": [],
-   "medias": 12,
+   "medias": 6,
    "tendance": null,
    "statut": "sans_source",
    "vu_le": "2026-11-26T17:23:54+01:00"
@@ -1180,6 +1180,56 @@
    "vu_le": "2026-11-26T13:26:29+01:00"
   },
   {
+   "titre": "Octogénaire place autocollant anti-gouvernemental sur bouclier",
+   "resume": "Une femme de 80 ans, surnommée « Mère de la Révolution », a collé un autocollant anti-gouvernemental sur le bouclier d'un policier à Tirana. Elle participe aux manifestations étudiantes contre le gouvernement albanais.",
+   "mots_cles": [
+    "Albanie",
+    "protestation",
+    "autocollant"
+   ],
+   "mots_cles_en": [
+    "Albania",
+    "protest",
+    "sticker"
+   ],
+   "hashtags": [
+    "albanie",
+    "protestation",
+    "autocollant"
+   ],
+   "insolite": 6,
+   "categorie": "politique",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712518579266014494",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712518579266014494",
+     "vues": 3100000,
+     "jaime": 302700,
+     "commentaires": 1622,
+     "partages": 9458,
+     "date": 1795710676,
+     "texte": "An 80-year-old protester walks right up to Albanian riot police and places an anti-government sticker on an officer’s shield. Known as the “Mother of the Revolution,” the woman joins student-led demonstrations in Tirana as protesters mark nearly 200 consecutive day of anti-government rallies. The sticker carries a message directed at Socialist Prime Minister Edi Rama.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712518579266014494?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "91256d4b36",
+   "score": 634,
+   "derniere_vue": 1795741973.2761145,
+   "vues": 3100000,
+   "jaime": 302700,
+   "commentaires": 1622,
+   "hashtags_viraux": [],
+   "medias": 3,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T02:13:07+01:00"
+  },
+  {
    "titre": "80 ans, proteste contre le gouvernement albanais",
    "resume": "Une octogénaire, surnommée « Mère de la Révolution », a collé un autocollant anti-gouvernemental sur le bouclier d’un policier à Tirana. Elle participe aux manifestations qui durent près de 200 jours.",
    "mots_cles": [
@@ -1525,6 +1575,61 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T20:46:45+01:00",
    "video_id": "20261125-163217-1"
+  },
+  {
+   "titre": "Famille réclame maintien du cannabis médical au Royaume-Uni",
+   "resume": "Une mère britannique alerte le Premier ministre sur le risque de mort de son fils si le cannabis médical devient indisponible. Elle demande la continuité de l'accès au traitement.",
+   "mots_cles": [
+    "cannabis médical",
+    "Royaume-Uni",
+    "épilepsie"
+   ],
+   "mots_cles_en": [
+    "medical cannabis",
+    "UK",
+    "epilepsy"
+   ],
+   "hashtags": [
+    "cannabis",
+    "epilepsie"
+   ],
+   "insolite": 6,
+   "categorie": "sante",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712572550936677654",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7712572550936677654",
+     "vues": 1500000,
+     "jaime": 181600,
+     "commentaires": 1880,
+     "partages": 13100,
+     "date": 1795723209,
+     "texte": "Joanne said her 17-year-old son Ben will die without an epilepsy medicine which is set to become inaccessible in the UK. She's calling on the prime minister to ensure medical cannabis will continue to be available. #MedicalCannabis #Health #Bedica #Bedrolite #BBCNews",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712572550936677654?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "38d429ccb1",
+   "score": 477,
+   "derniere_vue": 1795741973.2761145,
+   "vues": 1500000,
+   "jaime": 181600,
+   "commentaires": 1880,
+   "hashtags_viraux": [
+    "medicalcannabis",
+    "health",
+    "bedica",
+    "bedrolite",
+    "bbcnews"
+   ],
+   "medias": 11,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T02:13:07+01:00"
   },
   {
    "titre": "Son TikTok pour arrêter les pensées intrusives",
@@ -2398,6 +2503,56 @@
    "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
+   "titre": "Système IA déclenche canon à eau au ski",
+   "resume": "Un système de suppression d'incendie automatisé a activé un canon à eau au plafond d'un stand de restauration du Wanlong Ski Resort en Chine, inondant le comptoir. La scène a provoqué la panique parmi les clients.",
+   "mots_cles": [
+    "IA",
+    "ski",
+    "Chine",
+    "canon à eau"
+   ],
+   "mots_cles_en": [
+    "AI",
+    "ski resort",
+    "water cannon"
+   ],
+   "hashtags": [
+    "chineski",
+    "watercannon"
+   ],
+   "insolite": 7,
+   "categorie": "tech",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712432376709680398",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712432376709680398",
+     "vues": 2000000,
+     "jaime": 190000,
+     "commentaires": 2776,
+     "partages": 35400,
+     "date": 1795690673,
+     "texte": "AI really said better safe than sorry 😂 An AI-powered fire suppression system caused chaos at a food stall in a Chinese ski resort after triggering its ceiling-mounted water cannon and soaking the counter. The incident happened at Wanlong Ski Resort in Hebei province, with footage showing the powerful jet of water blasting the stall as startled customers looked on. Resort managers later said the s",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712432376709680398?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "141fc7daa2",
+   "score": 299,
+   "derniere_vue": 1795741973.2761145,
+   "vues": 2000000,
+   "jaime": 190000,
+   "commentaires": 2776,
+   "hashtags_viraux": [],
+   "medias": 3,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T00:17:46+01:00"
+  },
+  {
    "titre": "Étude britannique : baisse du sexe, hausse du porno",
    "resume": "Une enquête nationale révèle que les jeunes adultes britanniques ont moins de relations sexuelles que les générations précédentes, tout en augmentant leur consommation de pornographie et de sexting. C’est la première fois que le sondage Natsal couvre ces aspects.",
    "mots_cles": [
@@ -2856,6 +3011,56 @@
    "vu_le": "2026-11-26T01:00:57+01:00"
   },
   {
+   "titre": "Victoire juridique pour le gel des loyers à New York",
+   "resume": "Un juge de Manhattan a rejeté la contestation des propriétaires contre le gel des loyers, maintenant la mesure pour près d'un million de logements. La décision renforce la protection des locataires.",
+   "mots_cles": [
+    "New York",
+    "gel des loyers",
+    "justice"
+   ],
+   "mots_cles_en": [
+    "New York",
+    "rent freeze",
+    "court"
+   ],
+   "hashtags": [
+    "newyork",
+    "gel",
+    "loyers"
+   ],
+   "insolite": 4,
+   "categorie": "economie",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712438848134974734",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712438848134974734",
+     "vues": 1200000,
+     "jaime": 207800,
+     "commentaires": 3632,
+     "partages": 3938,
+     "date": 1795692211,
+     "texte": "New York Mayor Zohran Mamdani has won a major legal victory after a judge rejected a challenge from landlords seeking to overturn his rent freeze for around one million rent-stabilized homes. A Manhattan judge ruled that the measure, which prevents rent increases on eligible one- and two-year leases, had a ‘rational basis’ and could remain in place. Celebrating the decision, Mamdani said it was a ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712438848134974734?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "9a05e0fbfe",
+   "score": 213,
+   "derniere_vue": 1795741973.2761145,
+   "vues": 1200000,
+   "jaime": 207800,
+   "commentaires": 3632,
+   "hashtags_viraux": [],
+   "medias": 19,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T02:13:07+01:00"
+  },
+  {
    "titre": "Arnaque consoles jeux en ligne",
    "resume": "Des annonces sur les plateformes de seconde main vendent des consoles de jeux fictives. Les victimes reçoivent uniquement une photo du produit.",
    "mots_cles": [
@@ -2910,10 +3115,10 @@
    "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
-   "titre": "Escalateur accéléré force les étudiants à sauter",
-   "resume": "À l’université BRAC au Bangladesh, un escalateur s’est mis à fonctionner à grande vitesse, obligeant les usagers à sauter. Aucun blessé grave n’a été signalé, mais la vidéo a fait le buzz.",
+   "titre": "Escalier roulant accéléré force étudiants à sauter",
+   "resume": "À l'Université BRAC au Bangladesh, un escalateur a soudainement augmenté sa vitesse, obligeant les étudiants à sauter pour éviter d'être emportés. L'incident a été filmé et partagé en ligne.",
    "mots_cles": [
-    "escalateur",
+    "escalator",
     "Bangladesh",
     "accident"
    ],
@@ -2935,10 +3140,10 @@
      "id": "7712510013171911949",
      "compte": "dailymail",
      "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
-     "vues": 3400000,
-     "jaime": 226300,
-     "commentaires": 2242,
-     "partages": 15400,
+     "vues": 4000000,
+     "jaime": 272100,
+     "commentaires": 2668,
+     "partages": 18000,
      "date": 1795708700,
      "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
      "sous_seuils": true,
@@ -2947,12 +3152,12 @@
     }
    ],
    "sous_seuils": true,
-   "id": "634533fbd6",
-   "score": 170,
-   "derniere_vue": 1795735055.5051353,
-   "vues": 3400000,
-   "jaime": 226300,
-   "commentaires": 2242,
+   "id": "2816735afa",
+   "score": 171,
+   "derniere_vue": 1795741973.2761145,
+   "vues": 4000000,
+   "jaime": 272100,
+   "commentaires": 2668,
    "hashtags_viraux": [
     "bangladesh",
     "viral",
@@ -2963,7 +3168,7 @@
    "medias": 0,
    "tendance": null,
    "statut": "nouveau",
-   "vu_le": "2026-11-27T00:17:46+01:00"
+   "vu_le": "2026-11-27T02:13:07+01:00"
   },
   {
    "titre": "Sabrina Bahsoon, known globally as Tube Girl, wants hospitals to offer a series of tests a",
@@ -3477,62 +3682,6 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
-   "titre": "Octogénaire place autocollant anti-gouvernemental à Tirana",
-   "resume": "Une femme de 80 ans, surnommée « Mère de la Révolution », a collé un sticker sur le bouclier d'un policier anti-émeute à Tirana. Elle participe aux manifestations étudiantes contre le gouvernement albanais.",
-   "mots_cles": [
-    "m",
-    "a",
-    "n",
-    "i",
-    "f",
-    "e"
-   ],
-   "mots_cles_en": [
-    "p",
-    "r",
-    "o",
-    "t",
-    "e",
-    "s"
-   ],
-   "hashtags": [
-    "protestation",
-    "albanie",
-    "mèrederevolution"
-   ],
-   "insolite": 5,
-   "categorie": "politique",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712518579266014494",
-     "compte": "foxnews",
-     "url": "https://www.tiktok.com/@foxnews/video/7712518579266014494",
-     "vues": 2200000,
-     "jaime": 222300,
-     "commentaires": 1273,
-     "partages": 6827,
-     "date": 1795710676,
-     "texte": "An 80-year-old protester walks right up to Albanian riot police and places an anti-government sticker on an officer’s shield. Known as the “Mother of the Revolution,” the woman joins student-led demonstrations in Tirana as protesters mark nearly 200 consecutive day of anti-government rallies. The sticker carries a message directed at Socialist Prime Minister Edi Rama.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712518579266014494?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "54d53fcaee",
-   "score": 144,
-   "derniere_vue": 1795732000.8349352,
-   "vues": 2200000,
-   "jaime": 222300,
-   "commentaires": 1273,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T23:26:47+01:00"
-  },
-  {
    "titre": "Massachusetts : femme poursuivie par des dindes sauvages",
    "resume": "Une femme a été poursuivie par des dindes sauvages avant de se réfugier dans une voiture. Les autorités rappellent que ces animaux, bien que sauvages, peuvent être agressifs.",
    "mots_cles": [
@@ -3583,6 +3732,56 @@
    "medias": 3,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Accident de camion-citerne à Gizeh, incendie meurtrier",
+   "resume": "Un camion transportant des produits pétroliers s'est renversé dans la gouvernorat de Gizeh, déclenchant un incendie qui a fait au moins 31 morts et 21 blessés. Les autorités sanitaires ont confirmé les victimes.",
+   "mots_cles": [
+    "camion-citerne",
+    "Gizeh",
+    "incendie"
+   ],
+   "mots_cles_en": [
+    "tanker truck",
+    "Giza",
+    "fire"
+   ],
+   "hashtags": [
+    "tanker",
+    "giza",
+    "incendie"
+   ],
+   "insolite": 5,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712258353673620749",
+     "compte": "cnn",
+     "url": "https://www.tiktok.com/@cnn/video/7712258353673620749",
+     "vues": 1700000,
+     "jaime": 80000,
+     "commentaires": 2169,
+     "partages": 12800,
+     "date": 1795650088,
+     "texte": "A tanker truck carrying petroleum products crashed in Egypt’s Giza governorate Wednesday, igniting a massive fire that killed at least 31 people and injured 21 others, according to the Egyptian Ministry of Health and Population.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712258353673620749?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "d6d8e1865b",
+   "score": 133,
+   "derniere_vue": 1795741973.2761145,
+   "vues": 1700000,
+   "jaime": 80000,
+   "commentaires": 2169,
+   "hashtags_viraux": [],
+   "medias": 18,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T02:13:07+01:00"
   },
   {
    "titre": "TAS proclame le Sénégal champion de l’AFCON 2025",
@@ -4259,6 +4458,56 @@
    "vu_le": "2026-11-26T03:01:44+01:00"
   },
   {
+   "titre": "Vague emporte homme et chien à Cannon Beach",
+   "resume": "Une grosse vague a submergé un homme et son chien sur la plage de Cannon Beach, aux États-Unis, les entraînant dans l'océan. Les secours ont été alertés.",
+   "mots_cles": [
+    "Cannon Beach",
+    "vague",
+    "accident"
+   ],
+   "mots_cles_en": [
+    "Cannon Beach",
+    "wave",
+    "accident"
+   ],
+   "hashtags": [
+    "cannonbeach",
+    "wave",
+    "accident"
+   ],
+   "insolite": 6,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712159161118723350",
+     "compte": "brutofficiel",
+     "url": "https://www.tiktok.com/@brutofficiel/video/7712159161118723350",
+     "vues": 1300000,
+     "jaime": 54900,
+     "commentaires": 445,
+     "partages": 3307,
+     "date": 1795626961,
+     "texte": "Une vague emporte brutalement un homme et son chien à Cannon Beach, aux États-Unis.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712159161118723350?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "b9860fdcbf",
+   "score": 87,
+   "derniere_vue": 1795741973.2761145,
+   "vues": 1300000,
+   "jaime": 54900,
+   "commentaires": 445,
+   "hashtags_viraux": [],
+   "medias": 6,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T19:24:57+01:00"
+  },
+  {
    "titre": "Condamnation pour vandalisme statue Vierge Porto-Vecchio",
    "resume": "Deux jeunes ont été condamnés à trois mois de prison ferme pour avoir vandalisé une statue de la Vierge à Porto-Vecchio. L’affaire relance le débat sur la liberté d’expression et le respect des symboles religieux.",
    "mots_cles": [
@@ -4412,57 +4661,6 @@
    "video_id": "20261125-224006-1"
   },
   {
-   "titre": "Système IA déclenche canon à eau au ski",
-   "resume": "Un dispositif de suppression d’incendie automatisé a activé un canon à eau, inondant un stand de restauration du Wanlong Ski Resort en Chine. La scène a suscité de nombreuses réactions en ligne.",
-   "mots_cles": [
-    "IA",
-    "ski",
-    "Chine",
-    "canon à eau"
-   ],
-   "mots_cles_en": [
-    "AI",
-    "ski",
-    "China",
-    "water cannon"
-   ],
-   "hashtags": [
-    "ski",
-    "chine"
-   ],
-   "insolite": 7,
-   "categorie": "tech",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712432376709680398",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712432376709680398",
-     "vues": 1800000,
-     "jaime": 171200,
-     "commentaires": 2591,
-     "partages": 32000,
-     "date": 1795690673,
-     "texte": "AI really said better safe than sorry 😂 An AI-powered fire suppression system caused chaos at a food stall in a Chinese ski resort after triggering its ceiling-mounted water cannon and soaking the counter. The incident happened at Wanlong Ski Resort in Hebei province, with footage showing the powerful jet of water blasting the stall as startled customers looked on. Resort managers later said the s",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712432376709680398?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "141fc7daa2",
-   "score": 74,
-   "derniere_vue": 1795735055.5051353,
-   "vues": 1800000,
-   "jaime": 171200,
-   "commentaires": 2591,
-   "hashtags_viraux": [],
-   "medias": 2,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-27T00:17:46+01:00"
-  },
-  {
    "titre": "Vol de colis filmé par caméra de surveillance",
    "resume": "Une femme a été prise en flagrant délit de vol de colis après l’avoir livré à domicile en Géorgie. L’entreprise Lululemon a remboursé le client mais avertit contre ces pratiques.",
    "mots_cles": [
@@ -4613,6 +4811,56 @@
    ],
    "statut": "nouveau",
    "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Table s'effondre sous le poids du repas de Thanksgiving",
+   "resume": "Une famille du New Jersey a vu sa table céder sous la charge du repas de Thanksgiving, provoquant un désordre mais aucun blessé grave. Le repas a pu être poursuivi.",
+   "mots_cles": [
+    "Thanksgiving",
+    "effondrement",
+    "table"
+   ],
+   "mots_cles_en": [
+    "Thanksgiving",
+    "table collapse",
+    "New Jersey"
+   ],
+   "hashtags": [
+    "thanksgiving",
+    "table",
+    "collapse"
+   ],
+   "insolite": 3,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712546664501808415",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712546664501808415",
+     "vues": 1400000,
+     "jaime": 53300,
+     "commentaires": 1327,
+     "partages": 8098,
+     "date": 1795719600,
+     "texte": "Here’s hoping your table can handle the Thanksgiving feast today! Last Thanksgiving, a New Jersey family was wrapping up a holiday speech when their table suddenly gave way under the weight of all the food. Fortunately, the family managed to salvage enough food to carry on with their celebration. But the video has been pointed to as a host’s (and their guests’) worst nightmare.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712546664501808415?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "ba5fd18013",
+   "score": 66,
+   "derniere_vue": 1795741973.2761145,
+   "vues": 1400000,
+   "jaime": 53300,
+   "commentaires": 1327,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T02:13:07+01:00"
   },
   {
    "titre": "GTA 6 rend hommage à l’orque Lolita",
@@ -5327,62 +5575,6 @@
    "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
-   "titre": "Accident de camion-citerne à Gizeh",
-   "resume": "Un camion-citerne transportant des produits pétroliers a percuté à Gizeh, Égypte, provoquant un incendie meurtrier. Au moins 31 personnes sont décédées.",
-   "mots_cles": [
-    "a",
-    "c",
-    "c",
-    "i",
-    "d",
-    "e"
-   ],
-   "mots_cles_en": [
-    "a",
-    "c",
-    "c",
-    "i",
-    "d",
-    "e"
-   ],
-   "hashtags": [
-    "accident",
-    "camionciterne",
-    "egypte"
-   ],
-   "insolite": 5,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712258353673620749",
-     "compte": "cnn",
-     "url": "https://www.tiktok.com/@cnn/video/7712258353673620749",
-     "vues": 1100000,
-     "jaime": 50700,
-     "commentaires": 1513,
-     "partages": 8026,
-     "date": 1795650088,
-     "texte": "A tanker truck carrying petroleum products crashed in Egypt’s Giza governorate Wednesday, igniting a massive fire that killed at least 31 people and injured 21 others, according to the Egyptian Ministry of Health and Population.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712258353673620749?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "2d75f51181",
-   "score": 35,
-   "derniere_vue": 1795695977.3247025,
-   "vues": 1100000,
-   "jaime": 50700,
-   "commentaires": 1513,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T13:26:29+01:00"
-  },
-  {
    "titre": "Sky's political correspondent Lucy McDaid asks whether the Number 10 policy on involving i",
    "resume": "Sky's political correspondent Lucy McDaid asks whether the Number 10 policy on involving influencers has backfired. Responding to the video and its removal, Max Balegde said his content is 'always meant to be light hearted and funny', insisted no malice was intended and apologised for 'any offence caused'. #skynews #uk #influencer #number10 ",
    "mots_cles": [],
@@ -5643,62 +5835,6 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-25T12:43:45+01:00"
-  },
-  {
-   "titre": "Vague emporte homme et chien à Cannon Beach",
-   "resume": "Une grosse vague a submergé un promeneur et son chien sur la plage de Cannon Beach, Oregon. L’incident a été filmé et partagé largement.",
-   "mots_cles": [
-    "C",
-    "a",
-    "n",
-    "n",
-    "o",
-    "n"
-   ],
-   "mots_cles_en": [
-    "C",
-    "a",
-    "n",
-    "n",
-    "o",
-    "n"
-   ],
-   "hashtags": [
-    "cannonbeach",
-    "wave",
-    "dog"
-   ],
-   "insolite": 5,
-   "categorie": "nature",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712159161118723350",
-     "compte": "brutofficiel",
-     "url": "https://www.tiktok.com/@brutofficiel/video/7712159161118723350",
-     "vues": 1100000,
-     "jaime": 47300,
-     "commentaires": 414,
-     "partages": 2801,
-     "date": 1795626961,
-     "texte": "Une vague emporte brutalement un homme et son chien à Cannon Beach, aux États-Unis.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712159161118723350?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "b9860fdcbf",
-   "score": 21,
-   "derniere_vue": 1795717485.4852874,
-   "vues": 1100000,
-   "jaime": 47300,
-   "commentaires": 414,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T19:24:57+01:00"
   },
   {
    "titre": "Bunker de cannabis découvert sous balançoire en Andalousie",
