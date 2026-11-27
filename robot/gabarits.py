@@ -94,7 +94,7 @@ FORTS = ("heurter", "exploser", "bruler", "tomber", "couler", "se_coucher")
 # ce que le TEXTE raconte, phrase par phrase (vidéo du Caire du 27/11 : la petite IA oubliait la moitié de l'accident ;
 # l'auteur : « tu ne reconstitues pas entièrement les faits »). Chaque étape dite = une action montrée.
 MOTS_ACTIONS = (("heurter", r"percut|heurt|collision|collisionn|accroch|perd(?:u)? le contr[ôo]le|fonce sur|perc[ée]"),
-                ("se_coucher", r"renvers|retourn|bascul|se couche|couch[ée]|d[ée]raill|sur le flanc|sur le toit"),
+                ("se_coucher", r"renvers|retourn|bascul|se couche|couch[ée]|d[ée]raill|sur le flanc|sur le toit|s'effondr|chavir"),
                 ("deverser", r"fuite|carburant|essence|gazole|hydrocarbure|d[ée]vers|se r[ée]pand|s'[ée]coul"),
                 ("bruler", r"prend feu|pris feu|en feu|flamm|incendi|br[ûu]l|embras|brasier"),
                 ("exploser", r"explos|d[ée]flagration|d[ée]tonation|souffle|fait sauter|d[ée]truit par"),
@@ -297,7 +297,21 @@ def _completer(f, script):
             r"\d+\s+(?:autres\s+)?(?:véhicules|voitures|camions)|propag|d'autres véhicules|bouchon|embouteill|gagne", p["ecrit"].lower())), None)
         if k is not None:
             f["_bouchon"] = dict(phrase_arrivee=max(1, feu - 1), phrase_feu=k)
-    deroule.sort(key=lambda e: _phrase(e.get("phrase"), n) or 0)
+    # ORDRE RÉEL des faits (Gizeh, 27/11 : « un conducteur… accusé d'avoir PERCUTÉ le camion » est dit à la fin → la voiture
+    # percutait le camion déjà en feu, en l'air). Un choc raconté APRÈS que sa cible s'est renversée, a pris feu ou explosé
+    # est remis AVANT : c'est la cause, pas la suite.
+    def ph_(e):
+        return _phrase(e.get("phrase"), n) or 0
+    for e in deroule:
+        if ACTIONS.get(str(e.get("action")).lower()) != "heurter":
+            continue
+        cible = e.get("cible") or principal["id"]
+        avant = [ph_(x) for x in deroule if x.get("qui") == cible and ACTIONS.get(str(x.get("action")).lower()) in
+                 ("se_coucher", "bruler", "exploser", "deverser")]
+        if avant and ph_(e) > min(avant):
+            e["phrase"] = max(1, min(avant))
+            e["_avant"] = True                         # (même phrase : le choc d'abord, puis le reste)
+    deroule.sort(key=lambda e: (ph_(e), 0 if e.get("_avant") else 1))
     f["acteurs"], f["deroule"] = acteurs, deroule
 
 
@@ -412,6 +426,11 @@ def _scene_3d(f, phrases_3d, script):
             if places[qui]["type"] == "arbre":             # un arbre se couche en entier, sur place
                 act.update(vers_position=places[qui].get("position", 0), angle=-85)
         actions.append(act)
+    # même phrase que le choc : la cible se renverse / prend feu / explose APRÈS l'impact (durée du choc + 0,3 s)
+    for h in [x for x in actions if x["faire"] == "heurter"]:
+        for x in actions:
+            if x["objet"] == h.get("cible") and x["phrase"] == h["phrase"] and x["faire"] in ("se_coucher", "bruler", "exploser", "deverser"):
+                x["retard"] = max(float(x.get("retard") or 0), float(h.get("duree") or 2.2) + 0.3)
     if typ in ("accident_route", "incendie", "explosion", "crash_avion") and not actions and objets:
         principal = objets[0]["id"]                                            # sans déroulé clair : l'objet principal avance
         actions.append(dict(objet=principal, faire="avancer", phrase=phrases_3d[0], duree=3.0, vers_position=0))

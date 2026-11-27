@@ -467,6 +467,37 @@ function feu(T) {
            lueur: new T.MeshBasicMaterial({ map: lueur, blending: T.AdditiveBlending, depthWrite: false, transparent: true }) };
 }
 
+// ------------------------------------------------------------------ TÔLE CABOSSÉE (27/11, l'auteur : « les dégâts sur le
+// véhicule sont inexistants ») : au choc, les points de la carrosserie proches de l'impact sont enfoncés dans le sens du
+// coup (plus fort au centre), avec un peu de froissé. Calculé une seule fois, à l'instant du choc : même image partout.
+function cabosser(T, g, point, sens, force, graine) {
+  if (!g || g.userData.cabosse) return;
+  g.userData.cabosse = true;
+  g.updateMatrixWorld(true);
+  const r = hasard(graine), R = 2.2 + force * 0.8, v = new T.Vector3();
+  g.traverse(m => {
+    if (!m.isMesh || !m.geometry?.attributes?.position) return;
+    m.geometry = m.geometry.clone();              // (les modèles partagent leur forme : on ne cabosse que celui-ci)
+    const pos = m.geometry.attributes.position, inv = new T.Matrix4().copy(m.matrixWorld).invert();
+    const sensLocal = sens.clone().transformDirection(inv);
+    for (let i = 0; i < pos.count; i++) {
+      v.fromBufferAttribute(pos, i).applyMatrix4(m.matrixWorld);
+      const d = v.distanceTo(point);
+      if (d > R) continue;
+      const k = Math.pow(1 - d / R, 2) * force;
+      v.fromBufferAttribute(pos, i);
+      v.addScaledVector(sensLocal, k * 0.9 / Math.max(1e-3, m.getWorldScale(new T.Vector3()).x));
+      v.x += (r() - 0.5) * 0.12 * k; v.y += (r() - 0.5) * 0.12 * k; v.z += (r() - 0.5) * 0.12 * k;
+      pos.setXYZ(i, v.x, v.y, v.z);
+    }
+    pos.needsUpdate = true; m.geometry.computeVertexNormals();
+  });
+}
+function couleursDe(g) {
+  const c = []; g?.traverse(m => { if (m.isMesh && m.material?.color) c.push("#" + m.material.color.getHexString()); });
+  return c.length ? c : ["#d8d8d8", "#333333"];
+}
+
 // ------------------------------------------------------------------ VRAIE FRACTURE (three-pinata, MIT, 27/11)
 // La pièce (citerne, cabine, mur…) est découpée en cellules de Voronoï : de vrais éclats de SA forme, faces de cassure
 // sombres (métal / béton brûlé). Graine fixe = mêmes éclats dans chaque morceau de rendu. Échec (modèle non fermé) → false.
@@ -658,14 +689,17 @@ export async function creer3d(sc, couche, T) {
   // CHOCS (heurter) : éclair, débris qui volent et retombent, caméra qui tremble (vidéo du Caire du 27/11 : « on ne voit pas l'accident »)
   const chocs = actions.filter(a => a.faire === "heurter").map((a, n) => {
     const r = hasard(97 + n * 13), debris = [];
-    for (let i = 0; i < 28; i++) {
-      const m = new T.Mesh(new T.BoxGeometry(0.25 + r() * 0.5, 0.1 + r() * 0.2, 0.2 + r() * 0.4), lambert(T, ["#d8d8d8", "#333", "#9aa", "#c0392b", "#e8e0c8"][i % 5]));
+    const teintes = [...couleursDe(groupes[a.objet]), ...couleursDe(groupes[a.cible])];
+    for (let i = 0; i < 40; i++) {
+      const verre = i % 4 === 0;                  // éclats de vitre bleutés, plus petits
+      const m = new T.Mesh(new T.BoxGeometry(verre ? 0.12 + r() * 0.2 : 0.25 + r() * 0.5, verre ? 0.03 : 0.08 + r() * 0.18, verre ? 0.1 + r() * 0.2 : 0.2 + r() * 0.4),
+        verre ? new T.MeshPhongMaterial({ color: 0xbfe0ff, transparent: true, opacity: 0.8, shininess: 120 }) : lambert(T, teintes[Math.floor(r() * teintes.length)]));
       m.visible = false; scene.add(m);
       debris.push({ m, vx: (r() - 0.3) * 14, vy: 4 + r() * 9, vz: (r() - 0.5) * 12, rx: r() * 9, ry: r() * 9 });
     }
     const eclair = new T.Sprite(new T.SpriteMaterial({ map: MATS.lueur.map, blending: T.AdditiveBlending, depthWrite: false, transparent: true }));
     eclair.visible = false; scene.add(eclair);
-    return { t: a.a + (a.d || 1), objet: a.objet, debris, eclair };
+    return { t: a.a + (a.d || 1), objet: a.objet, cible: a.cible, debris, eclair, n };
   });
   // FLAQUES (deverser) : le carburant s'étale sur la route ; s'il prend feu, les flammes couvrent toute la flaque
   const flaques = actions.filter(a => a.faire === "deverser").map(a => {
@@ -798,6 +832,13 @@ export async function creer3d(sc, couche, T) {
       const dt = t - ch.t, g = groupes[ch.objet], ta = g?.userData.taille || [4, 2, 2];
       const px = g ? g.position.x + ta[0] * 0.5 : 0, pz = g ? g.position.z : 0;
       if (dt >= 0 && !ch.pos) ch.pos = [px, pz];
+      if (dt >= 0 && !ch.cabosse) {               // la tôle des DEUX véhicules se cabosse au point d'impact
+        ch.cabosse = true;
+        const gc = groupes[ch.cible], point = new T.Vector3(ch.pos[0], 1.1, ch.pos[1]);
+        const sens = gc ? new T.Vector3(gc.position.x - g.position.x, 0, gc.position.z - g.position.z).normalize() : new T.Vector3(1, 0, 0);
+        cabosser(T, gc, point, sens, 1.0, 211 + ch.n);
+        cabosser(T, g, point, sens.clone().negate(), 1.3, 307 + ch.n);
+      }
       const [ix, iz] = ch.pos || [px, pz];
       ch.eclair.visible = dt >= 0 && dt < 0.5;
       if (ch.eclair.visible) { const k = 14 * (1 - dt / 0.5) + 4; ch.eclair.scale.set(k, k, 1); ch.eclair.position.set(ix, 1.5, iz); ch.eclair.material.opacity = 1 - dt / 0.5; }

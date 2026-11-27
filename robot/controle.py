@@ -543,8 +543,8 @@ def controle_video(fichier, script, dossier, B, journal=print, leger=False, sans
                         "-q:v", "4", img], check=False)
         if os.path.exists(img) and os.path.getsize(img) > 0:
             lots.append((i, img))
-    if anime:                                             # nouveau style : scènes dessinées par le robot, aucune image à juger
-        return fautifs
+    if anime:                                             # reconstitution 3D : une IA regarde chaque plan (27/11)
+        return _regarder_anime(lots, script, fautifs, B, journal, sans_ia)
     if sans_ia:
         B.saute("regard de l'IA sur la vidéo finie (mode secours)")
     for essai in range(0 if sans_ia else 3):
@@ -577,6 +577,72 @@ def controle_video(fichier, script, dossier, B, journal=print, leger=False, sans
             else:
                 import time; time.sleep(60 * (essai + 1))
     return fautifs
+
+
+CONSIGNE_3D = """Tu contrôles une RECONSTITUTION 3D animée (style maquette) d'un fait divers, pour une vidéo TikTok. Pour chaque
+image on te donne la phrase dite à ce moment. Signale seulement les VRAIS défauts visibles :
+- "flotte" : un véhicule, un bâtiment ou une personne en l'air alors qu'il devrait être au sol ;
+- "camera" : la caméra est dans un mur, un objet ou le sol, ou l'image est presque entièrement bouchée par un objet / de la fumée ;
+- "vide" : l'image ne montre presque rien (ciel vide, sol vide, noir) ;
+- "incoherent" : ce qu'on voit contredit la phrase (ex. un choc alors que la phrase parle des secours, un véhicule intact alors
+  qu'il vient d'exploser) ;
+- "texte" : un encadré ou une étiquette cache l'action principale.
+Une maquette simple, des couleurs vives, des flammes en particules sont NORMALES : ce ne sont pas des défauts.
+Réponds uniquement en JSON : {"images": [{"n": 1, "defaut": "aucun" | "flotte" | "camera" | "vide" | "incoherent" | "texte",
+"explication": "…"}]}"""
+
+
+def _regarder_anime(lots, script, fautifs, B, journal, sans_ia):
+    """Regard de l'IA sur la vidéo 3D finie (avant : aucun, les défauts n'étaient vus que par l'auteur). Un plan fautif est
+    rendu au robot (`principal` : plan large au 1er tour, action retirée au 2e)."""
+    if sans_ia or not lots:
+        if sans_ia:
+            B.saute("regard de l'IA sur la reconstitution 3D (mode secours)")
+        return fautifs
+    ph = script["phrases"]
+    for essai in range(3):
+        try:
+            for k in range(0, len(lots), 5):
+                paquet = lots[k:k + 5]
+                d, qui = ia.regarder_json(CONSIGNE_3D, "\n".join(f"Image {j + 1} = phrase « {ph[n]['ecrit']} »" for j, (n, _) in enumerate(paquet)),
+                                          [c for _, c in paquet], journal=journal)
+                for r in d.get("images") or []:
+                    try:
+                        n = paquet[int(r.get("n")) - 1][0]
+                    except (TypeError, ValueError, IndexError):
+                        continue
+                    if str(r.get("defaut") or "aucun").lower() not in ("aucun", "none", "ok", ""):
+                        fautifs[n] = (f"3D : {r.get('defaut')} — {str(r.get('explication') or '')[:120]}", "anime")
+            return fautifs
+        except ia.AucuneIA as e:
+            if essai == 2:
+                B.saute(f"regard de l'IA sur la reconstitution 3D (IA indisponible : {str(e)[:120]})")
+            else:
+                import time; time.sleep(60 * (essai + 1))
+    return fautifs
+
+
+def corriger_anime(script, fautifs, tour, journal=print):
+    """Plans 3D signalés : 1er tour = la caméra passe en plan large ; ensuite = les actions de cette phrase sont retirées
+    (sauf le feu / l'explosion qui portent le récit) et ses étiquettes enlevées. Renvoie le nombre de plans changés."""
+    anim, n = script.get("animation") or {}, 0
+    for i, (probleme, action) in fautifs.items():
+        if action != "anime" or i is None:
+            continue
+        for sc in anim.get("scenes") or []:
+            if sc.get("type") != "3d":
+                continue
+            if tour == 0:
+                sc.setdefault("cadres", {})[str(i)] = "large"; n += 1
+            else:
+                avant = len(sc.get("actions") or [])
+                sc["actions"] = [a for a in sc.get("actions") or [] if str(a.get("phrase")) != str(i) or a.get("faire") in ("bruler", "exploser")]
+                n += avant != len(sc["actions"])
+        for sc in anim.get("scenes") or []:
+            if i in (sc.get("phrases") or []) and tour > 0:
+                sc["etiquettes"] = []
+    journal(f"  reconstitution : {n} plan(s) corrigé(s) ({'plan large' if tour == 0 else 'actions retirées'})")
+    return n
 
 
 def phrase_absurde(t):

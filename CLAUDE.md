@@ -766,6 +766,20 @@ percuté s'écrasent (`ecrase`, échelle en longueur).
   dit « catastrophe naturelle » ou « météo ». Plans `inonder`, `trembler`, `effondrer`, `tempete`, `fuir` ; jamais sans
   caméra (`_cam` / `scenes3d`).
 
+## Gizeh r2 et qualité 3D automatique (27/11 au soir)
+Défauts vus par l'auteur : camion-citerne qui « s'élève » à 20 m (le scénario lui donnait `voler` sur « la fumée s'élève »),
+voiture qui percute le vide (choc raconté À LA FIN, joué après l'incendie), dégâts invisibles. Corrigé pour toutes les vidéos :
+- `reconstitution.valider` : `voler` / `tomber` seulement pour avion / hélico ; `gabarits._completer` : un choc raconté APRÈS
+  que sa cible s'est renversée / a brûlé / explosé est remis AVANT (`_avant`), et dans la même phrase la cible ne prend feu
+  qu'après l'impact (`retard` = durée du choc + 0,3 s) ; « s'effondre » / « chavire » = se renverse.
+- Vrais dégâts au choc : `scenes3d.cabosser` enfonce la carrosserie autour du point d'impact (les deux véhicules, géométrie
+  clonée, calculé une fois), 40 débris aux couleurs des deux véhicules (`couleursDe`) dont des éclats de vitre.
+- Plans jamais figés plus de 6 s (`realisateur._cam` ajoute plan large / vu de dessus / rapproché).
+- **IA qui regarde la reconstitution finie** (`controle._regarder_anime`, `CONSIGNE_3D` : objet qui flotte, caméra dans un
+  objet, image vide, incohérence avec la phrase, texte qui cache l'action) → `controle.corriger_anime` : 1er tour plan large,
+  2e tour actions de la phrase retirées (sauf feu / explosion), puis nouveau rendu ; 2 corrections au plus, le reste au bulletin.
+- L'après d'un accident (`APRES`) : police pour l'enquête, engins qui déblaient, circulation qui reprend.
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit

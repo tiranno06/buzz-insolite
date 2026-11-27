@@ -379,6 +379,15 @@ def _cam(coupes, types, duree, dense=False, feux=None, principal=None):
                and feux[s] < d - 0.5 else c, s) for d, c, s in coupes]
     if not coupes:                                      # jamais sans caméra (inondation du 27/11 : rendu planté)
         coupes = [(0.0, "large", principal or next(iter(types), None))]
+    # jamais plus de 6 s sur le même plan (Gizeh r2, 27/11 : 16 s figées) : on varie l'angle sur ce qu'on filmait
+    variantes, plein, k = ("large", "deverser", "secours"), [], 0   # (large, vu de dessus, rapproché)
+    for i, (d, c, s_) in enumerate(coupes):
+        plein.append((d, c, s_))
+        fin = coupes[i + 1][0] if i + 1 < len(coupes) else max(duree, d)
+        x = d + 6.0
+        while fin - x > 2.0:
+            plein.append((round(x, 2), variantes[k % 3] if variantes[k % 3] != c else variantes[(k + 1) % 3], s_)); k += 1; x += 6.0
+    coupes = plein
     cam = []
     for k, (debut, cle, suivre) in enumerate(coupes):
         fin = coupes[k + 1][0] - 0.04 if k + 1 < len(coupes) else max(debut + 1.5, duree)

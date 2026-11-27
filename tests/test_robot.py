@@ -1587,3 +1587,37 @@ class TestPhonetiqueEtBruitages(unittest.TestCase):
         finally:
             phonetique.GENRES.clear(); phonetique.GENRES.update(anciens)
 
+    def test_coherence_gizeh(self):
+        """Gizeh r2 (27/11) : camion-citerne qui « s'élève » à 20 m, voiture qui percute le vide après l'incendie."""
+        from robot import gabarits, reconstitution
+        dits = ["Un camion s'embrase.", "Au Caire.", "Le liquide s'embrase.", "Des voitures brûlent.", "La fumée noire s'élève.",
+                "Les ambulances arrivent.", "Le bilan.", "Un conducteur a été arrêté pour avoir percuté le camion.", "Et toi ?"]
+        script = {"titre": "t", "phrases": [{"ecrit": p} for p in dits]}
+        rep = {"objets": [{"id": "c", "type": "citerne", "voie": 2, "position": 0}, {"id": "v", "type": "voiture", "voie": 2, "position": -40}],
+               "plans": [{"phrase": 2, "actions": [{"objet": "c", "faire": "bruler"}]},
+                         {"phrase": 4, "actions": [{"objet": "c", "faire": "voler", "altitude": 20}]},
+                         {"phrase": 7, "actions": [{"objet": "v", "faire": "heurter", "cible": "c"}]}]}
+        sc = reconstitution.valider(rep, script, journal=lambda *_: None)
+        self.assertNotIn("voler", [a["faire"] for p in sc["plans"] for a in p["actions"]])        # un camion ne vole pas
+        a = gabarits.composer({"type": "accident_route", "lieu": "Le Caire", "_scenario": sc}, script)
+        trois = next(s_ for s_ in a["scenes"] if s_["type"] == "3d" and not s_.get("accroche"))
+        choc = next(x for x in trois["actions"] if x["faire"] == "heurter")
+        feu = next(x for x in trois["actions"] if x["faire"] == "bruler" and x["objet"] == "c")
+        self.assertLessEqual(choc["phrase"], feu["phrase"])                                       # le choc AVANT le feu
+        self.assertGreater(float(feu.get("retard") or 0) + feu["phrase"] * 10, choc["phrase"] * 10)
+
+    def test_controle_3d_et_plans_varies(self):
+        """27/11 : jamais plus de 6 s sur le même plan ; un plan 3D signalé par l'IA passe en plan large, puis perd son action."""
+        from robot import realisateur, controle
+        cam = realisateur.plans_camera([{"objet": "c", "faire": "bruler", "a": 1.0}], [{"id": "c", "type": "citerne"}], "c", 30)
+        debuts = [c["a"] for c in cam[::2]]
+        self.assertTrue(all(b - a <= 6.5 for a, b in zip(debuts, debuts[1:])))
+        script = {"phrases": [{"ecrit": "a"}] * 4, "animation": {"scenes": [{"type": "3d", "phrases": [1, 2],
+                  "actions": [{"objet": "c", "faire": "voler", "phrase": 2}, {"objet": "c", "faire": "bruler", "phrase": 2}],
+                  "etiquettes": ["X"]}]}}
+        f = {2: ("3D : flotte", "anime")}
+        self.assertEqual(controle.corriger_anime(script, f, 0, lambda *_: None), 1)
+        self.assertEqual(script["animation"]["scenes"][0]["cadres"]["2"], "large")
+        controle.corriger_anime(script, f, 1, lambda *_: None)
+        self.assertEqual([a["faire"] for a in script["animation"]["scenes"][0]["actions"]], ["bruler"])
+

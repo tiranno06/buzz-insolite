@@ -476,8 +476,13 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 return
             journal(f"  vidéo finie (tour {tour + 1}) : {len(fautifs)} passage(s) à corriger : "
                     + ", ".join(f"{'vidéo' if i is None else f'écran {i + 1}'} ({p})" for i, (p, _) in fautifs.items()))
-            controle.corriger_ecrans(script, fautifs, dossier, B, journal, E.get("nom_voix", R["video"]["voix"]),
-                                     E.get("vitesse", 0.8), E["articles"])
+            if anime and any(a == "anime" for _, a in fautifs.values()):
+                if tour >= 2 or not controle.corriger_anime(script, fautifs, tour, journal):
+                    return                                    # (rendu long : 2 corrections au plus, le reste au bulletin)
+                fautifs = {i: v for i, v in fautifs.items() if v[1] != "anime"}
+            if fautifs:
+                controle.corriger_ecrans(script, fautifs, dossier, B, journal, E.get("nom_voix", R["video"]["voix"]),
+                                         E.get("vitesse", 0.8), E["articles"])
             avant = {p.get("uid"): p.get("_sig") for p in script["phrases"]}
             E["duree"] = monter(script, dossier, fichier)
             a_revoir = {i for i, p in enumerate(script["phrases"]) if avant.get(p.get("uid")) != p.get("_sig")}

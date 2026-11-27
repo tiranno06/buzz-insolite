@@ -114,6 +114,10 @@ def valider(d, script, journal=print):
                 continue
             if a["faire"] in ("heurter", "arroser") and a.get("cible") not in ids - {a["objet"]}:
                 continue
+            typ_o = next((o["type"] for o in objets if o["id"] == a["objet"]), "")
+            if a["faire"] in ("voler", "tomber") and typ_o not in ("avion", "helico"):
+                journal(f"  reconstitution, phrase {ph} : « {typ_o} » ne vole pas → action retirée")
+                continue                                # (Gizeh, 27/11 : « la fumée s'élève » → le camion-citerne montait à 20 m)
             x = dict(objet=a["objet"], faire=a["faire"], phrase=ph)
             for cle in ("vers_position", "altitude"):
                 if _num(a.get(cle)) is not None:
