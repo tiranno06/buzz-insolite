@@ -1,6 +1,203 @@
 {
  "videos": [
   {
+   "id": "20261127-100236-1",
+   "tag": "v-20261127-100236-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-100236-1/buzz-20261127-100236-1.mp4",
+   "titre": "Une octogénaire défie le gouvernement albanais",
+   "accroche": "MÈRE DE LA RÉVOLUTION",
+   "sujet_id": "5089d80cf9",
+   "sujet": "80 ans, proteste contre le gouvernement albanais",
+   "buzz": {
+    "vues": 2500000,
+    "jaime": 251100,
+    "commentaires": 1400,
+    "score": 615
+   },
+   "description": "Une octogénaire surnommée la Mère de la Révolution marque les esprits lors des manifestations en Albanie. 🇦🇱",
+   "question": "Et toi, penses-tu que la voix d'une seule personne peut changer les choses ?",
+   "hashtags": [
+    "#albanie",
+    "#tirana",
+    "#protestation",
+    "#mère",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 73.3,
+   "sources": [
+    {
+     "media": "sudouest.fr",
+     "titre": "« Révolution des flamants roses » en Albanie : au-delà du projet immobilier Kushner-Trump, les racines de la contestation politique",
+     "lien": "https://www.sudouest.fr/international/revolution-des-flamants-roses-en-albanie-au-dela-du-projet-immobilier-kushner-trump-les-racines-de-la-contestation-politique-29852347.php"
+    },
+    {
+     "media": "nicematin.com",
+     "titre": "« L’Albanie n’est pas à vendre » : des dizaines de milliers de personnes se mobilisent à Tirana contre le projet immobilier touristique lié à la famille de Donald Trump",
+     "lien": "https://www.nicematin.com/societe/l-albanie-n-est-pas-a-vendre-des-dizaines-de-milliers-de-personnes-se-mobilisent-a-tirana-contre-le-projet-immobilier-touristique-lie-a-la-famille-de-donald-trump-10688108"
+    },
+    {
+     "media": "humanite.fr",
+     "titre": "En Albanie, les étudiants relancent le mouvement de contestation contre le gouvernement",
+     "lien": "https://www.humanite.fr/monde/albanie/en-albanie-les-etudiants-relancent-le-mouvement-de-contestation-contre-le-gouvernement"
+    },
+    {
+     "media": "lefigaro.fr",
+     "titre": "En Albanie, la lagune de Narta, berceau de la « révolution des flamants roses »",
+     "lien": "https://www.lefigaro.fr/international/en-albanie-la-lagune-de-narta-berceau-de-la-revolution-des-flamants-roses-20261104"
+    },
+    {
+     "media": "rfi.fr",
+     "titre": "Albanie: le rejet du tout tourisme avec la «révolution des flamants roses»",
+     "lien": "https://www.rfi.fr/fr/podcasts/reportage-international/20260626-albanie-le-rejet-du-tout-tourisme-avec-la-r%C3%A9volution-des-flamants-roses"
+    },
+    {
+     "media": "lexpress.fr",
+     "titre": "En Albanie, la \"révolution des flamants roses\" et le parfum du gaz américain",
+     "lien": "https://www.lexpress.fr/monde/europe/en-albanie-la-revolution-des-flamants-roses-et-le-parfum-du-gaz-americain-VLPAUCGHNVF77JQJLKK7UQHS6M/"
+    },
+    {
+     "media": "fr.news.yahoo.com",
+     "titre": "Albanie : la « révolution des flamants roses » grandit contre Rama et le projet Kushner",
+     "lien": "https://fr.news.yahoo.com/albanie-r%C3%A9volution-flamants-roses-grandit-161933884.html"
+    },
+    {
+     "media": "lemonde.fr",
+     "titre": "En Albanie, la « révolution des flamants roses » se radicalise pour répondre au « mépris » et à « l’indifférence » du premier ministre",
+     "lien": "https://www.lemonde.fr/international/article/2026/10/16/en-albanie-la-revolution-des-flamants-roses-se-radicalise-rien-ne-changera-si-on-n-est-pas-violents_6795031_3210.html"
+    },
+    {
+     "media": "lemonde.fr",
+     "titre": "« En Albanie, avec la “révolution des flamants roses”, le peuple refuse d’être réduit à une position de vassalité »",
+     "lien": "https://www.lemonde.fr/idees/article/2026/06/28/en-albanie-avec-la-revolution-des-flamants-roses-le-peuple-refuse-d-etre-reduit-a-une-position-de-vassalite_6716562_3232.html"
+    }
+   ],
+   "verification": {
+    "par": "openrouter:inclusionai/ling-3.2-flash:free",
+    "corrigees": 6,
+    "retirees": 5,
+    "problemes": [
+     "Aucun article ne mentionne une femme de 80 ans manifestant ; ce fait précis est absent des articles.",
+     "Le surnom de « Mère de la Révolution » et le statut de symbole de cette femme ne figurent dans aucun article ; aucune correction honnête n'est possible.",
+     "L'anecdote de l'autocollant collé sur le bouclier d'un policier est totalement absente des articles ; aucune correction honnête n'est possible.",
+     "La durée du mouvement n'est pas de près de 200 jours : les articles indiquent un début fin mai et 137 jours de manifestations mi-octobre.",
+     "Aucun article ne mentionne l'usage de gaz lacrymogènes ou de canons à eau par la police ; le seul élément de tension documenté est la vidéo d'un manifestant tra",
+     "Aucun bilan de blessés ni d'interpellations n'apparaît dans les articles ; ces chiffres sont inventés.",
+     "Les articles indiquent seulement que les manifestants réclament la démission d'Edi Rama ; aucun ne rapporte un refus explicite de sa part, et l'affirmation n'es",
+     "Les articles ne mentionnent ni flambée des prix de l'immobilier ni coût de la vie parmi les revendications ; ils évoquent la corruption, le manque de transparen",
+     "Aucun article ne fournit de chiffre sur l'émigration albanaise vers l'Union européenne ; ce nombre est absent des sources.",
+     "Aucun article ne mentionne une hausse du coût de la vie ni une flambée des prix de l'immobilier ; les manifestants dénoncent la corruption, le manque de transpa"
+    ]
+   },
+   "verifie": true,
+   "credits": [],
+   "style": "anime",
+   "extraits_perdus": 0,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 14,
+   "ecrans_total": 14,
+   "format": "buzz",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "Tirana, Albanie",
+   "humeur": "tension",
+   "categorie": "politique",
+   "texte": [
+    "Tu savais que des milliers d'Albanais manifestent contre le gouvernement à Tirana ?",
+    "Cette mobilisation s'inscrit dans un mouvement qui dure depuis plus de 130 jours.",
+    "Tout a commencé avec un projet immobilier de luxe soutenu par la famille de Donald Trump.",
+    "Jared Kushner prévoit d'investir 4 milliards d'euros sur le littoral.",
+    "Ce complexe menace une zone naturelle protégée où vivent des milliers d'oiseaux.",
+    "La mobilisation a ainsi été baptisée la révolution des flamants roses.",
+    "Le premier ministre Edi Rama défend ce projet pour attirer les touristes.",
+    "Mais les manifestants dénoncent la corruption et réclament sa démission immédiate.",
+    "Des dizaines de milliers de personnes ont envahi les rues de la capitale.",
+    "Les étudiants ont eux aussi rejoint la fronde pour exiger un changement radical.",
+    "La contestation a pris de l'ampleur après la diffusion d'une vidéo montrant un manifestant traîné au bord d'une falaise par des agents de sécurité sur le site du projet.",
+    "Les contestataires dénoncent aussi le surtourisme et ses atteintes à la biodiversité, ainsi que le manque de transparence du gouvernement.",
+    "Les manifestants dénoncent également les litiges fonciers jamais résolus et la menace pesant sur des écosystèmes fragiles.",
+    "La contestation pèse sur le projet d'adhésion de l'Albanie à l'Union européenne.",
+    "Et toi, tu soutiendrais cette mobilisation historique ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-27T10:42:57+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 5,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 6,
+     "restant_demandes": "999",
+     "limite_demandes": "1000",
+     "restant_mots": "3281"
+    },
+    "gemini": {
+     "appels": 5,
+     "refus": 1,
+     "erreurs": 3
+    },
+    "github": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 0
+    },
+    "openrouter": {
+     "appels": 3,
+     "refus": 5,
+     "erreurs": 0
+    }
+   },
+   "fabrication_s": 2421,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 57 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 2,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 59 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     }
+    ],
+    "sautes": [],
+    "corriges": 2,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "preuves": [],
+   "couverture_ms": 800,
+   "durees": {
+    "articles": 0,
+    "ecriture": 53,
+    "texte": 119,
+    "images": 4,
+    "voix": 55,
+    "montage": 2048,
+    "controle_final": 123,
+    "regles": 1,
+    "rangement": 7
+   },
+   "refaite": null,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261127-090511-1",
    "tag": "v-20261127-090511-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-090511-1/buzz-20261127-090511-1.mp4",

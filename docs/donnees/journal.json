@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T10:42:57+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Une octogénaire défie le gouvernement albanais » (73 s, 14 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-27T10:35:55+01:00",
    "niveau": "info",
    "texte": "🧹 Ménage : 15 vidéo(s) de l'ancien style supprimée(s) du site (il ne reste que le nouveau style)."
