@@ -22,8 +22,9 @@ OBJETS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "taxi", 
           "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau",
           "muret", "mur")
 ACTIONS = ("avancer", "freiner", "changer_voie", "deraper", "tonneau", "heurter", "se_coucher", "deverser", "bruler",
-           "exploser", "effondrer", "tomber", "voler", "couler", "arroser", "fuir", "apparaitre", "disparaitre")
-DECORS = ("autoroute", "route", "ville", "place", "usine", "mer", "port", "plage", "piste", "voie_ferree", "campagne")
+           "exploser", "effondrer", "tomber", "voler", "couler", "arroser", "fuir", "apparaitre", "disparaitre",
+           "inonder", "trembler", "tempete")
+DECORS = ("autoroute", "route", "ville", "place", "usine", "foret", "mer", "port", "plage", "piste", "voie_ferree", "campagne")
 CADRES = ("large", "cote", "face", "dessus", "suivi", "interieur", "maquette")
 MOMENTS = ("jour", "soir", "nuit")
 

@@ -389,6 +389,14 @@ function decor(T, scene, sc) {
     for (const z of [-0.75, 0.75]) { const rail = new T.Mesh(new T.BoxGeometry(1600, 0.15, 0.12), lambert(T, "#c8c8c8")); rail.position.set(0, 0.5, z); scene.add(rail); }
   } else if (d === "studio") {          // fond uni pour les objets de comparaison (cube d'eau…)
     scene.background = new T.Color(0x0b1222); scene.fog = null; sol(0x141d33);
+  } else if (d === "foret") {              // forêt (feu de forêt, tempête) : collines boisées, une route qui traverse
+    sol(0x34472c);
+    const route = new T.Mesh(new T.PlaneGeometry(1200, 7.2), new T.MeshLambertMaterial({ map: texRoute(T, 2) })); route.rotation.x = -Math.PI / 2; route.position.y = 0.02; scene.add(route);
+    for (let i = 0; i < 170; i++) {
+      const x = -160 + r() * 320, z = -140 + r() * 200; if (Math.abs(z) < 7) continue;
+      const a = modelePret("arbre") ? modele(T, "arbre", { hauteur: 6 + r() * 8 }, Math.floor(r() * 99)) : FABRIQUES.arbre(T, {});
+      a.position.set(x, 0, z); a.userData.arbre = true; scene.add(a); (scene.userData.arbres ||= []).push(a);
+    }
   } else sol(0x3a4a35);                  // campagne
 }
 
@@ -418,7 +426,7 @@ function etat(o, actions, t, objets, profondeur = 0) {
     if (a.faire === "deraper") e.cap += (a.angle ?? 160) * Math.PI / 180 * ease.douce(p);          // tête-à-queue
     if (a.faire === "tonneau") { e.roulis += Math.PI * 2 * (a.tours ?? 1.5) * k; e.y += 1.6 * Math.sin(Math.PI * p); }
     if (a.faire === "fuir" && p < 1) e.y += Math.abs(Math.sin(t * 14)) * 0.25;                       // on court
-    if (a.faire === "effondrer") e.effondre = Math.max(e.effondre || 0, ease.entree ? ease.entree(p) : p * p);
+    if (a.faire === "effondrer") { e.effondre = Math.max(e.effondre || 0, p * p); if (e.effondreT == null) e.effondreT = a.a; }
     if (a.faire === "se_coucher") { e.roulis = (a.angle ?? 90) * Math.PI / 180 * ease.sortie(p); e.y += 0.6 * Math.sin(Math.PI * p); }
     if (a.faire === "couler") { e.roulis = (a.angle ?? 25) * Math.PI / 180 * k; e.y = mix(e.y, -(a.profondeur ?? 6), k); }
     if (a.faire === "bruler" && e.brule < 0) e.brule = a.a;
@@ -492,7 +500,7 @@ function fracturer(T, m, nombre, graine, pieces, scene, g, r, batiment) {
 // est toujours intact » après l'explosion). À l'instant de l'explosion, les vraies pièces de l'objet (cabine, citerne, roues,
 // châssis…) sont détachées ; les grosses pièces sont cassées en éclats de la même matière ; tout est projeté vers l'extérieur,
 // tourne, retombe et reste au sol. Tout dépend seulement de t (même image à chaque rendu, morceaux rendus en parallèle).
-function desintegrer(T, scene, g, o, etatExplosion, t, te, batiment) {
+function desintegrer(T, scene, g, o, etatExplosion, t, te, batiment, chute = false) {
   const d = g.userData;
   if (!d.morceaux) {
     // l'objet tel qu'il était à l'instant de l'explosion
@@ -527,8 +535,9 @@ function desintegrer(T, scene, g, o, etatExplosion, t, te, batiment) {
     }
     for (const pc of pieces) {                 // vitesse : vers l'extérieur depuis le centre, vers le haut, au hasard
       const dir = pc.p0.clone().sub(centre); dir.y = Math.max(0.3, dir.y); dir.normalize();
-      const force = pc.vole ? (batiment ? 6 + r() * 12 : 4 + r() * 8) : 0.5 + r() * 1.5;   // quelques pièces loin, la plupart près
-      pc.v = dir.multiplyScalar(force); pc.v.y += pc.vole ? 3 + r() * 7 : 0.8;
+      // explosion : projetées vers l'extérieur ; effondrement (séisme) : elles tombent presque sur place, en tas
+      const force = chute ? 0.4 + r() * 1.6 : pc.vole ? (batiment ? 6 + r() * 12 : 4 + r() * 8) : 0.5 + r() * 1.5;
+      pc.v = dir.multiplyScalar(force); pc.v.y = chute ? -r() * 2 : pc.v.y + (pc.vole ? 3 + r() * 7 : 0.8);
       pc.spin = [(r() - 0.5) * 9, (r() - 0.5) * 9, (r() - 0.5) * 9].map(x => x * (pc.vole ? 1 : 0.15));
       const bb = new T.Box3().setFromObject(pc.m); pc.demi = Math.max(0.1, (bb.max.y - bb.min.y) / 2);
     }
@@ -544,8 +553,8 @@ function desintegrer(T, scene, g, o, etatExplosion, t, te, batiment) {
     const k = tv + glisse * 0.3;
     pc.m.rotation.set(pc.q0.x + pc.spin[0] * k, pc.q0.y + pc.spin[1] * k, pc.q0.z + pc.spin[2] * k);
     pc.m.visible = true;
-    // noircit avec le feu
-    if (pc.m.material?.color) { if (!pc.m.userData.brulee) { pc.m.material = pc.m.material.clone(); pc.m.userData.brulee = 1; }
+    // noircit avec le feu (pas un immeuble qui s'effondre sans feu)
+    if (!chute && pc.m.material?.color) { if (!pc.m.userData.brulee) { pc.m.material = pc.m.material.clone(); pc.m.userData.brulee = 1; }
       pc.m.material.color.lerp(new T.Color(0x1d1a18), borne(u / 5) * 0.06); }
   }
 }
@@ -558,7 +567,7 @@ async function chargerQuarks() {
 }
 export async function creer3d(sc, couche, T) {
   if ((sc.actions || []).some(a => a.faire === "exploser")) await chargerFracture();
-  const avecFeu = (sc.actions || []).some(a => a.faire === "bruler" || a.faire === "exploser") && sc.quarks !== false;
+  const avecFeu = (sc.actions || []).some(a => ["bruler", "exploser", "effondrer"].includes(a.faire)) && sc.quarks !== false;
   if (avecFeu) await chargerQuarks();
   await prechargerModeles([...(sc.objets || []).map(o => o.type), "immeuble", "gratte_ciel", "maison", "arbre", "voiture", "camion", "camionnette", "personne",
                            "bus", "residence", "magasin", "hopital", "banque", "feu_tricolore"]);
@@ -631,6 +640,12 @@ export async function creer3d(sc, couche, T) {
     const sources = [];
     for (const o of objets) {
       const fin = etat(o, actions, 1e4, objets);
+      if (fin.effondreT != null && fin.brule < 0 && fin.explose < 0) {     // nuage de poussière grise
+        const g = groupes[o.id], ta = g?.userData.taille || [10, 10, 10];
+        sources.push({ debut: fin.effondreT + 0.3, taille: Math.max(1, Math.min(3, ta[0] / 8)), poussiere: true,
+                       position: t => { const e = etat(o, actions, t, objets); return [e.x, 0.5, e.z]; } });
+        continue;
+      }
       const debut = fin.brule >= 0 ? fin.brule : fin.explose >= 0 ? fin.explose + 0.15 : -1;
       if (debut < 0 || ["foule", "personne"].includes(o.type)) continue;
       const g = groupes[o.id], ta = g?.userData.taille || [4, 2, 2];
@@ -687,7 +702,7 @@ export async function creer3d(sc, couche, T) {
     a.rotation.x = -Math.PI / 2; a.position.y = 0.08; scene.add(a); return { a, m };
   });
   const etiquettes = (sc.reperes || []).map(m => { const e = el("div", "repere", couche, echapper(m.texte || "")); return e; });
-  const cam = sc.camera || [{ a: 0, pos: [-45, 45, 55], cible: [0, 0, 0] }];
+  const cam = sc.camera?.length ? sc.camera : [{ a: 0, pos: [-45, 45, 55], cible: [0, 0, 0] }];   // jamais sans caméra
   const posCam = t => {                    // caméra : glisse d'un point à l'autre, et dérive toujours un peu
     let i = 0; while (i < cam.length - 1 && t >= cam[i + 1].a) i++;
     const A = cam[i], B = cam[Math.min(i + 1, cam.length - 1)], k = B === A ? 0 : ease.douce(prog(t, A.a, B.a - A.a));
@@ -699,6 +714,18 @@ export async function creer3d(sc, couche, T) {
     const d = 1 + 0.02 * Math.sin(t * 0.4);
     return { p: pa.map((v, j) => mix(v, pb[j], k) * (j === 1 ? 1 : d)), c: ca.map((v, j) => mix(v, cb[j], k)) };
   };
+  // inondation, séisme, tempête : préparés une fois (actions « inonder », « trembler », « tempete »)
+  const aIn = actions.find(a => a.faire === "inonder");
+  const inondation = aIn ? { a: aIn.a, d: aIn.d || 6, hauteur: aIn.hauteur ?? 1.6,
+    plan: (() => { const m = new T.Mesh(new T.PlaneGeometry(900, 900), new T.MeshLambertMaterial({ color: 0x5a4a32, transparent: true, opacity: 0.86, emissive: 0x1a140a }));
+                   m.rotation.x = -Math.PI / 2; m.visible = false; scene.add(m); return m; })() } : null;
+  const secousses = actions.filter(a => a.faire === "trembler");
+  const aTe = actions.find(a => a.faire === "tempete");
+  const tempete = aTe ? (() => { const n = 900, r = hasard(41), base = new Float32Array(n * 3), geo = new T.BufferGeometry();
+    for (let i = 0; i < n; i++) { base[i * 3] = (r() - 0.5) * 120; base[i * 3 + 1] = r() * 40; base[i * 3 + 2] = (r() - 0.5) * 120; }
+    geo.setAttribute("position", new T.BufferAttribute(new Float32Array(n * 6), 3));
+    const l = new T.LineSegments(geo, new T.LineBasicMaterial({ color: 0xb8c8e0, transparent: true, opacity: 0.45 })); l.frustumCulled = false; l.visible = false; scene.add(l);
+    return { a: aTe.a, force: aTe.force ?? 1, pluie: l, base }; })() : null;
   const groupesSuivis = t => {                  // l'objet filmé à cet instant (il ne « bouche » pas sa propre vue)
     let i = 0; while (i < cam.length - 1 && t >= cam[i + 1].a) i++;
     return [cam[i], cam[Math.min(i + 1, cam.length - 1)]].map(k => groupes[k.suivre]).filter(Boolean);
@@ -720,6 +747,11 @@ export async function creer3d(sc, couche, T) {
       if (g.userData.anime) g.userData.anime(t);
       if (g.userData.eau) { const n = borne(prog(t, o.remplir_a ?? 0.4, o.remplir_duree ?? 2.2)) * (o.niveau ?? 1); const c = g.userData.cote; g.userData.eau.scale.y = Math.max(0.001, n); g.userData.eau.position.y = c * n / 2; }
       // explosion d'un véhicule ou d'un bâtiment : il se désintègre (pièces + éclats projetés), l'épave brûle
+      // séisme : l'immeuble qui s'effondre tombe en morceaux, sur place
+      if (e.effondreT != null && e.explose < 0 && t >= e.effondreT + 0.2 && ["batiment", "entrepot", "immeuble", "maison", "residence", "magasin", "hopital", "banque", "batiment_officiel"].includes(o.type)) {
+        desintegrer(T, scene, g, o, g.userData.morceaux ? null : etat(o, actions, e.effondreT, objets), t, e.effondreT + 0.2, true, true);
+        g.visible = false;
+      }
       if (e.explose >= 0 && t >= e.explose && o.desintegrer !== false && !["foule", "personne"].includes(o.type))
         desintegrer(T, scene, g, o, g.userData.morceaux ? null : etat(o, actions, e.explose, objets), t, e.explose,
                     ["batiment", "entrepot", "immeuble", "maison", "batiment_officiel"].includes(o.type));
@@ -753,6 +785,7 @@ export async function creer3d(sc, couche, T) {
       c.g.position.set(x, 0, c.z); for (const w of c.g.userData.roues || []) w.rotation.y = -c.v * t / 0.4;
     }
     if (scene.userData.eau) scene.userData.eau.position.y = -0.02 + Math.sin(t) * 0.05;
+
     let tremble = 0;
     for (const ch of chocs) {
       const dt = t - ch.t, g = groupes[ch.objet], ta = g?.userData.taille || [4, 2, 2];
@@ -801,7 +834,30 @@ export async function creer3d(sc, couche, T) {
         const k = 0.5 + u * 1.4; q.sp.scale.set(k, k, 1); q.sp.material.opacity = 0.85 * (1 - u * 0.6);
       }
     }
+    // SÉISME : tout tremble pendant la secousse, les bâtiments touchés s'effondrent (action « effondrer »)
+    for (const q of secousses) if (t >= q.a && t < q.a + (q.d || 4)) tremble = Math.max(tremble, 1.6 * Math.sin(Math.PI * prog(t, q.a, q.d || 4)));
     const { p, c } = posCam(t);
+    // INONDATION : l'eau monte dans la rue ; les véhicules flottent et dérivent quand elle dépasse leurs roues
+    if (inondation) {
+      const k = ease.douce(prog(t, inondation.a, inondation.d || 6)), h = mix(-0.3, inondation.hauteur ?? 1.6, k);
+      inondation.plan.visible = k > 0; inondation.plan.position.y = h + Math.sin(t * 1.3) * 0.04;
+      for (const o of objets) {
+        const g = groupes[o.id]; if (!g || !["voiture", "taxi", "camionnette", "police", "ambulance", "bus"].includes(o.type)) continue;
+        if (h > 0.7) { const f = borne((h - 0.7) / 0.8); g.position.y = Math.max(g.position.y, h - 0.9); g.position.x += f * (t - inondation.a) * 0.6;
+          g.rotation.y += Math.sin(t * 0.7 + o.id.length) * 0.15 * f; g.rotation.z = Math.sin(t * 1.1 + o.id.length) * 0.05 * f; }
+      }
+    }
+    // TEMPÊTE : les arbres plient sous le vent, la pluie tombe en biais
+    if (tempete) {
+      const v = borne(prog(t, tempete.a, 1.5)) * (tempete.force ?? 1);
+      for (const a of scene.userData.arbres || []) a.rotation.z = -v * (0.12 + 0.08 * Math.sin(t * 2.3 + a.position.x * 0.3));
+      tempete.pluie.visible = v > 0;
+      if (v > 0) { const pos = tempete.pluie.geometry.attributes.position; const n = pos.count / 2;
+        for (let i = 0; i < n; i++) { const x0 = tempete.base[i * 3], y0 = tempete.base[i * 3 + 1], z0 = tempete.base[i * 3 + 2];
+          const y = ((y0 - t * 38) % 40 + 40) % 40, x = x0 + c[0] - y * 0.35, z = z0 + c[2];
+          pos.setXYZ(2 * i, x, y, z); pos.setXYZ(2 * i + 1, x + 0.5, y + 1.4, z); }
+        pos.needsUpdate = true; }
+    }
     if (!iso && !(cam.find(k => k.a <= t && k._cle === "interieur"))) p[1] = Math.max(p[1], c[1] + 2.2, 2.5);   // jamais au ras du sol
     const sol_ = scene.userData.soleil;
     if (sol_) {

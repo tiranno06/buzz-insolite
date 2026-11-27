@@ -50,6 +50,31 @@ function fumee(T, tex, taille) {
   });
 }
 
+let TEX_POUSSIERE = null;
+function texturePoussiere(T) {                // nuage doux et CLAIR (la texture de fumée, sombre, donnait une poussière noire)
+  if (!TEX_POUSSIERE) {
+    const c = document.createElement("canvas"); c.width = c.height = 64; const x = c.getContext("2d");
+    const g = x.createRadialGradient(32, 32, 0, 32, 32, 32); g.addColorStop(0, "rgba(255,255,255,.9)"); g.addColorStop(0.55, "rgba(255,255,255,.4)"); g.addColorStop(1, "rgba(255,255,255,0)");
+    x.fillStyle = g; x.fillRect(0, 0, 64, 64); TEX_POUSSIERE = new T.CanvasTexture(c);
+  }
+  return TEX_POUSSIERE;
+}
+
+function poussiere(T, tex, taille) {           // nuage de poussière grise d'un immeuble qui s'effondre
+  return new ParticleSystem({
+    duration: 1, looping: true, worldSpace: true, maxParticle: 200,
+    startLife: new IntervalValue(2.5, 4), startSpeed: new IntervalValue(3 * taille, 7 * taille),
+    startSize: new IntervalValue(3 * taille, 6 * taille), startRotation: new IntervalValue(0, 6.28),
+    startColor: new ConstantColor(new V4(1, 1, 1, 1)), emissionOverTime: new ConstantValue(45),
+    shape: new ConeEmitter({ radius: 4 * taille, angle: 1.2 }),
+    material: new T.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }),
+    renderMode: RenderMode.BillBoard,
+    behaviors: [new ColorOverLife(new Gradient([[new V3(0.75, 0.7, 0.62), 0], [new V3(0.62, 0.6, 0.56), 1]], [[0, 0], [0.75, 0.15], [0, 1]])),
+                new SizeOverLife(new PiecewiseBezier([[new Bezier(0.6, 1.3, 2, 2.6), 0]])),
+                new ApplyForce(new V3(0.6, 0.15, 0.3), new ConstantValue(1.2))],
+  });
+}
+
 function etincelles(T, tex, taille) {
   return new ParticleSystem({
     duration: 1, looping: true, worldSpace: true, maxParticle: 120,
@@ -78,7 +103,8 @@ export function creerEffets(T, scene, sources, textures, graine = 7) {
         for (const s of sources) {
           if (!s.systemes && tSim >= s.debut) {   // le feu prend à son instant (même pas de temps dans chaque morceau)
             const k = s.taille || 1;
-            s.systemes = [fumee(T, textures.fumee, k), feu(T, textures.flamme, k), etincelles(T, textures.flamme, k)];
+            s.systemes = s.poussiere ? [poussiere(T, texturePoussiere(T), k)]
+              : [fumee(T, textures.fumee, k), feu(T, textures.flamme, k), etincelles(T, textures.flamme, k)];
             for (const ps of s.systemes) { lot.addSystem(ps); scene.add(ps.emitter); ps.emitter.rotation.x = -Math.PI / 2; }
             actifs.push(s);
           }

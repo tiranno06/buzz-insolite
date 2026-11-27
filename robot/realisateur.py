@@ -28,8 +28,9 @@ OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "
              "wagon_citerne", "palmier", "rocher", "maison", "immeuble", "gratte_ciel", "entrepot",
              "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau")
 ACTIONS_3D = ("avancer", "heurter", "changer_voie", "tourner", "se_coucher", "bruler", "exploser", "tomber", "voler", "couler",
-              "apparaitre", "disparaitre", "deverser", "freiner", "deraper", "tonneau", "effondrer", "arroser", "fuir")
-DECORS = ("autoroute", "route", "ville", "place", "usine", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio")
+              "apparaitre", "disparaitre", "deverser", "freiner", "deraper", "tonneau", "effondrer", "arroser", "fuir",
+              "inonder", "trembler", "tempete")
+DECORS = ("autoroute", "route", "ville", "place", "usine", "foret", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio")
 COULEURS = ("orange", "rouge", "jaune", "bleu", "vert", "violet", "gris")
 
 CONSIGNE = """Tu es le réalisateur d'une vidéo TikTok d'actualité où TOUT est fabriqué en animation, comme les chaînes
@@ -321,7 +322,10 @@ def _voie_z(voie, voies=6):
 PLANS = {"avancer": ([-16, 6, 18], [-11, 4.5, 13]), "heurter": ([-20, 5, 17], [-13, 3.5, 11]),
          "se_coucher": ([12, 7, 20], [8, 5, 15]), "deverser": ([-6, 24, 16], [-4, 18, 12]), "bruler": ([-28, 15, 30], [-20, 11, 23]),
          "exploser": ([-48, 26, 52], [-40, 22, 44]), "tomber": ([-34, 12, 32], [-24, 8, 24]), "couler": ([-30, 12, 30], [-22, 9, 22]),
-         "secours": ([-30, 16, 30], [-22, 12, 22]), "large": ([-55, 42, 52], [-40, 32, 42])}
+         "secours": ([-30, 16, 30], [-22, 12, 22]), "large": ([-55, 42, 52], [-40, 32, 42]),
+         # catastrophes (27/11) : de haut pour voir l'eau monter, la ville trembler, le vent dans les arbres
+         "inonder": ([-46, 30, 46], [-36, 24, 38]), "trembler": ([-60, 34, 56], [-50, 28, 48]), "effondrer": ([-48, 26, 50], [-40, 22, 42]),
+         "tempete": ([-40, 18, 40], [-32, 15, 32]), "fuir": ([-24, 10, 26], [-18, 8, 20])}
 SECOURS_3D = ("police", "ambulance", "pompiers")
 GRANDS = {"citerne": 1.7, "camion": 1.6, "bus": 1.6, "train": 2.2, "avion": 2.4, "bateau": 2.4, "batiment": 2.0, "immeuble": 2.4, "entrepot": 2.6,
           "foule": 2.0, "personne": 1.4}
@@ -345,7 +349,7 @@ def plans_camera(actions, objets, principal, duree, cadres=None, dense=False):
         imposes = sorted((max(0.0, a - 0.1), CADRES.get(c, c), s) for a, c, s in cadres if c in CADRES or c in PLANS)
         auto = [x for x in plans_camera(actions, objets, principal, duree)[::2] if all(abs(x["a"] - i[0]) > 1.4 for i in imposes)]
         coupes = sorted(imposes + [(x["a"], x["_cle"], x["suivre"]) for x in auto])
-        return _cam(coupes, types, duree, dense, feux)
+        return _cam(coupes, types, duree, dense, feux, principal)
     premier = min((x["a"] for x in actions), default=9.0)
     coupes, dernier = ([(0.0, "large", principal)], 0.0) if premier > 1.4 else ([], -9.0)
     force = {"exploser": 9, "heurter": 8, "tomber": 8, "couler": 7, "bruler": 6, "se_coucher": 5, "deverser": 4}
@@ -365,14 +369,16 @@ def plans_camera(actions, objets, principal, duree, cadres=None, dense=False):
             continue
         coupes.append((debut, cle, suivre)); dernier = debut
     coupes.sort(key=lambda c: c[0])
-    return _cam(coupes, types, duree, dense, feux)
+    return _cam(coupes, types, duree, dense, feux, principal)
 
 
-def _cam(coupes, types, duree, dense=False, feux=None):
+def _cam(coupes, types, duree, dense=False, feux=None, principal=None):
     # un objet DÉJÀ en feu n'est jamais filmé de près (Gizeh, 27/11 : plans de la fin au ras du brasier, illisibles)
     feux = feux or {}
     coupes = [(d, "bruler" if c in ("avancer", "heurter", "se_coucher", "interieur", "deraper", "tonneau") and s in feux
                and feux[s] < d - 0.5 else c, s) for d, c, s in coupes]
+    if not coupes:                                      # jamais sans caméra (inondation du 27/11 : rendu planté)
+        coupes = [(0.0, "large", principal or next(iter(types), None))]
     cam = []
     for k, (debut, cle, suivre) in enumerate(coupes):
         fin = coupes[k + 1][0] - 0.04 if k + 1 < len(coupes) else max(debut + 1.5, duree)

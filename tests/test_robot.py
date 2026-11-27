@@ -1559,3 +1559,31 @@ class TestPhonetiqueEtBruitages(unittest.TestCase):
         self.assertTrue(cartes)
         self.assertIn("31 MORTS", cartes[0]["etiquettes"])
 
+    def test_catastrophes_naturelles_en_3d(self):
+        """27/11 (« une multitude d'événements ») : inondation, séisme, feu de forêt, tempête reconstitués en 3D."""
+        from robot import gabarits, realisateur
+        attendus = {"inondation": ("inonder", "ville"), "seisme": ("trembler", "ville"), "feu_foret": ("bruler", "foret"),
+                    "tempete": ("tempete", "foret")}
+        for typ, (action, decor) in attendus.items():
+            dits = ["Une catastrophe.", "C'était hier.", "Le feu, l'eau, la secousse et le vent arrivent.", "Les dégâts sont lourds.",
+                    "Les secours arrivent.", "Le bilan.", "Et toi ?"]
+            script = {"titre": "t", "phrases": [{"ecrit": p} for p in dits]}
+            a = gabarits.composer({"type": typ, "lieu": "Valence"}, script)
+            trois = next(s_ for s_ in a["scenes"] if s_["type"] == "3d" and not s_.get("accroche"))
+            self.assertIn(action, [x["faire"] for x in trois["actions"]], typ)
+            self.assertEqual(trois["decor"], decor, typ)
+            cam = realisateur.plans_camera([dict(x, a=1.0) for x in trois["actions"]], trois["objets"], trois["objets"][0]["id"], 10)
+            self.assertTrue(cam, typ)                                                       # jamais sans caméra
+        self.assertEqual(gabarits.type_du_texte("Une crue a submergé le village"), "inondation")
+        self.assertEqual(gabarits.type_du_texte("Un feu de forêt a brûlé 500 hectares"), "feu_foret")
+
+    def test_nombres_accordes(self):
+        from robot import nombres, phonetique
+        anciens = dict(phonetique.GENRES)
+        try:
+            phonetique.GENRES.update({"victimes": "f", "victime": "f", "morts": "m", "mort": "m"})
+            self.assertEqual(nombres.dire_les_nombres("31 victimes"), "trente-et-une victimes")
+            self.assertEqual(nombres.dire_les_nombres("31 morts"), "trente-et-un morts")
+        finally:
+            phonetique.GENRES.clear(); phonetique.GENRES.update(anciens)
+

@@ -19,7 +19,8 @@ import re
 from . import ia
 
 TYPES_EVENEMENT = ("accident_route", "incendie", "explosion", "crash_avion", "naufrage", "deraillement", "manifestation",
-                   "meteo", "catastrophe_naturelle", "police_justice", "politique", "autre")
+                   "meteo", "catastrophe_naturelle", "police_justice", "politique", "autre",
+                   "inondation", "seisme", "feu_foret", "tempete")
 ACTEURS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "police", "ambulance", "pompiers", "avion", "helico",
            "bateau", "train", "personne", "foule", "batiment", "maison", "immeuble", "entrepot", "muret", "mur", "arbre", "taxi",
            "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau")
@@ -29,9 +30,11 @@ ACTIONS = {"avancer": "avancer", "rouler": "avancer", "arriver": "avancer", "heu
            "deverser": "deverser", "fuite": "deverser",
            # actions du scénario plan par plan (reconstitution.py, 27/11)
            "freiner": "freiner", "deraper": "deraper", "tonneau": "tonneau", "changer_voie": "changer_voie", "effondrer": "effondrer",
-           "arroser": "arroser", "fuir": "fuir", "voler": "voler", "apparaitre": "apparaitre", "disparaitre": "disparaitre"}
+           "arroser": "arroser", "fuir": "fuir", "voler": "voler", "apparaitre": "apparaitre", "disparaitre": "disparaitre",
+           "inonder": "inonder", "trembler": "trembler", "tempete": "tempete"}
 DUREES = {"avancer": 2.2, "heurter": 2.2, "tomber": 2.2, "couler": 2.2, "deverser": 3.0, "freiner": 1.6, "deraper": 1.6,
-          "tonneau": 1.8, "effondrer": 2.5, "arroser": 4.0, "fuir": 3.0, "changer_voie": 1.4, "voler": 3.0}
+          "tonneau": 1.8, "effondrer": 2.5, "arroser": 4.0, "fuir": 3.0, "changer_voie": 1.4, "voler": 3.0,
+          "inonder": 7.0, "trembler": 4.5, "tempete": 2.0}
 DISTANCES = {"freiner": 12, "deraper": 16, "tonneau": 16, "fuir": 22}     # sans destination : on part de là où on est
 
 CONSIGNE = """On te donne le texte d'une vidéo d'actualité (phrases numérotées) et les articles. EXTRAIS SEULEMENT les faits,
@@ -77,7 +80,8 @@ def _phrase(x, n):
 
 
 # décor 3D de chaque type d'événement
-DECOR = {"accident_route": "autoroute", "incendie": "ville", "explosion": "ville", "crash_avion": "campagne", "naufrage": "mer",
+NATURELS = ("inondation", "seisme", "feu_foret", "tempete")
+DECOR = {"inondation": "ville", "seisme": "ville", "feu_foret": "foret", "tempete": "foret", "accident_route": "autoroute", "incendie": "ville", "explosion": "ville", "crash_avion": "campagne", "naufrage": "mer",
          "deraillement": "voie_ferree", "manifestation": "place", "police_justice": "place"}
 
 
@@ -103,7 +107,11 @@ SECOURS = (("pompiers", r"pompier"), ("ambulance", r"secours|ambulanc|bless[ée]
 
 # type d'événement d'après les mots du texte quand l'IA répond « autre » (vidéo de l'Iowa du 27/11 : une explosion classée
 # « autre », sans lieu → pictogrammes sur fond vide au lieu d'une reconstitution)
-TYPE_MOTS = (("crash_avion", r"(?:avion|jet|appareil|hélicoptère|aéronef).{0,80}(?:crash|écras|chut|abîm)|(?:crash|écras).{0,60}(?:avion|jet|hélicoptère)"),
+TYPE_MOTS = (("feu_foret", r"feux? de for[êe]t|incendie de for[êe]t|hectares (?:br[ûu]l|parti)|incendie de v[ée]g[ée]tation|maquis"),
+             ("seisme", r"s[ée]isme|tremblement de terre|magnitude|secousse sismique"),
+             ("inondation", r"inond|crue|submerg|d[ée]bordement|torrent de boue|coul[ée]e de boue|eaux? (?:mont|envah)"),
+             ("tempete", r"temp[êe]te|ouragan|cyclone|tornade|rafales|typhon"),
+             ("crash_avion", r"(?:avion|jet|appareil|hélicoptère|aéronef).{0,80}(?:crash|écras|chut|abîm)|(?:crash|écras).{0,60}(?:avion|jet|hélicoptère)"),
              ("naufrage", r"naufrag|chavir|a coulé|sombr[ée]"),
              ("deraillement", r"déraill|(?:train|tgv|rame).{0,60}(?:percut|collision|accident)"),
              ("explosion", r"explos|déflagration|détonation"),
@@ -139,9 +147,56 @@ def _appliquer_scenario(f):
         f["nuit"] = sc["moment"] == "nuit"            # « soir » n'est pas la nuit (carte de nuit presque noire)
 
 
+def _phrase_ou(script, motif, defaut):
+    n = len(script["phrases"])
+    return next((i for i, p in enumerate(script["phrases"][1:n - 1], start=1) if re.search(motif, p["ecrit"].lower())), defaut)
+
+
+def _naturel(f, script):
+    """Inondation, séisme, feu de forêt, tempête (27/11, « une multitude d'événements ») : la scène se met en place toute
+    seule, chaque étape sur la phrase qui la raconte (l'eau qui monte, la secousse, le feu qui gagne, le vent)."""
+    typ, n = f["type"], len(script["phrases"])
+    a, d = list(f.get("acteurs") or []), list(f.get("deroule") or [])
+    debut = _phrase_ou(script, r".", 2)
+    if typ == "inondation":
+        for k in range(4):
+            a.append(dict(id=f"auto{k}", type=("voiture", "camionnette", "voiture", "bus")[k], voie=1 + k % 2, position=-24 + 14 * k))
+        a += [dict(id="maison1", type="residence", position=-30, z=-24), dict(id="maison2", type="magasin", position=20, z=-24),
+              dict(id="habitants", type="foule", role="les habitants", position=40, z=14)]
+        d.append(dict(phrase=_phrase_ou(script, r"eau|inond|crue|submerg|mont", debut), qui="auto0", action="inonder"))
+        d.append(dict(phrase=_phrase_ou(script, r"[ée]vacu|secour|toit|sauv", min(debut + 2, n - 2)), qui="habitants", action="fuir"))
+    elif typ == "seisme":
+        for k, t_ in enumerate(("immeuble", "residence", "immeuble", "magasin")):
+            a.append(dict(id=f"bat{k}", type=t_, position=-60 + 40 * k, z=-30 if k % 2 == 0 else -28))
+        a += [dict(id="habitants", type="foule", role="les habitants", position=0, z=14), dict(id="auto0", type="voiture", voie=1, position=-10)]
+        ph = _phrase_ou(script, r"s[ée]isme|secousse|trembl|magnitude", debut)
+        d += [dict(phrase=ph, qui="habitants", action="trembler"),
+              dict(phrase=min(ph + 1, n - 2), qui="bat0", action="effondrer"), dict(phrase=min(ph + 1, n - 2), qui="bat2", action="effondrer", retard=0.8),
+              dict(phrase=min(ph + 1, n - 2), qui="habitants", action="fuir", retard=0.4)]
+    elif typ == "feu_foret":
+        for k in range(7):
+            a.append(dict(id=f"arbre{k}", type="arbre", position=-30 + 10 * k, z=-14 - (k % 3) * 6))
+        a += [dict(id="maison1", type="maison", position=46, z=-22), dict(id="pompiers", type="pompiers", role="les pompiers", voie=1, position=-120),
+              dict(id="bombardier", type="avion", role="un bombardier d'eau", position=-160, altitude=40)]
+        ph = _phrase_ou(script, r"feu|flamm|br[ûu]l|incendi", debut)
+        d += [dict(phrase=ph, qui=f"arbre{k}", action="bruler", retard=0.6 * k) for k in range(7)]
+        ps = _phrase_ou(script, r"pompier|secours|lutt|bombardier|canadair|avion|h[ée]lico", min(ph + 2, n - 2))
+        d += [dict(phrase=ps, qui="pompiers", action="arriver"), dict(phrase=ps, qui="bombardier", action="voler", vers_position=60, altitude=30)]
+    elif typ == "tempete":
+        for k in range(3):
+            a.append(dict(id=f"auto{k}", type="voiture", voie=1 + k % 2, position=-20 + 18 * k))
+        a += [dict(id="arbre_tombe", type="arbre", position=4, z=-8), dict(id="maison1", type="maison", position=-40, z=-22)]
+        ph = _phrase_ou(script, r"vent|rafale|temp[êe]te|ouragan|cyclone|tornade", debut)
+        d += [dict(phrase=ph, qui="auto0", action="tempete"),
+              dict(phrase=_phrase_ou(script, r"arbre|arrach|toit|d[ée]g[âa]t", min(ph + 1, n - 2)), qui="arbre_tombe", action="tomber")]
+    f["acteurs"], f["deroule"] = a, d
+
+
 def _completer(f, script):
     """Ajoute au déroulé de l'IA chaque étape que le texte raconte et qu'elle a oubliée ; secours et bouchon qui brûle."""
     typ, n = f.get("type"), len(script["phrases"])
+    if typ in NATURELS:
+        return _naturel(f, script)
     if typ not in DECOR or typ in ("manifestation", "police_justice"):
         return
     acteurs = [a for a in f.get("acteurs") or [] if isinstance(a, dict) and a.get("id")]
@@ -320,7 +375,7 @@ def _scene_3d(f, phrases_3d, script):
             o.update(position=-14 + 28 * (k % 2), z=16)
         else:
             o.update(position=-10 + 12 * k, voie=1)
-        o.update({c: a[c] for c in ("voie", "position", "altitude") if a.get(c) is not None})   # place donnée par le scénario
+        o.update({c: a[c] for c in ("voie", "position", "altitude", "z") if a.get(c) is not None})   # place donnée
         objets.append(o); places[a["id"]] = o
     actions, n = [], len(script["phrases"])
     for e in f.get("deroule") or []:
@@ -350,6 +405,8 @@ def _scene_3d(f, phrases_3d, script):
                 actions.append(dict(objet=cible, faire="avancer", phrase=phrases_3d[0], duree=3.0, vers_position=0))
         if faire == "tomber":
             act.update(vers_position=0, altitude=0)
+            if places[qui]["type"] == "arbre":             # un arbre se couche en entier, sur place
+                act.update(vers_position=places[qui].get("position", 0), angle=-85)
         actions.append(act)
     if typ in ("accident_route", "incendie", "explosion", "crash_avion") and not actions and objets:
         principal = objets[0]["id"]                                            # sans déroulé clair : l'objet principal avance
@@ -497,9 +554,11 @@ def realiser(script, articles, journal=print):
     if not isinstance(f, dict):
         f = {}
     texte = " ".join(p["ecrit"] for p in script["phrases"])
-    if f.get("type") not in TYPES_EVENEMENT or f.get("type") == "autre":
-        f["type"] = type_du_texte(texte)
-        journal(f"  type d'événement déduit du texte : {f['type']}")
+    if f.get("type") not in TYPES_EVENEMENT or f.get("type") in ("autre", "catastrophe_naturelle", "meteo"):
+        precis = type_du_texte(texte)
+        if f.get("type") not in ("catastrophe_naturelle", "meteo") or precis in NATURELS:
+            f["type"] = precis                          # (une crue classée « catastrophe naturelle » = reconstitution 3D)
+            journal(f"  type d'événement déduit du texte : {f['type']}")
     lieu_s = str(script.get("lieu") or "").strip()
     if lieu_s and (not f.get("lieu") or (len(lieu_s) > len(str(f["lieu"])) and
                                           lieu_s.lower().startswith(str(f["lieu"]).split(",")[0].strip().lower()))):

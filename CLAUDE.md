@@ -747,6 +747,25 @@ percuté s'écrasent (`ecrase`, échelle en longueur).
   OBJ n'ayant pas de couleurs, elles sont données d'après le nom des pièces (vitres, phares…). Décor « ville » : quartier
   varié et feux tricolores tous les 60 m ; circulation avec de vrais bus.
 
+## Corrections après Gizeh + carte blanche de l'auteur (27/11 au soir)
+- **Voix** : la voix lit le texte ÉCRIT converti par le robot (`voix.preparer` : `p["voix"] = p["ecrit"]`) — l'IA avait écrit
+  « trente-et-une morts » ; nombres accordés au genre du nom qui suit (`nombres._feminin`, genre des noms de Lexique 3.83,
+  `phonetique.genre`, cache `phonetique-v2`) ; « 1,5 million » → « un million et demi » ; « 2-1 » / « 20-30 » → « à » ;
+  mots à l'allure anglaise inconnus des dictionnaires réécrits AVANT la 1re prise (`prononciation._anglais`, eSpeak anglais ;
+  un nom connu du Wiktionnaire est laissé : la voix le connaît) ; seuil Whisper 75 → 85 % (`voix.SEUIL_COMPRIS`).
+- **Voix moins robot** : vitesse changée par Rubber Band (`voix._rubberband`, formants préservés) au lieu d'atempo
+  (métallique) ; finition studio `voix.FINITION` (passe-haut 75 Hz, chaleur 180 Hz, présence 3,2 kHz, de-esser, compresseur
+  doux) ; Chatterbox cfg_weight 0,4, temperature 0,75, émotion 0,55 / 0,65 / 0,72.
+- **3D** : calendrier petit (280 px) à droite sous le logo, sans assombrir la scène ; « citerne » dans le texte = jamais un
+  simple camion ; objet DÉJÀ en feu filmé en plan large (`_cam(feux=)`) ; caméra jamais à moins de 2,2 m au-dessus de la
+  cible ; toujours la carte du lieu ; fumée plus légère.
+- **Catastrophes en 3D** (`gabarits.NATURELS`, `_naturel`) : inondation (eau boueuse qui monte, véhicules qui flottent et
+  dérivent, habitants évacués), séisme (secousse, immeubles qui s'effondrent EN TAS — `desintegrer(chute=true)` — avec
+  nuage de poussière beige three.quarks), feu de forêt (décor `foret`, 7 arbres qui s'embrasent un à un, pompiers, bombardier
+  d'eau), tempête (pluie en biais, arbres qui plient, arbre qui tombe). Reconnues dans le texte (`TYPE_MOTS`) même si l'IA
+  dit « catastrophe naturelle » ou « météo ». Plans `inonder`, `trembler`, `effondrer`, `tempete`, `fuir` ; jamais sans
+  caméra (`_cam` / `scenes3d`).
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit
