@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T21:21:49+01:00",
+   "niveau": "info",
+   "texte": "🔁 « Incendie meurtrier sur le Ring Road » refaite (images) : note 100/100, corrige : « fracture three-pinata, feu three.quarks, modèles Quaternius » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-27T20:39:57+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 86 sujet(s) au-dessus des seuils — en tête : « Afghanistan : les femmes privées de nom officiel »"
@@ -994,11 +999,6 @@
    "date": "2026-11-24T21:08:27+01:00",
    "niveau": "info",
    "texte": "🗑️ « Écoutez la naissance des étoiles ! » supprimée."
-  },
-  {
-   "date": "2026-11-24T21:08:25+01:00",
-   "niveau": "info",
-   "texte": "🗑️ « Macron et Airbus : un record fou ! » supprimée."
   }
  ]
 }
