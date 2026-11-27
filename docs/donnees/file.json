@@ -1,6 +1,149 @@
 {
  "videos": [
   {
+   "id": "20261127-124839-1",
+   "tag": "v-20261127-124839-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-124839-1/buzz-20261127-124839-1.mp4",
+   "titre": "GTA 6 : le piège du cloud",
+   "accroche": "GTA 6 INTERDIT SUR PC",
+   "sujet_id": "59c42f44f0",
+   "sujet": "GTA6 viral : caméraman Oscar",
+   "buzz": {
+    "vues": 5488000,
+    "jaime": 704800,
+    "commentaires": 6534,
+    "score": 584
+   },
+   "description": "Tu veux jouer à GTA 6 mais tu n'as pas de console ? Découvre pourquoi les joueurs PC restent bloqués ! 🎮",
+   "question": "Et toi, tu joues sur console ou sur PC ?",
+   "hashtags": [
+    "#gta6",
+    "#gaming",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 77.2,
+   "sources": [
+    {
+     "media": "buzzarena.com",
+     "titre": "Vous pouvez jouer gratuitement à la version PS5 de GTA 6 en cloud gaming depuis un navigateur web",
+     "lien": "https://www.buzzarena.com/vous-pouvez-jouer-gratuitement-a-la-version-ps5-de-gta-6-en-cloud-gaming-depuis-un-navigateur-web-4568740"
+    },
+    {
+     "media": "journaldugeek.com",
+     "titre": "GTA 6 : les joueurs PC privés de cloud gaming, même une Xbox One de 2013 fera mieux !",
+     "lien": "https://www.journaldugeek.com/2026/11/18/gta-6-les-joueurs-pc-prives-de-cloud-gaming-meme-une-xbox-one-de-2013-fera-mieux/"
+    },
+    {
+     "media": "tomsguide.fr",
+     "titre": "GTA 6 sur PC : voici la seule méthode officielle pour y jouer dès maintenant",
+     "lien": "https://www.tomsguide.fr/gta-6-sur-pc-voici-la-seule-methode-officielle-pour-y-jouer-des-maintenant/"
+    }
+   ],
+   "verification": {
+    "par": "gemini:gemini-flash-lite-latest",
+    "corrigees": 0,
+    "retirees": 0,
+    "problemes": []
+   },
+   "verifie": true,
+   "credits": [],
+   "style": "anime",
+   "extraits_perdus": 0,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 13,
+   "ecrans_total": 13,
+   "format": "buzz",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "Paris, France",
+   "humeur": "tension",
+   "categorie": "culture",
+   "texte": [
+    "Tu savais que GTA 6 est totalement interdit de cloud gaming sur PC ?",
+    "Le jeu est sorti le 19 novembre 2026 sur PS5 et Xbox Series.",
+    "Rockstar a confirmé que le titre ne débarquera pas sur les ordinateurs pour l'instant.",
+    "Pire encore, même une vieille Xbox One de 2013 peut faire tourner le jeu en streaming.",
+    "Microsoft a gardé l'exclusivité du streaming pour ses propres consoles avec les réglages de la Series S.",
+    "Pour en profiter, il faut posséder le jeu et un abonnement au Game Pass Ultimate qui inclut 15 heures de streaming par mois.",
+    "Si tu es sur PC, la seule solution officielle consiste à utiliser le Remote Play.",
+    "Mais attention, il faut obligatoirement posséder la console qui fait tourner le jeu chez toi.",
+    "Certains joueurs se tournent vers des alternatives gratuites en ligne pour explorer Vice City.",
+    "Le titre pèse jusqu'à 212 Go selon la machine, ce qui demande un téléchargement massif.",
+    "Strauss Zelnick, le patron de Take-Two, explique que le studio privilégie d'abord son cœur de cible sur console.",
+    "Pourtant, le marché PC représente parfois jusqu'à la moitié des ventes d'un grand jeu récent.",
+    "Il faudra donc s'armer de patience en attendant une hypothétique version officielle sur ordinateur.",
+    "Et toi, tu penses que Rockstar va sortir une version PC avant 2028 ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-27T13:13:54+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 5,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 3,
+     "refus": 1,
+     "erreurs": 6,
+     "restant_demandes": "998",
+     "limite_demandes": "1000",
+     "restant_mots": "3320"
+    },
+    "gemini": {
+     "appels": 2,
+     "refus": 1,
+     "erreurs": 2
+    }
+   },
+   "fabrication_s": 1515,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 0,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 1,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     }
+    ],
+    "sautes": [],
+    "corriges": 2,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "preuves": [],
+   "couverture_ms": 800,
+   "durees": {
+    "articles": 0,
+    "ecriture": 21,
+    "texte": 7,
+    "images": 18,
+    "voix": 48,
+    "montage": 1310,
+    "controle_final": 101,
+    "regles": 1,
+    "rangement": 7
+   },
+   "refaite": null,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261127-100236-1",
    "tag": "v-20261127-100236-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-100236-1/buzz-20261127-100236-1.mp4",

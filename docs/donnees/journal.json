@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T13:13:54+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « GTA 6 : le piège du cloud » (77 s, 13 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-27T13:10:17+01:00",
    "niveau": "attention",
    "texte": "🩺 Santé du robot : ⚠️ En panne : mistral, github, cerebras, cloudflare, zai ; 1 sujet(s) débloqué(s)"
@@ -994,11 +999,6 @@
    "date": "2026-11-24T17:18:25+01:00",
    "niveau": "info",
    "texte": "⚙️ Réglages enregistrés."
-  },
-  {
-   "date": "2026-11-24T17:18:01+01:00",
-   "niveau": "info",
-   "texte": "🔌 Buffer répond. Comptes TikTok reliés : buzz.insolite, petitsdramas"
   }
  ]
 }
