@@ -27,7 +27,7 @@ OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "
              "taxi", "camionnette", "tracteur", "debris", "plot", "soldat", "vedette", "barque", "voilier", "conteneur", "tgv",
              "wagon_citerne", "palmier", "rocher", "maison", "immeuble", "gratte_ciel")
 ACTIONS_3D = ("avancer", "heurter", "changer_voie", "tourner", "se_coucher", "bruler", "exploser", "tomber", "voler", "couler",
-              "apparaitre", "disparaitre")
+              "apparaitre", "disparaitre", "deverser")
 DECORS = ("autoroute", "route", "ville", "place", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio")
 COULEURS = ("orange", "rouge", "jaune", "bleu", "vert", "violet", "gris")
 
@@ -312,6 +312,48 @@ def _voie_z(voie, voies=6):
     return round(-voies * 3.6 / 2 + (min(max(int(voie or 1), 1), voies) - 0.5) * 3.6, 2)
 
 
+# un PLAN par étape de l'événement, comme un vrai montage (bonnequestion.tv, curioverse) : la caméra COUPE vers le bon
+# angle juste avant chaque action, puis se rapproche doucement. Positions relatives à l'objet suivi (x, hauteur, z).
+PLANS = {"avancer": ([-16, 6, 18], [-11, 4.5, 13]), "heurter": ([-20, 5, 17], [-13, 3.5, 11]),
+         "se_coucher": ([12, 7, 20], [8, 5, 15]), "deverser": ([-6, 24, 16], [-4, 18, 12]), "bruler": ([-28, 15, 30], [-20, 11, 23]),
+         "exploser": ([-48, 26, 52], [-40, 22, 44]), "tomber": ([-34, 12, 32], [-24, 8, 24]), "couler": ([-30, 12, 30], [-22, 9, 22]),
+         "secours": ([-30, 16, 30], [-22, 12, 22]), "large": ([-55, 42, 52], [-40, 32, 42])}
+SECOURS_3D = ("police", "ambulance", "pompiers")
+GRANDS = {"citerne": 1.7, "camion": 1.6, "bus": 1.6, "train": 2.2, "avion": 2.4, "bateau": 2.4, "batiment": 2.0, "immeuble": 2.4}
+
+
+def plans_camera(actions, objets, principal, duree):
+    """Découpage en plans : (début, action) → 2 points de caméra ; plan de 1,4 s au moins, sinon le suivant attend."""
+    types = {o["id"]: o.get("type") for o in objets}
+    premier = min((x["a"] for x in actions), default=9.0)
+    coupes, dernier = ([(0.0, "large", principal)], 0.0) if premier > 1.4 else ([], -9.0)
+    force = {"exploser": 9, "heurter": 8, "tomber": 8, "couler": 7, "bruler": 6, "se_coucher": 5, "deverser": 4}
+    # à moments presque égaux, le plus fort d'abord (le choc plutôt que le camion qui roule)
+    for x in sorted(actions, key=lambda x: (round(x["a"] / 1.4), -force.get(x["faire"], 0), x["a"])):
+        if str(x["objet"]).startswith("bouchon") and x["faire"] == "avancer":
+            continue                                    # la file qui se forme se voit dans le plan large / du feu
+        cle = "secours" if types.get(x["objet"]) in SECOURS_3D and x["faire"] == "avancer" else x["faire"]
+        if cle not in PLANS:
+            continue
+        if str(x["objet"]).startswith("bouchon"):
+            cle, suivre = "bruler", principal
+        else:
+            suivre = x.get("cible") if x["faire"] == "heurter" and x.get("cible") else x["objet"]
+        debut = max(0.0, x["a"] - 0.35)
+        if debut - dernier < 1.4 or (coupes and coupes[-1][1:] == (cle, suivre)):
+            continue
+        coupes.append((debut, cle, suivre)); dernier = debut
+    coupes.sort(key=lambda c: c[0])
+    cam = []
+    for k, (debut, cle, suivre) in enumerate(coupes):
+        fin = coupes[k + 1][0] - 0.04 if k + 1 < len(coupes) else max(debut + 1.5, duree)
+        p0, p1 = PLANS[cle]
+        e = GRANDS.get(types.get(suivre), 1.0)         # un camion-citerne de 12 m : la caméra recule
+        cam.append(dict(a=round(debut, 2), pos=[round(v * e, 1) for v in p0], suivre=suivre))
+        cam.append(dict(a=round(max(fin, debut + 0.05), 2), pos=[round(v * e, 1) for v in p1], suivre=suivre))
+    return cam
+
+
 def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
     """Storyboard pour rendre.mjs : `debuts` = début de chaque phrase (s), `mots` = [{m, d, f, cle}] de toute la vidéo."""
     scenes = []
@@ -321,9 +363,10 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
         s = {k2: v for k2, v in sc.items() if k2 not in ("phrases",)}
         s.update(debut=round(a, 3), fin=round(b, 3))
         quand = lambda x, defaut=0.3: round(max(0.0, debuts[int(x)] - a), 2) if str(x).isdigit() and int(x) < len(debuts) else defaut
-        s["etiquettes"] = [dict(texte=str(e if isinstance(e, str) else e.get("texte", ""))[:28].upper(), a=0.25 + 0.45 * n,
-                                style="rouge" if n == 0 and sc["type"] == "carte" else "")
-                           for n, e in enumerate((sc.get("etiquettes") or [])[:2]) if e]
+        s["etiquettes"] = [dict(texte=str(e if isinstance(e, str) else e.get("texte", ""))[:28].upper(),
+                                a=quand(e["phrase"]) + 0.2 if isinstance(e, dict) and "phrase" in e else 0.25 + 0.45 * n,
+                                style=(e.get("style") if isinstance(e, dict) else None) or ("rouge" if n == 0 and sc["type"] == "carte" else ""))
+                           for n, e in enumerate((sc.get("etiquettes") or [])[:3]) if e]
         if sc["type"] == "carte":
             s["departements"] = [dict(x, a=0.4 + 0.25 * n) for n, x in enumerate(sc.get("departements") or [])]
             s["pays"] = [dict(x, a=0.4 + 0.25 * n) for n, x in enumerate(sc.get("pays") or [])]
@@ -338,7 +381,7 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
                 objets.append(dict(o, x=float(o.get("position") or 0), z=z, y=float(o.get("altitude") or 0)))
             actions = []
             for x in sc["actions"]:
-                act = dict(x, a=quand(x.get("phrase"), 0.2), d=float(x.get("duree") or 1.2))
+                act = dict(x, a=round(quand(x.get("phrase"), 0.2) + float(x.get("retard") or 0), 2), d=float(x.get("duree") or 1.2))
                 o = next((o for o in objets if o["id"] == x["objet"]), {})
                 if x["faire"] in ("avancer", "changer_voie", "voler", "tomber"):
                     vx = float(x.get("vers_position", o.get("x", 0) + 40))
@@ -349,10 +392,8 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
             s["reperes"] = [dict(objet=r.get("objet"), texte=str(r.get("texte", ""))[:30], a=quand(r.get("phrase"), 0.4))
                             for r in sc.get("reperes") or [] if any(o["id"] == r.get("objet") for o in objets)][:4]
             principal = next((a_["objet"] for a_ in actions if a_["faire"] in ("avancer", "voler", "tomber")), objets[0]["id"])
-            d_ = b - a                                      # caméra : vue en hauteur qui suit l'objet principal et se rapproche
-            s["camera"] = [dict(a=0, pos=[-55, 42, 52], suivre=principal), dict(a=max(1.0, d_ * 0.55), pos=[-32, 30, 40], suivre=principal),
-                           dict(a=max(2.0, d_), pos=[-24, 24, 32], suivre=principal)]
-            s["mention"] = "Reconstitution · plan simplifié · positions approximatives" + (f" · d'après {mention_source}" if mention_source else "")
+            s["camera"] = plans_camera(actions, objets, principal, total - a)
+            s["mention"] = "Reconstitution · plan simplifié · positions approximatives"   # la source est déjà en bas
         scenes.append(s)
     if scenes and scenes[0]["type"] not in BASES:        # jamais un encadré sur du vide : la carte du lieu dessous
         fin_ = next((x["debut"] for x in scenes if x["type"] in BASES), total)

@@ -1375,7 +1375,9 @@ class TestGabarits(unittest.TestCase):
         self.assertEqual(types[0], "3d"); self.assertIn("carte", types[1:3]); self.assertEqual(types[-1], "question")
         self.assertTrue(a["scenes"][0]["accroche"])                                          # moment fort dès la 1re phrase
         self.assertEqual({x["phrase"] for x in a["scenes"][0]["actions"]}, {0})
-        self.assertIn("3d", types); self.assertEqual(types.count("chiffre"), 2)
+        self.assertIn("3d", types); self.assertEqual(types.count("chiffre"), 1)
+        # pendant la 3D, le chiffre ne cache plus l'action : étiquette « 27 VÉHICULES » par-dessus
+        self.assertIn("27 véhicules", [e.get("texte") for s in a["scenes"] for e in s.get("etiquettes") or [] if isinstance(e, dict)])
         self.assertEqual([x for s in a["scenes"] for x in s["phrases"]], list(range(10)))      # chaque phrase une fois, dans l'ordre
         trois = next(s for s in a["scenes"] if s["type"] == "3d" and not s.get("accroche"))
         self.assertIn(("v", "heurter"), [(x["objet"], x["faire"]) for x in trois["actions"]])
@@ -1396,6 +1398,28 @@ class TestGabarits(unittest.TestCase):
                                "chiffres": [{"phrase": 3, "valeur": "143", "unite": "km/h"}]}, script)
         self.assertIn("jauge", [s["type"] for s in a["scenes"]])
         self.assertEqual(next(s for s in a["scenes"] if s["type"] == "3d")["vue"], "iso")
+
+    def test_reconstitution_complete(self):
+        """L'auteur (27/11) : « tu ne reconstitues pas entièrement les faits » : chaque étape dite est montrée."""
+        from robot import gabarits, realisateur
+        dits = ["Au Caire, un camion-citerne se renverse.", "31 morts.", "La route est chargée.", "Une voiture percute le camion.",
+                "Le camion se couche sur la route.", "L'essence se répand et prend feu.", "27 véhicules brûlent.",
+                "Les secours arrivent en nombre.", "Le conducteur est arrêté.", "Et toi ?"]
+        script = {"titre": "t", "phrases": [{"ecrit": p} for p in dits]}
+        a = gabarits.composer({"type": "accident_route", "lieu": "Le Caire", "acteurs": [], "deroule": []}, script)
+        trois = next(s for s in a["scenes"] if s["type"] == "3d" and not s.get("accroche"))
+        faits = {(x["faire"], x["phrase"]) for x in trois["actions"]}
+        for attendu in [("heurter", 3), ("se_coucher", 4), ("deverser", 5), ("bruler", 5), ("bruler", 6)]:
+            self.assertIn(attendu, faits)
+        self.assertTrue(any(o["type"] == "citerne" for o in trois["objets"]))
+        self.assertTrue(any(o["type"] == "ambulance" for o in trois["objets"]))           # les secours
+        self.assertGreaterEqual(sum(1 for o in trois["objets"] if o["id"].startswith("bouchon")), 6)
+        # un plan de caméra par étape, le choc en premier
+        acts = [dict(x, a=float(x["phrase"]) * 3) for x in trois["actions"]]
+        cam = realisateur.plans_camera(acts, trois["objets"], "principal", 30)
+        self.assertGreaterEqual(len(cam), 6)
+        self.assertEqual(gabarits.type_du_texte("Une énorme explosion dans une usine de l'armée"), "explosion")
+        self.assertEqual(gabarits.type_du_texte("Un jet privé s'écrase en Floride"), "crash_avion")
 
     def test_meteo_reste_sur_la_carte(self):
         from robot import gabarits

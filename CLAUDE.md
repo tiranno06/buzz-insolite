@@ -655,6 +655,23 @@ Recherche faite : aucune source publique sur la façon dont curioverse fabrique 
   satellite restent (curioverse) ; un plan de rues demanderait OpenStreetMap (Overpass, bloqué ici).
 - Sujets : beaucoup de « service » au tutoiement (« Ta carte Revolut refusée ? », « par où passer », « tu as le droit de sortir ? »).
 
+## Reconstitution COMPLÈTE des faits (27/11, l'auteur : « tu ne reconstitues pas entièrement les faits, va bien plus loin »)
+- **Chaque étape DITE est montrée** : `gabarits._completer` lit chaque phrase (`MOTS_ACTIONS` : choc, se renverse, fuite de
+  carburant, prend feu, explosion, chute, naufrage) et ajoute l'action oubliée par la petite IA ; un 2e véhicule est créé
+  pour un choc ; secours (`SECOURS`) qui arrivent à leur phrase ; « 27 véhicules brûlent » / « propage » → **bouchon** de 6
+  véhicules qui arrivent derrière puis prennent feu un à un (`_bouchon`, `retard`). Type d'événement déduit du texte si
+  l'IA dit « autre » (`type_du_texte`, vidéo de l'Iowa du 27/11 : explosion classée « autre » → pictogrammes sur fond vide) ;
+  lieu repris du texte ; IA en panne = recette d'après le texte seul. Explosion / incendie sans véhicule = un bâtiment.
+- **Un plan par étape** (`realisateur.plans_camera`, `PLANS`) : la caméra COUPE vers le bon angle juste avant chaque action
+  (choc de côté au ras du sol, renversement de face, flaque vue de haut, feu en plan large, secours), le plus fort d'abord
+  à moments égaux, plans de 1,4 s au moins, recul selon la taille (`GRANDS`).
+- **Effets** (scenes3d.js) : éclair + 28 débris qui volent et retombent + caméra qui tremble au choc ; flaque de carburant
+  qui s'étale et brûle sur toute sa surface (`deverser`) ; boule de feu + onde de choc (`exploser`) ; anneaux 3,5 s.
+- **Bug corrigé** : la voiture visait la place de DÉPART du camion (il avait avancé) → elle frappait le vide. `etat` calcule
+  maintenant où se trouve la cible à l'instant du choc.
+- Pendant la 3D, un chiffre devient une ÉTIQUETTE par-dessus (« 27 VÉHICULES ») au lieu d'un encadré qui cachait l'action ;
+  la jauge de vitesse reste un encadré. Citerne redessinée (cabine orange, citerne brillante, bandes rouges, losange danger).
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit

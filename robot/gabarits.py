@@ -24,7 +24,8 @@ ACTEURS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "police
            "bateau", "train", "personne", "foule", "batiment", "maison", "immeuble")
 ACTIONS = {"avancer": "avancer", "rouler": "avancer", "arriver": "avancer", "heurter": "heurter", "percuter": "heurter",
            "se_coucher": "se_coucher", "renverser": "se_coucher", "bruler": "bruler", "bruler_feu": "bruler", "exploser": "exploser",
-           "tomber": "tomber", "s_ecraser": "tomber", "couler": "couler", "sombrer": "couler", "derailler": "se_coucher"}
+           "tomber": "tomber", "s_ecraser": "tomber", "couler": "couler", "sombrer": "couler", "derailler": "se_coucher",
+           "deverser": "deverser", "fuir": "deverser"}
 
 CONSIGNE = """On te donne le texte d'une vidéo d'actualité (phrases numérotées) et les articles. EXTRAIS SEULEMENT les faits,
 sans rien inventer. Réponds uniquement en JSON :
@@ -79,6 +80,86 @@ VUE_MAQUETTE = ("manifestation", "police_justice", "incendie", "explosion")
 FORTS = ("heurter", "exploser", "bruler", "tomber", "couler", "se_coucher")
 
 
+# ce que le TEXTE raconte, phrase par phrase (vidéo du Caire du 27/11 : la petite IA oubliait la moitié de l'accident ;
+# l'auteur : « tu ne reconstitues pas entièrement les faits »). Chaque étape dite = une action montrée.
+MOTS_ACTIONS = (("heurter", r"percut|heurt|collision|collisionn|accroch|perd(?:u)? le contr[ôo]le|fonce sur|perc[ée]"),
+                ("se_coucher", r"renvers|retourn|bascul|se couche|couch[ée]|d[ée]raill|sur le flanc|sur le toit"),
+                ("deverser", r"fuite|carburant|essence|gazole|hydrocarbure|d[ée]vers|se r[ée]pand|s'[ée]coul"),
+                ("bruler", r"prend feu|pris feu|en feu|flamm|incendi|br[ûu]l|embras|brasier"),
+                ("exploser", r"explos|d[ée]flagration|souffle"),
+                ("tomber", r"s'[ée]cras|chute|pique|plonge|tomb"),
+                ("couler", r"coul[ée]|sombr|chavir|naufrag"))
+VEHICULES = ("citerne", "camion", "bus", "camionnette", "voiture", "moto", "train", "avion", "helico", "bateau")
+SECOURS = (("pompiers", r"pompier"), ("ambulance", r"secours|ambulanc|bless[ée]s? (?:sont|ont été) (?:transport|évacu)|samu"),
+           ("police", r"polic|gendarm"))
+
+
+# type d'événement d'après les mots du texte quand l'IA répond « autre » (vidéo de l'Iowa du 27/11 : une explosion classée
+# « autre », sans lieu → pictogrammes sur fond vide au lieu d'une reconstitution)
+TYPE_MOTS = (("crash_avion", r"(?:avion|jet|appareil|hélicoptère|aéronef).{0,80}(?:crash|écras|chut|abîm)|(?:crash|écras).{0,60}(?:avion|jet|hélicoptère)"),
+             ("naufrage", r"naufrag|chavir|a coulé|sombr[ée]"),
+             ("deraillement", r"déraill|(?:train|tgv|rame).{0,60}(?:percut|collision|accident)"),
+             ("explosion", r"explos|déflagration|détonation"),
+             ("accident_route", r"(?:accident|collision|carambolage|percut|renvers).{0,80}(?:route|autoroute|voiture|camion|bus|moto|périph)|(?:camion|voiture|bus|car).{0,60}(?:percut|renvers|collision)"),
+             ("incendie", r"incendi|en feu|flammes|brasier"),
+             ("manifestation", r"manifest|cortège|émeute|rassemblement"),
+             ("catastrophe_naturelle", r"séisme|tremblement de terre|inondation|ouragan|cyclone|éruption|tsunami|glissement de terrain"),
+             ("meteo", r"vigilance|tempête|orages?|canicule|chutes? de neige|verglas"))
+
+
+def type_du_texte(texte):
+    t = texte.lower()
+    return next((typ for typ, motif in TYPE_MOTS if re.search(motif, t)), "autre")
+
+
+def _completer(f, script):
+    """Ajoute au déroulé de l'IA chaque étape que le texte raconte et qu'elle a oubliée ; secours et bouchon qui brûle."""
+    typ, n = f.get("type"), len(script["phrases"])
+    if typ not in DECOR or typ in ("manifestation", "police_justice"):
+        return
+    acteurs = [a for a in f.get("acteurs") or [] if isinstance(a, dict) and a.get("id")]
+    deroule = [e for e in f.get("deroule") or [] if isinstance(e, dict)]
+    principal = next((a for a in acteurs if a.get("type") in VEHICULES), None)
+    if not principal:                                   # aucun véhicule nommé : celui que l'événement suppose
+        t0 = {"crash_avion": "avion", "naufrage": "bateau", "deraillement": "train"}.get(typ, "camion")
+        texte = " ".join(p["ecrit"] for p in script["phrases"]).lower()
+        if typ in ("accident_route", "incendie", "explosion") and "citerne" in texte:
+            t0 = "citerne"
+        elif typ in ("incendie", "explosion") and not re.search(r"camion|voiture|\bbus\b|véhicule", texte):
+            t0 = "batiment"                             # usine, entrepôt, immeuble : c'est le bâtiment qui brûle / explose
+        principal = dict(id="principal", type=t0, role="")
+        acteurs.insert(0, principal)
+    faites = {(ACTIONS.get(str(e.get("action") or "").lower()), e.get("qui")) for e in deroule}
+    deja = {a for a, _ in faites}
+    for i, p in enumerate(script["phrases"][1:n - 1], start=1):
+        t = p["ecrit"].lower()
+        for action, motif in MOTS_ACTIONS:
+            if action in deja or not re.search(motif, t):
+                continue
+            if action in ("tomber",) and typ != "crash_avion" or action == "couler" and typ != "naufrage":
+                continue
+            e = dict(phrase=i, qui=principal["id"], action=action)
+            if action == "heurter":                     # le choc : un 2e véhicule percute le principal
+                autre = next((a for a in acteurs if a is not principal and a.get("type") in VEHICULES), None)
+                if not autre:
+                    autre = dict(id="autre", type="voiture", role="une voiture"); acteurs.append(autre)
+                e.update(qui=autre["id"], cible=principal["id"])
+            deroule.append(e); deja.add(action)
+        for typ_s, motif in SECOURS:
+            if re.search(motif, t) and not any(a.get("type") == typ_s for a in acteurs) and i > 1:
+                acteurs.append(dict(id=typ_s, type=typ_s, role={"pompiers": "les pompiers", "ambulance": "les secours", "police": "la police"}[typ_s]))
+                deroule.append(dict(phrase=i, qui=typ_s, action="arriver"))
+    # le feu gagne les véhicules bloqués derrière (« 27 véhicules ont brûlé », « le feu se propage »)
+    feu = next((e["phrase"] for e in deroule if ACTIONS.get(str(e.get("action")).lower()) == "bruler"), None)
+    if feu is not None and typ in ("accident_route", "incendie", "explosion"):
+        k = next((i for i, p in enumerate(script["phrases"][:n - 1]) if i >= feu and re.search(
+            r"\d+\s+(?:autres\s+)?(?:véhicules|voitures|camions)|propag|d'autres véhicules|bouchon|embouteill|gagne", p["ecrit"].lower())), None)
+        if k is not None:
+            f["_bouchon"] = dict(phrase_arrivee=max(1, feu - 1), phrase_feu=k)
+    deroule.sort(key=lambda e: _phrase(e.get("phrase"), n) or 0)
+    f["acteurs"], f["deroule"] = acteurs, deroule
+
+
 def _accroche(scene3d):
     """Copie de la reconstitution où le moment fort se passe dès la 1re phrase (viseur « ● RECONSTITUTION »)."""
     forts = [a for a in scene3d.get("actions") or [] if a["faire"] in FORTS]
@@ -86,8 +167,22 @@ def _accroche(scene3d):
         return None
     acc = copy.deepcopy(scene3d)
     garde = {a["objet"] for a in forts} | {a.get("cible") for a in forts if a.get("cible")}
-    acc["actions"] = [dict(a, phrase=0, duree=min(float(a.get("duree") or 1.2), 1.6)) for a in acc["actions"]
-                      if a["faire"] in FORTS or (a["faire"] == "avancer" and a["objet"] in garde)]
+    # tout le drame en 3 à 4 secondes, dans l'ordre : le choc, le camion qui se couche, le feu, la file qui s'embrase
+    ordre = {"heurter": 0.0, "tomber": 0.0, "couler": 0.3, "se_coucher": 1.3, "exploser": 1.6, "bruler": 1.9}
+    garde_ = []
+    for a in acc["actions"]:
+        if str(a["objet"]).startswith("bouchon"):
+            if a["faire"] == "bruler":
+                garde_.append(dict(a, phrase=0, retard=2.2 + 0.25 * int(a["objet"][7:] or 0), duree=1.0))
+            continue
+        if a["faire"] in ordre:
+            garde_.append(dict(a, phrase=0, retard=ordre[a["faire"]], duree=min(float(a.get("duree") or 1.2), 1.4)))
+        elif a["faire"] == "avancer" and a["objet"] in garde:
+            garde_.append(dict(a, phrase=0, retard=0.0, duree=1.4))
+    acc["actions"] = garde_
+    for o in acc.get("objets") or []:                  # la file est déjà là, arrêtée derrière l'accident
+        if str(o["id"]).startswith("bouchon"):
+            k = int(o["id"][7:] or 0); o["position"] = -18 - 9 * (k // 3) - 2 * (k % 3)
     acc["reperes"], acc["etiquettes"], acc["accroche"] = [], [], True
     return acc
 
@@ -148,7 +243,7 @@ def _scene_3d(f, phrases_3d, script):
         faire, qui, ph = ACTIONS.get(str(e.get("action") or "").lower()), e.get("qui"), _phrase(e.get("phrase"), n)
         if not faire or qui not in places or ph is None or ph not in phrases_3d:
             continue
-        act = dict(objet=qui, faire=faire, phrase=ph, duree=2.2 if faire in ("avancer", "heurter", "tomber", "couler") else 1.0)
+        act = dict(objet=qui, faire=faire, phrase=ph, duree=2.2 if faire in ("avancer", "heurter", "tomber", "couler") else 3.0 if faire == "deverser" else 1.0)
         if faire == "avancer":
             act["vers_position"] = 0 if places[qui]["type"] not in ("police", "ambulance", "pompiers") else -22
         if faire == "heurter":
@@ -164,6 +259,17 @@ def _scene_3d(f, phrases_3d, script):
     if typ in ("accident_route", "incendie", "explosion", "crash_avion") and not actions and objets:
         principal = objets[0]["id"]                                            # sans déroulé clair : l'objet principal avance
         actions.append(dict(objet=principal, faire="avancer", phrase=phrases_3d[0], duree=3.0, vers_position=0))
+    b = f.get("_bouchon")
+    if b and objets:                                    # véhicules bloqués qui arrivent derrière, puis prennent feu un à un
+        cible = places.get(next((x["objet"] for x in actions if x["faire"] == "bruler"), objets[0]["id"]), objets[0])
+        for k in range(6):
+            o = dict(id=f"bouchon{k}", type=("voiture", "voiture", "camion", "voiture", "camionnette", "voiture")[k],
+                     voie=1 + (k % 3), position=-160 - 12 * k)
+            objets.append(o)
+            actions.append(dict(objet=o["id"], faire="avancer", phrase=min(max(b["phrase_arrivee"], phrases_3d[0]), phrases_3d[-1]),
+                                duree=3.0, vers_position=-18 - 9 * (k // 3) - 2 * (k % 3), retard=0.3 * k))
+            if b["phrase_feu"] in phrases_3d:
+                actions.append(dict(objet=o["id"], faire="bruler", phrase=b["phrase_feu"], duree=1.0, retard=0.7 * k + 0.3))
     reperes = []
     for a in acteurs:
         role = str(a.get("role") or "").strip()
@@ -173,7 +279,7 @@ def _scene_3d(f, phrases_3d, script):
     moment = "nuit" if f.get("nuit") else "jour"
     vue = {"vue": "iso"} if typ in VUE_MAQUETTE else {}
     return dict(type="3d", **vue, decor=DECOR.get(typ, "ville"), moment=moment, objets=objets, actions=actions, reperes=reperes[:3],
-                etiquettes=[f"D'après {m.strip()}" for m in re.findall(r"(?i)source\s*:\s*([^,.;]{3,30})", f.get("source") or "")][:1])
+                etiquettes=[])                         # (la source est écrite en bas ; l'étiquette cachait les chiffres)
 
 
 def composer(f, script):
@@ -181,6 +287,7 @@ def composer(f, script):
     n = len(script["phrases"])
     typ = f.get("type") if f.get("type") in TYPES_EVENEMENT else "autre"
     f["type"] = typ
+    _completer(f, script)
     # encadrés : chiffres clés (3 au plus) et date ; jamais sur la 1re ni la dernière phrase
     encadres = {}
     for c in (f.get("chiffres") or [])[:3]:
@@ -213,6 +320,12 @@ def composer(f, script):
                  etiquettes=[str(f.get("lieu") or "").split(",")[0].upper()[:24]] if f.get("lieu") else [])
     if typ == "meteo" and re.search(r"neige|verglas|froid|gel", " ".join(p["ecrit"] for p in script["phrases"]).lower()):
         carte["effet"] = "neige"
+    # pendant la reconstitution, un chiffre ne CACHE plus l'action : il s'affiche en étiquette par-dessus (« 31 MORTS »)
+    etiq3d = {}
+    for ph in [p for p in encadres if p in phrases_3d and encadres[p]["type"] != "jauge"]:   # la jauge reste (instrument)
+        e = encadres.pop(ph)
+        if e["type"] == "chiffre":
+            etiq3d[ph] = dict(texte=f"{e['valeur']} {e.get('unite') or ''}".strip(), phrase=ph, style="rouge")
     role = {}
     for i in range(n - 1):
         role[i] = "encadre" if i in encadres else ("3d" if i in phrases_3d else ("carte" if i < debut_3d else "bilan"))
@@ -228,11 +341,16 @@ def composer(f, script):
             scenes.append(dict(encadres[i], phrases=ph))
         elif r == "question":
             scenes.append(dict(type="question", phrases=ph))
-        elif r == "3d":
-            if not any(s.get("type") == "3d" and not s.get("accroche") for s in scenes):
-                scenes.append(dict(_scene_3d(f, phrases_3d, script), phrases=ph))
-            else:                                                             # 3D coupée par un encadré : elle continue dessous
-                scenes.append(dict(type="suite", phrases=ph))             # (rien par-dessus : on revoit la 3D)
+        elif r == "3d":                                                       # par morceaux de 3 phrases au plus (valider)
+            for k in range(0, len(ph), 3):
+                morceau = ph[k:k + 3]
+                etiqs = [etiq3d[x] for x in morceau if x in etiq3d]
+                if not any(s.get("type") == "3d" and not s.get("accroche") for s in scenes):
+                    sc3 = _scene_3d(f, phrases_3d, script)
+                    sc3["etiquettes"] = etiqs
+                    scenes.append(dict(sc3, phrases=morceau))
+                else:                                                     # la 3D continue (rien ne la cache)
+                    scenes.append(dict(type="suite", phrases=morceau, etiquettes=etiqs))
         elif r == "bilan" and avec_3d:
             scenes.append(dict(carte, phrases=ph, etiquettes=["LE BILAN"]))
         else:
@@ -259,10 +377,18 @@ def realiser(script, articles, journal=print):
     from . import realisateur
     try:
         f = extraire(script, articles, journal)
-    except Exception as e:
-        journal(f"  extraction des faits impossible ({str(e)[:80]})")
-        return None
-    if not isinstance(f, dict) or not (f.get("lieu") or f.get("pays") or f.get("departements")):
+    except Exception as e:                              # IA indisponible : le texte et le lieu suffisent pour la recette
+        journal(f"  extraction des faits impossible ({str(e)[:80]}) : recette d'après le texte seul")
+        f = {}
+    if not isinstance(f, dict):
+        f = {}
+    texte = " ".join(p["ecrit"] for p in script["phrases"])
+    if f.get("type") not in TYPES_EVENEMENT or f.get("type") == "autre":
+        f["type"] = type_du_texte(texte)
+        journal(f"  type d'événement déduit du texte : {f['type']}")
+    if not f.get("lieu") and script.get("lieu"):
+        f["lieu"] = script["lieu"]                     # le lieu donné par l'IA qui a écrit le texte
+    if not (f.get("lieu") or f.get("pays") or f.get("departements")):
         journal("  faits sans lieu : modèle fixe impossible")
         return None
     brut = composer(f, script)

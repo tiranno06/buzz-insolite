@@ -127,10 +127,17 @@ const FABRIQUES = {
   },
   citerne(T, o) {
     const g = new T.Group();
-    const cab = boite(T, 2.4, 2.6, 2.5, lambert(T, o.couleur || "#f2f2f2")); cab.position.set(4.6, 1.9, 0); g.add(cab);
+    // cabine colorée, citerne argentée avec bandes rouges et losange « matière dangereuse », châssis sombre
+    const cab = boite(T, 2.4, 2.6, 2.5, lambert(T, o.couleur || "#e8742a")); cab.position.set(4.6, 1.9, 0); g.add(cab);
     const vit = boite(T, 0.1, 1.0, 2.2, lambert(T, "#26303f")); vit.position.set(5.82, 2.5, 0); g.add(vit);
-    const cu = new T.Mesh(new T.CylinderGeometry(1.25, 1.25, 8.6, 24), new T.MeshLambertMaterial({ color: 0xe7ebf0 }));
+    const chassis = boite(T, 10.8, 0.4, 2.2, lambert(T, "#2b2e34")); chassis.position.set(-0.2, 0.75, 0); g.add(chassis);
+    const cu = new T.Mesh(new T.CylinderGeometry(1.25, 1.25, 8.6, 28), new T.MeshPhongMaterial({ color: 0xd9dee5, shininess: 60, specular: 0x666666 }));
     cu.rotation.z = Math.PI / 2; cu.position.set(-1.2, 2.25, 0); g.add(cu);
+    for (const x of [-4.6, 2.2]) { const f = new T.Mesh(new T.CylinderGeometry(1.27, 1.27, 0.12, 28), lambert(T, "#b8bec7")); f.rotation.z = Math.PI / 2; f.position.set(x, 2.25, 0); g.add(f); }
+    for (const z of [-1.26, 1.26]) {
+      const b = boite(T, 8.2, 0.28, 0.04, lambert(T, "#c0392b")); b.position.set(-1.2, 1.75, z); g.add(b);
+      const l = boite(T, 0.75, 0.75, 0.04, lambert(T, "#f39c12")); l.rotation.z = Math.PI / 4; l.position.set(1.0, 2.35, z * 1.01); g.add(l);
+    }
     roues(T, g, 11.5, 2.4, 0.55, 4); g.userData.taille = [11.5, 3.6, 2.5]; return g;
   },
   bus(T, o) {
@@ -334,14 +341,17 @@ function decor(T, scene, sc) {
 }
 
 // ------------------------------------------------------------------ état des objets à l'instant t (actions rejouées)
-function etat(o, actions, t, objets) {
+function etat(o, actions, t, objets, profondeur = 0) {
   const e = { x: o.x || 0, y: o.y || 0, z: o.z || 0, cap: (o.cap || 0) * Math.PI / 180, roulis: 0, tangage: 0, brule: -1, visible: o.a == null || t >= o.a, distance: 0, explose: -1, secousse: 0 };
   for (const a of actions.filter(a => a.objet === o.id).sort((p, q) => p.a - q.a)) {
     if (t < a.a) break;
     const d = a.d || 1, p = prog(t, a.a, d), k = a.faire === "avancer" || a.faire === "changer_voie" ? p : ease.douce(p);
     if (["avancer", "heurter", "changer_voie", "tomber", "voler"].includes(a.faire)) {
       let [vx, vz] = a.vers || [e.x, e.z];
-      if (a.faire === "heurter" && a.cible) { const c = objets.find(x => x.id === a.cible); if (c) { vx = (c.x || 0) - (a.ecart ?? 6); vz = c.z || 0; } }
+      // le choc se fait là où la cible SE TROUVE à cet instant (avant : sa place de départ → la voiture frappait le vide)
+      if (a.faire === "heurter" && a.cible) { const c = objets.find(x => x.id === a.cible);
+        if (c) { const ce = profondeur < 2 ? etat(c, actions, a.a + d, objets, profondeur + 1) : { x: c.x || 0, z: c.z || 0 };
+                 vx = ce.x - (a.ecart ?? 7.5); vz = ce.z; } }
       const vy = a.faire === "tomber" ? (a.vers?.[2] ?? 0) : a.faire === "voler" ? (a.vers?.[2] ?? e.y) : e.y;
       const ax = e.x, az = e.z, ay = e.y;
       e.x = mix(ax, vx, k); e.z = mix(az, vz, k); e.y = mix(ay, vy, a.faire === "tomber" ? p * p : k);
@@ -421,10 +431,41 @@ export async function creer3d(sc, couche, T) {
       const s = new T.Sprite(i % 3 ? MATS.flamme : MATS.fumee.clone()); scene.add(s);
       liste.push({ s, ph: r(), dx: (r() - 0.5), dz: (r() - 0.5), v: 0.6 + r() * 0.8, fumee: !(i % 3), taille: a.taille ?? 1 });
     }
+    const fl = actions.find(x => x.faire === "deverser" && x.objet === a.objet);
+    if (fl) for (let i = 0; i < 40; i++) {           // flammes basses sur toute la flaque
+      const s = new T.Sprite(i % 4 ? MATS.flamme : MATS.fumee.clone()); scene.add(s);
+      const ang = r() * 6.28, rr = Math.sqrt(r());
+      liste.push({ s, ph: r(), dx: Math.cos(ang) * rr, dz: Math.sin(ang) * rr, v: 0.6 + r() * 0.8, fumee: !(i % 4), taille: 0.8, flaque: fl.rayon ?? 9 });
+    }
     const sol_ = new T.Mesh(new T.PlaneGeometry(1, 1), MATS.lueur.clone()); sol_.rotation.x = -Math.PI / 2; scene.add(sol_);
     liste.push({ lueur: sol_ });
     particules[a.objet] = (particules[a.objet] || []).concat(liste);
   }
+  // CHOCS (heurter) : éclair, débris qui volent et retombent, caméra qui tremble (vidéo du Caire du 27/11 : « on ne voit pas l'accident »)
+  const chocs = actions.filter(a => a.faire === "heurter").map((a, n) => {
+    const r = hasard(97 + n * 13), debris = [];
+    for (let i = 0; i < 28; i++) {
+      const m = new T.Mesh(new T.BoxGeometry(0.25 + r() * 0.5, 0.1 + r() * 0.2, 0.2 + r() * 0.4), lambert(T, ["#d8d8d8", "#333", "#9aa", "#c0392b", "#e8e0c8"][i % 5]));
+      m.visible = false; scene.add(m);
+      debris.push({ m, vx: (r() - 0.3) * 14, vy: 4 + r() * 9, vz: (r() - 0.5) * 12, rx: r() * 9, ry: r() * 9 });
+    }
+    const eclair = new T.Sprite(new T.SpriteMaterial({ map: MATS.lueur.map, blending: T.AdditiveBlending, depthWrite: false, transparent: true }));
+    eclair.visible = false; scene.add(eclair);
+    return { t: a.a + (a.d || 1), objet: a.objet, debris, eclair };
+  });
+  // FLAQUES (deverser) : le carburant s'étale sur la route ; s'il prend feu, les flammes couvrent toute la flaque
+  const flaques = actions.filter(a => a.faire === "deverser").map(a => {
+    const m = new T.Mesh(new T.CircleGeometry(1, 48), new T.MeshBasicMaterial({ color: 0x15120e, transparent: true, opacity: 0.85, depthWrite: false }));
+    m.rotation.x = -Math.PI / 2; m.visible = false; scene.add(m);
+    return { a, m, rayon: a.rayon ?? 9 };
+  });
+  // BOULES DE FEU (exploser) : sphère orange qui gonfle et s'éteint + onde de choc au sol
+  const boules = actions.filter(a => a.faire === "exploser").map(a => {
+    const b = new T.Mesh(new T.SphereGeometry(1, 24, 16), new T.MeshBasicMaterial({ color: 0xff8a1f, transparent: true, depthWrite: false, blending: T.AdditiveBlending }));
+    const o = new T.Mesh(new T.RingGeometry(0.9, 1, 64), new T.MeshBasicMaterial({ color: 0xffd9a0, transparent: true, depthWrite: false, side: T.DoubleSide }));
+    o.rotation.x = -Math.PI / 2; b.visible = o.visible = false; scene.add(b); scene.add(o);
+    return { a, b, o };
+  });
   // anneaux jaunes au sol (« une voiture » entourée, comme dans les reconstitutions)
   const anneaux = (sc.reperes || []).filter(m => m.anneau !== false).map(m => {
     const a = new T.Mesh(new T.RingGeometry(1, 1.09, 64), new T.MeshBasicMaterial({ color: 0xffd600, transparent: true, depthWrite: false, side: T.DoubleSide }));
@@ -468,7 +509,8 @@ export async function creer3d(sc, couche, T) {
         if (!actif) continue;
         const u = age / vie, vent = q.fumee ? u * u * 6 : 0;
         const hauteur = (q.fumee ? 22 : 5.5) * q.taille;
-        q.s.position.set(e.x + q.dx * ta[0] * 0.8 + vent, e.y + (q.fumee ? 3 : 0.4) + u * hauteur * force, e.z + q.dz * ta[2] * 0.9);
+        if (q.flaque) q.s.position.set(e.x + q.dx * q.flaque * force + vent, 0.3 + u * hauteur * 0.5 * force, e.z + q.dz * q.flaque * force);
+        else q.s.position.set(e.x + q.dx * ta[0] * 0.8 + vent, e.y + (q.fumee ? 3 : 0.4) + u * hauteur * force, e.z + q.dz * ta[2] * 0.9);
         const vacille = 1 + 0.25 * Math.sin(t * 17 + q.ph * 40);
         const k = (q.fumee ? mix(3, 12, u) : mix(2.6, 0.5, u) * vacille) * q.taille * force * (e.explose >= 0 && t - e.explose < 0.6 ? 2 : 1);
         q.s.scale.set(k * (q.fumee ? 1 : 0.7), k * (q.fumee ? 1 : 1.6), 1);
@@ -480,7 +522,37 @@ export async function creer3d(sc, couche, T) {
       c.g.position.set(x, 0, c.z); for (const w of c.g.userData.roues || []) w.rotation.y = -c.v * t / 0.4;
     }
     if (scene.userData.eau) scene.userData.eau.position.y = -0.02 + Math.sin(t) * 0.05;
+    let tremble = 0;
+    for (const ch of chocs) {
+      const dt = t - ch.t, g = groupes[ch.objet], ta = g?.userData.taille || [4, 2, 2];
+      const px = g ? g.position.x + ta[0] * 0.5 : 0, pz = g ? g.position.z : 0;
+      if (dt >= 0 && !ch.pos) ch.pos = [px, pz];
+      const [ix, iz] = ch.pos || [px, pz];
+      ch.eclair.visible = dt >= 0 && dt < 0.5;
+      if (ch.eclair.visible) { const k = 14 * (1 - dt / 0.5) + 4; ch.eclair.scale.set(k, k, 1); ch.eclair.position.set(ix, 1.5, iz); ch.eclair.material.opacity = 1 - dt / 0.5; }
+      for (const d of ch.debris) {
+        d.m.visible = dt >= 0; if (dt < 0) continue;
+        const u = Math.min(dt, 2.2), y = Math.max(0.08, 1 + d.vy * u - 9.8 * u * u / 2);
+        d.m.position.set(ix + d.vx * u * (y > 0.08 ? 1 : 0.9), y, iz + d.vz * u);
+        d.m.rotation.set(d.rx * u, d.ry * u, 0);
+      }
+      if (dt >= 0) tremble = Math.max(tremble, Math.max(0, 1 - dt * 1.6));
+    }
+    for (const f of flaques) {
+      const g = groupes[f.a.objet], k = ease.sortie(prog(t, f.a.a, f.a.d || 3));
+      f.m.visible = k > 0 && !!g; if (!f.m.visible) continue;
+      f.m.scale.set(f.rayon * k, f.rayon * k * 0.8, 1); f.m.position.set(g.position.x, 0.05, g.position.z);
+    }
+    for (const x of boules) {
+      const g = groupes[x.a.objet], dt = t - x.a.a; x.b.visible = x.o.visible = dt >= 0 && dt < 2.2 && !!g; if (!x.b.visible) continue;
+      const r = (x.a.rayon ?? 10) * ease.sortie(borne(dt / 0.6));
+      x.b.scale.set(r, r * 0.8, r); x.b.position.set(g.position.x, r * 0.5, g.position.z); x.b.material.opacity = 0.9 * (1 - borne((dt - 0.3) / 1.5));
+      x.b.material.color.setHSL(0.08 - 0.05 * borne(dt / 1.5), 1, 0.55 - 0.25 * borne(dt / 1.8));
+      const o = 3 + dt * 28; x.o.scale.set(o, o, 1); x.o.position.set(g.position.x, 0.1, g.position.z); x.o.material.opacity = Math.max(0, 0.8 - dt * 0.5);
+      tremble = Math.max(tremble, Math.max(0, 1.4 - dt * 1.2));
+    }
     const { p, c } = posCam(t);
+    if (tremble > 0) { p[0] += Math.sin(t * 71) * 0.9 * tremble; p[1] += Math.sin(t * 53) * 0.7 * tremble; c[1] += Math.sin(t * 61) * 0.4 * tremble; }
     if (iso) {                                // toujours le même angle (45°, en surplomb) ; on se rapproche doucement
       const z = mix(1, sc.iso_zoom ?? 1.25, ease.douce(prog(t, 0, Math.max(duree || 6, 1))));
       if (camera.zoom !== z) { camera.zoom = z; camera.updateProjectionMatrix(); }
@@ -488,7 +560,7 @@ export async function creer3d(sc, couche, T) {
     } else { camera.position.set(...p); camera.lookAt(...c); }
     camera.updateMatrixWorld();
     // anneaux et étiquettes qui suivent leur objet
-    anneaux.forEach(({ a, m }) => { const g = groupes[m.objet]; if (!g) return; const v = prog(t, m.a ?? 0.5, 0.4); a.visible = v > 0 && (m.fin == null || t < m.fin);
+    anneaux.forEach(({ a, m }) => { const g = groupes[m.objet]; if (!g) return; const v = prog(t, m.a ?? 0.5, 0.4); a.visible = v > 0 && t < (m.fin ?? (m.a ?? 0.5) + 3.5);   // l'anneau désigne, puis s'efface
       const ta = g.userData.taille || [4, 2, 2], r = Math.max(ta[0], ta[2]) * 0.6 * mix(1.5, 1, ease.sortie(v)); a.scale.set(r, r, 1); a.position.set(g.position.x, 0.08, g.position.z); a.material.opacity = v; });
     etiquettes.forEach((e, i) => {
       const m = sc.reperes[i], g = groupes[m.objet]; if (!g) return;
