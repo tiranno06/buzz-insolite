@@ -22,7 +22,10 @@ BASES = ("carte", "3d", "photo")                    # décors qui restent à l'�
 TYPES = ("carte", "chiffre", "frise", "citation", "barres", "3d", "question", "mot", "icone", "document", "calendrier", "personnes")
 UNITES_FORTES = ("millions", "million", "milliards", "milliard", "mille", "%", "pour cent")
 OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "bateau", "train", "batiment", "arbre", "personne",
-             "muret", "mur", "cube_eau", "foule", "police", "pompiers", "ambulance", "batiment_officiel")
+             "muret", "mur", "cube_eau", "foule", "police", "pompiers", "ambulance", "batiment_officiel",
+             # vrais modèles Kenney (CC0) depuis le 27/11
+             "taxi", "camionnette", "tracteur", "debris", "plot", "soldat", "vedette", "barque", "voilier", "conteneur", "tgv",
+             "wagon_citerne", "palmier", "rocher", "maison", "immeuble", "gratte_ciel")
 ACTIONS_3D = ("avancer", "heurter", "changer_voie", "tourner", "se_coucher", "bruler", "exploser", "tomber", "voler", "couler",
               "apparaitre", "disparaitre")
 DECORS = ("autoroute", "route", "ville", "place", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio")
@@ -63,7 +66,9 @@ change d'image souvent : une scène dure 3 à 8 secondes). Types de scènes :
                {"objet": "camion", "faire": "se_coucher", "phrase": 5}, {"objet": "camion", "faire": "bruler", "phrase": 6}],
    "reperes": [{"objet": "voiture", "texte": "une voiture", "phrase": 4}]}
   types d'objets : voiture, camion, citerne, bus, moto, avion, helico, bateau, train, batiment, arbre, personne, muret, mur,
-  foule ({"nombre": 60}), police, pompiers, ambulance (gyrophares), batiment_officiel (ministère, parlement, tribunal) ;
+  foule ({"nombre": 60}), police, pompiers, ambulance, batiment_officiel (ministère, parlement, tribunal), taxi,
+  camionnette, tracteur, debris (morceaux après un choc), plot (cône de chantier), soldat, vedette, barque, voilier,
+  conteneur, tgv, wagon_citerne, palmier, rocher, maison, immeuble, gratte_ciel ;
   décor "place" = grande place de ville : pour une MANIFESTATION, un rassemblement, une intervention de police, un procès
   (foule + police + batiment_officiel), en illustration ;
   actions : avancer, heurter, changer_voie, tourner, se_coucher, bruler, exploser, tomber, voler, couler, apparaitre, disparaitre ;

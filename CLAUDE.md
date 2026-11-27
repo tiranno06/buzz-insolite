@@ -614,6 +614,20 @@ s'affichent PAR-DESSUS. Refait ainsi :
   la moitié de la vidéo, « valeur » d'icône = des NOMS, chaque emoji une fois ; valeur commençant par « d' / le / la… » =
   pictogramme seul ; document plus court (640 px).
 
+## Outils gratuits pour faire « exactement » comme curioverse (27/11, demande de l'auteur)
+Recherche faite : aucune source publique sur la façon dont curioverse fabrique ses vidéos ; les briques gratuites retenues :
+- **Vrais modèles 3D Kenney, CC0** (usage commercial permis) : `robot/rendu/modeles/` (8 Mo, `LISEZMOI.md`), copies
+  officielles d'OpenGameArt (kenney.nl refuse le serveur de la session) : Car Kit (voitures, taxi, camionnette, camion,
+  POLICE, AMBULANCE, POMPIERS, débris, cônes), City Kit Commercial / Suburban (immeubles, gratte-ciel, maisons), Mini
+  Characters (personnes), Watercraft (bateaux, conteneurs), Train Kit, Nature Kit (arbres, palmiers, rochers). Chargés par
+  `GLTFLoader` (`vendor/addons`, importmap `three/addons/`) ; `scenes3d.MODELES` : type → variantes, taille réelle (longueur
+  ou hauteur), avant du véhicule tourné vers +x ; `prechargerModeles` avant la 1re image ; immeubles et arbres du décor en
+  vrais modèles (sauf la nuit : fenêtres allumées dessinées) ; circulation en vrais modèles. Types sans modèle (citerne,
+  bus, avion, hélico, grand cargo, foule, bâtiment officiel) gardent leur forme dessinée.
+- **Vraies rues et vrais bâtiments du lieu** : OpenStreetMap via l'API Overpass (gratuite, attribution « © OpenStreetMap »)
+  — bloqué depuis le réseau de la session (à faire et tester depuis GitHub).
+- À venir : modèles de vidéo FIXES par type d'actualité (l'IA n'extrait que des faits simples), plus rapide sans effets coûteux.
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit

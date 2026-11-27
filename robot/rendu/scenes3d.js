@@ -3,6 +3,67 @@
 // Une scène décrit : un décor, des objets (id, type, position), des actions dans le temps, une caméra, des repères.
 // Les actions sont rejouées depuis le début à chaque image : la même seconde donne toujours la même image.
 import { ZONE, borne, prog, ease, mix, hasard, el, echapper, couleur, apparition } from "./moteur.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+
+// ------------------------------------------------------------------ vrais modèles 3D (Kenney, CC0 : usage commercial permis)
+// type d'objet → [dossier, variantes], taille réelle en mètres, mesurée sur la longueur ("l") ou la hauteur ("h").
+// Un type absent d'ici (citerne, bus, avion, hélico, grand cargo, foule, bâtiment officiel…) garde sa forme dessinée.
+const MODELES = {
+  voiture: ["car-kit", ["sedan", "suv", "hatchback-sports", "taxi", "sedan-sports"], 4.5, "l"],
+  taxi: ["car-kit", ["taxi"], 4.5, "l"],
+  camionnette: ["car-kit", ["van", "delivery"], 5.2, "l"],
+  camion: ["car-kit", ["truck", "truck-flat", "garbage-truck"], 9, "l"],
+  police: ["car-kit", ["police"], 4.8, "l"],
+  ambulance: ["car-kit", ["ambulance"], 6, "l"],
+  pompiers: ["car-kit", ["firetruck"], 8.5, "l"],
+  tracteur: ["car-kit", ["tractor"], 4, "l"],
+  debris: ["car-kit", ["debris-tire", "debris-door", "debris-bumper", "debris-plate-a"], 1.1, "l"],
+  plot: ["car-kit", ["cone"], 0.8, "h"],
+  personne: ["mini-characters", ["character-male-a", "character-female-a", "character-male-b", "character-female-b", "character-male-c", "character-female-c", "character-worker"], 1.75, "h"],
+  soldat: ["mini-characters", ["character-soldier"], 1.8, "h"],
+  bateau: ["watercraft-kit", ["boat-tug-a"], 18, "l"],
+  vedette: ["watercraft-kit", ["boat-speed-a"], 9, "l"],
+  barque: ["watercraft-kit", ["boat-fishing-small"], 6, "l"],
+  voilier: ["watercraft-kit", ["boat-sail-a"], 10, "l"],
+  conteneur: ["watercraft-kit", ["cargo-container-a", "cargo-container-b", "cargo-container-c"], 12, "l"],
+  train: ["train-kit", ["train-electric-city-a"], 22, "l"],
+  tgv: ["train-kit", ["train-electric-bullet-a"], 25, "l"],
+  wagon_citerne: ["train-kit", ["train-carriage-tank"], 16, "l"],
+  arbre: ["nature-kit", ["tree_default", "tree_oak", "tree_detailed", "tree_pineRoundA"], 7, "h"],
+  palmier: ["nature-kit", ["tree_palmTall"], 9, "h"],
+  rocher: ["nature-kit", ["rock_largeA"], 3, "h"],
+  maison: ["city-kit-suburban", ["building-type-a", "building-type-b", "building-type-c", "building-type-d", "building-type-e", "building-type-f"], 9, "h"],
+  immeuble: ["city-kit-commercial", ["building-a", "building-b", "building-c", "building-d", "building-e", "building-f", "building-g", "building-h"], 20, "h"],
+  gratte_ciel: ["city-kit-commercial", ["building-skyscraper-a", "building-skyscraper-b", "building-skyscraper-c"], 70, "h"],
+};
+const GLTF = new Map(), chargeur = new GLTFLoader();
+async function prechargerModeles(types) {
+  const a_charger = [];
+  for (const t of new Set(types)) for (const v of (MODELES[t] || [null, []])[1]) {
+    const cle = `${MODELES[t][0]}/${v}`;
+    if (!GLTF.has(cle)) { GLTF.set(cle, null); a_charger.push(chargeur.loadAsync(`./modeles/${cle}.glb`).then(g => GLTF.set(cle, g.scene)).catch(() => GLTF.delete(cle))); }
+  }
+  await Promise.all(a_charger);
+}
+const modelePret = t => MODELES[t] && MODELES[t][1].some(v => GLTF.get(`${MODELES[t][0]}/${v}`));
+function modele(T, type, o = {}, graine = 1) {
+  const [kit, variantes, taille, mesure] = MODELES[type];
+  const dispo = variantes.filter(v => GLTF.get(`${kit}/${v}`)), nom = o.variante && dispo.includes(o.variante) ? o.variante : dispo[Math.abs(graine) % dispo.length];
+  const brut = GLTF.get(`${kit}/${nom}`).clone(true), g = new T.Group(), pivot = new T.Group();
+  let b = new T.Box3().setFromObject(brut), d = b.getSize(new T.Vector3());
+  if (mesure === "l" && d.z > d.x) brut.rotation.y = Math.PI / 2;        // l'avant du véhicule vers +x (le sens de la marche)
+  b = new T.Box3().setFromObject(brut); d = b.getSize(new T.Vector3());
+  const voulu = o.longueur && mesure === "l" ? o.longueur : o.hauteur && mesure === "h" ? o.hauteur : taille;
+  const k = voulu / (mesure === "l" ? Math.max(d.x, d.z) : d.y);
+  pivot.add(brut); pivot.scale.setScalar(k);
+  const c = b.getCenter(new T.Vector3());
+  brut.position.set(-c.x, -b.min.y, -c.z);
+  brut.traverse(m => { if (m.isMesh) { m.castShadow = false; if (o.couleur && m.material && /body|carrosserie/i.test(m.material.name || "")) { m.material = m.material.clone(); m.material.color.set(couleur(o.couleur)); } } });
+  g.add(pivot);
+  g.userData.taille = [d.x * k, d.y * k, d.z * k];
+  return g;
+}
+export const TYPES_MODELES = Object.keys(MODELES);
 
 const W = 1080, H = 1920;
 let RENDU = null;                         // un seul moteur WebGL pour toutes les scènes (le navigateur en limite le nombre)
@@ -214,8 +275,9 @@ function decor(T, scene, sc) {
   scene.background = texture(T, 4, 256, (c, w, h) => { const g = c.createLinearGradient(0, 0, 0, h); g.addColorStop(0, degrade[0]); g.addColorStop(0.75, degrade[1]); g.addColorStop(1, degrade[1]); c.fillStyle = g; c.fillRect(0, 0, w, h); });
   scene.background.wrapS = scene.background.wrapT = T.ClampToEdgeWrapping; scene.background.repeat.set(1, 1);
   scene.fog = new T.Fog(ciel[1], 140, sc.brouillard || 480);
-  scene.add(new T.HemisphereLight(nuit ? 0x8fa6d6 : 0xffffff, nuit ? 0x1a1f2b : 0x6d6a5f, nuit ? 1.1 : 1.6));
-  const soleil = new T.DirectionalLight(nuit ? 0xb7c7ff : 0xffffff, nuit ? 1.2 : 2.2); soleil.position.set(-60, 120, 40); scene.add(soleil);
+  const jour = sc.moment === "jour";          // plein jour : lumière franche, comme une maquette au soleil
+  scene.add(new T.HemisphereLight(nuit && !jour ? 0x8fa6d6 : 0xffffff, nuit && !jour ? 0x1a1f2b : 0x8a8f7a, jour ? 2.4 : nuit ? 1.1 : 1.6));
+  const soleil = new T.DirectionalLight(jour ? 0xfff2dd : nuit ? 0xb7c7ff : 0xffffff, jour ? 3.0 : nuit ? 1.2 : 2.2); soleil.position.set(-60, 120, 40); scene.add(soleil);
   const sol = (c, w = 2000, h = 2000) => { const m = new T.Mesh(new T.PlaneGeometry(w, h), new T.MeshLambertMaterial({ color: c })); m.rotation.x = -Math.PI / 2; m.position.y = -0.02; scene.add(m); return m; };
   const r = hasard(sc.graine || 11);
   if (d === "autoroute" || d === "route" || d === "ville") {
@@ -226,11 +288,13 @@ function decor(T, scene, sc) {
     if (d === "autoroute") { const m = FABRIQUES.muret(T, { longueur: 1200 }); m.position.z = 0; m.visible = sc.terre_plein !== false; scene.add(m); }
     if (d !== "route" || sc.batiments) for (let x = -300; x < 300; x += 16 + r() * 10) for (const cote of [-1, 1]) {
       if (r() < 0.2 || (cote > 0 && sc.cote_camera !== false && r() < 0.75)) continue;   // côté caméra : peu d'immeubles (vue dégagée)
-      const b = FABRIQUES.batiment(T, { hauteur: r() < 0.15 ? 40 + r() * 30 : 8 + r() * 26, largeur: 9 + r() * 10, profondeur: 9 + r() * 8,
+      const typeB = r() < 0.12 ? "gratte_ciel" : "immeuble";
+      const b = !nuit && modelePret(typeB) ? modele(T, typeB, { hauteur: typeB === "immeuble" ? 12 + r() * 20 : 50 + r() * 30 }, Math.floor(r() * 99)) :
+        FABRIQUES.batiment(T, { hauteur: r() < 0.15 ? 40 + r() * 30 : 8 + r() * 26, largeur: 9 + r() * 10, profondeur: 9 + r() * 8,
                                         graine: Math.floor(r() * 99), nuit });
       b.position.set(x, 0, cote * (larg / 2 + 12 + r() * 10) + (cote > 0 ? 25 : 0)); if (cote > 0) b.scale.y = 0.5; scene.add(b);
     }
-    if (d === "route") for (let x = -300; x < 300; x += 8 + r() * 14) for (const cote of [-1, 1]) { const a = FABRIQUES.arbre(T, {}); a.position.set(x, 0, cote * (larg / 2 + 4 + r() * 20)); scene.add(a); }
+    if (d === "route") for (let x = -300; x < 300; x += 8 + r() * 14) for (const cote of [-1, 1]) { const a = modelePret("arbre") ? modele(T, "arbre", { hauteur: 5 + r() * 5 }, Math.floor(r() * 99)) : FABRIQUES.arbre(T, {}); a.position.set(x, 0, cote * (larg / 2 + 4 + r() * 20)); scene.add(a); }
     // trottoirs, lampadaires (ampoule lumineuse, sans vraie lumière : le rendu reste rapide), arbres
     for (const cote of [-1, 1]) { const t_ = boite(T, 1200, 0.25, 3, lambert(T, "#8a8f98")); t_.position.set(0, 0.12, cote * (larg / 2 + 1.5)); scene.add(t_); }
     const mat_poteau = lambert(T, "#5b6270"), mat_ampoule = new T.MeshBasicMaterial({ color: nuit ? 0xffd58a : 0xdddddd });
@@ -312,13 +376,16 @@ function feu(T) {
 
 // ------------------------------------------------------------------ la scène
 export async function creer3d(sc, couche, T) {
+  await prechargerModeles([...(sc.objets || []).map(o => o.type), "immeuble", "gratte_ciel", "maison", "arbre", "voiture", "camion", "camionnette", "personne"]);
   const cv = el("canvas", "", couche); cv.width = W; cv.height = H; const cx = cv.getContext("2d");
   const scene = new T.Scene(); decor(T, scene, sc);
   const camera = new T.PerspectiveCamera(sc.focale ?? 40, W / H, 0.5, 3000);
   const objets = sc.objets || [], actions = sc.actions || [], MATS = feu(T);
   const groupes = {};
   for (const o of objets) {
-    const g = (FABRIQUES[o.type] || FABRIQUES.voiture)(T, o); scene.add(g); groupes[o.id] = g;
+    const g = modelePret(o.type) ? modele(T, o.type, o, (o.id || "").length * 7 + objets.indexOf(o))
+      : (FABRIQUES[o.type] || FABRIQUES.voiture)(T, o);
+    scene.add(g); groupes[o.id] = g;
     const ombre = new T.Mesh(new T.CircleGeometry(1, 24), new T.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.35, depthWrite: false }));
     ombre.rotation.x = -Math.PI / 2; ombre.position.y = 0.03; const ta = g.userData.taille || [4, 2, 2]; ombre.scale.set(ta[0] * 0.6, ta[2] * 0.75, 1); scene.add(ombre); g.userData.ombre = ombre;
     if (o.flou_vitesse) g.userData.flou = true;
@@ -336,7 +403,9 @@ export async function creer3d(sc, couche, T) {
       const sens = n > 2 ? (z < 0 ? 1 : -1) : (v ? -1 : 1);
       for (let k = 0; k < 4; k++) {
         const type = rr() < 0.15 ? "camion" : rr() < 0.15 ? "bus" : "voiture";
-        const g = FABRIQUES[type](T, { couleur: COUL[Math.floor(rr() * COUL.length)] }); g.rotation.y = sens > 0 ? 0 : Math.PI; scene.add(g);
+        const typeM = type === "bus" ? "camionnette" : type, n_ = Math.floor(rr() * 99);
+        const g = modelePret(typeM) ? modele(T, typeM, {}, n_) : FABRIQUES[type](T, { couleur: COUL[Math.floor(rr() * COUL.length)] });
+        g.rotation.y = sens > 0 ? 0 : Math.PI; scene.add(g);
         trafic.push({ g, z, sens, x0: -300 + rr() * 600, v: (sens > 0 ? 1 : -1) * (14 + rr() * 10) });
       }
     }
