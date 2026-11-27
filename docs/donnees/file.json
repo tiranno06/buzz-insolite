@@ -995,7 +995,8 @@
     "rangement": 7
    },
    "refaite": null,
-   "statut": "nouvelle"
+   "statut": "ecartee",
+   "ecartee_pause": true
   },
   {
    "id": "20261126-071929-1",
@@ -1382,9 +1383,8 @@
     "rangement": 7
    },
    "refaite": null,
-   "statut": "a_publier",
-   "force": true,
-   "coche_le": "2026-11-26T10:59:40+01:00"
+   "statut": "ecartee",
+   "ecartee_pause": true
   },
   {
    "id": "20261125-231630-1-r1",
@@ -1738,8 +1738,9 @@
     "etape": "texte",
     "remarque": "Réparation automatique : texte un peu court (environ 54 s) ; faits non vérifiés par une 2e IA"
    },
-   "statut": "nouvelle",
-   "refaite_de": "20261125-231630-1"
+   "statut": "ecartee",
+   "refaite_de": "20261125-231630-1",
+   "ecartee_pause": true
   },
   {
    "id": "20261125-225608-1-r1",
@@ -2073,8 +2074,9 @@
     "etape": "texte",
     "remarque": "Réparation automatique : texte un peu court (environ 53 s) ; faits non vérifiés par une 2e IA"
    },
-   "statut": "nouvelle",
-   "refaite_de": "20261125-225608-1"
+   "statut": "ecartee",
+   "refaite_de": "20261125-225608-1",
+   "ecartee_pause": true
   },
   {
    "id": "20261125-224006-1",
@@ -2373,9 +2375,8 @@
     "rangement": 4
    },
    "refaite": null,
-   "statut": "a_publier",
-   "force": true,
-   "coche_le": "2026-11-25T22:59:04+01:00"
+   "statut": "ecartee",
+   "ecartee_pause": true
   },
   {
    "id": "20261125-222618-1-r1",
@@ -2697,8 +2698,9 @@
     "etape": "voix",
     "remarque": "Réparation automatique : voix et sous-titres ne correspondent pas (33%) ; voix et sous-titres ne correspondent pas (48%) ; voix et sous-titres ne correspondent pas (38%)"
    },
-   "statut": "a_verifier",
-   "refaite_de": "20261125-222618-1"
+   "statut": "ecartee",
+   "refaite_de": "20261125-222618-1",
+   "ecartee_pause": true
   },
   {
    "id": "20261125-214937-1",
@@ -2965,8 +2967,9 @@
     "rangement": 5
    },
    "refaite": null,
-   "statut": "a_verifier",
-   "echec_publication": "2026-11-25T22:22:27+01:00 : contrôle avant publication : règle(s) non respectée(s) : vidéo de 43 s : il faut PLUS d'1 minute ; vidéo trop courte (43 s)"
+   "statut": "ecartee",
+   "echec_publication": "2026-11-25T22:22:27+01:00 : contrôle avant publication : règle(s) non respectée(s) : vidéo de 43 s : il faut PLUS d'1 minute ; vidéo trop courte (43 s)",
+   "ecartee_pause": true
   },
   {
    "id": "20261125-163119-1-r1",
@@ -3269,8 +3272,9 @@
     "etape": "texte",
     "remarque": "phrases réduites à des nombres (45, 15), trop court (45 s), accroche avec 'COP'"
    },
-   "statut": "a_verifier",
-   "refaite_de": "20261125-163119-1"
+   "statut": "ecartee",
+   "refaite_de": "20261125-163119-1",
+   "ecartee_pause": true
   },
   {
    "id": "20261125-163311-1-r1",
@@ -3614,8 +3618,9 @@
     "etape": "texte",
     "remarque": "phrases réduites à des nombres, titres en anglais, accroche en anglais, trop court"
    },
-   "statut": "a_verifier",
-   "refaite_de": "20261125-163311-1"
+   "statut": "ecartee",
+   "refaite_de": "20261125-163311-1",
+   "ecartee_pause": true
   },
   {
    "id": "20261125-163355-1",
@@ -4258,8 +4263,9 @@
     "etape": "images",
     "remarque": "Réparation automatique : Le sujet abordé (logements abordables / Newsom) ne correspond pas à l'ordre sur  ; Le sujet bifurque sur le logement abordable (« affordable housing »), hors sujet"
    },
-   "statut": "nouvelle",
-   "refaite_de": "20261125-163234-1"
+   "statut": "ecartee",
+   "refaite_de": "20261125-163234-1",
+   "ecartee_pause": true
   },
   {
    "id": "20261125-163217-1",
@@ -4612,10 +4618,9 @@
     "rangement": 83
    },
    "refaite": null,
-   "statut": "a_publier",
+   "statut": "ecartee",
    "reparations": 1,
-   "force": true,
-   "coche_le": "2026-11-25T22:23:47+01:00"
+   "ecartee_pause": true
   },
   {
    "id": "20261125-140606-2",

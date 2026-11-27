@@ -614,6 +614,13 @@ s'affichent PAR-DESSUS. Refait ainsi :
   la moitié de la vidéo, « valeur » d'icône = des NOMS, chaque emoji une fois ; valeur commençant par « d' / le / la… » =
   pictogramme seul ; document plus court (640 px).
 
+## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
+En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
+vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit
+ne refait plus aucune vidéo quand la création automatique est coupée. Les 4 vidéos publiées de l'ancien style ont été
+supprimées de TikTok par l'auteur (0 vue) : `retiree_le` + `supprimee_par_auteur` (pas d'alerte, comptes non pénalisés).
+Pour reprendre : remettre les deux réglages « auto » dans Réglages.
+
 ## IA de secours ajoutées (26/11, demande de l'auteur « n'as-tu pas trouvé d'autres IA de secours ? »)
 Listes communautaires (awesome-free-llm-apis) relues ; retenues = gratuites, sans carte, usage commercial non interdit :
 - **GitHub Models** (`github`) : jeton de la tâche (`GITHUB_MODELS_TOKEN: ${{ github.token }}`, permission `models: read`),

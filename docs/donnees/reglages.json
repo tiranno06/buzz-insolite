@@ -51,7 +51,7 @@
  },
  "publication": {
   "mode": "cocher",
-  "auto": true,
+  "auto": false,
   "heures": [
    "12:30",
    "19:00"
@@ -61,7 +61,7 @@
   "heures_auto": true
  },
  "creation": {
-  "auto": true,
+  "auto": false,
   "par_jour": 2,
   "heures": [
    "07:15",

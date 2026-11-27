@@ -274,7 +274,9 @@ def main():
     ias, sources_, buffer_ = verifier_ia(), verifier_sources(), verifier_buffer()
     series, pauses = comptes_et_pauses(precedent)
     videos = (lire("file.json") or {}).get("videos") or []
-    reparations = [] if "--sans-reparation" in sys.argv else reparer(journal)
+    # création automatique en pause (27/11 : nouveau style en cours de mise au point) : aucune vidéo refaite toute seule
+    en_pause = not (reglages().get("creation") or {}).get("auto", True)
+    reparations = [] if "--sans-reparation" in sys.argv or en_pause else reparer(journal)
     B, remis = debloquer_sujets()
     B_comptes = (lire("buzz.json") or {}).get("comptes") or {}
     pannes = [x["nom"] for x in ias + sources_ + [buffer_] if not x["ok"]]
