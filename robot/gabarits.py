@@ -484,8 +484,10 @@ def realiser(script, articles, journal=print):
     if f.get("type") not in TYPES_EVENEMENT or f.get("type") == "autre":
         f["type"] = type_du_texte(texte)
         journal(f"  type d'événement déduit du texte : {f['type']}")
-    if not f.get("lieu") and script.get("lieu"):
-        f["lieu"] = script["lieu"]                     # le lieu donné par l'IA qui a écrit le texte
+    lieu_s = str(script.get("lieu") or "").strip()
+    if lieu_s and (not f.get("lieu") or (len(lieu_s) > len(str(f["lieu"])) and
+                                          lieu_s.lower().startswith(str(f["lieu"]).split(",")[0].strip().lower()))):
+        f["lieu"] = lieu_s                             # le lieu le plus PRÉCIS (« Middletown, Iowa » plutôt que « Middletown »)
     if not (f.get("lieu") or f.get("pays") or f.get("departements")):
         journal("  faits sans lieu : modèle fixe impossible")
         return None

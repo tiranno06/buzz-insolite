@@ -692,7 +692,8 @@ export async function creer3d(sc, couche, T) {
       if (ch.eclair.visible) { const k = 14 * (1 - dt / 0.5) + 4; ch.eclair.scale.set(k, k, 1); ch.eclair.position.set(ix, 1.5, iz); ch.eclair.material.opacity = 1 - dt / 0.5; }
       for (const d of ch.debris) {
         d.m.visible = dt >= 0; if (dt < 0) continue;
-        const u = Math.min(dt, 2.2), y = Math.max(0.08, 1 + d.vy * u - 9.8 * u * u / 2);
+        // vol jusqu'au SOL (avant : temps de vol plafonné → des débris restaient suspendus en l'air, Iowa du 27/11)
+        const u = Math.min(dt, (d.vy + Math.sqrt(d.vy * d.vy + 2 * 9.8 * 0.92)) / 9.8), y = Math.max(0.08, 1 + d.vy * u - 9.8 * u * u / 2);
         d.m.position.set(ix + d.vx * u * (y > 0.08 ? 1 : 0.9), y, iz + d.vz * u);
         d.m.rotation.set(d.rx * u, d.ry * u, 0);
       }
@@ -707,7 +708,7 @@ export async function creer3d(sc, couche, T) {
       const g = groupes[x.a.objet], dt = t - x.a.a, actif = dt >= 0 && dt < 2.6 && !!g;
       for (const d of x.debris) {                // débris projetés tout autour, qui retombent et restent au sol
         d.m.visible = dt >= 0 && !!g; if (!d.m.visible) continue;
-        const u = Math.min(dt, 2.4), y = Math.max(0.2, 2 + d.vy * u - 9.8 * u * u / 2);
+        const u = Math.min(dt, (d.vy + Math.sqrt(d.vy * d.vy + 2 * 9.8 * 1.8)) / 9.8), y = Math.max(0.2, 2 + d.vy * u - 9.8 * u * u / 2);
         d.m.position.set(g.position.x + d.vx * u, y, g.position.z + d.vz * u); d.m.rotation.set(d.rx * u, d.rx * u * 0.7, 0);
       }
       x.o.visible = actif; for (const c of x.couches) c.m.visible = actif; if (!actif) continue;
