@@ -36,7 +36,8 @@ dit (voie, couleur), choisis le plus simple. Réponds uniquement en JSON :
  "plans": [{"phrase": 2, "cadre": "suivi", "actions": [{"objet": "citerne", "faire": "avancer", "vers_position": 0}],
             "etiquette": "PÉRIPHÉRIQUE DU CAIRE"}]}
 Règles :
-- "objets" : TOUT ce qui joue un rôle (véhicules, bâtiments, personnes, secours). Types : voiture, camion, citerne, bus, moto,
+- "objets" : TOUT ce qui est PHYSIQUEMENT sur place et joue un rôle (véhicules, bâtiments, personnes, secours) ; jamais une
+  personne qui en parle de loin (président, ministre, agence, journaliste). Deux objets ne sont jamais au même endroit. Types : voiture, camion, citerne, bus, moto,
   camionnette, taxi, police, ambulance, pompiers, avion, helico, bateau, train, personne, foule, batiment, entrepot (dépôt,
   hangar, usine), immeuble, maison,
   batiment_officiel, arbre, muret, mur. "voie" : 1 à 3 (sens de circulation de la caméra), "position" : mètres le long de la
@@ -80,6 +81,23 @@ def valider(d, script, journal=print):
         vus.add(str(o["id"]))
         objets.append(dict(id=str(o["id"])[:20], type=o["type"], role=str(o.get("role") or "")[:28],
                            voie=int(min(3, max(1, _num(o.get("voie"), 1)))), position=max(-400.0, min(200.0, _num(o.get("position"), 0)))))
+    # ni les personnes qui ne sont PAS sur place (président qui « salue », agence qui annonce : Iowa du 27/11)…
+    objets = [o for o in objets if not (o["type"] in ("personne", "foule") and re.search(
+        r"pr[ée]sident|ministre|gouvernement|agence|porte-parole|epa\b|trump|biden|macron|maire|pr[ée]fet|journalist|t[ée]l[ée]spect",
+        f"{o['id']} {o['role']}".lower()))]
+    # … ni deux objets au même endroit (4 entrepôts empilés à la position 0, Iowa du 27/11 : débris coincés dans les murs)
+    BATI = ("batiment", "entrepot", "immeuble", "maison", "batiment_officiel")
+    batis, voies = [], {}
+    for o in objets:
+        if o["type"] in BATI:                           # bâtiments côte à côte, 46 m d'écart
+            while any(abs(o["position"] - x) < 46 for x in batis):
+                o["position"] += 46
+            batis.append(o["position"])
+        elif o["type"] not in ("personne", "foule", "arbre", "muret", "mur"):   # véhicules : l'un derrière l'autre sur leur voie
+            prises = voies.setdefault(o["voie"], [])
+            while any(abs(o["position"] - x) < 9 for x in prises):
+                o["position"] -= 11
+            prises.append(o["position"])
     if not objets:
         return None
     ids = {o["id"] for o in objets}

@@ -1529,3 +1529,18 @@ class TestPhonetiqueEtBruitages(unittest.TestCase):
         for f, _ in realisateur.EFFETS.values():
             self.assertTrue(os.path.exists(os.path.join("sons", "reconstitution", f)), f)
 
+    def test_scenario_sans_empilement_ni_absents(self):
+        """Iowa r4 (27/11) : 4 entrepôts au même endroit, le président et l'agence sur place → écartés / espacés."""
+        from robot import reconstitution
+        script = {"phrases": [{"ecrit": p} for p in ["a", "b", "c", "Ça explose.", "Et toi ?"]]}
+        rep = {"objets": [{"id": "u", "type": "entrepot", "position": 0}, {"id": "s", "type": "entrepot", "position": 0},
+                          {"id": "c1", "type": "camion", "voie": 1, "position": -30}, {"id": "c2", "type": "camion", "voie": 1, "position": -30},
+                          {"id": "president", "type": "personne", "role": "le président Trump"}, {"id": "epa", "type": "personne", "role": "l'EPA"},
+                          {"id": "temoin", "type": "personne", "role": "un témoin"}],
+               "plans": [{"phrase": 3, "actions": [{"objet": "u", "faire": "exploser"}]}]}
+        sc = reconstitution.valider(rep, script, journal=lambda *_: None)
+        pos = {o["id"]: o["position"] for o in sc["objets"]}
+        self.assertNotIn("president", pos); self.assertNotIn("epa", pos); self.assertIn("temoin", pos)
+        self.assertGreaterEqual(abs(pos["u"] - pos["s"]), 46)
+        self.assertGreaterEqual(abs(pos["c1"] - pos["c2"]), 9)
+

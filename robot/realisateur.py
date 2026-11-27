@@ -278,10 +278,10 @@ def valider(d, script, articles, journal=print):
         if str(k).isdigit() and int(k) < n:
             cles[int(k)] = [str(m) for m in (v if isinstance(v, list) else [v]) if str(m).lower() in script["phrases"][int(k)]["ecrit"].lower()][:2]
     lieu = None
-    for nom in [str(script.get("lieu") or "").split(",")[0].strip(), str(script.get("lieu") or "").strip()]:
+    for nom in [str(script.get("lieu") or "").strip(), str(script.get("lieu") or "").split(",")[0].strip()]:   # nom COMPLET d'abord
         if nom and not lieu:
             l_ = _lieu(nom, cache)
-            lieu = dict(nom=nom, lat=l_["lat"], lon=l_["lon"]) if l_ else None
+            lieu = dict(nom=nom.split(",")[0].strip(), lat=l_["lat"], lon=l_["lon"]) if l_ else None
     nuit = any(sc.get("nuit") for sc in scenes if sc["type"] == "carte") or bool(
         re.search(r"\b(nuit|soir|soirée|minuit|nocturne)\b", " ".join(p["ecrit"] for p in script["phrases"][:4]).lower()))
     return dict(titre=titre, lieu_date=str(d.get("lieu_date") or "")[:40].upper(), source=str(d.get("source") or "")[:110],

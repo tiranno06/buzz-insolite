@@ -486,6 +486,7 @@ function desintegrer(T, scene, g, o, etatExplosion, t, te, batiment) {
       const bb = new T.Box3().setFromObject(pc.m); pc.demi = Math.max(0.1, (bb.max.y - bb.min.y) / 2);
     }
     d.morceaux = pieces;
+    scene.userData.solides = null;             // de nouveaux éclats : la caméra doit aussi les éviter
   }
   const u = Math.max(0, t - te);
   for (const pc of d.morceaux) {
@@ -627,6 +628,11 @@ export async function creer3d(sc, couche, T) {
     const d = 1 + 0.02 * Math.sin(t * 0.4);
     return { p: pa.map((v, j) => mix(v, pb[j], k) * (j === 1 ? 1 : d)), c: ca.map((v, j) => mix(v, cb[j], k)) };
   };
+  const groupesSuivis = t => {                  // l'objet filmé à cet instant (il ne « bouche » pas sa propre vue)
+    let i = 0; while (i < cam.length - 1 && t >= cam[i + 1].a) i++;
+    return [cam[i], cam[Math.min(i + 1, cam.length - 1)]].map(k => groupes[k.suivre]).filter(Boolean);
+  };
+  const estDans = (m, gs) => gs.some(g => { let x = m; while (x) { if (x === g) return true; x = x.parent; } return false; });
   return (t, duree) => {
     for (const o of objets) {
       const g = groupes[o.id], e = etat(o, actions, t, objets);
@@ -732,6 +738,21 @@ export async function creer3d(sc, couche, T) {
       sol_.target.position.set(c[0], 0, c[2]); sol_.position.set(c[0] - 60, 120, c[2] + 40);
     }
     if (tremble > 0) { p[0] += Math.sin(t * 71) * 0.9 * tremble; p[1] += Math.sin(t * 53) * 0.7 * tremble; c[1] += Math.sin(t * 61) * 0.4 * tremble; }
+    // la caméra ne traverse JAMAIS un mur, un hangar ou un débris (Iowa du 27/11 : images noires, caméra dans les éclats) :
+    // si un objet solide est entre ce qu'on filme et la caméra, elle se place devant lui, un peu plus haut
+    if (!iso && sc.anti_collision !== false) {
+      const C = new T.Vector3(...c), P = new T.Vector3(...p), dir = P.clone().sub(C), dist = dir.length();
+      if (dist > 2) {
+        dir.normalize();
+        const rc = scene.userData.rayon || (scene.userData.rayon = new T.Raycaster());
+        rc.set(C, dir); rc.far = dist;
+        const solides = scene.userData.solides || (scene.userData.solides = []);
+        if (!solides.length) scene.traverse(m => { if (m.isMesh && !m.material?.transparent && m.geometry?.boundingSphere !== undefined) solides.push(m); });
+        const vus = rc.intersectObjects(solides.filter(m => m.visible && !estDans(m, groupesSuivis(t))), false);
+        const h = vus.find(x => x.distance > 1.5);
+        if (h) { const d = Math.max(3, h.distance - 1.5); p[0] = c[0] + dir.x * d; p[1] = Math.max(c[1] + dir.y * d, c[1] + 2.5) + (dist - d) * 0.15; p[2] = c[2] + dir.z * d; }
+      }
+    }
     if (iso) {                                // toujours le même angle (45°, en surplomb) ; on se rapproche doucement
       const z = mix(1, sc.iso_zoom ?? 1.25, ease.douce(prog(t, 0, Math.max(duree || 6, 1))));
       if (camera.zoom !== z) { camera.zoom = z; camera.updateProjectionMatrix(); }

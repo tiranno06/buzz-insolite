@@ -723,6 +723,13 @@ percuté s'écrasent (`ecrase`, échelle en longueur).
   (ombre douce des coins), Quaternius / Poly Pizza (modèles CC0 plus détaillés), Kyutai TTS (CC BY 4.0, français, à
   tester sur processeur), DeepFilterNet (MIT/Apache, nettoyage de voix), dictionnaire MFA français (CC BY 4.0).
 
+- **Iowa r4 (27/11, pire par endroits : images noires, blocs suspendus en l'air)** : le scénario plaçait 4 entrepôts au MÊME
+  endroit (débris coincés dans les murs) et mettait le président et l'agence EPA sur place ; la caméra traversait tout ; la
+  carte cherchait encore « Middletown » seul. Corrigé : `reconstitution.valider` espace les bâtiments (46 m) et les véhicules
+  d'une même voie (9 m), écarte les personnes qui n'étaient pas sur place ; `scenes3d` : rayon de la cible vers la caméra
+  (`Raycaster`) → si un objet solide coupe la vue, la caméra se place devant, plus haut (`sc.anti_collision` false pour
+  couper) ; `realisateur.valider` cherche le lieu avec son nom COMPLET d'abord.
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit
