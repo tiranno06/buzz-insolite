@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-27T12:01:52+01:00",
+ "maj": "2026-11-27T14:03:04+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T11:59:50+01:00"
+   "le": "2026-11-27T14:00:55+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T11:59:54+01:00"
+   "le": "2026-11-27T14:00:58+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T11:59:57+01:00"
+   "le": "2026-11-27T14:01:02+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:01+01:00"
+   "le": "2026-11-27T14:01:06+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:04+01:00"
+   "le": "2026-11-27T14:01:11+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-27T12:00:07+01:00"
+   "le": "2026-11-27T14:01:14+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:10+01:00"
+   "le": "2026-11-27T14:01:17+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:14+01:00"
+   "le": "2026-11-27T14:01:21+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:18+01:00"
+   "le": "2026-11-27T14:01:25+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:21+01:00"
+   "le": "2026-11-27T14:01:29+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:25+01:00"
+   "le": "2026-11-27T14:01:34+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:29+01:00"
+   "le": "2026-11-27T14:01:37+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:32+01:00"
+   "le": "2026-11-27T14:01:41+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-27T12:00:35+01:00"
+   "le": "2026-11-27T14:01:45+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:39+01:00"
+   "le": "2026-11-27T14:01:48+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:42+01:00"
+   "le": "2026-11-27T14:01:52+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:46+01:00"
+   "le": "2026-11-27T14:01:57+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:50+01:00"
+   "le": "2026-11-27T14:02:01+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:54+01:00"
+   "le": "2026-11-27T14:02:05+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:00:57+01:00"
+   "le": "2026-11-27T14:02:09+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:01:01+01:00"
+   "le": "2026-11-27T14:02:12+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:01:04+01:00"
+   "le": "2026-11-27T14:02:17+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:01:08+01:00"
+   "le": "2026-11-27T14:02:20+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:01:11+01:00"
+   "le": "2026-11-27T14:02:25+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:01:14+01:00"
+   "le": "2026-11-27T14:02:28+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:01:18+01:00"
+   "le": "2026-11-27T14:02:32+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:01:22+01:00"
+   "le": "2026-11-27T14:02:38+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T12:01:25+01:00"
+   "le": "2026-11-27T14:02:41+01:00"
   }
  },
  "lues": 809,
@@ -3167,6 +3167,55 @@
    "vu_le": "2026-11-25T23:02:41+01:00"
   },
   {
+   "titre": "Or : pourquoi le cours chute brutalement",
+   "resume": "HugoDécrypte analyse les raisons de la forte baisse du prix de l’or en fin d’année 2026. Les facteurs incluent la hausse des taux d’intérêt et la diminution de la demande d’actifs refuges.",
+   "mots_cles": [
+    "or",
+    "cours",
+    "baisse"
+   ],
+   "mots_cles_en": [
+    "gold",
+    "price",
+    "drop"
+   ],
+   "hashtags": [
+    "cours",
+    "baisse"
+   ],
+   "insolite": 5,
+   "categorie": "economie",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712432953673927969",
+     "compte": "hugodecrypte",
+     "url": "https://www.tiktok.com/@hugodecrypte/video/7712432953673927969",
+     "vues": 2200000,
+     "jaime": 213700,
+     "commentaires": 826,
+     "partages": 24600,
+     "date": 1795690736,
+     "texte": "(25/11) 🚨Comment expliquer la chute du cours de l’or ? ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712432953673927969?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "5455324be8",
+   "score": 201,
+   "derniere_vue": 1795784574.4820123,
+   "vues": 2200000,
+   "jaime": 213700,
+   "commentaires": 826,
+   "hashtags_viraux": [],
+   "medias": 9,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T14:03:04+01:00"
+  },
+  {
    "titre": "Escalier roulant accéléré force étudiants à sauter",
    "resume": "À l'Université BRAC au Bangladesh, un escalateur a soudainement augmenté sa vitesse, obligeant les étudiants à sauter pour éviter d'être emportés. L'incident a été filmé et partagé en ligne.",
    "mots_cles": [
@@ -3486,6 +3535,61 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-25T22:59:59+01:00"
+  },
+  {
+   "titre": "Oregon : homme et chien échappent à incident",
+   "resume": "Un homme et son chien ont été impliqués dans un incident signalé par la police dans l’Oregon, mais sont ressortis indemnes. Les détails de l’événement restent peu clairs.",
+   "mots_cles": [
+    "Oregon",
+    "police",
+    "chien"
+   ],
+   "mots_cles_en": [
+    "Oregon",
+    "police",
+    "dog"
+   ],
+   "hashtags": [
+    "oregon",
+    "incident",
+    "chien"
+   ],
+   "insolite": 3,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712614655172054294",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7712614655172054294",
+     "vues": 1500000,
+     "jaime": 57100,
+     "commentaires": 504,
+     "partages": 1336,
+     "date": 1795733022,
+     "texte": "Warning: Contains strong language. Both the man and his dog escaped unharmed, police said. #Oregon #US #Dog #BBCNews",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712614655172054294?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "2aab6bba75",
+   "score": 156,
+   "derniere_vue": 1795784574.4820123,
+   "vues": 1500000,
+   "jaime": 57100,
+   "commentaires": 504,
+   "hashtags_viraux": [
+    "oregon",
+    "us",
+    "dog",
+    "bbcnews"
+   ],
+   "medias": 8,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T14:03:04+01:00"
   },
   {
    "titre": "Explosion d’un camion-citerne à Giza",
@@ -4630,6 +4734,56 @@
    "vu_le": "2026-11-26T03:01:44+01:00"
   },
   {
+   "titre": "Patagonie : randonneur accroché à un pont venté",
+   "resume": "Un randonneur allemand a dû s’agripper aux câbles d’une passerelle suspendue en Patagonie, au Chili, à cause de violentes rafales de vent. Il portait un sac de 18 kg et a réussi à se sécuriser.",
+   "mots_cles": [
+    "Patagonie",
+    "pont suspendu",
+    "vent"
+   ],
+   "mots_cles_en": [
+    "Patagonia",
+    "suspended bridge",
+    "wind"
+   ],
+   "hashtags": [
+    "patagonie",
+    "pont",
+    "vent"
+   ],
+   "insolite": 6,
+   "categorie": "nature",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712182765873040663",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7712182765873040663",
+     "vues": 1600000,
+     "jaime": 75200,
+     "commentaires": 929,
+     "partages": 13700,
+     "date": 1795632482,
+     "texte": "L'IMAGE DU JOUR - 😱 Grosse frayeur pour un randonneur allemand en Patagonie, au Chili. Alors qu'il traversait une passerelle suspendue, de violentes rafales de vent ont fait dangereusement osciller le pont. Avec un sac de 18 kilos sur le dos, le touriste s'est agrippé aux câbles pour tenter de garder son équilibre. Une scène vertigineuse filmée par un autre randonneur.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712182765873040663?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "b3da5712fd",
+   "score": 90,
+   "derniere_vue": 1795784574.4820123,
+   "vues": 1600000,
+   "jaime": 75200,
+   "commentaires": 929,
+   "hashtags_viraux": [],
+   "medias": 9,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T14:03:04+01:00"
+  },
+  {
    "titre": "Vague emporte homme et chien à Cannon Beach",
    "resume": "Une grosse vague a submergé un homme et son chien sur la plage de Cannon Beach, aux États-Unis, les entraînant dans l'océan. Les secours ont été alertés.",
    "mots_cles": [
@@ -5139,62 +5293,6 @@
    ],
    "statut": "nouveau",
    "vu_le": "2026-11-24T18:38:52+01:00"
-  },
-  {
-   "titre": "Pourquoi le cours de l’or chute‑t‑il ?",
-   "resume": "Des analystes examinent les facteurs qui font baisser le prix de l’or, notamment la hausse des taux d’intérêt et la force du dollar. La vidéo propose une synthèse des raisons économiques.",
-   "mots_cles": [
-    "o",
-    "r",
-    ",",
-    " ",
-    "c",
-    "o"
-   ],
-   "mots_cles_en": [
-    "g",
-    "o",
-    "l",
-    "d",
-    ",",
-    " "
-   ],
-   "hashtags": [
-    "gold",
-    "price",
-    "economy"
-   ],
-   "insolite": 3,
-   "categorie": "economie",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712432953673927969",
-     "compte": "hugodecrypte",
-     "url": "https://www.tiktok.com/@hugodecrypte/video/7712432953673927969",
-     "vues": 1800000,
-     "jaime": 177300,
-     "commentaires": 724,
-     "partages": 21200,
-     "date": 1795690736,
-     "texte": "(25/11) 🚨Comment expliquer la chute du cours de l’or ? ",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712432953673927969?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "9728460b79",
-   "score": 53,
-   "derniere_vue": 1795749233.1025193,
-   "vues": 1800000,
-   "jaime": 177300,
-   "commentaires": 724,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-27T00:17:46+01:00"
   },
   {
    "titre": "Victoire juridique pour le gel des loyers à New York",
