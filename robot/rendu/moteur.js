@@ -497,6 +497,9 @@ window.rendre = t => {
       if (e._auto) e.style.top = Math.max(ZONE.haut - 20, basTitre + 22) + n * 66 + "px";
       apparition(e, tl, e._a);
       if (base && voileDecor > 0) e.style.opacity = String(+e.style.opacity * (1 - voileDecor));   // l'encadré prend la place
+      // un décor qui reste à l'écran garde ses étiquettes seulement pendant SES phrases (avant : elles revenaient sous la
+      // question et se superposaient à celles de la scène suivante)
+      if (base && t >= sc.fin) e.style.opacity = String(+e.style.opacity * (1 - prog(t, sc.fin, 0.25)));
     });
   });
   // titre : grand au début (l'accroche), puis plus petit pour laisser la place
