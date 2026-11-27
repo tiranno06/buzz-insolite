@@ -1651,3 +1651,19 @@ class TestPhonetiqueEtBruitages(unittest.TestCase):
         self.assertEqual([o["id"] for o in anim["scenes"][0]["objets"]], ["c"])
         self.assertNotIn("_n", anim["scenes"][0]["actions"][0])
 
+
+
+class TestCiternePercutee(unittest.TestCase):
+    """27/11 : une citerne percutée se déchire et perd son carburant juste après l'impact (toutes les vidéos)."""
+    def test_fuite_automatique(self):
+        from robot import gabarits
+        import inspect
+        src = inspect.getsource(gabarits)
+        self.assertIn('c.get("type") == "citerne"', src)
+        self.assertIn('faire="deverser"', src)
+
+    def test_moteur_dechire_la_citerne(self):
+        js = open(os.path.join(os.path.dirname(__file__), "..", "robot", "rendu", "scenes3d.js"), encoding="utf-8").read()
+        self.assertIn("function dechirer(", js)
+        self.assertIn("MASSES", js)
+        self.assertIn("Raycaster(depart", js)       # le trou est posé SUR la tôle, jamais dans le vide

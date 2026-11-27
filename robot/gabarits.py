@@ -426,6 +426,11 @@ def _scene_3d(f, phrases_3d, script):
             if places[qui]["type"] == "arbre":             # un arbre se couche en entier, sur place
                 act.update(vers_position=places[qui].get("position", 0), angle=-85)
         actions.append(act)
+    # citerne percutée : elle se déchire et le carburant fuit (flaque) juste après l'impact, si rien d'autre n'est prévu
+    for h in [x for x in actions if x["faire"] == "heurter"]:
+        c = places.get(h.get("cible")) or {}
+        if c.get("type") == "citerne" and not any(x["objet"] == h["cible"] and x["faire"] == "deverser" for x in actions):
+            actions.append(dict(objet=h["cible"], faire="deverser", phrase=h["phrase"], duree=3.0, retard=float(h.get("duree") or 2.2) + 0.4))
     # même phrase que le choc : la cible se renverse / prend feu / explose APRÈS l'impact (durée du choc + 0,3 s)
     for h in [x for x in actions if x["faire"] == "heurter"]:
         for x in actions:

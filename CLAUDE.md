@@ -799,6 +799,14 @@ carrosserie et de vitre, lancés DANS LE SENS DU CHOC, à peine vers le haut, pe
 route. Rebond (`etat`) : celui qui percute recule de 1,5 m et pivote, le percuté est poussé d'1 m. L'ancien
 raccourcissement global (`scale.x`) est réduit à 3 %.
 
+## Dégâts selon le poids et citerne qui se déchire (27/11, l'auteur : « l'arrière de la citerne doit subir d'énormes dégâts »)
+Règle générale pour TOUS les chocs (`scenes3d.MASSES`, tonnes) : le plus léger encaisse le plus (forces `ecraser` selon la racine
+du rapport des masses : un camion écrase une voiture, une moto est détruite par un bus). Une CITERNE percutée se déchire
+toujours (`dechirer`) : un rayon lancé vers la citerne trouve le vrai point de la tôle (jamais un trou dans le vide ; pas de
+point = rien dessiné), trou noir, 9 lambeaux de tôle plats retournés vers l'extérieur, jet de carburant (gouttes rondes) 3 s ;
+côté robot (`gabarits._scene_3d`), fuite `deverser` ajoutée juste après l'impact (flaque qui s'enflamme si le texte parle de
+feu). Froissure de la tôle cohérente (`ecraser` : même endroit = même déplacement, sinon la tôle se fendait « en étoile »).
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit

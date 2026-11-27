@@ -524,14 +524,58 @@ function ecraser(T, g, versImpact, force, graine) {
       if (s <= debut) continue;
       const k = (s - debut) / Math.max(zone, 1e-3), recul = (s - debut) * 0.6;
       v.addScaledVector(dir, -recul);                                    // la partie avant recule (tassée)
-      v.y += k * zone * 0.12 + (r() - 0.5) * 0.18 * k;                    // capot qui remonte, tôle froissée
-      v.x += (r() - 0.5) * 0.22 * k; v.z += (r() - 0.5) * 0.22 * k;
+      const b = (a2) => { const x = Math.sin(Math.round(v.x * 20) * 12.9898 + Math.round(v.y * 20) * 78.233 + Math.round(v.z * 20) * 37.719 + a2 + graine) * 43758.5453; return x - Math.floor(x) - 0.5; };
+      const fx = b(1), fy = b(2), fz = b(3);                              // même endroit = même froissure (pas de fente)
+      v.y += k * zone * 0.12 + fy * 0.18 * k;                              // capot qui remonte, tôle froissée
+      v.x += fx * 0.22 * k; v.z += fz * 0.22 * k;
       v.applyMatrix4(inv); pos.setXYZ(i, v.x, v.y, v.z);
     }
     pos.needsUpdate = true; m.geometry.computeVertexNormals();
     if (m.material?.color) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.92); }
   });
 }
+// masses en tonnes (ordre de grandeur) : qui encaisse le plus dans un choc
+const MASSES = { moto: 0.2, personne: 0.08, voiture: 1.4, taxi: 1.4, police: 1.6, camionnette: 2.5, ambulance: 3.5, pompiers: 14,
+                 camion: 12, citerne: 20, bus: 12, tracteur: 4, train: 400, tgv: 400, wagon_citerne: 60, avion: 60, helico: 5, bateau: 200 };
+
+// RUPTURE d'une citerne percutée (27/11, l'auteur : « l'arrière doit subir d'énormes dégâts ») : trou noir au point d'impact,
+// lambeaux de tôle arrachés et retournés vers l'extérieur, jet de carburant. Fixé à l'objet (il reste attaché s'il bouge).
+function dechirer(T, scene, g, point, sens, graine) {
+  // construit dans le monde (taille réelle en mètres), puis rattaché à l'objet sans changer d'échelle (attach)
+  const r = hasard(graine), grp = new T.Group();
+  g.updateMatrixWorld(true);
+  const bb = new T.Box3().setFromObject(g), c = bb.getCenter(new T.Vector3()), t = bb.getSize(new T.Vector3());
+  const cote = sens.clone().setY(0).normalize().negate();          // face percutée (côté d'où vient le choc)
+  const ext = Math.abs(cote.x) * t.x / 2 + Math.abs(cote.z) * t.z / 2;
+  // un rayon lancé depuis l'extérieur vers la citerne trouve le VRAI point de la tôle (et son orientation)
+  const hauteur = bb.min.y + t.y * 0.62, depart = c.clone().addScaledVector(cote, ext + 3); depart.y = hauteur;
+  const ray = new T.Raycaster(depart, cote.clone().negate(), 0, ext * 2 + 3);
+  const touche = ray.intersectObject(g, true).find(h => h.face);
+  if (!touche) return null;                                        // rien de sûr à dessiner : on n'invente pas
+  const normale = touche.face.normal.clone().transformDirection(touche.object.matrixWorld).normalize();
+  const centre = touche.point.clone().addScaledVector(normale, 0.03);
+  const R = Math.min(0.8, t.y * 0.2);
+  const trou = new T.Mesh(new T.CircleGeometry(R, 14), new T.MeshBasicMaterial({ color: 0x0b0b0b, side: T.DoubleSide }));
+  trou.position.copy(centre); trou.lookAt(centre.clone().add(normale)); grp.add(trou);
+  const tole = new T.MeshPhongMaterial({ color: 0xb9bec6, side: T.DoubleSide, shininess: 60 });
+  for (let i = 0; i < 9; i++) {                    // lambeaux de tôle autour du trou, retournés vers l'extérieur
+    const a = i / 9 * Math.PI * 2 + r() * 0.3, l = R * (0.6 + r() * 0.6);
+    const tri = new T.BufferGeometry().setFromPoints([new T.Vector3(-R * 0.28, 0, 0), new T.Vector3(R * 0.28, 0, 0), new T.Vector3((r() - 0.5) * R * 0.2, l, 0)]);
+    tri.computeVertexNormals(); const p = new T.Mesh(tri, tole);   // lambeau plat (tôle), pas un pique
+    const piv = new T.Group(); piv.position.copy(centre); piv.quaternion.copy(trou.quaternion); grp.add(piv);
+    p.position.set(Math.cos(a) * R, Math.sin(a) * R, 0); p.rotation.z = a - Math.PI / 2;   // pointe vers l'extérieur du trou
+    p.rotateX(0.5 + r() * 0.5); piv.add(p);                         // et rabattue vers l'arrière
+  }
+  scene.add(grp); g.attach(grp);
+  const jet = [];                                  // jet de carburant (gouttes sombres qui retombent)
+  const cv = document.createElement("canvas"); cv.width = cv.height = 32; const cx = cv.getContext("2d");
+  const gr = cx.createRadialGradient(16, 16, 0, 16, 16, 16); gr.addColorStop(0, "rgba(255,255,255,1)"); gr.addColorStop(0.6, "rgba(255,255,255,.7)"); gr.addColorStop(1, "rgba(255,255,255,0)");
+  cx.fillStyle = gr; cx.fillRect(0, 0, 32, 32); const goutte = new T.CanvasTexture(cv);   // gouttes rondes, pas carrées
+  for (let i = 0; i < 60; i++) { const sp = new T.Sprite(new T.SpriteMaterial({ map: goutte, color: 0x4a3414, transparent: true, opacity: 0.9, depthWrite: false }));
+    sp.visible = false; scene.add(sp); jet.push({ sp, ph: r(), v: 3 + r() * 4, ec: (r() - 0.5) * 1.6, h: r() * 0.8 }); }
+  return { jet, depart: centre.clone(), sens: normale.clone().setY(0).normalize().negate() };
+}
+
 function couleursDe(g) {
   const c = []; g?.traverse(m => { if (m.isMesh && m.material?.color) c.push("#" + m.material.color.getHexString()); });
   return c.length ? c : ["#d8d8d8", "#333333"];
@@ -746,7 +790,8 @@ export async function creer3d(sc, couche, T) {
     }
     const eclair = new T.Sprite(new T.SpriteMaterial({ map: MATS.lueur.map, blending: T.AdditiveBlending, depthWrite: false, transparent: true }));
     eclair.visible = false; scene.add(eclair);
-    return { t: a.a + (a.d || 1), objet: a.objet, cible: a.cible, debris, eclair, n };
+    const typeDe = id => (objets.find(o => o.id === id) || {}).type;
+    return { t: a.a + (a.d || 1), objet: a.objet, cible: a.cible, typeS: typeDe(a.objet), typeC: typeDe(a.cible), debris, eclair, n };
   });
   // FLAQUES (deverser) : le carburant s'étale sur la route ; s'il prend feu, les flammes couvrent toute la flaque
   const flaques = actions.filter(a => a.faire === "deverser").map(a => {
@@ -883,9 +928,13 @@ export async function creer3d(sc, couche, T) {
         ch.cabosse = true;
         const gc = groupes[ch.cible], point = new T.Vector3(ch.pos[0], 1.1, ch.pos[1]);
         const sens = gc ? new T.Vector3(gc.position.x - g.position.x, 0, gc.position.z - g.position.z).normalize() : new T.Vector3(1, 0, 0);
-        ecraser(T, g, sens, 1.0, 307 + ch.n);                 // l'avant de celui qui percute se tasse en accordéon
-        ecraser(T, gc, sens.clone().negate(), 0.55, 211 + ch.n); // la partie percutée s'enfonce
-        cabosser(T, gc, point, sens, 0.8, 213 + ch.n);
+        // gravité selon les MASSES (27/11) : le plus léger encaisse le plus ; une citerne percutée se déchire toujours
+        const mS = MASSES[ch.typeS] ?? 1.5, mC = MASSES[ch.typeC] ?? 1.5;
+        const forceS = borne(Math.sqrt(mC / mS) * 0.8, 0.5, 1.4), forceC = borne(Math.sqrt(mS / mC) * 1.1, 0.35, 1.3);
+        ecraser(T, g, sens, forceS, 307 + ch.n);                       // l'avant de celui qui percute se tasse
+        ecraser(T, gc, sens.clone().negate(), ch.typeC === "citerne" ? Math.max(1.0, forceC) : forceC, 211 + ch.n);
+        cabosser(T, gc, point, sens, ch.typeC === "citerne" ? 1.4 : 0.8, 213 + ch.n);
+        if (ch.typeC === "citerne" && gc) ch.rupture = dechirer(T, scene, gc, point, sens, 401 + ch.n);
       }
       const [ix, iz] = ch.pos || [px, pz];
       ch.eclair.visible = dt >= 0 && dt < 0.5;
@@ -904,6 +953,14 @@ export async function creer3d(sc, couche, T) {
         d.m.position.set(ix + ch.sens.x * d.avant * dist + ch.lat.x * d.cote * dist, y, iz + ch.sens.z * d.avant * dist + ch.lat.z * d.cote * dist);
         const rot = u + g_ * 0.3;
         d.m.rotation.set(d.piece ? 0 : d.rx * rot, d.ry * rot, d.piece ? Math.PI / 2 * borne(u / tVol) : 0);
+      }
+      if (ch.rupture) for (const q of ch.rupture.jet) {   // le carburant gicle 3 s puis s'arrête
+        const age = ((dt * 1.6 + q.ph) % 1), actif = dt >= 0 && dt < 3;
+        q.sp.visible = actif; if (!actif) continue;
+        const d = age * q.v, lat = new T.Vector3(-ch.rupture.sens.z, 0, ch.rupture.sens.x);
+        q.sp.position.copy(ch.rupture.depart).addScaledVector(ch.rupture.sens, -d).addScaledVector(lat, q.ec * age);
+        q.sp.position.y = Math.max(0.05, ch.rupture.depart.y - 0.3 + q.h * 0.4 + 1.2 * age - 4.9 * age * age);
+        const k = 0.18 + age * 0.3; q.sp.scale.set(k, k, 1);
       }
       if (dt >= 0) tremble = Math.max(tremble, Math.max(0, 1 - dt * 1.6));
     }
