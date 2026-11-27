@@ -322,7 +322,8 @@ PLANS = {"avancer": ([-16, 6, 18], [-11, 4.5, 13]), "heurter": ([-20, 5, 17], [-
          "exploser": ([-48, 26, 52], [-40, 22, 44]), "tomber": ([-34, 12, 32], [-24, 8, 24]), "couler": ([-30, 12, 30], [-22, 9, 22]),
          "secours": ([-30, 16, 30], [-22, 12, 22]), "large": ([-55, 42, 52], [-40, 32, 42])}
 SECOURS_3D = ("police", "ambulance", "pompiers")
-GRANDS = {"citerne": 1.7, "camion": 1.6, "bus": 1.6, "train": 2.2, "avion": 2.4, "bateau": 2.4, "batiment": 2.0, "immeuble": 2.4, "entrepot": 2.6}
+GRANDS = {"citerne": 1.7, "camion": 1.6, "bus": 1.6, "train": 2.2, "avion": 2.4, "bateau": 2.4, "batiment": 2.0, "immeuble": 2.4, "entrepot": 2.6,
+          "foule": 2.0, "personne": 1.4}
 
 
 # angles choisis par le scénario (reconstitution.py) → plans de la bibliothèque
@@ -336,7 +337,7 @@ def plans_camera(actions, objets, principal, duree, cadres=None, dense=False):
     `cadres` = [(début, angle du scénario, objet suivi)] : ces plans-là passent avant les plans automatiques."""
     types = {o["id"]: o.get("type") for o in objets}
     if cadres:
-        imposes = sorted((max(0.0, a - 0.1), CADRES[c], s) for a, c, s in cadres if c in CADRES)
+        imposes = sorted((max(0.0, a - 0.1), CADRES.get(c, c), s) for a, c, s in cadres if c in CADRES or c in PLANS)
         auto = [x for x in plans_camera(actions, objets, principal, duree)[::2] if all(abs(x["a"] - i[0]) > 1.4 for i in imposes)]
         coupes = sorted(imposes + [(x["a"], x["_cle"], x["suivre"]) for x in auto])
         return _cam(coupes, types, duree, dense)
@@ -452,9 +453,16 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
             s["reperes"] = [dict(objet=r.get("objet"), texte=str(r.get("texte", ""))[:30], a=quand(r.get("phrase"), 0.4))
                             for r in sc.get("reperes") or [] if any(o["id"] == r.get("objet") for o in objets)][:4]
             principal = next((a_["objet"] for a_ in actions if a_["faire"] in ("avancer", "voler", "tomber")), objets[0]["id"])
-            cadres = [(quand(ph) , c, next((x.get("cible") if x["faire"] == "heurter" else x["objet"] for x in actions
-                                            if str(x.get("phrase")) == str(ph)), principal))
-                      for ph, c in sorted((sc.get("cadres") or {}).items(), key=lambda kv: int(kv[0])) if str(ph).isdigit()]
+            forts = ("exploser", "heurter", "bruler", "effondrer", "se_coucher", "tomber", "couler", "deraper", "tonneau")
+            cadres = []
+            for ph, c in sorted((sc.get("cadres") or {}).items(), key=lambda kv: int(kv[0])):
+                if not str(ph).isdigit():
+                    continue
+                ici = [x for x in actions if str(x.get("phrase")) == str(ph)]
+                fort = next((x for f_ in forts for x in ici if x["faire"] == f_), None)   # le moment fort impose son plan
+                x = fort or (ici[0] if ici else None)
+                suivre = (x.get("cible") if x and x["faire"] == "heurter" else x["objet"]) if x else principal
+                cadres.append((quand(ph), fort["faire"] if fort else c, suivre))
             s["camera"] = plans_camera(actions, objets, principal, total - a, cadres, dense=sc.get("decor") in ("usine", "ville", "port"))
             s["mention"] = "Reconstitution · plan simplifié · positions approximatives"   # la source est déjà en bas
         scenes.append(s)

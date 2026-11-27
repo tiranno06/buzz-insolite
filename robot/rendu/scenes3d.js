@@ -748,9 +748,18 @@ export async function creer3d(sc, couche, T) {
         rc.set(C, dir); rc.far = dist;
         const solides = scene.userData.solides || (scene.userData.solides = []);
         if (!solides.length) scene.traverse(m => { if (m.isMesh && !m.material?.transparent && m.geometry?.boundingSphere !== undefined) solides.push(m); });
-        const vus = rc.intersectObjects(solides.filter(m => m.visible && !estDans(m, groupesSuivis(t))), false);
-        const h = vus.find(x => x.distance > 1.5);
-        if (h) { const d = Math.max(3, h.distance - 1.5); p[0] = c[0] + dir.x * d; p[1] = Math.max(c[1] + dir.y * d, c[1] + 2.5) + (dist - d) * 0.15; p[2] = c[2] + dir.z * d; }
+        const obstacles = solides.filter(m => m.visible && !estDans(m, groupesSuivis(t)));
+        const bouche = (q) => { const v = q.clone().sub(C), l = v.length(); rc.set(C, v.normalize()); rc.far = l;
+                                return rc.intersectObjects(obstacles, false).find(x => x.distance > 1.5); };
+        // vue bouchée : on MONTE d'abord (plan en plongée, comme un drone) ; on ne s'approche qu'en dernier recours
+        // (avant : la caméra se collait au mur qui bouchait la vue, Iowa refaite du 27/11)
+        if (bouche(P)) {
+          let libre = null;
+          for (const monte of [10, 22, 40, 65]) { const Q = P.clone(); Q.y += monte; if (!bouche(Q)) { libre = Q; break; } }
+          if (!libre) { const Q = C.clone().add(new T.Vector3(0, Math.max(30, dist), 0)); libre = bouche(Q) ? null : Q; }
+          if (libre) { p[0] = libre.x; p[1] = libre.y; p[2] = libre.z; }
+          else { const h = bouche(P), d = Math.max(3, h.distance - 1.5); p[0] = c[0] + dir.x * d; p[1] = Math.max(c[1] + dir.y * d, c[1] + 2.5); p[2] = c[2] + dir.z * d; }
+        }
       }
     }
     if (iso) {                                // toujours le même angle (45°, en surplomb) ; on se rapproche doucement
