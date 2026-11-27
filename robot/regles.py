@@ -100,7 +100,7 @@ def verifier(script, articles, hashtags=None, duree=None, description=None, ques
     vus = {}
     for i, p in enumerate(ph[:-1]):
         m = p.get("media") or {}
-        if not m or m.get("suite") or m.get("type") == "carte":
+        if not m or m.get("suite") or m.get("type") in ("carte", "anime"):
             continue
         cle = (controle._base(m), round(float(m.get("debut") or 0), 1))
         if cle in vus:

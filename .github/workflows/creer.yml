@@ -106,6 +106,18 @@ jobs:
       - name: Installer ffmpeg
         timeout-minutes: 25
         run: bash outils/installer_ffmpeg.sh
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Retrouver le navigateur du rendu animé
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('robot/rendu/package.json') }}
+      - name: Installer le rendu animé (Chromium sans écran, nouveau style du 26/11)
+        run: |
+          npm install --prefix robot/rendu --no-audit --no-fund --silent
+          npx --prefix robot/rendu playwright install --with-deps chromium
       - name: Installer les bibliothèques
         run: |
           uv pip install --system -q -r requirements.txt || pip install -q -r requirements.txt

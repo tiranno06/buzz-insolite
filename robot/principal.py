@@ -252,6 +252,10 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
     script = E["script"]
     for i in range(len(script["phrases"])):
         controle.uid(script, i)                               # numéro fixe de chaque phrase (noms des fichiers)
+    # NOUVEAU STYLE (demande de l'auteur du 26/11) : tout est dessiné (cartes, chiffres, 3D), plus aucune image d'un autre
+    # média → plus de « contenu non original » pour TikTok. `video.style` = "classique" pour revenir à l'ancien montage.
+    anime = str(R["video"].get("style", "anime")) == "anime"
+    monter = montage.monter_anime if anime else montage.monter
 
     # ---------- 3. voix (contrôle 2/4) : seules les phrases pas encore dites
     def voix():
@@ -376,6 +380,25 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                         script["phrases"][1]["ecran"] = str(script["lieu"]).split(",")[0][:22]
                     journal(f"  carte : {lieu['nom']}")
             E["carte_faite"] = True
+    def realisation():                                    # nouveau style : l'IA réalisatrice choisit les scènes animées
+        from . import realisateur
+        if not script.get("animation"):
+            script["animation"] = realisateur.valider({}, script, [], journal) if simulation() else \
+                realisateur.realiser(script, E["articles"], journal)
+        ph = script["phrases"]
+        for i, p in enumerate(ph):                            # chaque phrase est « illustrée » par l'animation
+            p["media"] = None if i == len(ph) - 1 else {"type": "anime", "id": f"anime{p['uid']}", "credit": ""}
+            p["ecran"] = ""
+        serie = serie_de(format_)
+        if serie:
+            script["etiquette"], script["serie_hashtag"] = serie[1], serie[2]
+        script["musique"] = R["video"].get("musique", True); script["bruitages"] = R["video"].get("bruitages", True)
+        script["transitions"] = R["video"].get("transitions", False)
+        noms = [a["media"] for a in E["articles"] if a.get("media") and len(a.get("texte") or "") >= 400 and a["media"] not in
+                ("Google Actualités", "Wikipédia (contexte)", "Descriptions des vidéos TikTok virales", "Sujet du buzz")]
+        script["source_courte"] = ", ".join(list(dict.fromkeys(noms))[:2])
+        journal("  scènes : " + " · ".join(f"{sc['type']} ({len(sc['phrases'])} ph.)" for sc in script["animation"]["scenes"]))
+
     def controle_images():
         if not simulation():
             controle.controle_images(script, dossier, B, journal, E.setdefault("deja", set()), sujet["titre"], sans_ia=secours)
@@ -392,6 +415,11 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
 
     def fil_images():
         try:
+            if anime:                                         # aucune image à chercher ni à juger : tout sera dessiné
+                etape("images", 52, realisation)
+                if "controle_images" not in E["faites"]:
+                    E["faites"].append("controle_images")
+                return
             etape("images", 52, images_)
             etape("controle_images", 62, controle_images)
         except Exception as e:
@@ -409,13 +437,14 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
     E["fichier"] = fichier = os.path.join(dossier, f"buzz-{vid}.mp4")
     def montage_():
         if not E.get("accroche_faite"):
-            accroche(script)                                  # la plus belle vraie vidéo sur les 2 premières secondes
+            if not anime:
+                accroche(script)                                  # la plus belle vraie vidéo sur les 2 premières secondes
             noms = [a["media"] for a in E["articles"] if a.get("media") and len(a.get("texte") or "") >= 400 and a["media"] not in
                     ("Google Actualités", "Wikipédia (contexte)", "Descriptions des vidéos TikTok virales", "Sujet du buzz")]
             noms = list(dict.fromkeys(noms))[:4]
             script["sources_ecran"] = ("Sources : " + ", ".join(noms)) if noms else ""
             E["accroche_faite"] = True
-        E["duree"] = montage.monter(script, dossier, fichier, suivi=lambda k, nb: avancement.progres(68 + 18 * k / nb, f"écran {k}/{nb}"))
+        E["duree"] = monter(script, dossier, fichier, suivi=lambda k, nb: avancement.progres(68 + 18 * k / nb, f"écran {k}/{nb}"))
     etape("montage", 68, montage_)
 
     # ---------- 6. contrôle 4/4 : la vidéo finie (boucle jusqu'à zéro problème ; le tour en cours est gardé)
@@ -430,7 +459,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                         "les problèmes restants sont signalés dans le bulletin")
                 return
             avancement.etape(pre + f"Contrôle 4/4 : la vidéo finie (tour {tour + 1})", min(94, 87 + tour))
-            fautifs = controle.controle_video(fichier, script, dossier, B, journal, leger=simulation(), sans_ia=secours,
+            fautifs = controle.controle_video(fichier, script, dossier, B, journal, leger=simulation(), sans_ia=secours, anime=anime,
                                               seulement=a_revoir)
             trouves_ici = {(("voix" if a == "voix" else "video"), (None if i is None else controle.uid(script, i)))
                            for i, (_, a) in fautifs.items()}
@@ -444,7 +473,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
             controle.corriger_ecrans(script, fautifs, dossier, B, journal, E.get("nom_voix", R["video"]["voix"]),
                                      E.get("vitesse", 0.8), E["articles"])
             avant = {p.get("uid"): p.get("_sig") for p in script["phrases"]}
-            E["duree"] = montage.monter(script, dossier, fichier)
+            E["duree"] = monter(script, dossier, fichier)
             a_revoir = {i for i, p in enumerate(script["phrases"]) if avant.get(p.get("uid")) != p.get("_sig")}
             journal(f"  {script.get('_ecrans_refaits', 0)} écran(s) refait(s), le reste de la vidéo est inchangé")
     etape("controle_final", 87, controle_final)
@@ -454,7 +483,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
         for essai in range(2):
             if not controle.reposer_extraits(script, journal):
                 break
-            E["duree"] = montage.monter(script, dossier, fichier)
+            E["duree"] = monter(script, dossier, fichier)
         perdus = controle.extraits_perdus(script)
         E["extraits_perdus"] = len(perdus)
         if perdus:
@@ -462,7 +491,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                      None, "grave")
         else:
             B.fermer("video", None)
-    if not simulation():
+    if not simulation() and not anime:                    # nouveau style : aucun extrait d'autres comptes
         etape("extraits", 93, extraits)
 
     # ---------- 6 ter. RÈGLES vérifiées sur la vidéo entière (demande de l'auteur du 25/11) : seuls les passages fautifs
@@ -487,7 +516,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                     V.preparer(a_dire, E.get("nom_voix", R["video"]["voix"]), E.get("vitesse", 0.8), journal,
                                memoire=os.path.join(dossier, "memoire_voix"))
             if textes or images_:
-                E["duree"] = montage.monter(script, dossier, fichier)
+                E["duree"] = monter(script, dossier, fichier)
                 journal(f"  {script.get('_ecrans_refaits', 0)} écran(s) refait(s) seulement")
             pbs = etat_regles()
         # problème ouvert sur une phrase qui n'existe plus (retirée par une règle) : clos (vidéo CAN r14 du 25/11 : phrase
@@ -526,7 +555,8 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 hashtags=([f"#{script['serie_hashtag']}"] if script.get("serie_hashtag") else []) + ecrire.hashtags(script, sujet, R), duree=round(E["duree"], 1),
                 sources=[dict(media=a["media"], titre=a["titre"], lien=a["lien"]) for a in articles_],
                 verification=script.get("verification"), verifie=script.get("verifie", False),
-                credits=sorted({p["media"]["credit"] for p in script["phrases"] if p.get("media")}),
+                credits=sorted({p["media"]["credit"] for p in script["phrases"] if (p.get("media") or {}).get("credit")}),
+                style="anime" if anime else "classique",
                 extraits_perdus=E.get("extraits_perdus", 0), regles_non_respectees=E.get("regles", []),
                 ecrans_illustres=controle.part_illustree(script)[0], ecrans_total=controle.part_illustree(script)[1], format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""),
                 humeur=script.get("humeur", ""), categorie=sujet.get("categorie") or script.get("categorie") or "actualite", texte=[p["ecrit"] for p in script["phrases"]],

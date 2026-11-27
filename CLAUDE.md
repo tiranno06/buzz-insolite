@@ -538,6 +538,40 @@ Trouvé et corrigé :
 - Test `TestTousLesFichiers` : chaque fichier du robot est chargé (un fichier cassé que les autres tests n'utilisent pas
   passait inaperçu).
 
+## NOUVEAU STYLE « 100 % fabriqué » (26/11, demande de l'auteur, d'après curioverse.actu et vudenhaut.fr)
+Constat : nos 4 vidéos publiées restaient à 0 vue exactement (TikTok ne les montrait à personne) : elles reprenaient des
+extraits d'autres comptes (BBC, franceinfo, Al Jazeera…), logos visibles = « contenu non original ». Les chaînes modèles ne
+reprennent AUCUNE image : cartes animées, gros chiffres, étiquettes, reconstitutions 3D style maquette (curioverse : 186
+vidéos en 6 semaines, médiane 908 vues ; alertes météo avec carte médiane 30 000, reconstitutions 3D jusqu'à 1,1 million).
+30 images/s comme nous : la fluidité vient du mouvement doux permanent, pas du nombre d'images. Choix de l'auteur : TOUT
+remplacer (plus aucun extrait), et tout faire (habillage, cartes, chiffres, 3D). Pas une copie exacte de curioverse (nom,
+logo, mise en page) : même recette, notre identité (rouge et jaune du logo sur bleu nuit).
+- `video.style` = "anime" (défaut ; Réglages → Style des vidéos) ou "classique" (ancien montage). En « anime » :
+  pas de recherche d'images, pas de citations, pas de contrôle des images ; étape « images » = `realisation`.
+- `robot/realisateur.py` : l'IA réalisatrice découpe les phrases en scènes (`CONSIGNE` : carte, chiffre, mot, frise, citation,
+  barres, 3d, question) ; `valider` contrôle TOUT (chiffre présent dans le texte ou les articles, citation copiée des
+  articles, objets / actions / décors 3D de la bibliothèque, lieux trouvés par `carte.trouver_lieu`, toutes les phrases
+  couvertes dans l'ordre, la dernière = question) sinon scène sûre (`_secours` : 1er chiffre dit, ou mots forts) ;
+  `pour_rendu` : numéros de phrases → secondes (voies → z, caméra qui suit l'objet principal, mention « Reconstitution 3D
+  · illustration d'après <source> ») ; `rendre` lance `node robot/rendu/rendre.mjs`.
+- `montage.monter_anime` : même voix, même musique (calée sur le rythme), même son -14 LUFS ; mots calés (`V.caler`) →
+  sous-titres dessinés par la page ; rendu refait seulement si le storyboard change (`_sig_anime`).
+- `robot/rendu/` : `page.html` (habillage : pastille BUZZ INSOLITE + lieu/date, gros titre qui rétrécit après l'accroche,
+  logo rond, SOUS-TITRES SANS FOND NOIR : mot dit surligné en jaune, mots importants en jaune, mots à venir pâles ;
+  mention et source en bas), `moteur.js` (charger / rendre(t) : rien ne dépend de l'horloge ; scènes carte (Mercator,
+  départements Licence Ouverte, pays Natural Earth, zoom lent, pluie / neige / orage, flèche, repères), chiffre (compteur),
+  frise, citation, question, barres, photo), `scenes3d.js` (Three.js r170 MIT : voiture, camion, citerne, bus, moto, avion,
+  hélico, bateau, train, bâtiment, arbre, personne, muret, mur, cube d'eau ; décors autoroute, route, ville, mer, port,
+  plage, piste, voie ferrée, campagne, studio ; actions avancer, heurter, changer_voie, tourner, se_coucher, brûler,
+  exploser, tomber, voler, couler ; anneau jaune + étiquette qui suivent un objet ; feu et fumée en particules),
+  `rendre.mjs` (Chromium sans écran via Playwright 1.63.0 `package.json`, capture JPEG → ffmpeg H.264 CRF 16, 30 i/s,
+  morceaux en parallèle = un par paire de cœurs ; ~0,5 s par image sur un cœur). Workflows creer / tests / essai :
+  setup-node 22 + `npm install --prefix robot/rendu` + `playwright install --with-deps chromium` (cache ~/.cache/ms-playwright).
+- Contrôles adaptés : chaque phrase animée compte comme illustrée (`media.type` = "anime") ; `controle_video(anime=True)` :
+  pas d'écrans noirs ni de regard de l'IA sur les images (on les dessine), voix / sous-titres / durée / format contrôlés ;
+  refaire « images » = nouvelle réalisation (`animation` effacée), refaire « texte » = nouveau storyboard.
+- Polices : Poppins Medium à Black (OFL). Données : `robot/rendu/geo/LICENCES.md`.
+
 ## Avant d'envoyer
 `python -m unittest discover -s tests` (aucun appel réseau ni IA ; ffmpeg nécessaire pour l'essai complet). Essai sans IA :
 `SIMULATION=1 python -m robot.principal --libre "Essai"`. Site : servir `docs/` et l'ouvrir à 400 px de large.

@@ -310,6 +310,9 @@ dialog form { position: absolute; top: 6px; right: 6px; }
             <option value="chatterbox-bernard">Homme (voix choisie, par défaut)</option>
             <option value="kokoro-ff_siwis">Femme</option></select></label>
           <label class="champ">Vitesse <span>0,80 = choisi le 24/11 ; plus petit = plus rapide</span><input type="number" id="r-vitesse" min="0.65" max="1.1" step="0.01"></label>
+          <label class="champ">Style des vidéos <span>« Animé » : tout est dessiné (cartes, chiffres, 3D), aucune image d'un autre média</span><select id="r-style">
+            <option value="anime">🎨 Animé (recommandé, depuis le 26/11)</option>
+            <option value="classique">🎞️ Classique (extraits et photos)</option></select></label>
         </div>
         <div class="card" style="margin:10px 0;padding:12px">
           <h3 style="margin-top:0">🗣️ Prononciation</h3>
@@ -664,6 +667,7 @@ function remplirReglages() {
   $("#r-heures").value = B.heures ?? 72; $("#r-comptes").value = (B.comptes || []).join("\n");
   const E = (D["buzz.json"] || {}).comptes || {};
   $("#r-comptes-etat").textContent = Object.keys(E).length ? "Dernier relevé : " + Object.entries(E).map(([k, e]) => `${e.ok ? "🟢" : "🔴"} @${k}`).join("  ") : "";
+  $("#r-style").value = V.style === "classique" ? "classique" : "anime";
   $("#r-voix").value = ["chatterbox-bernard", "kokoro-ff_siwis"].includes(V.voix) ? V.voix : "chatterbox-bernard"; $("#r-vitesse").value = V.vitesse ?? 0.8;
   $("#r-musique").checked = V.musique !== false; $("#r-bruitages").checked = V.bruitages !== false; $("#r-transitions").checked = !!V.transitions; $("#r-carte").checked = V.carte !== false; $("#r-generiques").checked = !!V.images_generiques; $("#r-citations").checked = V.citations !== false; $("#r-citations-nb").value = String(V.citations_nombre || 12);
   $("#r-chaine").value = P.chaine || ""; $("#r-heures-auto").checked = !!P.heures_auto;
@@ -683,7 +687,7 @@ $("#form-reglages").onsubmit = e => {
     creation: { paralleles: +$("#r-paralleles").value || 5, auto: $("#r-cre-auto").checked, series: $("#r-series").checked, heures: heures("#r-cre-h1", "#r-cre-h2"), formats: { vrai_faux: +$("#r-vf").value, semaine: $("#r-semaine").checked, chiffre: +$("#r-chiffre").value, region: +$("#r-region").value, monde60: $("#r-monde60").checked } },
     buzz: { vues_min: +$("#r-vues").value, jaime_min: +$("#r-jaime").value, commentaires_min: +$("#r-com").value, heures: +$("#r-heures").value,
       comptes: $("#r-comptes").value.split(/\s+/).map(x => x.replace(/^@/, "")).filter(Boolean) },
-    video: { voix: $("#r-voix").value, vitesse: +$("#r-vitesse").value, musique: $("#r-musique").checked, bruitages: $("#r-bruitages").checked, transitions: $("#r-transitions").checked, carte: $("#r-carte").checked, images_generiques: $("#r-generiques").checked, citations: $("#r-citations").checked, citations_nombre: +$("#r-citations-nb").value },
+    video: { style: $("#r-style").value, voix: $("#r-voix").value, vitesse: +$("#r-vitesse").value, musique: $("#r-musique").checked, bruitages: $("#r-bruitages").checked, transitions: $("#r-transitions").checked, carte: $("#r-carte").checked, images_generiques: $("#r-generiques").checked, citations: $("#r-citations").checked, citations_nombre: +$("#r-citations-nb").value },
     hashtags: { fixes: $("#r-tags").value.split(/\s+/).filter(Boolean), nombre: +$("#r-ntags").value }
   };
   commande("reglages", "", JSON.stringify(R), "Réglages envoyés au robot (1 à 2 min).");

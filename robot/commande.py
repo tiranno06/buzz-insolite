@@ -36,6 +36,8 @@ def appliquer_reglages(d):
         if k in B:
             R["buzz"][k] = max(mini, min(maxi, int(B[k])))
     from .voix import CHATTERBOX, KOKORO, VOIX
+    if Vd.get("style") in ("anime", "classique"):          # nouveau style « 100 % fabriqué » (26/11) ou ancien montage
+        R["video"]["style"] = Vd["style"]
     if Vd.get("voix") in VOIX or Vd.get("voix") in KOKORO or Vd.get("voix") in CHATTERBOX:
         R["video"]["voix"] = Vd["voix"]
     if "vitesse" in Vd:

@@ -57,7 +57,7 @@ REGLAGES_DEFAUT = {
         "vues_min": 500000, "jaime_min": 10000, "commentaires_min": 1000,
         "heures": 72,                                 # âge maximum d'une vidéo virale prise en compte
     },
-    "video": {"voix": "chatterbox-bernard", "vitesse": 0.80, "duree_min": 62, "musique": True, "bruitages": False, "transitions": False, "carte": True,
+    "video": {"style": "anime", "voix": "chatterbox-bernard", "vitesse": 0.80, "duree_min": 62, "musique": True, "bruitages": False, "transitions": False, "carte": True,
               "images_generiques": False,
               "citations": True, "citations_nombre": 12, "citations_photos": 6},  # courtes citations des vidéos d'origine (25/11)           # banques d'images (Pixabay…) : coupées, seulement les vrais sujets
     "publication": {"mode": "cocher",                 # cocher = tu coches « À publier » ; auto = tout part sans toi

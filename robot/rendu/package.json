@@ -1,0 +1,8 @@
+{
+  "name": "buzz-insolite-rendu",
+  "private": true,
+  "description": "Rendu des vidéos 100 % fabriquées (Chromium sans écran, image par image)",
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}

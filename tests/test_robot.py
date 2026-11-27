@@ -355,7 +355,8 @@ class TestJamaisAbandonnee(unittest.TestCase):
             if comptes["monter"] <= 4:                    # 3 essais dans l'étape + 1 dans la 1re reprise : puis ça passe
                 raise RuntimeError("montage planté")
             return 70.0
-        principal.script_simulation, montage.monter = script, monter
+        vrai_anime = montage.monter_anime
+        principal.script_simulation, montage.monter, montage.monter_anime = script, monter, monter   # (les deux styles)
         dort, principal.time.sleep = principal.time.sleep, lambda s: None
         verif = principal.controle.controle_video
         principal.controle.controle_video = lambda *a, **k: {}
@@ -364,6 +365,7 @@ class TestJamaisAbandonnee(unittest.TestCase):
             faites = principal.creer(1, libre="Un sujet qui plante au montage")
         finally:
             principal.script_simulation, montage.monter, principal.time.sleep = vrai_script, vrai_monter, dort
+            montage.monter_anime = vrai_anime
             principal.controle.controle_video, principal.montage.miniature = verif, mini
             os.environ.pop("SIMULATION", None)
         self.assertEqual(len(faites), 1)
@@ -1247,3 +1249,57 @@ class TestTousLesFichiers(unittest.TestCase):
         for m in pkgutil.iter_modules(robot.__path__):
             if m.name != "chatterbox_voix":                   # tourne dans son propre espace Python
                 importlib.import_module(f"robot.{m.name}")
+
+
+class TestRealisateur(unittest.TestCase):
+    """Nouveau style (26/11) : l'IA réalisatrice propose, le robot contrôle tout ce qu'elle propose."""
+    def _script(self):
+        ph = ["Mercredi soir, au Caire, un camion-citerne se renverse.", "Le bilan : 31 morts.", "Une voiture touche le camion.",
+              "Le camion se couche et prend feu.", "Le conducteur a été arrêté.", "Et toi, faut-il interdire ces camions ?"]
+        return {"titre": "Camion-citerne en feu", "lieu": "", "question": ph[-1], "phrases": [{"ecrit": p} for p in ph]}
+
+    def test_controle_de_ce_que_propose_l_ia(self):
+        from robot import realisateur as R
+        articles = [{"titre": "Le Caire", "texte": "Le ministre a déclaré : « Nous allons revoir les règles ». Bilan de 31 morts et 21 blessés."}]
+        d = {"titre": "Camion en feu : 31 morts", "cles": {"1": ["31", "inventé"]}, "scenes": [
+            {"phrases": [0], "type": "chiffre", "valeur": "48", "unite": "morts"},                 # chiffre inventé
+            {"phrases": [1], "type": "chiffre", "valeur": "31", "unite": "morts"},
+            {"phrases": [2, 3], "type": "3d", "decor": "lune", "objets": [{"id": "c", "type": "citerne"}, {"id": "x", "type": "soucoupe"}],
+             "actions": [{"objet": "c", "faire": "se_coucher", "phrase": 3}, {"objet": "x", "faire": "voler"}, {"objet": "c", "faire": "danser"}]},
+            {"phrases": [4], "type": "citation", "texte": "Je suis innocent", "auteur": "le conducteur"},  # citation absente
+        ]}
+        a = R.valider(d, self._script(), articles, journal=lambda *x: None)
+        sc = a["scenes"]
+        self.assertEqual([x for s in sc for x in s["phrases"]], list(range(6)))     # toutes les phrases, dans l'ordre
+        self.assertNotEqual(sc[0].get("valeur"), "48")                               # chiffre inventé remplacé
+        self.assertEqual(sc[1]["valeur"], "31")
+        trois = next(s for s in sc if s["type"] == "3d")
+        self.assertEqual([o["type"] for o in trois["objets"]], ["citerne"])          # objet inconnu écarté
+        self.assertEqual([x["faire"] for x in trois["actions"]], ["se_coucher"])     # action inconnue écartée
+        self.assertEqual(trois["decor"], "route")
+        self.assertNotIn("citation", [s["type"] for s in sc])                        # fausse citation refusée
+        self.assertEqual(sc[-1]["type"], "question"); self.assertEqual(sc[-1]["phrases"], [5])
+        self.assertEqual(a["cles"][1], ["31"])                                       # mot absent de la phrase écarté
+
+    def test_sans_ia_scenes_sures(self):
+        from robot import realisateur as R
+        a = R.valider({}, self._script(), [], journal=lambda *x: None)
+        self.assertEqual([x for s in a["scenes"] for x in s["phrases"]], list(range(6)))
+        self.assertEqual(a["scenes"][-1]["type"], "question")
+        self.assertIn("**", a["titre"])
+
+    def test_numeros_de_phrases_en_secondes(self):
+        from robot import realisateur as R
+        s = self._script()
+        anim = {"titre": "t", "lieu_date": "", "source": "", "cles": {}, "scenes": [
+            {"phrases": [0, 1], "type": "chiffre", "valeur": "31"},
+            {"phrases": [2, 3, 4], "type": "3d", "decor": "autoroute", "objets": [{"id": "c", "type": "citerne", "voie": 2, "position": 0}],
+             "actions": [{"objet": "c", "faire": "avancer", "phrase": 3, "duree": 2, "vers_position": 50}], "reperes": [{"objet": "c", "texte": "le camion", "phrase": 2}]},
+            {"phrases": [5], "type": "question", "texte": "?"}]}
+        debuts = [0, 3, 6, 9, 12, 15]
+        sb = R.pour_rendu(anim, s, debuts, [], 19.0)
+        self.assertEqual([(x["debut"], x["fin"]) for x in sb["scenes"]], [(0, 6), (6, 15), (15, 19.0)])
+        act = sb["scenes"][1]["actions"][0]
+        self.assertEqual(act["a"], 3); self.assertEqual(act["vers"], [50.0, sb["scenes"][1]["objets"][0]["z"]])
+        self.assertEqual(sb["scenes"][1]["reperes"][0]["a"], 0)
+        self.assertTrue(sb["scenes"][1]["mention"].startswith("Reconstitution 3D"))

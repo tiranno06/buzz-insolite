@@ -4,7 +4,9 @@ Chaque phrase = un écran : vraie vidéo (nette au milieu, la même floutée der
 En haut : étiquette « INSOLITE » + gros titre de l'écran. En bas : sous-titres karaoké (3 mots, le mot dit en jaune et un peu
 plus gros, calé sur la voix par Whisper), placés au-dessus de la zone où TikTok affiche le pseudo et la description.
 """
+import json
 import os
+import re
 import subprocess
 
 from PIL import Image, ImageDraw, ImageFont
@@ -324,4 +326,54 @@ def monter(script, dossier, sortie, suivi=None):
                     "-map", "[v]", "-map", "1:a", "-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "medium", "-crf", "21",
                     "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-ar", "44100", "-movflags", "+faststart", sortie],
                    check=True)
+    return total
+
+
+# ------------------------------------------------------------------ nouveau style « 100 % fabriqué » (demande de l'auteur du 26/11)
+def monter_anime(script, dossier, sortie, suivi=None):
+    """Vidéo entièrement dessinée (robot/rendu : cartes, chiffres, 3D, sous-titres sans fond noir) + la même voix, la même
+    musique et le même réglage du son que le montage classique. Le rendu (le plus long) n'est refait que si l'image change
+    (texte, scènes ou calage des mots). Renvoie la durée de la vidéo."""
+    from . import realisateur
+    ph = script["phrases"]
+    if script.get("musique", True) and not script.get("_musique"):
+        script["_musique"] = sons.musique(script.get("humeur", "neutre")) or ""
+    sons.caler_pauses(ph, sons.battements(script["_musique"]) if script.get("_musique") else [], PAUSE)
+    debuts, total = debuts_et_total(ph)
+    silences = {}
+    for p in ph:
+        cle = f"{p['_pause']:.3f}"
+        if cle not in silences:
+            silences[cle] = os.path.join(dossier, f"pause{cle}.wav")
+            subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", cle,
+                            silences[cle]], check=True)
+    with open(os.path.join(dossier, "voix.txt"), "w") as f:
+        for p in ph:
+            f.write(f"file '{p['son']}'\nfile '{silences[format(p['_pause'], '.3f')]}'\n")
+    voix = os.path.join(dossier, "voix.wav")
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0", "-i", os.path.join(dossier, "voix.txt"), voix], check=True)
+    anim = script["animation"]
+    mots = []
+    for i, p in enumerate(ph):
+        aff = V.mots_affiches(affichable(p["ecrit"])); tm = V.caler(aff, p["mots"], p["duree"])
+        cles = {V.norm(x) for c in (anim.get("cles") or {}).get(i, anim.get("cles", {}).get(str(i), [])) for x in str(c).split()}
+        for k, m in enumerate(aff):
+            mots.append(dict(m=m, d=round(debuts[i] + tm[k][0], 3), f=round(debuts[i] + tm[k][1], 3),
+                             cle=V.norm(m) in cles or bool(re.search(r"\d", m))))
+    sb = realisateur.pour_rendu(anim, script, debuts, mots, total, script.get("source_courte", ""))
+    images = os.path.join(dossier, "anime.mp4")
+    signature = json.dumps(sb, sort_keys=True, ensure_ascii=False)
+    if script.get("_sig_anime") != signature or not os.path.exists(images):
+        realisateur.rendre(sb, images)
+        script["_sig_anime"] = signature
+        script["_ecrans_refaits"] = len(ph)
+    else:
+        script["_ecrans_refaits"] = 0
+    if suivi:
+        suivi(len(ph), len(ph))
+    bande = sons.mixer(voix, ph, debuts, total, script.get("humeur", "neutre"), os.path.join(dossier, "bande.wav"),
+                       (script.get("_musique") or False) if script.get("musique", True) else False, script.get("format", ""),
+                       script.get("bruitages", True), script.get("transitions", False))
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", images, "-i", bande, "-map", "0:v", "-map", "1:a", "-t", f"{total:.3f}",
+                    "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "44100", "-movflags", "+faststart", sortie], check=True)
     return total

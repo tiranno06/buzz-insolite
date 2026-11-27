@@ -160,6 +160,7 @@ def preparer(v, sujet, etape, remarque, dossier, repo, R, journal=print):
                 deja.add(m["id"]); deja.add(str(m["id"]).rsplit("-", 1)[0])   # l'ancienne image est interdite
             ph[i].pop("media", None)
         script.pop("_reserve", None)
+        script.pop("animation", None); script.pop("_sig_anime", None)   # nouveau style : nouvelle réalisation des scènes
         journal(f"  {len(cibles)} écran(s) recevront d'autres images")
     elif etape == "voix":
         cibles = ecrans_cites(remarque, len(ph)) | indices_signales(script, lignes, ("voix",))

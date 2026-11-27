@@ -508,7 +508,7 @@ sur bandeau noir) et NOTRE titre jaune comptent.
 Réponds uniquement en JSON : {"images": [{"n": numéro, "titre_coupe": …, "chevauchement": …, "illisible": …, "probleme": "…"}]}"""
 
 
-def controle_video(fichier, script, dossier, B, journal=print, leger=False, sans_ia=False, seulement=None):
+def controle_video(fichier, script, dossier, B, journal=print, leger=False, sans_ia=False, seulement=None, anime=False):
     """Niveau 4. Renvoie {n° d'écran (ou None = toute la vidéo): (problème, action)} ;
     action = "image", "titre", "voix", "allonger" (trop court) ou "refaire" (format, son)."""
     from . import montage
@@ -520,7 +520,7 @@ def controle_video(fichier, script, dossier, B, journal=print, leger=False, sans
     if duree < 61 and not leger and not script.get("_allonger_impossible"):     # (l'essai sans réseau est court)
         # TikTok ne paie que les vidéos de PLUS d'1 minute : 61 s au moins, avec une marge (texte visé : 62 s)
         fautifs[None] = (f"vidéo de {duree:.0f} s : pas plus d'1 minute (pas payée par TikTok)", "allonger")
-    for i in ecrans_noirs(fichier, debuts):
+    for i in ([] if anime else ecrans_noirs(fichier, debuts)):   # nouveau style : fonds sombres voulus, rien à remplacer
         if ph[i].get("media"):
             fautifs[i] = ("écran noir dans la vidéo finie", "image")
     for i, p in enumerate(ph):
@@ -543,6 +543,8 @@ def controle_video(fichier, script, dossier, B, journal=print, leger=False, sans
                         "-q:v", "4", img], check=False)
         if os.path.exists(img) and os.path.getsize(img) > 0:
             lots.append((i, img))
+    if anime:                                             # nouveau style : scènes dessinées par le robot, aucune image à juger
+        return fautifs
     if sans_ia:
         B.saute("regard de l'IA sur la vidéo finie (mode secours)")
     for essai in range(0 if sans_ia else 3):

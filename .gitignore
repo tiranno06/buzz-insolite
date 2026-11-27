@@ -2,3 +2,4 @@ sortie/
 __pycache__/
 *.pyc
 robot/rendu/.medias/
+robot/rendu/node_modules/

@@ -180,6 +180,7 @@ TYPES.chiffre = async (sc, couche) => {
     const p = ease.sortie(prog(t, 0.1, sc.compte ?? 1.1));
     const val = isNaN(num) ? brut : prefixe + (num * p).toLocaleString("fr-FR", { minimumFractionDigits: decimales, maximumFractionDigits: decimales });
     v.textContent = val.replace(/^-/, "−");
+    if (isNaN(num)) v.style.fontSize = (brut.length > 9 ? 104 : brut.length > 5 ? 140 : 190) + "px";   // mot-clé géant
     bloc.style.transform = `scale(${mix(0.82, 1, ease.ressort(prog(t, 0, 0.5))) * (1 + 0.04 * prog(t, 0, duree))})`;
     bloc.style.opacity = borne(prog(t, 0, 0.25));
     apparition(tx, t, 0.6, { echelle: false });
