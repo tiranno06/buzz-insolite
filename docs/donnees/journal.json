@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T19:49:15+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Incendie meurtrier sur le Ring Road » (65 s, 14 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-27T18:05:40+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 83 sujet(s) au-dessus des seuils — en tête : « Afghanistan : les femmes privées de nom officiel »"
@@ -994,11 +999,6 @@
    "date": "2026-11-24T21:08:22+01:00",
    "niveau": "info",
    "texte": "🗑️ « Leto et le scandale Lucia dans GTA VI » supprimée."
-  },
-  {
-   "date": "2026-11-24T20:46:48+01:00",
-   "niveau": "info",
-   "texte": "🔥 Buzz : 18 sujet(s) au-dessus des seuils — en tête : « Brésil : golden retriever sauve enfant noyé »"
   }
  ]
 }
