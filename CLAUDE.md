@@ -585,4 +585,4 @@ Listes communautaires (awesome-free-llm-apis) relues ; retenues = gratuites, san
 
 ## Avant d'envoyer
 `python -m unittest discover -s tests` (aucun appel réseau ni IA ; ffmpeg nécessaire pour l'essai complet). Essai sans IA :
-`SIMULATION=1 python -m robot.principal --libre "Essai"`. Site : servir `docs/` et l'ouvrir à 400 px de large.
+`SIMULATION=1 python -m robot.principal --libre "Essai"`. ⚠️ Cet essai local écrit dans `docs/donnees` et `docs/miniatures` : `git checkout docs/ && git clean -fd docs/miniatures` AVANT d'envoyer (26/11 : une fausse vidéo d'essai est partie sur le site). Site : servir `docs/` et l'ouvrir à 400 px de large.
