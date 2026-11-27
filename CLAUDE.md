@@ -490,7 +490,7 @@ récentes les plus vues juste en dessous (« sous_seuils », score divisé par 2
 - Site `docs/index.html` (GitHub Pages, main /docs) : onglets Buzz, Vidéos, Créer, Publication, Journal, Réglages ; clé
   GitHub fine-grained du navigateur (`bi_jeton`, droits Actions + Contents) ; mode démo sans données.
 - **Réglages GitHub interdits depuis une session Claude** (proxy) : activer Pages et écrire les secrets se font à la main par
-  l'auteur. Secrets : `BUFFER_API_KEY`, `PEXELS_API_KEY` (facultatif), `PIXABAY_API_KEY`, `MISTRAL_API_KEY`, `GROQ_API_KEY`, `GEMINI_API_KEY`, `OPENROUTER_API_KEY`, `VIMEO_TOKEN` (facultatif).
+  l'auteur. Secrets : `BUFFER_API_KEY`, `CEREBRAS_API_KEY` / `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` / `ZAI_API_KEY` (facultatifs), `PEXELS_API_KEY` (facultatif), `PIXABAY_API_KEY`, `MISTRAL_API_KEY`, `GROQ_API_KEY`, `GEMINI_API_KEY`, `OPENROUTER_API_KEY`, `VIMEO_TOKEN` (facultatif).
 
 ## Vidéos invisibles sur le site (25/11 au soir)
 3 vidéos fabriquées en même temps (Arche, Trump, GTA) avaient leur Release restée en BROUILLON sur GitHub : fichier
@@ -571,6 +571,17 @@ logo, mise en page) : même recette, notre identité (rouge et jaune du logo sur
   pas d'écrans noirs ni de regard de l'IA sur les images (on les dessine), voix / sous-titres / durée / format contrôlés ;
   refaire « images » = nouvelle réalisation (`animation` effacée), refaire « texte » = nouveau storyboard.
 - Polices : Poppins Medium à Black (OFL). Données : `robot/rendu/geo/LICENCES.md`.
+
+## IA de secours ajoutées (26/11, demande de l'auteur « n'as-tu pas trouvé d'autres IA de secours ? »)
+Listes communautaires (awesome-free-llm-apis) relues ; retenues = gratuites, sans carte, usage commercial non interdit :
+- **GitHub Models** (`github`) : jeton de la tâche (`GITHUB_MODELS_TOKEN: ${{ github.token }}`, permission `models: read`),
+  AUCUNE clé à créer ; voit les images (gpt-4.1-mini, gpt-4o-mini) ; catalogue https://models.github.ai/catalog/models lu
+  pour les secours (`supported_input_modalities`) ; limites par modèle et par jour.
+- Facultatives, actives dès que l'auteur ajoute la clé gratuite : **Cerebras** (`CEREBRAS_API_KEY`, texte), **Cloudflare
+  Workers AI** (`CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`, 10 000 neurones/jour, voit les images), **Z AI**
+  (`ZAI_API_KEY`, GLM « flash », voit les images). `ia.a_cle(f)` (clé + n° de compte), `ia.VISION_ORDRE`.
+- ÉCARTÉES : Cohere (usage NON commercial), NVIDIA NIM (prototypes seulement, production = licence payante), Kilo Code /
+  Requesty (gardent et réutilisent les textes), petits services inconnus.
 
 ## Avant d'envoyer
 `python -m unittest discover -s tests` (aucun appel réseau ni IA ; ffmpeg nécessaire pour l'essai complet). Essai sans IA :

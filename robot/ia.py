@@ -21,9 +21,22 @@ FOURNISSEURS = {
                           "openai/gpt-oss-20b", "llama-3.1-8b-instant")),
     "gemini": dict(cle="GEMINI_API_KEY", url="https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
                    modeles=("gemini-flash-latest", "gemini-2.5-flash", "gemini-flash-lite-latest", "gemini-2.5-flash-lite")),
+    # IA de secours (demande de l'auteur du 26/11) : gratuites, sans carte bancaire, usage commercial non interdit.
+    # GitHub Models : le jeton de la tâche GitHub suffit (permission « models: read »), AUCUNE clé à créer.
+    "github": dict(cle="GITHUB_MODELS_TOKEN", url="https://models.github.ai/inference/chat/completions",
+                   modeles=("openai/gpt-4.1-mini", "openai/gpt-4o-mini", "meta/llama-3.3-70b-instruct", "openai/gpt-4.1-nano")),
+    # Les 3 suivantes servent dès que l'auteur ajoute leur clé gratuite dans les secrets GitHub (sinon ignorées)
+    "cerebras": dict(cle="CEREBRAS_API_KEY", url="https://api.cerebras.ai/v1/chat/completions",
+                     modeles=("gpt-oss-120b", "qwen-3-235b-a22b-instruct-2507", "llama-3.3-70b")),
+    "cloudflare": dict(cle="CLOUDFLARE_API_TOKEN", besoin="CLOUDFLARE_ACCOUNT_ID",
+                       url="https://api.cloudflare.com/client/v4/accounts/{CLOUDFLARE_ACCOUNT_ID}/ai/v1/chat/completions",
+                       modeles=("@cf/openai/gpt-oss-120b", "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                                "@cf/mistralai/mistral-small-3.1-24b-instruct")),
+    "zai": dict(cle="ZAI_API_KEY", url="https://api.z.ai/api/paas/v4/chat/completions", modeles=("glm-4.5-flash", "glm-4.6v-flash")),
     "openrouter": dict(cle="OPENROUTER_API_KEY", url="https://openrouter.ai/api/v1/chat/completions", modeles=()),
 }
-ORDRE = ("mistral", "groq", "gemini", "openrouter")
+ORDRE = ("mistral", "groq", "gemini", "github", "cerebras", "cloudflare", "zai", "openrouter")
+VISION_ORDRE = ("gemini", "mistral", "github", "cloudflare", "zai", "groq", "openrouter")   # IA qui voient les images
 UTILISES = {}                          # fournisseur → nombre d'appels réussis (affiché dans le journal)
 _SAUTES = set()                        # fournisseurs à quota épuisé pendant ce passage du robot
 _MORTS = set()                         # (fournisseur, modèle) retirés par le fournisseur : plus jamais essayés pendant ce passage
@@ -44,7 +57,7 @@ def _mort(fourn, modele, code, corps):
     elif par_jour:
         # Gemini et Groq comptent la limite du jour PAR MODÈLE (25/11 au soir : Gemini entier mis de côté alors que ses
         # autres modèles restaient libres) : seul ce modèle est écarté ; OpenRouter : limite commune à tous ses modèles
-        if fourn in ("gemini", "groq"):
+        if fourn in ("gemini", "groq", "github", "cerebras"):     # limite du jour comptée PAR MODÈLE
             _MORTS.add((fourn, modele))
         else:
             _SAUTES.add(fourn)
@@ -54,8 +67,13 @@ class AucuneIA(Exception):
     pass
 
 
+def a_cle(f):
+    F = FOURNISSEURS[f]
+    return bool(os.environ.get(F["cle"])) and (not F.get("besoin") or bool(os.environ.get(F["besoin"])))
+
+
 def disponibles():
-    return [f for f in ORDRE if os.environ.get(FOURNISSEURS[f]["cle"]) and f not in _SAUTES]
+    return [f for f in ORDRE if a_cle(f) and f not in _SAUTES]
 
 
 def _modeles_openrouter(vision=False):
@@ -78,7 +96,8 @@ def _modeles_openrouter(vision=False):
 # sautés, et d'autres modèles gratuits du même fournisseur sont ajoutés derrière, en secours.
 _EN_LIGNE = {}
 LISTES = {"mistral": "https://api.mistral.ai/v1/models", "groq": "https://api.groq.com/openai/v1/models",
-          "gemini": "https://generativelanguage.googleapis.com/v1beta/openai/models"}
+          "gemini": "https://generativelanguage.googleapis.com/v1beta/openai/models",
+          "github": "https://models.github.ai/catalog/models", "cerebras": "https://api.cerebras.ai/v1/models"}
 EXCLUS = ("embed", "tts", "whisper", "audio", "guard", "moderation", "ocr", "image-generation", "live", "native",
           "transcri", "realtime", "-image", "image-preview", "codestral", "devstral", "compound", "prompt-guard", "safeguard", "orpheus", "veo",
           "imagen", "learnlm", "gemma-3n", "robotics", "computer-use", "nano")
@@ -95,7 +114,7 @@ def _liste_en_ligne(fourn):
                 req = urllib.request.Request(LISTES[fourn], headers={"Authorization": f"Bearer {cle}", "User-Agent": ROBOT_UA})
                 d = json.loads(urllib.request.urlopen(req, timeout=20).read())
                 out = {}
-                for m in d.get("data") or []:
+                for m in (d if isinstance(d, list) else d.get("data") or []):   # GitHub : une simple liste
                     if m.get("active") is False or m.get("deprecation"):
                         continue
                     out[str(m.get("id", "")).removeprefix("models/")] = m
@@ -114,6 +133,11 @@ def _secours_ok(fourn, mid, info, vision):
     if fourn == "mistral":
         cap = info.get("capabilities") or {}
         return bool(cap.get("completion_chat", True)) and (not vision or bool(cap.get("vision")))
+    if fourn == "github":                    # catalogue GitHub : ce que le modèle sait lire est indiqué
+        entrees = [str(x).lower() for x in info.get("supported_input_modalities") or ["text"]]
+        return "text" in entrees and (not vision or "image" in entrees) and "embedding" not in str(info.get("rate_limit_tier", ""))
+    if fourn == "cerebras":
+        return not vision
     if fourn == "groq":
         if vision:
             return "llama-4" in bas or "vision" in bas or "-vl" in bas
@@ -169,7 +193,7 @@ def _appel(fourn, modele, messages, temperature, max_tokens):
     corps = {"model": modele, "messages": messages, "temperature": temperature, "max_tokens": max_tokens}
     if fourn in ("mistral", "groq", "gemini"):
         corps["response_format"] = {"type": "json_object"}
-    req = urllib.request.Request(F["url"], data=json.dumps(corps).encode(), method="POST",
+    req = urllib.request.Request(F["url"].format(**os.environ), data=json.dumps(corps).encode(), method="POST",
                                  headers={"Authorization": f"Bearer {os.environ[F['cle']]}", "Content-Type": "application/json",
                                           "User-Agent": ROBOT_UA, "X-Title": "buzz-insolite-robot"})
     st = QUOTAS.setdefault(fourn, {"appels": 0, "refus": 0, "erreurs": 0})
@@ -237,7 +261,11 @@ def demander_json(consigne, texte, temperature=0.7, max_tokens=4000, exclure=(),
 # ------------------------------------------------------------------ IA qui voit les images (contrôle qualité)
 VISION = {"gemini": ("gemini-flash-latest", "gemini-2.5-flash", "gemini-flash-lite-latest", "gemini-2.5-flash-lite"),
           "mistral": ("mistral-small-latest", "mistral-medium-latest", "pixtral-12b-latest", "ministral-14b-2512"),
-          "groq": ("meta-llama/llama-4-scout-17b-16e-instruct",)}      # maverick retiré par Groq le 25/11
+          "groq": ("meta-llama/llama-4-scout-17b-16e-instruct",),
+          "github": ("openai/gpt-4.1-mini", "openai/gpt-4o-mini", "openai/gpt-4.1"),
+          "cloudflare": ("@cf/meta/llama-4-scout-17b-16e-instruct", "@cf/mistralai/mistral-small-3.1-24b-instruct",
+                         "@cf/google/gemma-4-26b-a4b-it"),
+          "zai": ("glm-4.6v-flash",)}      # maverick retiré par Groq le 25/11
 
 
 def _image_b64(chemin):
@@ -251,8 +279,7 @@ def regarder_json(consigne, texte, images, journal=print, exclure=()):
     contenu = [{"type": "text", "text": texte}] + [{"type": "image_url", "image_url": {"url": _image_b64(c)}} for c in images[:5]]
     messages = [{"role": "system", "content": consigne}, {"role": "user", "content": contenu}]
     derniere = "aucune IA qui voit les images (GEMINI_API_KEY, MISTRAL_API_KEY, GROQ_API_KEY)"
-    for fourn in [f for f in ("gemini", "mistral", "groq", "openrouter") if os.environ.get(FOURNISSEURS[f]["cle"])
-                  and f not in exclure and f not in _SAUTES]:
+    for fourn in [f for f in VISION_ORDRE if a_cle(f) and f not in exclure and f not in _SAUTES]:
         for modele in [m for m in modeles(fourn, vision=True) if (fourn, m) not in _MORTS]:
             for essai in range(2):
                 try:

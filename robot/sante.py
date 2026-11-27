@@ -41,9 +41,8 @@ def _json(url, entetes=None):
 def verifier_ia():
     out = []
     for f in ia.ORDRE:
-        F = ia.FOURNISSEURS[f]
-        if not os.environ.get(F["cle"]):
-            out.append({"nom": f, "ok": False, "detail": "pas de clé"}); continue
+        if not ia.a_cle(f):
+            out.append({"nom": f, "ok": False, "detail": "pas de clé (facultatif)" if f in ("cerebras", "cloudflare", "zai") else "pas de clé"}); continue
         out.append(_ok(f, lambda f=f: ia.demander_json('Réponds uniquement en JSON : {"ok": true}', "Petit test, réponds en json.",
                                                        max_tokens=300,
                                                        exclure=[x for x in ia.ORDRE if x != f], journal=lambda *a: None)[1]))
@@ -270,7 +269,7 @@ def main():
     journal = print
     reparer_brouillons(journal)
     for f in ia.ORDRE:                     # modèles réellement disponibles (préférés encore publiés + secours trouvés en ligne)
-        if os.environ.get(ia.FOURNISSEURS[f]["cle"]):
+        if ia.a_cle(f):
             journal(f"  modèles {f} : texte {', '.join(ia.modeles(f)) or 'aucun'} ; images {', '.join(ia.modeles(f, vision=True)) or 'aucun'}")
     ias, sources_, buffer_ = verifier_ia(), verifier_sources(), verifier_buffer()
     series, pauses = comptes_et_pauses(precedent)

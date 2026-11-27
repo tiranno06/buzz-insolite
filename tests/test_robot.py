@@ -1051,7 +1051,9 @@ class TestCreditsIA(unittest.TestCase):
 
     def test_saturees_mise_en_attente(self):
         ok, resume, detail = self._avec({"mistral": (402, "You need a subscription"), "groq": (429, "Rate limit (RPD) per day"),
-                                         "gemini": (429, "quota per day"), "openrouter": (429, "free-models-per-day")})
+                                         "gemini": (429, "quota per day"), "openrouter": (429, "free-models-per-day"),
+                                         "github": (429, "UserByModelByDay"), "cerebras": (429, "tokens per day"),
+                                         "cloudflare": (429, "daily neurons"), "zai": (429, "quota")})
         self.assertFalse(ok)
         self.assertIn("abonnement", detail["mistral"]["raison"])
         self.assertIn("limite du jour", detail["openrouter"]["raison"])
@@ -1303,3 +1305,25 @@ class TestRealisateur(unittest.TestCase):
         self.assertEqual(act["a"], 3); self.assertEqual(act["vers"], [50.0, sb["scenes"][1]["objets"][0]["z"]])
         self.assertEqual(sb["scenes"][1]["reperes"][0]["a"], 0)
         self.assertTrue(sb["scenes"][1]["mention"].startswith("Reconstitution 3D"))
+
+
+class TestIADeSecours(unittest.TestCase):
+    def test_github_models_et_cles_facultatives(self):
+        from robot import ia
+        ancien, env = dict(ia._EN_LIGNE), dict(os.environ)
+        ia._EN_LIGNE["github"] = {"openai/gpt-4.1-mini": {"supported_input_modalities": ["text", "image"]},
+                                  "openai/gpt-4o-mini": {"supported_input_modalities": ["text", "image"]},
+                                  "deepseek/deepseek-r1": {"supported_input_modalities": ["text"], "rate_limit_tier": "custom"},
+                                  "openai/text-embedding-3-small": {"supported_input_modalities": ["text"], "rate_limit_tier": "embeddings"}}
+        try:
+            self.assertEqual(ia.modeles("github", vision=True)[:2], ("openai/gpt-4.1-mini", "openai/gpt-4o-mini"))
+            self.assertNotIn("deepseek/deepseek-r1", ia.modeles("github", vision=True))      # ne voit pas les images
+            self.assertNotIn("openai/text-embedding-3-small", ia.modeles("github"))
+            os.environ.pop("CLOUDFLARE_ACCOUNT_ID", None); os.environ["CLOUDFLARE_API_TOKEN"] = "x"
+            self.assertFalse(ia.a_cle("cloudflare"))                                         # il faut aussi le n° de compte
+            os.environ["CLOUDFLARE_ACCOUNT_ID"] = "abc"
+            self.assertTrue(ia.a_cle("cloudflare"))
+            self.assertIn("abc", ia.FOURNISSEURS["cloudflare"]["url"].format(**os.environ))
+            self.assertIn("github", ia.VISION_ORDRE)
+        finally:
+            ia._EN_LIGNE.clear(); ia._EN_LIGNE.update(ancien); os.environ.clear(); os.environ.update(env)

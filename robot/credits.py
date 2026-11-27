@@ -11,7 +11,6 @@ nombres, titres en anglais, vidéos à 0/100. Désormais :
 """
 import base64
 import json
-import os
 
 from . import ia
 from .commun import iso, lire
@@ -92,11 +91,11 @@ def verifier(nombre=1, deja_en_cours=None, journal=print):
     """(ok, résumé, détail par IA). ok = assez d'IA disponibles et au moins une place libre (voir `places`)."""
     texte, vision = {}, {}
     for f in ia.ORDRE:
-        if not os.environ.get(ia.FOURNISSEURS[f]["cle"]):
+        if not ia.a_cle(f):
             texte[f] = (False, "pas de clé"); continue
         texte[f] = _essai_texte(f)
-    for f in ("gemini", "mistral", "groq", "openrouter"):
-        if not os.environ.get(ia.FOURNISSEURS[f]["cle"]) or not texte.get(f, (False,))[0]:
+    for f in ia.VISION_ORDRE:
+        if not ia.a_cle(f) or not texte.get(f, (False,))[0]:
             vision[f] = (False, texte.get(f, (False, "pas de clé"))[1]); continue
         vision[f] = _essai_image(f)
     ecrivent = [f for f, (ok, _) in texte.items() if ok]
