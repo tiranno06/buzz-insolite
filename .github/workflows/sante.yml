@@ -36,7 +36,7 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-      - uses: astral-sh/setup-uv@v6   # installation des outils bien plus rapide (amélioration 12 du 25/11)
+      - uses: astral-sh/setup-uv@v7   # installation des outils bien plus rapide (amélioration 12 du 25/11)
       - name: Retrouver ffmpeg déjà téléchargé
         uses: actions/cache@v4
         with:
