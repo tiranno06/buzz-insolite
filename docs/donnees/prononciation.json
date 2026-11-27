@@ -59,6 +59,16 @@
    "dire": "Mideulntaoune",
    "source": "robot",
    "le": "2026-11-27T08:07:58+01:00"
+  },
+  "Ring": {
+   "dire": "Rineg",
+   "source": "robot",
+   "le": "2026-11-27T22:46:40+01:00"
+  },
+  "Road": {
+   "dire": "raode",
+   "source": "robot",
+   "le": "2026-11-27T22:46:40+01:00"
   }
  }
 }
