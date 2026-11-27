@@ -1544,3 +1544,18 @@ class TestPhonetiqueEtBruitages(unittest.TestCase):
         self.assertGreaterEqual(abs(pos["u"] - pos["s"]), 46)
         self.assertGreaterEqual(abs(pos["c1"] - pos["c2"]), 9)
 
+    def test_toujours_la_carte_du_lieu(self):
+        """Gizeh (27/11) : phrases 1 et 2 en encadrés, 3D ensuite → plus aucune carte. Le 1er encadré devient la carte."""
+        from robot import gabarits
+        dits = ["Flammes sur le Ring Road.", "31 morts en un instant.", "Mercredi 25 novembre.", "Un camion-citerne bascule.",
+                "Une voiture le percute.", "Il prend feu.", "Des voitures brûlent.", "Les secours arrivent.", "Et toi ?"]
+        script = {"titre": "t", "phrases": [{"ecrit": p} for p in dits]}
+        a = gabarits.composer({"type": "accident_route", "lieu": "Le Caire, Égypte", "pays": ["EGY"],
+                               "chiffres": [{"phrase": 1, "valeur": "31", "unite": "morts"}],
+                               "date": {"phrase": 2, "jour": "25", "mois": "NOVEMBRE"},
+                               "deroule": [{"phrase": 4, "qui": "v", "action": "heurter", "cible": "c"}],
+                               "acteurs": [{"id": "c", "type": "citerne"}, {"id": "v", "type": "voiture"}]}, script)
+        cartes = [s_ for s_ in a["scenes"] if s_["type"] == "carte"]
+        self.assertTrue(cartes)
+        self.assertIn("31 MORTS", cartes[0]["etiquettes"])
+

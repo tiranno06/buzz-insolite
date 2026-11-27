@@ -429,6 +429,15 @@ def composer(f, script):
     for i in range(n - 1):
         role[i] = "encadre" if i in encadres else ("3d" if i in phrases_3d else ("carte" if i < debut_3d else "bilan"))
     role[n - 1] = "question"
+    # toujours la carte du lieu (Gizeh, 27/11 : « 31 morts » puis la date en encadrés, aucune phrase pour la carte) :
+    # le 1er encadré avant la 3D devient la carte, son chiffre en étiquette
+    if not any(role.get(k) == "carte" for k in range(1 if forts else 0, n - 1)) and f.get("lieu"):   # (phrase 0 = accroche)
+        i = next((k for k in range(1, debut_3d) if role.get(k) == "encadre"), None)
+        if i is not None:
+            e = encadres.pop(i)
+            role[i] = "carte"
+            if e["type"] in ("chiffre", "jauge"):
+                carte = dict(carte, etiquettes=(carte.get("etiquettes") or [])[:1] + [f"{e['valeur']} {e.get('unite') or ''}".strip().upper()])
     scenes, i = [], 0
     while i < n:
         r = role[i]
