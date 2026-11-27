@@ -314,6 +314,27 @@ function decor(T, scene, sc) {
         tache.rotation.x = -Math.PI / 2; tache.position.set(x, 0.05, cote * (larg / 2 - 2)); scene.add(tache); }
     }
     scene.userData.voies = { larg, n: voies };
+  } else if (d === "usine") {              // site industriel / militaire : entrepôts, cheminées, cuves, clôture
+    sol(0x3b4232);
+    const beton = new T.Mesh(new T.PlaneGeometry(260, 180), lambert(T, "#6f747c")); beton.rotation.x = -Math.PI / 2; beton.position.y = 0.01; scene.add(beton);
+    const route = new T.Mesh(new T.PlaneGeometry(1200, 7.2), new T.MeshLambertMaterial({ map: texRoute(T, 2) })); route.rotation.x = -Math.PI / 2; route.position.set(0, 0.02, 30); scene.add(route);
+    const toles = ["#9aa3ad", "#b7a98f", "#8c96a3", "#a3a7ab"];
+    for (let i = 0; i < 9; i++) {                // hangars à toit arrondi
+      const l = 26 + r() * 18, pr = 16 + r() * 8, h = 7 + r() * 5, x = -110 + (i % 5) * 50 + r() * 6, z = i < 5 ? -40 - r() * 10 : -95;
+      if (Math.abs(x) < 18 && z > -60) continue;   // le centre reste libre pour l'événement
+      const g = new T.Group(); const mur = boite(T, l, h, pr, lambert(T, toles[i % 4])); mur.position.y = h / 2; g.add(mur);
+      const toit = new T.Mesh(new T.CylinderGeometry(pr / 2, pr / 2, l, 20, 1, false, 0, Math.PI), lambert(T, "#7d858f"));
+      toit.rotation.z = Math.PI / 2; toit.rotation.y = Math.PI / 2; toit.position.y = h; g.add(toit);
+      const porte = boite(T, 6, 5, 0.2, lambert(T, "#3c4149")); porte.position.set(0, 2.5, pr / 2 + 0.1); g.add(porte);
+      g.position.set(x, 0, z); scene.add(g);
+    }
+    for (let i = 0; i < 3; i++) { const c = new T.Mesh(new T.CylinderGeometry(1.6, 2.2, 34, 16), lambert(T, "#8f6f5a")); c.position.set(70 + i * 9, 17, -70); scene.add(c);
+      const b = new T.Mesh(new T.CylinderGeometry(1.7, 1.7, 1.2, 16), lambert(T, "#c0392b")); b.position.set(70 + i * 9, 30, -70); scene.add(b); }
+    for (let i = 0; i < 4; i++) { const cu = new T.Mesh(new T.CylinderGeometry(6, 6, 9, 24), lambert(T, "#d6dade")); cu.position.set(-80 + i * 15, 4.5, 20); scene.add(cu); }
+    const mat_cl = lambert(T, "#7a8088");
+    for (let x = -130; x <= 130; x += 4) { const p_ = boite(T, 0.15, 2.4, 0.15, mat_cl); p_.position.set(x, 1.2, 45); scene.add(p_); }
+    const grillage = new T.Mesh(new T.PlaneGeometry(260, 2.2), new T.MeshBasicMaterial({ color: 0x9aa0a8, transparent: true, opacity: 0.25, side: T.DoubleSide, depthWrite: false }));
+    grillage.position.set(0, 1.2, 45); scene.add(grillage);
   } else if (d === "place") {               // grande place de ville (manifestation, rassemblement, bâtiment officiel)
     sol(0x2a2f38);
     const dalles = new T.Mesh(new T.PlaneGeometry(140, 100), new T.MeshLambertMaterial({ map: texture(T, 256, 256, (c, w, h) => {
@@ -345,8 +366,10 @@ function etat(o, actions, t, objets, profondeur = 0) {
   const e = { x: o.x || 0, y: o.y || 0, z: o.z || 0, cap: (o.cap || 0) * Math.PI / 180, roulis: 0, tangage: 0, brule: -1, visible: o.a == null || t >= o.a, distance: 0, explose: -1, secousse: 0 };
   for (const a of actions.filter(a => a.objet === o.id).sort((p, q) => p.a - q.a)) {
     if (t < a.a) break;
-    const d = a.d || 1, p = prog(t, a.a, d), k = a.faire === "avancer" || a.faire === "changer_voie" ? p : ease.douce(p);
-    if (["avancer", "heurter", "changer_voie", "tomber", "voler"].includes(a.faire)) {
+    const d = a.d || 1, p = prog(t, a.a, d),
+          k = a.faire === "avancer" || a.faire === "changer_voie" || a.faire === "fuir" ? p
+            : ["freiner", "deraper", "tonneau"].includes(a.faire) ? ease.sortie(p) : ease.douce(p);
+    if (["avancer", "heurter", "changer_voie", "tomber", "voler", "freiner", "deraper", "tonneau", "fuir"].includes(a.faire)) {
       let [vx, vz] = a.vers || [e.x, e.z];
       // le choc se fait là où la cible SE TROUVE à cet instant (avant : sa place de départ → la voiture frappait le vide)
       if (a.faire === "heurter" && a.cible) { const c = objets.find(x => x.id === a.cible);
@@ -360,6 +383,10 @@ function etat(o, actions, t, objets, profondeur = 0) {
       if (a.faire === "heurter") e.secousse = Math.max(e.secousse, p >= 1 ? Math.max(0, 1 - (t - a.a - d) * 2.5) : 0);
     }
     if (a.faire === "tourner") e.cap += (a.angle || 90) * Math.PI / 180 * k;
+    if (a.faire === "deraper") e.cap += (a.angle ?? 160) * Math.PI / 180 * ease.douce(p);          // tête-à-queue
+    if (a.faire === "tonneau") { e.roulis += Math.PI * 2 * (a.tours ?? 1.5) * k; e.y += 1.6 * Math.sin(Math.PI * p); }
+    if (a.faire === "fuir" && p < 1) e.y += Math.abs(Math.sin(t * 14)) * 0.25;                       // on court
+    if (a.faire === "effondrer") e.effondre = Math.max(e.effondre || 0, ease.entree ? ease.entree(p) : p * p);
     if (a.faire === "se_coucher") { e.roulis = (a.angle ?? 90) * Math.PI / 180 * ease.sortie(p); e.y += 0.6 * Math.sin(Math.PI * p); }
     if (a.faire === "couler") { e.roulis = (a.angle ?? 25) * Math.PI / 180 * k; e.y = mix(e.y, -(a.profondeur ?? 6), k); }
     if (a.faire === "bruler" && e.brule < 0) e.brule = a.a;
@@ -466,6 +493,11 @@ export async function creer3d(sc, couche, T) {
     o.rotation.x = -Math.PI / 2; b.visible = o.visible = false; scene.add(b); scene.add(o);
     return { a, b, o };
   });
+  // JETS D'EAU (arroser) : gouttes bleutées en arc des pompiers vers le feu
+  const jets = actions.filter(a => a.faire === "arroser" && a.cible).map(a => {
+    const gouttes = Array.from({ length: 36 }, (_, i) => { const sp = new T.Sprite(new T.SpriteMaterial({ color: 0xbfe3ff, transparent: true, opacity: 0.8, depthWrite: false })); sp.visible = false; scene.add(sp); return { sp, ph: i / 36 }; });
+    return { a, gouttes };
+  });
   // anneaux jaunes au sol (« une voiture » entourée, comme dans les reconstitutions)
   const anneaux = (sc.reperes || []).filter(m => m.anneau !== false).map(m => {
     const a = new T.Mesh(new T.RingGeometry(1, 1.09, 64), new T.MeshBasicMaterial({ color: 0xffd600, transparent: true, depthWrite: false, side: T.DoubleSide }));
@@ -477,7 +509,8 @@ export async function creer3d(sc, couche, T) {
     let i = 0; while (i < cam.length - 1 && t >= cam[i + 1].a) i++;
     const A = cam[i], B = cam[Math.min(i + 1, cam.length - 1)], k = B === A ? 0 : ease.douce(prog(t, A.a, B.a - A.a));
     const suivre = o => { const g = groupes[o]; return g ? [g.position.x, g.position.y, g.position.z] : null; };
-    const ca = (A.suivre && suivre(A.suivre)) || A.cible || [0, 0, 0], cb = (B.suivre && suivre(B.suivre)) || B.cible || ca;
+    const plus = (v, r) => r ? v.map((x, j) => x + r[j]) : v;
+    const ca = plus((A.suivre && suivre(A.suivre)) || A.cible || [0, 0, 0], A.regard), cb = plus((B.suivre && suivre(B.suivre)) || B.cible || ca, B.regard);
     const pa = A.suivre && suivre(A.suivre) ? A.pos.map((v, j) => v + suivre(A.suivre)[j]) : A.pos;
     const pb = B.suivre && suivre(B.suivre) ? B.pos.map((v, j) => v + suivre(B.suivre)[j]) : B.pos;
     const d = 1 + 0.02 * Math.sin(t * 0.4);
@@ -489,6 +522,7 @@ export async function creer3d(sc, couche, T) {
       g.visible = e.visible; g.userData.ombre.visible = e.visible && e.y < 3;
       const sx = e.secousse ? Math.sin(t * 60) * 0.15 * e.secousse : 0;
       g.position.set(e.x + sx, e.y, e.z); g.rotation.set(e.roulis, e.cap, e.tangage);
+      if (e.effondre != null) g.scale.y = 1 - 0.85 * e.effondre;
       g.userData.ombre.position.set(e.x, 0.03, e.z);
       for (const w of g.userData.roues || []) w.rotation.y = -e.distance / (g.userData.rayon || 0.4);
       if (g.userData.pale) g.userData.pale.rotation.y = t * 25;
@@ -550,6 +584,15 @@ export async function creer3d(sc, couche, T) {
       x.b.material.color.setHSL(0.08 - 0.05 * borne(dt / 1.5), 1, 0.55 - 0.25 * borne(dt / 1.8));
       const o = 3 + dt * 28; x.o.scale.set(o, o, 1); x.o.position.set(g.position.x, 0.1, g.position.z); x.o.material.opacity = Math.max(0, 0.8 - dt * 0.5);
       tremble = Math.max(tremble, Math.max(0, 1.4 - dt * 1.2));
+    }
+    for (const j of jets) {
+      const src = groupes[j.a.objet], dst = groupes[j.a.cible], actif = src && dst && t >= j.a.a;
+      for (const q of j.gouttes) {
+        q.sp.visible = !!actif; if (!actif) continue;
+        const u = (q.ph + (t - j.a.a) * 0.9) % 1, A = src.position, B = dst.position, h = 2.5 + (src.userData.taille?.[1] || 2);
+        q.sp.position.set(mix(A.x, B.x, u), h + Math.sin(Math.PI * u) * 6 - u * (h - 1.5), mix(A.z, B.z, u));
+        const k = 0.5 + u * 1.4; q.sp.scale.set(k, k, 1); q.sp.material.opacity = 0.85 * (1 - u * 0.6);
+      }
     }
     const { p, c } = posCam(t);
     if (tremble > 0) { p[0] += Math.sin(t * 71) * 0.9 * tremble; p[1] += Math.sin(t * 53) * 0.7 * tremble; c[1] += Math.sin(t * 61) * 0.4 * tremble; }

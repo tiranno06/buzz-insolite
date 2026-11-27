@@ -1421,6 +1421,41 @@ class TestGabarits(unittest.TestCase):
         self.assertEqual(gabarits.type_du_texte("Une énorme explosion dans une usine de l'armée"), "explosion")
         self.assertEqual(gabarits.type_du_texte("Un jet privé s'écrase en Floride"), "crash_avion")
 
+    def test_scenario_plan_par_plan(self):
+        """Scénario de l'IA (reconstitution.py) : tout est vérifié, puis il commande la 3D, les angles et les étiquettes."""
+        from robot import gabarits, realisateur, reconstitution
+        dits = ["Le choc fait 31 morts.", "Mercredi soir au Caire.", "Un camion-citerne roule.", "Une voiture le percute.",
+                "Il se renverse.", "L'essence prend feu.", "Les pompiers arrosent.", "Et toi ?"]
+        script = {"titre": "t", "phrases": [{"ecrit": p} for p in dits]}
+        rep = {"decor": "autoroute", "moment": "nuit",
+               "objets": [{"id": "c", "type": "citerne", "voie": 2, "position": -40}, {"id": "v", "type": "voiture", "voie": 9, "position": -60},
+                          {"id": "p", "type": "pompiers", "position": -120}, {"id": "x", "type": "soucoupe"}],
+               "plans": [{"phrase": 2, "cadre": "suivi", "actions": [{"objet": "c", "faire": "avancer", "vers_position": 0}]},
+                         {"phrase": 3, "cadre": "cote", "actions": [{"objet": "v", "faire": "heurter", "cible": "c"},
+                                                                    {"objet": "v", "faire": "teleporter"}], "etiquette": "120 KM/H"},
+                         {"phrase": 4, "cadre": "face", "actions": [{"objet": "c", "faire": "se_coucher"}], "etiquette": "LE CHOC"},
+                         {"phrase": 6, "cadre": "large", "actions": [{"objet": "p", "faire": "arroser", "cible": "c"}]},
+                         {"phrase": 5, "actions": [{"objet": "c", "faire": "bruler"}]},          # dans le désordre : remis en ordre
+                         {"phrase": 7, "actions": [{"objet": "c", "faire": "exploser"}]}]}        # la question : jamais
+        sc = reconstitution.valider(rep, script, journal=lambda *_: None)
+        self.assertEqual([o["id"] for o in sc["objets"]], ["c", "v", "p"])                     # type inconnu retiré
+        self.assertEqual(sc["objets"][1]["voie"], 3)                                            # voie ramenée dans 1-3
+        self.assertEqual([p["phrase"] for p in sc["plans"]], [2, 3, 4, 5, 6])
+        self.assertEqual(sc["plans"][1]["etiquette"], "")                                       # « 120 » n'est pas dans le texte
+        self.assertEqual([a["faire"] for a in sc["plans"][1]["actions"]], ["heurter"])          # action inconnue retirée
+        f = {"type": "accident_route", "lieu": "Le Caire", "_scenario": sc}
+        a = gabarits.composer(f, script)
+        trois = next(s for s in a["scenes"] if s["type"] == "3d" and not s.get("accroche"))
+        self.assertIn(("p", "arroser", "c"), [(x["objet"], x["faire"], x.get("cible")) for x in trois["actions"]])
+        self.assertEqual(trois["cadres"].get(4), "face")
+        self.assertNotIn("cadres", a["scenes"][0])                                              # l'accroche a ses plans
+        self.assertIn("LE CHOC", [e["texte"] for s_ in a["scenes"] for e in s_.get("etiquettes") or [] if isinstance(e, dict)])
+        cam = realisateur.plans_camera([dict(x, a=x["phrase"] * 3.0) for x in trois["actions"]], trois["objets"], "c", 30,
+                                       [(9.0, "cote", "c"), (12.0, "face", "c"), (15.0, "interieur", "v")])
+        self.assertIn("interieur", [c["_cle"] for c in cam])
+        self.assertTrue(any(c.get("regard") for c in cam))
+        self.assertEqual(gabarits.type_du_texte("Explosion dans une usine de munitions"), "explosion")
+
     def test_meteo_reste_sur_la_carte(self):
         from robot import gabarits
         script = {"titre": "t", "phrases": [{"ecrit": "Le Jura en vigilance orange."}] * 7 + [{"ecrit": "Et chez toi ?"}]}

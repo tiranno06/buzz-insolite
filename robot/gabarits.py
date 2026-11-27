@@ -25,7 +25,13 @@ ACTEURS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "police
 ACTIONS = {"avancer": "avancer", "rouler": "avancer", "arriver": "avancer", "heurter": "heurter", "percuter": "heurter",
            "se_coucher": "se_coucher", "renverser": "se_coucher", "bruler": "bruler", "bruler_feu": "bruler", "exploser": "exploser",
            "tomber": "tomber", "s_ecraser": "tomber", "couler": "couler", "sombrer": "couler", "derailler": "se_coucher",
-           "deverser": "deverser", "fuir": "deverser"}
+           "deverser": "deverser", "fuite": "deverser",
+           # actions du scénario plan par plan (reconstitution.py, 27/11)
+           "freiner": "freiner", "deraper": "deraper", "tonneau": "tonneau", "changer_voie": "changer_voie", "effondrer": "effondrer",
+           "arroser": "arroser", "fuir": "fuir", "voler": "voler", "apparaitre": "apparaitre", "disparaitre": "disparaitre"}
+DUREES = {"avancer": 2.2, "heurter": 2.2, "tomber": 2.2, "couler": 2.2, "deverser": 3.0, "freiner": 1.6, "deraper": 1.6,
+          "tonneau": 1.8, "effondrer": 2.5, "arroser": 4.0, "fuir": 3.0, "changer_voie": 1.4, "voler": 3.0}
+DISTANCES = {"freiner": 12, "deraper": 16, "tonneau": 16, "fuir": 22}     # sans destination : on part de là où on est
 
 CONSIGNE = """On te donne le texte d'une vidéo d'actualité (phrases numérotées) et les articles. EXTRAIS SEULEMENT les faits,
 sans rien inventer. Réponds uniquement en JSON :
@@ -112,6 +118,22 @@ def type_du_texte(texte):
     return next((typ for typ, motif in TYPE_MOTS if re.search(motif, t)), "autre")
 
 
+def _appliquer_scenario(f):
+    """Scénario plan par plan (reconstitution.py) → acteurs, déroulé, décor, cadres et étiquettes de la recette."""
+    sc = f.get("_scenario")
+    if not sc:
+        return
+    f["acteurs"] = [dict(id=o["id"], type=o["type"], role=o.get("role") or "", voie=o.get("voie"), position=o.get("position"))
+                    for o in sc["objets"]]
+    f["deroule"] = [dict(a, qui=a["objet"], action=a["faire"]) for p in sc["plans"] for a in p["actions"]]
+    f["_cadres"] = {p["phrase"]: p["cadre"] for p in sc["plans"] if p.get("cadre")}
+    f["_etiquettes"] = {p["phrase"]: p["etiquette"] for p in sc["plans"] if p.get("etiquette")}
+    if sc.get("decor"):
+        f["_decor"] = sc["decor"]
+    if sc.get("moment"):
+        f["nuit"] = sc["moment"] != "jour"
+
+
 def _completer(f, script):
     """Ajoute au déroulé de l'IA chaque étape que le texte raconte et qu'elle a oubliée ; secours et bouchon qui brûle."""
     typ, n = f.get("type"), len(script["phrases"])
@@ -184,6 +206,7 @@ def _accroche(scene3d):
         if str(o["id"]).startswith("bouchon"):
             k = int(o["id"][7:] or 0); o["position"] = -18 - 9 * (k // 3) - 2 * (k % 3)
     acc["reperes"], acc["etiquettes"], acc["accroche"] = [], [], True
+    acc.pop("cadres", None)                            # l'accroche a ses propres plans (le choc, puis le feu)
     return acc
 
 
@@ -208,7 +231,7 @@ def _heures(f, n, dits):
 def _scene_3d(f, phrases_3d, script):
     """Reconstitution : les acteurs placés selon le type d'événement, chaque action calée sur sa phrase."""
     typ = f["type"]
-    acteurs = [a for a in f.get("acteurs") or [] if isinstance(a, dict) and a.get("type") in ACTEURS and a.get("id")][:6]
+    acteurs = [a for a in f.get("acteurs") or [] if isinstance(a, dict) and a.get("type") in ACTEURS and a.get("id")][:10]
     texte = " ".join(p["ecrit"] for p in script["phrases"]).lower()
     if typ in ("manifestation", "police_justice"):
         if not any(a["type"] == "foule" for a in acteurs) and typ == "manifestation":
@@ -235,6 +258,7 @@ def _scene_3d(f, phrases_3d, script):
             o.update(position=-14 + 28 * (k % 2), z=16)
         else:
             o.update(position=-10 + 12 * k, voie=1)
+        o.update({c: a[c] for c in ("voie", "position", "altitude") if a.get(c) is not None})   # place donnée par le scénario
         objets.append(o); places[a["id"]] = o
     actions, n = [], len(script["phrases"])
     for e in f.get("deroule") or []:
@@ -243,9 +267,18 @@ def _scene_3d(f, phrases_3d, script):
         faire, qui, ph = ACTIONS.get(str(e.get("action") or "").lower()), e.get("qui"), _phrase(e.get("phrase"), n)
         if not faire or qui not in places or ph is None or ph not in phrases_3d:
             continue
-        act = dict(objet=qui, faire=faire, phrase=ph, duree=2.2 if faire in ("avancer", "heurter", "tomber", "couler") else 3.0 if faire == "deverser" else 1.0)
+        act = dict(objet=qui, faire=faire, phrase=ph, duree=DUREES.get(faire, 1.0))
         if faire == "avancer":
             act["vers_position"] = 0 if places[qui]["type"] not in ("police", "ambulance", "pompiers") else -22
+        if faire in DISTANCES:
+            act["distance"] = DISTANCES[faire]
+        if faire == "arroser":
+            act["cible"] = e.get("cible") if e.get("cible") in places else next((x for x in places if x != qui), qui)
+        for c in ("vers_position", "vers_voie", "altitude"):                   # destination donnée par le scénario
+            if e.get(c) is not None:
+                act[c] = e[c]
+        if "vers_position" in act and faire in DISTANCES:
+            act.pop("distance", None)
         if faire == "heurter":
             cible = e.get("cible") if e.get("cible") in places else next((x for x in places if x != qui), None)
             if not cible:
@@ -278,7 +311,9 @@ def _scene_3d(f, phrases_3d, script):
             reperes.append(dict(objet=a["id"], texte=role[:28], phrase=premiere))
     moment = "nuit" if f.get("nuit") else "jour"
     vue = {"vue": "iso"} if typ in VUE_MAQUETTE else {}
-    return dict(type="3d", **vue, decor=DECOR.get(typ, "ville"), moment=moment, objets=objets, actions=actions, reperes=reperes[:3],
+    if f.get("_cadres"):
+        vue["cadres"] = {k: v for k, v in f["_cadres"].items() if k in phrases_3d}
+    return dict(type="3d", **vue, decor=f.get("_decor") or DECOR.get(typ, "ville"), moment=moment, objets=objets, actions=actions, reperes=reperes[:3],
                 etiquettes=[])                         # (la source est écrite en bas ; l'étiquette cachait les chiffres)
 
 
@@ -287,7 +322,12 @@ def composer(f, script):
     n = len(script["phrases"])
     typ = f.get("type") if f.get("type") in TYPES_EVENEMENT else "autre"
     f["type"] = typ
+    _appliquer_scenario(f)
     _completer(f, script)
+    if not f.get("_decor") and typ in ("explosion", "incendie") and re.search(
+            r"usine|entrep[ôo]t|d[ée]p[ôo]t|munition|site industriel|base (?:militaire|a[ée]rienne)|raffinerie|arsenal|hangar",
+            " ".join(p["ecrit"] for p in script["phrases"]).lower()):
+        f["_decor"] = "usine"                           # explosion de l'Iowa (27/11) : une usine de munitions, pas une rue
     # encadrés : chiffres clés (3 au plus) et date ; jamais sur la 1re ni la dernière phrase
     encadres = {}
     for c in (f.get("chiffres") or [])[:3]:
@@ -326,6 +366,9 @@ def composer(f, script):
         e = encadres.pop(ph)
         if e["type"] == "chiffre":
             etiq3d[ph] = dict(texte=f"{e['valeur']} {e.get('unite') or ''}".strip(), phrase=ph, style="rouge")
+    for ph, texte in (f.get("_etiquettes") or {}).items():
+        if ph in phrases_3d and ph not in etiq3d:
+            etiq3d[ph] = dict(texte=texte, phrase=ph, style="")
     role = {}
     for i in range(n - 1):
         role[i] = "encadre" if i in encadres else ("3d" if i in phrases_3d else ("carte" if i < debut_3d else "bilan"))
@@ -391,6 +434,9 @@ def realiser(script, articles, journal=print):
     if not (f.get("lieu") or f.get("pays") or f.get("departements")):
         journal("  faits sans lieu : modèle fixe impossible")
         return None
+    if f["type"] in DECOR and f["type"] not in ("manifestation",):
+        from . import reconstitution                    # scénario plan par plan, de A à Z (27/11)
+        f["_scenario"] = reconstitution.ecrire(script, articles, journal)
     brut = composer(f, script)
     anim = realisateur.valider(brut, script, articles, journal)
     anim["gabarit"] = f["type"]

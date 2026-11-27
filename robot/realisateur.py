@@ -27,8 +27,8 @@ OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "
              "taxi", "camionnette", "tracteur", "debris", "plot", "soldat", "vedette", "barque", "voilier", "conteneur", "tgv",
              "wagon_citerne", "palmier", "rocher", "maison", "immeuble", "gratte_ciel")
 ACTIONS_3D = ("avancer", "heurter", "changer_voie", "tourner", "se_coucher", "bruler", "exploser", "tomber", "voler", "couler",
-              "apparaitre", "disparaitre", "deverser")
-DECORS = ("autoroute", "route", "ville", "place", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio")
+              "apparaitre", "disparaitre", "deverser", "freiner", "deraper", "tonneau", "effondrer", "arroser", "fuir")
+DECORS = ("autoroute", "route", "ville", "place", "usine", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio")
 COULEURS = ("orange", "rouge", "jaune", "bleu", "vert", "violet", "gris")
 
 CONSIGNE = """Tu es le réalisateur d'une vidéo TikTok d'actualité où TOUT est fabriqué en animation, comme les chaînes
@@ -322,9 +322,21 @@ SECOURS_3D = ("police", "ambulance", "pompiers")
 GRANDS = {"citerne": 1.7, "camion": 1.6, "bus": 1.6, "train": 2.2, "avion": 2.4, "bateau": 2.4, "batiment": 2.0, "immeuble": 2.4}
 
 
-def plans_camera(actions, objets, principal, duree):
-    """Découpage en plans : (début, action) → 2 points de caméra ; plan de 1,4 s au moins, sinon le suivant attend."""
+# angles choisis par le scénario (reconstitution.py) → plans de la bibliothèque
+CADRES = {"large": "large", "cote": "heurter", "face": "se_coucher", "dessus": "deverser", "suivi": "avancer", "maquette": "maquette",
+          "interieur": "interieur"}
+PLANS_PLUS = {"maquette": ([-48, 52, 48], [-40, 44, 40]), "interieur": ([1.2, 2.1, 0], [1.2, 2.1, 0])}
+
+
+def plans_camera(actions, objets, principal, duree, cadres=None):
+    """Découpage en plans : (début, action) → 2 points de caméra ; plan de 1,4 s au moins, sinon le suivant attend.
+    `cadres` = [(début, angle du scénario, objet suivi)] : ces plans-là passent avant les plans automatiques."""
     types = {o["id"]: o.get("type") for o in objets}
+    if cadres:
+        imposes = sorted((max(0.0, a - 0.1), CADRES[c], s) for a, c, s in cadres if c in CADRES)
+        auto = [x for x in plans_camera(actions, objets, principal, duree)[::2] if all(abs(x["a"] - i[0]) > 1.4 for i in imposes)]
+        coupes = sorted(imposes + [(x["a"], x["_cle"], x["suivre"]) for x in auto])
+        return _cam(coupes, types, duree)
     premier = min((x["a"] for x in actions), default=9.0)
     coupes, dernier = ([(0.0, "large", principal)], 0.0) if premier > 1.4 else ([], -9.0)
     force = {"exploser": 9, "heurter": 8, "tomber": 8, "couler": 7, "bruler": 6, "se_coucher": 5, "deverser": 4}
@@ -344,13 +356,18 @@ def plans_camera(actions, objets, principal, duree):
             continue
         coupes.append((debut, cle, suivre)); dernier = debut
     coupes.sort(key=lambda c: c[0])
+    return _cam(coupes, types, duree)
+
+
+def _cam(coupes, types, duree):
     cam = []
     for k, (debut, cle, suivre) in enumerate(coupes):
         fin = coupes[k + 1][0] - 0.04 if k + 1 < len(coupes) else max(debut + 1.5, duree)
-        p0, p1 = PLANS[cle]
-        e = GRANDS.get(types.get(suivre), 1.0)         # un camion-citerne de 12 m : la caméra recule
-        cam.append(dict(a=round(debut, 2), pos=[round(v * e, 1) for v in p0], suivre=suivre))
-        cam.append(dict(a=round(max(fin, debut + 0.05), 2), pos=[round(v * e, 1) for v in p1], suivre=suivre))
+        p0, p1 = PLANS.get(cle) or PLANS_PLUS[cle]
+        e = 1.0 if cle == "interieur" else GRANDS.get(types.get(suivre), 1.0)   # un camion-citerne de 12 m : la caméra recule
+        extra = dict(regard=[30, -0.6, 0]) if cle == "interieur" else {}          # de l'intérieur : on regarde la route devant
+        cam.append(dict(a=round(debut, 2), pos=[round(v * e, 1) for v in p0], suivre=suivre, _cle=cle, **extra))
+        cam.append(dict(a=round(max(fin, debut + 0.05), 2), pos=[round(v * e, 1) for v in p1], suivre=suivre, _cle=cle, **extra))
     return cam
 
 
@@ -383,7 +400,8 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
             for x in sc["actions"]:
                 act = dict(x, a=round(quand(x.get("phrase"), 0.2) + float(x.get("retard") or 0), 2), d=float(x.get("duree") or 1.2))
                 o = next((o for o in objets if o["id"] == x["objet"]), {})
-                if x["faire"] in ("avancer", "changer_voie", "voler", "tomber"):
+                if x["faire"] in ("avancer", "changer_voie", "voler", "tomber") or (x["faire"] in ("freiner", "deraper", "tonneau", "fuir")
+                                                                                    and x.get("vers_position") is not None):
                     vx = float(x.get("vers_position", o.get("x", 0) + 40))
                     vz = _voie_z(x.get("vers_voie"), voies) if x.get("vers_voie") else o.get("z", 0)
                     act["vers"] = [vx, vz] + ([float(x.get("altitude", 0))] if x["faire"] in ("voler", "tomber") else [])
@@ -392,7 +410,10 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
             s["reperes"] = [dict(objet=r.get("objet"), texte=str(r.get("texte", ""))[:30], a=quand(r.get("phrase"), 0.4))
                             for r in sc.get("reperes") or [] if any(o["id"] == r.get("objet") for o in objets)][:4]
             principal = next((a_["objet"] for a_ in actions if a_["faire"] in ("avancer", "voler", "tomber")), objets[0]["id"])
-            s["camera"] = plans_camera(actions, objets, principal, total - a)
+            cadres = [(quand(ph) , c, next((x.get("cible") if x["faire"] == "heurter" else x["objet"] for x in actions
+                                            if str(x.get("phrase")) == str(ph)), principal))
+                      for ph, c in sorted((sc.get("cadres") or {}).items(), key=lambda kv: int(kv[0])) if str(ph).isdigit()]
+            s["camera"] = plans_camera(actions, objets, principal, total - a, cadres)
             s["mention"] = "Reconstitution · plan simplifié · positions approximatives"   # la source est déjà en bas
         scenes.append(s)
     if scenes and scenes[0]["type"] not in BASES:        # jamais un encadré sur du vide : la carte du lieu dessous

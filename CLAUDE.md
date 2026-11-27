@@ -672,6 +672,19 @@ Recherche faite : aucune source publique sur la façon dont curioverse fabrique 
 - Pendant la 3D, un chiffre devient une ÉTIQUETTE par-dessus (« 27 VÉHICULES ») au lieu d'un encadré qui cachait l'action ;
   la jauge de vitesse reste un encadré. Citerne redessinée (cabine orange, citerne brillante, bandes rouges, losange danger).
 
+## Scénario de reconstitution PLAN PAR PLAN (27/11, l'auteur : « reconstitue exactement comme ça s'est passé, de A à Z »)
+`robot/reconstitution.py` : une IA écrit le scénario comme un story-board (décor, moment, objets avec voie / position,
+UN PLAN PAR PHRASE : actions, angle `cadre`, étiquette) ; `valider` garde seulement ce que la 3D sait faire (OBJETS, ACTIONS,
+DECORS, CADRES), remet les plans dans l'ordre, jamais sur l'accroche ni la question, retire une étiquette au chiffre inventé.
+`gabarits._appliquer_scenario` le transforme en acteurs / déroulé / `_cadres` / `_etiquettes` / `_decor`, puis `_completer`
+ajoute ce que le texte raconte et que l'IA a oublié. `realisateur.plans_camera(..., cadres)` : les angles du scénario passent
+avant les plans automatiques (`CADRES` : large, cote, face, dessus, suivi, interieur = vue du conducteur avec `regard`,
+maquette). Nouvelles actions 3D : freiner, deraper (tête-à-queue), tonneau, effondrer, arroser (jets d'eau des pompiers),
+fuir (personnes qui courent) ; sans destination, `distance` depuis l'endroit où l'objet se trouve. Nouveau décor `usine`
+(hangars, cheminées, cuves, clôture), choisi pour une explosion / un incendie d'usine, d'entrepôt, de dépôt de munitions.
+Limite honnête : la précision dépend des articles ; ce qui n'est pas dit reste simple (« positions approximatives »).
+Workflows : dépôt apt de Microsoft retiré avant `playwright install --with-deps` (403 le 27/11 : création impossible).
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit
