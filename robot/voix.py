@@ -93,8 +93,10 @@ def dire(texte, chemin, nom_voix, vitesse=0.80, brut=None):
     tempo = ""
     if brut:
         k = max(0.8, min(1.4, 0.92 / vitesse))          # Chatterbox parle lentement : même rythme que validé
-        tempo = (f",rubberband=tempo={k:.3f}:pitchq=quality:transients=smooth:formant=preserved" if _rubberband()
-                 else f",atempo={k:.3f}")
+        # atempo (découpe dans le temps) : le meilleur pour une voix parlée. Rubber Band (essayé le 27/11) donnait une voix
+        # « dans un tunnel » (avis de l'auteur) : il n'est plus utilisé que si VOIX_RUBBERBAND=1
+        tempo = (f",rubberband=tempo={k:.3f}:pitchq=quality:transients=crisp:phase=independent:window=short"
+                 if os.environ.get("VOIX_RUBBERBAND") == "1" and _rubberband() else f",atempo={k:.3f}")
     else:
         brut = chemin + ".brut.wav"
     if tempo:
