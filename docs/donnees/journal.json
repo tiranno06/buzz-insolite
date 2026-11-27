@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T09:39:55+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Octogénaire défie police à Tirana » (79 s, 14 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-27T08:15:11+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 83 sujet(s) au-dessus des seuils — en tête : « Semi-remorque perd le contrôle sur autoroute Ohio »"
