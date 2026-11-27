@@ -603,6 +603,16 @@ s'affichent PAR-DESSUS. Refait ainsi :
 - **3D plus vivante** (`scenes3d.js`) : ciel en dégradé, trottoirs, lampadaires avec halo (sans vraies lumières : rendu
   rapide), immeubles variés avec toits, CIRCULATION automatique sur les voies libres (jamais sur la chaussée de l'accident).
 - Bug : un lieu seul (un point) était pris pour « rien à montrer » → la carte ne zoomait pas.
+- Feu refait (flamme allongée qui vacille, lueur orange au sol, fumée qui monte et s'élargit, véhicule qui noircit).
+- **3e vraie vidéo (27/11, « Octogénaire défie la police à Tirana », 79 s, 100/100)** : carte satellite de l'Albanie sous
+  tous les encadrés (mieux), mais 11 encadrés sur 14 (pictogrammes ratés « JARED », « D'ALIMENTER », élève 🧑‍🎓 deux fois),
+  aucune 3D pour une manifestation, document qui chevauchait les sous-titres, et RENDU DE 26 MIN (filtre CSS
+  `brightness` sur le décor : sans carte graphique il doublait le coût de chaque image). Corrigé : voile dessiné une seule
+  fois (`voile`, plus de filtre) ; objets 3D `foule` (InstancedMesh, chacun sautille), `police` / `pompiers` / `ambulance`
+  (`vehiculeUrgence` : gyrophares qui clignotent), `batiment_officiel` (colonnes, fronton, drapeau qui flotte) ; décor
+  `place` (dalles, immeubles autour) ; `userData.anime(t)` appelé à chaque image ; consigne : les décors occupent au moins
+  la moitié de la vidéo, « valeur » d'icône = des NOMS, chaque emoji une fois ; valeur commençant par « d' / le / la… » =
+  pictogramme seul ; document plus court (640 px).
 
 ## IA de secours ajoutées (26/11, demande de l'auteur « n'as-tu pas trouvé d'autres IA de secours ? »)
 Listes communautaires (awesome-free-llm-apis) relues ; retenues = gratuites, sans carte, usage commercial non interdit :

@@ -223,9 +223,11 @@ TYPES.carte = async (sc, couche) => {
 
 // voile sombre et doux derrière un encadré : on lit le chiffre, et le décor continue de bouger derrière
 function voile(cx, y, t) {
-  cx.clearRect(0, 0, W, H);
-  const g = cx.createRadialGradient(W / 2, y, 60, W / 2, y, 620); g.addColorStop(0, "rgba(5,9,20,.62)"); g.addColorStop(1, "rgba(5,9,20,0)");
-  cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+  if (cx._fait === y) return;                // dessiné une fois : il ne change pas (rien à recalculer à chaque image)
+  cx._fait = y; cx.clearRect(0, 0, W, H);
+  cx.fillStyle = "rgba(5,9,20,.30)"; cx.fillRect(0, 0, W, H);          // le décor s'assombrit un peu…
+  const g = cx.createRadialGradient(W / 2, y, 60, W / 2, y, 620); g.addColorStop(0, "rgba(5,9,20,.55)"); g.addColorStop(1, "rgba(5,9,20,0)");
+  cx.fillStyle = g; cx.fillRect(0, 0, W, H);                             // …et davantage derrière l'encadré
 }
 
 // ---- CHIFFRE : un gros nombre qui défile, son unité, une phrase
@@ -310,7 +312,7 @@ TYPES.document = async (sc, couche) => {
   el("div", "titre-doc", d, marques(sc.titre || "DÉCRET"));
   const lignes = Array.from({ length: 6 }, (_, i) => { const l = el("div", "ligne-doc", d); l.style.width = (i % 3 === 2 ? 62 : 100) + "%"; return l; });
   const tampon = sc.tampon ? el("div", "tampon", d, echapper(sc.tampon)) : null;
-  const tx = sc.texte ? el("div", "doc-texte", couche, marques(sc.texte)) : null; if (tx) { tx.style.position = "absolute"; tx.style.left = "60px"; tx.style.right = "140px"; tx.style.top = ((sc.y ?? 470) + 790) + "px"; }
+  const tx = sc.texte ? el("div", "doc-texte", couche, marques(sc.texte)) : null; if (tx) { tx.style.position = "absolute"; tx.style.left = "60px"; tx.style.right = "140px"; tx.style.top = ((sc.y ?? 470) + 670) + "px"; }
   return (t, duree) => {
     const k = ease.sortie(prog(t, 0, 0.6));
     d.style.transform = `translateY(${(1 - k) * 500}px) rotate(${mix(-14, -3, k) + Math.sin(t * 0.8) * 0.6}deg) scale(${1 + 0.03 * prog(t, 0, duree)})`;
@@ -447,7 +449,7 @@ window.rendre = t => {
           sortie = fin >= DUREE - 0.01 ? 1 : 1 - prog(t, fin, FONDU);
     couche.style.opacity = Math.min(entree, sortie);
     couche.style.transform = `scale(${mix(1.04, 1, entree)})`;    // petite poussée à chaque nouvelle scène
-    if (base) couche.style.filter = voileDecor > 0 ? `brightness(${1 - 0.35 * voileDecor}) saturate(${1 - 0.25 * voileDecor})` : "none";
+    // (pas de filtre CSS : sans carte graphique il doublait le temps de chaque image ; le voile est dessiné par l'encadré)
     const tl = t - sc.debut;
     dessiner(tl, (base ? finDecor : fin) - sc.debut);
     const basTitre = $("#entete").getBoundingClientRect().bottom;   // étiquettes juste sous le titre (qui rétrécit)

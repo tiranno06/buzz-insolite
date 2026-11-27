@@ -139,6 +139,47 @@ const FABRIQUES = {
     g.userData.taille = [o.longueur || 60, 1, 0.6]; return g;
   },
   mur(T, o) { const g = new T.Group(); const b = boite(T, o.epaisseur || 3.7, o.hauteur || 8, o.largeur || 10, lambert(T, "#e8e3da")); b.position.y = (o.hauteur || 8) / 2; g.add(b); g.userData.taille = [3.7, 8, 10]; return g; },
+  foule(T, o) {                            // manifestation, rassemblement : des dizaines de personnes qui bougent
+    const g = new T.Group(), n = Math.min(120, o.nombre || 50), r = o.rayon || 9, rr = hasard(n * 7 + 3);
+    const corps = new T.InstancedMesh(new T.CapsuleGeometry(0.28, 0.9, 3, 6), new T.MeshLambertMaterial(), n);
+    const tetes = new T.InstancedMesh(new T.SphereGeometry(0.22, 8, 6), new T.MeshLambertMaterial({ color: 0xe0b48a }), n);
+    const COUL = ["#2d3436", "#c0392b", "#2980b9", "#7f8c8d", "#f1c40f", "#16a085", "#8e44ad", "#ecf0f1", "#d35400"];
+    const pos = [];
+    for (let i = 0; i < n; i++) {
+      const a = rr() * Math.PI * 2, d = Math.sqrt(rr()) * r;
+      pos.push([Math.cos(a) * d * 1.6, Math.sin(a) * d, rr() * 6]);
+      corps.setColorAt(i, new T.Color(COUL[Math.floor(rr() * COUL.length)]));
+    }
+    g.add(corps, tetes);
+    const m = new T.Matrix4();
+    g.userData.anime = t => {                // chacun sautille un peu, à son rythme
+      pos.forEach(([x, z, ph], i) => {
+        const y = Math.max(0, Math.sin(t * 5 + ph)) * 0.25;
+        m.makeTranslation(x, 0.75 + y, z); corps.setMatrixAt(i, m);
+        m.makeTranslation(x, 1.55 + y, z); tetes.setMatrixAt(i, m);
+      });
+      corps.instanceMatrix.needsUpdate = tetes.instanceMatrix.needsUpdate = true;
+    };
+    g.userData.anime(0);
+    g.userData.taille = [r * 3.2, 1.8, r * 2]; return g;
+  },
+  police(T, o) { return vehiculeUrgence(T, o, "#f4f6f8", "#1e4fd8", ["#1e6bff", "#ff2b2b"]); },
+  pompiers(T, o) { return vehiculeUrgence(T, Object.assign({ longueur: 8.5 }, o), "#d61f26", "#f4f6f8", ["#ff2b2b", "#ff2b2b"]); },
+  ambulance(T, o) { return vehiculeUrgence(T, o, "#f4f6f8", "#f39c12", ["#1e6bff", "#1e6bff"]); },
+  batiment_officiel(T, o) {                // ministère, parlement, palais de justice : colonnes, fronton, drapeau
+    const g = new T.Group(), l = o.largeur || 34, p = 16, h = 14, pierre = lambert(T, o.couleur || "#e8e1d3");
+    const base = boite(T, l + 4, 1.6, p + 4, pierre); base.position.y = 0.8; g.add(base);
+    const corps_ = boite(T, l, h, p, pierre); corps_.position.set(0, 1.6 + h / 2, -2); g.add(corps_);
+    for (let x = -l / 2 + 2; x <= l / 2 - 2; x += 4) { const c = new T.Mesh(new T.CylinderGeometry(0.7, 0.8, h, 12), pierre); c.position.set(x, 1.6 + h / 2, p / 2 + 0.2); g.add(c); }
+    const tri = new T.Shape(); tri.moveTo(-l / 2 - 1, 0); tri.lineTo(l / 2 + 1, 0); tri.lineTo(0, 5); tri.closePath();
+    const fronton = new T.Mesh(new T.ExtrudeGeometry(tri, { depth: p + 1, bevelEnabled: false }), pierre);   // toit triangulaire
+    fronton.position.set(0, 1.6 + h, -2 - (p + 1) / 2); g.add(fronton);
+    const mat_ = boite(T, 0.25, 10, 0.25, lambert(T, "#888")); mat_.position.set(0, 1.6 + h + 5, -2); g.add(mat_);
+    const drap = new T.Mesh(new T.PlaneGeometry(4, 2.6, 8, 1), lambert(T, o.drapeau || "#e8323f")); drap.position.set(2, 1.6 + h + 8.6, -2); g.add(drap);
+    const pts = drap.geometry.attributes.position, x0 = Float32Array.from(pts.array);
+    g.userData.anime = t => { for (let i = 0; i < pts.count; i++) pts.setZ(i, Math.sin(t * 4 + x0[i * 3] * 1.4) * 0.25 * (x0[i * 3] + 2) / 4); pts.needsUpdate = true; };
+    g.userData.taille = [l + 4, h + 6, p + 4]; return g;
+  },
   cube_eau(T, o) {                         // 1 m³ d'eau = 1 000 litres (comparaisons)
     const g = new T.Group(), c = o.cote || 1;
     const verre = new T.Mesh(new T.BoxGeometry(c, c, c), new T.MeshLambertMaterial({ color: 0xbfe0ff, transparent: true, opacity: 0.18 }));
@@ -149,6 +190,20 @@ const FABRIQUES = {
     g.add(eau); g.userData.eau = eau; g.userData.cote = c; g.userData.taille = [c, c, c]; return g;
   },
 };
+
+// véhicule de secours ou de police : caisse, bande de couleur, gyrophares qui clignotent
+function vehiculeUrgence(T, o, coul, bande, feux) {
+  const g = new T.Group(), l = o.longueur || 6;
+  const c = boite(T, l, 2.4, 2.3, lambert(T, coul)); c.position.y = 1.6; g.add(c);
+  const b = boite(T, l + 0.02, 0.4, 2.32, lambert(T, bande)); b.position.y = 1.4; g.add(b);
+  const v = boite(T, 0.1, 0.9, 2.0, lambert(T, "#26303f")); v.position.set(l / 2 + 0.01, 2.2, 0); g.add(v);
+  const gyro = feux.map((f, i) => { const m = new T.Mesh(new T.BoxGeometry(0.5, 0.3, 0.7), new T.MeshBasicMaterial({ color: f })); m.position.set(l / 2 - 1, 2.95, i ? 0.5 : -0.5); g.add(m); return m; });
+  const halo = new T.Sprite(new T.SpriteMaterial({ color: feux[0], blending: T.AdditiveBlending, transparent: true, depthWrite: false, opacity: 0.6,
+    map: texture(T, 64, 64, c_ => { const gr = c_.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, "#fff"); gr.addColorStop(1, "rgba(255,255,255,0)"); c_.fillStyle = gr; c_.fillRect(0, 0, 64, 64); }) }));
+  halo.scale.set(6, 6, 1); halo.position.set(l / 2 - 1, 3.2, 0); g.add(halo);
+  g.userData.anime = t => { const k = Math.floor(t * 6) % 2; gyro.forEach((m, i) => { m.visible = (i + k) % 2 === 0; }); halo.material.color.set(feux[k % feux.length]); halo.material.opacity = 0.35 + 0.35 * (k ? 1 : 0); };
+  roues(T, g, l, 2.3, 0.45); g.userData.taille = [l, 3, 2.3]; return g;
+}
 
 // ------------------------------------------------------------------ décors
 function decor(T, scene, sc) {
@@ -188,6 +243,18 @@ function decor(T, scene, sc) {
         tache.rotation.x = -Math.PI / 2; tache.position.set(x, 0.05, cote * (larg / 2 - 2)); scene.add(tache); }
     }
     scene.userData.voies = { larg, n: voies };
+  } else if (d === "place") {               // grande place de ville (manifestation, rassemblement, bâtiment officiel)
+    sol(0x2a2f38);
+    const dalles = new T.Mesh(new T.PlaneGeometry(140, 100), new T.MeshLambertMaterial({ map: texture(T, 256, 256, (c, w, h) => {
+      c.fillStyle = "#8b8f96"; c.fillRect(0, 0, w, h); c.strokeStyle = "rgba(0,0,0,.18)"; c.lineWidth = 2;
+      for (let i = 0; i <= w; i += 32) { c.beginPath(); c.moveTo(i, 0); c.lineTo(i, h); c.stroke(); c.beginPath(); c.moveTo(0, i); c.lineTo(w, i); c.stroke(); } }, [14, 10]) }));
+    dalles.rotation.x = -Math.PI / 2; scene.add(dalles);
+    for (let a = 0; a < Math.PI * 2; a += 0.22) {
+      if (Math.sin(a) > 0.55) continue;        // côté caméra dégagé
+      const b = FABRIQUES.batiment(T, { hauteur: 12 + r() * 22, largeur: 12 + r() * 8, graine: Math.floor(r() * 99), nuit });
+      b.position.set(Math.cos(a) * 95, 0, Math.sin(a) * 70); b.rotation.y = -a + Math.PI / 2; scene.add(b);
+    }
+    for (let i = 0; i < 10; i++) { const ar = FABRIQUES.arbre(T, {}); ar.position.set(-60 + i * 13, 0, 42); scene.add(ar); }
   } else if (d === "mer" || d === "port" || d === "plage") {
     const eau = sol(0x1f5f8b, 3000, 3000); eau.material = new T.MeshLambertMaterial({ color: 0x1b5a86, emissive: 0x06223a });
     scene.userData.eau = eau;
@@ -312,6 +379,7 @@ export async function creer3d(sc, couche, T) {
       g.userData.ombre.position.set(e.x, 0.03, e.z);
       for (const w of g.userData.roues || []) w.rotation.y = -e.distance / (g.userData.rayon || 0.4);
       if (g.userData.pale) g.userData.pale.rotation.y = t * 25;
+      if (g.userData.anime) g.userData.anime(t);
       if (g.userData.eau) { const n = borne(prog(t, o.remplir_a ?? 0.4, o.remplir_duree ?? 2.2)) * (o.niveau ?? 1); const c = g.userData.cote; g.userData.eau.scale.y = Math.max(0.001, n); g.userData.eau.position.y = c * n / 2; }
       if (e.brule >= 0) g.traverse(m => { if (m.material?.color && !m.userData.brulee) { m.material = m.material.clone(); m.userData.brulee = 1; } if (m.userData.brulee) m.material.color.lerp(new T.Color(0x1d1a18), borne(prog(t, e.brule, 6)) * 0.08); });
       const ps = particules[o.id] || [];

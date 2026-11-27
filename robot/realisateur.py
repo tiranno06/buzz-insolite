@@ -22,10 +22,10 @@ BASES = ("carte", "3d", "photo")                    # décors qui restent à l'�
 TYPES = ("carte", "chiffre", "frise", "citation", "barres", "3d", "question", "mot", "icone", "document", "calendrier", "personnes")
 UNITES_FORTES = ("millions", "million", "milliards", "milliard", "mille", "%", "pour cent")
 OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "bateau", "train", "batiment", "arbre", "personne",
-             "muret", "mur", "cube_eau")
+             "muret", "mur", "cube_eau", "foule", "police", "pompiers", "ambulance", "batiment_officiel")
 ACTIONS_3D = ("avancer", "heurter", "changer_voie", "tourner", "se_coucher", "bruler", "exploser", "tomber", "voler", "couler",
               "apparaitre", "disparaitre")
-DECORS = ("autoroute", "route", "ville", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio")
+DECORS = ("autoroute", "route", "ville", "place", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio")
 COULEURS = ("orange", "rouge", "jaune", "bleu", "vert", "violet", "gris")
 
 CONSIGNE = """Tu es le réalisateur d'une vidéo TikTok d'actualité où TOUT est fabriqué en animation, comme les chaînes
@@ -62,10 +62,15 @@ change d'image souvent : une scène dure 3 à 8 secondes). Types de scènes :
                {"objet": "voiture", "faire": "heurter", "cible": "camion", "phrase": 4, "duree": 1.5},
                {"objet": "camion", "faire": "se_coucher", "phrase": 5}, {"objet": "camion", "faire": "bruler", "phrase": 6}],
    "reperes": [{"objet": "voiture", "texte": "une voiture", "phrase": 4}]}
-  types d'objets : voiture, camion, citerne, bus, moto, avion, helico, bateau, train, batiment, arbre, personne, muret, mur ;
+  types d'objets : voiture, camion, citerne, bus, moto, avion, helico, bateau, train, batiment, arbre, personne, muret, mur,
+  foule ({"nombre": 60}), police, pompiers, ambulance (gyrophares), batiment_officiel (ministère, parlement, tribunal) ;
+  décor "place" = grande place de ville : pour une MANIFESTATION, un rassemblement, une intervention de police, un procès
+  (foule + police + batiment_officiel), en illustration ;
   actions : avancer, heurter, changer_voie, tourner, se_coucher, bruler, exploser, tomber, voler, couler, apparaitre, disparaitre ;
   "voie" = numéro de voie (1 à 6), "position" = mètres le long de la route ; "phrase" = numéro de la phrase où l'action commence ;
 - "question" : {"texte": "la question finale"} — OBLIGATOIRE pour la dernière phrase.
+Les DÉCORS doivent occuper la moitié de la vidéo au moins (les encadrés sont des moments courts, pas l'essentiel).
+"icone" / "mot" : "valeur" = 1 ou 2 NOMS (jamais un verbe, jamais « d'… » ni « le … ») ; chaque emoji UNE fois par vidéo.
 VARIE les scènes (au moins 5 types différents) comme une vraie infographie animée ; un "texte" sous un visuel fait 8 mots
 au plus (les sous-titres disent déjà tout). "chiffre" : "unite" reprend EXACTEMENT les mots après le nombre dans la phrase
 (« 21,7 millions » → valeur "21,7", unite "millions"). Un "emoji" peut s'ajouter à "chiffre" et "mot".
@@ -219,6 +224,11 @@ def valider(d, script, articles, journal=print):
                 raison = "proportion illisible"
         elif t == "icone" and not str(sc.get("emoji") or "").strip():
             raison = "pictogramme sans emoji"
+        if t in ("icone", "mot") and re.match(r"(?i)^(d'|l'|de |du |des |le |la |les |un |une |à |au |et )", str(sc.get("valeur") or "")):
+            if t == "icone":
+                sc["valeur"] = ""                        # « D'ALIMENTER » (27/11) : le pictogramme seul vaut mieux
+            else:
+                raison = "mot mal choisi"
         if not raison and t == "chiffre":                # unité reprise du texte : « 21,7 » + « millions »
             sc["unite"] = _unite_du_texte(str(sc.get("valeur")), " ".join(script["phrases"][x]["ecrit"] for x in sc["phrases"]),
                                           str(sc.get("unite") or ""))
