@@ -254,16 +254,20 @@ def _completer(f, script):
              ("pompiers", r"mousse|arros|lance[s]? \w+ eau|extincteur|pompiers? (?:ont|sont|luttent|interviennent)", "pompiers", "arroser"),
              ("drone", r"drone|h[ée]licopt[èe]re|vue a[ée]rienne|survol", "helico", "voler"),
              ("techniciens", r"capteur|[ée]chantillon|pr[ée]l[èe]v|mesur|analys|enqu[êe]teur", "personne", "avancer"),
-             ("police", r"p[ée]rim[èe]tre|boucl[ée]|cordon|zone interdite", "police", "avancer"))
+             ("police", r"p[ée]rim[èe]tre|boucl[ée]|cordon|zone interdite|enqu[êe]te|arr[êe]t[ée]", "police", "avancer"),
+             # (Gizeh, 27/11 : 16 s figées sur l'après) engins qui déblaient, route qui rouvre
+             ("engins", r"bulldozer|d[ée]bris (?:retir|d[ée]gag)|d[ée]blay|grue|d[ée]panneu", "camion", "avancer"),
+             ("circulation", r"rouvert|r[ée]ouvert|circulation (?:a repris|r[ée]tablie)|trafic (?:a repris|r[ée]tabli)", "voiture", "avancer"))
     for nom, motif, type_, action in APRES:
         ph = next((i for i, p in enumerate(script["phrases"][1:n - 1], start=1) if re.search(motif, p["ecrit"].lower())), None)
         if ph is None or any(e.get("qui") == nom for e in deroule):
             continue
         a = next((x for x in acteurs if x.get("type") == type_), None)
         if not a:
-            pos = {"muret": 14, "pompiers": -70, "helico": -60, "personne": 26, "police": -90}[type_]
+            pos = {"muret": 14, "pompiers": -70, "helico": -60, "personne": 26, "police": -90, "camion": -110, "voiture": -140}[type_]
             a = dict(id=nom, type=type_, role={"muret": "barrières de terre", "pompiers": "les pompiers", "helico": "le drone",
-                                                  "personne": "les experts", "police": "la police"}[type_], position=pos)
+                                                  "personne": "les experts", "police": "la police", "camion": "les engins",
+                                                  "voiture": "la circulation reprend"}[type_], position=pos, voie=1)
             if type_ == "helico":
                 a["altitude"] = 22
             acteurs.append(a)
@@ -274,7 +278,7 @@ def _completer(f, script):
         if action == "voler":
             e.update(vers_position=30, altitude=22)
         if action == "avancer":
-            e["vers_position"] = 12 if type_ == "personne" else -40
+            e["vers_position"] = {"personne": 12, "camion": -14, "voiture": 80}.get(type_, -40)
         deroule.append(e)
     # une explosion (ou un incendie) se VOIT toujours, même si aucune phrase du milieu ne le redit (vidéo de l'Iowa du 27/11 :
     # 55 s d'un bâtiment immobile) : la boule de feu à la 1re phrase du récit, puis la fumée
