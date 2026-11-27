@@ -19,7 +19,7 @@ from . import ia
 from .commun import RACINE
 
 BASES = ("carte", "3d", "photo")                    # décors qui restent à l'écran (le moteur pose le reste par-dessus)
-TYPES = ("carte", "chiffre", "frise", "citation", "barres", "3d", "question", "mot", "icone", "document", "calendrier", "personnes")
+TYPES = ("suite", "carte", "chiffre", "frise", "citation", "barres", "3d", "question", "mot", "icone", "document", "calendrier", "personnes")
 UNITES_FORTES = ("millions", "million", "milliards", "milliard", "mille", "%", "pour cent")
 OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "bateau", "train", "batiment", "arbre", "personne",
              "muret", "mur", "cube_eau", "foule", "police", "pompiers", "ambulance", "batiment_officiel",
@@ -332,7 +332,8 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
             voies = 6 if sc.get("decor") == "autoroute" else 2
             objets = []
             for o in sc["objets"]:
-                objets.append(dict(o, x=float(o.get("position") or 0), z=_voie_z(o.get("voie"), voies) if o.get("type") not in ("batiment", "arbre") else float(o.get("z") or 25)))
+                z = float(o["z"]) if "z" in o else (_voie_z(o.get("voie"), voies) if o.get("type") not in ("batiment", "arbre") else 25.0)
+                objets.append(dict(o, x=float(o.get("position") or 0), z=z, y=float(o.get("altitude") or 0)))
             actions = []
             for x in sc["actions"]:
                 act = dict(x, a=quand(x.get("phrase"), 0.2), d=float(x.get("duree") or 1.2))

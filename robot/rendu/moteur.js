@@ -134,12 +134,13 @@ TYPES.carte = async (sc, couche) => {
   const points = (sc.points || []).map(p => ({ ...p, xy: merc(p.lon, p.lat) }));
   // vue d'arrivée : ce qui est coloré + les villes (sinon la zone demandée)
   let b = [1, 1, 0, 0];
-  for (const z of allumes) b = boite(z.g, b);
+  // un lieu précis (ville) : on plonge sur lui, le pays coloré reste autour ; sinon on cadre ce qui est coloré
+  if (!points.length || sc.cadrer_zones) for (const z of allumes) b = boite(z.g, b);
   for (const p of points) b = [Math.min(b[0], p.xy[0]), Math.min(b[1], p.xy[1]), Math.max(b[2], p.xy[0]), Math.max(b[3], p.xy[1])];
   // rien de coloré ni aucun lieu : la zone demandée (un lieu seul = un point : on zoome dessus)
   if (!allumes.length && !points.length) { const z = ZONES[sc.zone] || ZONES.france; const [x0, y1] = merc(z[0], z[1]), [x1, y0] = merc(z[2], z[3]); b = [x0, y0, x1, y1]; }
   const zw = ZONE.droite - ZONE.gauche, zh = ZONE.bas - ZONE.haut;
-  const largeur = Math.max(b[2] - b[0], (b[3] - b[1]) * zw / zh, 0.0025) * (sc.marge ?? 1.35);
+  const largeur = Math.max(b[2] - b[0], (b[3] - b[1]) * zw / zh, points.length && !allumes.length ? 0.0025 : points.length ? 0.012 : 0.0025) * (sc.marge ?? 1.35);
   const fin = { x: (b[0] + b[2]) / 2, y: (b[1] + b[3]) / 2, s: zw / largeur };
   const debut = { x: fin.x, y: fin.y, s: fin.s / (sc.depart_zoom ?? 2.4) };
   const rnd = hasard(sc.graine || 7);
@@ -235,7 +236,7 @@ TYPES.chiffre = async (sc, couche) => {
   const bloc = el("div", "chiffre", couche); bloc.style.top = (sc.y ?? 620) + "px";
   const ligne = el("div", "", bloc); const v = el("span", "valeur", ligne); el("span", "unite", ligne, echapper(sc.unite || ""));
   const tx = el("div", "texte", bloc, marques(sc.texte || ""));
-  if (sc.emoji) { const e = el("div", "emoji", bloc, echapper(sc.emoji)); e.style.cssText = "font-size:150px;line-height:1;margin-bottom:10px;filter:drop-shadow(0 16px 20px #0008)"; bloc.prepend(e); }
+  if (sc.emoji) { const e = el("div", "emoji", bloc, echapper(sc.emoji)); e.style.cssText = "font-size:150px;line-height:1;margin-bottom:10px"; bloc.prepend(e); }
   const brut = String(sc.valeur ?? ""), num = parseFloat(brut.replace(/\s/g, "").replace(",", "."));
   const decimales = (brut.split(/[.,]/)[1] || "").length, prefixe = brut.match(/^[^\d−-]*/)[0];
   const cv = el("canvas", "", couche); cv.width = W; cv.height = H; couche.prepend(cv); const cx = cv.getContext("2d");
@@ -372,6 +373,9 @@ TYPES.barres = async (sc, couche) => {
   };
 };
 
+// ---- SUITE : rien par-dessus, on revoit le décor (la 3D qui reprend après un encadré)
+TYPES.suite = async () => () => {};
+
 // ---- 3D (reconstitutions, objets de comparaison) : voir scenes3d.js
 TYPES["3d"] = (sc, couche) => creer3d(sc, couche, THREE);
 
@@ -439,7 +443,7 @@ let TITRE_MAX = 78;
 
 window.rendre = t => {
   // encadré (chiffre, pictogramme, document…) affiché : le décor derrière s'assombrit un peu, sans jamais disparaître
-  const voileDecor = Math.max(0, ...SCENES.filter(s => !BASES.has(s.sc.type) && s.sc.type !== "question" && t >= s.sc.debut && t < s.sc.fin + FONDU)
+  const voileDecor = Math.max(0, ...SCENES.filter(s => !BASES.has(s.sc.type) && s.sc.type !== "question" && s.sc.type !== "suite" && t >= s.sc.debut && t < s.sc.fin + FONDU)
     .map(s => Math.min(prog(t, s.sc.debut, FONDU), 1 - prog(t, s.sc.fin, FONDU))));
   SCENES.forEach(({ sc, couche, dessiner, etiqs, finDecor }, i) => {
     const base = BASES.has(sc.type), fin = base ? finDecor : sc.fin, visible = t >= sc.debut - 0.001 && t < fin + FONDU;

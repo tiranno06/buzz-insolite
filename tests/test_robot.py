@@ -1357,3 +1357,32 @@ class TestMenageClassique(unittest.TestCase):
             commande.lire, commande.ecrire, commande.noter, commande.publier.mettre_a_jour, commande.depot.supprimer_release = anciens
         self.assertEqual([v["id"] for v in file["videos"]], ["a"])
         self.assertEqual(len(supprimees), 2)
+
+
+class TestGabarits(unittest.TestCase):
+    def test_recette_accident(self):
+        from robot import gabarits
+        script = {"titre": "t", "phrases": [{"ecrit": p} for p in ["Au Caire, un camion se renverse.", "31 morts.", "La route est chargée.",
+                  "Une voiture touche le camion.", "Le camion se couche.", "Il prend feu.", "27 véhicules brûlent.", "Les secours arrivent.",
+                  "Le conducteur est arrêté.", "Et toi ?"]]}
+        f = {"type": "accident_route", "lieu": "Le Caire, Égypte", "pays": ["EGY"],
+             "acteurs": [{"id": "c", "type": "citerne", "role": "le camion"}, {"id": "v", "type": "voiture", "role": "une voiture"}],
+             "deroule": [{"phrase": 3, "qui": "v", "action": "heurter", "cible": "c"}, {"phrase": 4, "qui": "c", "action": "se_coucher"},
+                         {"phrase": 5, "qui": "c", "action": "bruler"}, {"phrase": 9, "qui": "x", "action": "voler"}],
+             "chiffres": [{"phrase": 1, "valeur": "31", "unite": "morts"}, {"phrase": 6, "valeur": "27", "unite": "véhicules"}]}
+        a = gabarits.composer(f, script)
+        types = [s["type"] for s in a["scenes"]]
+        self.assertEqual(types[0], "carte"); self.assertEqual(types[-1], "question")
+        self.assertIn("3d", types); self.assertEqual(types.count("chiffre"), 2)
+        self.assertEqual([x for s in a["scenes"] for x in s["phrases"]], list(range(10)))      # chaque phrase une fois, dans l'ordre
+        trois = next(s for s in a["scenes"] if s["type"] == "3d")
+        self.assertIn(("v", "heurter"), [(x["objet"], x["faire"]) for x in trois["actions"]])
+        self.assertNotIn("x", [x["objet"] for x in trois["actions"]])                        # acteur inconnu : action ignorée
+        self.assertIn("suite", types)                                                         # la 3D revient après l'encadré
+
+    def test_meteo_reste_sur_la_carte(self):
+        from robot import gabarits
+        script = {"titre": "t", "phrases": [{"ecrit": "Le Jura en vigilance orange."}] * 7 + [{"ecrit": "Et chez toi ?"}]}
+        a = gabarits.composer({"type": "meteo", "lieu": "Jura", "departements": ["39"], "chiffres": [{"phrase": 3, "valeur": "100", "unite": "mm"}]}, script)
+        self.assertNotIn("3d", [s["type"] for s in a["scenes"]])
+        self.assertEqual(a["scenes"][0]["effet"], "pluie")

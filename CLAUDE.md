@@ -626,7 +626,16 @@ Recherche faite : aucune source publique sur la façon dont curioverse fabrique 
   bus, avion, hélico, grand cargo, foule, bâtiment officiel) gardent leur forme dessinée.
 - **Vraies rues et vrais bâtiments du lieu** : OpenStreetMap via l'API Overpass (gratuite, attribution « © OpenStreetMap »)
   — bloqué depuis le réseau de la session (à faire et tester depuis GitHub).
-- À venir : modèles de vidéo FIXES par type d'actualité (l'IA n'extrait que des faits simples), plus rapide sans effets coûteux.
+- **Modèles de vidéo FIXES** (`robot/gabarits.py`, réglage `video.realisation` = "gabarit" par défaut, sinon l'IA
+  réalisatrice) : l'IA n'EXTRAIT que des faits (`CONSIGNE` : type parmi `TYPES_EVENEMENT`, lieu, nuit, départements, pays,
+  acteurs {id, type, rôle}, déroulé {phrase, qui, action, cible}, 3 chiffres, date, titre, source) ; le ROBOT compose
+  (`composer`) : carte d'accroche → reconstitution 3D (`_scene_3d` : décor selon le type `DECOR`, acteurs placés sur les
+  voies, secours qui arrivent de loin, foule + police + bâtiment officiel pour une manifestation, actions calées sur leur
+  phrase, repères « rôle ») → encadrés chiffres / calendrier par-dessus (jamais phrase 1 ni dernière) → scène `suite`
+  (rien par-dessus : la 3D réapparaît après un encadré) → carte « LE BILAN » → question. Météo / catastrophe : la carte
+  tout du long (départements ou pays colorés, pluie, neige, orage). Contrôlé ensuite par `realisateur.valider` ;
+  extraction impossible ou sans lieu → IA réalisatrice. Carte : un lieu précis = on plonge sur la ville, le pays reste
+  coloré autour (`cadrer_zones` pour cadrer tout le pays). Ombres des grands pictogrammes retirées (trop lentes).
 
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11

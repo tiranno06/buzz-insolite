@@ -383,8 +383,13 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
     def realisation():                                    # nouveau style : l'IA réalisatrice choisit les scènes animées
         from . import realisateur
         if not script.get("animation"):
-            script["animation"] = realisateur.valider({}, script, [], journal) if simulation() else \
-                realisateur.realiser(script, E["articles"], journal)
+            if simulation():
+                script["animation"] = realisateur.valider({}, script, [], journal)
+            else:                                             # modèle FIXE par type d'actualité (27/11), sinon l'IA réalisatrice
+                from . import gabarits
+                anim = gabarits.realiser(script, E["articles"], journal) \
+                    if R["video"].get("realisation", "gabarit") == "gabarit" else None
+                script["animation"] = anim or realisateur.realiser(script, E["articles"], journal)
         ph = script["phrases"]
         for i, p in enumerate(ph):                            # chaque phrase est « illustrée » par l'animation
             p["media"] = None if i == len(ph) - 1 else {"type": "anime", "id": f"anime{p['uid']}", "credit": ""}
