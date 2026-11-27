@@ -504,9 +504,9 @@
    "statut": "nouvelle"
   },
   {
-   "id": "20261127-075633-1-r1",
-   "tag": "v-20261127-075633-1-r1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-075633-1-r1/buzz-20261127-075633-1-r1.mp4",
+   "id": "20261127-075633-1-r2",
+   "tag": "v-20261127-075633-1-r2",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-075633-1-r2/buzz-20261127-075633-1-r2.mp4",
    "titre": "Explosion géante de l'armée en Iowa",
    "accroche": "5 TONNES D'EXPLOSIFS",
    "sujet_id": "416ea80eff",
@@ -607,7 +607,7 @@
     "Et toi, aurais-tu évacué ta maison pour cette explosion ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-27T13:45:13+01:00",
+   "cree_le": "2026-11-27T14:19:59+01:00",
    "ia_quotas": {
     "mistral": {
      "appels": 0,
@@ -616,15 +616,15 @@
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 1,
+     "appels": 2,
      "refus": 0,
      "erreurs": 1,
-     "restant_demandes": "999",
+     "restant_demandes": "998",
      "limite_demandes": "1000",
-     "restant_mots": "5586"
+     "restant_mots": "2096"
     }
    },
-   "fabrication_s": 862,
+   "fabrication_s": 842,
    "controles": {
     "note": 100,
     "lignes": [],
@@ -638,19 +638,19 @@
    "couverture_ms": 800,
    "durees": {
     "voix": 0,
-    "images": 7,
-    "montage": 792,
-    "controle_final": 50,
+    "images": 13,
+    "montage": 776,
+    "controle_final": 41,
     "regles": 0,
     "rangement": 5
    },
    "refaite": {
-    "de": "20261127-075633-1",
+    "de": "20261127-075633-1-r1",
     "etape": "images",
-    "remarque": "nouvelle reconstitution 3D complète de l'explosion"
+    "remarque": "reconstitution complète : dépôt, explosion, fumée, évacuation"
    },
    "statut": "nouvelle",
-   "refaite_de": "20261127-075633-1"
+   "refaite_de": "20261127-075633-1-r1"
   },
   {
    "id": "20261127-024127-1",
