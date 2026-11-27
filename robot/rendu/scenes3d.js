@@ -717,7 +717,14 @@ export async function creer3d(sc, couche, T) {
   // inondation, séisme, tempête : préparés une fois (actions « inonder », « trembler », « tempete »)
   const aIn = actions.find(a => a.faire === "inonder");
   const inondation = aIn ? { a: aIn.a, d: aIn.d || 6, hauteur: aIn.hauteur ?? 1.6,
-    plan: (() => { const m = new T.Mesh(new T.PlaneGeometry(900, 900), new T.MeshLambertMaterial({ color: 0x5a4a32, transparent: true, opacity: 0.86, emissive: 0x1a140a }));
+    // eau bleu-gris trouble, qui brille et ondule : la couleur boue (vraie, mais orangée le soir) ne se lisait pas comme
+    // de l'eau (avis de l'auteur du 27/11)
+    plan: (() => { const tex = texture(T, 256, 256, (c, w, h) => { c.fillStyle = "#4f6f82"; c.fillRect(0, 0, w, h); const r = hasard(17);
+                     for (let i = 0; i < 260; i++) { c.strokeStyle = `rgba(${r() < 0.5 ? "210,230,240" : "40,60,75"},${0.12 + r() * 0.18})`; c.lineWidth = 1 + r() * 2;
+                       const x = r() * w, y = r() * h, l = 10 + r() * 30; c.beginPath(); c.moveTo(x, y); c.quadraticCurveTo(x + l / 2, y - 3, x + l, y); c.stroke(); } }, [60, 60]);
+                   const m = new T.Mesh(new T.PlaneGeometry(900, 900), new T.MeshPhongMaterial({ map: tex, color: 0xffffff, transparent: true, opacity: 0.9,
+                     shininess: 90, specular: 0x9fb6c4 }));
+                   m.userData.tex = tex;
                    m.rotation.x = -Math.PI / 2; m.visible = false; scene.add(m); return m; })() } : null;
   const secousses = actions.filter(a => a.faire === "trembler");
   const aTe = actions.find(a => a.faire === "tempete");
@@ -841,6 +848,7 @@ export async function creer3d(sc, couche, T) {
     if (inondation) {
       const k = ease.douce(prog(t, inondation.a, inondation.d || 6)), h = mix(-0.3, inondation.hauteur ?? 1.6, k);
       inondation.plan.visible = k > 0; inondation.plan.position.y = h + Math.sin(t * 1.3) * 0.04;
+      inondation.plan.userData.tex.offset.set(t * 0.012, t * 0.02);          // le courant fait bouger les vaguelettes
       for (const o of objets) {
         const g = groupes[o.id]; if (!g || !["voiture", "taxi", "camionnette", "police", "ambulance", "bus"].includes(o.type)) continue;
         if (h > 0.7) { const f = borne((h - 0.7) / 0.8); g.position.y = Math.max(g.position.y, h - 0.9); g.position.x += f * (t - inondation.a) * 0.6;
