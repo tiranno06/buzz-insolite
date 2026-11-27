@@ -1,148 +1,148 @@
 {
- "maj": "2026-11-27T20:06:45+01:00",
+ "maj": "2026-11-27T20:39:54+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:04:30+01:00"
+   "le": "2026-11-27T20:37:50+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:04:34+01:00"
+   "le": "2026-11-27T20:37:54+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:04:39+01:00"
+   "le": "2026-11-27T20:37:57+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:04:42+01:00"
+   "le": "2026-11-27T20:38:01+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:04:46+01:00"
+   "le": "2026-11-27T20:38:05+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-27T20:04:49+01:00"
+   "le": "2026-11-27T20:38:07+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:04:53+01:00"
+   "le": "2026-11-27T20:38:11+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:04:57+01:00"
+   "le": "2026-11-27T20:38:15+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:01+01:00"
+   "le": "2026-11-27T20:38:19+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:06+01:00"
+   "le": "2026-11-27T20:38:23+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:10+01:00"
+   "le": "2026-11-27T20:38:27+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:14+01:00"
+   "le": "2026-11-27T20:38:31+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:19+01:00"
+   "le": "2026-11-27T20:38:34+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-27T20:05:22+01:00"
+   "le": "2026-11-27T20:38:38+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:26+01:00"
+   "le": "2026-11-27T20:38:42+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:29+01:00"
+   "le": "2026-11-27T20:38:45+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:34+01:00"
+   "le": "2026-11-27T20:38:49+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:37+01:00"
+   "le": "2026-11-27T20:38:53+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:41+01:00"
+   "le": "2026-11-27T20:38:57+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:45+01:00"
+   "le": "2026-11-27T20:39:00+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:49+01:00"
+   "le": "2026-11-27T20:39:07+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:54+01:00"
+   "le": "2026-11-27T20:39:11+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:05:57+01:00"
+   "le": "2026-11-27T20:39:14+01:00"
   },
   "abcnews": {
    "ok": true,
-   "videos": 15,
-   "le": "2026-11-27T20:06:02+01:00"
+   "videos": 30,
+   "le": "2026-11-27T20:39:17+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:06:06+01:00"
+   "le": "2026-11-27T20:39:21+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:06:10+01:00"
+   "le": "2026-11-27T20:39:24+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:06:14+01:00"
+   "le": "2026-11-27T20:39:28+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T20:06:17+01:00"
+   "le": "2026-11-27T20:39:31+01:00"
   }
  },
- "lues": 794,
+ "lues": 809,
  "retenues": 2,
  "sujets": [
   {
@@ -3596,15 +3596,29 @@
      "sous_seuils": true,
      "indisponible": false,
      "lecteur": "https://www.tiktok.com/player/v1/7712258353673620749?description=1&music_info=1"
+    },
+    {
+     "id": "7712401423127858471",
+     "compte": "leparisien",
+     "url": "https://www.tiktok.com/@leparisien/video/7712401423127858471",
+     "vues": 1200000,
+     "jaime": 115900,
+     "commentaires": 706,
+     "partages": 9088,
+     "date": 1795683391,
+     "texte": "Un camion-citerne transportant des produits pétroliers s'est renversé mercredi dans le gouvernorat de Gizeh, en Égypte, provoquant un violent incendie qui a fait au moins 31 morts et 21 blessés, selon les autorités égyptiennes. Le ministère égyptien du Pétrole avait indiqué plus tôt que le camion-citerne, exploité par une entreprise privée, avait fait une sortie de route et s’était écrasé avant d’",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712401423127858471?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
    "id": "4dbea4c292",
    "score": 154,
    "derniere_vue": 1795735055.5051353,
-   "vues": 1700000,
-   "jaime": 77700,
-   "commentaires": 2139,
+   "vues": 2900000,
+   "jaime": 193600,
+   "commentaires": 2845,
    "hashtags_viraux": [],
    "medias": 16,
    "tendance": null,
