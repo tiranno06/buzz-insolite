@@ -468,14 +468,14 @@ function desintegrer(T, scene, g, o, etatExplosion, t, te, batiment) {
           const geo = new T.BoxGeometry(sx * (0.7 + r() * 0.5), sy * (0.6 + r() * 0.5), sz * (0.7 + r() * 0.5));
           const e = new T.Mesh(geo, Array.isArray(m.material) ? m.material[0] : m.material);
           e.position.set(bb.min.x + sx * (i + 0.5), bb.min.y + sy * (j + 0.5), bb.min.z + sz * (k + 0.5));
-          e.rotation.set(r() * 0.4, r() * 0.4, r() * 0.4); scene.add(e);
+          e.rotation.set(r() * 0.4, r() * 0.4, r() * 0.4); scene.add(e); e.userData.de = g;
           const vole = batiment ? (j >= ny - 1 || r() < 0.25) : (j > 0 ? r() < 0.75 : r() < 0.3);   // le bas reste sur l'épave
           pieces.push({ m: e, p0: e.position.clone(), q0: e.rotation.clone(), vole });
         }
         m.visible = false;
       } else if (!batiment || haut) {          // petite pièce (roue, vitre, phare) : détachée telle quelle
         const p = new T.Vector3(), q = new T.Quaternion(), sc_ = new T.Vector3(); m.matrixWorld.decompose(p, q, sc_);
-        scene.attach(m); pieces.push({ m, p0: m.position.clone(), q0: m.rotation.clone(), vole: r() < 0.45 });
+        scene.attach(m); m.userData.de = g; pieces.push({ m, p0: m.position.clone(), q0: m.rotation.clone(), vole: r() < 0.45 });
       }
     }
     for (const pc of pieces) {                 // vitesse : vers l'extérieur depuis le centre, vers le haut, au hasard
@@ -632,7 +632,8 @@ export async function creer3d(sc, couche, T) {
     let i = 0; while (i < cam.length - 1 && t >= cam[i + 1].a) i++;
     return [cam[i], cam[Math.min(i + 1, cam.length - 1)]].map(k => groupes[k.suivre]).filter(Boolean);
   };
-  const estDans = (m, gs) => gs.some(g => { let x = m; while (x) { if (x === g) return true; x = x.parent; } return false; });
+  // un débris de l'objet filmé ne « bouche » pas la vue sur lui (il vole autour de lui au moment de l'explosion)
+  const estDans = (m, gs) => gs.some(g => { if (m.userData.de === g) return true; let x = m; while (x) { if (x === g) return true; x = x.parent; } return false; });
   return (t, duree) => {
     for (const o of objets) {
       const g = groupes[o.id], e = etat(o, actions, t, objets);
@@ -763,7 +764,7 @@ export async function creer3d(sc, couche, T) {
           for (const monte of [12, 25, 45]) { if (libre) break; const Q = P.clone(); Q.y += monte; if (!bouche(Q)) libre = Q; }
           if (!libre) { const Q = C.clone().add(new T.Vector3(dist * 0.35, Math.max(30, dist * 0.8), dist * 0.35)); libre = bouche(Q) ? null : Q; }
           if (libre) { p[0] = libre.x; p[1] = libre.y; p[2] = libre.z; }
-          else { const h = bouche(P), d = Math.max(3, h.distance - 1.5); p[0] = c[0] + dir.x * d; p[1] = Math.max(c[1] + dir.y * d, c[1] + 2.5); p[2] = c[2] + dir.z * d; }
+          // sinon : on garde le plan prévu (voir à travers un débris vaut mieux que d'entrer dans la boule de feu, Iowa du 27/11)
         }
       }
     }
