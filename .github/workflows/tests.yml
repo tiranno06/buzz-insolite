@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: 22
       - name: Retrouver le navigateur du rendu animé
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ hashFiles('robot/rendu/package.json') }}

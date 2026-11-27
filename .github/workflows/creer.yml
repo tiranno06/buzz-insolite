@@ -106,7 +106,7 @@ jobs:
           cache: pip
       - uses: astral-sh/setup-uv@v6   # installation des outils bien plus rapide (amélioration 12 du 25/11)
       - name: Retrouver ffmpeg, voix et Whisper déjà téléchargés
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/paquets-ffmpeg
@@ -114,7 +114,7 @@ jobs:
             ~/.cache/buzz-modeles
           key: outils-v1-${{ hashFiles('requirements.txt') }}
       - name: Retrouver les dictionnaires de prononciation (WikiPron, Lexique 3.83)
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/buzz-phonetique
           key: phonetique-v2
@@ -125,7 +125,7 @@ jobs:
         with:
           node-version: 22
       - name: Retrouver le navigateur du rendu animé
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ hashFiles('robot/rendu/package.json') }}
@@ -150,7 +150,7 @@ jobs:
           deno-version: v2.x
       - name: Retrouver la voix d'homme déjà installée (Chatterbox et son modèle)
         id: cache-chatterbox
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/venv-chatterbox
