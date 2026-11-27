@@ -36,15 +36,15 @@ function fumee(T, tex, taille) {
   return new ParticleSystem({
     duration: 1, looping: true, worldSpace: true, maxParticle: 220,
     startLife: new IntervalValue(2.8, 4.5), startSpeed: new IntervalValue(2 * taille, 4 * taille),
-    startSize: new IntervalValue(3 * taille, 5 * taille), startRotation: new IntervalValue(0, 6.28),
-    startColor: new ConstantColor(new V4(1, 1, 1, 1)), emissionOverTime: new ConstantValue(40),
+    startSize: new IntervalValue(2.4 * taille, 4 * taille), startRotation: new IntervalValue(0, 6.28),
+    startColor: new ConstantColor(new V4(1, 1, 1, 1)), emissionOverTime: new ConstantValue(28),
     shape: new ConeEmitter({ radius: 1.8 * taille, angle: 0.35 }),
     material: new T.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }),
     renderMode: RenderMode.BillBoard,
     behaviors: [
       new ColorOverLife(new Gradient([[new V3(0.32, 0.29, 0.27), 0], [new V3(0.16, 0.15, 0.15), 0.4], [new V3(0.35, 0.35, 0.36), 1]],
-                                     [[0, 0], [0.8, 0.12], [0.55, 0.6], [0, 1]])),
-      new SizeOverLife(new PiecewiseBezier([[new Bezier(0.6, 1.4, 2.4, 3.4), 0]])),
+                                     [[0, 0], [0.5, 0.12], [0.32, 0.6], [0, 1]])),   // plus légère : elle cachait la scène (Gizeh, 27/11)
+      new SizeOverLife(new PiecewiseBezier([[new Bezier(0.6, 1.2, 1.9, 2.6), 0]])),
       new ApplyForce(new V3(1, 0.35, 0.2), new ConstantValue(1.6 * taille)),         // le vent emporte la fumée
     ],
   });
