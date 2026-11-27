@@ -21,7 +21,8 @@ from . import ia
 TYPES_EVENEMENT = ("accident_route", "incendie", "explosion", "crash_avion", "naufrage", "deraillement", "manifestation",
                    "meteo", "catastrophe_naturelle", "police_justice", "politique", "autre")
 ACTEURS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "police", "ambulance", "pompiers", "avion", "helico",
-           "bateau", "train", "personne", "foule", "batiment", "maison", "immeuble", "entrepot", "muret", "mur", "arbre", "taxi")
+           "bateau", "train", "personne", "foule", "batiment", "maison", "immeuble", "entrepot", "muret", "mur", "arbre", "taxi",
+           "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau")
 ACTIONS = {"avancer": "avancer", "rouler": "avancer", "arriver": "avancer", "heurter": "heurter", "percuter": "heurter",
            "se_coucher": "se_coucher", "renverser": "se_coucher", "bruler": "bruler", "bruler_feu": "bruler", "exploser": "exploser",
            "tomber": "tomber", "s_ecraser": "tomber", "couler": "couler", "sombrer": "couler", "derailler": "se_coucher",
@@ -303,7 +304,7 @@ def _scene_3d(f, phrases_3d, script):
             o.update(position=-120, voie=1, altitude=60)
         elif typ == "naufrage":
             o.update(position=-20 * k, voie=1)
-        elif a["type"] in ("batiment", "entrepot", "immeuble", "maison"):      # jamais sur la route : à côté (usine : au centre)
+        elif a["type"] in ("batiment", "entrepot", "immeuble", "maison", "hopital", "banque", "magasin", "residence"):      # jamais sur la route : à côté (usine : au centre)
             o.update(position=0, z=0 if f.get("_decor") == "usine" else -26)
         elif a["type"] == "foule":
             o.update(position=0, z=8, nombre=70)

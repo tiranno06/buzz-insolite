@@ -730,6 +730,21 @@ percuté s'écrasent (`ecrase`, échelle en longueur).
   (`Raycaster`) → si un objet solide coupe la vue, la caméra se place devant, plus haut (`sc.anti_collision` false pour
   couper) ; `realisateur.valider` cherche le lieu avec son nom COMPLET d'abord.
 
+## Outils gratuits branchés (27/11, « fait le 2 »)
+- **Vraie fracture** : three-pinata 2.0.1 (MIT, `vendor/three-pinata.es.js`, importmap `@dgreenheck/three-pinata`) dans
+  `scenes3d.fracturer` : une grosse pièce qui explose est découpée en cellules de Voronoï de SA forme (12 éclats, bâtiment
+  22), faces de cassure sombres, graine fixe (mêmes éclats dans chaque morceau de rendu) ; échec → éclats en blocs.
+- **Feu et fumée en particules** : three.quarks 0.16.0 + quarks.core 0.16.0 (MIT ; les versions ≥ 0.17 exigent Three.js
+  r182) dans `robot/rendu/effets.js` : flammes (260 particules, blanc-jaune → orange → rouge sombre), fumée qui gonfle et
+  dérive au vent, étincelles. REPRODUCTIBLE : `Math.random` remplacé par une suite fixe (Mulberry32) pendant la simulation,
+  rejouée depuis 0 par pas de 1/30 s jusqu'à l'image demandée ; chaque objet qui brûle (incendie, explosion, souffle) a sa
+  source (`etat(o, actions, 1e4)` donne l'instant du feu) ; anciennes flammes masquées (`q.quarks`), flaque et lueur gardées.
+  Coût mesuré : rendu +40 % sur un passage de feu. `sc.quarks` false pour couper.
+- **Modèles Quaternius CC0** (`modeles/quaternius/`, `LICENCE.md`) : bus et car scolaire, feu tricolore, panneaux, hôpital,
+  banque, résidences, magasin (types `bus`, `feu_tricolore`, `panneau`, `hopital`, `banque`, `magasin`, `residence`) ; les
+  OBJ n'ayant pas de couleurs, elles sont données d'après le nom des pièces (vitres, phares…). Décor « ville » : quartier
+  varié et feux tricolores tous les 60 m ; circulation avec de vrais bus.
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit

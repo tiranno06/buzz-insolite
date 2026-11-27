@@ -25,7 +25,8 @@ OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "
              "muret", "mur", "cube_eau", "foule", "police", "pompiers", "ambulance", "batiment_officiel",
              # vrais modèles Kenney (CC0) depuis le 27/11
              "taxi", "camionnette", "tracteur", "debris", "plot", "soldat", "vedette", "barque", "voilier", "conteneur", "tgv",
-             "wagon_citerne", "palmier", "rocher", "maison", "immeuble", "gratte_ciel", "entrepot")
+             "wagon_citerne", "palmier", "rocher", "maison", "immeuble", "gratte_ciel", "entrepot",
+             "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau")
 ACTIONS_3D = ("avancer", "heurter", "changer_voie", "tourner", "se_coucher", "bruler", "exploser", "tomber", "voler", "couler",
               "apparaitre", "disparaitre", "deverser", "freiner", "deraper", "tonneau", "effondrer", "arroser", "fuir")
 DECORS = ("autoroute", "route", "ville", "place", "usine", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio")

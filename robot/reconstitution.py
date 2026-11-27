@@ -19,6 +19,7 @@ from . import ia
 
 OBJETS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "taxi", "police", "ambulance", "pompiers", "avion",
           "helico", "bateau", "train", "personne", "foule", "batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "arbre",
+          "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau",
           "muret", "mur")
 ACTIONS = ("avancer", "freiner", "changer_voie", "deraper", "tonneau", "heurter", "se_coucher", "deverser", "bruler",
            "exploser", "effondrer", "tomber", "voler", "couler", "arroser", "fuir", "apparaitre", "disparaitre")
@@ -39,7 +40,7 @@ Règles :
 - "objets" : TOUT ce qui est PHYSIQUEMENT sur place et joue un rôle (véhicules, bâtiments, personnes, secours) ; jamais une
   personne qui en parle de loin (président, ministre, agence, journaliste). Deux objets ne sont jamais au même endroit. Types : voiture, camion, citerne, bus, moto,
   camionnette, taxi, police, ambulance, pompiers, avion, helico, bateau, train, personne, foule, batiment, entrepot (dépôt,
-  hangar, usine), immeuble, maison,
+  hangar, usine), immeuble, maison, hopital, banque, magasin, residence, feu_tricolore, panneau,
   batiment_officiel, arbre, muret, mur. "voie" : 1 à 3 (sens de circulation de la caméra), "position" : mètres le long de la
   route (l'événement se passe vers 0 ; ce qui arrive plus tard part de -80 ou plus loin). Bâtiment, usine : "position" 0.
 - "plans" : un plan pour CHAQUE phrase qui raconte l'événement (du début à la fin des faits, dans l'ordre), avec l'action
@@ -86,7 +87,7 @@ def valider(d, script, journal=print):
         r"pr[ée]sident|ministre|gouvernement|agence|porte-parole|epa\b|trump|biden|macron|maire|pr[ée]fet|journalist|t[ée]l[ée]spect",
         f"{o['id']} {o['role']}".lower()))]
     # … ni deux objets au même endroit (4 entrepôts empilés à la position 0, Iowa du 27/11 : débris coincés dans les murs)
-    BATI = ("batiment", "entrepot", "immeuble", "maison", "batiment_officiel")
+    BATI = ("batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "hopital", "banque", "magasin", "residence")
     batis, voies = [], {}
     for o in objets:
         if o["type"] in BATI:                           # bâtiments côte à côte, 46 m d'écart

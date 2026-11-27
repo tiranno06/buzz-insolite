@@ -35,6 +35,14 @@ const MODELES = {
   maison: ["city-kit-suburban", ["building-type-a", "building-type-b", "building-type-c", "building-type-d", "building-type-e", "building-type-f"], 9, "h"],
   immeuble: ["city-kit-commercial", ["building-a", "building-b", "building-c", "building-d", "building-e", "building-f", "building-g", "building-h"], 20, "h"],
   gratte_ciel: ["city-kit-commercial", ["building-skyscraper-a", "building-skyscraper-b", "building-skyscraper-c"], 70, "h"],
+  // Quaternius (CC0, OpenGameArt, convertis en .glb le 27/11) : bus, car scolaire, feux, panneaux, hôpital, banque, magasin
+  bus: ["quaternius", ["transport-Bus", "transport-SchoolBus"], 12, "l"],
+  feu_tricolore: ["quaternius", ["transport-TrafficLight"], 3.4, "h"],
+  panneau: ["quaternius", ["transport-TrafficSign1", "transport-TrafficSign2", "transport-TrafficSign3"], 2.5, "h"],
+  hopital: ["quaternius", ["bati-Hospital"], 22, "h"],
+  banque: ["quaternius", ["bati-Bank"], 12, "h"],
+  magasin: ["quaternius", ["bati-Shop"], 7, "h"],
+  residence: ["quaternius", ["bati-Flat", "bati-Flat2"], 16, "h"],
 };
 const GLTF = new Map(), chargeur = new GLTFLoader();
 async function prechargerModeles(types) {
@@ -311,8 +319,11 @@ function decor(T, scene, sc) {
     if (d === "autoroute") { const m = FABRIQUES.muret(T, { longueur: 1200 }); m.position.z = 0; m.visible = sc.terre_plein !== false; scene.add(m); }
     if (d !== "route" || sc.batiments) for (let x = -300; x < 300; x += 16 + r() * 10) for (const cote of [-1, 1]) {
       if (r() < 0.2 || (cote > 0 && sc.cote_camera !== false && r() < 0.75)) continue;   // côté caméra : peu d'immeubles (vue dégagée)
-      const typeB = r() < 0.12 ? "gratte_ciel" : "immeuble";
-      const b = !nuit && modelePret(typeB) ? modele(T, typeB, { hauteur: typeB === "immeuble" ? 12 + r() * 20 : 50 + r() * 30 }, Math.floor(r() * 99)) :
+      // quartier varié (27/11) : immeubles, résidences, magasins, parfois un hôpital ou une banque (Quaternius, CC0)
+      const tirage = r(), typeB = tirage < 0.12 ? "gratte_ciel" : tirage < 0.3 && modelePret("residence") ? "residence"
+        : tirage < 0.42 && modelePret("magasin") ? "magasin" : tirage < 0.46 && modelePret("hopital") ? "hopital"
+        : tirage < 0.5 && modelePret("banque") ? "banque" : "immeuble";
+      const b = !nuit && modelePret(typeB) ? modele(T, typeB, { hauteur: typeB === "immeuble" ? 12 + r() * 20 : typeB === "gratte_ciel" ? 50 + r() * 30 : undefined }, Math.floor(r() * 99)) :
         FABRIQUES.batiment(T, { hauteur: r() < 0.15 ? 40 + r() * 30 : 8 + r() * 26, largeur: 9 + r() * 10, profondeur: 9 + r() * 8,
                                         graine: Math.floor(r() * 99), nuit });
       b.position.set(x, 0, cote * (larg / 2 + 12 + r() * 10) + (cote > 0 ? 25 : 0)); if (cote > 0) b.scale.y = 0.5; scene.add(b);
@@ -329,6 +340,10 @@ function decor(T, scene, sc) {
         const tache = new T.Mesh(new T.CircleGeometry(4, 24), new T.MeshBasicMaterial({ color: 0xffc977, transparent: true, opacity: 0.12, depthWrite: false }));
         tache.rotation.x = -Math.PI / 2; tache.position.set(x, 0.05, cote * (larg / 2 - 2)); scene.add(tache); }
     }
+    if (d === "ville" && modelePret("feu_tricolore"))    // feux tricolores aux carrefours, des deux côtés
+      for (let x = -240; x < 240; x += 60) for (const cote of [-1, 1]) {
+        const f = modele(T, "feu_tricolore", {}, 1); f.position.set(x + cote * 3, 0, cote * (larg / 2 + 1.2)); f.rotation.y = cote > 0 ? Math.PI : 0; scene.add(f);
+      }
     scene.userData.voies = { larg, n: voies };
   } else if (d === "usine") {              // site industriel / militaire : entrepôts, cheminées, cuves, clôture
     sol(0x3b4232);
@@ -444,6 +459,35 @@ function feu(T) {
            lueur: new T.MeshBasicMaterial({ map: lueur, blending: T.AdditiveBlending, depthWrite: false, transparent: true }) };
 }
 
+// ------------------------------------------------------------------ VRAIE FRACTURE (three-pinata, MIT, 27/11)
+// La pièce (citerne, cabine, mur…) est découpée en cellules de Voronoï : de vrais éclats de SA forme, faces de cassure
+// sombres (métal / béton brûlé). Graine fixe = mêmes éclats dans chaque morceau de rendu. Échec (modèle non fermé) → false.
+let PINATA = null;
+export async function chargerFracture() {
+  if (PINATA === null) { try { PINATA = await import("@dgreenheck/three-pinata"); } catch (e) { PINATA = false; } }
+  return PINATA;
+}
+function fracturer(T, m, nombre, graine, pieces, scene, g, r, batiment) {
+  if (!PINATA) return false;
+  try {
+    const geo = m.geometry.clone(); geo.applyMatrix4(m.matrixWorld);      // en coordonnées du monde
+    if (!geo.attributes.normal) geo.computeVertexNormals();
+    const mat = Array.isArray(m.material) ? m.material[0] : m.material;
+    const interieur = new T.MeshLambertMaterial({ color: batiment ? 0x4a4540 : 0x2a2622 });
+    const d = new PINATA.DestructibleMesh(geo, mat, interieur);
+    const opt = new PINATA.FractureOptions({ fractureMethod: "voronoi", fragmentCount: nombre, voronoiOptions: { mode: "3D" }, seed: graine });
+    const frags = d.fracture(opt);
+    if (!frags || frags.length < 2) return false;
+    for (const f of frags) {
+      f.geometry.computeBoundingBox(); const c = new T.Vector3(); f.geometry.boundingBox.getCenter(c);
+      f.geometry.translate(-c.x, -c.y, -c.z); f.position.copy(c);          // chaque éclat tourne autour de son propre centre
+      f.castShadow = f.receiveShadow = true; f.userData.de = g; scene.add(f);
+      pieces.push({ m: f, p0: f.position.clone(), q0: f.rotation.clone(), vole: batiment ? (c.y > 4 || r() < 0.3) : r() < 0.7 });
+    }
+    return true;
+  } catch (e) { return false; }
+}
+
 // ------------------------------------------------------------------ DÉSINTÉGRATION (demande de l'auteur du 27/11 : « le camion
 // est toujours intact » après l'explosion). À l'instant de l'explosion, les vraies pièces de l'objet (cabine, citerne, roues,
 // châssis…) sont détachées ; les grosses pièces sont cassées en éclats de la même matière ; tout est projeté vers l'extérieur,
@@ -462,7 +506,9 @@ function desintegrer(T, scene, g, o, etatExplosion, t, te, batiment) {
       const volume = taille.x * taille.y * taille.z;
       const haut = batiment ? bb.min.y > (new T.Box3().setFromObject(g).max.y) * 0.35 : true;
       if (!batiment && taille.y < 0.7 && taille.x > 3) continue;   // le châssis reste : l'épave noircie au sol
-      if (volume > (batiment ? 30 : 3)) {      // grosse pièce : cassée en éclats (même couleur, même matière)
+      if (volume > (batiment ? 30 : 3) && fracturer(T, m, batiment ? 22 : 12, (o.id || "x").length * 131 + maillages.indexOf(m), pieces, scene, g, r, batiment)) {
+        m.visible = false;                       // vraie fracture (three-pinata) : la forme même de la pièce se fend en éclats
+      } else if (volume > (batiment ? 30 : 3)) { // secours : éclats en forme de blocs (même couleur, même matière)
         const nx = Math.min(5, Math.max(2, Math.round(taille.x / (batiment ? 5 : 2.2)))), ny = batiment ? 3 : 2, nz = Math.min(4, Math.max(1, Math.round(taille.z / (batiment ? 5 : 1.6))));
         for (let i = 0; i < nx; i++) for (let j = 0; j < ny; j++) for (let k = 0; k < nz; k++) {
           const sx = taille.x / nx, sy = taille.y / ny, sz = taille.z / nz;
@@ -505,8 +551,17 @@ function desintegrer(T, scene, g, o, etatExplosion, t, te, batiment) {
 }
 
 // ------------------------------------------------------------------ la scène
+let QUARKS = null;                           // feu / fumée three.quarks (effets.js) ; indisponible = anciennes flammes
+async function chargerQuarks() {
+  if (QUARKS === null) { try { QUARKS = await import("./effets.js"); } catch (e) { console.log("three.quarks indisponible : " + e); QUARKS = false; } }
+  return QUARKS;
+}
 export async function creer3d(sc, couche, T) {
-  await prechargerModeles([...(sc.objets || []).map(o => o.type), "immeuble", "gratte_ciel", "maison", "arbre", "voiture", "camion", "camionnette", "personne"]);
+  if ((sc.actions || []).some(a => a.faire === "exploser")) await chargerFracture();
+  const avecFeu = (sc.actions || []).some(a => a.faire === "bruler" || a.faire === "exploser") && sc.quarks !== false;
+  if (avecFeu) await chargerQuarks();
+  await prechargerModeles([...(sc.objets || []).map(o => o.type), "immeuble", "gratte_ciel", "maison", "arbre", "voiture", "camion", "camionnette", "personne",
+                           "bus", "residence", "magasin", "hopital", "banque", "feu_tricolore"]);
   const cv = el("canvas", "", couche); cv.width = W; cv.height = H; const cx = cv.getContext("2d");
   const scene = new T.Scene(); decor(T, scene, sc);
   // vue « maquette » vue d'en haut, sans perspective (comme les reconstitutions de bonnequestion.tv), sinon caméra classique
@@ -536,7 +591,7 @@ export async function creer3d(sc, couche, T) {
       const sens = n > 2 ? (z < 0 ? 1 : -1) : (v ? -1 : 1);
       for (let k = 0; k < 4; k++) {
         const type = rr() < 0.15 ? "camion" : rr() < 0.15 ? "bus" : "voiture";
-        const typeM = type === "bus" ? "camionnette" : type, n_ = Math.floor(rr() * 99);
+        const typeM = type === "bus" && !modelePret("bus") ? "camionnette" : type, n_ = Math.floor(rr() * 99);
         const g = modelePret(typeM) ? modele(T, typeM, {}, n_) : FABRIQUES[type](T, { couleur: COUL[Math.floor(rr() * COUL.length)] });
         g.rotation.y = sens > 0 ? 0 : Math.PI; scene.add(g);
         trafic.push({ g, z, sens, x0: -300 + rr() * 600, v: (sens > 0 ? 1 : -1) * (14 + rr() * 10) });
@@ -570,6 +625,21 @@ export async function creer3d(sc, couche, T) {
         liste.push({ s: s_, ph: r(), dx: (r() - 0.5), dz: (r() - 0.5), v: 0.6 + r() * 0.8, fumee: !(i % 3), taille: 0.7 }); }
       particules[o.id] = liste;
     }
+  // FEU ET FUMÉE three.quarks : chaque objet qui brûle (incendie, explosion, ou touché par le souffle)
+  let avancerEffets = null;
+  if (avecFeu && QUARKS) {
+    const sources = [];
+    for (const o of objets) {
+      const fin = etat(o, actions, 1e4, objets);
+      const debut = fin.brule >= 0 ? fin.brule : fin.explose >= 0 ? fin.explose + 0.15 : -1;
+      if (debut < 0 || ["foule", "personne"].includes(o.type)) continue;
+      const g = groupes[o.id], ta = g?.userData.taille || [4, 2, 2];
+      const taille = Math.max(0.7, Math.min(2.6, Math.max(ta[0], ta[2]) / 6));
+      sources.push({ debut, taille, position: t => { const e = etat(o, actions, t, objets); return [e.x, Math.max(0, e.y) + 0.3, e.z]; } });
+      for (const q of particules[o.id] || []) if (!q.lueur && !q.flaque) q.quarks = true;   // les anciennes flammes s'effacent
+    }
+    if (sources.length) avancerEffets = QUARKS.creerEffets(T, scene, sources, { flamme: MATS.flamme.map, fumee: MATS.fumee.map }, (sc.graine || 3) * 7919);
+  }
   // CHOCS (heurter) : éclair, débris qui volent et retombent, caméra qui tremble (vidéo du Caire du 27/11 : « on ne voit pas l'accident »)
   const chocs = actions.filter(a => a.faire === "heurter").map((a, n) => {
     const r = hasard(97 + n * 13), debris = [];
@@ -666,7 +736,7 @@ export async function creer3d(sc, couche, T) {
           q.lueur.scale.set(r, r, 1); q.lueur.position.set(e.x, 0.1, e.z); q.lueur.material.opacity = 0.75 * force; continue;
         }
         const vie = q.fumee ? 3.2 : 1.1, age = ((t - debut) * q.v + q.ph * vie) % vie;
-        q.s.visible = actif;
+        q.s.visible = actif && !q.quarks;
         if (!actif) continue;
         const u = age / vie, vent = q.fumee ? u * u * 6 : 0;
         const hauteur = (q.fumee ? 22 : 5.5) * q.taille;
@@ -786,6 +856,7 @@ export async function creer3d(sc, couche, T) {
       if (m.fin != null && t >= m.fin) { e.style.opacity = 0; return; }
       apparition(e, t, m.a ?? 0.5);
     });
+    if (avancerEffets) avancerEffets(t);
     const R = moteur(T); R.render(scene, camera);
     cx.clearRect(0, 0, W, H); cx.drawImage(R.domElement, 0, 0);
   };
