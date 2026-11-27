@@ -412,7 +412,8 @@ function etat(o, actions, t, objets, profondeur = 0) {
     if (a.faire === "apparaitre") e.visible = true;
   }
   // SOUFFLE d'une explosion voisine : ce qui est proche est repoussé, penche et prend feu (plus fort si plus près)
-  if (profondeur < 1 && !["batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "muret", "mur"].includes(o.type))
+  // (ni un bâtiment, ni ce qui vole : le drone de l'Iowa brûlait en plein ciel, 27/11)
+  if (profondeur < 1 && !["batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "muret", "mur", "avion", "helico"].includes(o.type) && e.y < 4)
     for (const a of actions) {
       if (a.faire !== "exploser" || a.objet === o.id || t < a.a) continue;
       const src = objets.find(x => x.id === a.objet); if (!src) continue;
@@ -563,7 +564,7 @@ export async function creer3d(sc, couche, T) {
   // véhicules qui peuvent être atteints par le souffle d'une explosion : un petit feu prêt (il ne s'allume que s'ils sont touchés)
   if (actions.some(a => a.faire === "exploser"))
     for (const o of objets) {
-      if (particules[o.id] || ["batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "muret", "mur", "foule", "personne", "arbre"].includes(o.type)) continue;
+      if (particules[o.id] || ["batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "muret", "mur", "foule", "personne", "arbre", "avion", "helico"].includes(o.type)) continue;
       const r = hasard(o.id.length * 71 + 3), liste = [];
       for (let i = 0; i < 24; i++) { const s_ = new T.Sprite(i % 3 ? MATS.flamme : MATS.fumee.clone()); scene.add(s_);
         liste.push({ s: s_, ph: r(), dx: (r() - 0.5), dz: (r() - 0.5), v: 0.6 + r() * 0.8, fumee: !(i % 3), taille: 0.7 }); }
