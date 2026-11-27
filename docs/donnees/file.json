@@ -1,6 +1,169 @@
 {
  "videos": [
   {
+   "id": "20261127-090511-1",
+   "tag": "v-20261127-090511-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-090511-1/buzz-20261127-090511-1.mp4",
+   "titre": "Octogénaire défie police à Tirana",
+   "accroche": "STICKER SUR BOUCLIER",
+   "sujet_id": "91256d4b36",
+   "sujet": "Octogénaire place autocollant anti-gouvernemental sur bouclier",
+   "buzz": {
+    "vues": 3100000,
+    "jaime": 302700,
+    "commentaires": 1622,
+    "score": 634
+   },
+   "description": "Une femme de quatre-vingts ans choque la police en collant un sticker anti-gouvernement. ⚡️",
+   "question": "Et toi, que ferais-tu face à la police ?",
+   "hashtags": [
+    "#albaniaprotests",
+    "#edirama",
+    "#albanie",
+    "#protestation",
+    "#autocollant",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 79.0,
+   "sources": [
+    {
+     "media": "courthousenews.com",
+     "titre": "In Albania, a protest movement faces a defiant prime minister",
+     "lien": "https://www.courthousenews.com/in-albania-a-protest-movement-faces-a-defiant-prime-minister/"
+    },
+    {
+     "media": "fr.news.yahoo.com",
+     "titre": "Albanie : le Premier ministre dénonce le \"chaos\" au troisième jour de violences",
+     "lien": "https://fr.news.yahoo.com/albanie-premier-ministre-d%C3%A9nonce-chaos-172323688.html"
+    },
+    {
+     "media": "rfi.fr",
+     "titre": "Albanie: d'une ampleur inédite, la protestation anti-pouvoir monte d'un cran",
+     "lien": "https://www.rfi.fr/fr/europe/20261015-albanie-d-une-ampleur-in%C3%A9dite-la-protestation-anti-pouvoir-monte-d-un-cran"
+    },
+    {
+     "media": "france24.com",
+     "titre": "Albanie: nouveaux affrontements à Tirana, le pouvoir accuse \"des mains étrangères\"",
+     "lien": "https://www.france24.com/fr/info-en-continu/20261016-albanie-le-premier-ministre-accuse-des-mains-%C3%A9trang%C3%A8res-d-attiser-les-troubles"
+    }
+   ],
+   "verification": {
+    "par": "gemini:gemini-flash-lite-latest",
+    "corrigees": 3,
+    "retirees": 5,
+    "problemes": [
+     "Aucun article ne mentionne une octogénaire collant un sticker sur un bouclier de policier.",
+     "Ce surnom n'est mentionné nulle part dans les articles.",
+     "Aucun article ne parle d'une manifestante de 80 ans.",
+     "Le détail sur le département de l'ordre public n'est pas dans les sources.",
+     "La diffusion virale de cette action n'est pas mentionnée dans les articles.",
+     "Les articles indiquent que le mouvement a commencé en mai 2025 (ou fin mai dernier) et non 2024.",
+     "Les articles indiquent 190 policiers blessés au total ou 61 lors d'une journée précise, mais la phrase contredit ou omet le chiffre global déjà évoqué.",
+     "La présence spécifique de l'octogénaire aux côtés des lycéens n'est pas sourcée.",
+     "Aucun article ne mentionne qu’une octogénaire ait collé un sticker sur le bouclier d’un policier à Tirana ; fait non vérifié dans les sources",
+     "Le contenu du sticker n’est pas indiqué dans les articles ; affirmation non corroborée"
+    ]
+   },
+   "verifie": true,
+   "credits": [],
+   "style": "anime",
+   "extraits_perdus": 0,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 14,
+   "ecrans_total": 14,
+   "format": "buzz",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "Tirana, Albanie",
+   "humeur": "tension",
+   "categorie": "politique",
+   "texte": [
+    "Une octogénaire colle un sticker anti-gouvernement sur le bouclier d'un policier à Tirana.",
+    "Les manifestations ont commencé en mai 2025 contre un projet de luxe lié à Jared Kushner et Ivanka Trump.",
+    "Depuis le début, plus de 500 personnes ont été arrêtées lors des affrontements.",
+    "Environ 190 policiers ont été blessés au total lors des heurts.",
+    "Le centre de Tirana ressemble à une zone de guerre, selon les témoins.",
+    "Des lycéens ont rejoint les foules, scandant « Rama, démission ! » dans le centre de la capitale.",
+    "Le gouvernement accuse des « mains étrangères » d'alimenter la crise.",
+    "Le mouvement, surnommé la « Flamingo Revolution », a éclaté après le projet d'un ressort sur l'île de Sazan.",
+    "Edi Rama, au pouvoir depuis 13 ans, refuse de céder face à la rue et dénonce des opposants manipulés de l'étranger.",
+    "Le projet immobilier en question concerne l'île de Sazan, un site naturel exceptionnel transformé en complexe hôtelier privé.",
+    "Malgré la violence et les dégâts matériels dans la capitale, de nouvelles mobilisations sont prévues pour exiger un changement politique.",
+    "Les manifestants ont attaqué des bâtiments gouvernementaux, des banques et des commerces lors des émeutes.",
+    "Le projet immobilier vise à transformer l'île de Sazan en un complexe touristique exclusif.",
+    "Le Parti démocrate dans l'opposition soutient la contestation et réclame un gouvernement provisoire.",
+    "Et toi, que ferais-tu face à la police ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-27T09:39:54+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 5,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 5,
+     "refus": 4,
+     "erreurs": 4,
+     "restant_demandes": "998",
+     "limite_demandes": "1000",
+     "restant_mots": "449"
+    },
+    "gemini": {
+     "appels": 5,
+     "refus": 0,
+     "erreurs": 16
+    }
+   },
+   "fabrication_s": 2084,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 60 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 6,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "1 faute(s) d'orthographe ou de grammaire corrigée(s)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "LanguageTool + IA"
+     }
+    ],
+    "sautes": [],
+    "corriges": 2,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "preuves": [],
+   "couverture_ms": 800,
+   "durees": {
+    "articles": 0,
+    "ecriture": 10,
+    "texte": 311,
+    "images": 31,
+    "voix": 44,
+    "montage": 1605,
+    "controle_final": 85,
+    "regles": 1,
+    "rangement": 8
+   },
+   "refaite": null,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261127-075633-1",
    "tag": "v-20261127-075633-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-075633-1/buzz-20261127-075633-1.mp4",
