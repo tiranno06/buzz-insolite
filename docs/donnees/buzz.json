@@ -1300,8 +1300,9 @@
    "hashtags_viraux": [],
    "medias": 15,
    "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-27T00:17:46+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-27T00:17:46+01:00",
+   "reserve_le": "2026-11-27T10:00:50+01:00"
   },
   {
    "titre": "GTA 6 : vidéos virales et hommage à l’orque",
@@ -1376,8 +1377,9 @@
    ],
    "medias": 0,
    "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T11:25:26+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-26T11:25:26+01:00",
+   "reserve_le": "2026-11-27T10:00:50+01:00"
   },
   {
    "titre": "GTA6 viral : caméraman Oscar",
@@ -1446,8 +1448,9 @@
    ],
    "medias": 0,
    "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T01:00:57+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-26T01:00:57+01:00",
+   "reserve_le": "2026-11-27T10:00:50+01:00"
   },
   {
    "titre": "GTA 6 : caméraman viral et hommage à l’orque",
