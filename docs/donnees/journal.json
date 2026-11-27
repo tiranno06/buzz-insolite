@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T17:57:35+01:00",
+   "niveau": "info",
+   "texte": "🔁 « Explosion géante de l'armée en Iowa » refaite (images) : note 100/100, corrige : « débris au sol, bon lieu » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-27T17:20:18+01:00",
    "niveau": "info",
    "texte": "🔁 « Explosion géante de l'armée en Iowa » refaite (images) : note 100/100, corrige : « caméra, empilement, lieu, destruction » — l'ancienne version est remplacée"
@@ -994,11 +999,6 @@
    "date": "2026-11-24T20:46:45+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 18 sujet(s) au-dessus des seuils — en tête : « Brésil : golden retriever sauve enfant noyé »"
-  },
-  {
-   "date": "2026-11-24T20:46:43+01:00",
-   "niveau": "info",
-   "texte": "🛑 « Leto et GTA VI : un buzz explosif » écartée (ne sera pas publiée)."
   }
  ]
 }
