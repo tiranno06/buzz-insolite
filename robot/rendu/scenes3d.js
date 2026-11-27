@@ -231,9 +231,16 @@ function etat(o, actions, t, objets) {
 
 // ------------------------------------------------------------------ feu (particules dessinées, toujours les mêmes)
 function feu(T) {
-  const tex = texture(T, 64, 64, (c) => { const g = c.createRadialGradient(32, 32, 0, 32, 32, 32); g.addColorStop(0, "rgba(255,240,180,1)"); g.addColorStop(0.35, "rgba(255,140,30,.9)"); g.addColorStop(1, "rgba(255,60,0,0)"); c.fillStyle = g; c.fillRect(0, 0, 64, 64); });
-  const fum = texture(T, 64, 64, (c) => { const g = c.createRadialGradient(32, 32, 0, 32, 32, 32); g.addColorStop(0, "rgba(40,40,45,.75)"); g.addColorStop(1, "rgba(40,40,45,0)"); c.fillStyle = g; c.fillRect(0, 0, 64, 64); });
-  return { flamme: new T.SpriteMaterial({ map: tex, blending: T.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0.55 }), fumee: new T.SpriteMaterial({ map: fum, depthWrite: false, transparent: true, opacity: 0.5 }) };
+  // flamme : goutte allongée (blanc-jaune au cœur, orange, rouge), fumée sombre et douce, lueur ronde au sol
+  const flamme = texture(T, 64, 128, (c, w, h) => {
+    const g = c.createRadialGradient(32, 92, 2, 32, 80, 60);
+    g.addColorStop(0, "rgba(255,250,210,1)"); g.addColorStop(0.25, "rgba(255,190,60,.95)"); g.addColorStop(0.55, "rgba(255,90,10,.6)"); g.addColorStop(1, "rgba(200,30,0,0)");
+    c.fillStyle = g; c.beginPath(); c.moveTo(32, 4); c.bezierCurveTo(60, 50, 64, 120, 32, 124); c.bezierCurveTo(0, 120, 4, 50, 32, 4); c.fill(); });
+  const fum = texture(T, 64, 64, (c) => { const g = c.createRadialGradient(32, 32, 0, 32, 32, 32); g.addColorStop(0, "rgba(30,30,34,.8)"); g.addColorStop(0.6, "rgba(40,40,46,.35)"); g.addColorStop(1, "rgba(40,40,46,0)"); c.fillStyle = g; c.fillRect(0, 0, 64, 64); });
+  const lueur = texture(T, 64, 64, (c) => { const g = c.createRadialGradient(32, 32, 0, 32, 32, 32); g.addColorStop(0, "rgba(255,140,40,.9)"); g.addColorStop(1, "rgba(255,90,20,0)"); c.fillStyle = g; c.fillRect(0, 0, 64, 64); });
+  return { flamme: new T.SpriteMaterial({ map: flamme, blending: T.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0.85 }),
+           fumee: new T.SpriteMaterial({ map: fum, depthWrite: false, transparent: true, opacity: 0.6 }),
+           lueur: new T.MeshBasicMaterial({ map: lueur, blending: T.AdditiveBlending, depthWrite: false, transparent: true }) };
 }
 
 // ------------------------------------------------------------------ la scène
@@ -272,9 +279,11 @@ export async function creer3d(sc, couche, T) {
   for (const a of actions.filter(a => a.faire === "bruler" || a.faire === "exploser")) {
     const r = hasard(a.objet.length * 97 + 13), liste = [];
     for (let i = 0; i < (a.faire === "exploser" ? 50 : 60); i++) {
-      const s = new T.Sprite(i % 3 ? MATS.flamme : MATS.fumee); scene.add(s);
+      const s = new T.Sprite(i % 3 ? MATS.flamme : MATS.fumee.clone()); scene.add(s);
       liste.push({ s, ph: r(), dx: (r() - 0.5), dz: (r() - 0.5), v: 0.6 + r() * 0.8, fumee: !(i % 3), taille: a.taille ?? 1 });
     }
+    const sol_ = new T.Mesh(new T.PlaneGeometry(1, 1), MATS.lueur.clone()); sol_.rotation.x = -Math.PI / 2; scene.add(sol_);
+    liste.push({ lueur: sol_ });
     particules[a.objet] = (particules[a.objet] || []).concat(liste);
   }
   // anneaux jaunes au sol (« une voiture » entourée, comme dans les reconstitutions)
@@ -308,14 +317,22 @@ export async function creer3d(sc, couche, T) {
       const ps = particules[o.id] || [];
       const debut = e.brule >= 0 ? e.brule : e.explose;
       for (const q of ps) {
-        const vie = 1.6, age = ((t - debut) * q.v + q.ph * vie) % vie, actif = debut >= 0 && t >= debut;
+        const actif = debut >= 0 && t >= debut, ta = g.userData.taille || [4, 2, 2], force = borne(prog(t, debut, 1.2));
+        if (q.lueur) {                         // lueur orange qui palpite au sol sous le feu
+          q.lueur.visible = actif; if (!actif) continue;
+          const r = Math.max(ta[0], ta[2]) * 2.2 * force * (1 + 0.08 * Math.sin(t * 9) + 0.05 * Math.sin(t * 23));
+          q.lueur.scale.set(r, r, 1); q.lueur.position.set(e.x, 0.1, e.z); q.lueur.material.opacity = 0.75 * force; continue;
+        }
+        const vie = q.fumee ? 3.2 : 1.1, age = ((t - debut) * q.v + q.ph * vie) % vie;
         q.s.visible = actif;
         if (!actif) continue;
-        const force = borne(prog(t, debut, 1.2)), ta = g.userData.taille || [4, 2, 2], u = age / vie;
-        const hauteur = (q.fumee ? 16 : 6) * q.taille;
-        q.s.position.set(e.x + q.dx * ta[0] * 0.7, e.y + 0.6 + u * hauteur * force, e.z + q.dz * ta[2] * 0.9);
-        const k = (q.fumee ? mix(2.5, 9, u) : mix(2.2, 0.4, u)) * q.taille * force * (e.explose >= 0 && t - e.explose < 0.6 ? 2 : 1);
-        q.s.scale.set(k, k * (q.fumee ? 1 : 1.5), 1);
+        const u = age / vie, vent = q.fumee ? u * u * 6 : 0;
+        const hauteur = (q.fumee ? 22 : 5.5) * q.taille;
+        q.s.position.set(e.x + q.dx * ta[0] * 0.8 + vent, e.y + (q.fumee ? 3 : 0.4) + u * hauteur * force, e.z + q.dz * ta[2] * 0.9);
+        const vacille = 1 + 0.25 * Math.sin(t * 17 + q.ph * 40);
+        const k = (q.fumee ? mix(3, 12, u) : mix(2.6, 0.5, u) * vacille) * q.taille * force * (e.explose >= 0 && t - e.explose < 0.6 ? 2 : 1);
+        q.s.scale.set(k * (q.fumee ? 1 : 0.7), k * (q.fumee ? 1 : 1.6), 1);
+        q.s.material.rotation = q.fumee ? u * 2 + q.ph * 6 : 0;
       }
     }
     for (const c of trafic) {                 // ralentit puis s'arrête près d'un accident (feu, véhicule couché)
