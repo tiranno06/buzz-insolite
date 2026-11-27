@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-27T02:13:07+01:00",
+ "maj": "2026-11-27T04:14:05+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:10:53+01:00"
+   "le": "2026-11-27T04:11:39+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:10:56+01:00"
+   "le": "2026-11-27T04:11:43+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:00+01:00"
+   "le": "2026-11-27T04:11:48+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:04+01:00"
+   "le": "2026-11-27T04:11:51+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:07+01:00"
+   "le": "2026-11-27T04:11:55+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-27T02:11:10+01:00"
+   "le": "2026-11-27T04:11:58+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:14+01:00"
+   "le": "2026-11-27T04:12:03+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:18+01:00"
+   "le": "2026-11-27T04:12:08+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:23+01:00"
+   "le": "2026-11-27T04:12:12+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:27+01:00"
+   "le": "2026-11-27T04:12:16+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:31+01:00"
+   "le": "2026-11-27T04:12:21+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:34+01:00"
+   "le": "2026-11-27T04:12:25+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:38+01:00"
+   "le": "2026-11-27T04:12:29+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-27T02:11:41+01:00"
+   "le": "2026-11-27T04:12:34+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:45+01:00"
+   "le": "2026-11-27T04:12:39+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:48+01:00"
+   "le": "2026-11-27T04:12:44+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:52+01:00"
+   "le": "2026-11-27T04:12:49+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:11:56+01:00"
+   "le": "2026-11-27T04:12:53+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:12:00+01:00"
+   "le": "2026-11-27T04:12:58+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:12:04+01:00"
+   "le": "2026-11-27T04:13:03+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:12:08+01:00"
+   "le": "2026-11-27T04:13:07+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:12:12+01:00"
+   "le": "2026-11-27T04:13:11+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:12:15+01:00"
+   "le": "2026-11-27T04:13:16+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:12:19+01:00"
+   "le": "2026-11-27T04:13:20+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:12:23+01:00"
+   "le": "2026-11-27T04:13:25+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:12:27+01:00"
+   "le": "2026-11-27T04:13:31+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:12:31+01:00"
+   "le": "2026-11-27T04:13:35+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T02:12:36+01:00"
+   "le": "2026-11-27T04:13:40+01:00"
   }
  },
  "lues": 809,
@@ -319,55 +319,6 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T18:19:59+01:00",
    "video_id": "20261124-203224-1"
-  },
-  {
-   "titre": "Christ le Rédempteur apparaît au-dessus des nuages",
-   "resume": "Un homme a filmé le Christ Rédempteur qui semble surgir au-dessus d'un voile de nuages à Rio de Janeiro. Il décrit ce phénomène comme un « cadeau de Dieu ».",
-   "mots_cles": [
-    "Christ Rédempteur",
-    "Rio",
-    "nuages"
-   ],
-   "mots_cles_en": [
-    "Christ the Redeemer",
-    "Rio",
-    "clouds"
-   ],
-   "hashtags": [
-    "christredeemer",
-    "rio",
-    "nuages"
-   ],
-   "insolite": 7,
-   "categorie": "insolite",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712406425690983694",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712406425690983694",
-     "vues": 4200000,
-     "jaime": 889200,
-     "commentaires": 6504,
-     "partages": 43800,
-     "date": 1795684610,
-     "texte": "A man in Rio de Janeiro captured a breathtaking sight of Christ the Redeemer appearing above a blanket of rolling clouds, describing the moment as a ‘gift from God’. Marcio Amaro was visiting his late godfather-in-law’s vacant property with his wife and cousin when his cousin spotted the extraordinary view from the house. Even his wife, who had lived there all her life, had never witnessed anythin",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712406425690983694?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "8d1c74a7b1",
-   "score": 1618,
-   "derniere_vue": 1795741973.2761145,
-   "vues": 4200000,
-   "jaime": 889200,
-   "commentaires": 6504,
-   "hashtags_viraux": [],
-   "medias": 6,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-26T17:23:54+01:00"
   },
   {
    "titre": "Décret afghan impose surnoms aux femmes",
@@ -1582,6 +1533,80 @@
    "video_id": "20261125-163217-1"
   },
   {
+   "titre": "Christ le Rédempteur apparaît au-dessus des nuages",
+   "resume": "Un visiteur a filmé le Christ Rédempteur semblant flotter au-dessus d'un voile de nuages à Rio de Janeiro. L'image a été décrite comme un « cadeau de Dieu ».",
+   "mots_cles": [
+    "C",
+    "h",
+    "r",
+    "i",
+    "s",
+    "t"
+   ],
+   "mots_cles_en": [
+    "C",
+    "h",
+    "r",
+    "i",
+    "s",
+    "t"
+   ],
+   "hashtags": [
+    "christredeemer",
+    "rio",
+    "nuages"
+   ],
+   "insolite": 8,
+   "categorie": "insolite",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712406425690983694",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712406425690983694",
+     "vues": 4600000,
+     "jaime": 960300,
+     "commentaires": 6879,
+     "partages": 46900,
+     "date": 1795684610,
+     "texte": "A man in Rio de Janeiro captured a breathtaking sight of Christ the Redeemer appearing above a blanket of rolling clouds, describing the moment as a ‘gift from God’. Marcio Amaro was visiting his late godfather-in-law’s vacant property with his wife and cousin when his cousin spotted the extraordinary view from the house. Even his wife, who had lived there all her life, had never witnessed anythin",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712406425690983694?description=1&music_info=1"
+    },
+    {
+     "id": "7712413595132333326",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712413595132333326",
+     "vues": 1100000,
+     "jaime": 205200,
+     "commentaires": 1951,
+     "partages": 10800,
+     "date": 1795686311,
+     "texte": "This is absolutely breathtaking 🥹 Marcio Amaro captured the breathtaking sight of Christ the Redeemer appearing to float above a sea of clouds in Rio de Janeiro, describing it as a ‘gift from God’. He spotted the incredible view while visiting a family property with his wife and cousin, who were equally stunned by the rare sight. 📸 Marcio Amaro via Storyful #riodejaneiro #brazil #jesus #christther",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712413595132333326?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "8d1c74a7b1",
+   "score": 513,
+   "derniere_vue": 1795749233.1025193,
+   "vues": 5700000,
+   "jaime": 1165500,
+   "commentaires": 8830,
+   "hashtags_viraux": [
+    "riodejaneiro",
+    "brazil",
+    "jesus",
+    "christther"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "sans_source",
+   "vu_le": "2026-11-26T17:23:54+01:00"
+  },
+  {
    "titre": "Famille réclame maintien du cannabis médical au Royaume-Uni",
    "resume": "Une mère britannique alerte le Premier ministre sur le risque de mort de son fils si le cannabis médical devient indisponible. Elle demande la continuité de l'accès au traitement.",
    "mots_cles": [
@@ -2138,61 +2163,6 @@
    "medias": 10,
    "statut": "nouveau",
    "vu_le": "2026-11-25T02:05:25+01:00"
-  },
-  {
-   "titre": "Pourquoi le cours de l’or chute",
-   "resume": "Les analystes examinent les raisons de la baisse du prix de l’or, évoquant la hausse des taux d’intérêt et la force du dollar. Le marché reste volatile après les récentes données économiques.",
-   "mots_cles": [
-    "or",
-    "cours",
-    "baisse",
-    "taux d’intérêt"
-   ],
-   "mots_cles_en": [
-    "gold",
-    "price",
-    "decline",
-    "interest rates"
-   ],
-   "hashtags": [
-    "finance",
-    "marché"
-   ],
-   "insolite": 2,
-   "categorie": "economie",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712432953673927969",
-     "compte": "hugodecrypte",
-     "url": "https://www.tiktok.com/@hugodecrypte/video/7712432953673927969",
-     "vues": 1700000,
-     "jaime": 169500,
-     "commentaires": 699,
-     "partages": 20300,
-     "date": 1795690736,
-     "texte": "(25/11) 🚨Comment expliquer la chute du cours de l’or ? ",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712432953673927969?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "9728460b79",
-   "score": 357,
-   "derniere_vue": 1795735055.5051353,
-   "vues": 1700000,
-   "jaime": 169500,
-   "commentaires": 699,
-   "hashtags_viraux": [],
-   "medias": 10,
-   "tendance": {
-    "recherche": "national savings and investments",
-    "pays": "GB",
-    "trafic": "500+"
-   },
-   "statut": "nouveau",
-   "vu_le": "2026-11-27T00:17:46+01:00"
   },
   {
    "titre": "Chanteuse iranienne condamnée à 74 coups de fouet",
@@ -3016,56 +2986,6 @@
    "vu_le": "2026-11-26T01:00:57+01:00"
   },
   {
-   "titre": "Victoire juridique pour le gel des loyers à New York",
-   "resume": "Un juge de Manhattan a rejeté la contestation des propriétaires contre le gel des loyers, maintenant la mesure pour près d'un million de logements. La décision renforce la protection des locataires.",
-   "mots_cles": [
-    "New York",
-    "gel des loyers",
-    "justice"
-   ],
-   "mots_cles_en": [
-    "New York",
-    "rent freeze",
-    "court"
-   ],
-   "hashtags": [
-    "newyork",
-    "gel",
-    "loyers"
-   ],
-   "insolite": 4,
-   "categorie": "economie",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712438848134974734",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712438848134974734",
-     "vues": 1200000,
-     "jaime": 207800,
-     "commentaires": 3632,
-     "partages": 3938,
-     "date": 1795692211,
-     "texte": "New York Mayor Zohran Mamdani has won a major legal victory after a judge rejected a challenge from landlords seeking to overturn his rent freeze for around one million rent-stabilized homes. A Manhattan judge ruled that the measure, which prevents rent increases on eligible one- and two-year leases, had a ‘rational basis’ and could remain in place. Celebrating the decision, Mamdani said it was a ",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712438848134974734?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "9a05e0fbfe",
-   "score": 213,
-   "derniere_vue": 1795741973.2761145,
-   "vues": 1200000,
-   "jaime": 207800,
-   "commentaires": 3632,
-   "hashtags_viraux": [],
-   "medias": 19,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-27T02:13:07+01:00"
-  },
-  {
    "titre": "Arnaque consoles jeux en ligne",
    "resume": "Des annonces sur les plateformes de seconde main vendent des consoles de jeux fictives. Les victimes reçoivent uniquement une photo du produit.",
    "mots_cles": [
@@ -3223,8 +3143,8 @@
    "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
-   "titre": "Escalator de l'Université BRAC accélère dangereusement",
-   "resume": "Des étudiants ont dû sauter lorsqu'un escalier roulant s'est mis à fonctionner à grande vitesse. L'incident a été filmé en décembre 2025 à l'Université BRAC au Bangladesh.",
+   "titre": "Escalator accéléré force évacuation à l'université du Bangladesh",
+   "resume": "Des étudiants de la BRAC University ont dû sauter lorsqu'un escalier roulant a soudainement augmenté de vitesse. L'incident a été filmé en décembre 2025.",
    "mots_cles": [
     "e",
     "s",
@@ -3243,8 +3163,8 @@
    ],
    "hashtags": [
     "escalator",
-    "accident",
-    "université"
+    "bangladesh",
+    "accident"
    ],
    "insolite": 6,
    "categorie": "faits_divers",
@@ -3254,10 +3174,10 @@
      "id": "7712510013171911949",
      "compte": "dailymail",
      "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
-     "vues": 3000000,
-     "jaime": 198900,
-     "commentaires": 1979,
-     "partages": 13600,
+     "vues": 4400000,
+     "jaime": 300600,
+     "commentaires": 2949,
+     "partages": 20100,
      "date": 1795708700,
      "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
      "sous_seuils": true,
@@ -3266,12 +3186,12 @@
     }
    ],
    "sous_seuils": true,
-   "id": "d3a7488a47",
+   "id": "16be21b1a5",
    "score": 169,
-   "derniere_vue": 1795732000.8349352,
-   "vues": 3000000,
-   "jaime": 198900,
-   "commentaires": 1979,
+   "derniere_vue": 1795749233.1025193,
+   "vues": 4400000,
+   "jaime": 300600,
+   "commentaires": 2949,
    "hashtags_viraux": [
     "bangladesh",
     "viral",
@@ -3282,7 +3202,7 @@
    "medias": 0,
    "tendance": null,
    "statut": "nouveau",
-   "vu_le": "2026-11-26T23:26:47+01:00"
+   "vu_le": "2026-11-27T04:14:05+01:00"
   },
   {
    "titre": "Arnaque consoles neuves à Noël",
@@ -3388,6 +3308,62 @@
    "medias": 7,
    "statut": "nouveau",
    "vu_le": "2026-11-25T09:59:33+01:00"
+  },
+  {
+   "titre": "80 ans proteste en Albanie, autocollant sur bouclier",
+   "resume": "Une femme de 80 ans, surnommée « Mère de la Révolution », a collé un sticker anti‑gouvernemental sur le bouclier d’un policier à Tirana. Elle participe aux manifestations étudiantes contre le gouvernement.",
+   "mots_cles": [
+    "A",
+    "l",
+    "b",
+    "a",
+    "n",
+    "i"
+   ],
+   "mots_cles_en": [
+    "A",
+    "l",
+    "b",
+    "a",
+    "n",
+    "i"
+   ],
+   "hashtags": [
+    "albanie",
+    "protest",
+    "sticker"
+   ],
+   "insolite": 7,
+   "categorie": "politique",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712518579266014494",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712518579266014494",
+     "vues": 3500000,
+     "jaime": 345800,
+     "commentaires": 1808,
+     "partages": 10600,
+     "date": 1795710676,
+     "texte": "An 80-year-old protester walks right up to Albanian riot police and places an anti-government sticker on an officer’s shield. Known as the “Mother of the Revolution,” the woman joins student-led demonstrations in Tirana as protesters mark nearly 200 consecutive day of anti-government rallies. The sticker carries a message directed at Socialist Prime Minister Edi Rama.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712518579266014494?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "a3684acb65",
+   "score": 160,
+   "derniere_vue": 1795749233.1025193,
+   "vues": 3500000,
+   "jaime": 345800,
+   "commentaires": 1808,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T04:14:05+01:00"
   },
   {
    "titre": "Afghanistan : nouvelles règles imposent surnoms aux femmes",
@@ -4566,6 +4542,62 @@
    "video_id": "20261125-214937-1"
   },
   {
+   "titre": "Table s'effondre sous le repas de Thanksgiving",
+   "resume": "Une famille du New Jersey a vu sa table céder sous le poids du repas de Thanksgiving, provoquant un désordre mais aucun blessé grave. La scène a été filmée et partagée en ligne.",
+   "mots_cles": [
+    "T",
+    "h",
+    "a",
+    "n",
+    "k",
+    "s"
+   ],
+   "mots_cles_en": [
+    "T",
+    "h",
+    "a",
+    "n",
+    "k",
+    "s"
+   ],
+   "hashtags": [
+    "thanksgiving",
+    "tablecollapse",
+    "newjersey"
+   ],
+   "insolite": 5,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712546664501808415",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712546664501808415",
+     "vues": 2000000,
+     "jaime": 71300,
+     "commentaires": 1776,
+     "partages": 11300,
+     "date": 1795719600,
+     "texte": "Here’s hoping your table can handle the Thanksgiving feast today! Last Thanksgiving, a New Jersey family was wrapping up a holiday speech when their table suddenly gave way under the weight of all the food. Fortunately, the family managed to salvage enough food to carry on with their celebration. But the video has been pointed to as a host’s (and their guests’) worst nightmare.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712546664501808415?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "03ad6d9ce1",
+   "score": 82,
+   "derniere_vue": 1795749233.1025193,
+   "vues": 2000000,
+   "jaime": 71300,
+   "commentaires": 1776,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T04:14:05+01:00"
+  },
+  {
    "titre": "Étudiante fait malaise devant Emmanuel Macron",
    "resume": "Une étudiante a perdu connaissance lors d’une visite d’Emmanuel Macron à Toulouse. Les causes du malaise restent à déterminer.",
    "mots_cles": [
@@ -4818,56 +4850,6 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
-   "titre": "Table s'effondre sous le poids du repas de Thanksgiving",
-   "resume": "Une famille du New Jersey a vu sa table céder sous la charge du repas de Thanksgiving, provoquant un désordre mais aucun blessé grave. Le repas a pu être poursuivi.",
-   "mots_cles": [
-    "Thanksgiving",
-    "effondrement",
-    "table"
-   ],
-   "mots_cles_en": [
-    "Thanksgiving",
-    "table collapse",
-    "New Jersey"
-   ],
-   "hashtags": [
-    "thanksgiving",
-    "table",
-    "collapse"
-   ],
-   "insolite": 3,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712546664501808415",
-     "compte": "foxnews",
-     "url": "https://www.tiktok.com/@foxnews/video/7712546664501808415",
-     "vues": 1400000,
-     "jaime": 53300,
-     "commentaires": 1327,
-     "partages": 8098,
-     "date": 1795719600,
-     "texte": "Here’s hoping your table can handle the Thanksgiving feast today! Last Thanksgiving, a New Jersey family was wrapping up a holiday speech when their table suddenly gave way under the weight of all the food. Fortunately, the family managed to salvage enough food to carry on with their celebration. But the video has been pointed to as a host’s (and their guests’) worst nightmare.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712546664501808415?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "ba5fd18013",
-   "score": 66,
-   "derniere_vue": 1795741973.2761145,
-   "vues": 1400000,
-   "jaime": 53300,
-   "commentaires": 1327,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-27T02:13:07+01:00"
-  },
-  {
    "titre": "GTA 6 rend hommage à l’orque Lolita",
    "resume": "Dans le jeu GTA 6, un oceanarium virtuel inclut une mission pour libérer une orque, rappelant le cas réel de Tokitae. Les joueurs ont remarqué ce clin d’œil au célèbre animal captif.",
    "mots_cles": [
@@ -4966,6 +4948,118 @@
    ],
    "statut": "nouveau",
    "vu_le": "2026-11-24T18:38:52+01:00"
+  },
+  {
+   "titre": "Pourquoi le cours de l’or chute‑t‑il ?",
+   "resume": "Des analystes examinent les facteurs qui font baisser le prix de l’or, notamment la hausse des taux d’intérêt et la force du dollar. La vidéo propose une synthèse des raisons économiques.",
+   "mots_cles": [
+    "o",
+    "r",
+    ",",
+    " ",
+    "c",
+    "o"
+   ],
+   "mots_cles_en": [
+    "g",
+    "o",
+    "l",
+    "d",
+    ",",
+    " "
+   ],
+   "hashtags": [
+    "gold",
+    "price",
+    "economy"
+   ],
+   "insolite": 3,
+   "categorie": "economie",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712432953673927969",
+     "compte": "hugodecrypte",
+     "url": "https://www.tiktok.com/@hugodecrypte/video/7712432953673927969",
+     "vues": 1800000,
+     "jaime": 177300,
+     "commentaires": 724,
+     "partages": 21200,
+     "date": 1795690736,
+     "texte": "(25/11) 🚨Comment expliquer la chute du cours de l’or ? ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712432953673927969?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "9728460b79",
+   "score": 53,
+   "derniere_vue": 1795749233.1025193,
+   "vues": 1800000,
+   "jaime": 177300,
+   "commentaires": 724,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T00:17:46+01:00"
+  },
+  {
+   "titre": "Victoire juridique pour le gel des loyers à New York",
+   "resume": "Un juge de Manhattan a rejeté la contestation des propriétaires contre le gel des loyers, maintenant la mesure qui bloque les augmentations pour environ un million de logements stabilisés.",
+   "mots_cles": [
+    "g",
+    "e",
+    "l",
+    " ",
+    "d",
+    "e"
+   ],
+   "mots_cles_en": [
+    "r",
+    "e",
+    "n",
+    "t",
+    " ",
+    "f"
+   ],
+   "hashtags": [
+    "rentfreeze",
+    "newyork",
+    "court"
+   ],
+   "insolite": 4,
+   "categorie": "economie",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712438848134974734",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712438848134974734",
+     "vues": 1300000,
+     "jaime": 234500,
+     "commentaires": 3998,
+     "partages": 4366,
+     "date": 1795692211,
+     "texte": "New York Mayor Zohran Mamdani has won a major legal victory after a judge rejected a challenge from landlords seeking to overturn his rent freeze for around one million rent-stabilized homes. A Manhattan judge ruled that the measure, which prevents rent increases on eligible one- and two-year leases, had a ‘rational basis’ and could remain in place. Celebrating the decision, Mamdani said it was a ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712438848134974734?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "9a05e0fbfe",
+   "score": 53,
+   "derniere_vue": 1795749233.1025193,
+   "vues": 1300000,
+   "jaime": 234500,
+   "commentaires": 3998,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T02:13:07+01:00"
   },
   {
    "titre": "Gardien de stade étouffe entraîneur brésilien",

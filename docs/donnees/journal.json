@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T04:14:08+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 83 sujet(s) au-dessus des seuils — en tête : « Afghanistan : les femmes privées de nom officiel »"
+  },
+  {
    "date": "2026-11-27T03:00:00+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Parade Macy's reportée: premier report » (71 s, 15 écrans illustrés) — à regarder puis cocher « À publier »"
