@@ -571,6 +571,13 @@ logo, mise en page) : même recette, notre identité (rouge et jaune du logo sur
   pas d'écrans noirs ni de regard de l'IA sur les images (on les dessine), voix / sous-titres / durée / format contrôlés ;
   refaire « images » = nouvelle réalisation (`animation` effacée), refaire « texte » = nouveau storyboard.
 - Polices : Poppins Medium à Black (OFL). Données : `robot/rendu/geo/LICENCES.md`.
+- **1re vraie vidéo (27/11, « Afghanistan : les noms des femmes effacés », 68 s, 100/100, 10 min de fabrication dont 6 min 44 de
+  rendu)** : trop statique (7 scènes « mot » sur 13 = diapositives), titre sur 3 lignes qui chevauchait l'étiquette,
+  « 21,70 » sans « millions », paragraphes en double avec les sous-titres. Corrigé : scènes `icone` (emoji géant Noto Color
+  Emoji, police installée par les workflows), `document` (feuille + lignes + tampon), `calendrier` (page qui se retourne),
+  `personnes` (proportion « 3 sur 10 ») ; « mot » 2 fois au plus, 5 types différents demandés ; textes sous un visuel ≤ 60
+  signes ; `_unite_du_texte` (unité « millions / milliards / % » reprise de la phrase) ; secours = pictogramme selon les mots
+  (`PICTOS`) ; titre ajusté sur 2 lignes (`TITRE_MAX`), jamais sous le logo ; étiquettes placées sous le titre.
 
 ## IA de secours ajoutées (26/11, demande de l'auteur « n'as-tu pas trouvé d'autres IA de secours ? »)
 Listes communautaires (awesome-free-llm-apis) relues ; retenues = gratuites, sans carte, usage commercial non interdit :

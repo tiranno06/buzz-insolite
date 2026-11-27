@@ -18,7 +18,8 @@ import subprocess
 from . import ia
 from .commun import RACINE
 
-TYPES = ("carte", "chiffre", "frise", "citation", "barres", "3d", "question", "mot")
+TYPES = ("carte", "chiffre", "frise", "citation", "barres", "3d", "question", "mot", "icone", "document", "calendrier", "personnes")
+UNITES_FORTES = ("millions", "million", "milliards", "milliard", "mille", "%", "pour cent")
 OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "bateau", "train", "batiment", "arbre", "personne",
              "muret", "mur", "cube_eau")
 ACTIONS_3D = ("avancer", "heurter", "changer_voie", "tourner", "se_coucher", "bruler", "exploser", "tomber", "voler", "couler",
@@ -35,7 +36,12 @@ change d'image souvent : une scène dure 3 à 8 secondes). Types de scènes :
   "pays": [{"iso": "EGY", "couleur": "rouge", "etiquette": "ÉGYPTE"}], "lieux": ["Saint-Claude"], "effet": "pluie"|"neige"|"orage"|null,
   "fleche": {"de": "Brest", "vers": "Strasbourg"}} — pour situer l'événement, une alerte météo, un trajet ;
 - "chiffre" : {"valeur": "31", "unite": "morts", "texte": "selon le ministère"} — UN chiffre clé tiré du texte ;
-- "mot" : {"valeur": "ARRÊTÉ", "texte": "le conducteur de la voiture"} — 1 à 3 mots forts ;
+- "icone" : {"emoji": "🏥", "valeur": "HÔPITAL", "texte": "4 mots au plus"} — un pictogramme géant (UN emoji adapté) ;
+- "document" : {"entete": "Décret des talibans", "titre": "PRÉNOMS INTERDITS", "tampon": "OFFICIEL", "texte": "..."} — une loi,
+  un décret, un rapport, une plainte, un jugement ;
+- "calendrier" : {"jour": "22", "mois": "NOVEMBRE", "annee": "2026", "texte": "..."} — une date clé ;
+- "personnes" : {"total": 10, "colores": 3, "texte": "3 femmes sur 10"} — une proportion (« 1 sur 2 », « 3 sur 10 ») ;
+- "mot" : {"valeur": "ARRÊTÉ", "emoji": "🚔", "texte": "..."} — 1 à 3 mots forts (2 fois AU PLUS par vidéo) ;
 - "frise" : {"etapes": [{"heure": "18 h", "texte": "..."}]} — chronologie (3 étapes au plus) ;
 - "citation" : {"texte": "phrase EXACTE prononcée, copiée des articles", "auteur": "qui l'a dite"} ;
 - "barres" : {"barres": [{"texte": "Hier", "valeur": 9, "unite": "départements"}, {"texte": "Demain", "valeur": 60}]} ;
@@ -50,6 +56,9 @@ change d'image souvent : une scène dure 3 à 8 secondes). Types de scènes :
   actions : avancer, heurter, changer_voie, tourner, se_coucher, bruler, exploser, tomber, voler, couler, apparaitre, disparaitre ;
   "voie" = numéro de voie (1 à 6), "position" = mètres le long de la route ; "phrase" = numéro de la phrase où l'action commence ;
 - "question" : {"texte": "la question finale"} — OBLIGATOIRE pour la dernière phrase.
+VARIE les scènes (au moins 5 types différents) comme une vraie infographie animée ; un "texte" sous un visuel fait 8 mots
+au plus (les sous-titres disent déjà tout). "chiffre" : "unite" reprend EXACTEMENT les mots après le nombre dans la phrase
+(« 21,7 millions » → valeur "21,7", unite "millions"). Un "emoji" peut s'ajouter à "chiffre" et "mot".
 Chaque scène peut avoir "etiquettes": ["SELON LE PARQUET"] (1 ou 2 étiquettes courtes en MAJUSCULES : qui le dit, le moment).
 N'invente RIEN : chiffres, lieux, heures, citations et déroulé viennent du texte ou des articles.
 Donne aussi : "titre" (le titre affiché en haut, 45 signes au plus, le mot le plus fort entre **astérisques**), "lieu_date"
@@ -75,6 +84,15 @@ def storyboard(script, articles, journal=print):
     return d
 
 
+def _unite_du_texte(valeur, phrase, unite):
+    """« 21,7 millions de femmes » : l'unité « millions » ne doit jamais disparaître (vidéo Afghanistan du 27/11 : « 21,70 »)."""
+    m = re.search(re.escape(valeur.strip()).replace(r"\,", "[.,]").replace(r"\.", "[.,]") + r"\s+([A-Za-zÀ-ÿ%]+)", phrase or "")
+    suivant = (m.group(1) if m else "").lower()
+    if suivant in UNITES_FORTES and suivant not in unite.lower():
+        return f"{suivant} {unite}".strip()
+    return unite
+
+
 def _lieu(nom, cache):
     from . import carte
     if nom not in cache:
@@ -94,7 +112,20 @@ def _secours(script, i, j):
         return dict(type="chiffre", valeur=m.group(1).strip(), unite=m.group(2) or (reste[0] if reste and len(reste[0]) < 12 else ""),
                     texte="")
     mots = [w for w in re.findall(r"[A-Za-zÀ-ÿ'-]{4,}", t) if w.lower() not in MOTS_VIDES][:3]
+    bas = t.lower()
+    emoji = next((e for cles, e in PICTOS if any(c in bas for c in cles)), "")
+    if emoji:
+        return dict(type="icone", emoji=emoji, valeur=" ".join(mots[:2]).upper(), texte="")
     return dict(type="mot", valeur=" ".join(mots[:2]).upper() or "…", texte="")
+
+
+PICTOS = [(("police", "gendarm", "arrêt", "interpell"), "🚔"), (("hôpital", "médec", "santé", "malade", "soin"), "🏥"),
+          (("tribunal", "juge", "procès", "condamn", "justice"), "⚖️"), (("pluie", "orage", "inond"), "🌧️"), (("neige", "froid", "gel"), "❄️"),
+          (("feu", "incendie", "brûl", "flamme"), "🔥"), (("voiture", "route", "accident", "camion"), "🚗"), (("avion", "vol ", "aéroport"), "✈️"),
+          (("bateau", "navire", "mer ", "cargo"), "🚢"), (("argent", "euro", "prix", "dollar", "coût"), "💶"), (("école", "élève", "université", "étud"), "🎓"),
+          (("femme", "fille"), "👩"), (("enfant", "bébé"), "👶"), (("loi", "décret", "règle", "interdi"), "📜"), (("téléphone", "message", "réseau"), "📱"),
+          (("jeu", "console", "gta"), "🎮"), (("animal", "chien", "chat"), "🐾"), (("guerre", "armée", "soldat", "militaire"), "🪖"),
+          (("vote", "élection", "président", "gouvernement"), "🏛️"), (("question", "et toi"), "💬")]
 
 
 MOTS_VIDES = {"dans", "pour", "avec", "sans", "cette", "comme", "mais", "plus", "très", "tout", "tous", "leur", "elle", "elles",
@@ -161,6 +192,26 @@ def valider(d, script, articles, journal=print):
                     raison = "carte sans lieu trouvé"
             if sc.get("effet") not in ("pluie", "neige", "orage"):
                 sc["effet"] = None
+        elif t in ("calendrier",) and not str(sc.get("jour") or "").strip().isdigit():
+            raison = "calendrier sans jour"
+        elif t == "calendrier" and not (_chiffres(str(sc.get("jour"))) <= connus):
+            raison = "date absente du texte et des articles"
+        elif t == "personnes":
+            try:
+                sc["total"], sc["colores"] = max(2, min(20, int(sc.get("total")))), max(0, min(20, int(sc.get("colores"))))
+                sc["colores"] = min(sc["colores"], sc["total"])
+            except (TypeError, ValueError):
+                raison = "proportion illisible"
+        elif t == "icone" and not str(sc.get("emoji") or "").strip():
+            raison = "pictogramme sans emoji"
+        if not raison and t == "chiffre":                # unité reprise du texte : « 21,7 » + « millions »
+            sc["unite"] = _unite_du_texte(str(sc.get("valeur")), " ".join(script["phrases"][x]["ecrit"] for x in sc["phrases"]),
+                                          str(sc.get("unite") or ""))
+        for cle, n_ in (("texte", 60), ("valeur", 24), ("titre", 40), ("entete", 40), ("tampon", 14), ("emoji", 8)):
+            if isinstance(sc.get(cle), str) and len(sc[cle]) > n_:
+                sc[cle] = sc[cle][:n_].rsplit(" ", 1)[0] + ("…" if cle == "texte" else "")
+        if not raison and t == "mot" and sum(1 for x in scenes if x["type"] == "mot") >= 2:
+            raison = "déjà 2 mots seuls"
         if raison:
             journal(f"  réalisation, phrases {i}-{j} : {raison} → scène de secours")
             sc = dict(_secours(script, i, j), phrases=sc["phrases"], etiquettes=sc.get("etiquettes"))
@@ -224,8 +275,6 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
             s["pays"] = [dict(x, a=0.4 + 0.25 * n) for n, x in enumerate(sc.get("pays") or [])]
             s["points"] = [dict(p, a=1.0 + 0.4 * n) for n, p in enumerate(sc.get("points") or [])]
             s["mention"] = "Carte : Natural Earth, IGN" + (f" · {mention_source}" if mention_source else "")
-        if sc["type"] == "mot":
-            s["type"] = "chiffre"
         if sc["type"] == "3d":
             voies = 6 if sc.get("decor") == "autoroute" else 2
             objets = []

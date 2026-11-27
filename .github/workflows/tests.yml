@@ -33,6 +33,7 @@ jobs:
         run: |
           npm install --prefix robot/rendu --no-audit --no-fund --silent
           npx --prefix robot/rendu playwright install --with-deps chromium
+          sudo apt-get install -y -qq fonts-noto-color-emoji >/dev/null   # pictogrammes en couleur (police libre OFL)
       - name: Installer les bibliothèques
         run: uv pip install --system -q -r requirements.txt pyyaml || pip install -q -r requirements.txt pyyaml
       - name: Tests (aucun appel réseau ni IA)

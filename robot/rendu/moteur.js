@@ -173,6 +173,7 @@ TYPES.chiffre = async (sc, couche) => {
   const bloc = el("div", "chiffre", couche); bloc.style.top = (sc.y ?? 620) + "px";
   const ligne = el("div", "", bloc); const v = el("span", "valeur", ligne); el("span", "unite", ligne, echapper(sc.unite || ""));
   const tx = el("div", "texte", bloc, marques(sc.texte || ""));
+  if (sc.emoji) { const e = el("div", "emoji", bloc, echapper(sc.emoji)); e.style.cssText = "font-size:150px;line-height:1;margin-bottom:10px;filter:drop-shadow(0 16px 20px #0008)"; bloc.prepend(e); }
   const brut = String(sc.valeur ?? ""), num = parseFloat(brut.replace(/\s/g, "").replace(",", "."));
   const decimales = (brut.split(/[.,]/)[1] || "").length, prefixe = brut.match(/^[^\d−-]*/)[0];
   const cv = el("canvas", "", couche); cv.width = W; cv.height = H; couche.prepend(cv); const cx = cv.getContext("2d");
@@ -224,6 +225,78 @@ TYPES.photo = async (sc, couche) => {
     cx.save(); cx.shadowColor = "#000a"; cx.shadowBlur = 40; cx.fillStyle = "#000"; cx.beginPath(); cx.roundRect(bx, by, bw, bh, 28); cx.fill(); cx.restore();
     cx.save(); cx.beginPath(); cx.roundRect(bx, by, bw, bh, 28); cx.clip();
     cx.drawImage(img, bx + (bw - w) / 2 - 20 * prog(t, 0, duree), by + (bh - h) / 2, w, h); cx.restore();
+  };
+};
+
+// ---- PICTOGRAMME GÉANT (emoji en couleur) : il tombe, rebondit, puis flotte doucement
+TYPES.icone = async (sc, couche) => {
+  const b = el("div", "icone", couche); b.style.top = (sc.y ?? 520) + "px";
+  const p = el("div", "picto emoji", b, echapper(sc.emoji || "📰"));
+  const v = sc.valeur ? el("div", "valeur", b, marques(sc.valeur)) : null;
+  const tx = sc.texte ? el("div", "texte", b, marques(sc.texte)) : null;
+  const cv = el("canvas", "", couche); cv.width = W; cv.height = H; couche.prepend(cv); const cx = cv.getContext("2d");
+  return (t, duree) => {
+    const k = ease.ressort(prog(t, 0, 0.55));
+    p.style.transform = `translateY(${(1 - k) * -260 + Math.sin(t * 2) * 10}px) rotate(${Math.sin(t * 1.3) * 4}deg) scale(${mix(0.4, 1, k)})`;
+    p.style.opacity = borne(prog(t, 0, 0.2));
+    if (v) apparition(v, t, 0.35, { echelle: true });
+    if (tx) apparition(tx, t, 0.6, { echelle: false });
+    cx.clearRect(0, 0, W, H);
+    const y = (sc.y ?? 520) + 150, r = 330 + 20 * Math.sin(t * 1.6);
+    const g = cx.createRadialGradient(W / 2, y, 0, W / 2, y, r); g.addColorStop(0, couleur(sc.couleur || "jaune") + "55"); g.addColorStop(1, "#0000");
+    cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+  };
+};
+TYPES.mot = (sc, couche) => (sc.emoji ? TYPES.icone(sc, couche) : TYPES.chiffre(sc, couche));
+
+// ---- DOCUMENT OFFICIEL (décret, loi, rapport, plainte) : la feuille arrive, les lignes s'écrivent, le tampon s'abat
+TYPES.document = async (sc, couche) => {
+  const d = el("div", "document", couche); d.style.top = (sc.y ?? 470) + "px";
+  el("div", "entete-doc", d, echapper(sc.entete || "Document officiel"));
+  el("div", "titre-doc", d, marques(sc.titre || "DÉCRET"));
+  const lignes = Array.from({ length: 6 }, (_, i) => { const l = el("div", "ligne-doc", d); l.style.width = (i % 3 === 2 ? 62 : 100) + "%"; return l; });
+  const tampon = sc.tampon ? el("div", "tampon", d, echapper(sc.tampon)) : null;
+  const tx = sc.texte ? el("div", "doc-texte", couche, marques(sc.texte)) : null; if (tx) { tx.style.position = "absolute"; tx.style.left = "60px"; tx.style.right = "140px"; tx.style.top = ((sc.y ?? 470) + 790) + "px"; }
+  return (t, duree) => {
+    const k = ease.sortie(prog(t, 0, 0.6));
+    d.style.transform = `translateY(${(1 - k) * 500}px) rotate(${mix(-14, -3, k) + Math.sin(t * 0.8) * 0.6}deg) scale(${1 + 0.03 * prog(t, 0, duree)})`;
+    d.style.opacity = borne(k * 1.5);
+    lignes.forEach((l, i) => { l.style.transform = `scaleX(${ease.sortie(prog(t, 0.45 + i * 0.12, 0.35))})`; });
+    if (tampon) { const s = prog(t, sc.tampon_a ?? 1.4, 0.25); tampon.style.opacity = s > 0 ? 1 : 0;
+      tampon.style.transform = `rotate(-12deg) scale(${s < 1 ? mix(2.6, 1, ease.sortie(s)) : 1 + Math.max(0, 0.06 - (t - (sc.tampon_a ?? 1.4) - 0.25) * 0.2)})`; }
+    if (tx) apparition(tx, t, 0.8, { echelle: false });
+  };
+};
+
+// ---- CALENDRIER : la page du jour se retourne
+TYPES.calendrier = async (sc, couche) => {
+  const c = el("div", "calendrier", couche); c.style.top = (sc.y ?? 500) + "px";
+  el("div", "mois", c, echapper(sc.mois || "")); el("div", "jour", c, echapper(sc.jour || "")); el("div", "annee", c, echapper(sc.annee || ""));
+  const tx = sc.texte ? el("div", "doc-texte", couche, marques(sc.texte)) : null; if (tx) { tx.style.position = "absolute"; tx.style.left = "60px"; tx.style.right = "140px"; tx.style.top = ((sc.y ?? 500) + 560) + "px"; }
+  return t => {
+    const k = ease.ressort(prog(t, 0, 0.7));
+    c.style.transform = `perspective(1400px) rotateX(${mix(-95, 0, k)}deg) rotate(${Math.sin(t * 0.9) * 1.2}deg)`;
+    c.style.opacity = borne(prog(t, 0, 0.25));
+    if (tx) apparition(tx, t, 0.7, { echelle: false });
+  };
+};
+
+// ---- PERSONNAGES : « 3 sur 10 », « 1 femme sur 2 »… les personnages se colorent un par un
+const PERSO = c => `<svg class="perso" viewBox="0 0 60 85"><circle cx="30" cy="16" r="14" fill="${c}"/><path d="M6 85 V52 a24 24 0 0 1 48 0 V85 Z" fill="${c}"/></svg>`;
+TYPES.personnes = async (sc, couche) => {
+  const total = Math.max(2, Math.min(20, +sc.total || 10)), n = Math.max(0, Math.min(total, +sc.colores || 1));
+  const f = el("div", "foule", couche); f.style.top = (sc.y ?? 520) + "px";
+  const persos = Array.from({ length: total }, () => { const s = el("div", "", f, PERSO("#3a4766")); return s; });
+  const tx = el("div", "doc-texte", couche, marques(sc.texte || `${n} sur ${total}`)); tx.style.position = "absolute"; tx.style.left = "60px"; tx.style.right = "140px";
+  const parLigne = Math.max(1, Math.floor((W - 300 + 18) / 138)), lignes = Math.ceil(total / parLigne);
+  tx.style.top = ((sc.y ?? 520) + lignes * 188 + 30) + "px";            // sous la dernière rangée
+  return t => {
+    persos.forEach((p, i) => {
+      apparition(p, t, 0.05 * i, { glisse: 40 });
+      const svg = p.firstChild, on = i < n && t > 0.7 + i * 0.12;
+      svg.querySelectorAll("circle,path").forEach(x => x.setAttribute("fill", on ? couleur(sc.couleur || "rouge") : "#3a4766"));
+    });
+    apparition(tx, t, 0.9, { echelle: false });
   };
 };
 
@@ -291,14 +364,17 @@ window.charger = async sb => {
     const dessiner = await (TYPES[sc.type] || TYPES.chiffre)(sc, couche);
     const etiqs = (sc.etiquettes || []).map((e, i) => {
       const d = el("div", "etiquette " + (e.style || ""), couche, marques(e.texte));
-      d.style.left = (e.x ?? 70) + "px"; d.style.top = (e.y ?? (ZONE.haut + 10 + i * 70)) + "px"; d._a = e.a ?? 0.25 + i * 0.4;
+      d.style.left = (e.x ?? 70) + "px"; d.style.top = (e.y ?? (ZONE.haut + 10 + i * 70)) + "px"; d._a = e.a ?? 0.25 + i * 0.4; d._auto = e.y == null;
       return d;
     });
     SCENES.push({ sc, couche, dessiner, etiqs });
   }
   await document.fonts.ready;
+  const ti = $("#titre");                    // gros titre : jamais plus de 2 lignes (il chevauchait les étiquettes)
+  for (TITRE_MAX = 78; TITRE_MAX > 46; TITRE_MAX -= 2) { ti.style.fontSize = TITRE_MAX + "px"; if (ti.offsetHeight <= TITRE_MAX * 1.02 * 2 + 6) break; }
   return true;
 };
+let TITRE_MAX = 78;
 
 window.rendre = t => {
   SCENES.forEach(({ sc, couche, dessiner, etiqs }, i) => {
@@ -310,11 +386,12 @@ window.rendre = t => {
     couche.style.transform = `scale(${mix(1.04, 1, entree)})`;    // petite poussée à chaque nouvelle scène
     const tl = t - sc.debut;
     dessiner(tl, fin - sc.debut);
-    etiqs.forEach(e => apparition(e, tl, e._a));
+    const basTitre = $("#entete").getBoundingClientRect().bottom;   // étiquettes juste sous le titre (qui rétrécit)
+    etiqs.forEach((e, n) => { if (e._auto) e.style.top = Math.max(ZONE.haut - 20, basTitre + 22) + n * 66 + "px"; apparition(e, tl, e._a); });
   });
   // titre : grand au début (l'accroche), puis plus petit pour laisser la place
   const ti = $("#titre"), p = ease.douce(prog(t, SB.titre_reduit ?? 3.0, 0.6));
-  ti.style.fontSize = mix(78, 52, p) + "px";
+  ti.style.fontSize = mix(TITRE_MAX, Math.min(52, TITRE_MAX), p) + "px";
   ti.style.opacity = borne(prog(t, 0, 0.3));
   ti.style.transform = `scale(${mix(0.9, 1, ease.ressort(prog(t, 0, 0.5)))})`;
   $("#entete").style.opacity = borne(prog(t, 0, 0.25));
