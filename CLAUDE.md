@@ -791,6 +791,14 @@ langue + prononciation française, eSpeak-NG 100+ langues en secours). Recherche
 (notes automatiques de vidéo) et Florence-2 (MIT, détection d'objets) demandent une carte graphique → non branchés ;
 UTMOS (note du naturel d'une voix) : licence du modèle à vérifier avant de le brancher.
 
+## Chocs réalistes (27/11, l'auteur : « dégâts inexistants, débris incohérents avec l'impact »)
+`scenes3d.ecraser` : nos modèles ont peu de points → au lieu d'enfoncer la surface, toute la zone côté impact (35 % de la
+longueur) est TASSÉE de 60 % en accordéon, froissée, capot relevé (celui qui percute force 1, le percuté 0,55, plus
+`cabosser` au point d'impact). Débris : 4 vraies pièces Kenney (debris-bumper, -door, -tire, -plate-a) + 30 éclats de
+carrosserie et de vitre, lancés DANS LE SENS DU CHOC, à peine vers le haut, petit vol puis glissade freinée et arrêt sur la
+route. Rebond (`etat`) : celui qui percute recule de 1,5 m et pivote, le percuté est poussé d'1 m. L'ancien
+raccourcissement global (`scale.x`) est réduit à 3 %.
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit

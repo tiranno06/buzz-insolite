@@ -447,6 +447,14 @@ function etat(o, actions, t, objets, profondeur = 0) {
       e.secousse = Math.max(e.secousse, Math.max(0, 1 - (t - a.a) * 2) * f);
       if (f > 0.35 && (e.brule < 0 || e.brule > a.a + 0.4)) e.brule = a.a + 0.4;
     }
+  // REBOND après le choc (27/11) : celui qui percute recule d'1,5 m et pivote ; la cible est poussée d'1 m et pivote un peu
+  for (const a of actions) {
+    if (a.faire !== "heurter") continue;
+    const ti = a.a + (a.d || 1); if (t < ti) continue;
+    const k = ease.sortie(borne((t - ti) / 0.6)), signe = ((a.cible || "").length % 2 ? 1 : -1);
+    if (a.objet === o.id) { e.x -= 1.5 * k; e.cap += 0.16 * k * signe; }
+    if (a.cible === o.id) { e.x += 1.0 * k; e.cap -= 0.06 * k * signe; }
+  }
   // percuté : son arrière s'écrase aussi
   for (const a of actions) if (a.faire === "heurter" && a.cible === o.id && t >= a.a + (a.d || 1))
     e.ecrase = Math.max(e.ecrase || 0, borne((t - a.a - (a.d || 1)) / 0.15) * 0.6);
@@ -491,6 +499,37 @@ function cabosser(T, g, point, sens, force, graine) {
       pos.setXYZ(i, v.x, v.y, v.z);
     }
     pos.needsUpdate = true; m.geometry.computeVertexNormals();
+  });
+}
+// ÉCRASEMENT par sections (27/11, l'auteur : « les dégâts sont inexistants ») : nos modèles ont peu de points, enfoncer la
+// surface ne se voyait pas. On tasse en accordéon toute la partie du véhicule côté impact (zone = 35 % de sa longueur) :
+// elle se raccourcit de 60 %, se froisse (points décalés au hasard) et le capot remonte un peu.
+function ecraser(T, g, versImpact, force, graine) {
+  if (!g || g.userData.ecrase_) return;
+  g.userData.ecrase_ = true;
+  g.updateMatrixWorld(true);
+  const bb = new T.Box3().setFromObject(g), centre = bb.getCenter(new T.Vector3()), r = hasard(graine), v = new T.Vector3();
+  const dir = versImpact.clone().setY(0).normalize();
+  let L = 0;                                       // demi-longueur de l'objet dans le sens du choc
+  g.traverse(m => { if (!m.isMesh || !m.geometry?.attributes?.position) return; const p = m.geometry.attributes.position;
+    for (let i = 0; i < p.count; i++) { v.fromBufferAttribute(p, i).applyMatrix4(m.matrixWorld); L = Math.max(L, v.clone().sub(centre).dot(dir)); } });
+  const zone = Math.min(L * 0.7, 2 * L * 0.35 * force), debut = L - zone;
+  g.traverse(m => {
+    if (!m.isMesh || !m.geometry?.attributes?.position) return;
+    m.geometry = m.geometry.clone();
+    const pos = m.geometry.attributes.position, inv = new T.Matrix4().copy(m.matrixWorld).invert();
+    for (let i = 0; i < pos.count; i++) {
+      v.fromBufferAttribute(pos, i).applyMatrix4(m.matrixWorld);
+      const s = v.clone().sub(centre).dot(dir);
+      if (s <= debut) continue;
+      const k = (s - debut) / Math.max(zone, 1e-3), recul = (s - debut) * 0.6;
+      v.addScaledVector(dir, -recul);                                    // la partie avant recule (tassée)
+      v.y += k * zone * 0.12 + (r() - 0.5) * 0.18 * k;                    // capot qui remonte, tôle froissée
+      v.x += (r() - 0.5) * 0.22 * k; v.z += (r() - 0.5) * 0.22 * k;
+      v.applyMatrix4(inv); pos.setXYZ(i, v.x, v.y, v.z);
+    }
+    pos.needsUpdate = true; m.geometry.computeVertexNormals();
+    if (m.material?.color) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.92); }
   });
 }
 function couleursDe(g) {
@@ -601,7 +640,7 @@ export async function creer3d(sc, couche, T) {
   const avecFeu = (sc.actions || []).some(a => ["bruler", "exploser", "effondrer"].includes(a.faire)) && sc.quarks !== false;
   if (avecFeu) await chargerQuarks();
   await prechargerModeles([...(sc.objets || []).map(o => o.type), "immeuble", "gratte_ciel", "maison", "arbre", "voiture", "camion", "camionnette", "personne",
-                           "bus", "residence", "magasin", "hopital", "banque", "feu_tricolore"]);
+                           "bus", "residence", "magasin", "hopital", "banque", "feu_tricolore", "debris"]);
   const cv = el("canvas", "", couche); cv.width = W; cv.height = H; const cx = cv.getContext("2d");
   const scene = new T.Scene(); decor(T, scene, sc);
   // vue « maquette » vue d'en haut, sans perspective (comme les reconstitutions de bonnequestion.tv), sinon caméra classique
@@ -690,12 +729,20 @@ export async function creer3d(sc, couche, T) {
   const chocs = actions.filter(a => a.faire === "heurter").map((a, n) => {
     const r = hasard(97 + n * 13), debris = [];
     const teintes = [...couleursDe(groupes[a.objet]), ...couleursDe(groupes[a.cible])];
-    for (let i = 0; i < 40; i++) {
-      const verre = i % 4 === 0;                  // éclats de vitre bleutés, plus petits
-      const m = new T.Mesh(new T.BoxGeometry(verre ? 0.12 + r() * 0.2 : 0.25 + r() * 0.5, verre ? 0.03 : 0.08 + r() * 0.18, verre ? 0.1 + r() * 0.2 : 0.2 + r() * 0.4),
-        verre ? new T.MeshPhongMaterial({ color: 0xbfe0ff, transparent: true, opacity: 0.8, shininess: 120 }) : lambert(T, teintes[Math.floor(r() * teintes.length)]));
+    // vraies pièces (pare-chocs, portière, roue, plaque : Kenney CC0) + éclats de carrosserie et de vitre (27/11 : les
+    // débris partaient au ciel comme des confettis). Vitesse surtout DANS LE SENS DU CHOC, à peine vers le haut ; ils
+    // glissent sur la route puis s'arrêtent.
+    const pieces = ["debris-bumper", "debris-door", "debris-tire", "debris-plate-a"];
+    for (let i = 0; i < 34; i++) {
+      const verre = i % 3 === 0, piece = i < 4 && modelePret("debris");
+      let m;
+      if (piece) { m = modele(T, "debris", { variante: pieces[i], longueur: [1.8, 1.2, 0.7, 0.9][i] }, i); }
+      else m = new T.Mesh(new T.BoxGeometry(verre ? 0.1 + r() * 0.15 : 0.15 + r() * 0.35, verre ? 0.02 : 0.04 + r() * 0.08, verre ? 0.08 + r() * 0.15 : 0.12 + r() * 0.3),
+        verre ? new T.MeshPhongMaterial({ color: 0xcfe8ff, transparent: true, opacity: 0.85, shininess: 140 }) : lambert(T, teintes[Math.floor(r() * teintes.length)]));
       m.visible = false; scene.add(m);
-      debris.push({ m, vx: (r() - 0.3) * 14, vy: 4 + r() * 9, vz: (r() - 0.5) * 12, rx: r() * 9, ry: r() * 9 });
+      const avant = piece ? 3 + r() * 5 : 4 + r() * 9;                    // dans le sens du choc
+      debris.push({ m, avant, cote: (r() - 0.5) * (piece ? 4 : 9), vy: piece ? 1 + r() * 2.5 : 0.8 + r() * 3.5,
+                    rx: (r() - 0.5) * 12, ry: (r() - 0.5) * 12, piece });
     }
     const eclair = new T.Sprite(new T.SpriteMaterial({ map: MATS.lueur.map, blending: T.AdditiveBlending, depthWrite: false, transparent: true }));
     eclair.visible = false; scene.add(eclair);
@@ -797,7 +844,7 @@ export async function creer3d(sc, couche, T) {
         desintegrer(T, scene, g, o, g.userData.morceaux ? null : etat(o, actions, e.explose, objets), t, e.explose,
                     ["batiment", "entrepot", "immeuble", "maison", "batiment_officiel"].includes(o.type));
       // choc : l'avant de celui qui percute et l'arrière de celui qui est percuté s'écrasent un peu
-      if (e.ecrase > 0) g.scale.x = 1 - 0.12 * e.ecrase;
+      if (e.ecrase > 0) g.scale.x = 1 - 0.03 * e.ecrase;   // (l'écrasement réel est fait par « ecraser »)
       if (e.brule >= 0) g.traverse(m => { if (m.material?.color && !m.userData.brulee) { m.material = m.material.clone(); m.userData.brulee = 1; } if (m.userData.brulee) m.material.color.lerp(new T.Color(0x1d1a18), borne(prog(t, e.brule, 6)) * 0.08); });
       const ps = particules[o.id] || [];
       const debut = e.brule >= 0 ? e.brule : e.explose;
@@ -836,18 +883,27 @@ export async function creer3d(sc, couche, T) {
         ch.cabosse = true;
         const gc = groupes[ch.cible], point = new T.Vector3(ch.pos[0], 1.1, ch.pos[1]);
         const sens = gc ? new T.Vector3(gc.position.x - g.position.x, 0, gc.position.z - g.position.z).normalize() : new T.Vector3(1, 0, 0);
-        cabosser(T, gc, point, sens, 1.0, 211 + ch.n);
-        cabosser(T, g, point, sens.clone().negate(), 1.3, 307 + ch.n);
+        ecraser(T, g, sens, 1.0, 307 + ch.n);                 // l'avant de celui qui percute se tasse en accordéon
+        ecraser(T, gc, sens.clone().negate(), 0.55, 211 + ch.n); // la partie percutée s'enfonce
+        cabosser(T, gc, point, sens, 0.8, 213 + ch.n);
       }
       const [ix, iz] = ch.pos || [px, pz];
       ch.eclair.visible = dt >= 0 && dt < 0.5;
       if (ch.eclair.visible) { const k = 14 * (1 - dt / 0.5) + 4; ch.eclair.scale.set(k, k, 1); ch.eclair.position.set(ix, 1.5, iz); ch.eclair.material.opacity = 1 - dt / 0.5; }
+      if (dt >= 0 && !ch.sens) {                   // sens du choc : de celui qui percute vers celui qui est percuté
+        const gc = groupes[ch.cible];
+        ch.sens = gc ? new T.Vector3(gc.position.x - g.position.x, 0, gc.position.z - g.position.z).normalize() : new T.Vector3(1, 0, 0);
+        ch.lat = new T.Vector3(-ch.sens.z, 0, ch.sens.x);
+      }
       for (const d of ch.debris) {
         d.m.visible = dt >= 0; if (dt < 0) continue;
-        // vol jusqu'au SOL (avant : temps de vol plafonné → des débris restaient suspendus en l'air, Iowa du 27/11)
-        const u = Math.min(dt, (d.vy + Math.sqrt(d.vy * d.vy + 2 * 9.8 * 0.92)) / 9.8), y = Math.max(0.08, 1 + d.vy * u - 9.8 * u * u / 2);
-        d.m.position.set(ix + d.vx * u * (y > 0.08 ? 1 : 0.9), y, iz + d.vz * u);
-        d.m.rotation.set(d.rx * u, d.ry * u, 0);
+        // petit vol (jusqu'au sol), puis glissade freinée, puis immobile
+        const tVol = (d.vy + Math.sqrt(d.vy * d.vy + 2 * 9.8 * 0.9)) / 9.8, u = Math.min(dt, tVol);
+        const glisse = Math.max(0, dt - tVol), g_ = Math.min(glisse, 0.7), dist = u + g_ * (1 - g_ / 1.4);
+        const y = Math.max(d.piece ? 0.15 : 0.03, 1 + d.vy * u - 4.9 * u * u);
+        d.m.position.set(ix + ch.sens.x * d.avant * dist + ch.lat.x * d.cote * dist, y, iz + ch.sens.z * d.avant * dist + ch.lat.z * d.cote * dist);
+        const rot = u + g_ * 0.3;
+        d.m.rotation.set(d.piece ? 0 : d.rx * rot, d.ry * rot, d.piece ? Math.PI / 2 * borne(u / tVol) : 0);
       }
       if (dt >= 0) tremble = Math.max(tremble, Math.max(0, 1 - dt * 1.6));
     }
