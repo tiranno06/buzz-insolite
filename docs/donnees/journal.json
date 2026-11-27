@@ -1,6 +1,16 @@
 {
  "evenements": [
   {
+   "date": "2026-11-28T00:43:51+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 93 sujet(s) au-dessus des seuils — en tête : « Camion perd le contrôle en Ohio »"
+  },
+  {
+   "date": "2026-11-28T00:43:46+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 93 sujet(s) au-dessus des seuils — en tête : « Camion perd le contrôle en Ohio »"
+  },
+  {
    "date": "2026-11-27T23:18:55+01:00",
    "niveau": "info",
    "texte": "🔁 « Camion-citerne : Incendie meurtrier » refaite (tout) : note 100/100, corrige : « nouvelle voix (atempo + finition), phonétique accordée, calendrier petit, citerne, carte du lieu » — l'ancienne version est remplacée"
@@ -989,16 +999,6 @@
    "date": "2026-11-24T22:29:03+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Franco célébré : le retour du fascisme en Espagne » (101 s, 1 écrans illustrés) — à regarder puis cocher « À publier »"
-  },
-  {
-   "date": "2026-11-24T21:40:22+01:00",
-   "niveau": "info",
-   "texte": "⚙️ Réglages enregistrés."
-  },
-  {
-   "date": "2026-11-24T21:28:37+01:00",
-   "niveau": "info",
-   "texte": "🎬 Nouvelle vidéo « Sénégal champion CAN 2025 ! » (116 s, 4 écrans illustrés) — à regarder puis cocher « À publier »"
   }
  ]
 }

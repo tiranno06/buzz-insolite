@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-27T22:42:52+01:00",
+ "maj": "2026-11-28T00:43:42+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:40:35+01:00"
+   "le": "2026-11-28T00:41:30+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:40:40+01:00"
+   "le": "2026-11-28T00:41:34+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:40:44+01:00"
+   "le": "2026-11-28T00:41:38+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:40:48+01:00"
+   "le": "2026-11-28T00:41:42+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:40:52+01:00"
+   "le": "2026-11-28T00:41:47+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-27T22:40:55+01:00"
+   "le": "2026-11-28T00:41:50+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:40:59+01:00"
+   "le": "2026-11-28T00:41:54+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:41:04+01:00"
+   "le": "2026-11-28T00:41:57+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:41:09+01:00"
+   "le": "2026-11-28T00:42:02+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:41:14+01:00"
+   "le": "2026-11-28T00:42:05+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:41:19+01:00"
+   "le": "2026-11-28T00:42:10+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:41:23+01:00"
+   "le": "2026-11-28T00:42:14+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:41:27+01:00"
+   "le": "2026-11-28T00:42:18+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-27T22:41:31+01:00"
+   "le": "2026-11-28T00:42:22+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:41:35+01:00"
+   "le": "2026-11-28T00:42:26+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:41:39+01:00"
+   "le": "2026-11-28T00:42:30+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:41:43+01:00"
+   "le": "2026-11-28T00:42:34+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:41:47+01:00"
+   "le": "2026-11-28T00:42:38+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:41:53+01:00"
+   "le": "2026-11-28T00:42:43+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:41:57+01:00"
+   "le": "2026-11-28T00:42:47+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:42:02+01:00"
+   "le": "2026-11-28T00:42:51+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:42:08+01:00"
+   "le": "2026-11-28T00:42:55+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:42:11+01:00"
+   "le": "2026-11-28T00:43:00+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:42:15+01:00"
+   "le": "2026-11-28T00:43:04+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:42:19+01:00"
+   "le": "2026-11-28T00:43:08+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:42:24+01:00"
+   "le": "2026-11-28T00:43:13+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:42:29+01:00"
+   "le": "2026-11-28T00:43:18+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T22:42:33+01:00"
+   "le": "2026-11-28T00:43:21+01:00"
   }
  },
  "lues": 809,
@@ -220,6 +220,80 @@
    },
    "statut": "sans_source",
    "vu_le": "2026-11-27T18:05:37+01:00"
+  },
+  {
+   "titre": "Camion perd le contrôle en Ohio",
+   "resume": "Un semi-truck a perdu le contrôle en essayant de tourner sur un échangeur en Ohio, dérapant entre deux sorties. Aucun blessé, le véhicule a été remorqué.",
+   "mots_cles": [
+    "camion",
+    "Ohio",
+    "accident",
+    "dérapage"
+   ],
+   "mots_cles_en": [
+    "truck",
+    "Ohio",
+    "accident",
+    "skid"
+   ],
+   "hashtags": [
+    "truck",
+    "ohio",
+    "accident"
+   ],
+   "insolite": 3,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712677404224834829",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7712677404224834829",
+     "vues": 21400000,
+     "jaime": 1300000,
+     "commentaires": 14800,
+     "partages": 148000,
+     "date": 1795747666,
+     "texte": "Video from the Ohio Department of Transportation shows the moment a semi-truck lost control while attempting to turn, skidding across the gap between two off-ramps. Authorities were able to pull the truck back onto the road and tow it away. No injuries were reported. #truck #ohio #accident #drive ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712677404224834829?description=1&music_info=1"
+    },
+    {
+     "id": "7712718110955932950",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7712718110955932950",
+     "vues": 1100000,
+     "jaime": 14600,
+     "commentaires": 256,
+     "partages": 1579,
+     "date": 1795757121,
+     "texte": "No injuries were reported during the incident in Ohio on Thanksgiving, and authorities were able to pull the truck back onto the road, according to the BBC's US partner, CBS News. #Thanksgiving #USNews #WeatherWarning #Ohio #BBCNews",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712718110955932950?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "5da35ddb0b",
+   "score": 5109,
+   "derniere_vue": 1795823010.0572684,
+   "vues": 22500000,
+   "jaime": 1314600,
+   "commentaires": 15056,
+   "hashtags_viraux": [
+    "ohio",
+    "truck",
+    "accident",
+    "drive",
+    "thanksgiving",
+    "usnews",
+    "weatherwarning",
+    "bbcnews"
+   ],
+   "medias": 3,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T00:43:42+01:00"
   },
   {
    "titre": "Christ le Rédempteur flotte au-dessus des nuages",
@@ -2045,6 +2119,78 @@
    "medias": 17,
    "statut": "nouveau",
    "vu_le": "2026-11-25T09:59:33+01:00"
+  },
+  {
+   "titre": "Bunker de cannabis à Grenade",
+   "resume": "Un bunker de 180 m² rempli de plants de cannabis a été découvert près de Grenade, en Andalousie, entraînant l'arrestation de cinq personnes.",
+   "mots_cles": [
+    "bunker",
+    "cannabis",
+    "Grenade",
+    "Andalousie"
+   ],
+   "mots_cles_en": [
+    "bunker",
+    "cannabis",
+    "Grenada",
+    "Andalusia"
+   ],
+   "hashtags": [
+    "cannabis",
+    "bunker",
+    "grenade"
+   ],
+   "insolite": 7,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712844214328970518",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7712844214328970518",
+     "vues": 1300000,
+     "jaime": 119100,
+     "commentaires": 1378,
+     "partages": 26300,
+     "date": 1795786469,
+     "texte": "The plantation stretched to approximately 180 square metres, with two rooms equipped with lighting, ventilation, and climate-control systems. A total of 1,954 plants were seized at the site. #Granada #Spain #Police #LawEnforcement #BBCNews",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712844214328970518?description=1&music_info=1"
+    },
+    {
+     "id": "7712124144191540502",
+     "compte": "ouestfrance",
+     "url": "https://www.tiktok.com/@ouestfrance/video/7712124144191540502",
+     "vues": 1100000,
+     "jaime": 30900,
+     "commentaires": 177,
+     "partages": 8466,
+     "date": 1795618813,
+     "texte": "😱 La balançoire et la cabane cachaient une trappe. Près de Grenade, en Andalousie, la Garde civile espagnole a découvert mardi 17 novembre 2026 un bunker de 180 m² rempli de plants de cannabis, caché sous une balançoire et une cabane d'enfants. Cinq personnes ont été arrêtées.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712124144191540502?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "b552b2d94d",
+   "score": 378,
+   "derniere_vue": 1795823010.0572684,
+   "vues": 2400000,
+   "jaime": 150000,
+   "commentaires": 1555,
+   "hashtags_viraux": [
+    "granada",
+    "spain",
+    "police",
+    "lawenforcement",
+    "bbcnews"
+   ],
+   "medias": 7,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T00:43:42+01:00"
   },
   {
    "titre": "Brigade suspendue Chile : vents violents",
@@ -3878,6 +4024,64 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
+   "titre": "Escalator défectueux à l'Université BRAC",
+   "resume": "Un escalator à l'Université BRAC au Bangladesh a commencé à se déplacer à grande vitesse, obligeant les passagers à sauter pour éviter d'être emportés.",
+   "mots_cles": [
+    "escalator",
+    "BRAC",
+    "Bangladesh",
+    "accident"
+   ],
+   "mots_cles_en": [
+    "escalator",
+    "BRAC",
+    "Bangladesh",
+    "accident"
+   ],
+   "hashtags": [
+    "escalator",
+    "brac",
+    "bangladesh"
+   ],
+   "insolite": 6,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712510013171911949",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
+     "vues": 7600000,
+     "jaime": 490100,
+     "commentaires": 4998,
+     "partages": 36200,
+     "date": 1795708700,
+     "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712510013171911949?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "0fcab500e1",
+   "score": 139,
+   "derniere_vue": 1795823010.0572684,
+   "vues": 7600000,
+   "jaime": 490100,
+   "commentaires": 4998,
+   "hashtags_viraux": [
+    "bangladesh",
+    "viral",
+    "escalator",
+    "hardnews",
+    "news"
+   ],
+   "medias": 2,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T00:43:42+01:00"
+  },
+  {
    "titre": "Massachusetts : femme poursuivie par des dindes sauvages",
    "resume": "Une femme a été poursuivie par des dindes sauvages avant de se réfugier dans une voiture. Les autorités rappellent que ces animaux, bien que sauvages, peuvent être agressifs.",
    "mots_cles": [
@@ -4830,6 +5034,110 @@
    "vu_le": "2026-11-27T20:06:45+01:00"
   },
   {
+   "titre": "Tanker pétrolier renversé à Gizeh",
+   "resume": "Un camion-citerne transportant des produits pétroliers s'est renversé à Gizeh, Égypte, provoquant un incendie mortel.",
+   "mots_cles": [
+    "tanker",
+    "Gizeh",
+    "Égypte",
+    "incendie"
+   ],
+   "mots_cles_en": [
+    "tanker",
+    "Giza",
+    "Egypt",
+    "fire"
+   ],
+   "hashtags": [
+    "tanker",
+    "giza",
+    "fire"
+   ],
+   "insolite": 6,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712401423127858471",
+     "compte": "leparisien",
+     "url": "https://www.tiktok.com/@leparisien/video/7712401423127858471",
+     "vues": 1300000,
+     "jaime": 122200,
+     "commentaires": 739,
+     "partages": 9738,
+     "date": 1795683391,
+     "texte": "Un camion-citerne transportant des produits pétroliers s'est renversé mercredi dans le gouvernorat de Gizeh, en Égypte, provoquant un violent incendie qui a fait au moins 31 morts et 21 blessés, selon les autorités égyptiennes. Le ministère égyptien du Pétrole avait indiqué plus tôt que le camion-citerne, exploité par une entreprise privée, avait fait une sortie de route et s’était écrasé avant d’",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712401423127858471?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "e232665fa4",
+   "score": 92,
+   "derniere_vue": 1795823010.0572684,
+   "vues": 1300000,
+   "jaime": 122200,
+   "commentaires": 739,
+   "hashtags_viraux": [],
+   "medias": 21,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T00:43:42+01:00"
+  },
+  {
+   "titre": "Mouton handicapé apprend à se déplacer",
+   "resume": "Un mouton de Dartmouth, Massachusetts, atteint de Cache Valley virus, apprend à utiliser un fauteuil roulant motorisé.",
+   "mots_cles": [
+    "mouton",
+    "fauteuil roulant",
+    "Cache Valley virus",
+    "Massachusetts"
+   ],
+   "mots_cles_en": [
+    "sheep",
+    "wheelchair",
+    "Cache Valley virus",
+    "Massachusetts"
+   ],
+   "hashtags": [
+    "sheep",
+    "wheelchair",
+    "massachusetts"
+   ],
+   "insolite": 6,
+   "categorie": "animaux",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712555679986355470",
+     "compte": "cnn",
+     "url": "https://www.tiktok.com/@cnn/video/7712555679986355470",
+     "vues": 1100000,
+     "jaime": 83700,
+     "commentaires": 1856,
+     "partages": 19000,
+     "date": 1795719301,
+     "texte": "Kiki, a nearly 5-year-old sheep from Dartmouth, Massachusetts, was born with deformities caused by Cache Valley virus that left her unable to walk. Now, she's learning to steer her motorized wheelchair using small movements of her head.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712555679986355470?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "6893e5b0e9",
+   "score": 92,
+   "derniere_vue": 1795823010.0572684,
+   "vues": 1100000,
+   "jaime": 83700,
+   "commentaires": 1856,
+   "hashtags_viraux": [],
+   "medias": 3,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T00:43:42+01:00"
+  },
+  {
    "titre": "Patagonie : randonneur accroché à un pont venté",
    "resume": "Un randonneur allemand a dû s’agripper aux câbles d’une passerelle suspendue en Patagonie, au Chili, à cause de violentes rafales de vent. Il portait un sac de 18 kg et a réussi à se sécuriser.",
    "mots_cles": [
@@ -5039,6 +5347,58 @@
    "video_id": "20261125-225608-1"
   },
   {
+   "titre": "Enfant court chez grand-mère en Idaho",
+   "resume": "Un garçon de trois ans a quitté sa maison pour rejoindre sa grand-mère en Idaho, parcourant une demi-mile.",
+   "mots_cles": [
+    "enfant",
+    "Idaho",
+    "grand-mère",
+    "course"
+   ],
+   "mots_cles_en": [
+    "child",
+    "Idaho",
+    "grandmother",
+    "run"
+   ],
+   "hashtags": [
+    "child",
+    "idaho",
+    "grandmother"
+   ],
+   "insolite": 5,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712881549607226638",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712881549607226638",
+     "vues": 1400000,
+     "jaime": 159500,
+     "commentaires": 1384,
+     "partages": 5697,
+     "date": 1795795213,
+     "texte": "This is the moment a three-year-old boy in Idaho set off on his own after being told he couldn’t visit his grandma, sneaking out of his home and running half a mile to her house. The little boy’s journey was captured on security cameras at both homes, with his grandmother alerting his mother once he arrived safely. She hopes the incident serves as a reminder of how quickly young children can wande",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712881549607226638?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "3f084423e6",
+   "score": 79,
+   "derniere_vue": 1795823010.0572684,
+   "vues": 1400000,
+   "jaime": 159500,
+   "commentaires": 1384,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T00:43:42+01:00"
+  },
+  {
    "titre": "Policier vole vélo à cycliste à Toulouse",
    "resume": "Un policier a pris le vélo d'une cycliste à Toulouse, déclenchant une polémique virale. La Dépêche du Midi et des images partagées sur les réseaux sociaux alimentent le débat.",
    "mots_cles": [
@@ -5095,6 +5455,58 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T16:44:03+01:00",
    "video_id": "20261125-224006-1"
+  },
+  {
+   "titre": "Mirage maritime à Ajman",
+   "resume": "Une embarcation de cargo semble flotter au-dessus de l'eau à Ajman, aux Émirats arabes unis, à cause d'un mirage atmosphérique.",
+   "mots_cles": [
+    "mirage",
+    "Ajman",
+    "maritime",
+    "cargaison"
+   ],
+   "mots_cles_en": [
+    "mirage",
+    "Ajman",
+    "maritime",
+    "cargo"
+   ],
+   "hashtags": [
+    "mirage",
+    "ajman",
+    "maritime"
+   ],
+   "insolite": 5,
+   "categorie": "science",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712893684391480607",
+     "compte": "abcnews",
+     "url": "https://www.tiktok.com/@abcnews/video/7712893684391480607",
+     "vues": 1600000,
+     "jaime": 72600,
+     "commentaires": 1186,
+     "partages": 8755,
+     "date": 1795798021,
+     "texte": "Viral footage filmed off the coast of Ajman, United Arab Emirates, captures a cargo vessel appearing to float above the water due to a superior mirage, where temperature differences bend light in the atmosphere.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712893684391480607?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "828f989210",
+   "score": 76,
+   "derniere_vue": 1795823010.0572684,
+   "vues": 1600000,
+   "jaime": 72600,
+   "commentaires": 1186,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T00:43:42+01:00"
   },
   {
    "titre": "Incendie de camion-citerne en Égypte fait 31 morts",
@@ -5515,62 +5927,6 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-27T02:13:07+01:00"
-  },
-  {
-   "titre": "Bunker de cannabis découvert sous balançoire",
-   "resume": "La Garde civile espagnole a découvert un bunker de 180 m² rempli de plants de cannabis près de Grenade. La cachette était dissimulée sous une balançoire et une cabane d'enfants, et cinq personnes ont été arrêtées.",
-   "mots_cles": [
-    "Espagne",
-    "cannabis",
-    "bunker",
-    "Grenade",
-    "police"
-   ],
-   "mots_cles_en": [
-    "Spain",
-    "cannabis",
-    "bunker",
-    "Granada",
-    "police"
-   ],
-   "hashtags": [
-    "espagne",
-    "cannabis",
-    "police",
-    "insolite",
-    "grenade"
-   ],
-   "insolite": 8,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712124144191540502",
-     "compte": "ouestfrance",
-     "url": "https://www.tiktok.com/@ouestfrance/video/7712124144191540502",
-     "vues": 1100000,
-     "jaime": 30600,
-     "commentaires": 176,
-     "partages": 8360,
-     "date": 1795618813,
-     "texte": "😱 La balançoire et la cabane cachaient une trappe. Près de Grenade, en Andalousie, la Garde civile espagnole a découvert mardi 17 novembre 2026 un bunker de 180 m² rempli de plants de cannabis, caché sous une balançoire et une cabane d'enfants. Cinq personnes ont été arrêtées.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712124144191540502?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "d53b779d61",
-   "score": 52,
-   "derniere_vue": 1795806393.1412482,
-   "vues": 1100000,
-   "jaime": 30600,
-   "commentaires": 176,
-   "hashtags_viraux": [],
-   "medias": 15,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-27T20:06:45+01:00"
   },
   {
    "titre": "Gardien de stade étouffe entraîneur brésilien",
@@ -6559,30 +6915,27 @@
    "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
-   "titre": "Livreur DHL jette une PS5 par-dessus un mur au Mexique",
-   "resume": "Un livreur de DHL a été filmé en train de lancer une boîte contenant une PlayStation 5 au-dessus d’un mur résidentiel au Mexique, avant de la récupérer après un premier échec. L’incident a été diffusé sur les réseaux sociaux.",
+   "titre": "Livreur DHL jette PS5 au Mexique",
+   "resume": "Un livreur DHL a été filmé en train de jeter une PlayStation 5 sur un mur résidentiel au Mexique, avant de la récupérer.",
    "mots_cles": [
     "DHL",
     "PS5",
     "Mexique",
-    "livraison",
-    "vidéo"
+    "livraison"
    ],
    "mots_cles_en": [
     "DHL",
     "PS5",
     "Mexico",
-    "delivery",
-    "video"
+    "delivery"
    ],
    "hashtags": [
     "dhl",
     "ps5",
-    "mexique",
-    "livraison"
+    "mexico"
    ],
-   "insolite": 7,
-   "categorie": "faits_divers",
+   "insolite": 8,
+   "categorie": "insolite",
    "ville_france": "",
    "videos": [
     {
@@ -6590,9 +6943,9 @@
      "compte": "dailymail",
      "url": "https://www.tiktok.com/@dailymail/video/7712517168361049358",
      "vues": 1200000,
-     "jaime": 78200,
-     "commentaires": 1804,
-     "partages": 7622,
+     "jaime": 80200,
+     "commentaires": 1851,
+     "partages": 7875,
      "date": 1795710363,
      "texte": "A DHL delivery driver has been filmed throwing a package containing a PlayStation 5 over a residential wall in Mexico. CCTV footage from November 16 shows the worker attempting to toss the box into the property’s courtyard, before retrieving it and making a second throw after his first attempt failed. The customer said the parcel was marked as fragile and arrived with visible damage to its packagi",
      "sous_seuils": true,
@@ -6601,17 +6954,69 @@
     }
    ],
    "sous_seuils": true,
-   "id": "692412d473",
+   "id": "9cc4566304",
    "score": 24,
-   "derniere_vue": 1795815766.4740217,
+   "derniere_vue": 1795823010.0572684,
    "vues": 1200000,
-   "jaime": 78200,
-   "commentaires": 1804,
+   "jaime": 80200,
+   "commentaires": 1851,
    "hashtags_viraux": [],
    "medias": 1,
    "tendance": null,
    "statut": "nouveau",
-   "vu_le": "2026-11-27T22:42:52+01:00"
+   "vu_le": "2026-11-28T00:43:42+01:00"
+  },
+  {
+   "titre": "Obama aide banque alimentaire à Chicago",
+   "resume": "Barack et Michelle Obama ont surpris les travailleurs d'une banque alimentaire à Chicago, aidant à emballer des produits frais pour la distribution.",
+   "mots_cles": [
+    "Obama",
+    "banque alimentaire",
+    "Chicago",
+    "charité"
+   ],
+   "mots_cles_en": [
+    "Obama",
+    "food bank",
+    "Chicago",
+    "charity"
+   ],
+   "hashtags": [
+    "obama",
+    "foodbank",
+    "chicago"
+   ],
+   "insolite": 4,
+   "categorie": "people",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712515668389661965",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7712515668389661965",
+     "vues": 1000000,
+     "jaime": 125900,
+     "commentaires": 4976,
+     "partages": 6295,
+     "date": 1795710008,
+     "texte": "Former President Barack Obama and former first lady Michelle Obama surprised workers at Dion’s Chicago Dream, a food bank on Chicago’s South Side, on Wednesday, helping pack fresh produce to be distributed to thousands of local families ahead of Thanksgiving.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712515668389661965?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "0e66864e01",
+   "score": 22,
+   "derniere_vue": 1795823010.0572684,
+   "vues": 1000000,
+   "jaime": 125900,
+   "commentaires": 4976,
+   "hashtags_viraux": [],
+   "medias": 2,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T00:43:42+01:00"
   },
   {
    "titre": "R N B O I chante Hymne à l'amour à l'Olympia",
