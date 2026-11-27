@@ -168,7 +168,8 @@ class TestNouveautes(unittest.TestCase):
         R = reglages()
         dimanche = datetime.datetime(2026, 11, 29, 16, 20, tzinfo=PARIS)
         self.assertEqual(publication_auto.format_auto(R, dimanche, "16:15"), "semaine")
-        self.assertIn(publication_auto.format_auto(R, dimanche, "07:15"), ("buzz", "vrai_faux"))
+        # (la rotation compte les créations réelles de garde.json : le résultat dépend des données du jour)
+        self.assertIn(publication_auto.format_auto(R, dimanche, "07:15"), ("buzz", "vrai_faux", "chiffre", "region"))
 
 
 class TestControleQualite(unittest.TestCase):
