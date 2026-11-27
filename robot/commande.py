@@ -112,7 +112,7 @@ def appliquer(action, vid, texte):
         return ecrire("buzz.json", B)
 
     file = publier.mettre_a_jour(lire("file.json") or {"videos": []})
-    v = _video(file, vid)
+    v = None if action == "menage_classique" else _video(file, vid)
     if action == "a_publier":
         if v.get("statut") == "a_verifier":
             v["force"] = True              # cochée par l'auteur malgré le bulletin : publiée « quand même » à son créneau
@@ -150,6 +150,15 @@ def appliquer(action, vid, texte):
         if "question" in d: v["question"] = str(d["question"]).strip()[:200]
         if "hashtags" in d: v["hashtags"] = ["#" + h.lstrip("#") for h in _liste_textes(d["hashtags"], 10, 40)]
         noter(f"✏️ Description de « {v['titre']} » modifiée.")
+    elif action == "menage_classique":           # 27/11 : on repart à zéro avec le nouveau style « 100 % fabriqué »
+        anciennes = [x for x in file["videos"] if x.get("style", "classique") != "anime"]
+        for x in anciennes:
+            depot.supprimer_release(x.get("tag"))
+            mini = os.path.join(MINIATURES, f"{x['id']}.jpg")
+            if os.path.exists(mini):
+                os.remove(mini)
+            file["videos"].remove(x)
+        noter(f"🧹 Ménage : {len(anciennes)} vidéo(s) de l'ancien style supprimée(s) du site (il ne reste que le nouveau style).")
     elif action == "supprimer":
         depot.supprimer_release(v.get("tag"))
         mini = os.path.join(MINIATURES, f"{v['id']}.jpg")

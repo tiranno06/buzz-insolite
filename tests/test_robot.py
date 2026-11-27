@@ -1340,3 +1340,20 @@ class TestScenesDeSecours(unittest.TestCase):
         self.assertEqual(f("Le compte a publié le 5 novembre 2025 un visuel.")["type"], "icone")   # une date n'est pas un « chiffre »
         self.assertNotEqual(f("NBC diffusera un replay jeudi.")["emoji"], "🎮")                     # « jeu » dans « jeudi »
         self.assertEqual(f("Le report pourrait coûter 2000 dollars.")["unite"], "dollars")
+
+
+class TestMenageClassique(unittest.TestCase):
+    def test_seul_le_nouveau_style_reste(self):
+        from robot import commande
+        file = {"videos": [{"id": "a", "titre": "A", "statut": "nouvelle", "style": "anime"},
+                           {"id": "b", "titre": "B", "statut": "ecartee"}, {"id": "c", "titre": "C", "statut": "publiee", "style": "classique"}]}
+        anciens = commande.lire, commande.ecrire, commande.noter, commande.publier.mettre_a_jour, commande.depot.supprimer_release
+        supprimees = []
+        commande.lire = lambda n: file; commande.ecrire = lambda n, d: None; commande.noter = lambda *a, **k: None
+        commande.publier.mettre_a_jour = lambda f: f; commande.depot.supprimer_release = supprimees.append
+        try:
+            commande.appliquer("menage_classique", "", "")
+        finally:
+            commande.lire, commande.ecrire, commande.noter, commande.publier.mettre_a_jour, commande.depot.supprimer_release = anciens
+        self.assertEqual([v["id"] for v in file["videos"]], ["a"])
+        self.assertEqual(len(supprimees), 2)
