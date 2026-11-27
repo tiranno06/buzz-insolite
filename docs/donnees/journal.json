@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T17:20:18+01:00",
+   "niveau": "info",
+   "texte": "🔁 « Explosion géante de l'armée en Iowa » refaite (images) : note 100/100, corrige : « caméra, empilement, lieu, destruction » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-27T16:04:20+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 83 sujet(s) au-dessus des seuils — en tête : « Afghanistan : les femmes privées de nom officiel »"
@@ -994,11 +999,6 @@
    "date": "2026-11-24T20:46:43+01:00",
    "niveau": "info",
    "texte": "🛑 « Leto et GTA VI : un buzz explosif » écartée (ne sera pas publiée)."
-  },
-  {
-   "date": "2026-11-24T20:40:00+01:00",
-   "niveau": "info",
-   "texte": "🎬 Nouvelle vidéo « Leto et GTA VI : un buzz explosif » (102 s, 3 écrans illustrés) — à regarder puis cocher « À publier »"
   }
  ]
 }
