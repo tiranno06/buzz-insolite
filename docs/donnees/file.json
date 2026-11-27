@@ -1,11 +1,11 @@
 {
  "videos": [
   {
-   "id": "20261127-190259-1-r1",
-   "tag": "v-20261127-190259-1-r1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-190259-1-r1/buzz-20261127-190259-1-r1.mp4",
-   "titre": "Incendie meurtrier sur le Ring Road",
-   "accroche": "INCENDIE MEURTRIER SUR LE",
+   "id": "20261127-190259-1-r2",
+   "tag": "v-20261127-190259-1-r2",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-190259-1-r2/buzz-20261127-190259-1-r2.mp4",
+   "titre": "Camion-citerne : Incendie meurtrier",
+   "accroche": "CAMION-CITERNE : INCENDIE MEURTRIER",
    "sujet_id": "d6d8e1865b",
    "sujet": "Accident de camion-citerne à Gizeh, incendie meurtrier",
    "buzz": {
@@ -14,19 +14,18 @@
     "commentaires": 2169,
     "score": 133
    },
-   "description": "Un camion-citerne renversé a embrasé le périphérique du Caire, causant 31 morts. 🚒",
-   "question": "Et toi, que ferais-tu face à un tel brasier ?",
+   "description": "Incendie dévastateur à Gizeh 🚒. 31 morts, 21 blessés.",
+   "question": "Et toi, comment réagirais-tu si un tel brasier se produisait près de chez toi ? Dis-le en commentaire !",
    "hashtags": [
-    "#egypte",
-    "#accident",
+    "#incendie",
+    "#gizeh",
     "#tanker",
     "#giza",
-    "#incendie",
     "#insolite",
     "#actu",
     "#buzz"
    ],
-   "duree": 64.9,
+   "duree": 85.9,
    "sources": [
     {
      "media": "jeune-independant.net",
@@ -76,13 +75,13 @@
    ],
    "verification": {
     "par": "gemini:gemini-flash-lite-latest",
-    "corrigees": 2,
-    "retirees": 2,
+    "corrigees": 3,
+    "retirees": 1,
     "problemes": [
-     "Les articles ne précisent pas le temps écoulé après l’incendie ; la mention « en quelques minutes » n’est pas confirmée.",
-     "Les articles décrivent un épais nuage de fumée noire mais ne mentionnent pas qu’il était visible à des kilomètres ; cette précision n’est pas confirmée.",
-     "Le nom du Premier ministre Mostafa Madbouly n'est pas mentionné dans les articles fournis.",
-     "Cette phrase est une interprétation/opinion non présente dans les articles."
+     "Les articles indiquent plus de deux douzaines (donc plus de 24), pas exactement vingt-deux.",
+     "Les articles mentionnent le président Abdel Fattah al-Sissi et un porte-parole du gouvernement, mais pas le maire de Gizeh.",
+     "Le Ring Road n'explose pas, l'incident a déclenché un incendie.",
+     "Le texte mentionne « plusieurs véhicules », pas « dizaines de véhicules »."
     ]
    },
    "verifie": true,
@@ -94,28 +93,28 @@
    "ecrans_total": 14,
    "format": "buzz",
    "voix": "kokoro-ff_siwis",
-   "lieu": "Warraq, Gizeh, Égypte",
+   "lieu": "Gizeh, Egypt",
    "humeur": "tension",
    "categorie": "faits_divers",
    "texte": [
-    "Flammes dévorant le Ring Road, 31 morts en un instant.",
-    "Mercredi 25 novembre 2026, un camion-citerne chargé de carburant a basculé à Warraq.",
-    "L’accident a eu lieu sur le périphérique très fréquenté du Grand Caire.",
-    "Le liquide inflammable s’est immédiatement embrasé, projetant un mur de flammes.",
-    "Des dizaines de voitures et motos ont été réduites en cendres.",
-    "Les transports en commun bondés ont également été touchés par l’incendie.",
-    "Un épais nuage de fumée noire a couvert le quartier.",
-    "Quarante ambulances ont été dépêchées, évacuant au moins quinze blessés vers les hôpitaux.",
-    "Le bilan a grimpé à 31 victimes, le ministère de la Santé l’a confirmé.",
-    "Vingt-et-une personnes restent blessées, dont quatre dans un état critique.",
-    "Un conducteur d’une voiture, accusé d’avoir percuté le camion, a été arrêté.",
-    "Les autorités ont ouvert une enquête et prévu des analyses ADN pour identifier les victimes.",
-    "Le Ring Road a été rouvert à la circulation après le retrait des débris par un bulldozer.",
-    "Le conducteur imprudent a admis qu'il roulait à une vitesse excessive au moment de la collision.",
-    "Et toi, que ferais-tu face à un tel brasier ? Dis-le en commentaire !"
+    "Le camion s'effondre en Égypte, déclenchant un incendie sur le Ring Road.",
+    "Mercredi 25 novembre 2026, un camion chargé de carburant s'effondre sur la périphérique du Caire, déclenchant un incendie gigantesque.",
+    "Le liquide inflammable s'embrase instantanément, projetant un mur de flammes qui engloutit plusieurs véhicules.",
+    "Plus de deux douzaines de voitures et de motos sont réduites en cendres, les transports en commun bondés ne sont pas épargnés.",
+    "Un nuage de fumée noire s'élève, obscurcissant le ciel nocturne au-dessus de Warraq.",
+    "40 ambulances sont dépêchées, évacuant au moins 15 blessés vers les hôpitaux voisins.",
+    "Le ministère de la Santé a confirmé 31 décès, révisant la première estimation de 21 morts.",
+    "4 blessés se trouvent en état critique, les autres souffrent de brûlures et de traumatismes.",
+    "Un conducteur de voiture a été arrêté, accusé d'avoir percuté le camion à grande vitesse.",
+    "Les autorités ont ouvert une enquête, prévoyant des analyses ADN pour identifier les victimes.",
+    "Le Ring Road a été rouvert après que des bulldozers aient retiré les débris brûlés.",
+    "Le Premier ministre Mostafa Madbouly a exigé des investigations approfondies pour établir les responsabilités exactes.",
+    "Le gouvernement attend des conclusions complètes avant de durcir les règles sur le transport de matières dangereuses.",
+    "Cette tragédie relance le débat sur la sécurité routière en Égypte, où près de 6 000 personnes meurent chaque année sur les routes.",
+    "Et toi, comment réagirais-tu si un tel brasier se produisait près de chez toi ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-27T21:21:48+01:00",
+   "cree_le": "2026-11-27T23:18:55+01:00",
    "ia_quotas": {
     "mistral": {
      "appels": 0,
@@ -125,19 +124,43 @@
     },
     "groq": {
      "appels": 2,
-     "refus": 0,
-     "erreurs": 1,
+     "refus": 3,
+     "erreurs": 4,
      "restant_demandes": "998",
      "limite_demandes": "1000",
-     "restant_mots": "802"
+     "restant_mots": "504"
+    },
+    "gemini": {
+     "appels": 8,
+     "refus": 1,
+     "erreurs": 1
     }
    },
-   "fabrication_s": 5155,
+   "fabrication_s": 2031,
    "controles": {
     "note": 100,
-    "lignes": [],
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 0,
+      "gravite": "moyen",
+      "probleme": "accroche trop longue (plus de 15 mots) : on perd le spectateur",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     }
+    ],
     "sautes": [],
-    "corriges": 0,
+    "corriges": 2,
     "restants": 0,
     "graves_restants": 0
    },
@@ -145,20 +168,21 @@
    "preuves": [],
    "couverture_ms": 800,
    "durees": {
-    "voix": 0,
-    "images": 13,
-    "montage": 5049,
-    "controle_final": 77,
+    "texte": 38,
+    "images": 4,
+    "voix": 55,
+    "montage": 1846,
+    "controle_final": 71,
     "regles": 1,
-    "rangement": 6
+    "rangement": 9
    },
    "refaite": {
-    "de": "20261127-190259-1",
-    "etape": "images",
-    "remarque": "fracture three-pinata, feu three.quarks, modèles Quaternius"
+    "de": "20261127-190259-1-r1",
+    "etape": "tout",
+    "remarque": "nouvelle voix (atempo + finition), phonétique accordée, calendrier petit, citerne, carte du lieu"
    },
    "statut": "nouvelle",
-   "refaite_de": "20261127-190259-1"
+   "refaite_de": "20261127-190259-1-r1"
   },
   {
    "id": "20261127-124839-1",
