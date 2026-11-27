@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T10:35:55+01:00",
+   "niveau": "info",
+   "texte": "🧹 Ménage : 15 vidéo(s) de l'ancien style supprimée(s) du site (il ne reste que le nouveau style)."
+  },
+  {
    "date": "2026-11-27T10:02:22+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 80 sujet(s) au-dessus des seuils — en tête : « 80 ans, proteste contre le gouvernement albanais »"
