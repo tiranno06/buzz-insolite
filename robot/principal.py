@@ -365,6 +365,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
             script["etiquette"], script["serie_hashtag"] = serie[1], serie[2]
         script["musique"] = R["video"].get("musique", True); script["bruitages"] = R["video"].get("bruitages", True)
         script["transitions"] = R["video"].get("transitions", False)
+        script["sons_reconstitution"] = R["video"].get("sons_reconstitution", True)   # choc, explosion, feu, sirène (CC0)
         if not E.get("carte_faite"):
             lieu_cite = str(script.get("lieu") or "").split(",")[0].split("(")[0].strip()
             texte_articles = " ".join((a.get("texte") or "") + " " + a.get("titre", "") for a in E["articles"]).lower()

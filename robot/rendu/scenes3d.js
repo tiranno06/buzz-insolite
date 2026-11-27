@@ -73,6 +73,7 @@ function moteur(THREE) {
     RENDU.setPixelRatio(1); RENDU.setSize(W, H, false);
     RENDU.outputColorSpace = THREE.SRGBColorSpace;
     RENDU.toneMapping = THREE.ACESFilmicToneMapping; RENDU.toneMappingExposure = 1.05;
+    RENDU.shadowMap.enabled = true; RENDU.shadowMap.type = THREE.PCFSoftShadowMap;   // vraies ombres portées (27/11)
   }
   return RENDU;
 }
@@ -294,6 +295,12 @@ function decor(T, scene, sc) {
   const jour = sc.moment === "jour";          // plein jour : lumière franche, comme une maquette au soleil
   scene.add(new T.HemisphereLight(nuit && !jour ? 0x8fa6d6 : 0xffffff, nuit && !jour ? 0x1a1f2b : 0x8a8f7a, jour ? 2.4 : nuit ? 1.1 : 1.6));
   const soleil = new T.DirectionalLight(jour ? 0xfff2dd : nuit ? 0xb7c7ff : 0xffffff, jour ? 3.0 : nuit ? 1.2 : 2.2); soleil.position.set(-60, 120, 40); scene.add(soleil);
+  // ombres portées : une zone de 120 m autour de l'action (la caméra de l'ombre suit ce qu'on filme)
+  if (sc.ombres !== false) {
+    soleil.castShadow = true; soleil.shadow.mapSize.set(2048, 2048); soleil.shadow.bias = -0.0004; soleil.shadow.normalBias = 0.04;
+    Object.assign(soleil.shadow.camera, { left: -60, right: 60, top: 60, bottom: -60, near: 10, far: 400 });
+    scene.add(soleil.target); scene.userData.soleil = soleil;
+  }
   const sol = (c, w = 2000, h = 2000) => { const m = new T.Mesh(new T.PlaneGeometry(w, h), new T.MeshLambertMaterial({ color: c })); m.rotation.x = -Math.PI / 2; m.position.y = -0.02; scene.add(m); return m; };
   const r = hasard(sc.graine || 11);
   if (d === "autoroute" || d === "route" || d === "ville") {
@@ -716,6 +723,14 @@ export async function creer3d(sc, couche, T) {
       }
     }
     const { p, c } = posCam(t);
+    const sol_ = scene.userData.soleil;
+    if (sol_) {
+      if (!scene.userData.ombresPretes) {        // une fois tout construit : ce qui est solide fait de l'ombre
+        scene.traverse(m => { if (m.isMesh && !m.material?.transparent) { m.castShadow = true; m.receiveShadow = true; } });
+        scene.userData.ombresPretes = true;
+      }
+      sol_.target.position.set(c[0], 0, c[2]); sol_.position.set(c[0] - 60, 120, c[2] + 40);
+    }
     if (tremble > 0) { p[0] += Math.sin(t * 71) * 0.9 * tremble; p[1] += Math.sin(t * 53) * 0.7 * tremble; c[1] += Math.sin(t * 61) * 0.4 * tremble; }
     if (iso) {                                // toujours le même angle (45°, en surplomb) ; on se rapproche doucement
       const z = mix(1, sc.iso_zoom ?? 1.25, ease.douce(prog(t, 0, Math.max(duree || 6, 1))));

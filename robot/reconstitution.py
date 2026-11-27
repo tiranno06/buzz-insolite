@@ -103,11 +103,17 @@ def valider(d, script, journal=print):
             if a.get("cible"):
                 x["cible"] = a["cible"]
             acts.append(x)
-        etiq = re.sub(r"[^\w' /:.,%-]", "", str(p.get("etiquette") or "")).strip().upper()[:24]
+        etiq = re.sub(r"\s+", " ", re.sub(r"[^\w' /:.,%-]", "", str(p.get("etiquette") or "").replace("_", " "))).strip().upper()[:24]
+        if etiq and (not re.search(r"[AEIOUYÀÂÉÈÊËÎÏÔÙÛ]", etiq) or re.search(r"\b[A-Z]{2,}_", etiq)):
+            etiq = ""                                   # (« PAS_DE_LEAD », Iowa du 27/11 : étiquette en anglais / code)
         if etiq and not _chiffres(etiq) <= connus:
             journal(f"  reconstitution, phrase {ph} : étiquette « {etiq} » avec un chiffre inventé → retirée")
             etiq = ""
         cadre = p.get("cadre") if p.get("cadre") in CADRES else None
+        types = {o["id"]: o["type"] for o in objets}
+        if cadre == "interieur" and not any(types.get(a["objet"]) in ("voiture", "camion", "citerne", "bus", "camionnette", "taxi", "train", "moto")
+                                            for a in acts):
+            cadre = "suivi"                             # vue du conducteur : seulement depuis un véhicule (drone de l'Iowa, 27/11)
         if acts or etiq:
             plans.append(dict(phrase=ph, actions=acts, cadre=cadre, etiquette=etiq))
             derniere = ph

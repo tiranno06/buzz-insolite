@@ -706,6 +706,23 @@ parallèles identique. Souffle (`etat`, `rayon_souffle` 18 m) : ce qui est proch
 (petit feu préparé pour chaque véhicule s'il y a une explosion). Choc : l'avant du véhicule qui percute et l'arrière du
 percuté s'écrasent (`ecrase`, échelle en longueur).
 
+## Son, ombres et phonétique (27/11, recherche demandée par l'auteur)
+- **Bruitages des reconstitutions** (`sons/reconstitution/`, tous CC0 d'OpenGameArt, détail dans `LICENCES.md`) :
+  `realisateur.evenements_sonores(sb)` → choc à l'impact, explosion + débris qui retombent, feu qui crépite tant que la 3D
+  est à l'écran, sirène à l'arrivée des secours ; `sons.mixer(effets=)` les place à l'instant exact (feu / sirène répétés
+  puis effacés). Réglage `video.sons_reconstitution` (vrai par défaut ; différent de `bruitages`, coupés par l'auteur).
+- **Ombres portées** (scenes3d.js) : soleil avec ombre douce 2048 px sur 120 m autour de ce qu'on filme ; tout objet solide
+  fait et reçoit une ombre (`sc.ombres` false pour couper). Coût mesuré : rendu +30 %.
+- **Phonétique** (`robot/phonetique.py`) : WikiPron (Wiktionnaire, CC BY-SA, 97 000 mots prononcés EN FRANÇAIS, noms propres
+  étrangers compris) + Lexique 3.83 (CC BY-SA 4.0, 142 000 mots courants), téléchargés une fois (cache
+  `~/.cache/buzz-phonetique`, creer.yml). `prononciation.respeller` part de la prononciation française du Wiktionnaire
+  (avant : eSpeak anglais) ; `candidats` ne réécrit jamais un mot français courant.
+- Caméra : vue du conducteur seulement depuis un véhicule ; décors denses (usine, ville, port) = caméra plus loin et plus
+  haute ; étiquettes « PAS_DE_LEAD » (code / anglais) retirées.
+- Pistes trouvées, pas encore branchées : three-pinata (MIT, vraie fracture Voronoï), three.quarks (particules), N8AO
+  (ombre douce des coins), Quaternius / Poly Pizza (modèles CC0 plus détaillés), Kyutai TTS (CC BY 4.0, français, à
+  tester sur processeur), DeepFilterNet (MIT/Apache, nettoyage de voix), dictionnaire MFA français (CC BY 4.0).
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit

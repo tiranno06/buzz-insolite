@@ -1491,3 +1491,41 @@ class TestGabarits(unittest.TestCase):
         a = gabarits.composer({"type": "meteo", "lieu": "Jura", "departements": ["39"], "chiffres": [{"phrase": 3, "valeur": "100", "unite": "mm"}]}, script)
         self.assertNotIn("3d", [s["type"] for s in a["scenes"]])
         self.assertEqual(a["scenes"][0]["effet"], "pluie")
+
+
+class TestPhonetiqueEtBruitages(unittest.TestCase):
+    """27/11 : prononciation française de référence (WikiPron), mots courants (Lexique) ; bruitages des reconstitutions."""
+
+    def test_api_vers_ecrit(self):
+        from robot import phonetique
+        self.assertEqual(phonetique.api_fr_vers_ecrit("w a ʃ i ŋ t ɔ n"), "ouachingtonne")
+        self.assertEqual(phonetique.api_fr_vers_ecrit("ʒ ɑ̃"), "jan")
+        self.assertEqual(phonetique.api_fr_vers_ecrit("s j a t œ l"), "syateul")
+
+    def test_hors_ligne_sans_plantage(self):
+        from robot import phonetique
+        anciens = phonetique._PRON, phonetique._MOTS
+        try:
+            phonetique._PRON, phonetique._MOTS = {"Seattle": ["sjatœl"]}, {"camion"}
+            self.assertEqual(phonetique.api_fr("Seattle"), "sjatœl")
+            self.assertEqual(phonetique.api_fr("Inconnu"), "")
+            self.assertTrue(phonetique.mot_courant("Camion"))
+        finally:
+            phonetique._PRON, phonetique._MOTS = anciens
+
+    def test_evenements_sonores(self):
+        from robot import realisateur
+        sb = {"duree": 30.0, "scenes": [
+            {"type": "3d", "debut": 2.0, "fin": 10.0, "objets": [{"id": "c", "type": "citerne"}, {"id": "a", "type": "ambulance"}],
+             "actions": [{"objet": "v", "faire": "heurter", "a": 1.0, "d": 2.0}, {"objet": "c", "faire": "exploser", "a": 4.0},
+                         {"objet": "c", "faire": "bruler", "a": 4.2}, {"objet": "a", "faire": "avancer", "a": 12.0}]},
+            {"type": "carte", "debut": 20.0, "fin": 30.0}]}
+        ev = {e["son"]: e for e in realisateur.evenements_sonores(sb)}
+        self.assertEqual(ev["choc"]["t"], 5.0)                       # 2 + 1 + 2 : à l'impact
+        self.assertEqual(ev["explosion"]["t"], 6.0)
+        self.assertEqual(ev["feu"]["duree"], 13.8)                   # jusqu'au décor suivant (20 s)
+        self.assertEqual(ev["sirene"]["t"], 14.0)
+        import os
+        for f, _ in realisateur.EFFETS.values():
+            self.assertTrue(os.path.exists(os.path.join("sons", "reconstitution", f)), f)
+

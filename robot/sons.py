@@ -100,8 +100,10 @@ def bruitages(phrases, debuts, format_="", transitions=False):
     return out
 
 
-def mixer(voix, phrases, debuts, total, humeur, sortie, avec_musique=True, format_="", avec_bruitages=True, transitions=False):
-    """Fabrique la bande son complète (wav stéréo 44,1 kHz)."""
+def mixer(voix, phrases, debuts, total, humeur, sortie, avec_musique=True, format_="", avec_bruitages=True, transitions=False,
+          effets=()):
+    """Fabrique la bande son complète (wav stéréo 44,1 kHz). `effets` = bruitages des reconstitutions 3D
+    [{son, t, duree?}] (choc, explosion, débris, feu, sirène : sons/reconstitution, CC0), sous la voix."""
     entrees = ["-i", voix]
     filtres = ["[0:a]aformat=channel_layouts=stereo,aresample=44100,apad,volume=1.5,asplit=2[vx][cle]"]
     melange = ["[vx]"]
@@ -123,6 +125,22 @@ def mixer(voix, phrases, debuts, total, humeur, sortie, avec_musique=True, forma
         ms = int(t * 1000)
         filtres.append(f"[{n}:a]aformat=channel_layouts=stereo,aresample=44100,volume={vol},adelay={ms}|{ms}[b{n}]")
         melange.append(f"[b{n}]"); n += 1
+    from .realisateur import EFFETS
+    for e in effets or ():
+        fichier, vol = EFFETS.get(e.get("son"), (None, 0))
+        chemin = os.path.join(SONS, "reconstitution", fichier or "")
+        if not fichier or not os.path.exists(chemin):
+            continue
+        ms, duree = int(float(e["t"]) * 1000), e.get("duree")
+        if duree:                                  # son qui dure (feu, sirène) : répété, puis s'efface doucement
+            entrees += ["-stream_loop", "-1", "-i", chemin]
+            d = float(duree)
+            filtres.append(f"[{n}:a]atrim=0:{d:.2f},aformat=channel_layouts=stereo,aresample=44100,volume={vol},"
+                           f"afade=t=in:d=0.6,afade=t=out:st={max(0.0, d - 1.2):.2f}:d=1.2,adelay={ms}|{ms}[e{n}]")
+        else:
+            entrees += ["-i", chemin]
+            filtres.append(f"[{n}:a]aformat=channel_layouts=stereo,aresample=44100,volume={vol},adelay={ms}|{ms}[e{n}]")
+        melange.append(f"[e{n}]"); n += 1
     filtres.append(f"{''.join(melange)}amix=inputs={len(melange)}:duration=first:normalize=0,atrim=0:{total:.3f}[a]")
     brut = sortie + ".brut.wav"
     subprocess.run(["ffmpeg", "-y", "-v", "error", *entrees, "-filter_complex", ";".join(filtres), "-map", "[a]",

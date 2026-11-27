@@ -373,7 +373,8 @@ def monter_anime(script, dossier, sortie, suivi=None):
         suivi(len(ph), len(ph))
     bande = sons.mixer(voix, ph, debuts, total, script.get("humeur", "neutre"), os.path.join(dossier, "bande.wav"),
                        (script.get("_musique") or False) if script.get("musique", True) else False, script.get("format", ""),
-                       script.get("bruitages", True), script.get("transitions", False))
+                       script.get("bruitages", True), script.get("transitions", False),
+                       effets=realisateur.evenements_sonores(sb) if script.get("sons_reconstitution", True) else ())
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", images, "-i", bande, "-map", "0:v", "-map", "1:a", "-t", f"{total:.3f}",
                     "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "44100", "-movflags", "+faststart", sortie], check=True)
     return total

@@ -146,17 +146,23 @@ Réponds uniquement en JSON : {"dire": "écriture phonétique"}"""
 
 
 def respeller(mot, phrase="", journal=print):
-    """Écriture phonétique d'un mot mal prononcé : l'IA, aidée par eSpeak-NG ; sinon la conversion d'eSpeak seule."""
-    ref = ipa(mot) if not re.search(r"[éèêàùç]", mot) else ipa(mot, "fr-fr")
+    """Écriture phonétique d'un mot mal prononcé : l'IA, aidée par la prononciation FRANÇAISE du Wiktionnaire (WikiPron,
+    27/11) ou, à défaut, par eSpeak-NG ; sans IA, la conversion de cette prononciation."""
+    from . import phonetique
+    ref_fr = phonetique.api_fr(mot)                    # comment un Français le dit (noms étrangers compris)
+    ref = ref_fr or (ipa(mot) if not re.search(r"[éèêàùç]", mot) else ipa(mot, "fr-fr"))
+    origine = "française (Wiktionnaire)" if ref_fr else "eSpeak"
     try:
         from . import ia
-        d, _ = ia.demander_json(CONSIGNE, f"MOT : {mot}\nPHRASE : {phrase}\nPRONONCIATION DE RÉFÉRENCE : {ref or 'inconnue'}",
+        d, _ = ia.demander_json(CONSIGNE, f"MOT : {mot}\nPHRASE : {phrase}\nPRONONCIATION DE RÉFÉRENCE {origine} : {ref or 'inconnue'}",
                                 temperature=0.2, max_tokens=200, journal=lambda *a: None)
         dire = str(d.get("dire") or "").strip()
         if dire and dire.lower() != mot.lower() and len(dire) < 3 * len(mot) + 10:
             return dire
     except Exception:
         pass
+    if ref_fr:
+        return phonetique.api_fr_vers_ecrit(ref_fr)
     return ipa_vers_francais(ref) if ref else ""
 
 
@@ -197,8 +203,12 @@ def candidats(texte, entendus):
     à l'allure étrangère (w, k, th, sh, ee, oo…). Jamais un mot français courant (l'IA l'abîmerait)."""
     rates = mots_rates(texte, entendus)
     premiers = {m.group(0) for m in re.finditer(r"(?:^|[.!?]\s+)([A-Za-zÀ-ÿ'-]+)", texte or "")}
+    from . import phonetique
     out = []
     for m in rates:
+        if not m.isupper() and phonetique.mot_courant(m) and not phonetique.api_fr(m[:1].upper() + m[1:]) \
+                and not (m[:1].isupper() and m not in premiers):
+            continue                                    # mot français ordinaire (Lexique 3.83) : jamais réécrit
         etranger = re.search(r"w|k|th|sh|ee|oo|[^aeiouyéèêàâîôûœ]{4}", m.lower())
         if (m[:1].isupper() and m not in premiers) or m.isupper() or etranger:
             out.append(m)

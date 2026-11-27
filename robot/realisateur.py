@@ -331,7 +331,7 @@ CADRES = {"large": "large", "cote": "heurter", "face": "se_coucher", "dessus": "
 PLANS_PLUS = {"maquette": ([-48, 52, 48], [-40, 44, 40]), "interieur": ([1.2, 2.1, 0], [1.2, 2.1, 0])}
 
 
-def plans_camera(actions, objets, principal, duree, cadres=None):
+def plans_camera(actions, objets, principal, duree, cadres=None, dense=False):
     """Découpage en plans : (début, action) → 2 points de caméra ; plan de 1,4 s au moins, sinon le suivant attend.
     `cadres` = [(début, angle du scénario, objet suivi)] : ces plans-là passent avant les plans automatiques."""
     types = {o["id"]: o.get("type") for o in objets}
@@ -339,7 +339,7 @@ def plans_camera(actions, objets, principal, duree, cadres=None):
         imposes = sorted((max(0.0, a - 0.1), CADRES[c], s) for a, c, s in cadres if c in CADRES)
         auto = [x for x in plans_camera(actions, objets, principal, duree)[::2] if all(abs(x["a"] - i[0]) > 1.4 for i in imposes)]
         coupes = sorted(imposes + [(x["a"], x["_cle"], x["suivre"]) for x in auto])
-        return _cam(coupes, types, duree)
+        return _cam(coupes, types, duree, dense)
     premier = min((x["a"] for x in actions), default=9.0)
     coupes, dernier = ([(0.0, "large", principal)], 0.0) if premier > 1.4 else ([], -9.0)
     force = {"exploser": 9, "heurter": 8, "tomber": 8, "couler": 7, "bruler": 6, "se_coucher": 5, "deverser": 4}
@@ -359,19 +359,54 @@ def plans_camera(actions, objets, principal, duree, cadres=None):
             continue
         coupes.append((debut, cle, suivre)); dernier = debut
     coupes.sort(key=lambda c: c[0])
-    return _cam(coupes, types, duree)
+    return _cam(coupes, types, duree, dense)
 
 
-def _cam(coupes, types, duree):
+def _cam(coupes, types, duree, dense=False):
     cam = []
     for k, (debut, cle, suivre) in enumerate(coupes):
         fin = coupes[k + 1][0] - 0.04 if k + 1 < len(coupes) else max(debut + 1.5, duree)
         p0, p1 = PLANS.get(cle) or PLANS_PLUS[cle]
         e = 1.0 if cle == "interieur" else GRANDS.get(types.get(suivre), 1.0)   # un camion-citerne de 12 m : la caméra recule
+        if cle != "interieur" and dense:       # usine, ville : on recule et on monte (sinon la caméra entre dans un hangar)
+            e *= 1.4
         extra = dict(regard=[30, -0.6, 0]) if cle == "interieur" else {}          # de l'intérieur : on regarde la route devant
         cam.append(dict(a=round(debut, 2), pos=[round(v * e, 1) for v in p0], suivre=suivre, _cle=cle, **extra))
         cam.append(dict(a=round(max(fin, debut + 0.05), 2), pos=[round(v * e, 1) for v in p1], suivre=suivre, _cle=cle, **extra))
     return cam
+
+
+# ------------------------------------------------------------------ bruitages des reconstitutions (sons/reconstitution, CC0)
+EFFETS = {"choc": ("choc.mp3", 0.85), "explosion": ("explosion.mp3", 1.0), "debris": ("debris.mp3", 0.5),
+          "feu": ("feu.mp3", 0.30), "sirene": ("sirene.mp3", 0.22)}
+
+
+def evenements_sonores(sb):
+    """Instants des sons de la 3D (en secondes depuis le début de la vidéo) : choc à l'impact, explosion + débris qui
+    retombent, feu qui crépite tant que la reconstitution est à l'écran, sirène quand les secours arrivent."""
+    scenes, total, out = sb["scenes"], sb["duree"], []
+    for k, sc in enumerate(scenes):
+        if sc["type"] != "3d":
+            continue
+        fin_decor = next((x["debut"] for x in scenes[k + 1:] if x["type"] in BASES), total)   # le décor reste jusqu'au suivant
+        types = {o["id"]: o.get("type") for o in sc.get("objets") or []}
+        feux = []
+        for a in sc.get("actions") or []:
+            t = sc["debut"] + float(a.get("a") or 0)
+            if t >= fin_decor:
+                continue
+            if a["faire"] == "heurter":
+                out.append(dict(son="choc", t=round(t + float(a.get("d") or 1), 2)))
+            elif a["faire"] == "exploser":
+                out += [dict(son="explosion", t=round(t, 2)), dict(son="debris", t=round(t + 0.9, 2))]
+            elif a["faire"] in ("bruler", "deverser") and not str(a["objet"]).startswith("bouchon"):
+                feux.append(t)
+            elif a["faire"] == "avancer" and types.get(a["objet"]) in ("police", "ambulance", "pompiers") \
+                    and not any(e["son"] == "sirene" and abs(e["t"] - t) < 4 for e in out):
+                out.append(dict(son="sirene", t=round(t, 2), duree=round(min(8.0, fin_decor - t), 2)))
+        if feux:
+            out.append(dict(son="feu", t=round(min(feux), 2), duree=round(fin_decor - min(feux), 2)))
+    return [e for e in out if 0 <= e["t"] < total and e.get("duree", 1) > 0.3]
 
 
 def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
@@ -420,7 +455,7 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
             cadres = [(quand(ph) , c, next((x.get("cible") if x["faire"] == "heurter" else x["objet"] for x in actions
                                             if str(x.get("phrase")) == str(ph)), principal))
                       for ph, c in sorted((sc.get("cadres") or {}).items(), key=lambda kv: int(kv[0])) if str(ph).isdigit()]
-            s["camera"] = plans_camera(actions, objets, principal, total - a, cadres)
+            s["camera"] = plans_camera(actions, objets, principal, total - a, cadres, dense=sc.get("decor") in ("usine", "ville", "port"))
             s["mention"] = "Reconstitution · plan simplifié · positions approximatives"   # la source est déjà en bas
         scenes.append(s)
     if scenes and scenes[0]["type"] not in BASES:        # jamais un encadré sur du vide : la carte du lieu dessous
