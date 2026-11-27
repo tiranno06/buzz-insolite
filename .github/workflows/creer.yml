@@ -51,7 +51,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - uses: astral-sh/setup-uv@v6   # installation des outils bien plus rapide (amélioration 12 du 25/11)
+      - uses: astral-sh/setup-uv@v7   # installation des outils bien plus rapide (amélioration 12 du 25/11)
       - name: Installer l'outil d'images (chargé au démarrage du robot)
         run: uv pip install --system -q "Pillow>=11,<14" || pip install -q "Pillow>=11,<14"
       - name: Répartir les vidéos entre les machines
@@ -94,7 +94,7 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-      - uses: astral-sh/setup-uv@v6   # installation des outils bien plus rapide (amélioration 12 du 25/11)
+      - uses: astral-sh/setup-uv@v7   # installation des outils bien plus rapide (amélioration 12 du 25/11)
       - name: Retrouver ffmpeg, voix et Whisper déjà téléchargés
         uses: actions/cache@v4
         with:
