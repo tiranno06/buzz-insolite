@@ -32,7 +32,10 @@ jobs:
       - name: Installer le rendu animé (Chromium sans écran, nouveau style du 26/11)
         run: |
           npm install --prefix robot/rendu --no-audit --no-fund --silent
-          npx --prefix robot/rendu playwright install --with-deps chromium
+          # dépôt apt de Microsoft parfois refusé (403 le 27/11) : il bloquait toute l'installation → retiré, puis 3 essais
+          sudo rm -f /etc/apt/sources.list.d/microsoft-prod.list /etc/apt/sources.list.d/microsoft-prod.sources || true
+          for i in 1 2 3; do npx --prefix robot/rendu playwright install --with-deps chromium && break; sleep 20; done
+          npx --prefix robot/rendu playwright install chromium
           sudo apt-get install -y -qq fonts-noto-color-emoji >/dev/null   # pictogrammes en couleur (police libre OFL)
       - name: Installer les bibliothèques
         run: uv pip install --system -q -r requirements.txt pyyaml || pip install -q -r requirements.txt pyyaml
