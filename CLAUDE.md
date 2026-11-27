@@ -691,6 +691,12 @@ Workflows : dépôt apt de Microsoft retiré avant `playwright install --with-de
   panneau danger) au centre du décor `usine` ; boule de feu en 9 halos lumineux (jaune, orange, rouge), 40 débris, bâtiment
   qui s'affaisse et noircit ; bâtiments jamais sur la route ; pays coloré en voile léger quand on plonge sur une ville.
 
+- **Iowa r2 (27/11)** : explosion enfin visible, mais tour de bureaux au lieu du dépôt, 2e moitié figée, carte noire et mauvais
+  lieu. Corrigé : `_completer` montre aussi l'APRÈS (`APRES` : barrières de terre qui apparaissent, mousse / eau des pompiers,
+  drone qui survole, experts qui prélèvent, police qui boucle) ; « Middletown, Iowa » cherché en ENTIER (« Middletown » seul =
+  une autre ville) ; « soir » n'est plus la carte de nuit (presque noire au zoom 8) ; dans le décor usine, bâtiment = entrepôt ;
+  muret / mur / arbre / taxi du scénario gardés ; vue maquette seulement si le scénario n'a pas choisi ses angles.
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit

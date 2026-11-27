@@ -1469,6 +1469,22 @@ class TestGabarits(unittest.TestCase):
         self.assertEqual(trois["decor"], "usine")
         self.assertEqual(next(o for o in trois["objets"] if o["id"] == "principal")["type"], "entrepot")
 
+    def test_apres_evenement_montre(self):
+        """Iowa (27/11) : la 2e moitié restait figée → barrières, mousse des pompiers, drone, experts sont montrés."""
+        from robot import gabarits
+        dits = ["L'armée a fait exploser un stock.", "C'était dans une usine de munitions.", "Deux détonations ont retenti.",
+                "Des barrières en terre ont été installées.", "De la mousse a été utilisée.", "Un drone a filmé le nuage.",
+                "Des échantillons d'air ont été prélevés.", "Et toi ?"]
+        script = {"titre": "t", "phrases": [{"ecrit": p} for p in dits]}
+        a = gabarits.composer({"type": "explosion", "lieu": "Middletown, Iowa"}, script)
+        trois = next(s for s in a["scenes"] if s["type"] == "3d" and not s.get("accroche"))
+        faits = {(x["objet"], x["faire"]) for x in trois["actions"]}
+        for attendu in [("barrieres", "apparaitre"), ("pompiers", "arroser"), ("drone", "voler"), ("techniciens", "avancer")]:
+            self.assertIn(attendu, faits)
+        self.assertNotIn("barrieres", [o["id"] for o in gabarits.composer({"type": "explosion", "lieu": "Londres"},
+            {"titre": "t", "phrases": [{"ecrit": p} for p in ["Une explosion en Angleterre.", "Une usine.", "Elle explose.", "Et toi ?"] * 2]})
+            ["scenes"][0].get("objets") or []])
+
     def test_meteo_reste_sur_la_carte(self):
         from robot import gabarits
         script = {"titre": "t", "phrases": [{"ecrit": "Le Jura en vigilance orange."}] * 7 + [{"ecrit": "Et chez toi ?"}]}

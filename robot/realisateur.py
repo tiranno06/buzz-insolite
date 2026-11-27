@@ -202,10 +202,13 @@ def valider(d, script, articles, journal=print):
                     x["couleur"] = x.get("couleur") if x.get("couleur") in COULEURS else None
             points = []
             for nom in [x if isinstance(x, str) else (x or {}).get("nom", "") for x in sc.get("lieux") or []][:5]:
-                if nom and nom.lower() in (dits + " " + bas).lower():
-                    l = _lieu(nom, cache)
+                # « Middletown, Iowa » : la ville doit être dans le texte, mais on cherche le nom COMPLET (vidéo de l'Iowa du
+                # 27/11 : « Middletown » seul → une autre Middletown, dans le nord-est des États-Unis)
+                court = nom.split(",")[0].strip()
+                if court and court.lower() in (dits + " " + bas).lower():
+                    l = (_lieu(nom, cache) if court != nom else None) or _lieu(court, cache)
                     if l:
-                        points.append(dict(nom=nom, lat=l["lat"], lon=l["lon"]))
+                        points.append(dict(nom=court, lat=l["lat"], lon=l["lon"]))
             sc["points"] = points
             f = sc.get("fleche") or {}
             if isinstance(f, dict) and f.get("de") and f.get("vers"):
@@ -406,6 +409,10 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
                     vz = _voie_z(x.get("vers_voie"), voies) if x.get("vers_voie") else o.get("z", 0)
                     act["vers"] = [vx, vz] + ([float(x.get("altitude", 0))] if x["faire"] in ("voler", "tomber") else [])
                 actions.append(act)
+            for o in objets:                                # « apparaitre » : invisible jusqu'à sa phrase (barrières, renforts)
+                ap = next((x["a"] for x in actions if x["objet"] == o["id"] and x["faire"] == "apparaitre"), None)
+                if ap is not None:
+                    o["a"] = ap
             s.update(objets=objets, actions=actions, voies=voies)
             s["reperes"] = [dict(objet=r.get("objet"), texte=str(r.get("texte", ""))[:30], a=quand(r.get("phrase"), 0.4))
                             for r in sc.get("reperes") or [] if any(o["id"] == r.get("objet") for o in objets)][:4]

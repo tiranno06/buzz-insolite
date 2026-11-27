@@ -21,7 +21,7 @@ from . import ia
 TYPES_EVENEMENT = ("accident_route", "incendie", "explosion", "crash_avion", "naufrage", "deraillement", "manifestation",
                    "meteo", "catastrophe_naturelle", "police_justice", "politique", "autre")
 ACTEURS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "police", "ambulance", "pompiers", "avion", "helico",
-           "bateau", "train", "personne", "foule", "batiment", "maison", "immeuble", "entrepot")
+           "bateau", "train", "personne", "foule", "batiment", "maison", "immeuble", "entrepot", "muret", "mur", "arbre", "taxi")
 ACTIONS = {"avancer": "avancer", "rouler": "avancer", "arriver": "avancer", "heurter": "heurter", "percuter": "heurter",
            "se_coucher": "se_coucher", "renverser": "se_coucher", "bruler": "bruler", "bruler_feu": "bruler", "exploser": "exploser",
            "tomber": "tomber", "s_ecraser": "tomber", "couler": "couler", "sombrer": "couler", "derailler": "se_coucher",
@@ -123,6 +123,10 @@ def _appliquer_scenario(f):
     sc = f.get("_scenario")
     if not sc:
         return
+    if sc.get("decor") == "usine":                     # dans une usine, un « bâtiment » est un hangar, pas une tour de bureaux
+        for o in sc["objets"]:
+            if o["type"] in ("batiment", "immeuble"):
+                o["type"] = "entrepot"
     f["acteurs"] = [dict(id=o["id"], type=o["type"], role=o.get("role") or "", voie=o.get("voie"), position=o.get("position"))
                     for o in sc["objets"]]
     f["deroule"] = [dict(a, qui=a["objet"], action=a["faire"]) for p in sc["plans"] for a in p["actions"]]
@@ -131,7 +135,7 @@ def _appliquer_scenario(f):
     if sc.get("decor"):
         f["_decor"] = sc["decor"]
     if sc.get("moment"):
-        f["nuit"] = sc["moment"] != "jour"
+        f["nuit"] = sc["moment"] == "nuit"            # « soir » n'est pas la nuit (carte de nuit presque noire)
 
 
 def _completer(f, script):
@@ -182,6 +186,34 @@ def _completer(f, script):
                 acteurs.append(dict(id="habitants", type="foule", role="les habitants", position=22))
             qui = next(a["id"] for a in acteurs if a.get("type") in ("foule", "personne"))
             deroule.append(dict(phrase=ph, qui=qui, action="fuir")); deja.add("fuir")
+    # l'APRÈS de l'événement se voit aussi (Iowa, 27/11 : la 2e moitié de la vidéo restait une image fixe) : barrières de terre,
+    # mousse / eau des pompiers, drone ou hélicoptère au-dessus, techniciens qui prélèvent, police qui boucle
+    APRES = (("barrieres", r"barri[èe]re|merlon|talus|en terre|de terre", "muret", "apparaitre"),
+             ("pompiers", r"mousse|arros|lance[s]? \w+ eau|extincteur|pompiers? (?:ont|sont|luttent|interviennent)", "pompiers", "arroser"),
+             ("drone", r"drone|h[ée]licopt[èe]re|vue a[ée]rienne|survol", "helico", "voler"),
+             ("techniciens", r"capteur|[ée]chantillon|pr[ée]l[èe]v|mesur|analys|enqu[êe]teur", "personne", "avancer"),
+             ("police", r"p[ée]rim[èe]tre|boucl[ée]|cordon|zone interdite", "police", "avancer"))
+    for nom, motif, type_, action in APRES:
+        ph = next((i for i, p in enumerate(script["phrases"][1:n - 1], start=1) if re.search(motif, p["ecrit"].lower())), None)
+        if ph is None or any(e.get("qui") == nom for e in deroule):
+            continue
+        a = next((x for x in acteurs if x.get("type") == type_), None)
+        if not a:
+            pos = {"muret": 14, "pompiers": -70, "helico": -60, "personne": 26, "police": -90}[type_]
+            a = dict(id=nom, type=type_, role={"muret": "barrières de terre", "pompiers": "les pompiers", "helico": "le drone",
+                                                  "personne": "les experts", "police": "la police"}[type_], position=pos)
+            if type_ == "helico":
+                a["altitude"] = 22
+            acteurs.append(a)
+        e = dict(phrase=ph, qui=a["id"], action=action)
+        if action == "arroser":
+            e["cible"] = principal["id"]
+            deroule.append(dict(phrase=ph, qui=a["id"], action="avancer", vers_position=-26))
+        if action == "voler":
+            e.update(vers_position=30, altitude=22)
+        if action == "avancer":
+            e["vers_position"] = 12 if type_ == "personne" else -40
+        deroule.append(e)
     # une explosion (ou un incendie) se VOIT toujours, même si aucune phrase du milieu ne le redit (vidéo de l'Iowa du 27/11 :
     # 55 s d'un bâtiment immobile) : la boule de feu à la 1re phrase du récit, puis la fumée
     fort = {"explosion": "exploser", "incendie": "bruler"}.get(typ)
@@ -333,7 +365,7 @@ def _scene_3d(f, phrases_3d, script):
             premiere = next((x["phrase"] for x in actions if x["objet"] == a["id"]), phrases_3d[0])
             reperes.append(dict(objet=a["id"], texte=role[:28], phrase=premiere))
     moment = "nuit" if f.get("nuit") else "jour"
-    vue = {"vue": "iso"} if typ in VUE_MAQUETTE else {}
+    vue = {"vue": "iso"} if typ in VUE_MAQUETTE and not f.get("_cadres") else {}   # le scénario choisit ses angles
     if f.get("_cadres"):
         vue["cadres"] = {k: v for k, v in f["_cadres"].items() if k in phrases_3d}
     return dict(type="3d", **vue, decor=f.get("_decor") or DECOR.get(typ, "ville"), moment=moment, objets=objets, actions=actions, reperes=reperes[:3],
@@ -378,7 +410,7 @@ def composer(f, script):
     carte = dict(type="carte", zone="france" if f.get("departements") else None, nuit=bool(f.get("nuit")),
                  departements=[dict(code=str(c).zfill(2), couleur="orange" if typ == "meteo" else "rouge") for c in (f.get("departements") or [])[:8]],
                  pays=[] if f.get("departements") else [dict(iso=str(p)[:3].upper(), couleur="rouge") for p in (f.get("pays") or [])[:3]],
-                 lieux=[str(f.get("lieu") or "").split(",")[0].strip()] if f.get("lieu") else [],
+                 lieux=[str(f.get("lieu") or "").strip()] if f.get("lieu") else [],
                  effet={"meteo": "pluie", "catastrophe_naturelle": "orage"}.get(typ),
                  etiquettes=[str(f.get("lieu") or "").split(",")[0].upper()[:24]] if f.get("lieu") else [])
     if typ == "meteo" and re.search(r"neige|verglas|froid|gel", " ".join(p["ecrit"] for p in script["phrases"]).lower()):
