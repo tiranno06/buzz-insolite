@@ -143,7 +143,11 @@ _IPA_FR = [("tʃ", "tch"), ("dʒ", "dj"), ("eɪ", "é"), ("aɪ", "aï"), ("aʊ",
            ("ɜː", "eu"), ("iː", "i"), ("uː", "ou"), ("ɑː", "a"), ("ɔː", "o"), ("ʃ", "ch"), ("ʒ", "j"), ("θ", "ss"), ("ð", "z"),
            ("ŋ", "ng"), ("ɹ", "r"), ("ɾ", "t"), ("j", "y"), ("w", "ou"), ("ɪ", "i"), ("ɛ", "è"), ("æ", "a"), ("ɑ", "a"),
            ("ɒ", "o"), ("ɔ", "o"), ("ʊ", "ou"), ("ʌ", "eu"), ("ə", "eu"), ("ɐ", "a"), ("e", "é"), ("u", "ou"), ("h", ""),
-           ("ɡ", "g"), ("ˈ", ""), ("ˌ", ""), ("ː", "")]
+           ("ɡ", "g"), ("ˈ", ""), ("ˌ", ""), ("ː", ""),
+           # autres langues (arabe, espagnol, allemand, russe…) : sons rapprochés de ce qu'un Français dirait
+           ("x", "kh"), ("χ", "kh"), ("ɣ", "gh"), ("ħ", "h"), ("ʕ", ""), ("ʔ", ""), ("ç", "ch"), ("ʎ", "ly"), ("ɲ", "gn"),
+           ("ʁ", "r"), ("β", "b"), ("ʝ", "y"), ("ø", "eu"), ("œ", "eu"), ("y", "u"), ("ɨ", "i"), ("ɯ", "ou"), ("ɕ", "ch"),
+           ("ʂ", "ch"), ("ʐ", "j"), ("ts", "ts"), ("ʰ", ""), ("ʲ", ""), ("̃", "n")]
 
 
 def ipa_vers_francais(phon):
@@ -187,6 +191,69 @@ def respeller(mot, phrase="", journal=print):
     if ref_fr:
         return phonetique.api_fr_vers_ecrit(ref_fr)
     return ipa_vers_francais(ref) if ref else ""
+
+
+# ------------------------------------------------------------------ noms étrangers de TOUTES les langues, avant la 1re prise
+# (27/11, l'auteur : « Ring Road a une mauvaise phonétique… la bonne prononciation pour toutes les langues principales ») :
+# l'IA dit pour chaque nom sa langue et comment un journaliste français le prononce ; eSpeak-NG (100+ langues) en secours.
+CONSIGNE_ETRANGERS = """Une voix de synthèse FRANÇAISE va lire ce texte d'actualité. Repère chaque nom propre ou mot qui n'est pas
+français (lieux, personnes, organisations, expressions anglaises, arabes, espagnoles, chinoises…). Pour chacun, donne sa langue
+(code ISO : en, ar, es, de, it, pt, ru, zh, ja, tr, nl, pl, uk, hi…) et comment un journaliste FRANÇAIS le prononce à la radio,
+écrit en lettres françaises qu'une voix française lira juste (ex. « Ring Road » → « Rinng Rôde », « Mostafa Madbouly » →
+« Moustafa Madbouli », « Shenzhen » → « Chènn-djeun », « Würzburg » → « Vurtz-bourg »). Garde les mots tels quels quand un
+Français les lit déjà correctement (Paris, Washington, Trump, Madrid). Réponds uniquement en JSON :
+{"mots": [{"mot": "Ring Road", "langue": "en", "dire": "Rinng Rôde"}]}"""
+
+ESPEAK_LANGUES = {"en": "en-us", "ar": "ar", "es": "es", "de": "de", "it": "it", "pt": "pt", "ru": "ru", "zh": "cmn", "ja": "ja",
+                  "tr": "tr", "nl": "nl", "pl": "pl", "uk": "uk", "hi": "hi", "fa": "fa", "he": "he", "ko": "ko", "el": "el",
+                  "sv": "sv", "da": "da", "no": "nb", "fi": "fi", "cs": "cs", "hu": "hu", "ro": "ro", "id": "id", "vi": "vi"}
+
+
+def noms_etrangers(texte):
+    """Groupes de mots à majuscule (« Ring Road », « Mostafa Madbouly ») ou mots isolés absents du dictionnaire français."""
+    from . import phonetique
+    out = []
+    for m in re.finditer(r"(?<![\wÀ-ÿ])([A-ZÀ-Ý][\wÀ-ÿ'-]+(?:\s+[A-ZÀ-Ý][\wÀ-ÿ'-]+)*)", texte or ""):
+        groupe = m.group(1)
+        mots = groupe.split()
+        debut = m.start() == 0 or re.search(r"[.!?]\s*$", texte[:m.start()])
+        if len(mots) == 1 and (debut or groupe.isupper() or phonetique.mot_courant(groupe)):
+            continue
+        if all(phonetique.mot_courant(w) for w in mots):
+            continue
+        if groupe not in out:
+            out.append(groupe)
+    return out
+
+
+def preparer_etrangers(textes, journal=print):
+    """À appeler AVANT la voix : les noms étrangers de la vidéo reçoivent leur prononciation française (APPRIS)."""
+    dico = charger()
+    noms = []
+    for t in textes:
+        noms += [n for n in noms_etrangers(t) if n not in dico and n not in noms]
+    if not noms:
+        return {}
+    trouves = {}
+    try:
+        from . import ia
+        d, qui = ia.demander_json(CONSIGNE_ETRANGERS, "TEXTE :\n" + "\n".join(textes) + "\n\nNOMS À VÉRIFIER : " + ", ".join(noms),
+                                  temperature=0.1, max_tokens=1500, journal=lambda *a: None)
+        for x in d.get("mots") or []:
+            mot, dire = str(x.get("mot") or "").strip(), str(x.get("dire") or "").strip()
+            if mot and dire and dire.lower() != mot.lower() and re.fullmatch(r"[\wÀ-ÿ' -]+", dire) and len(dire) < 3 * len(mot) + 10:
+                trouves[mot] = dire
+    except Exception as e:
+        journal(f"  prononciation des noms étrangers : IA indisponible ({str(e)[:60]}), eSpeak seul")
+    for n in noms:                                      # secours : eSpeak-NG dans la langue la plus probable (anglais)
+        if n not in trouves and ANGLAIS.search(n):
+            api = ipa(n)
+            if api:
+                trouves[n] = ipa_vers_francais(api)
+    APPRIS.update(trouves)
+    if trouves:
+        journal("  🌍 noms étrangers prononcés à la française : " + ", ".join(f"{m} → {d}" for m, d in trouves.items()))
+    return trouves
 
 
 def mots_rates(texte, entendus):

@@ -1621,3 +1621,16 @@ class TestPhonetiqueEtBruitages(unittest.TestCase):
         controle.corriger_anime(script, f, 1, lambda *_: None)
         self.assertEqual([a["faire"] for a in script["animation"]["scenes"][0]["actions"]], ["bruler"])
 
+    def test_noms_etrangers_avant_la_voix(self):
+        """27/11 : « Ring Road » mal prononcé → noms étrangers (toutes langues) préparés avant la 1re prise."""
+        from unittest import mock
+        from robot import prononciation as P, ia
+        P.APPRIS.clear()
+        rep = ({"mots": [{"mot": "Ring Road", "langue": "en", "dire": "Rinng Rôde"},
+                         {"mot": "Mostafa Madbouly", "langue": "ar", "dire": "Moustafa Madbouli"}]}, "essai")
+        with mock.patch.object(ia, "demander_json", return_value=rep):
+            P.preparer_etrangers(["Incendie sur le Ring Road, a dit Mostafa Madbouly."], journal=lambda *_: None)
+        self.assertIn("Rinng Rôde", P.pour_voix("Incendie sur le Ring Road."))
+        self.assertIn("Moustafa Madbouli", P.pour_voix("Mostafa Madbouly a parlé."))
+        P.APPRIS.clear()
+

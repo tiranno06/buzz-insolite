@@ -223,6 +223,11 @@ def preparer(phrases, nom_voix, vitesse, journal=print, suivi=None, memoire=None
     for p in phrases:
         if p.get("ecrit") and not p.get("_voix_ia_gardee"):
             p["voix"] = p["ecrit"]
+    try:                                                # noms étrangers (toutes langues) prononcés à la française d'emblée
+        from . import prononciation as PR
+        PR.preparer_etrangers([p["voix"] for p in phrases], journal)
+    except Exception as e:
+        journal(f"  noms étrangers : préparation impossible ({str(e)[:60]})")
     gardees = [p for p in phrases if depuis_memoire(p, nom_voix, vitesse, memoire)]
     if gardees:
         journal(f"  {len(gardees)} phrase(s) déjà dite(s) à l'identique : voix reprise sans la refaire")
