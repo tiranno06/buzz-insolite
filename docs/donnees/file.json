@@ -1,6 +1,187 @@
 {
  "videos": [
   {
+   "id": "20261127-024127-1",
+   "tag": "v-20261127-024127-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-024127-1/buzz-20261127-024127-1.mp4",
+   "titre": "Parade Macy's reportée: premier report",
+   "accroche": "REPORT HISTORIQUE",
+   "sujet_id": "8476cc946b",
+   "sujet": "Parade Thanksgiving de Macy's reportée",
+   "buzz": {
+    "vues": 4500000,
+    "jaime": 477700,
+    "commentaires": 4137,
+    "score": 733
+   },
+   "description": "⚡️ La parade Macy's décale son 100e show à cause d’une tempête. Découvre les détails !",
+   "question": "Et toi, tu pensais que la parade serait à l’heure ?",
+   "hashtags": [
+    "#macyparade",
+    "#thanksgiving",
+    "#macysparde",
+    "#report",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 71.2,
+   "sources": [
+    {
+     "media": "lesfrancais.press",
+     "titre": "Parade de Thanksgiving à New York : le fantasme viral du bouledogue français",
+     "lien": "https://lesfrancais.press/parade-thanksgiving-new-york-fantasme-viral-bouledogue-francais/"
+    },
+    {
+     "media": "sudouest.fr",
+     "titre": "Tempête aux États-Unis : à New York, le grand défilé de Thanksgiving reporté, une première historique",
+     "lien": "https://www.sudouest.fr/international/etats-unis/tempete-aux-etats-unis-a-new-york-le-grand-defile-de-thanksgiving-reportee-une-premiere-historique-31681002.php"
+    },
+    {
+     "media": "libnanews.com",
+     "titre": "New York : la parade de Thanksgiving de Macy’s reportée au 28 novembre",
+     "lien": "https://libnanews.com/new-york-la-parade-de-thanksgiving-de-macys-reportee-au-28-novembre/"
+    },
+    {
+     "media": "finance.yahoo.com",
+     "titre": "Macy’s Thanksgiving Day Parade Postponement Could Cost Nearly $2 Million in Balloon Inflation",
+     "lien": "https://finance.yahoo.com/economy/articles/macy-thanksgiving-day-parade-postponement-170315751.html"
+    },
+    {
+     "media": "yahoo.com",
+     "titre": "Hoda Kotb Expresses Relief Over Macy's Thanksgiving Parade Postponement Due to Weather",
+     "lien": "https://www.yahoo.com/entertainment/celebrity/articles/hoda-kotb-expresses-relief-over-155421551.html"
+    },
+    {
+     "media": "frenchmorning.com",
+     "titre": "Thanksgiving : un Français propose des vues spectaculaires pour admirer la 100e Parade de Macy’s",
+     "lien": "https://www.frenchmorning.com/thanksgiving-un-francais-propose-des-vues-spectaculaires-pour-admirer-la-100e-parade-de-macys/"
+    },
+    {
+     "media": "zonebourse.com",
+     "titre": "La parade de Thanksgiving de Macy's reportée en raison des intempéries, une première en 100 ans",
+     "lien": "https://www.zonebourse.com/actualite-bourse/le-defile-de-thanksgiving-de-macy-s-reporte-en-raison-des-previsions-de-tempete-selon-les-medias-am-ce7851d8da80f620"
+    },
+    {
+     "media": "msn.com",
+     "titre": "Colorado dancers face thousands of dollars in unexpected expenses after Macy's Thanksgiving Day Parade postponement",
+     "lien": "https://www.msn.com/en-us/news/other/colorado-dancers-face-thousands-of-dollars-in-unexpected-expenses-after-macys-thanksgiving-day-parade-postponement/ar-AA2ijdrn"
+    },
+    {
+     "media": "msn.com",
+     "titre": "Macy’s Thanksgiving Day Parade postponement sends Legacy Ranch cheer team in limbo",
+     "lien": "https://www.msn.com/en-us/news/other/macy-s-thanksgiving-day-parade-postponement-sends-legacy-ranch-cheer-team-in-limbo/ar-AA2ij4gn"
+    }
+   ],
+   "verification": {
+    "par": "gemini:gemini-flash-lite-latest",
+    "corrigees": 1,
+    "retirees": 2,
+    "problemes": [
+     "Le nombre de likes n'est pas mentionné dans les articles fournis.",
+     "Aucun coût des chars n'est mentionné dans les articles.",
+     "Aucune information sur une annulation pendant la Seconde Guerre mondiale n'est présente dans les sources."
+    ]
+   },
+   "verifie": true,
+   "credits": [],
+   "style": "anime",
+   "extraits_perdus": 0,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 15,
+   "ecrans_total": 15,
+   "format": "buzz",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "New York, États‑Unis",
+   "humeur": "tension",
+   "categorie": "culture",
+   "texte": [
+    "La parade Macy's reportée, jamais vu !",
+    "Pour la première fois en cent ans, le défilé passe du jeudi 26 novembre au samedi 28.",
+    "Une grosse tempête arrive avec des vents très forts et des inondations sur les cotes.",
+    "Macy's cite la sécurité des participants comme priorité absolue.",
+    "Le maire Zohran Mamdani a demandé aux New-Yorkais de se préparer.",
+    "Le centième défilé compte 32 ballons géants, 3 mini-ballons et 27 chars.",
+    "Parmi eux, Buzz Lightyear, Pac-Man, Mario et un char Shrek.",
+    "Aucun bouledogue français n’apparaît dans le line-up officiel.",
+    "Le report pourrait coûter près de 2 000 000 dollars à l’inflation des ballons.",
+    "La hausse du prix de l’hélium vient d’une attaque iranienne sur le complexe de Ras Laffan au Qatar.",
+    "Les vents prévus étaient comparables à une tempête tropicale, dangereux pour les équipes au sol.",
+    "Hoda Kotb, co-animatrice du Today Show, a exprimé son soulagement face au report.",
+    "NBC diffusera un replay du défilé le jeudi matin, à la place du live.",
+    "Des milliers de spectateurs attendaient déjà les ballons le long de Manhattan.",
+    "le 5 novembre 2025, le compte Instagram new-yorkais @newyorkcity.explore a publié un visuel d'un bouledogue français survolant Manhattan.",
+    "Et toi, tu pensais que la parade serait à l’heure ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-27T03:00:00+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 5,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 4,
+     "refus": 3,
+     "erreurs": 4,
+     "restant_demandes": "998",
+     "limite_demandes": "1000",
+     "restant_mots": "2376"
+    },
+    "gemini": {
+     "appels": 8,
+     "refus": 1,
+     "erreurs": 1
+    }
+   },
+   "fabrication_s": 1113,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 18,
+      "gravite": "grave",
+      "probleme": "voix et sous-titres ne correspondent pas (44%)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase simplifiée puis refaite"
+     }
+    ],
+    "sautes": [],
+    "corriges": 2,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "preuves": [],
+   "couverture_ms": 800,
+   "durees": {
+    "articles": 0,
+    "ecriture": 10,
+    "texte": 20,
+    "images": 36,
+    "voix": 54,
+    "montage": 466,
+    "controle_final": 545,
+    "regles": 0,
+    "rangement": 4
+   },
+   "refaite": null,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261127-022316-1",
    "tag": "v-20261127-022316-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-022316-1/buzz-20261127-022316-1.mp4",
@@ -3429,7 +3610,7 @@
     "jaime": 0,
     "commentaires": 0,
     "partages": 0,
-    "maj": "2026-11-27T00:04:36+01:00"
+    "maj": "2026-11-27T02:46:20+01:00"
    },
    "lien_tiktok": "https://www.tiktok.com/@buzz.insolite/video/7712544727395994913",
    "stats_hist": [
@@ -3439,6 +3620,10 @@
     ],
     [
      "2026-11-27T00:04:36+01:00",
+     0
+    ],
+    [
+     "2026-11-27T02:46:20+01:00",
      0
     ]
    ]
@@ -4392,7 +4577,7 @@
     "jaime": 0,
     "commentaires": 0,
     "partages": 0,
-    "maj": "2026-11-27T00:04:36+01:00"
+    "maj": "2026-11-27T02:46:20+01:00"
    },
    "lien_tiktok": "https://www.tiktok.com/@buzz.insolite/video/7712443432941194535",
    "stats_hist": [
@@ -4414,6 +4599,10 @@
     ],
     [
      "2026-11-27T00:04:36+01:00",
+     0
+    ],
+    [
+     "2026-11-27T02:46:20+01:00",
      0
     ]
    ]
@@ -4727,7 +4916,7 @@
     "jaime": 0,
     "commentaires": 0,
     "partages": 0,
-    "maj": "2026-11-27T00:04:36+01:00"
+    "maj": "2026-11-27T02:46:20+01:00"
    },
    "lien_tiktok": "https://www.tiktok.com/@buzz.insolite/video/7712211064108223783",
    "stats_hist": [
@@ -4769,6 +4958,10 @@
     ],
     [
      "2026-11-27T00:04:36+01:00",
+     0
+    ],
+    [
+     "2026-11-27T02:46:20+01:00",
      0
     ]
    ]
@@ -5071,7 +5264,7 @@
     "jaime": 0,
     "commentaires": 0,
     "partages": 0,
-    "maj": "2026-11-27T00:04:36+01:00"
+    "maj": "2026-11-27T02:46:20+01:00"
    },
    "lien_tiktok": "https://www.tiktok.com/@buzz.insolite/video/7712127678555442465",
    "stats_hist": [
@@ -5117,6 +5310,10 @@
     ],
     [
      "2026-11-27T00:04:36+01:00",
+     0
+    ],
+    [
+     "2026-11-27T02:46:20+01:00",
      0
     ]
    ]

@@ -965,8 +965,10 @@
    "hashtags_viraux": [],
    "medias": 9,
    "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T17:23:54+01:00"
+   "statut": "utilise",
+   "vu_le": "2026-11-26T17:23:54+01:00",
+   "reserve_le": "2026-11-27T02:39:34+01:00",
+   "video_id": "20261127-024127-1"
   },
   {
    "titre": "Afghanistan : les femmes privées de nom officiel",

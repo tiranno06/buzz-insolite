@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T03:00:00+01:00",
+   "niveau": "info",
+   "texte": "🎬 Nouvelle vidéo « Parade Macy's reportée: premier report » (71 s, 15 écrans illustrés) — à regarder puis cocher « À publier »"
+  },
+  {
    "date": "2026-11-27T02:32:41+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Afghanistan : les noms des femmes effacés » (68 s, 13 écrans illustrés) — à regarder puis cocher « À publier »"

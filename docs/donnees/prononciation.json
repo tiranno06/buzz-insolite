@@ -34,6 +34,26 @@
    "dire": "gardeuz",
    "source": "robot",
    "le": "2026-11-25T23:17:44+01:00"
+  },
+  "Zohran": {
+   "dire": "Zorane",
+   "source": "robot",
+   "le": "2026-11-27T02:42:58+01:00"
+  },
+  "New-Yorkais": {
+   "dire": "nou-ior-kaïze",
+   "source": "robot",
+   "le": "2026-11-27T02:42:58+01:00"
+  },
+  "new-yorkais": {
+   "dire": "niou-yorcaize",
+   "source": "robot",
+   "le": "2026-11-27T02:42:58+01:00"
+  },
+  "newyorkcity": {
+   "dire": "niou-yor-citey",
+   "source": "robot",
+   "le": "2026-11-27T02:42:58+01:00"
   }
  }
 }
