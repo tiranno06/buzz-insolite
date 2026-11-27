@@ -1,6 +1,196 @@
 {
  "videos": [
   {
+   "id": "20261127-075633-1",
+   "tag": "v-20261127-075633-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-075633-1/buzz-20261127-075633-1.mp4",
+   "titre": "Explosion géante de l'armée en Iowa",
+   "accroche": "5 TONNES D'EXPLOSIFS",
+   "sujet_id": "416ea80eff",
+   "sujet": "Explosion de lead azide à Middletown",
+   "buzz": {
+    "vues": 1600000,
+    "jaime": 131700,
+    "commentaires": 7284,
+    "score": 679
+   },
+   "description": "L'armée américaine a détruit tout son stock d'azoture de plomb en Iowa lors d'une explosion contrôlée ! 💥",
+   "question": "Et toi, aurais-tu évacué ta maison pour cette explosion ?",
+   "hashtags": [
+    "#vraioufauxduvendredi",
+    "#militaire",
+    "#explosif",
+    "#iowa",
+    "#drone",
+    "#explosion",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 65.7,
+   "sources": [
+    {
+     "media": "wowt.com",
+     "titre": "EPA says air monitors detected no lead after Iowa explosives blast; lab results still pending",
+     "lien": "https://www.wowt.com/2026/11/26/epa-says-air-monitors-detected-no-lead-after-iowa-explosives-blast-lab-results-still-pending/"
+    },
+    {
+     "media": "yahoo.com",
+     "titre": "Army detonates nearly 5 tons of lead azide at Iowa ammunition plant",
+     "lien": "https://www.yahoo.com/news/us/articles/army-detonates-nearly-5-tons-151007479.html"
+    },
+    {
+     "media": "nbcchicago.com",
+     "titre": "Video shows moment several tons of lead azide were detonated in Iowa",
+     "lien": "https://www.nbcchicago.com/news/local/video-shows-moment-several-tons-of-lead-azide-were-detonated-in-iowa/4021344/"
+    },
+    {
+     "media": "clarin.com",
+     "titre": "Did they detonate the lead in Iowa? Containment update, air monitoring, evacuations, and safety guidance after controlled blast in Middletown",
+     "lien": "https://www.clarin.com/us-news/did-they-detonate-the-lead-in-iowa-containment-update-air-monitoring-evacuations-and-safety-guidance-after-controlled-blast-in-middletown_0_LlFm7hop5m.html"
+    },
+    {
+     "media": "clarin.com",
+     "titre": "What time is the detonation of 5 tons of lead azide in Iowa on Wednesday? Plume map and safety recommendations",
+     "lien": "https://www.clarin.com/us-news/when-and-what-time-will-the-us-army-detonate-5-tons-of-lead-azide-in-iowa-plume-map-and-safety-recommendations_0_s1fyuCUCUf.html"
+    },
+    {
+     "media": "cnn.com",
+     "titre": "Drone footage shows the moment of the Iowa lead azide detonation",
+     "lien": "https://www.cnn.com/2026/11/25/us/video/drone-footage-iowa-lead-azide-detonation-digvid-vrtc"
+    },
+    {
+     "media": "yahoo.com",
+     "titre": "Video shows massive explosion as US Army destroys entire stockpile of lead azide",
+     "lien": "https://www.yahoo.com/news/us/articles/video-shows-massive-explosion-us-154717413.html"
+    }
+   ],
+   "verification": {
+    "par": "openrouter:baidu/ernie-5.5-flash-preview:free",
+    "corrigees": 1,
+    "retirees": 0,
+    "problemes": [
+     "Absent des articles : aucune source ne mentionne l'administration Obama. Les articles indiquent seulement que l'azoture de plomb était stocké depuis des décenni"
+    ]
+   },
+   "verifie": true,
+   "credits": [],
+   "style": "anime",
+   "extraits_perdus": 0,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 15,
+   "ecrans_total": 15,
+   "format": "vrai_faux",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "Middletown, Iowa",
+   "humeur": "tension",
+   "categorie": "science",
+   "texte": [
+    "L'armée américaine a fait exploser 5 tonnes de produits dangereux en Iowa.",
+    "Réponds en commentaire avant la fin !",
+    "L'événement s'est déroulé à Middletown.",
+    "Il s'agissait de détruire tout le stock national d'azoture de plomb.",
+    "Ce produit chimique sert à fabriquer des explosifs.",
+    "Avec le temps, le stock était devenu trop instable et risquait d'exploser tout seul.",
+    "Deux détonations rapides ont retenti dans l'usine de munitions.",
+    "Des barrières en terre et plus de 100 000 gallons d'eau ont été utilisés pour limiter les dégâts.",
+    "Une vidéo filmée par drone a capturé l'immense nuage de fumée.",
+    "Les habitants des environs avaient reçu des consignes d'évacuation préventive.",
+    "Heureusement, les capteurs d'air n'ont détecté aucune trace de plomb après le choc.",
+    "Les autorités ont utilisé des barrières en terre et de la mousse pour absorber le choc.",
+    "Le président Donald Trump a salué le travail de l'armée sur les réseaux sociaux.",
+    "L'Agence de protection de l'environnement a annoncé que plus de 2 500 échantillons d'air, d'eau et de sol avaient été prélevés.",
+    "Les autorités ont rappelé que ce stock instable était entreposé depuis des décennies.",
+    "Et toi, aurais-tu évacué ta maison pour cette explosion ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-27T08:08:21+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 5,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 4,
+     "refus": 3,
+     "erreurs": 4,
+     "restant_demandes": "998",
+     "limite_demandes": "1000",
+     "restant_mots": "1042"
+    },
+    "gemini": {
+     "appels": 29,
+     "refus": 1,
+     "erreurs": 1
+    },
+    "github": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 0
+    },
+    "openrouter": {
+     "appels": 2,
+     "refus": 8,
+     "erreurs": 0
+    }
+   },
+   "fabrication_s": 708,
+   "controles": {
+    "note": 100,
+    "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 0,
+      "gravite": "moyen",
+      "probleme": "accroche trop longue (plus de 15 mots) : on perd le spectateur",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 57 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 2,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "voix",
+      "ecran": 19,
+      "gravite": "grave",
+      "probleme": "voix et sous-titres ne correspondent pas (0%)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase retirée"
+     }
+    ],
+    "sautes": [],
+    "corriges": 3,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "preuves": [],
+   "couverture_ms": 800,
+   "durees": {
+    "articles": 0,
+    "ecriture": 3,
+    "texte": 77,
+    "images": 4,
+    "voix": 40,
+    "montage": 359,
+    "controle_final": 42,
+    "regles": 1,
+    "rangement": 5
+   },
+   "refaite": null,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261127-024127-1",
    "tag": "v-20261127-024127-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-024127-1/buzz-20261127-024127-1.mp4",
