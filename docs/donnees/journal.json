@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T08:15:11+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 83 sujet(s) au-dessus des seuils — en tête : « Semi-remorque perd le contrôle sur autoroute Ohio »"
+  },
+  {
    "date": "2026-11-27T08:08:21+01:00",
    "niveau": "info",
    "texte": "🎬 Nouvelle vidéo « Explosion géante de l'armée en Iowa » (66 s, 15 écrans illustrés) — à regarder puis cocher « À publier »"
