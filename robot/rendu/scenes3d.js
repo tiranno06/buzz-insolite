@@ -754,9 +754,14 @@ export async function creer3d(sc, couche, T) {
         // vue bouchée : on MONTE d'abord (plan en plongée, comme un drone) ; on ne s'approche qu'en dernier recours
         // (avant : la caméra se collait au mur qui bouchait la vue, Iowa refaite du 27/11)
         if (bouche(P)) {
+          // 1) tourner autour de ce qu'on filme (même distance, même hauteur) ; 2) monter ; 3) plongée en biais
+          // (jamais pile au-dessus : la caméra ne saurait plus où est le haut → image cassée, Iowa refaite du 27/11)
           let libre = null;
-          for (const monte of [10, 22, 40, 65]) { const Q = P.clone(); Q.y += monte; if (!bouche(Q)) { libre = Q; break; } }
-          if (!libre) { const Q = C.clone().add(new T.Vector3(0, Math.max(30, dist), 0)); libre = bouche(Q) ? null : Q; }
+          const tourner = a => { const v = P.clone().sub(C); const x = v.x * Math.cos(a) - v.z * Math.sin(a), z = v.x * Math.sin(a) + v.z * Math.cos(a);
+                                 return new T.Vector3(C.x + x, P.y, C.z + z); };
+          for (const a of [0.5, -0.5, 1.0, -1.0, 1.6, -1.6, 2.4, -2.4, Math.PI]) { const Q = tourner(a); if (!bouche(Q)) { libre = Q; break; } }
+          for (const monte of [12, 25, 45]) { if (libre) break; const Q = P.clone(); Q.y += monte; if (!bouche(Q)) libre = Q; }
+          if (!libre) { const Q = C.clone().add(new T.Vector3(dist * 0.35, Math.max(30, dist * 0.8), dist * 0.35)); libre = bouche(Q) ? null : Q; }
           if (libre) { p[0] = libre.x; p[1] = libre.y; p[2] = libre.z; }
           else { const h = bouche(P), d = Math.max(3, h.distance - 1.5); p[0] = c[0] + dir.x * d; p[1] = Math.max(c[1] + dir.y * d, c[1] + 2.5); p[2] = c[2] + dir.z * d; }
         }
