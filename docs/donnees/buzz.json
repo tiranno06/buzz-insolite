@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-27T08:15:09+01:00",
+ "maj": "2026-11-27T10:02:16+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:13:13+01:00"
+   "le": "2026-11-27T10:00:26+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:13:17+01:00"
+   "le": "2026-11-27T10:00:29+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:13:21+01:00"
+   "le": "2026-11-27T10:00:33+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:13:24+01:00"
+   "le": "2026-11-27T10:00:36+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:13:27+01:00"
+   "le": "2026-11-27T10:00:39+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-27T08:13:30+01:00"
+   "le": "2026-11-27T10:00:42+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:13:34+01:00"
+   "le": "2026-11-27T10:00:45+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:13:38+01:00"
+   "le": "2026-11-27T10:00:49+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:13:42+01:00"
+   "le": "2026-11-27T10:00:52+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:13:45+01:00"
+   "le": "2026-11-27T10:00:56+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:13:49+01:00"
+   "le": "2026-11-27T10:00:59+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:13:53+01:00"
+   "le": "2026-11-27T10:01:03+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:13:56+01:00"
+   "le": "2026-11-27T10:01:06+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-27T08:13:59+01:00"
+   "le": "2026-11-27T10:01:09+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:02+01:00"
+   "le": "2026-11-27T10:01:12+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:06+01:00"
+   "le": "2026-11-27T10:01:16+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:09+01:00"
+   "le": "2026-11-27T10:01:19+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:14+01:00"
+   "le": "2026-11-27T10:01:23+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:17+01:00"
+   "le": "2026-11-27T10:01:27+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:21+01:00"
+   "le": "2026-11-27T10:01:30+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:25+01:00"
+   "le": "2026-11-27T10:01:33+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:29+01:00"
+   "le": "2026-11-27T10:01:37+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:33+01:00"
+   "le": "2026-11-27T10:01:40+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:36+01:00"
+   "le": "2026-11-27T10:01:44+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:40+01:00"
+   "le": "2026-11-27T10:01:47+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:43+01:00"
+   "le": "2026-11-27T10:01:51+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:47+01:00"
+   "le": "2026-11-27T10:01:54+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T08:14:50+01:00"
+   "le": "2026-11-27T10:01:58+01:00"
   }
  },
  "lues": 809,
@@ -200,6 +200,66 @@
    "vu_le": "2026-11-25T09:59:33+01:00",
    "reserve_le": "2026-11-25T14:04:44+01:00",
    "video_id": "20261125-140715-1"
+  },
+  {
+   "titre": "Semi-remorque dérape sur échangeur en Ohio",
+   "resume": "Une semi-remorque a perdu le contrôle en tentant de tourner sur un échangeur autoroutier de l'Ohio, glissant entre deux bretelles. Aucun blessé n'a été signalé après que les autorités ont remis le camion sur la route.",
+   "mots_cles": [
+    "Ohio",
+    "semi-remorque",
+    "accident",
+    "échangeur",
+    "transport"
+   ],
+   "mots_cles_en": [
+    "Ohio",
+    "semi-truck",
+    "accident",
+    "ramp",
+    "transportation"
+   ],
+   "hashtags": [
+    "ohio",
+    "semirremorque",
+    "accident",
+    "autoroute",
+    "tiktok"
+   ],
+   "insolite": 4,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712677404224834829",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7712677404224834829",
+     "vues": 9200000,
+     "jaime": 536500,
+     "commentaires": 6338,
+     "partages": 57700,
+     "date": 1795747666,
+     "texte": "Video from the Ohio Department of Transportation shows the moment a semi-truck lost control while attempting to turn, skidding across the gap between two off-ramps. Authorities were able to pull the truck back onto the road and tow it away. No injuries were reported. #truck #ohio #accident #drive ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712677404224834829?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "6aac7e3e8a",
+   "score": 3867,
+   "derniere_vue": 1795770130.7928336,
+   "vues": 9200000,
+   "jaime": 536500,
+   "commentaires": 6338,
+   "hashtags_viraux": [
+    "truck",
+    "ohio",
+    "accident",
+    "drive"
+   ],
+   "medias": 6,
+   "tendance": null,
+   "statut": "sans_source",
+   "vu_le": "2026-11-27T10:02:16+01:00"
   },
   {
    "titre": "King tides menacent Cannon Beach, Oregon",
@@ -321,6 +381,80 @@
    "video_id": "20261124-203224-1"
   },
   {
+   "titre": "Christ le Rédempteur au-dessus des nuages à Rio",
+   "resume": "Un visiteur a filmé le Christ Rédempteur semblant flotter au-dessus d'un voile de nuages à Rio de Janeiro. La scène a été décrite comme un « cadeau de Dieu ».",
+   "mots_cles": [
+    "Rio",
+    "Christ Rédempteur",
+    "nuages",
+    "phénomène",
+    "vidéo"
+   ],
+   "mots_cles_en": [
+    "Rio",
+    "Christ the Redeemer",
+    "clouds",
+    "phenomenon",
+    "video"
+   ],
+   "hashtags": [
+    "riodejaneiro",
+    "christredeemer",
+    "nuages",
+    "miracle",
+    "tiktok"
+   ],
+   "insolite": 8,
+   "categorie": "nature",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712406425690983694",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712406425690983694",
+     "vues": 5500000,
+     "jaime": 1100000,
+     "commentaires": 7783,
+     "partages": 54100,
+     "date": 1795684610,
+     "texte": "A man in Rio de Janeiro captured a breathtaking sight of Christ the Redeemer appearing above a blanket of rolling clouds, describing the moment as a ‘gift from God’. Marcio Amaro was visiting his late godfather-in-law’s vacant property with his wife and cousin when his cousin spotted the extraordinary view from the house. Even his wife, who had lived there all her life, had never witnessed anythin",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712406425690983694?description=1&music_info=1"
+    },
+    {
+     "id": "7712413595132333326",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712413595132333326",
+     "vues": 1400000,
+     "jaime": 261100,
+     "commentaires": 2344,
+     "partages": 13300,
+     "date": 1795686311,
+     "texte": "This is absolutely breathtaking 🥹 Marcio Amaro captured the breathtaking sight of Christ the Redeemer appearing to float above a sea of clouds in Rio de Janeiro, describing it as a ‘gift from God’. He spotted the incredible view while visiting a family property with his wife and cousin, who were equally stunned by the rare sight. 📸 Marcio Amaro via Storyful #riodejaneiro #brazil #jesus #christther",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712413595132333326?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "c093dd05c8",
+   "score": 2005,
+   "derniere_vue": 1795770130.7928336,
+   "vues": 6900000,
+   "jaime": 1361100,
+   "commentaires": 10127,
+   "hashtags_viraux": [
+    "riodejaneiro",
+    "brazil",
+    "jesus",
+    "christther"
+   ],
+   "medias": 5,
+   "tendance": null,
+   "statut": "sans_source",
+   "vu_le": "2026-11-27T08:15:09+01:00"
+  },
+  {
    "titre": "Décret afghan impose surnoms aux femmes",
    "resume": "Un nouveau décret en Afghanistan oblige les femmes à porter des surnoms, supprimant leurs noms personnels.",
    "mots_cles": [
@@ -376,68 +510,6 @@
    "vu_le": "2026-11-26T01:00:57+01:00",
    "reserve_le": "2026-11-26T07:16:59+01:00",
    "video_id": "20261126-071929-1"
-  },
-  {
-   "titre": "Semi-remorque perd le contrôle sur autoroute Ohio",
-   "resume": "Un semi-remorque a dérapé entre deux bretelles d'une autoroute de l'Ohio, mais a été remis sur la route sans blessés. Les autorités ont remorqué le véhicule après l'incident.",
-   "mots_cles": [
-    "s",
-    "e",
-    "m",
-    "i",
-    "-",
-    "r"
-   ],
-   "mots_cles_en": [
-    "s",
-    "e",
-    "m",
-    "i",
-    "-",
-    "t"
-   ],
-   "hashtags": [
-    "semiremot",
-    "ohio",
-    "accident",
-    "autoroute"
-   ],
-   "insolite": 4,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712677404224834829",
-     "compte": "cbsnews",
-     "url": "https://www.tiktok.com/@cbsnews/video/7712677404224834829",
-     "vues": 7800000,
-     "jaime": 450200,
-     "commentaires": 5242,
-     "partages": 49500,
-     "date": 1795747666,
-     "texte": "Video from the Ohio Department of Transportation shows the moment a semi-truck lost control while attempting to turn, skidding across the gap between two off-ramps. Authorities were able to pull the truck back onto the road and tow it away. No injuries were reported. #truck #ohio #accident #drive ",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712677404224834829?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "d918b8ef24",
-   "score": 1035,
-   "derniere_vue": 1795763702.5509403,
-   "vues": 7800000,
-   "jaime": 450200,
-   "commentaires": 5242,
-   "hashtags_viraux": [
-    "truck",
-    "ohio",
-    "accident",
-    "drive"
-   ],
-   "medias": 0,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-27T08:15:09+01:00",
-   "reserve_le": "2026-11-27T09:01:27+01:00"
   },
   {
    "titre": "Brésil : golden retriever sauve enfant noyé",
@@ -1300,9 +1372,8 @@
    "hashtags_viraux": [],
    "medias": 15,
    "tendance": null,
-   "statut": "en_cours",
-   "vu_le": "2026-11-27T00:17:46+01:00",
-   "reserve_le": "2026-11-27T10:00:50+01:00"
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T00:17:46+01:00"
   },
   {
    "titre": "GTA 6 : vidéos virales et hommage à l’orque",
@@ -1377,9 +1448,8 @@
    ],
    "medias": 0,
    "tendance": null,
-   "statut": "en_cours",
-   "vu_le": "2026-11-26T11:25:26+01:00",
-   "reserve_le": "2026-11-27T10:00:50+01:00"
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T11:25:26+01:00"
   },
   {
    "titre": "GTA6 viral : caméraman Oscar",
@@ -1448,9 +1518,8 @@
    ],
    "medias": 0,
    "tendance": null,
-   "statut": "en_cours",
-   "vu_le": "2026-11-26T01:00:57+01:00",
-   "reserve_le": "2026-11-27T10:00:50+01:00"
+   "statut": "nouveau",
+   "vu_le": "2026-11-26T01:00:57+01:00"
   },
   {
    "titre": "GTA 6 : caméraman viral et hommage à l’orque",
@@ -1602,81 +1671,6 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T20:46:45+01:00",
    "video_id": "20261125-163217-1"
-  },
-  {
-   "titre": "Christ le Rédempteur au-dessus des nuages à Rio",
-   "resume": "Un homme a filmé le Christ Rédempteur semblant flotter au-dessus d'un voile de nuages à Rio de Janeiro. Le phénomène a été décrit comme un « cadeau de Dieu » par le témoin.",
-   "mots_cles": [
-    "C",
-    "h",
-    "r",
-    "i",
-    "s",
-    "t"
-   ],
-   "mots_cles_en": [
-    "C",
-    "h",
-    "r",
-    "i",
-    "s",
-    "t"
-   ],
-   "hashtags": [
-    "christredeemer",
-    "rio",
-    "nuages",
-    "miracle"
-   ],
-   "insolite": 8,
-   "categorie": "insolite",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712406425690983694",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712406425690983694",
-     "vues": 5300000,
-     "jaime": 1100000,
-     "commentaires": 7549,
-     "partages": 52400,
-     "date": 1795684610,
-     "texte": "A man in Rio de Janeiro captured a breathtaking sight of Christ the Redeemer appearing above a blanket of rolling clouds, describing the moment as a ‘gift from God’. Marcio Amaro was visiting his late godfather-in-law’s vacant property with his wife and cousin when his cousin spotted the extraordinary view from the house. Even his wife, who had lived there all her life, had never witnessed anythin",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712406425690983694?description=1&music_info=1"
-    },
-    {
-     "id": "7712413595132333326",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712413595132333326",
-     "vues": 1300000,
-     "jaime": 248800,
-     "commentaires": 2257,
-     "partages": 12700,
-     "date": 1795686311,
-     "texte": "This is absolutely breathtaking 🥹 Marcio Amaro captured the breathtaking sight of Christ the Redeemer appearing to float above a sea of clouds in Rio de Janeiro, describing it as a ‘gift from God’. He spotted the incredible view while visiting a family property with his wife and cousin, who were equally stunned by the rare sight. 📸 Marcio Amaro via Storyful #riodejaneiro #brazil #jesus #christther",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712413595132333326?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "c093dd05c8",
-   "score": 515,
-   "derniere_vue": 1795763702.5509403,
-   "vues": 6600000,
-   "jaime": 1348800,
-   "commentaires": 9806,
-   "hashtags_viraux": [
-    "riodejaneiro",
-    "brazil",
-    "jesus",
-    "christther"
-   ],
-   "medias": 0,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-27T08:15:09+01:00"
   },
   {
    "titre": "Famille réclame maintien du cannabis médical au Royaume-Uni",
