@@ -1634,3 +1634,20 @@ class TestPhonetiqueEtBruitages(unittest.TestCase):
         self.assertIn("Moustafa Madbouli", P.pour_voix("Mostafa Madbouly a parlé."))
         P.APPRIS.clear()
 
+    def test_equipe_de_controle(self):
+        """27/11 : réalisateur critique (corrections sûres avant le rendu) et rédacteur en chef (défaut grave = à vérifier)."""
+        from unittest import mock
+        from robot import equipe, ia, controle
+        script = {"phrases": [{"ecrit": p} for p in ["a", "b", "c", "d", "e"]]}
+        anim = {"scenes": [{"type": "3d", "phrases": [1, 2, 3], "objets": [{"id": "c", "type": "citerne"}, {"id": "p", "type": "personne"}],
+                            "actions": [{"objet": "c", "faire": "bruler", "phrase": 1}, {"objet": "c", "faire": "voler", "phrase": 2},
+                                        {"objet": "p", "faire": "avancer", "phrase": 3}]}]}
+        rep = ({"erreurs": [{"explication": "un camion ne vole pas", "correction": {"retirer": 1}},
+                            {"explication": "le président n'était pas là", "correction": {"retirer_objet": "p"}}]}, "essai")
+        with mock.patch.object(ia, "demander_json", return_value=rep):
+            n = equipe.critique_storyboard(script, anim, journal=lambda *_: None)
+        self.assertEqual(n, 2)
+        self.assertEqual([a["faire"] for a in anim["scenes"][0]["actions"]], ["bruler"])
+        self.assertEqual([o["id"] for o in anim["scenes"][0]["objets"]], ["c"])
+        self.assertNotIn("_n", anim["scenes"][0]["actions"][0])
+

@@ -780,6 +780,17 @@ voiture qui percute le vide (choc raconté À LA FIN, joué après l'incendie), 
   2e tour actions de la phrase retirées (sauf feu / explosion), puis nouveau rendu ; 2 corrections au plus, le reste au bulletin.
 - L'après d'un accident (`APRES`) : police pour l'enquête, engins qui déblaient, circulation qui reprend.
 
+## Équipe de contrôle par IA (27/11, l'auteur : « quadruple contrôle, toute une équipe d'agents IA »)
+`robot/equipe.py` (détail en tête) : 7 contrôles en chaîne, chacun par une IA différente de celle qui a fait le travail quand
+c'est possible. Nouveaux : **réalisateur critique** (`critique_storyboard`, après la réalisation, AVANT le rendu : un objet
+qui vole, une conséquence avant sa cause, une personne absente, un contresens → retrait / déplacement d'action, retrait
+d'objet, jamais d'ajout) et **rédacteur en chef** (`redacteur_en_chef`, étape « chef » après les règles : texte + 6 images,
+défaut grave → bulletin « grave » → « à vérifier », jamais publiée seule). Agent indisponible = noté « sauté », la
+fabrication continue. Noms étrangers de toutes les langues (`prononciation.preparer_etrangers`, avant la 1re prise : l'IA donne
+langue + prononciation française, eSpeak-NG 100+ langues en secours). Recherche du 27/11 : VideoScore2 / VBench / T2VQA
+(notes automatiques de vidéo) et Florence-2 (MIT, détection d'objets) demandent une carte graphique → non branchés ;
+UTMOS (note du naturel d'une voix) : licence du modèle à vérifier avant de le brancher.
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit

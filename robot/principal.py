@@ -391,6 +391,8 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 anim = gabarits.realiser(script, E["articles"], journal) \
                     if R["video"].get("realisation", "gabarit") == "gabarit" else None
                 script["animation"] = anim or realisateur.realiser(script, E["articles"], journal)
+                from . import equipe                          # agent « réalisateur critique » : relit la 3D avant le rendu
+                equipe.critique_storyboard(script, script["animation"], journal)
         ph = script["phrases"]
         for i, p in enumerate(ph):                            # chaque phrase est « illustrée » par l'animation
             p["media"] = None if i == len(ph) - 1 else {"type": "anime", "id": f"anime{p['uid']}", "credit": ""}
@@ -542,6 +544,13 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
         if not pbs:
             journal("  ✅ toutes les règles sont respectées")
     etape("regles", 94, regles_)
+
+    # ---------- 6 quater. agent « rédacteur en chef » (27/11) : dernier regard sur la vidéo finie, défaut grave = à vérifier
+    def chef():
+        from . import equipe
+        equipe.redacteur_en_chef(fichier, script, dossier, B, journal)
+    if anime and not simulation() and not secours:
+        etape("chef", 95, chef)
     bulletin = B.resume()
     journal(f"  bulletin : note {bulletin['note']}/100, {bulletin['corriges']} correction(s), "
             f"{bulletin['restants']} problème(s) restant(s), {len(bulletin['sautes'])} contrôle(s) non fait(s)")
@@ -732,7 +741,7 @@ ETAPES = {"articles": "Lecture des articles de presse", "ecriture": "Écriture d
           "texte": "Contrôle 1/4 : vérification des faits et du texte", "voix": "Voix et calage des mots (contrôle 2/4)",
           "images": "Recherche des vraies images", "controle_images": "Contrôle 3/4 : les images", "montage": "Montage",
           "controle_final": "Contrôle 4/4 : la vidéo finie", "extraits": "Contrôle : aucun extrait de l'événement perdu",
-          "regles": "Contrôle : toutes les règles de la vidéo",
+          "regles": "Contrôle : toutes les règles de la vidéo", "chef": "Contrôle : avis du rédacteur en chef (IA)",
           "rangement": "Rangement de la vidéo"}
 
 
