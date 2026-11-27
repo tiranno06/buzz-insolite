@@ -1,148 +1,148 @@
 {
- "maj": "2026-11-27T18:05:37+01:00",
+ "maj": "2026-11-27T20:06:45+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:03:22+01:00"
+   "le": "2026-11-27T20:04:30+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:03:26+01:00"
+   "le": "2026-11-27T20:04:34+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:03:30+01:00"
+   "le": "2026-11-27T20:04:39+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:03:35+01:00"
+   "le": "2026-11-27T20:04:42+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:03:39+01:00"
+   "le": "2026-11-27T20:04:46+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-27T18:03:43+01:00"
+   "le": "2026-11-27T20:04:49+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:03:47+01:00"
+   "le": "2026-11-27T20:04:53+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:03:52+01:00"
+   "le": "2026-11-27T20:04:57+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:03:58+01:00"
+   "le": "2026-11-27T20:05:01+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:04:02+01:00"
+   "le": "2026-11-27T20:05:06+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:04:08+01:00"
+   "le": "2026-11-27T20:05:10+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:04:12+01:00"
+   "le": "2026-11-27T20:05:14+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:04:16+01:00"
+   "le": "2026-11-27T20:05:19+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-27T18:04:19+01:00"
+   "le": "2026-11-27T20:05:22+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:04:24+01:00"
+   "le": "2026-11-27T20:05:26+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:04:29+01:00"
+   "le": "2026-11-27T20:05:29+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:04:33+01:00"
+   "le": "2026-11-27T20:05:34+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:04:37+01:00"
+   "le": "2026-11-27T20:05:37+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:04:41+01:00"
+   "le": "2026-11-27T20:05:41+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:04:45+01:00"
+   "le": "2026-11-27T20:05:45+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:04:49+01:00"
+   "le": "2026-11-27T20:05:49+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:04:54+01:00"
+   "le": "2026-11-27T20:05:54+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:04:58+01:00"
+   "le": "2026-11-27T20:05:57+01:00"
   },
   "abcnews": {
    "ok": true,
-   "videos": 30,
-   "le": "2026-11-27T18:05:02+01:00"
+   "videos": 15,
+   "le": "2026-11-27T20:06:02+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:05:06+01:00"
+   "le": "2026-11-27T20:06:06+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:05:09+01:00"
+   "le": "2026-11-27T20:06:10+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:05:13+01:00"
+   "le": "2026-11-27T20:06:14+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T18:05:17+01:00"
+   "le": "2026-11-27T20:06:17+01:00"
   }
  },
- "lues": 809,
+ "lues": 794,
  "retenues": 2,
  "sujets": [
   {
@@ -220,6 +220,88 @@
    },
    "statut": "sans_source",
    "vu_le": "2026-11-27T18:05:37+01:00"
+  },
+  {
+   "titre": "Christ le Rédempteur flottant au-dessus des nuages",
+   "resume": "Des images aériennes et au sol montrent la statue de Christ le Rédempteur à Rio de Janeiro semblant flotter au-dessus d'une mer de nuages. Ce phénomène atmosphérique a créé une scène surréaliste captée par des drones et des téléphones portables.",
+   "mots_cles": [
+    "Rio de Janeiro",
+    "Christ le Rédempteur",
+    "nuages",
+    "brésil",
+    "statue"
+   ],
+   "mots_cles_en": [
+    "Rio de Janeiro",
+    "Christ the Redeemer",
+    "clouds",
+    "Brazil",
+    "statue"
+   ],
+   "hashtags": [
+    "rio",
+    "christtheredeemer",
+    "brésil",
+    "nuages",
+    "insolite"
+   ],
+   "insolite": 8,
+   "categorie": "nature",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712775661743557902",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712775661743557902",
+     "vues": 5000000,
+     "jaime": 1200000,
+     "commentaires": 7243,
+     "partages": 71900,
+     "date": 1795770583,
+     "texte": "Helicopter footage captures a breathtaking view of Christ the Redeemer seemingly floating above a sea of clouds in Rio de Janeiro, Brazil, as the aircraft flies high above the city. The iconic statue, which stands atop Mount Corcovado, overlooks Rio and is a symbol of Christianity. The person who shared the footage described the experience as witnessing ‘something divine’. 🎥 Instagtam / cheezewino",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712775661743557902?description=1&music_info=1"
+    },
+    {
+     "id": "7712836377909447967",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712836377909447967",
+     "vues": 946800,
+     "jaime": 176600,
+     "commentaires": 2676,
+     "partages": 14800,
+     "date": 1795784700,
+     "texte": "Christ the Redeemer appears to float in the heavens as a thick blanket of clouds swallows Rio de Janeiro below. Breathtaking footage captured on an iPhone shows mist cascading down the Brazilian mountains like a waterfall, creating an almost surreal scene around one of the Seven Wonders of the Modern World.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712836377909447967?description=1&music_info=1"
+    },
+    {
+     "id": "7712210525609889054",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712210525609889054",
+     "vues": 5600000,
+     "jaime": 1300000,
+     "commentaires": 10100,
+     "partages": 127600,
+     "date": 1795647600,
+     "texte": "WATCH: Brazil’s Christ the Redeemer appears to float above the clouds as a massive wave of mist cascades down Corcovado mountain in Rio de Janeiro. Photographer Marcio Amaro filmed the euphoric moment on his iPhone, capturing what looks like a waterfall of clouds pouring around the landmark. The rare visual comes from a weather phenomenon called orographic lift, where moist ocean air pushes over t",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712210525609889054?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "b4ff309cfe",
+   "score": 4749,
+   "derniere_vue": 1795806393.1412482,
+   "vues": 11546800,
+   "jaime": 2676600,
+   "commentaires": 20019,
+   "hashtags_viraux": [],
+   "medias": 13,
+   "tendance": null,
+   "statut": "sans_source",
+   "vu_le": "2026-11-27T20:06:45+01:00"
   },
   {
    "titre": "Maresées exceptionnelles menacent l'Oregon et la Californie",
@@ -1160,62 +1242,6 @@
    "video_id": "20261125-163119-1"
   },
   {
-   "titre": "Christ Rédempteur flottant dans le brouillard",
-   "resume": "Une vague de brouillard a enveloppé le Christ Rédempteur à Rio, donnant l'impression qu'il flotte. La scène a été filmée avec un iPhone.",
-   "mots_cles": [
-    "C",
-    "h",
-    "r",
-    "i",
-    "s",
-    "t"
-   ],
-   "mots_cles_en": [
-    "C",
-    "h",
-    "r",
-    "i",
-    "s",
-    "t"
-   ],
-   "hashtags": [
-    "christredeemer",
-    "brouillard",
-    "rio"
-   ],
-   "insolite": 7,
-   "categorie": "nature",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712210525609889054",
-     "compte": "foxnews",
-     "url": "https://www.tiktok.com/@foxnews/video/7712210525609889054",
-     "vues": 5600000,
-     "jaime": 1300000,
-     "commentaires": 10100,
-     "partages": 127600,
-     "date": 1795647600,
-     "texte": "WATCH: Brazil’s Christ the Redeemer appears to float above the clouds as a massive wave of mist cascades down Corcovado mountain in Rio de Janeiro. Photographer Marcio Amaro filmed the euphoric moment on his iPhone, capturing what looks like a waterfall of clouds pouring around the landmark. The rare visual comes from a weather phenomenon called orographic lift, where moist ocean air pushes over t",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712210525609889054?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "9f8d8d3c5e",
-   "score": 638,
-   "derniere_vue": 1795695977.3247025,
-   "vues": 5600000,
-   "jaime": 1300000,
-   "commentaires": 10100,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-26T13:26:29+01:00",
-   "reserve_le": "2026-11-27T09:01:27+01:00"
-  },
-  {
    "titre": "Octogénaire place autocollant anti-gouvernemental sur bouclier",
    "resume": "Une femme de 80 ans, surnommée « Mère de la Révolution », a collé un autocollant anti-gouvernemental sur le bouclier d'un policier à Tirana. Elle participe aux manifestations étudiantes contre le gouvernement albanais.",
    "mots_cles": [
@@ -1317,55 +1343,6 @@
    "statut": "utilise",
    "vu_le": "2026-11-27T00:17:46+01:00",
    "video_id": "20261127-100236-1"
-  },
-  {
-   "titre": "Christ le Rédempteur vu au-dessus des nuages",
-   "resume": "Une vidéo prise depuis un hélicoptère montre la statue du Christ le Rédempteur semblant flotter au-dessus d'un océan de nuages à Rio de Janeiro. Le cliché met en avant la majesté du monument et la beauté du paysage urbain.",
-   "mots_cles": [
-    "Christ le Rédempteur",
-    "Rio",
-    "hélicoptère"
-   ],
-   "mots_cles_en": [
-    "Christ the Redeemer",
-    "Rio",
-    "helicopter"
-   ],
-   "hashtags": [
-    "christredeemer",
-    "rio",
-    "nuages"
-   ],
-   "insolite": 6,
-   "categorie": "culture",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712775661743557902",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712775661743557902",
-     "vues": 3700000,
-     "jaime": 893200,
-     "commentaires": 5417,
-     "partages": 53800,
-     "date": 1795770583,
-     "texte": "Helicopter footage captures a breathtaking view of Christ the Redeemer seemingly floating above a sea of clouds in Rio de Janeiro, Brazil, as the aircraft flies high above the city. The iconic statue, which stands atop Mount Corcovado, overlooks Rio and is a symbol of Christianity. The person who shared the footage described the experience as witnessing ‘something divine’. 🎥 Instagtam / cheezewino",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712775661743557902?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "c093dd05c8",
-   "score": 602,
-   "derniere_vue": 1795799130.8794088,
-   "vues": 3700000,
-   "jaime": 893200,
-   "commentaires": 5417,
-   "hashtags_viraux": [],
-   "medias": 1,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-27T08:15:09+01:00"
   },
   {
    "titre": "GTA 6 : vidéos virales et hommage à l’orque",
@@ -4152,6 +4129,62 @@
    "vu_le": "2026-11-26T17:23:54+01:00"
   },
   {
+   "titre": "Chauffage au fioul remplacé par coquilles de noix",
+   "resume": "Une famille a remplacé son chauffage au fioul par des coquilles de noix pour faire des économies. Cette solution alternative et insolite a attiré l'attention des médias et du public.",
+   "mots_cles": [
+    "chauffage",
+    "coquilles de noix",
+    "économie",
+    "énergie",
+    "alternative"
+   ],
+   "mots_cles_en": [
+    "heating",
+    "walnut shells",
+    "savings",
+    "energy",
+    "alternative"
+   ],
+   "hashtags": [
+    "chauffage",
+    "économie",
+    "insolite",
+    "énergie",
+    "astuce"
+   ],
+   "insolite": 9,
+   "categorie": "insolite",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712482578602675459",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7712482578602675459",
+     "vues": 1300000,
+     "jaime": 91700,
+     "commentaires": 503,
+     "partages": 8848,
+     "date": 1795702289,
+     "texte": "💡 Pour faire des économies sur le chauffage, ils ont remplacé le fioul par... des coquilles de noix ! Regardez ⤴️",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712482578602675459?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "2c324bd142",
+   "score": 114,
+   "derniere_vue": 1795806393.1412482,
+   "vues": 1300000,
+   "jaime": 91700,
+   "commentaires": 503,
+   "hashtags_viraux": [],
+   "medias": 3,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T20:06:45+01:00"
+  },
+  {
    "titre": "Impersonnateur Trump moque Carney au Canada",
    "resume": "Un imitateur de Donald Trump a parodié le Premier ministre canadien Mark Carney lors d’un dîner de presse. La vidéo, devenue virale, a suscité des réactions mitigées.",
    "mots_cles": [
@@ -4728,6 +4761,62 @@
    "vu_le": "2026-11-26T03:01:44+01:00"
   },
   {
+   "titre": "Obamas aident à l'emballage de denrées",
+   "resume": "Barack et Michelle Obama ont surpris les travailleurs d'une banque alimentaire à Chicago en participant à l'emballage de produits frais. Cette action visait à distribuer des denrées à des familles locales avant la Thanksgiving.",
+   "mots_cles": [
+    "Barack Obama",
+    "Michelle Obama",
+    "banque alimentaire",
+    "Chicago",
+    "solidarité"
+   ],
+   "mots_cles_en": [
+    "Barack Obama",
+    "Michelle Obama",
+    "food bank",
+    "Chicago",
+    "charity"
+   ],
+   "hashtags": [
+    "obama",
+    "solidarité",
+    "chicago",
+    "people",
+    "action"
+   ],
+   "insolite": 3,
+   "categorie": "people",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712515668389661965",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7712515668389661965",
+     "vues": 957000,
+     "jaime": 120500,
+     "commentaires": 4723,
+     "partages": 5943,
+     "date": 1795710008,
+     "texte": "Former President Barack Obama and former first lady Michelle Obama surprised workers at Dion’s Chicago Dream, a food bank on Chicago’s South Side, on Wednesday, helping pack fresh produce to be distributed to thousands of local families ahead of Thanksgiving.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712515668389661965?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "e8f2f69898",
+   "score": 93,
+   "derniere_vue": 1795806393.1412482,
+   "vues": 957000,
+   "jaime": 120500,
+   "commentaires": 4723,
+   "hashtags_viraux": [],
+   "medias": 6,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T20:06:45+01:00"
+  },
+  {
    "titre": "Patagonie : randonneur accroché à un pont venté",
    "resume": "Un randonneur allemand a dû s’agripper aux câbles d’une passerelle suspendue en Patagonie, au Chili, à cause de violentes rafales de vent. Il portait un sac de 18 kg et a réussi à se sécuriser.",
    "mots_cles": [
@@ -4967,18 +5056,88 @@
      "texte": "À Toulouse, la scène fait le tour des réseaux sociaux depuis vendredi. Sur des images publiées par @le.media.toulousain, on voit un policier se jeter sur une cycliste en pleine rue, lui prendre son vélo puis pédaler tant bien que mal, la propriétaire courant derrière lui. Selon La Dépêche du Midi et ici Occitanie, l'agent poursuivait un lycéen soupçonné d'avoir lancé un projectile en marge d'une m",
      "indisponible": false,
      "lecteur": "https://www.tiktok.com/player/v1/7710976210918001952?description=1&music_info=1"
+    },
+    {
+     "id": "7712514053561650434",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7712514053561650434",
+     "vues": 937800,
+     "jaime": 49800,
+     "commentaires": 1121,
+     "partages": 3843,
+     "date": 1795712400,
+     "texte": "🔴 Une vidéo virale, tournée mi-novembre en marge d'une manifestation à Toulouse, montre un policier réquisitionnant le vélo d'une passante pour poursuivre un jeune homme. ➡️ En avait-il le droit ? Une équipe de TF1 se penche sur ce que dit la loi.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712514053561650434?description=1&music_info=1"
     }
    ],
    "id": "8446b43f08",
    "score": 79,
    "derniere_vue": 1795535043.6691308,
-   "vues": 647800,
-   "jaime": 48500,
-   "commentaires": 1270,
+   "vues": 1585600,
+   "jaime": 98300,
+   "commentaires": 2391,
    "hashtags_viraux": [],
    "statut": "utilise",
    "vu_le": "2026-11-24T16:44:03+01:00",
    "video_id": "20261125-224006-1"
+  },
+  {
+   "titre": "Incendie de camion-citerne en Égypte fait 31 morts",
+   "resume": "Un camion-citerne transportant des produits pétroliers s'est renversé dans le gouvernorat de Gizeh, en Égypte. L'incendie qui a suivi a causé au moins 31 morts et 21 blessés.",
+   "mots_cles": [
+    "Égypte",
+    "incendie",
+    "camion-citerne",
+    "Gizeh",
+    "accident"
+   ],
+   "mots_cles_en": [
+    "Egypt",
+    "fire",
+    "tanker truck",
+    "Giza",
+    "accident"
+   ],
+   "hashtags": [
+    "égypte",
+    "incendie",
+    "accident",
+    "gizeh",
+    "drame"
+   ],
+   "insolite": 0,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712401423127858471",
+     "compte": "leparisien",
+     "url": "https://www.tiktok.com/@leparisien/video/7712401423127858471",
+     "vues": 1100000,
+     "jaime": 114900,
+     "commentaires": 701,
+     "partages": 9003,
+     "date": 1795683391,
+     "texte": "Un camion-citerne transportant des produits pétroliers s'est renversé mercredi dans le gouvernorat de Gizeh, en Égypte, provoquant un violent incendie qui a fait au moins 31 morts et 21 blessés, selon les autorités égyptiennes. Le ministère égyptien du Pétrole avait indiqué plus tôt que le camion-citerne, exploité par une entreprise privée, avait fait une sortie de route et s’était écrasé avant d’",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712401423127858471?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "453c96284f",
+   "score": 71,
+   "derniere_vue": 1795806393.1412482,
+   "vues": 1100000,
+   "jaime": 114900,
+   "commentaires": 701,
+   "hashtags_viraux": [],
+   "medias": 21,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T20:06:45+01:00"
   },
   {
    "titre": "Vol de colis filmé par caméra de surveillance",
@@ -5343,6 +5502,62 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-27T02:13:07+01:00"
+  },
+  {
+   "titre": "Bunker de cannabis découvert sous balançoire",
+   "resume": "La Garde civile espagnole a découvert un bunker de 180 m² rempli de plants de cannabis près de Grenade. La cachette était dissimulée sous une balançoire et une cabane d'enfants, et cinq personnes ont été arrêtées.",
+   "mots_cles": [
+    "Espagne",
+    "cannabis",
+    "bunker",
+    "Grenade",
+    "police"
+   ],
+   "mots_cles_en": [
+    "Spain",
+    "cannabis",
+    "bunker",
+    "Granada",
+    "police"
+   ],
+   "hashtags": [
+    "espagne",
+    "cannabis",
+    "police",
+    "insolite",
+    "grenade"
+   ],
+   "insolite": 8,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712124144191540502",
+     "compte": "ouestfrance",
+     "url": "https://www.tiktok.com/@ouestfrance/video/7712124144191540502",
+     "vues": 1100000,
+     "jaime": 30600,
+     "commentaires": 176,
+     "partages": 8360,
+     "date": 1795618813,
+     "texte": "😱 La balançoire et la cabane cachaient une trappe. Près de Grenade, en Andalousie, la Garde civile espagnole a découvert mardi 17 novembre 2026 un bunker de 180 m² rempli de plants de cannabis, caché sous une balançoire et une cabane d'enfants. Cinq personnes ont été arrêtées.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712124144191540502?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "d53b779d61",
+   "score": 52,
+   "derniere_vue": 1795806393.1412482,
+   "vues": 1100000,
+   "jaime": 30600,
+   "commentaires": 176,
+   "hashtags_viraux": [],
+   "medias": 15,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T20:06:45+01:00"
   },
   {
    "titre": "Gardien de stade étouffe entraîneur brésilien",
@@ -6331,60 +6546,60 @@
    "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
-   "titre": "Bunker de cannabis découvert sous balançoire en Andalousie",
-   "resume": "La garde civile espagnole a mis au jour un bunker de 180 m² rempli de plants de cannabis caché sous une balançoire près de Grenade. Cinq personnes ont été arrêtées.",
+   "titre": "Livreur DHL jette PlayStation 5 par-dessus mur",
+   "resume": "Un livreur DHL a été filmé jetant un colis contenant une PlayStation 5 par-dessus un mur résidentiel au Mexique. Après un premier échec, il a récupéré le colis pour effectuer un second lancer.",
    "mots_cles": [
-    "c",
-    "a",
-    "n",
-    "n",
-    "a",
-    "b"
+    "DHL",
+    "livraison",
+    "PlayStation 5",
+    "Mexique",
+    "colis"
    ],
    "mots_cles_en": [
-    "c",
-    "a",
-    "n",
-    "n",
-    "a",
-    "b"
+    "DHL",
+    "delivery",
+    "PlayStation 5",
+    "Mexico",
+    "package"
    ],
    "hashtags": [
-    "cannabis",
-    "bunker",
-    "andalusia"
+    "dhl",
+    "livraison",
+    "playstation5",
+    "mexique",
+    "insolite"
    ],
    "insolite": 7,
-   "categorie": "societe",
+   "categorie": "insolite",
    "ville_france": "",
    "videos": [
     {
-     "id": "7712124144191540502",
-     "compte": "ouestfrance",
-     "url": "https://www.tiktok.com/@ouestfrance/video/7712124144191540502",
-     "vues": 964000,
-     "jaime": 26800,
-     "commentaires": 160,
-     "partages": 7236,
-     "date": 1795618813,
-     "texte": "😱 La balançoire et la cabane cachaient une trappe. Près de Grenade, en Andalousie, la Garde civile espagnole a découvert mardi 17 novembre 2026 un bunker de 180 m² rempli de plants de cannabis, caché sous une balançoire et une cabane d'enfants. Cinq personnes ont été arrêtées.",
+     "id": "7712517168361049358",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712517168361049358",
+     "vues": 1100000,
+     "jaime": 74400,
+     "commentaires": 1722,
+     "partages": 7147,
+     "date": 1795710363,
+     "texte": "A DHL delivery driver has been filmed throwing a package containing a PlayStation 5 over a residential wall in Mexico. CCTV footage from November 16 shows the worker attempting to toss the box into the property’s courtyard, before retrieving it and making a second throw after his first attempt failed. The customer said the parcel was marked as fragile and arrived with visible damage to its packagi",
      "sous_seuils": true,
      "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712124144191540502?description=1&music_info=1"
+     "lecteur": "https://www.tiktok.com/player/v1/7712517168361049358?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
-   "id": "67476a2949",
-   "score": 17,
-   "derniere_vue": 1795717485.4852874,
-   "vues": 964000,
-   "jaime": 26800,
-   "commentaires": 160,
+   "id": "ac1d55dd2e",
+   "score": 24,
+   "derniere_vue": 1795806393.1412482,
+   "vues": 1100000,
+   "jaime": 74400,
+   "commentaires": 1722,
    "hashtags_viraux": [],
-   "medias": 0,
+   "medias": 1,
    "tendance": null,
    "statut": "nouveau",
-   "vu_le": "2026-11-26T19:24:57+01:00"
+   "vu_le": "2026-11-27T20:06:45+01:00"
   },
   {
    "titre": "R N B O I chante Hymne à l'amour à l'Olympia",
