@@ -697,6 +697,15 @@ Workflows : dépôt apt de Microsoft retiré avant `playwright install --with-de
   une autre ville) ; « soir » n'est plus la carte de nuit (presque noire au zoom 8) ; dans le décor usine, bâtiment = entrepôt ;
   muret / mur / arbre / taxi du scénario gardés ; vue maquette seulement si le scénario n'a pas choisi ses angles.
 
+## Destruction réaliste (27/11, l'auteur : « le camion est toujours intact » après l'explosion)
+`scenes3d.desintegrer` : à l'instant de l'explosion, les vraies pièces de l'objet sont détachées (`scene.attach`) ; les grosses
+pièces (> 3 m³, bâtiment > 30 m³) sont cassées en éclats de la même matière ; vitesse vers l'extérieur + vers le haut, rotation,
+vol balistique jusqu'au sol (`tSol`), petite glissade, puis immobiles ; le châssis reste (épave noircie qui brûle) ; un bâtiment
+perd surtout son haut. Tout dépend de t seulement (état de l'objet recalculé à l'instant de l'explosion) : rendu en morceaux
+parallèles identique. Souffle (`etat`, `rayon_souffle` 18 m) : ce qui est proche est repoussé, penche, tremble et prend feu
+(petit feu préparé pour chaque véhicule s'il y a une explosion). Choc : l'avant du véhicule qui percute et l'arrière du
+percuté s'écrasent (`ecrase`, échelle en longueur).
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit

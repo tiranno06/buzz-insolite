@@ -389,7 +389,8 @@ function etat(o, actions, t, objets, profondeur = 0) {
       e.x = mix(ax, vx, k); e.z = mix(az, vz, k); e.y = mix(ay, vy, a.faire === "tomber" ? p * p : k);
       e.distance += Math.hypot(vx - ax, vz - az) * k;
       if (a.faire === "tomber") e.tangage = mix(0, (a.angle ?? -35) * Math.PI / 180, ease.sortie(p));
-      if (a.faire === "heurter") e.secousse = Math.max(e.secousse, p >= 1 ? Math.max(0, 1 - (t - a.a - d) * 2.5) : 0);
+      if (a.faire === "heurter") { e.secousse = Math.max(e.secousse, p >= 1 ? Math.max(0, 1 - (t - a.a - d) * 2.5) : 0);
+        if (p >= 1) e.ecrase = Math.max(e.ecrase || 0, borne((t - a.a - d) / 0.15)); }
     }
     if (a.faire === "tourner") e.cap += (a.angle || 90) * Math.PI / 180 * k;
     if (a.faire === "deraper") e.cap += (a.angle ?? 160) * Math.PI / 180 * ease.douce(p);          // tête-à-queue
@@ -403,6 +404,21 @@ function etat(o, actions, t, objets, profondeur = 0) {
     if (a.faire === "disparaitre") e.visible = t < a.a;
     if (a.faire === "apparaitre") e.visible = true;
   }
+  // SOUFFLE d'une explosion voisine : ce qui est proche est repoussé, penche et prend feu (plus fort si plus près)
+  if (profondeur < 1 && !["batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "muret", "mur"].includes(o.type))
+    for (const a of actions) {
+      if (a.faire !== "exploser" || a.objet === o.id || t < a.a) continue;
+      const src = objets.find(x => x.id === a.objet); if (!src) continue;
+      const c = etat(src, actions, a.a, objets, 2), dx = e.x - c.x, dz = e.z - c.z, dist = Math.hypot(dx, dz), R = a.rayon_souffle ?? 18;
+      if (dist >= R || dist < 0.01) continue;
+      const f = 1 - dist / R, k = ease.sortie(borne((t - a.a) / 0.45));
+      e.x += dx / dist * 6 * f * k; e.z += dz / dist * 3 * f * k; e.roulis += 0.35 * f * k * Math.sign(dz || 1);
+      e.secousse = Math.max(e.secousse, Math.max(0, 1 - (t - a.a) * 2) * f);
+      if (f > 0.35 && (e.brule < 0 || e.brule > a.a + 0.4)) e.brule = a.a + 0.4;
+    }
+  // percuté : son arrière s'écrase aussi
+  for (const a of actions) if (a.faire === "heurter" && a.cible === o.id && t >= a.a + (a.d || 1))
+    e.ecrase = Math.max(e.ecrase || 0, borne((t - a.a - (a.d || 1)) / 0.15) * 0.6);
   return e;
 }
 
@@ -418,6 +434,65 @@ function feu(T) {
   return { flamme: new T.SpriteMaterial({ map: flamme, blending: T.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0.85 }),
            fumee: new T.SpriteMaterial({ map: fum, depthWrite: false, transparent: true, opacity: 0.6 }),
            lueur: new T.MeshBasicMaterial({ map: lueur, blending: T.AdditiveBlending, depthWrite: false, transparent: true }) };
+}
+
+// ------------------------------------------------------------------ DÉSINTÉGRATION (demande de l'auteur du 27/11 : « le camion
+// est toujours intact » après l'explosion). À l'instant de l'explosion, les vraies pièces de l'objet (cabine, citerne, roues,
+// châssis…) sont détachées ; les grosses pièces sont cassées en éclats de la même matière ; tout est projeté vers l'extérieur,
+// tourne, retombe et reste au sol. Tout dépend seulement de t (même image à chaque rendu, morceaux rendus en parallèle).
+function desintegrer(T, scene, g, o, etatExplosion, t, te, batiment) {
+  const d = g.userData;
+  if (!d.morceaux) {
+    // l'objet tel qu'il était à l'instant de l'explosion
+    g.position.set(etatExplosion.x, etatExplosion.y, etatExplosion.z); g.rotation.set(etatExplosion.roulis, etatExplosion.cap, etatExplosion.tangage);
+    g.updateMatrixWorld(true);
+    const centre = new T.Vector3(); new T.Box3().setFromObject(g).getCenter(centre);
+    const r = hasard((o.id || "x").length * 53 + 7), pieces = [];
+    const maillages = []; g.traverse(m => { if (m.isMesh) maillages.push(m); });
+    for (const m of maillages) {
+      const bb = new T.Box3().setFromObject(m), taille = new T.Vector3(); bb.getSize(taille);
+      const volume = taille.x * taille.y * taille.z;
+      const haut = batiment ? bb.min.y > (new T.Box3().setFromObject(g).max.y) * 0.35 : true;
+      if (!batiment && taille.y < 0.7 && taille.x > 3) continue;   // le châssis reste : l'épave noircie au sol
+      if (volume > (batiment ? 30 : 3)) {      // grosse pièce : cassée en éclats (même couleur, même matière)
+        const nx = Math.min(5, Math.max(2, Math.round(taille.x / (batiment ? 5 : 2.2)))), ny = batiment ? 3 : 2, nz = Math.min(4, Math.max(1, Math.round(taille.z / (batiment ? 5 : 1.6))));
+        for (let i = 0; i < nx; i++) for (let j = 0; j < ny; j++) for (let k = 0; k < nz; k++) {
+          const sx = taille.x / nx, sy = taille.y / ny, sz = taille.z / nz;
+          const geo = new T.BoxGeometry(sx * (0.7 + r() * 0.5), sy * (0.6 + r() * 0.5), sz * (0.7 + r() * 0.5));
+          const e = new T.Mesh(geo, Array.isArray(m.material) ? m.material[0] : m.material);
+          e.position.set(bb.min.x + sx * (i + 0.5), bb.min.y + sy * (j + 0.5), bb.min.z + sz * (k + 0.5));
+          e.rotation.set(r() * 0.4, r() * 0.4, r() * 0.4); scene.add(e);
+          const vole = batiment ? (j >= ny - 1 || r() < 0.25) : (j > 0 ? r() < 0.75 : r() < 0.3);   // le bas reste sur l'épave
+          pieces.push({ m: e, p0: e.position.clone(), q0: e.rotation.clone(), vole });
+        }
+        m.visible = false;
+      } else if (!batiment || haut) {          // petite pièce (roue, vitre, phare) : détachée telle quelle
+        const p = new T.Vector3(), q = new T.Quaternion(), sc_ = new T.Vector3(); m.matrixWorld.decompose(p, q, sc_);
+        scene.attach(m); pieces.push({ m, p0: m.position.clone(), q0: m.rotation.clone(), vole: r() < 0.45 });
+      }
+    }
+    for (const pc of pieces) {                 // vitesse : vers l'extérieur depuis le centre, vers le haut, au hasard
+      const dir = pc.p0.clone().sub(centre); dir.y = Math.max(0.3, dir.y); dir.normalize();
+      const force = pc.vole ? (batiment ? 6 + r() * 12 : 4 + r() * 8) : 0.5 + r() * 1.5;   // quelques pièces loin, la plupart près
+      pc.v = dir.multiplyScalar(force); pc.v.y += pc.vole ? 3 + r() * 7 : 0.8;
+      pc.spin = [(r() - 0.5) * 9, (r() - 0.5) * 9, (r() - 0.5) * 9].map(x => x * (pc.vole ? 1 : 0.15));
+      const bb = new T.Box3().setFromObject(pc.m); pc.demi = Math.max(0.1, (bb.max.y - bb.min.y) / 2);
+    }
+    d.morceaux = pieces;
+  }
+  const u = Math.max(0, t - te);
+  for (const pc of d.morceaux) {
+    // vol balistique jusqu'au sol, puis glisse un peu et s'arrête (reste au sol, couché)
+    const tSol = (pc.v.y + Math.sqrt(pc.v.y * pc.v.y + 2 * 9.8 * Math.max(0, pc.p0.y - pc.demi))) / 9.8, tv = Math.min(u, tSol);
+    const glisse = Math.max(0, Math.min(u - tSol, 0.6)) * (1 - Math.min(u - tSol, 0.6) / 1.2);
+    pc.m.position.set(pc.p0.x + pc.v.x * (tv + glisse * 0.5), Math.max(pc.demi, pc.p0.y + pc.v.y * tv - 4.9 * tv * tv), pc.p0.z + pc.v.z * (tv + glisse * 0.5));
+    const k = tv + glisse * 0.3;
+    pc.m.rotation.set(pc.q0.x + pc.spin[0] * k, pc.q0.y + pc.spin[1] * k, pc.q0.z + pc.spin[2] * k);
+    pc.m.visible = true;
+    // noircit avec le feu
+    if (pc.m.material?.color) { if (!pc.m.userData.brulee) { pc.m.material = pc.m.material.clone(); pc.m.userData.brulee = 1; }
+      pc.m.material.color.lerp(new T.Color(0x1d1a18), borne(u / 5) * 0.06); }
+  }
 }
 
 // ------------------------------------------------------------------ la scène
@@ -477,6 +552,15 @@ export async function creer3d(sc, couche, T) {
     liste.push({ lueur: sol_ });
     particules[a.objet] = (particules[a.objet] || []).concat(liste);
   }
+  // véhicules qui peuvent être atteints par le souffle d'une explosion : un petit feu prêt (il ne s'allume que s'ils sont touchés)
+  if (actions.some(a => a.faire === "exploser"))
+    for (const o of objets) {
+      if (particules[o.id] || ["batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "muret", "mur", "foule", "personne", "arbre"].includes(o.type)) continue;
+      const r = hasard(o.id.length * 71 + 3), liste = [];
+      for (let i = 0; i < 24; i++) { const s_ = new T.Sprite(i % 3 ? MATS.flamme : MATS.fumee.clone()); scene.add(s_);
+        liste.push({ s: s_, ph: r(), dx: (r() - 0.5), dz: (r() - 0.5), v: 0.6 + r() * 0.8, fumee: !(i % 3), taille: 0.7 }); }
+      particules[o.id] = liste;
+    }
   // CHOCS (heurter) : éclair, débris qui volent et retombent, caméra qui tremble (vidéo du Caire du 27/11 : « on ne voit pas l'accident »)
   const chocs = actions.filter(a => a.faire === "heurter").map((a, n) => {
     const r = hasard(97 + n * 13), debris = [];
@@ -550,6 +634,12 @@ export async function creer3d(sc, couche, T) {
       if (g.userData.pale) g.userData.pale.rotation.y = t * 25;
       if (g.userData.anime) g.userData.anime(t);
       if (g.userData.eau) { const n = borne(prog(t, o.remplir_a ?? 0.4, o.remplir_duree ?? 2.2)) * (o.niveau ?? 1); const c = g.userData.cote; g.userData.eau.scale.y = Math.max(0.001, n); g.userData.eau.position.y = c * n / 2; }
+      // explosion d'un véhicule ou d'un bâtiment : il se désintègre (pièces + éclats projetés), l'épave brûle
+      if (e.explose >= 0 && t >= e.explose && o.desintegrer !== false && !["foule", "personne"].includes(o.type))
+        desintegrer(T, scene, g, o, g.userData.morceaux ? null : etat(o, actions, e.explose, objets), t, e.explose,
+                    ["batiment", "entrepot", "immeuble", "maison", "batiment_officiel"].includes(o.type));
+      // choc : l'avant de celui qui percute et l'arrière de celui qui est percuté s'écrasent un peu
+      if (e.ecrase > 0) g.scale.x = 1 - 0.12 * e.ecrase;
       if (e.brule >= 0) g.traverse(m => { if (m.material?.color && !m.userData.brulee) { m.material = m.material.clone(); m.userData.brulee = 1; } if (m.userData.brulee) m.material.color.lerp(new T.Color(0x1d1a18), borne(prog(t, e.brule, 6)) * 0.08); });
       const ps = particules[o.id] || [];
       const debut = e.brule >= 0 ? e.brule : e.explose;
