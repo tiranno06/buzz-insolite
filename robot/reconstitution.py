@@ -18,7 +18,7 @@ import re
 from . import ia
 
 OBJETS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "taxi", "police", "ambulance", "pompiers", "avion",
-          "helico", "bateau", "train", "personne", "foule", "batiment", "immeuble", "maison", "batiment_officiel", "arbre",
+          "helico", "bateau", "train", "personne", "foule", "batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "arbre",
           "muret", "mur")
 ACTIONS = ("avancer", "freiner", "changer_voie", "deraper", "tonneau", "heurter", "se_coucher", "deverser", "bruler",
            "exploser", "effondrer", "tomber", "voler", "couler", "arroser", "fuir", "apparaitre", "disparaitre")
@@ -37,7 +37,8 @@ dit (voie, couleur), choisis le plus simple. Réponds uniquement en JSON :
             "etiquette": "PÉRIPHÉRIQUE DU CAIRE"}]}
 Règles :
 - "objets" : TOUT ce qui joue un rôle (véhicules, bâtiments, personnes, secours). Types : voiture, camion, citerne, bus, moto,
-  camionnette, taxi, police, ambulance, pompiers, avion, helico, bateau, train, personne, foule, batiment, immeuble, maison,
+  camionnette, taxi, police, ambulance, pompiers, avion, helico, bateau, train, personne, foule, batiment, entrepot (dépôt,
+  hangar, usine), immeuble, maison,
   batiment_officiel, arbre, muret, mur. "voie" : 1 à 3 (sens de circulation de la caméra), "position" : mètres le long de la
   route (l'événement se passe vers 0 ; ce qui arrive plus tard part de -80 ou plus loin). Bâtiment, usine : "position" 0.
 - "plans" : un plan pour CHAQUE phrase qui raconte l'événement (du début à la fin des faits, dans l'ordre), avec l'action

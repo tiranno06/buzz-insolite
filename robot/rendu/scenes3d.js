@@ -192,6 +192,15 @@ const FABRIQUES = {
     if ((o.graine || 0) % 3 === 0) { const c = boite(T, l * 0.3, 2.5, 3, lambert(T, "#4a505e")); c.position.set(l * 0.15, h + 2, 0); g.add(c); }
     g.userData.taille = [l, h, o.profondeur || 12]; return g;
   },
+  entrepot(T, o) {                         // dépôt, hangar, usine : grand bâtiment bas, toit arrondi en tôle, porte, panneau danger
+    const g = new T.Group(), l = o.largeur || 34, pr = o.profondeur || 18, h = o.hauteur || 8;
+    const mur = boite(T, l, h, pr, lambert(T, o.couleur || "#a89f8c")); mur.position.y = h / 2; g.add(mur);
+    const toit = new T.Mesh(new T.CylinderGeometry(pr / 2, pr / 2, l, 24, 1, false, 0, Math.PI), lambert(T, "#8a9099"));
+    toit.rotation.z = Math.PI / 2; toit.rotation.y = Math.PI / 2; toit.position.y = h; g.add(toit);
+    for (const x of [-l / 4, l / 4]) { const p_ = boite(T, 7, 6, 0.3, lambert(T, "#3c4149")); p_.position.set(x, 3, pr / 2 + 0.15); g.add(p_); }
+    const panneau = boite(T, 1.6, 1.6, 0.1, lambert(T, "#f39c12")); panneau.rotation.z = Math.PI / 4; panneau.position.set(0, h - 1.5, pr / 2 + 0.2); g.add(panneau);
+    g.userData.taille = [l, h + pr / 2, pr]; return g;
+  },
   arbre(T, o) {
     const g = new T.Group(); const t = new T.Mesh(new T.CylinderGeometry(0.25, 0.35, 2.2, 8), lambert(T, "#6d4c2f")); t.position.y = 1.1; g.add(t);
     const f = new T.Mesh(new T.IcosahedronGeometry(1.8, 0), lambert(T, o.couleur || "#2f8f4e")); f.position.y = 3.4; g.add(f);
@@ -370,7 +379,7 @@ function etat(o, actions, t, objets, profondeur = 0) {
           k = a.faire === "avancer" || a.faire === "changer_voie" || a.faire === "fuir" ? p
             : ["freiner", "deraper", "tonneau"].includes(a.faire) ? ease.sortie(p) : ease.douce(p);
     if (["avancer", "heurter", "changer_voie", "tomber", "voler", "freiner", "deraper", "tonneau", "fuir"].includes(a.faire)) {
-      let [vx, vz] = a.vers || [e.x, e.z];
+      let [vx, vz] = a.vers || (a.distance ? [e.x + a.distance, e.z] : [e.x, e.z]);   // sans destination : « distance » depuis ici
       // le choc se fait là où la cible SE TROUVE à cet instant (avant : sa place de départ → la voiture frappait le vide)
       if (a.faire === "heurter" && a.cible) { const c = objets.find(x => x.id === a.cible);
         if (c) { const ce = profondeur < 2 ? etat(c, actions, a.a + d, objets, profondeur + 1) : { x: c.x || 0, z: c.z || 0 };
@@ -488,10 +497,21 @@ export async function creer3d(sc, couche, T) {
   });
   // BOULES DE FEU (exploser) : sphère orange qui gonfle et s'éteint + onde de choc au sol
   const boules = actions.filter(a => a.faire === "exploser").map(a => {
-    const b = new T.Mesh(new T.SphereGeometry(1, 24, 16), new T.MeshBasicMaterial({ color: 0xff8a1f, transparent: true, depthWrite: false, blending: T.AdditiveBlending }));
+    // (avant : une seule sphère en lumière additive → bulle pâle sur un sol clair, vidéo de l'Iowa du 27/11)
+    // boules lumineuses aux bords doux (dégradé), qui palpitent : un disque plein faisait « dessin plat »
+    const tex = (a, b) => texture(T, 128, 128, c => { const g = c.createRadialGradient(64, 64, 0, 64, 64, 64);
+      g.addColorStop(0, a); g.addColorStop(0.45, b); g.addColorStop(1, "rgba(120,20,0,0)"); c.fillStyle = g; c.fillRect(0, 0, 128, 128); });
+    const couches = [["rgba(255,250,220,1)", "rgba(255,200,80,.9)", 0.55], ["rgba(255,170,60,1)", "rgba(255,90,20,.85)", 0.8],
+                     ["rgba(230,80,20,.95)", "rgba(140,30,10,.7)", 1.0]].flatMap(([a, b, k], n) => [0, 1, 2].map(i => {
+      const m = new T.Sprite(new T.SpriteMaterial({ map: tex(a, b), transparent: true, depthWrite: false }));
+      m.visible = false; scene.add(m); return { m, k: k * (1 - 0.12 * i), dx: (i - 1) * 0.35, dy: (i % 2) * 0.25, n };
+    }));
     const o = new T.Mesh(new T.RingGeometry(0.9, 1, 64), new T.MeshBasicMaterial({ color: 0xffd9a0, transparent: true, depthWrite: false, side: T.DoubleSide }));
-    o.rotation.x = -Math.PI / 2; b.visible = o.visible = false; scene.add(b); scene.add(o);
-    return { a, b, o };
+    o.rotation.x = -Math.PI / 2; o.visible = false; scene.add(o);
+    const r = hasard(a.objet.length * 31 + 5), debris = [];
+    for (let i = 0; i < 40; i++) { const m = new T.Mesh(new T.BoxGeometry(0.4 + r() * 1.2, 0.3 + r() * 0.6, 0.4 + r() * 1), lambert(T, ["#5a5550", "#8a9099", "#3a3632", "#a89f8c"][i % 4]));
+      m.visible = false; scene.add(m); const ang = r() * 6.28; debris.push({ m, vx: Math.cos(ang) * (6 + r() * 16), vz: Math.sin(ang) * (6 + r() * 16), vy: 8 + r() * 16, rx: r() * 8 }); }
+    return { a, couches, o, debris };
   });
   // JETS D'EAU (arroser) : gouttes bleutées en arc des pompiers vers le feu
   const jets = actions.filter(a => a.faire === "arroser" && a.cible).map(a => {
@@ -522,6 +542,8 @@ export async function creer3d(sc, couche, T) {
       g.visible = e.visible; g.userData.ombre.visible = e.visible && e.y < 3;
       const sx = e.secousse ? Math.sin(t * 60) * 0.15 * e.secousse : 0;
       g.position.set(e.x + sx, e.y, e.z); g.rotation.set(e.roulis, e.cap, e.tangage);
+      if (e.explose >= 0 && ["batiment", "entrepot", "immeuble", "maison"].includes(o.type))
+        e.effondre = Math.max(e.effondre || 0, 0.55 * ease.sortie(prog(t, e.explose + 0.15, 0.8)));
       if (e.effondre != null) g.scale.y = 1 - 0.85 * e.effondre;
       g.userData.ombre.position.set(e.x, 0.03, e.z);
       for (const w of g.userData.roues || []) w.rotation.y = -e.distance / (g.userData.rayon || 0.4);
@@ -578,11 +600,20 @@ export async function creer3d(sc, couche, T) {
       f.m.scale.set(f.rayon * k, f.rayon * k * 0.8, 1); f.m.position.set(g.position.x, 0.05, g.position.z);
     }
     for (const x of boules) {
-      const g = groupes[x.a.objet], dt = t - x.a.a; x.b.visible = x.o.visible = dt >= 0 && dt < 2.2 && !!g; if (!x.b.visible) continue;
-      const r = (x.a.rayon ?? 10) * ease.sortie(borne(dt / 0.6));
-      x.b.scale.set(r, r * 0.8, r); x.b.position.set(g.position.x, r * 0.5, g.position.z); x.b.material.opacity = 0.9 * (1 - borne((dt - 0.3) / 1.5));
-      x.b.material.color.setHSL(0.08 - 0.05 * borne(dt / 1.5), 1, 0.55 - 0.25 * borne(dt / 1.8));
-      const o = 3 + dt * 28; x.o.scale.set(o, o, 1); x.o.position.set(g.position.x, 0.1, g.position.z); x.o.material.opacity = Math.max(0, 0.8 - dt * 0.5);
+      const g = groupes[x.a.objet], dt = t - x.a.a, actif = dt >= 0 && dt < 2.6 && !!g;
+      for (const d of x.debris) {                // débris projetés tout autour, qui retombent et restent au sol
+        d.m.visible = dt >= 0 && !!g; if (!d.m.visible) continue;
+        const u = Math.min(dt, 2.4), y = Math.max(0.2, 2 + d.vy * u - 9.8 * u * u / 2);
+        d.m.position.set(g.position.x + d.vx * u, y, g.position.z + d.vz * u); d.m.rotation.set(d.rx * u, d.rx * u * 0.7, 0);
+      }
+      x.o.visible = actif; for (const c of x.couches) c.m.visible = actif; if (!actif) continue;
+      const ta = g.userData.taille || [10, 10, 10], R = (x.a.rayon ?? Math.max(10, ta[0] * 0.6)) * ease.sortie(borne(dt / 0.5));
+      for (const c of x.couches) {                // cœur blanc-jaune, orange, rouge sombre qui monte et s'assombrit
+        const k = 2 * R * c.k * (1 + 0.06 * Math.sin(t * 20 + c.k * 9 + c.dx * 7));
+        c.m.scale.set(k, k * 0.9, 1); c.m.position.set(g.position.x + c.dx * R, k * 0.3 + c.dy * R + dt * 4 * c.k, g.position.z);
+        c.m.material.opacity = Math.max(0, 0.95 - borne((dt - 0.4 * c.k) / 1.6)) * (c.k < 1 ? 1 - borne(dt / 1.2) : 1);
+      }
+      const o = 3 + dt * 30; x.o.scale.set(o, o, 1); x.o.position.set(g.position.x, 0.1, g.position.z); x.o.material.opacity = Math.max(0, 0.8 - dt * 0.45);
       tremble = Math.max(tremble, Math.max(0, 1.4 - dt * 1.2));
     }
     for (const j of jets) {

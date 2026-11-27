@@ -25,7 +25,7 @@ OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "
              "muret", "mur", "cube_eau", "foule", "police", "pompiers", "ambulance", "batiment_officiel",
              # vrais modèles Kenney (CC0) depuis le 27/11
              "taxi", "camionnette", "tracteur", "debris", "plot", "soldat", "vedette", "barque", "voilier", "conteneur", "tgv",
-             "wagon_citerne", "palmier", "rocher", "maison", "immeuble", "gratte_ciel")
+             "wagon_citerne", "palmier", "rocher", "maison", "immeuble", "gratte_ciel", "entrepot")
 ACTIONS_3D = ("avancer", "heurter", "changer_voie", "tourner", "se_coucher", "bruler", "exploser", "tomber", "voler", "couler",
               "apparaitre", "disparaitre", "deverser", "freiner", "deraper", "tonneau", "effondrer", "arroser", "fuir")
 DECORS = ("autoroute", "route", "ville", "place", "usine", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio")
@@ -319,7 +319,7 @@ PLANS = {"avancer": ([-16, 6, 18], [-11, 4.5, 13]), "heurter": ([-20, 5, 17], [-
          "exploser": ([-48, 26, 52], [-40, 22, 44]), "tomber": ([-34, 12, 32], [-24, 8, 24]), "couler": ([-30, 12, 30], [-22, 9, 22]),
          "secours": ([-30, 16, 30], [-22, 12, 22]), "large": ([-55, 42, 52], [-40, 32, 42])}
 SECOURS_3D = ("police", "ambulance", "pompiers")
-GRANDS = {"citerne": 1.7, "camion": 1.6, "bus": 1.6, "train": 2.2, "avion": 2.4, "bateau": 2.4, "batiment": 2.0, "immeuble": 2.4}
+GRANDS = {"citerne": 1.7, "camion": 1.6, "bus": 1.6, "train": 2.2, "avion": 2.4, "bateau": 2.4, "batiment": 2.0, "immeuble": 2.4, "entrepot": 2.6}
 
 
 # angles choisis par le scénario (reconstitution.py) → plans de la bibliothèque

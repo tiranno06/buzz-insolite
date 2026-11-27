@@ -21,7 +21,7 @@ from . import ia
 TYPES_EVENEMENT = ("accident_route", "incendie", "explosion", "crash_avion", "naufrage", "deraillement", "manifestation",
                    "meteo", "catastrophe_naturelle", "police_justice", "politique", "autre")
 ACTEURS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "police", "ambulance", "pompiers", "avion", "helico",
-           "bateau", "train", "personne", "foule", "batiment", "maison", "immeuble")
+           "bateau", "train", "personne", "foule", "batiment", "maison", "immeuble", "entrepot")
 ACTIONS = {"avancer": "avancer", "rouler": "avancer", "arriver": "avancer", "heurter": "heurter", "percuter": "heurter",
            "se_coucher": "se_coucher", "renverser": "se_coucher", "bruler": "bruler", "bruler_feu": "bruler", "exploser": "exploser",
            "tomber": "tomber", "s_ecraser": "tomber", "couler": "couler", "sombrer": "couler", "derailler": "se_coucher",
@@ -92,7 +92,7 @@ MOTS_ACTIONS = (("heurter", r"percut|heurt|collision|collisionn|accroch|perd(?:u
                 ("se_coucher", r"renvers|retourn|bascul|se couche|couch[ée]|d[ée]raill|sur le flanc|sur le toit"),
                 ("deverser", r"fuite|carburant|essence|gazole|hydrocarbure|d[ée]vers|se r[ée]pand|s'[ée]coul"),
                 ("bruler", r"prend feu|pris feu|en feu|flamm|incendi|br[ûu]l|embras|brasier"),
-                ("exploser", r"explos|d[ée]flagration|souffle"),
+                ("exploser", r"explos|d[ée]flagration|d[ée]tonation|souffle|fait sauter|d[ée]truit par"),
                 ("tomber", r"s'[ée]cras|chute|pique|plonge|tomb"),
                 ("couler", r"coul[ée]|sombr|chavir|naufrag"))
 VEHICULES = ("citerne", "camion", "bus", "camionnette", "voiture", "moto", "train", "avion", "helico", "bateau")
@@ -149,6 +149,8 @@ def _completer(f, script):
             t0 = "citerne"
         elif typ in ("incendie", "explosion") and not re.search(r"camion|voiture|\bbus\b|véhicule", texte):
             t0 = "batiment"                             # usine, entrepôt, immeuble : c'est le bâtiment qui brûle / explose
+            if re.search(r"usine|entrep[ôo]t|d[ée]p[ôo]t|munition|stock|hangar|site industriel|arsenal", texte):
+                t0 = "entrepot"
         principal = dict(id="principal", type=t0, role="")
         acteurs.insert(0, principal)
     faites = {(ACTIONS.get(str(e.get("action") or "").lower()), e.get("qui")) for e in deroule}
@@ -171,6 +173,25 @@ def _completer(f, script):
             if re.search(motif, t) and not any(a.get("type") == typ_s for a in acteurs) and i > 1:
                 acteurs.append(dict(id=typ_s, type=typ_s, role={"pompiers": "les pompiers", "ambulance": "les secours", "police": "la police"}[typ_s]))
                 deroule.append(dict(phrase=i, qui=typ_s, action="arriver"))
+    # évacuation, fuite des passants : une foule qui s'éloigne en courant
+    if "fuir" not in deja:
+        ph = next((i for i, p in enumerate(script["phrases"][1:n - 1], start=1)
+                   if re.search(r"[ée]vacu|s'enfu|fuient|prennent la fuite|courent", p["ecrit"].lower())), None)
+        if ph is not None:
+            if not any(a.get("type") in ("foule", "personne") for a in acteurs):
+                acteurs.append(dict(id="habitants", type="foule", role="les habitants", position=22))
+            qui = next(a["id"] for a in acteurs if a.get("type") in ("foule", "personne"))
+            deroule.append(dict(phrase=ph, qui=qui, action="fuir")); deja.add("fuir")
+    # une explosion (ou un incendie) se VOIT toujours, même si aucune phrase du milieu ne le redit (vidéo de l'Iowa du 27/11 :
+    # 55 s d'un bâtiment immobile) : la boule de feu à la 1re phrase du récit, puis la fumée
+    fort = {"explosion": "exploser", "incendie": "bruler"}.get(typ)
+    if fort and fort not in deja and n >= 4:
+        ph = next((i for i, p in enumerate(script["phrases"][1:n - 1], start=1) if re.search(dict(MOTS_ACTIONS)[fort], p["ecrit"].lower())), 2)
+        deroule.append(dict(phrase=ph, qui=principal["id"], action=fort)); deja.add(fort)
+    if typ == "explosion" and "bruler" not in deja:
+        ph = next((i for i, p in enumerate(script["phrases"][1:n - 1], start=1) if re.search(r"fum[ée]e|nuage|incendi|feu|flamm", p["ecrit"].lower())), None)
+        if ph is not None:
+            deroule.append(dict(phrase=ph, qui=principal["id"], action="bruler")); deja.add("bruler")
     # le feu gagne les véhicules bloqués derrière (« 27 véhicules ont brûlé », « le feu se propage »)
     feu = next((e["phrase"] for e in deroule if ACTIONS.get(str(e.get("action")).lower()) == "bruler"), None)
     if feu is not None and typ in ("accident_route", "incendie", "explosion"):
@@ -250,6 +271,8 @@ def _scene_3d(f, phrases_3d, script):
             o.update(position=-120, voie=1, altitude=60)
         elif typ == "naufrage":
             o.update(position=-20 * k, voie=1)
+        elif a["type"] in ("batiment", "entrepot", "immeuble", "maison"):      # jamais sur la route : à côté (usine : au centre)
+            o.update(position=0, z=0 if f.get("_decor") == "usine" else -26)
         elif a["type"] == "foule":
             o.update(position=0, z=8, nombre=70)
         elif a["type"] == "batiment_officiel":

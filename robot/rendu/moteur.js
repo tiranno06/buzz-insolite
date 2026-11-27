@@ -184,7 +184,9 @@ TYPES.carte = async (sc, couche) => {
     }
     for (const z of allumes) {
       const p = ease.sortie(prog(t, z.a, 0.6)); if (p <= 0) continue;
-      cx.save(); cx.globalAlpha = (fondSat ? 0.18 : 0.25) + (fondSat ? 0.32 : 0.6) * p; cx.shadowColor = z.couleur; cx.shadowBlur = 40 * p;
+      // une ville précise dans un grand pays (Iowa, 27/11 : tout l'écran rouge) : le pays n'est plus qu'un voile léger
+      const leger = points.length && !sc.cadrer_zones ? 0.35 : 1;
+      cx.save(); cx.globalAlpha = ((fondSat ? 0.18 : 0.25) + (fondSat ? 0.32 : 0.6) * p) * leger; cx.shadowColor = z.couleur; cx.shadowBlur = 40 * p;
       cx.fillStyle = z.couleur; cx.fill(z.p); cx.restore();
       cx.strokeStyle = z.couleur; cx.lineWidth = 3.5 / s; cx.globalAlpha = p; cx.stroke(z.p); cx.globalAlpha = 1;
     }

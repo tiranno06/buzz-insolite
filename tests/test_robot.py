@@ -1456,6 +1456,19 @@ class TestGabarits(unittest.TestCase):
         self.assertTrue(any(c.get("regard") for c in cam))
         self.assertEqual(gabarits.type_du_texte("Explosion dans une usine de munitions"), "explosion")
 
+    def test_explosion_toujours_montree(self):
+        """Vidéo de l'Iowa (27/11) : « deux détonations », usine de munitions → explosion, fumée, décor usine."""
+        from robot import gabarits
+        dits = ["L'armée a fait exploser un stock.", "C'était dans une usine de munitions.", "Le stock était instable.",
+                "Deux détonations rapides ont retenti.", "Un immense nuage de fumée.", "Les habitants ont été évacués.", "Et toi ?"]
+        script = {"titre": "t", "phrases": [{"ecrit": p} for p in dits]}
+        a = gabarits.composer({"type": "explosion", "lieu": "Middletown, Iowa"}, script)
+        trois = next(s for s in a["scenes"] if s["type"] == "3d" and not s.get("accroche"))
+        faits = {(x["faire"], x["phrase"]) for x in trois["actions"]}
+        self.assertIn(("exploser", 3), faits); self.assertIn(("bruler", 4), faits)
+        self.assertEqual(trois["decor"], "usine")
+        self.assertEqual(next(o for o in trois["objets"] if o["id"] == "principal")["type"], "entrepot")
+
     def test_meteo_reste_sur_la_carte(self):
         from robot import gabarits
         script = {"titre": "t", "phrases": [{"ecrit": "Le Jura en vigilance orange."}] * 7 + [{"ecrit": "Et chez toi ?"}]}

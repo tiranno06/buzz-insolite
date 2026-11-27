@@ -685,6 +685,12 @@ fuir (personnes qui courent) ; sans destination, `distance` depuis l'endroit où
 Limite honnête : la précision dépend des articles ; ce qui n'est pas dit reste simple (« positions approximatives »).
 Workflows : dépôt apt de Microsoft retiré avant `playwright install --with-deps` (403 le 27/11 : création impossible).
 
+- **Iowa refaite (27/11, 1re version : 55 s d'un immeuble immobile, explosion jamais montrée)** : « détonations » non reconnu ;
+  explosion / incendie TOUJOURS montrés (`_completer` : boule de feu à la 1re phrase qui en parle, sinon phrase 2 ; fumée sur
+  « nuage / fumée ») ; évacuation → foule qui s'enfuit ; dépôt / usine / munitions → objet `entrepot` (hangar à toit arrondi,
+  panneau danger) au centre du décor `usine` ; boule de feu en 9 halos lumineux (jaune, orange, rouge), 40 débris, bâtiment
+  qui s'affaisse et noircit ; bâtiments jamais sur la route ; pays coloré en voile léger quand on plonge sur une ville.
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit
