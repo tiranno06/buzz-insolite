@@ -504,9 +504,9 @@
    "statut": "nouvelle"
   },
   {
-   "id": "20261127-075633-1",
-   "tag": "v-20261127-075633-1",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-075633-1/buzz-20261127-075633-1.mp4",
+   "id": "20261127-075633-1-r1",
+   "tag": "v-20261127-075633-1-r1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-075633-1-r1/buzz-20261127-075633-1-r1.mp4",
    "titre": "Explosion géante de l'armée en Iowa",
    "accroche": "5 TONNES D'EXPLOSIFS",
    "sujet_id": "416ea80eff",
@@ -530,7 +530,7 @@
     "#actu",
     "#buzz"
    ],
-   "duree": 65.7,
+   "duree": 62.2,
    "sources": [
     {
      "media": "wowt.com",
@@ -607,7 +607,7 @@
     "Et toi, aurais-tu évacué ta maison pour cette explosion ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-27T08:08:21+01:00",
+   "cree_le": "2026-11-27T13:45:13+01:00",
    "ia_quotas": {
     "mistral": {
      "appels": 0,
@@ -616,63 +616,20 @@
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 4,
-     "refus": 3,
-     "erreurs": 4,
-     "restant_demandes": "998",
-     "limite_demandes": "1000",
-     "restant_mots": "1042"
-    },
-    "gemini": {
-     "appels": 29,
-     "refus": 1,
-     "erreurs": 1
-    },
-    "github": {
-     "appels": 0,
+     "appels": 1,
      "refus": 0,
-     "erreurs": 0
-    },
-    "openrouter": {
-     "appels": 2,
-     "refus": 8,
-     "erreurs": 0
+     "erreurs": 1,
+     "restant_demandes": "999",
+     "limite_demandes": "1000",
+     "restant_mots": "5586"
     }
    },
-   "fabrication_s": 708,
+   "fabrication_s": 862,
    "controles": {
     "note": 100,
-    "lignes": [
-     {
-      "niveau": "texte",
-      "ecran": 0,
-      "gravite": "moyen",
-      "probleme": "accroche trop longue (plus de 15 mots) : on perd le spectateur",
-      "corrige": true,
-      "essais": 1,
-      "solution": "phrase réécrite et revérifiée"
-     },
-     {
-      "niveau": "texte",
-      "ecran": null,
-      "gravite": "moyen",
-      "probleme": "texte trop court (environ 57 s, il faut plus d'1 minute)",
-      "corrige": true,
-      "essais": 2,
-      "solution": "phrase réécrite et revérifiée"
-     },
-     {
-      "niveau": "voix",
-      "ecran": 19,
-      "gravite": "grave",
-      "probleme": "voix et sous-titres ne correspondent pas (0%)",
-      "corrige": true,
-      "essais": 3,
-      "solution": "phrase retirée"
-     }
-    ],
+    "lignes": [],
     "sautes": [],
-    "corriges": 3,
+    "corriges": 0,
     "restants": 0,
     "graves_restants": 0
    },
@@ -680,18 +637,20 @@
    "preuves": [],
    "couverture_ms": 800,
    "durees": {
-    "articles": 0,
-    "ecriture": 3,
-    "texte": 77,
-    "images": 4,
-    "voix": 40,
-    "montage": 359,
-    "controle_final": 42,
-    "regles": 1,
+    "voix": 0,
+    "images": 7,
+    "montage": 792,
+    "controle_final": 50,
+    "regles": 0,
     "rangement": 5
    },
-   "refaite": null,
-   "statut": "nouvelle"
+   "refaite": {
+    "de": "20261127-075633-1",
+    "etape": "images",
+    "remarque": "nouvelle reconstitution 3D complète de l'explosion"
+   },
+   "statut": "nouvelle",
+   "refaite_de": "20261127-075633-1"
   },
   {
    "id": "20261127-024127-1",
