@@ -762,6 +762,7 @@ export async function creer3d(sc, couche, T) {
       }
       const debut = fin.brule >= 0 ? fin.brule : fin.explose >= 0 ? fin.explose + 0.15 : -1;
       if (debut < 0 || ["foule", "personne"].includes(o.type)) continue;
+      if (sources.filter(s => !s.poussiere).length >= 12) continue;   // règle L2 : 12 grands feux au plus, les autres gardent les flammes simples
       const g = groupes[o.id], ta = g?.userData.taille || [4, 2, 2];
       const taille = Math.max(0.7, Math.min(2.6, Math.max(ta[0], ta[2]) / 6));
       sources.push({ debut, taille, position: t => { const e = etat(o, actions, t, objets); return [e.x, Math.max(0, e.y) + 0.3, e.z]; } });

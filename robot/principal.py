@@ -391,8 +391,10 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 anim = gabarits.realiser(script, E["articles"], journal) \
                     if R["video"].get("realisation", "gabarit") == "gabarit" else None
                 script["animation"] = anim or realisateur.realiser(script, E["articles"], journal)
-                from . import equipe                          # agent « réalisateur critique » : relit la 3D avant le rendu
-                equipe.critique_storyboard(script, script["animation"], journal)
+                from . import equipe, physique                # code de la reconstitution (règles P, C, E, D, L, V), puis
+                physique.appliquer_storyboard(script["animation"], script, journal)   # le réalisateur critique relit la 3D,
+                if equipe.critique_storyboard(script, script["animation"], journal):  # puis les règles une 2e fois
+                    physique.appliquer_storyboard(script["animation"], script, journal)
         ph = script["phrases"]
         for i, p in enumerate(ph):                            # chaque phrase est « illustrée » par l'animation
             p["media"] = None if i == len(ph) - 1 else {"type": "anime", "id": f"anime{p['uid']}", "credit": ""}

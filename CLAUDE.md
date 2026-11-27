@@ -807,6 +807,20 @@ point = rien dessiné), trou noir, 9 lambeaux de tôle plats retournés vers l'e
 côté robot (`gabarits._scene_3d`), fuite `deverser` ajoutée juste après l'impact (flaque qui s'enflamme si le texte parle de
 feu). Froissure de la tôle cohérente (`ecraser` : même endroit = même déplacement, sinon la tôle se fendait « en étoile »).
 
+## Code de la reconstitution : 40 règles pour TOUS les événements futurs (27/11, demande de l'auteur)
+`robot/physique.py` (`REGLES` = la liste numérotée, `appliquer(sc)`, `appliquer_storyboard`) : appliqué à CHAQUE scène 3D
+(modèle fixe, scénario de l'IA, IA réalisatrice, accroche) avant le réalisateur critique, puis une 2e fois s'il a corrigé
+(`principal`). Corrections SÛRES seulement (retirer l'impossible, remettre la cause avant la conséquence, écarter, remplacer
+le choquant), jamais un fait inventé ; chaque correction au journal (« 📐 règle C3 : … »). Familles : P physique (qui peut
+voler, couler, fuir, arroser, percuter, fuir un liquide ; bâtiment = s'effondre, véhicule = se renverse), C chronologie (rien
+après la destruction, cause avant conséquence, secours / arrosage / fuite après le danger, pas de doublon), E espace
+(encombrement réel `TAILLE` des véhicules et bâtiments, rien sur la chaussée, décor du port / voie ferrée / campagne selon
+l'objet principal, secours garés à 18 m du feu), D décence (jamais de corps, de personne qui brûle, de personne percutée —
+la foule s'enfuit —, jamais d'arme), L lisibilité (4 débuts d'action par demi-seconde, 3 explosions, 12 grands feux
+— limite aussi dans scenes3d.js —, 14 objets, durées 0,6-8 s), V vraisemblance (feu après explosion, fuite avant le feu d'une
+citerne, dégâts selon le poids, souffle). Essayé sur Le Caire / Iowa / catastrophes : 0 à 3 corrections justes, rien d'abîmé.
+Tests : `TestCodeReconstitution`. **Toute nouvelle action ou nouvel objet 3D doit être ajouté à `PEUT` / `TAILLE`.**
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit

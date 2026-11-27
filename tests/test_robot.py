@@ -1667,3 +1667,87 @@ class TestCiternePercutee(unittest.TestCase):
         self.assertIn("function dechirer(", js)
         self.assertIn("MASSES", js)
         self.assertIn("Raycaster(depart", js)       # le trou est posé SUR la tôle, jamais dans le vide
+
+
+class TestCodeReconstitution(unittest.TestCase):
+    """27/11 : code de la reconstitution (robot/physique.py), appliqué à toutes les scènes 3D de toutes les vidéos."""
+    def sc(self, objets, actions, decor="autoroute"):
+        return dict(type="3d", decor=decor, objets=objets, actions=actions, reperes=[])
+
+    def test_liste_des_regles(self):
+        from robot import physique
+        codes = [c for c, _ in physique.REGLES]
+        self.assertEqual(len(codes), len(set(codes)))
+        self.assertGreaterEqual(len(codes), 35)
+
+    def test_physique(self):
+        from robot import physique
+        sc = self.sc([dict(id="c", type="citerne", voie=2, position=-40), dict(id="m", type="maison", position=0, z=-26),
+                      dict(id="p", type="personne", position=5, z=9)],
+                     [dict(objet="c", faire="voler", phrase=2), dict(objet="m", faire="avancer", phrase=2),
+                      dict(objet="m", faire="se_coucher", phrase=3), dict(objet="c", faire="effondrer", phrase=3),
+                      dict(objet="p", faire="se_coucher", phrase=3), dict(objet="p", faire="bruler", phrase=3)])
+        physique.appliquer(sc, journal=lambda *a: None)
+        faits = {(a["objet"], a["faire"]) for a in sc["actions"]}
+        self.assertNotIn(("c", "voler"), faits)               # P1
+        self.assertNotIn(("m", "avancer"), faits)             # P6
+        self.assertIn(("m", "effondrer"), faits)              # P9 : un bâtiment s'effondre
+        self.assertIn(("c", "se_coucher"), faits)             # P9 : un véhicule se renverse
+        self.assertFalse(any(o == "p" for o, _ in faits))     # D1 / D2
+
+    def test_chronologie(self):
+        from robot import physique
+        sc = self.sc([dict(id="v", type="voiture", voie=3, position=-60), dict(id="c", type="citerne", voie=2, position=-40),
+                      dict(id="pomp", type="pompiers", voie=1, position=-90)],
+                     [dict(objet="c", faire="exploser", phrase=2, duree=1.0), dict(objet="v", faire="heurter", cible="c", phrase=4, duree=2.2),
+                      dict(objet="c", faire="avancer", phrase=5, duree=2.0), dict(objet="pomp", faire="avancer", phrase=1, vers_position=-22),
+                      dict(objet="pomp", faire="arroser", cible="c", phrase=1)])
+        physique.appliquer(sc, journal=lambda *a: None)
+        acts = sc["actions"]
+        choc = next(a for a in acts if a["faire"] == "heurter")
+        boum = next(a for a in acts if a["faire"] == "exploser")
+        self.assertLessEqual(choc["phrase"], boum["phrase"])                 # C3 : la cause avant
+        self.assertFalse(any(a["objet"] == "c" and a["faire"] == "avancer" for a in acts))   # C1
+        self.assertTrue(any(a["objet"] == "c" and a["faire"] == "bruler" for a in acts))     # V1
+        self.assertTrue(any(a["objet"] == "c" and a["faire"] == "deverser" for a in acts))   # V3
+        pomp = [a for a in acts if a["objet"] == "pomp"]
+        self.assertTrue(all(a["phrase"] >= 2 for a in pomp))                # C6 / C7
+        arrivee = next(a for a in pomp if a["faire"] == "avancer")
+        self.assertGreaterEqual(abs(arrivee["vers_position"] - (-40)), 16)   # E5 : à distance du feu
+
+    def test_decence_et_espace(self):
+        from robot import physique
+        sc = self.sc([dict(id="v", type="voiture", voie=2, position=-40), dict(id="w", type="camion", voie=2, position=-40),
+                      dict(id="foule", type="foule", position=0, z=8), dict(id="b1", type="immeuble", position=0, z=-26),
+                      dict(id="b2", type="immeuble", position=10, z=-26)],
+                     [dict(objet="v", faire="heurter", cible="foule", phrase=2)], decor="ville")
+        physique.appliquer(sc, journal=lambda *a: None)
+        self.assertFalse(any(a["faire"] == "heurter" for a in sc["actions"]))          # D3
+        self.assertTrue(any(a["objet"] == "foule" and a["faire"] == "fuir" for a in sc["actions"]))
+        pos = {o["id"]: o["position"] for o in sc["objets"]}
+        self.assertGreaterEqual(abs(pos["v"] - pos["w"]), 7)                           # E1
+        self.assertGreaterEqual(abs(pos["b1"] - pos["b2"]), 24)                        # E2
+
+    def test_decor_et_limites(self):
+        from robot import physique
+        sc = self.sc([dict(id="b", type="bateau", position=0, voie=1)] + [dict(id=f"x{k}", type="voiture", voie=1 + k % 3, position=-20 * k) for k in range(5)],
+                     [dict(objet="b", faire="couler", phrase=2)] + [dict(objet=f"x{k}", faire="exploser", phrase=3) for k in range(5)])
+        physique.appliquer(sc, journal=lambda *a: None)
+        self.assertEqual(sc["decor"], "port")                                         # E4
+        self.assertEqual(sum(a["faire"] == "exploser" for a in sc["actions"]), 3)      # L2
+
+    def test_scene_saine_intacte(self):
+        """Une bonne scène (choc puis feu, secours après) ne perd rien d'essentiel."""
+        from robot import physique
+        sc = self.sc([dict(id="c", type="citerne", voie=2, position=-40), dict(id="v", type="voiture", voie=3, position=-62),
+                      dict(id="amb", type="ambulance", voie=1, position=-100)],
+                     [dict(objet="c", faire="avancer", phrase=2, duree=2.2, vers_position=0),
+                      dict(objet="v", faire="heurter", cible="c", phrase=3, duree=2.2),
+                      dict(objet="c", faire="se_coucher", phrase=3, duree=1.5), dict(objet="c", faire="bruler", phrase=4, duree=1.0),
+                      dict(objet="amb", faire="avancer", phrase=5, duree=3.0, vers_position=-60)])
+        physique.appliquer(sc, journal=lambda *a: None)
+        faits = {(a["objet"], a["faire"]) for a in sc["actions"]}
+        for x in [("c", "avancer"), ("v", "heurter"), ("c", "se_coucher"), ("c", "bruler"), ("amb", "avancer")]:
+            self.assertIn(x, faits)
+        couche = next(a for a in sc["actions"] if a["faire"] == "se_coucher")
+        self.assertGreaterEqual(couche["retard"], 2.2)                                 # C4 : après l'impact
