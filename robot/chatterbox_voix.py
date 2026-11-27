@@ -25,7 +25,9 @@ def main():
     modele = ChatterboxMultilingualTTS.from_pretrained(device="cpu")
     for i, p in enumerate(travail["phrases"]):
         son = modele.generate(p["texte"], language_id="fr", audio_prompt_path=travail["reference"],
-                              exaggeration=float(p.get("emotion", 0.5)), cfg_weight=0.5)
+                              exaggeration=float(p.get("emotion", 0.55)), cfg_weight=0.4, temperature=0.75)
+        # (27/11 : intonation un peu plus vivante, débit plus posé et moins « mécanique » : cfg 0,5 → 0,4 ; temperature
+        #  0,75 = moins d'à-coups d'une phrase à l'autre, conseils de réglage de Chatterbox Multilingual)
         x = son.squeeze(0).detach().cpu().numpy()
         with wave.open(p["chemin"], "wb") as w:
             w.setnchannels(1); w.setsampwidth(2); w.setframerate(modele.sr)

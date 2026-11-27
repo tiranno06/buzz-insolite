@@ -337,11 +337,15 @@ def plans_camera(actions, objets, principal, duree, cadres=None, dense=False):
     """Découpage en plans : (début, action) → 2 points de caméra ; plan de 1,4 s au moins, sinon le suivant attend.
     `cadres` = [(début, angle du scénario, objet suivi)] : ces plans-là passent avant les plans automatiques."""
     types = {o["id"]: o.get("type") for o in objets}
+    feux = {}
+    for x in actions:
+        if x["faire"] in ("bruler", "exploser"):
+            feux[x["objet"]] = min(feux.get(x["objet"], 1e9), x["a"])
     if cadres:
         imposes = sorted((max(0.0, a - 0.1), CADRES.get(c, c), s) for a, c, s in cadres if c in CADRES or c in PLANS)
         auto = [x for x in plans_camera(actions, objets, principal, duree)[::2] if all(abs(x["a"] - i[0]) > 1.4 for i in imposes)]
         coupes = sorted(imposes + [(x["a"], x["_cle"], x["suivre"]) for x in auto])
-        return _cam(coupes, types, duree, dense)
+        return _cam(coupes, types, duree, dense, feux)
     premier = min((x["a"] for x in actions), default=9.0)
     coupes, dernier = ([(0.0, "large", principal)], 0.0) if premier > 1.4 else ([], -9.0)
     force = {"exploser": 9, "heurter": 8, "tomber": 8, "couler": 7, "bruler": 6, "se_coucher": 5, "deverser": 4}
@@ -361,10 +365,14 @@ def plans_camera(actions, objets, principal, duree, cadres=None, dense=False):
             continue
         coupes.append((debut, cle, suivre)); dernier = debut
     coupes.sort(key=lambda c: c[0])
-    return _cam(coupes, types, duree, dense)
+    return _cam(coupes, types, duree, dense, feux)
 
 
-def _cam(coupes, types, duree, dense=False):
+def _cam(coupes, types, duree, dense=False, feux=None):
+    # un objet DÉJÀ en feu n'est jamais filmé de près (Gizeh, 27/11 : plans de la fin au ras du brasier, illisibles)
+    feux = feux or {}
+    coupes = [(d, "bruler" if c in ("avancer", "heurter", "se_coucher", "interieur", "deraper", "tonneau") and s in feux
+               and feux[s] < d - 0.5 else c, s) for d, c, s in coupes]
     cam = []
     for k, (debut, cle, suivre) in enumerate(coupes):
         fin = coupes[k + 1][0] - 0.04 if k + 1 < len(coupes) else max(debut + 1.5, duree)

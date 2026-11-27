@@ -48,12 +48,26 @@ def en_lettres(n):
     return " ".join(morceaux)
 
 
+def _feminin(mot):
+    try:
+        from .phonetique import genre
+        return genre(mot) == "f"
+    except Exception:
+        return False
+
+
 def dire_les_nombres(texte):
     """Remplace dans un texte les nombres écrits en chiffres (« 16 000 », « 3,5 », « 99/100 », « 2027 ») par des mots."""
     def un(m):
         brut = m.group(0)
         entier = re.sub(r"[\s  .]", "", m.group(1))
         mots = en_lettres(int(entier))
+        # accord : « 31 victimes » → « trente-et-une », « 31 morts » → « trente-et-un » (genre du nom qui suit, Lexique ;
+        # vidéo de Gizeh du 27/11 : « trente-et-une morts » écrit par l'IA)
+        if not m.group(2) and mots.endswith("un"):
+            suite = re.match(r"\s+([A-Za-zÀ-ÿ'-]+)", m.string[m.end():])
+            if suite and _feminin(suite.group(1)):
+                mots += "e"
         if m.group(2):
             mots += " virgule " + " ".join(UNITES[int(c)] for c in m.group(2)) if len(m.group(2)) > 2 else \
                 " virgule " + en_lettres(int(m.group(2)))

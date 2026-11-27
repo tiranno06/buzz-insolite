@@ -84,10 +84,32 @@ def mise_en_forme(t):
     return t
 
 
+ANGLAIS = re.compile(r"oa|ee|oo|th|sh|ck|igh|ough|w|(?<=[^aeiouy])y$|ing$|ight", re.I)
+
+
+def _anglais(t):
+    """Mots à l'allure ANGLAISE absents du dictionnaire français (« Road », « Highway », « Smith ») : écrits comme un
+    Français les dit AVANT la 1re prise (Wiktionnaire, sinon eSpeak anglais). Les mots français et les noms déjà connus
+    du dictionnaire de prononciation ne sont jamais touchés."""
+    from . import phonetique
+    def un(m):
+        w = m.group(0)
+        if len(w) < 3 or w.isupper() or phonetique.mot_courant(w) or not ANGLAIS.search(w):
+            return w
+        if phonetique.api_fr(w):
+            return w                                    # nom connu du Wiktionnaire (Washington…) : la voix le connaît aussi
+        api = ipa(w)
+        return ipa_vers_francais(api) if api else w
+    return re.sub(r"(?<![\wÀ-ÿ'])[A-Z][a-z]+(?![\wÀ-ÿ'])", un, t)
+
+
 def pour_voix(texte, dico=None):
-    """Texte tel qu'il doit être DIT (sous-titres inchangés) : mise en forme, dictionnaire, sigles."""
+    """Texte tel qu'il doit être DIT (sous-titres inchangés) : mise en forme, dictionnaire, sigles, noms anglais."""
     dico = charger() if dico is None else dico
     t = mise_en_forme(texte or "")
+    # « 1,5 million » → « un million et demi » ; « 2-1 », « 20-30 » → « deux à un », « vingt à trente »
+    t = re.sub(r"\b(\d+),5\s+(million|milliard)s?\b", lambda m: f"{m.group(1)} {m.group(2)}{'s' if m.group(1) != '1' else ''} et demi", t)
+    t = re.sub(r"(?<![\d,.])(\d+)\s?-\s?(\d+)(?![\d,.])", r"\1 à \2", t)
     for mot, dire in sorted(dico.items(), key=lambda x: -len(x[0])):     # expressions longues d'abord
         t = re.sub(rf"(?<![\wÀ-ÿ]){re.escape(mot)}(?![\wÀ-ÿ])", dire, t,
                    flags=0 if mot.isupper() else re.I)
@@ -97,6 +119,7 @@ def pour_voix(texte, dico=None):
             return s
         return s.lower() if s in COMME_UN_MOT else epeler(s)
     t = re.sub(r"\b[A-Z]{2,6}\b", sigle, t)
+    t = _anglais(t)
     return nombres.dire_les_nombres(t)
 
 

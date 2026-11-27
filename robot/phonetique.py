@@ -29,11 +29,18 @@ def _telecharger(url, chemin):
         req = urllib.request.Request(url, headers={"User-Agent": "buzz-insolite"})
         with urllib.request.urlopen(req, timeout=90) as r:
             donnees = r.read()
-        if url.endswith(".zip"):                       # on ne garde que la liste des mots (colonne « ortho »)
+        if url.endswith(".zip"):                       # on garde : mot, genre des noms (m / f / vide), nature
             with zipfile.ZipFile(io.BytesIO(donnees)) as z:
                 nom = next(n for n in z.namelist() if n.endswith("Lexique383.tsv"))
                 lignes = z.read(nom).decode("utf-8").splitlines()[1:]
-            donnees = "\n".join(sorted({l.split("\t")[0].lower() for l in lignes if l})).encode("utf-8")
+            vus = {}
+            for l in lignes:
+                c = l.split("\t")
+                if len(c) > 7 and c[0]:
+                    mot, genre, nature, freq = c[0].lower(), c[4], c[3], float(c[7] or 0) + float(c[6] or 0)
+                    if mot not in vus or (nature == "NOM" and (vus[mot][1] != "NOM" or freq > vus[mot][2])):
+                        vus[mot] = (genre if nature == "NOM" else "", nature, freq)
+            donnees = "\n".join(f"{m}\t{g}\t{n}" for m, (g, n, _) in sorted(vus.items())).encode("utf-8")
         with open(chemin, "wb") as f:
             f.write(donnees)
         return True
@@ -53,11 +60,24 @@ def charger():
                     mot, _, api = ligne.rstrip("\n").partition("\t")
                     if mot and api:
                         _PRON.setdefault(mot, []).append(api.replace(" ", ""))
-        m = os.path.join(CACHE, "lexique383_mots.txt")
+        m = os.path.join(CACHE, "lexique383_genres.tsv")
         if _telecharger(LEXIQUE, m):
             with open(m, encoding="utf-8") as f:
-                _MOTS = {l.strip() for l in f if l.strip()}
+                for l in f:
+                    c = l.rstrip("\n").split("\t")
+                    if c and c[0]:
+                        _MOTS.add(c[0]); GENRES[c[0]] = c[1] if len(c) > 1 else ""
     return _PRON, _MOTS
+
+
+GENRES = {}
+
+
+def genre(mot):
+    """Genre d'un NOM d'après Lexique 3.83 : « m », « f » ou « » (inconnu). « morts » → m, « victimes » → f."""
+    charger()
+    m = mot.lower()
+    return GENRES.get(m) or GENRES.get(m[:-1] if m.endswith(("s", "x")) else m) or ""
 
 
 def api_fr(mot):

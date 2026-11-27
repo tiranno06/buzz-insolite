@@ -329,7 +329,7 @@ TYPES.document = async (sc, couche) => {
 
 // ---- CALENDRIER : la page du jour se retourne
 TYPES.calendrier = async (sc, couche) => {
-  const c = el("div", "calendrier", couche); c.style.top = (sc.y ?? 500) + "px";
+  const c = el("div", "calendrier", couche); c.style.top = (sc.y ?? 440) + "px";
   el("div", "mois", c, echapper(sc.mois || "")); el("div", "jour", c, echapper(sc.jour || "")); el("div", "annee", c, echapper(sc.annee || ""));
   const tx = sc.texte ? el("div", "doc-texte", couche, marques(sc.texte)) : null; if (tx) { tx.style.position = "absolute"; tx.style.left = "60px"; tx.style.right = "140px"; tx.style.top = ((sc.y ?? 500) + 560) + "px"; }
   return t => {
@@ -481,7 +481,7 @@ let TITRE_MAX = 78, CHRONO = [];
 
 window.rendre = t => {
   // encadré (chiffre, pictogramme, document…) affiché : le décor derrière s'assombrit un peu, sans jamais disparaître
-  const voileDecor = Math.max(0, ...SCENES.filter(s => !BASES.has(s.sc.type) && s.sc.type !== "question" && s.sc.type !== "suite" && t >= s.sc.debut && t < s.sc.fin + FONDU)
+  const voileDecor = Math.max(0, ...SCENES.filter(s => !BASES.has(s.sc.type) && !["question", "suite", "calendrier"].includes(s.sc.type) && t >= s.sc.debut && t < s.sc.fin + FONDU)
     .map(s => Math.min(prog(t, s.sc.debut, FONDU), 1 - prog(t, s.sc.fin, FONDU))));
   SCENES.forEach(({ sc, couche, dessiner, etiqs, finDecor }, i) => {
     const base = BASES.has(sc.type), fin = base ? finDecor : sc.fin, visible = t >= sc.debut - 0.001 && t < fin + FONDU;

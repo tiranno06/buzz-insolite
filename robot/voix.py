@@ -67,11 +67,34 @@ def _dire_kokoro(texte, brut, vitesse, nom_voix):
         w.writeframes((np.clip(son, -1, 1) * 32767).astype(np.int16).tobytes())
 
 
+_RUBBERBAND = None
+
+
+def _rubberband():
+    """ffmpeg sait-il changer la vitesse avec Rubber Band (bien plus naturel qu'atempo, qui donne un son métallique) ?"""
+    global _RUBBERBAND
+    if _RUBBERBAND is None:
+        try:
+            r = subprocess.run(["ffmpeg", "-hide_banner", "-filters"], capture_output=True, text=True, timeout=20)
+            _RUBBERBAND = " rubberband " in r.stdout
+        except Exception:
+            _RUBBERBAND = False
+    return _RUBBERBAND
+
+
+# finition « studio » de toutes les voix (demande de l'auteur du 27/11 : « que la voix fasse moins robot ») : grondements
+# coupés, un peu de chaleur (180 Hz), de présence (3,2 kHz : on comprend mieux), « s » adoucis, niveau régulier
+FINITION = ("highpass=f=75,equalizer=f=180:t=q:w=1:g=1.5,equalizer=f=3200:t=q:w=1.2:g=2,"
+            "deesser=i=0.25,acompressor=threshold=-21dB:ratio=2.2:attack=8:release=120:makeup=1.4")
+
+
 def dire(texte, chemin, nom_voix, vitesse=0.80, brut=None):
     """Fabrique la phrase dite, sans blanc au début ni à la fin. Renvoie sa durée. `brut` : son déjà fabriqué (Chatterbox)."""
     tempo = ""
     if brut:
-        tempo = f",atempo={max(0.8, min(1.4, 0.92 / vitesse)):.3f}"   # Chatterbox parle lentement : même rythme que validé
+        k = max(0.8, min(1.4, 0.92 / vitesse))          # Chatterbox parle lentement : même rythme que validé
+        tempo = (f",rubberband=tempo={k:.3f}:pitchq=quality:transients=smooth:formant=preserved" if _rubberband()
+                 else f",atempo={k:.3f}")
     else:
         brut = chemin + ".brut.wav"
     if tempo:
@@ -83,10 +106,14 @@ def dire(texte, chemin, nom_voix, vitesse=0.80, brut=None):
                         "--noise-scale", "0.75", "--noise-w", "0.9", "-f", brut], input=texte, text=True, check=True,
                        capture_output=True)
     coupe = "silenceremove=start_periods=1:start_threshold=-45dB"
-    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", brut, "-af", f"{coupe},areverse,{coupe},apad=pad_dur=0.04,areverse{tempo}",
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", brut, "-af", f"{coupe},areverse,{coupe},apad=pad_dur=0.04,areverse{tempo},{FINITION}",
                     "-ar", "44100", chemin], check=True)
     os.remove(brut)
     return duree(chemin)
+
+
+# phrase comprise par Whisper à moins de 85 % de ses mots = refaite (avant 75 % : des noms mal dits passaient)
+SEUIL_COMPRIS = 0.85
 
 
 def emotion(texte, premiere=False):
@@ -94,10 +121,10 @@ def emotion(texte, premiere=False):
     questionnent plus vivantes ; les explications restent posées (0,5 = la voix choisie par l'auteur)."""
     t = texte.strip()
     if premiere:
-        return 0.7
+        return 0.72
     if t.endswith(("!", "?")):
-        return 0.62
-    return 0.5
+        return 0.65
+    return 0.55
 
 
 def processus_voix(nb_phrases):
@@ -189,6 +216,11 @@ def en_memoire(p, nom_voix, vitesse, memoire):
 
 def preparer(phrases, nom_voix, vitesse, journal=print, suivi=None, memoire=None):
     """`memoire` : dossier des voix déjà réussies (même texte, même voix) : jamais refaites (demande de l'auteur du 24/11)."""
+    # la voix lit le texte ÉCRIT (celui des sous-titres), converti par le robot (nombres accordés, sigles, unités) : la
+    # version « à dire » de l'IA se trompait (« trente-et-une morts », vidéo de Gizeh du 27/11)
+    for p in phrases:
+        if p.get("ecrit") and not p.get("_voix_ia_gardee"):
+            p["voix"] = p["ecrit"]
     gardees = [p for p in phrases if depuis_memoire(p, nom_voix, vitesse, memoire)]
     if gardees:
         journal(f"  {len(gardees)} phrase(s) déjà dite(s) à l'identique : voix reprise sans la refaire")
@@ -224,7 +256,7 @@ def _preparer(phrases, nom_voix, vitesse, journal=print, suivi=None):
                 # Whisper écrit « 31 » quand la voix dit « trente et un » : on compare aux deux versions du texte
                 compris = max(ressemblance(p["voix"], p["mots"]), ressemblance(p.get("ecrit", p["voix"]), p["mots"]))
                 bafouille = p["duree"] > 0.7 * len(p["voix"].split()) + 1.5      # voix qui traîne ou répète
-                p["_voix_defaut"] = ("mots mal prononcés" if compris < 0.75 else "voix qui traîne" if bafouille else "")
+                p["_voix_defaut"] = ("mots mal prononcés" if compris < SEUIL_COMPRIS else "voix qui traîne" if bafouille else "")
                 if p["_voix_defaut"]:
                     refaire.append(i)
                 if suivi:
@@ -247,7 +279,7 @@ def _preparer(phrases, nom_voix, vitesse, journal=print, suivi=None):
             p["duree"] = dire(PR.pour_voix(p["voix"]), p["son"], nom_voix, vitesse)
             p["mots"] = mots_entendus(p["son"])
             compris = max(ressemblance(p["voix"], p["mots"]), ressemblance(p.get("ecrit", p["voix"]), p["mots"]))
-            if compris < 0.75 and PR.candidats(p.get("ecrit") or p["voix"], p["mots"]):
+            if compris < SEUIL_COMPRIS and PR.candidats(p.get("ecrit") or p["voix"], p["mots"]):
                 refaire.append(k)
             if suivi:
                 suivi(len([q for q in phrases if "mots" in q]), len(phrases))

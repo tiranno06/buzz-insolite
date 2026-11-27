@@ -146,6 +146,12 @@ def _completer(f, script):
         return
     acteurs = [a for a in f.get("acteurs") or [] if isinstance(a, dict) and a.get("id")]
     deroule = [e for e in f.get("deroule") or [] if isinstance(e, dict)]
+    texte_tout = " ".join(p["ecrit"] for p in script["phrases"]).lower()
+    if "citerne" in texte_tout and not any(a.get("type") == "citerne" for a in acteurs):
+        # « camion-citerne » dans le texte, mais l'IA a mis « camion » (Gizeh, 27/11 : un petit camion blanc à l'écran)
+        c = next((a for a in acteurs if a.get("type") in ("camion", "camionnette")), None)
+        if c:
+            c["type"] = "citerne"
     principal = next((a for a in acteurs if a.get("type") in VEHICULES), None)
     if not principal:                                   # aucun véhicule nommé : celui que l'événement suppose
         t0 = {"crash_avion": "avion", "naufrage": "bateau", "deraillement": "train"}.get(typ, "camion")

@@ -877,9 +877,9 @@ class TestVision(unittest.TestCase):
 class TestVoixParallele(unittest.TestCase):
     def test_emotion_et_processus(self):
         from robot import voix
-        self.assertEqual(voix.emotion("Imagine un titre volé.", premiere=True), 0.7)
-        self.assertEqual(voix.emotion("Et toi, tu en penses quoi ?"), 0.62)
-        self.assertEqual(voix.emotion("Le TAS a rendu sa décision."), 0.5)
+        self.assertEqual(voix.emotion("Imagine un titre volé.", premiere=True), 0.72)
+        self.assertEqual(voix.emotion("Et toi, tu en penses quoi ?"), 0.65)
+        self.assertEqual(voix.emotion("Le TAS a rendu sa décision."), 0.55)
         os.environ["CHATTERBOX_PROCESSUS"] = "3"
         try:
             self.assertEqual(voix.processus_voix(2), 2)

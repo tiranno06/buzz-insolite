@@ -117,7 +117,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/buzz-phonetique
-          key: phonetique-v1
+          key: phonetique-v2
       - name: Installer ffmpeg
         timeout-minutes: 25
         run: bash outils/installer_ffmpeg.sh

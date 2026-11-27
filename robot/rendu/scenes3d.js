@@ -802,6 +802,7 @@ export async function creer3d(sc, couche, T) {
       }
     }
     const { p, c } = posCam(t);
+    if (!iso && !(cam.find(k => k.a <= t && k._cle === "interieur"))) p[1] = Math.max(p[1], c[1] + 2.2, 2.5);   // jamais au ras du sol
     const sol_ = scene.userData.soleil;
     if (sol_) {
       if (!scene.userData.ombresPretes) {        // une fois tout construit : ce qui est solide fait de l'ombre
