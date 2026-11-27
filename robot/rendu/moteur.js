@@ -266,7 +266,7 @@ TYPES.citation = async (sc, couche) => {
   return (t, duree) => { apparition(c, t, 0.15); c.style.rotate = `${-1.5 + 1.5 * ease.sortie(prog(t, 0, 0.6))}deg`; };
 };
 TYPES.question = async (sc, couche) => {
-  const c = el("div", "carte-texte question", couche, `<div class="titre">${echapper(sc.titre || "Et toi ?")}</div><div class="gros" style="margin-top:22px">${marques(sc.texte)}</div><div class="petit" style="color:#333">${echapper(sc.petit || "Dis-le en commentaire 👇")}</div>`);
+  const c = el("div", "carte-texte question", couche, `<div class="titre">${echapper(sc.titre || "Et toi ?")}</div><div class="gros" style="margin-top:22px">${marques(sc.texte)}</div><div class="petit" style="color:#333">${echapper(sc.petit || "Dis-le en commentaire 👇")}</div><div class="abonne">＋ ABONNE-TOI POUR LA SUITE</div>`);
   c.style.top = (sc.y ?? 560) + "px";
   return t => { apparition(c, t, 0.1); c.style.scale = String(1 + 0.025 * Math.sin(t * 2.2)); };
 };
@@ -373,6 +373,35 @@ TYPES.barres = async (sc, couche) => {
   };
 };
 
+// ---- JAUGE de vitesse (d'après bonnequestion.tv) : l'aiguille monte jusqu'à la vitesse, zone rouge au-delà de la limite
+TYPES.jauge = async (sc, couche) => {
+  const cv = el("canvas", "", couche); cv.width = W; cv.height = H; const cx = cv.getContext("2d");
+  const v = +String(sc.valeur).replace(",", ".").replace(/[^\d.]/g, "") || 0, lim = +sc.limite || 0;
+  const max = Math.max(50, Math.ceil(Math.max(v, lim) * 1.25 / 50) * 50), X = W / 2 - 50, Y = (sc.y ?? 860), R = 300;
+  const A0 = Math.PI * 0.75, A1 = Math.PI * 2.25, ang = x => mix(A0, A1, borne(x / max));
+  const tx = sc.texte ? el("div", "jauge-texte", couche, marques(sc.texte)) : null; if (tx) tx.style.top = (Y + R + 40) + "px";
+  return t => {
+    cx.clearRect(0, 0, W, H); voile(cx, Y - R - 80, t);
+    const a = borne(prog(t, 0, 0.35)), k = ease.sortie(prog(t, 0.3, 1.6)), cur = v * k + (k >= 1 ? Math.sin(t * 13) * max * 0.004 : 0);
+    cx.globalAlpha = a;
+    cx.fillStyle = "rgba(11,18,34,.88)"; cx.beginPath(); cx.arc(X, Y, R + 30, 0, 7); cx.fill();
+    cx.lineWidth = 34; cx.lineCap = "butt";
+    cx.strokeStyle = "rgba(255,255,255,.16)"; cx.beginPath(); cx.arc(X, Y, R - 20, A0, A1); cx.stroke();
+    if (lim) { cx.strokeStyle = "rgba(232,50,63,.55)"; cx.beginPath(); cx.arc(X, Y, R - 20, ang(lim), A1); cx.stroke(); }
+    cx.strokeStyle = lim && cur > lim ? "#e8323f" : "#ffd600"; cx.beginPath(); cx.arc(X, Y, R - 20, A0, ang(cur)); cx.stroke();
+    cx.fillStyle = "rgba(255,255,255,.7)"; cx.font = "700 30px Poppins"; cx.textAlign = "center"; cx.textBaseline = "middle";
+    for (let g = 0; g <= max; g += max / 5) { const q = ang(g); cx.fillText(Math.round(g), X + Math.cos(q) * (R - 80), Y + Math.sin(q) * (R - 80)); }
+    const q = ang(cur); cx.strokeStyle = "#fff"; cx.lineWidth = 10; cx.lineCap = "round";
+    cx.beginPath(); cx.moveTo(X, Y); cx.lineTo(X + Math.cos(q) * (R - 50), Y + Math.sin(q) * (R - 50)); cx.stroke();
+    cx.fillStyle = "#fff"; cx.beginPath(); cx.arc(X, Y, 18, 0, 7); cx.fill();
+    cx.font = "900 120px Poppins"; cx.fillStyle = lim && cur > lim ? "#ff5a64" : "#fff"; cx.fillText(Math.round(cur).toLocaleString("fr-FR"), X, Y + 150);
+    cx.font = "800 40px Poppins"; cx.fillStyle = "#ffd600"; cx.fillText(sc.unite || "km/h", X, Y + 228);
+    if (lim) { cx.font = "800 30px Poppins"; cx.fillStyle = "#fff"; cx.fillText(`LIMITE : ${lim}`, X, Y - R - 60); }
+    cx.globalAlpha = 1; cx.textAlign = "start"; cx.textBaseline = "alphabetic";
+    if (tx) apparition(tx, t, 1.2, { echelle: false });
+  };
+};
+
 // ---- SUITE : rien par-dessus, on revoit le décor (la 3D qui reprend après un encadré)
 TYPES.suite = async () => () => {};
 
@@ -418,6 +447,13 @@ window.charger = async sb => {
   $("#logo").style.backgroundImage = `url(${sb.logo || "../../docs/marque/logo-a.png"})`;
   if (sb.etiquette) $(".pastille").textContent = sb.etiquette;
   GROUPES = groupes(sb.mots || []);
+  CHRONO = (sb.chrono || []).filter(c => c && c.heure != null).sort((a, b) => a.a - b.a);
+  if (CHRONO.length) {
+    $("#chrono").style.display = "flex";
+    const nb = new Set(CHRONO.map(c => c.chapitre || c.heure)).size;
+    for (let i = 0; i < nb; i++) el("div", "barre", $("#chrono .barres"), "<i></i>");
+  }
+  $("#viseur .rec span").textContent = sb.viseur || "";
   const racine = $("#scenes");
   for (const sc of sb.scenes) {
     const couche = el("div", "couche", racine);
@@ -439,7 +475,7 @@ window.charger = async sb => {
   for (TITRE_MAX = 78; TITRE_MAX > 46; TITRE_MAX -= 2) { ti.style.fontSize = TITRE_MAX + "px"; if (ti.offsetHeight <= TITRE_MAX * 1.02 * 2 + 6) break; }
   return true;
 };
-let TITRE_MAX = 78;
+let TITRE_MAX = 78, CHRONO = [];
 
 window.rendre = t => {
   // encadré (chiffre, pictogramme, document…) affiché : le décor derrière s'assombrit un peu, sans jamais disparaître
@@ -470,6 +506,28 @@ window.rendre = t => {
   ti.style.transform = `scale(${mix(0.9, 1, ease.ressort(prog(t, 0, 0.5)))})`;
   $("#entete").style.opacity = borne(prog(t, 0, 0.25));
   $("#mention").textContent = (SCENES.find(s => t >= s.sc.debut && t < s.sc.fin) || SCENES[0])?.sc.mention || "";
+  // horloge des faits + chapitres : l'heure change avec la phrase qui la dit, la barre avance d'étape en étape
+  if (CHRONO.length) {
+    let i = -1; CHRONO.forEach((c, k) => { if (t >= c.a - 0.05) i = k; });
+    const c = $("#chrono"); c.style.opacity = i < 0 ? 0 : borne(prog(t, CHRONO[i].a - 0.05, 0.3));
+    if (i >= 0) {
+      const h = c.querySelector(".heure"); if (h.textContent !== CHRONO[i].heure) h.textContent = CHRONO[i].heure;
+      const chap = [...new Set(CHRONO.map(x => x.chapitre || x.heure))], n = chap.indexOf(CHRONO[i].chapitre || CHRONO[i].heure);
+      const suivant = CHRONO.find((x, k) => k > i && (x.chapitre || x.heure) !== chap[n]), fin = suivant ? suivant.a : DUREE;
+      const debutChap = CHRONO.find(x => (x.chapitre || x.heure) === chap[n]).a;
+      [...c.querySelectorAll(".barre i")].forEach((b, k) => b.style.width = (k < n ? 100 : k > n ? 0 : 100 * borne(prog(t, debutChap, fin - debutChap))) + "%");
+      c.querySelector(".chapitre").textContent = CHRONO[i].chapitre ? `${n + 1}/${chap.length} · ${CHRONO[i].chapitre}` : "";
+    }
+  }
+  // viseur de l'accroche : coins de caméra + « ● RECONSTITUTION » + heure qui défile
+  const acc = SCENES.find(s => s.sc.accroche && t >= s.sc.debut && t < s.sc.fin);
+  const vi = $("#viseur"); vi.style.display = acc ? "block" : "none";
+  if (acc) {
+    vi.style.opacity = borne(prog(t, 0, 0.2)) * (1 - prog(t, acc.sc.fin - 0.25, 0.25));
+    const s0 = (SB.viseur_heure ?? 45177) + Math.floor(t), hh = String(Math.floor(s0 / 3600) % 24).padStart(2, "0"),
+          mm = String(Math.floor(s0 / 60) % 60).padStart(2, "0"), ss = String(s0 % 60).padStart(2, "0");
+    vi.querySelector(".rec span").textContent = `${SB.viseur || ""}   ${hh}:${mm}:${ss}`;
+  }
   soustitres(t);
   return true;
 };

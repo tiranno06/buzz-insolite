@@ -24,7 +24,10 @@ Rassemble les informations de TOUS les articles (chacun apporte souvent un déta
 la même information.
 Structure :
 1. Accroche choc dans la 1re phrase (moins de 12 mots) qui donne envie de rester.
-2. Les faits, du plus étonnant au plus précis (lieu, date, chiffres).
+   Événement qui se déroule dans le temps (accident, crash, attaque, incendie) : la 1re phrase montre le moment le plus
+   fort (« 8 000 mètres en une minute. »), puis on REVIENT au début et on raconte DANS L'ORDRE, avec les heures précises
+   données par les articles en début de phrase (« Dimanche, 9 h 37. », « 21 h 54. ») — jamais une heure inventée.
+2. Les faits, du plus étonnant au plus précis (lieu, date, chiffres) ; une phrase courte = une image (5 à 12 mots).
 3. Un détail surprenant ou un chiffre fort vers la fin.
 4. Dernière phrase : une question au spectateur + « Dis-le en commentaire ! ».
 """ + REGLES_SUJET + """

@@ -13,6 +13,7 @@ la même recette soignée :
 Une alerte météo ou une catastrophe naturelle reste sur la carte (départements ou pays colorés, pluie, neige, orage).
 Le résultat a la même forme que celui de l'IA réalisatrice : `realisateur.valider` le contrôle de la même façon.
 """
+import copy
 import re
 
 from . import ia
@@ -37,6 +38,7 @@ sans rien inventer. Réponds uniquement en JSON :
  "deroule": [{"phrase": 3, "qui": "voiture", "action": "heurter", "cible": "camion"}],
  "chiffres": [{"phrase": 1, "valeur": "31", "unite": "morts", "texte": "selon le ministère"}],
  "date": {"phrase": 0, "jour": "22", "mois": "NOVEMBRE"},
+ "heures": [{"phrase": 2, "heure": "21 h 40", "etape": "L'ATTAQUE"}],
  "titre": "titre court, 40 signes au plus, le mot le plus fort entre **astérisques**",
  "lieu_date": "LE CAIRE · MERCREDI SOIR",
  "source": "Source : qui l'a annoncé (parquet, préfecture, Météo-France…)"}
@@ -44,7 +46,9 @@ sans rien inventer. Réponds uniquement en JSON :
 camionnette, police, ambulance, pompiers, avion, helico, bateau, train, personne, foule, batiment, maison, immeuble) ; "role" =
 comment le texte l'appelle (5 mots au plus). "deroule" : ce qui se passe, DANS L'ORDRE, avec le numéro de la phrase qui le
 raconte (actions : avancer, arriver, heurter, se_coucher, bruler, exploser, tomber, couler, derailler). "chiffres" : 3 au
-plus, les plus frappants, copiés tels quels du texte. Mets [] ou {} quand tu ne sais pas."""
+plus, les plus frappants, copiés tels quels du texte. "heures" : chaque heure précise DITE dans une phrase (copiée telle
+quelle), dans l'ordre, avec un nom d'étape court (2 mots, en majuscules : « LE DÉPART », « L'ALERTE », « LES SECOURS ») ;
+plusieurs heures peuvent avoir la même étape. Mets [] ou {} quand tu ne sais pas."""
 
 
 def extraire(script, articles, journal=print):
@@ -67,6 +71,43 @@ def _phrase(x, n):
 # décor 3D de chaque type d'événement
 DECOR = {"accident_route": "autoroute", "incendie": "ville", "explosion": "ville", "crash_avion": "campagne", "naufrage": "mer",
          "deraillement": "voie_ferree", "manifestation": "place", "police_justice": "place"}
+
+
+# vue « maquette » vue d'en haut (bonnequestion.tv, Bataclan : 1,1 million de vues) : lieux, foules, bâtiments
+VUE_MAQUETTE = ("manifestation", "police_justice", "incendie", "explosion")
+# moment le plus fort, montré dès la 1re phrase (« 8 000 mètres en une minute. ») avant de revenir au début
+FORTS = ("heurter", "exploser", "bruler", "tomber", "couler", "se_coucher")
+
+
+def _accroche(scene3d):
+    """Copie de la reconstitution où le moment fort se passe dès la 1re phrase (viseur « ● RECONSTITUTION »)."""
+    forts = [a for a in scene3d.get("actions") or [] if a["faire"] in FORTS]
+    if not forts:
+        return None
+    acc = copy.deepcopy(scene3d)
+    garde = {a["objet"] for a in forts} | {a.get("cible") for a in forts if a.get("cible")}
+    acc["actions"] = [dict(a, phrase=0, duree=min(float(a.get("duree") or 1.2), 1.6)) for a in acc["actions"]
+                      if a["faire"] in FORTS or (a["faire"] == "avancer" and a["objet"] in garde)]
+    acc["reperes"], acc["etiquettes"], acc["accroche"] = [], [], True
+    return acc
+
+
+def _heures(f, n, dits):
+    """Heures vraiment dites dans le texte, dans l'ordre (horloge et chapitres en haut de l'écran)."""
+    out, vu = [], -1
+    for h in f.get("heures") or []:
+        if not isinstance(h, dict):
+            continue
+        ph, heure = _phrase(h.get("phrase"), n), str(h.get("heure") or "").strip()
+        m = re.match(r"^(\d{1,2})\s*(?:h|:)\s*(\d{2})?$", heure)
+        if ph is None or ph <= vu or not m or int(m.group(1)) > 23:
+            continue
+        if not re.search(rf"\b{int(m.group(1))}\s*(?:h|heures?|:)\s*{m.group(2) or ''}", dits[ph].lower()):
+            continue                                                    # heure absente de SA phrase : jamais inventée
+        etape = re.sub(r"[^\w' -]", "", str(h.get("etape") or "")).strip().upper()[:18]
+        out.append(dict(phrase=ph, heure=f"{int(m.group(1))}:{m.group(2) or '00'}", chapitre=etape))
+        vu = ph
+    return out if len(out) >= 2 else []
 
 
 def _scene_3d(f, phrases_3d, script):
@@ -130,7 +171,8 @@ def _scene_3d(f, phrases_3d, script):
             premiere = next((x["phrase"] for x in actions if x["objet"] == a["id"]), phrases_3d[0])
             reperes.append(dict(objet=a["id"], texte=role[:28], phrase=premiere))
     moment = "nuit" if f.get("nuit") else "jour"
-    return dict(type="3d", decor=DECOR.get(typ, "ville"), moment=moment, objets=objets, actions=actions, reperes=reperes[:3],
+    vue = {"vue": "iso"} if typ in VUE_MAQUETTE else {}
+    return dict(type="3d", **vue, decor=DECOR.get(typ, "ville"), moment=moment, objets=objets, actions=actions, reperes=reperes[:3],
                 etiquettes=[f"D'après {m.strip()}" for m in re.findall(r"(?i)source\s*:\s*([^,.;]{3,30})", f.get("source") or "")][:1])
 
 
@@ -146,6 +188,8 @@ def composer(f, script):
         if ph not in (None, 0, n - 1) and ph not in encadres and str(c.get("valeur") or "").strip():
             encadres[ph] = dict(type="chiffre", valeur=str(c["valeur"]).strip(), unite=str(c.get("unite") or "")[:20],
                                 texte=str(c.get("texte") or "")[:50])
+            if re.search(r"km\s*/?\s*h|kilomètres?[- ]heure|nœuds", str(c.get("unite") or "").lower()):
+                encadres[ph].update(type="jauge", unite="km/h" if "km" in str(c.get("unite")).lower() else "nœuds")
     d = f.get("date") or {}
     ph = _phrase(d.get("phrase"), n) if isinstance(d, dict) else None
     if ph not in (None, 0, n - 1) and ph not in encadres and str(d.get("jour") or "").isdigit():
@@ -155,6 +199,11 @@ def composer(f, script):
     avec_3d = typ in DECOR and (deroule or typ in ("manifestation", "police_justice")) and n >= 6
     debut_3d = min(max(1, deroule[0] if deroule else 2), 3) if avec_3d else n
     fin_3d = min(n - 2, max((deroule[-1] if deroule else debut_3d) + 2, debut_3d + 3)) if avec_3d else n
+    forts = avec_3d and n >= 8 and any(str((e or {}).get("action") or "").lower() in ACTIONS and
+                                       ACTIONS[str(e.get("action")).lower()] in FORTS for e in f.get("deroule") or [])
+    if forts:                                                         # phrase 0 = moment fort ; la carte garde la phrase 1
+        debut_3d = max(debut_3d, 2)
+        fin_3d = max(fin_3d, min(n - 2, debut_3d + 3))
     phrases_3d = list(range(debut_3d, fin_3d + 1))
     carte = dict(type="carte", zone="france" if f.get("departements") else None, nuit=bool(f.get("nuit")),
                  departements=[dict(code=str(c).zfill(2), couleur="orange" if typ == "meteo" else "rouge") for c in (f.get("departements") or [])[:8]],
@@ -180,7 +229,7 @@ def composer(f, script):
         elif r == "question":
             scenes.append(dict(type="question", phrases=ph))
         elif r == "3d":
-            if not any(s.get("type") == "3d" for s in scenes):
+            if not any(s.get("type") == "3d" and not s.get("accroche") for s in scenes):
                 scenes.append(dict(_scene_3d(f, phrases_3d, script), phrases=ph))
             else:                                                             # 3D coupée par un encadré : elle continue dessous
                 scenes.append(dict(type="suite", phrases=ph))             # (rien par-dessus : on revoit la 3D)
@@ -192,6 +241,14 @@ def composer(f, script):
             else:
                 scenes.append(dict(carte, phrases=ph))
         i = j + 1
+    if forts and scenes and scenes[0].get("type") == "carte" and 0 in scenes[0]["phrases"]:
+        principale = next((x for x in scenes if x.get("type") == "3d"), None)
+        acc = _accroche({k: v for k, v in principale.items() if k != "phrases"}) if principale else None
+        if acc:                                                       # la 1re phrase passe sur le moment fort
+            scenes[0]["phrases"] = scenes[0]["phrases"][1:]
+            scenes.insert(0, dict(acc, phrases=[0]))
+            if not scenes[1]["phrases"]:
+                scenes.pop(1)
     propres = scenes
     return dict(titre=f.get("titre") or script.get("titre") or "", lieu_date=f.get("lieu_date") or "", source=f.get("source") or "",
                 cles={}, scenes=propres)
@@ -211,5 +268,8 @@ def realiser(script, articles, journal=print):
     brut = composer(f, script)
     anim = realisateur.valider(brut, script, articles, journal)
     anim["gabarit"] = f["type"]
+    anim["chrono"] = _heures(f, len(script["phrases"]), [p["ecrit"] for p in script["phrases"]])
+    if any(sc.get("accroche") for sc in anim["scenes"]):
+        anim["viseur"] = ", ".join(x.strip() for x in str(f.get("lieu") or "").split(",")[:2]).upper()[:40]
     journal(f"  modèle « {f['type']} » : " + " · ".join(f"{s['type']} ({len(s['phrases'])} ph.)" for s in anim["scenes"]))
     return anim

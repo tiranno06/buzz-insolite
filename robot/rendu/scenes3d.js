@@ -379,7 +379,10 @@ export async function creer3d(sc, couche, T) {
   await prechargerModeles([...(sc.objets || []).map(o => o.type), "immeuble", "gratte_ciel", "maison", "arbre", "voiture", "camion", "camionnette", "personne"]);
   const cv = el("canvas", "", couche); cv.width = W; cv.height = H; const cx = cv.getContext("2d");
   const scene = new T.Scene(); decor(T, scene, sc);
-  const camera = new T.PerspectiveCamera(sc.focale ?? 40, W / H, 0.5, 3000);
+  // vue « maquette » vue d'en haut, sans perspective (comme les reconstitutions de bonnequestion.tv), sinon caméra classique
+  const iso = sc.vue === "iso", HAUT_ISO = sc.iso_hauteur ?? 90;
+  const camera = iso ? new T.OrthographicCamera(-HAUT_ISO * W / H / 2, HAUT_ISO * W / H / 2, HAUT_ISO / 2, -HAUT_ISO / 2, 0.5, 3000)
+                     : new T.PerspectiveCamera(sc.focale ?? 40, W / H, 0.5, 3000);
   const objets = sc.objets || [], actions = sc.actions || [], MATS = feu(T);
   const groupes = {};
   for (const o of objets) {
@@ -478,7 +481,11 @@ export async function creer3d(sc, couche, T) {
     }
     if (scene.userData.eau) scene.userData.eau.position.y = -0.02 + Math.sin(t) * 0.05;
     const { p, c } = posCam(t);
-    camera.position.set(...p); camera.lookAt(...c);
+    if (iso) {                                // toujours le même angle (45°, en surplomb) ; on se rapproche doucement
+      const z = mix(1, sc.iso_zoom ?? 1.25, ease.douce(prog(t, 0, Math.max(duree || 6, 1))));
+      if (camera.zoom !== z) { camera.zoom = z; camera.updateProjectionMatrix(); }
+      camera.position.set(c[0] - 140, c[1] + 150, c[2] + 140); camera.lookAt(...c);
+    } else { camera.position.set(...p); camera.lookAt(...c); }
     camera.updateMatrixWorld();
     // anneaux et étiquettes qui suivent leur objet
     anneaux.forEach(({ a, m }) => { const g = groupes[m.objet]; if (!g) return; const v = prog(t, m.a ?? 0.5, 0.4); a.visible = v > 0 && (m.fin == null || t < m.fin);

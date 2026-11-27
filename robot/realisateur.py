@@ -19,7 +19,7 @@ from . import ia
 from .commun import RACINE
 
 BASES = ("carte", "3d", "photo")                    # décors qui restent à l'écran (le moteur pose le reste par-dessus)
-TYPES = ("suite", "carte", "chiffre", "frise", "citation", "barres", "3d", "question", "mot", "icone", "document", "calendrier", "personnes")
+TYPES = ("suite", "carte", "chiffre", "frise", "citation", "barres", "3d", "question", "mot", "icone", "document", "calendrier", "personnes", "jauge")
 UNITES_FORTES = ("millions", "million", "milliards", "milliard", "mille", "%", "pour cent")
 OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "bateau", "train", "batiment", "arbre", "personne",
              "muret", "mur", "cube_eau", "foule", "police", "pompiers", "ambulance", "batiment_officiel",
@@ -179,6 +179,8 @@ def valider(d, script, articles, journal=print):
         raison = None
         if t not in TYPES:
             raison = f"type inconnu « {t} »"
+        elif t == "jauge" and not (_chiffres(str(sc.get("valeur"))) <= connus and _chiffres(str(sc.get("valeur")))):
+            raison = f"vitesse « {sc.get('valeur')} » absente du texte et des articles"
         elif t in ("chiffre",) and not (_chiffres(str(sc.get("valeur"))) <= connus and _chiffres(str(sc.get("valeur")))):
             raison = f"chiffre « {sc.get('valeur')} » absent du texte et des articles"
         elif t == "citation" and (len(str(sc.get("texte") or "")) < 8 or str(sc.get("texte")).lower().strip(" «»\"") not in bas):
@@ -350,7 +352,7 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
             d_ = b - a                                      # caméra : vue en hauteur qui suit l'objet principal et se rapproche
             s["camera"] = [dict(a=0, pos=[-55, 42, 52], suivre=principal), dict(a=max(1.0, d_ * 0.55), pos=[-32, 30, 40], suivre=principal),
                            dict(a=max(2.0, d_), pos=[-24, 24, 32], suivre=principal)]
-            s["mention"] = "Reconstitution 3D · illustration" + (f" d'après {mention_source}" if mention_source else "")
+            s["mention"] = "Reconstitution · plan simplifié · positions approximatives" + (f" · d'après {mention_source}" if mention_source else "")
         scenes.append(s)
     if scenes and scenes[0]["type"] not in BASES:        # jamais un encadré sur du vide : la carte du lieu dessous
         fin_ = next((x["debut"] for x in scenes if x["type"] in BASES), total)
@@ -359,8 +361,19 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
                               zone="monde" if not lieu else None, points=[dict(lieu, a=1.0)] if lieu else [],
                               depart_zoom=8 if lieu else 1.4, zoom_duree=4.0, marge=6 if lieu else 1.2,
                               mention="Images : NASA (Blue Marble)"))
-    return dict(ips=30, duree=round(total, 3), titre=anim["titre"], lieu_date=anim["lieu_date"], source=anim["source"],
-                etiquette=script.get("etiquette") or "BUZZ INSOLITE", mots=mots, scenes=scenes)
+    sb = dict(ips=30, duree=round(total, 3), titre=anim["titre"], lieu_date=anim["lieu_date"], source=anim["source"],
+              etiquette=script.get("etiquette") or "BUZZ INSOLITE", mots=mots, scenes=scenes)
+    # horloge des faits et chapitres (d'après bonnequestion.tv) : l'heure s'affiche quand la phrase qui la dit commence
+    chrono = [dict(a=round(debuts[c["phrase"]], 3), heure=c["heure"], chapitre=c.get("chapitre") or "")
+              for c in anim.get("chrono") or [] if isinstance(c.get("phrase"), int) and c["phrase"] < len(debuts)]
+    if len(chrono) >= 2:
+        sb["chrono"] = chrono
+    if anim.get("viseur"):
+        sb["viseur"] = anim["viseur"]
+        h = re.match(r"(\d{1,2})\s*[h:]\s*(\d{2})?", chrono[0]["heure"]) if chrono else None
+        if h:
+            sb["viseur_heure"] = int(h.group(1)) * 3600 + int(h.group(2) or 0) * 60
+    return sb
 
 
 def rendre(sb, sortie, journal=print):

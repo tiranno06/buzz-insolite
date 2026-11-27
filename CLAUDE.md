@@ -637,6 +637,24 @@ Recherche faite : aucune source publique sur la façon dont curioverse fabrique 
   extraction impossible ou sans lieu → IA réalisatrice. Carte : un lieu précis = on plonge sur la ville, le pays reste
   coloré autour (`cadrer_zones` pour cadrer tout le pays). Ombres des grands pictogrammes retirées (trop lentes).
 
+## Leçons de bonnequestion.tv (27/11, chaîne donnée par l'auteur)
+284 vidéos en 7 semaines, médiane 51 000 vues, 102 au-dessus de 100 000 (jet en Floride 2 M, TGV Séville 1,2 M, Bataclan
+1,1 M, A13 fermée 1 M). 72 à 116 s. Recette relevée image par image et reprise (sans copier nom, logo ni mise en page) :
+- **Accroche = le moment le plus fort, tout de suite** (avion qui tombe, « 8 000 MÈTRES en une minute. »), dans un VISEUR
+  (coins de caméra, « ● RECONSTITUTION · lieu · heure qui défile »), puis retour au début du récit. → `gabarits._accroche`
+  (copie de la 3D, actions fortes `FORTS` sur la phrase 0, `accroche: true`), `#viseur` de page.html, `sb.viseur` / `viseur_heure`.
+- **Horloge + chapitres** sous le titre (« ● 21:40 » + barre en étapes « 1/5 · L'ATTAQUE ») qui avancent avec le récit.
+  → l'IA extrait `heures` (gabarits.CONSIGNE) ; `_heures` ne garde qu'une heure VRAIMENT dite dans SA phrase, dans l'ordre,
+  2 au moins ; `sb.chrono` ; `#chrono` dans moteur.js. Consigne d'écriture : récit dans l'ordre avec les heures des articles.
+- **Vue « maquette » isométrique** (Bataclan : salle, rue, foule vues d'en haut, sans perspective) → `vue: "iso"` dans
+  scenes3d.js (caméra orthographique, même angle, zoom lent) pour manifestation, police / justice, incendie, explosion (`VUE_MAQUETTE`).
+- **Instruments** : jauge de vitesse (aiguille, zone rouge au-delà de la limite) → type `jauge` (chiffre en km/h ou nœuds).
+  Vus aussi (pas encore faits) : altimètre, message radio avec onde sonore, téléphone « appel entrant », compteur 6/11.
+- Mention « Reconstitution · plan simplifié · positions approximatives » ; fin « ＋ ABONNE-TOI POUR LA SUITE » sur la question.
+- Leurs cartes sont PLATES (terre crème, mer bleu clair, ou plan de rues sombre avec routes jaunes pour l'A13) : nos cartes
+  satellite restent (curioverse) ; un plan de rues demanderait OpenStreetMap (Overpass, bloqué ici).
+- Sujets : beaucoup de « service » au tutoiement (« Ta carte Revolut refusée ? », « par où passer », « tu as le droit de sortir ? »).
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit

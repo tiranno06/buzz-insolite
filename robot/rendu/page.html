@@ -103,6 +103,32 @@ canvas { position: absolute; inset: 0; width: 1080px; height: 1920px; }
 .calendrier .annee { font-weight: 700; font-size: 40px; color: #777; padding-bottom: 30px; }
 .foule { position: absolute; left: 110px; right: 190px; display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
 .foule .perso { width: 120px; height: 170px; }
+/* ---------- horloge et chapitres (d'après bonnequestion.tv, 27/11) : « ● 21:40 » + barre en étapes « 2/4 · L'ATTAQUE » ---------- */
+#chrono { margin-top: 14px; display: none; align-items: center; gap: 16px; }
+#chrono .heure { display: flex; align-items: center; gap: 10px; background: rgba(11,18,34,.88); border: 2px solid rgba(255,255,255,.22);
+                 border-radius: 12px; padding: 6px 16px 4px; font-weight: 800; font-size: 38px; font-variant-numeric: tabular-nums; }
+#chrono .heure::before { content: ""; width: 16px; height: 16px; border-radius: 50%; background: var(--rouge); }
+#chrono .etapes { display: flex; flex-direction: column; gap: 8px; }
+#chrono .barres { display: flex; gap: 8px; }
+#chrono .barre { width: 74px; height: 9px; border-radius: 5px; background: rgba(255,255,255,.22); overflow: hidden; }
+#chrono .barre i { display: block; height: 100%; width: 0; background: var(--jaune); }
+#chrono .chapitre { font-weight: 800; font-size: 22px; letter-spacing: .1em; color: #fff; text-shadow: 0 1px 4px #000; }
+/* ---------- viseur de l'accroche (« ● RECONSTITUTION · LIEU · 12:49:57 ») ---------- */
+#viseur { position: absolute; left: 60px; right: 160px; top: 430px; bottom: 700px; display: none; pointer-events: none; }
+#viseur .coin { position: absolute; width: 70px; height: 70px; border: 0 solid rgba(255,255,255,.9); }
+#viseur .hg { left: 0; top: 0; border-left-width: 5px; border-top-width: 5px; }
+#viseur .hd { right: 0; top: 0; border-right-width: 5px; border-top-width: 5px; }
+#viseur .bg { left: 0; bottom: 0; border-left-width: 5px; border-bottom-width: 5px; }
+#viseur .bd { right: 0; bottom: 0; border-right-width: 5px; border-bottom-width: 5px; }
+#viseur .rec { position: absolute; left: 28px; bottom: 30px; font-weight: 800; font-size: 26px; letter-spacing: .06em; }
+#viseur .rec b { display: inline-flex; align-items: center; gap: 10px; background: rgba(11,18,34,.85); border-radius: 10px; padding: 6px 14px 4px; }
+#viseur .rec b::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: var(--rouge); }
+#viseur .rec span { display: block; margin-top: 8px; font-family: monospace; font-weight: 700; font-size: 24px; color: rgba(255,255,255,.85);
+                    text-shadow: 0 1px 4px #000; text-transform: uppercase; }
+/* ---------- jauge de vitesse ---------- */
+.jauge-texte { position: absolute; left: 60px; right: 140px; text-align: center; font-weight: 700; font-size: 42px; line-height: 1.2; text-shadow: var(--ombre); }
+.abonne { display: inline-block; margin-top: 26px; background: var(--rouge); color: #fff; font-weight: 800; font-size: 30px; padding: 10px 26px 8px;
+          border-radius: 40px; letter-spacing: .04em; }
 .credit { position: absolute; right: 160px; font-weight: 500; font-size: 20px; color: rgba(255,255,255,.7); text-shadow: 0 1px 4px #000; }
 </style>
 </head>
@@ -111,8 +137,9 @@ canvas { position: absolute; inset: 0; width: 1080px; height: 1920px; }
   <div id="scenes"></div>
   <div id="voiles"></div>
   <div id="calque">
-    <div id="entete"><div id="marque"><span class="pastille">BUZZ INSOLITE</span><span class="lieu"></span></div><div id="titre"></div></div>
+    <div id="entete"><div id="marque"><span class="pastille">BUZZ INSOLITE</span><span class="lieu"></span></div><div id="titre"></div><div id="chrono"><div class="heure"></div><div class="etapes"><div class="barres"></div><div class="chapitre"></div></div></div></div>
     <div id="logo"></div>
+    <div id="viseur"><div class="coin hg"></div><div class="coin hd"></div><div class="coin bg"></div><div class="coin bd"></div><div class="rec"><b>RECONSTITUTION</b><span></span></div></div>
     <div id="soustitres"></div>
     <div id="mention"></div>
     <div id="source"></div>

@@ -1308,7 +1308,7 @@ class TestRealisateur(unittest.TestCase):
         act = sc[1]["actions"][0]
         self.assertEqual(act["a"], 3); self.assertEqual(act["vers"], [50.0, sc[1]["objets"][0]["z"]])
         self.assertEqual(sc[1]["reperes"][0]["a"], 0)
-        self.assertTrue(sc[1]["mention"].startswith("Reconstitution 3D"))
+        self.assertTrue(sc[1]["mention"].startswith("Reconstitution · plan simplifié"))
 
 
 class TestIADeSecours(unittest.TestCase):
@@ -1372,13 +1372,30 @@ class TestGabarits(unittest.TestCase):
              "chiffres": [{"phrase": 1, "valeur": "31", "unite": "morts"}, {"phrase": 6, "valeur": "27", "unite": "véhicules"}]}
         a = gabarits.composer(f, script)
         types = [s["type"] for s in a["scenes"]]
-        self.assertEqual(types[0], "carte"); self.assertEqual(types[-1], "question")
+        self.assertEqual(types[0], "3d"); self.assertIn("carte", types[1:3]); self.assertEqual(types[-1], "question")
+        self.assertTrue(a["scenes"][0]["accroche"])                                          # moment fort dès la 1re phrase
+        self.assertEqual({x["phrase"] for x in a["scenes"][0]["actions"]}, {0})
         self.assertIn("3d", types); self.assertEqual(types.count("chiffre"), 2)
         self.assertEqual([x for s in a["scenes"] for x in s["phrases"]], list(range(10)))      # chaque phrase une fois, dans l'ordre
-        trois = next(s for s in a["scenes"] if s["type"] == "3d")
+        trois = next(s for s in a["scenes"] if s["type"] == "3d" and not s.get("accroche"))
         self.assertIn(("v", "heurter"), [(x["objet"], x["faire"]) for x in trois["actions"]])
         self.assertNotIn("x", [x["objet"] for x in trois["actions"]])                        # acteur inconnu : action ignorée
         self.assertIn("suite", types)                                                         # la 3D revient après l'encadré
+
+    def test_heures_chapitres_jauge_maquette(self):
+        """D'après bonnequestion.tv : horloge + chapitres (heures vraiment dites), jauge de vitesse, vue maquette."""
+        from robot import gabarits
+        dits = ["Ce concert va s'arrêter.", "Paris, 21 h 40.", "Trois hommes arrivent.", "Ils roulent à 143 km/h.",
+                "22 h 15 : la police entre.", "Un incendie éclate à 23 h.", "Le bilan est lourd.", "Et toi ?"]
+        f = {"heures": [{"phrase": 1, "heure": "21 h 40", "etape": "l'attaque"}, {"phrase": 4, "heure": "22 h 15", "etape": "LA POLICE"},
+                        {"phrase": 5, "heure": "4 h 00", "etape": "INVENTÉE"}, {"phrase": 3, "heure": "21 h 50"}]}
+        h = gabarits._heures(f, len(dits), dits)
+        self.assertEqual([(x["phrase"], x["heure"], x["chapitre"]) for x in h], [(1, "21:40", "L'ATTAQUE"), (4, "22:15", "LA POLICE")])
+        script = {"titre": "t", "phrases": [{"ecrit": p} for p in dits]}
+        a = gabarits.composer({"type": "manifestation", "lieu": "Paris, France", "pays": ["FRA"],
+                               "chiffres": [{"phrase": 3, "valeur": "143", "unite": "km/h"}]}, script)
+        self.assertIn("jauge", [s["type"] for s in a["scenes"]])
+        self.assertEqual(next(s for s in a["scenes"] if s["type"] == "3d")["vue"], "iso")
 
     def test_meteo_reste_sur_la_carte(self):
         from robot import gabarits
