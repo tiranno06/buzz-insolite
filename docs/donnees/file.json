@@ -1,6 +1,152 @@
 {
  "videos": [
   {
+   "id": "20261127-022316-1",
+   "tag": "v-20261127-022316-1",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-022316-1/buzz-20261127-022316-1.mp4",
+   "titre": "Afghanistan : les noms des femmes effacés",
+   "accroche": "NOMS DES FEMMES BANNIS",
+   "sujet_id": "f242ef4684",
+   "sujet": "Afghanistan: femmes sans noms imposés par décret",
+   "buzz": {
+    "vues": 2800000,
+    "jaime": 494100,
+    "commentaires": 5329,
+    "score": 735
+   },
+   "description": "🚨 Les talibans imposent le surnom « Bibi » aux femmes afghanes. Découvre pourquoi c’est une atteinte à leurs droits.",
+   "question": "Et toi, que penses-tu de cette suppression d’identité ?",
+   "hashtags": [
+    "#afghanistan",
+    "#taliban",
+    "#droitsdesfemmes",
+    "#décret",
+    "#insolite",
+    "#actu",
+    "#buzz"
+   ],
+   "duree": 67.8,
+   "sources": [
+    {
+     "media": "amnestyusa.org",
+     "titre": "Five Years On, the U.S. Government is Failing its Obligation to Afghanistan's Women and Girls",
+     "lien": "https://www.amnestyusa.org/blog/five-years-on-the-u-s-government-is-failing-its-obligation-to-afghanistans-women-and-girls/"
+    },
+    {
+     "media": "ipsnews.net",
+     "titre": "How the Taliban Hunt Women in Afghanistan",
+     "lien": "https://www.ipsnews.net/2026/08/how-the-taliban-hunt-women-in-afghanistan/"
+    },
+    {
+     "media": "ledauphine.com",
+     "titre": "Afghanistan « Dépouillées de leur humanité » : des femmes privées de leur nom par un décret des talibans",
+     "lien": "https://www.ledauphine.com/societe/2026/11/25/depouillees-de-leur-humanite-des-femmes-privees-de-leur-nom-par-un-decret-des-talibans"
+    },
+    {
+     "media": "courrierinternational.com",
+     "titre": "En Afghanistan un décret ordonne de remplacer le nom des femmes par des surnoms",
+     "lien": "https://www.courrierinternational.com/article/repression-en-afghanistan-un-decret-ordonne-de-remplacer-le-nom-des-femmes-par-des-surnoms_289182"
+    },
+    {
+     "media": "epochtimes.fr",
+     "titre": "À Balkh en Afghanistan, les noms des femmes vont disparaître pour être remplacés par le surnom « Bibi »",
+     "lien": "https://www.epochtimes.fr/a-balkh-en-afghanistan-les-noms-des-femmes-vont-disparaitre-pour-etre-remplaces-par-le-surnom-bibi-3400903.html"
+    },
+    {
+     "media": "fr.news.yahoo.com",
+     "titre": "Afghanistan : Les talibans sont-ils sur le point d'effacer les noms des femmes sur les documents officiels ?",
+     "lien": "https://fr.news.yahoo.com/sport/afghanistan-talibans-point-deffacer-noms-030237596.html"
+    },
+    {
+     "media": "leclubdesjuristes.com",
+     "titre": "Balkh, Afghanistan : un décret taliban interdit d’inscrire le nom des femmes sur les documents officiels",
+     "lien": "https://www.leclubdesjuristes.com/en-bref/balkh-afghanistan-un-decret-taliban-interdit-dinscrire-le-nom-des-femmes-sur-les-documents-officiels-18691/"
+    }
+   ],
+   "verification": {
+    "par": "groq:openai/gpt-oss-20b",
+    "corrigees": 0,
+    "retirees": 0,
+    "problemes": []
+   },
+   "verifie": true,
+   "credits": [],
+   "style": "anime",
+   "extraits_perdus": 0,
+   "regles_non_respectees": [],
+   "ecrans_illustres": 13,
+   "ecrans_total": 13,
+   "format": "buzz",
+   "voix": "kokoro-ff_siwis",
+   "lieu": "Balkh, Afghanistan",
+   "humeur": "tension",
+   "categorie": "politique",
+   "texte": [
+    "Le nouveau décret taliban efface les noms des femmes !",
+    "Dans la province de Balkh, au nord de l’Afghanistan, un texte interdit d’inscrire les prénoms féminins sur tout document officiel.",
+    "Cette interdiction s’applique surtout aux dossiers médicaux et aux ordonnances.",
+    "Toutes les patientes doivent maintenant être désignées par le surnom « Bibi ».",
+    "« Bibi » veut dire « grand-mère » ou « femme âgée » dans la langue locale.",
+    "Des témoignages rapportent aussi que certaines femmes sont appelées « chèvre » ou même « bétail ».",
+    "Lalah Osmany, militante afghane résidant en Allemagne, qualifie ce texte de déshumanisation.",
+    "Elle affirme que remplacer le nom d’une femme par un animal la prive de son humanité.",
+    "Ce décret s’inscrit dans la suite des restrictions imposées depuis le retour des talibans en 2021.",
+    "En 2022, les femmes ont été exclues des universités ; en 2024, l’étude de la médecine a été interdite.",
+    "Les experts craignent que l’absence de prénoms entraîne de graves erreurs médicales.",
+    "Des ONG internationales alertent que cette mesure aggrave encore l’accès aux soins pour les Afghanes.",
+    "Le texte a été signalé fin novembre 2026 par plusieurs médias dont El País et le Guardian.",
+    "Et toi, que penses-tu de cette suppression d’identité ? Dis-le en commentaire !"
+   ],
+   "essai": false,
+   "cree_le": "2026-11-27T02:32:40+01:00",
+   "ia_quotas": {
+    "mistral": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 5,
+     "restant_minute": "0"
+    },
+    "groq": {
+     "appels": 2,
+     "refus": 1,
+     "erreurs": 4,
+     "restant_demandes": "999",
+     "limite_demandes": "1000",
+     "restant_mots": "3028"
+    },
+    "gemini": {
+     "appels": 2,
+     "refus": 1,
+     "erreurs": 1
+    }
+   },
+   "fabrication_s": 564,
+   "controles": {
+    "note": 100,
+    "lignes": [],
+    "sautes": [],
+    "corriges": 0,
+    "restants": 0,
+    "graves_restants": 0
+   },
+   "reprises": 0,
+   "preuves": [],
+   "couverture_ms": 800,
+   "durees": {
+    "articles": 0,
+    "ecriture": 10,
+    "texte": 15,
+    "images": 3,
+    "voix": 52,
+    "montage": 414,
+    "controle_final": 56,
+    "regles": 1,
+    "rangement": 4
+   },
+   "refaite": null,
+   "statut": "nouvelle"
+  },
+  {
    "id": "20261126-163041-1",
    "tag": "v-20261126-163041-1",
    "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261126-163041-1/buzz-20261126-163041-1.mp4",
