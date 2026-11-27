@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-27T06:14:31+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 84 sujet(s) au-dessus des seuils — en tête : « Afghanistan : les femmes privées de nom officiel »"
+  },
+  {
    "date": "2026-11-27T04:14:08+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 83 sujet(s) au-dessus des seuils — en tête : « Afghanistan : les femmes privées de nom officiel »"

@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-27T04:14:05+01:00",
+ "maj": "2026-11-27T06:14:28+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:11:39+01:00"
+   "le": "2026-11-27T06:12:30+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:11:43+01:00"
+   "le": "2026-11-27T06:12:34+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:11:48+01:00"
+   "le": "2026-11-27T06:12:38+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:11:51+01:00"
+   "le": "2026-11-27T06:12:42+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:11:55+01:00"
+   "le": "2026-11-27T06:12:45+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-27T04:11:58+01:00"
+   "le": "2026-11-27T06:12:48+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:12:03+01:00"
+   "le": "2026-11-27T06:12:52+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:12:08+01:00"
+   "le": "2026-11-27T06:12:55+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:12:12+01:00"
+   "le": "2026-11-27T06:12:59+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:12:16+01:00"
+   "le": "2026-11-27T06:13:03+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:12:21+01:00"
+   "le": "2026-11-27T06:13:07+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:12:25+01:00"
+   "le": "2026-11-27T06:13:10+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:12:29+01:00"
+   "le": "2026-11-27T06:13:14+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-27T04:12:34+01:00"
+   "le": "2026-11-27T06:13:17+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:12:39+01:00"
+   "le": "2026-11-27T06:13:21+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:12:44+01:00"
+   "le": "2026-11-27T06:13:25+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:12:49+01:00"
+   "le": "2026-11-27T06:13:29+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:12:53+01:00"
+   "le": "2026-11-27T06:13:33+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:12:58+01:00"
+   "le": "2026-11-27T06:13:37+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:13:03+01:00"
+   "le": "2026-11-27T06:13:41+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:13:07+01:00"
+   "le": "2026-11-27T06:13:44+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:13:11+01:00"
+   "le": "2026-11-27T06:13:48+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:13:16+01:00"
+   "le": "2026-11-27T06:13:51+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:13:20+01:00"
+   "le": "2026-11-27T06:13:55+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:13:25+01:00"
+   "le": "2026-11-27T06:13:58+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:13:31+01:00"
+   "le": "2026-11-27T06:14:02+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:13:35+01:00"
+   "le": "2026-11-27T06:14:05+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T04:13:40+01:00"
+   "le": "2026-11-27T06:14:09+01:00"
   }
  },
  "lues": 809,
@@ -1605,6 +1605,67 @@
    "tendance": null,
    "statut": "sans_source",
    "vu_le": "2026-11-26T17:23:54+01:00"
+  },
+  {
+   "titre": "Semi-remorque perd le contrôle à l'Ohio",
+   "resume": "Un semi-remorque a dérapé entre deux bretelles d'une autoroute de l'Ohio, mais a été remis sur la route sans blessés. L'incident a été capturé par la DOT de l'Ohio.",
+   "mots_cles": [
+    "a",
+    "c",
+    "c",
+    "i",
+    "d",
+    "e"
+   ],
+   "mots_cles_en": [
+    "t",
+    "r",
+    "u",
+    "c",
+    "k",
+    " "
+   ],
+   "hashtags": [
+    "truckaccident",
+    "ohio",
+    "highway"
+   ],
+   "insolite": 3,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712677404224834829",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7712677404224834829",
+     "vues": 5100000,
+     "jaime": 285600,
+     "commentaires": 3385,
+     "partages": 33700,
+     "date": 1795747666,
+     "texte": "Video from the Ohio Department of Transportation shows the moment a semi-truck lost control while attempting to turn, skidding across the gap between two off-ramps. Authorities were able to pull the truck back onto the road and tow it away. No injuries were reported. #truck #ohio #accident #drive ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712677404224834829?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "005184c1ee",
+   "score": 494,
+   "derniere_vue": 1795756461.885257,
+   "vues": 5100000,
+   "jaime": 285600,
+   "commentaires": 3385,
+   "hashtags_viraux": [
+    "truck",
+    "ohio",
+    "accident",
+    "drive"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T06:14:28+01:00"
   },
   {
    "titre": "Famille réclame maintien du cannabis médical au Royaume-Uni",
@@ -4542,62 +4603,6 @@
    "video_id": "20261125-214937-1"
   },
   {
-   "titre": "Table s'effondre sous le repas de Thanksgiving",
-   "resume": "Une famille du New Jersey a vu sa table céder sous le poids du repas de Thanksgiving, provoquant un désordre mais aucun blessé grave. La scène a été filmée et partagée en ligne.",
-   "mots_cles": [
-    "T",
-    "h",
-    "a",
-    "n",
-    "k",
-    "s"
-   ],
-   "mots_cles_en": [
-    "T",
-    "h",
-    "a",
-    "n",
-    "k",
-    "s"
-   ],
-   "hashtags": [
-    "thanksgiving",
-    "tablecollapse",
-    "newjersey"
-   ],
-   "insolite": 5,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712546664501808415",
-     "compte": "foxnews",
-     "url": "https://www.tiktok.com/@foxnews/video/7712546664501808415",
-     "vues": 2000000,
-     "jaime": 71300,
-     "commentaires": 1776,
-     "partages": 11300,
-     "date": 1795719600,
-     "texte": "Here’s hoping your table can handle the Thanksgiving feast today! Last Thanksgiving, a New Jersey family was wrapping up a holiday speech when their table suddenly gave way under the weight of all the food. Fortunately, the family managed to salvage enough food to carry on with their celebration. But the video has been pointed to as a host’s (and their guests’) worst nightmare.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712546664501808415?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "03ad6d9ce1",
-   "score": 82,
-   "derniere_vue": 1795749233.1025193,
-   "vues": 2000000,
-   "jaime": 71300,
-   "commentaires": 1776,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-27T04:14:05+01:00"
-  },
-  {
    "titre": "Étudiante fait malaise devant Emmanuel Macron",
    "resume": "Une étudiante a perdu connaissance lors d’une visite d’Emmanuel Macron à Toulouse. Les causes du malaise restent à déterminer.",
    "mots_cles": [
@@ -4696,6 +4701,62 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T16:44:03+01:00",
    "video_id": "20261125-224006-1"
+  },
+  {
+   "titre": "Table s'effondre sous le repas de Thanksgiving",
+   "resume": "Lors d'un repas de Thanksgiving dans le New Jersey, la table a cédé sous le poids de la nourriture. La famille a pu sauver une partie du repas malgré la chute.",
+   "mots_cles": [
+    "T",
+    "h",
+    "a",
+    "n",
+    "k",
+    "s"
+   ],
+   "mots_cles_en": [
+    "T",
+    "h",
+    "a",
+    "n",
+    "k",
+    "s"
+   ],
+   "hashtags": [
+    "thanksgiving",
+    "tablecollapse",
+    "newjersey"
+   ],
+   "insolite": 4,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712546664501808415",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712546664501808415",
+     "vues": 2300000,
+     "jaime": 82500,
+     "commentaires": 2073,
+     "partages": 13500,
+     "date": 1795719600,
+     "texte": "Here’s hoping your table can handle the Thanksgiving feast today! Last Thanksgiving, a New Jersey family was wrapping up a holiday speech when their table suddenly gave way under the weight of all the food. Fortunately, the family managed to salvage enough food to carry on with their celebration. But the video has been pointed to as a host’s (and their guests’) worst nightmare.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712546664501808415?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "03ad6d9ce1",
+   "score": 78,
+   "derniere_vue": 1795756461.885257,
+   "vues": 2300000,
+   "jaime": 82500,
+   "commentaires": 2073,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T04:14:05+01:00"
   },
   {
    "titre": "Vol de colis filmé par caméra de surveillance",
