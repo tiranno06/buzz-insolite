@@ -435,8 +435,9 @@
    ],
    "medias": 0,
    "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-27T08:15:09+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-27T08:15:09+01:00",
+   "reserve_le": "2026-11-27T09:01:27+01:00"
   },
   {
    "titre": "Brésil : golden retriever sauve enfant noyé",
@@ -1196,8 +1197,9 @@
    "hashtags_viraux": [],
    "medias": 0,
    "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-26T13:26:29+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-26T13:26:29+01:00",
+   "reserve_le": "2026-11-27T09:01:27+01:00"
   },
   {
    "titre": "Octogénaire place autocollant anti-gouvernemental sur bouclier",
@@ -1246,8 +1248,9 @@
    "hashtags_viraux": [],
    "medias": 3,
    "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-27T02:13:07+01:00"
+   "statut": "en_cours",
+   "vu_le": "2026-11-27T02:13:07+01:00",
+   "reserve_le": "2026-11-27T09:01:27+01:00"
   },
   {
    "titre": "80 ans, proteste contre le gouvernement albanais",
