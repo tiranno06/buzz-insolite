@@ -3,12 +3,13 @@
 scénario de l'IA, IA réalisatrice, accroche), AVANT le rendu et avant le réalisateur critique, puis une 2e fois après lui.
 
 Principe : une règle ne fait que des corrections SÛRES (retirer une action impossible, remettre une cause avant sa conséquence,
-écarter deux objets qui se chevauchent, remplacer une action choquante par une action décente). Elle n'invente jamais un fait.
+écarter deux objets qui se chevauchent). Les 4 règles de « décence » (D1 à D4) ont été RETIRÉES à la demande de
+l'auteur (27/11). Une règle n'invente jamais un fait.
 Chaque correction est écrite dans le journal (« 📐 règle P3 : … »).
 
 Les familles de règles :
   P = physique (ce que chaque objet sait faire)      C = chronologie et causalité (cause avant conséquence, rien après la fin)
-  E = espace (personne dans un mur, bateau sur l'autoroute) D = décence (jamais de corps, de personne qui brûle ou percutée)
+  E = espace (personne dans un mur, bateau sur l'autoroute)
   L = lisibilité (pas trop de choses à la fois)      V = vraisemblance des secours, du feu et des dégâts
 La liste complète, numérotée, est dans REGLES (en bas) : c'est elle que lisent les tests et le site.
 """
@@ -34,7 +35,7 @@ TAILLE = {"voiture": 4.5, "taxi": 4.5, "police": 4.8, "moto": 2.2, "camionnette"
 # qui peut faire quoi (règles P1 à P11)
 PEUT = {
     "voler": lambda t: t in AERIENS,
-    "tomber": lambda t: t in AERIENS or t in ("arbre", "panneau", "feu_tricolore"),
+    "tomber": lambda t: t in AERIENS or t in HUMAINS or t in ("arbre", "panneau", "feu_tricolore"),
     "couler": lambda t: t == "bateau",
     "fuir": lambda t: t in HUMAINS,
     "arroser": lambda t: t in ("pompiers", "helico"),
@@ -46,11 +47,10 @@ PEUT = {
     "heurter": lambda t: t in VEHICULES,
     "deverser": lambda t: t in LIQUIDES,
     "effondrer": lambda t: t in BATIS,
-    "se_coucher": lambda t: t in VEHICULES or t in ("arbre", "panneau", "feu_tricolore"),
-    "exploser": lambda t: t not in HUMAINS,
-    "bruler": lambda t: t not in HUMAINS,
+    "se_coucher": lambda t: t in VEHICULES or t in HUMAINS or t in ("arbre", "panneau", "feu_tricolore"),
 }
-REMPLACE = {("effondrer", "v"): "se_coucher", ("se_coucher", "b"): "effondrer", ("tomber", "v"): "se_coucher"}
+REMPLACE = {("effondrer", "v"): "se_coucher", ("se_coucher", "b"): "effondrer", ("tomber", "v"): "se_coucher",
+            ("effondrer", "h"): "se_coucher"}
 
 REGLES = [
     ("P1", "Seuls l'avion et l'hélicoptère volent ; aucun véhicule, bâtiment ou personne ne monte en l'air."),
@@ -79,10 +79,6 @@ REGLES = [
     ("E4", "Un bateau seul sur une route : le décor devient un port ; un train : la voie ferrée ; un avion qui s'écrase : la campagne."),
     ("E5", "Les secours se garent sur la voie de droite, à distance du feu ou de l'explosion (jamais dedans)."),
     ("E6", "Les positions restent dans la scène filmée (entre -400 m et +200 m)."),
-    ("D1", "Jamais de corps : une personne ne se couche pas, ne tombe pas, ne s'effondre pas."),
-    ("D2", "Jamais une personne qui brûle ou qui explose."),
-    ("D3", "Jamais une personne ou une foule percutée à l'écran : le véhicule avance vers elle et elle s'enfuit (la voix raconte)."),
-    ("D4", "Jamais d'arme qui tire : une fusillade, une attaque = police qui arrive, foule qui fuit, périmètre bouclé."),
     ("L1", "Au plus 4 actions fortes en même temps dans une phrase : les autres sont étalées d'une demi-seconde chacune."),
     ("L2", "Au plus 3 explosions par scène (les autres deviennent des feux), au plus 12 grands feux (les autres ont des flammes simples)."),
     ("L3", "Au plus 14 objets à l'écran ; on retire d'abord ceux qui ne font rien et n'ont pas de rôle."),
@@ -126,16 +122,12 @@ def appliquer(sc, journal=print, texte=""):
         if f in ("heurter", "arroser") and (a.get("cible") not in types or a.get("cible") == a["objet"]):
             note("P11", f"{a['objet']} {f} sans cible valable → retiré"); continue
         if f in PEUT and not PEUT[f](t):
-            nouveau = REMPLACE.get((f, "v" if t in VEHICULES else "b" if t in BATIS else "")) if t not in HUMAINS else None
+            nouveau = REMPLACE.get((f, "v" if t in VEHICULES else "b" if t in BATIS else "h" if t in HUMAINS else ""))
             if nouveau and PEUT[nouveau](t):
                 note("P9", f"{t} « {f} » → « {nouveau} »"); a["faire"] = nouveau
             else:
                 code = {"voler": "P1", "tomber": "P1", "couler": "P2", "fuir": "P3", "arroser": "P4", "heurter": "P7",
                         "deverser": "P8", "avancer": "P6"}.get(f, "P5")
-                if t in HUMAINS and f in ("se_coucher", "tomber", "effondrer"):
-                    code = "D1"
-                elif t in HUMAINS and f in ("bruler", "exploser"):
-                    code = "D2"
                 note(code, f"{t} ne peut pas « {f} » → retiré"); continue
         propres.append(a)
     actions = propres
@@ -146,20 +138,6 @@ def appliquer(sc, journal=print, texte=""):
     for a in actions:
         if a.get("faire") == "voler" and a.get("altitude") is not None and float(a["altitude"]) < 15:
             a["altitude"] = 15
-
-    # ---- D3 / D4 : jamais de personne percutée ni de tir
-    for a in list(actions):
-        if a.get("faire") == "heurter" and types.get(a.get("cible")) in HUMAINS:
-            cible = a.pop("cible")
-            note("D3", f"{cible} n'est pas percuté à l'écran : le véhicule avance, la foule s'enfuit")
-            a["faire"] = "avancer"
-            actions.append(dict(objet=cible, faire="fuir", phrase=a.get("phrase"), duree=3.0, retard=float(a.get("retard") or 0) + 0.6))
-    if re.search(r"fusillade|tir[ée]s? (?:sur|contre)|abattu|arme à feu|kalachnikov|pistolet|fusil|coups de feu|poignard|couteau", texte.lower()):
-        sc["_sans_arme"] = True
-        if not any(a.get("faire") == "fuir" for a in actions) and any(t in HUMAINS for t in types.values()):
-            h = next(k for k, v in types.items() if v in HUMAINS)
-            actions.append(dict(objet=h, faire="fuir", phrase=min((_t(a)[0] for a in actions), default=1), duree=3.0))
-            note("D4", "attaque armée : jamais d'arme à l'écran, la foule s'enfuit")
 
     # ---- C5 / C9 : pas de doublon
     vus, uniques = set(), []

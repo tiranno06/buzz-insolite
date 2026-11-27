@@ -325,7 +325,14 @@ PLANS = {"avancer": ([-16, 6, 18], [-11, 4.5, 13]), "heurter": ([-20, 5, 17], [-
          "secours": ([-30, 16, 30], [-22, 12, 22]), "large": ([-55, 42, 52], [-40, 32, 42]),
          # catastrophes (27/11) : de haut pour voir l'eau monter, la ville trembler, le vent dans les arbres
          "inonder": ([-46, 30, 46], [-36, 24, 38]), "trembler": ([-60, 34, 56], [-50, 28, 48]), "effondrer": ([-48, 26, 50], [-40, 22, 42]),
-         "tempete": ([-40, 18, 40], [-32, 15, 32]), "fuir": ([-24, 10, 26], [-18, 8, 20])}
+         "tempete": ([-40, 18, 40], [-32, 15, 32]), "fuir": ([-24, 10, 26], [-18, 8, 20]),
+         "haut": ([-18, 62, 30], [-14, 54, 26])}                      # vu d'en haut, de loin (feu, secours, après)
+# RÈGLES DES PLANS (27/11, l'auteur : « avant, nous avions un plan bien plus large ») : on SITUE d'abord la scène en plan
+# large (3 s au moins), on ne se rapproche que pour le choc / l'explosion / la chute (2,2 s au plus, puis retour au large) ;
+# feu, fuite, secours et après en plan large ou vu d'en haut ; jamais à moins de 15 m en dehors du moment fort.
+PROCHES = ("heurter", "exploser", "tomber", "interieur")
+LOINTAINS = ("bruler", "secours", "fuir", "arroser", "deverser")
+OUVERTURE, DUREE_PROCHE, DISTANCE_MIN = 3.0, 2.2, 15.0
 SECOURS_3D = ("police", "ambulance", "pompiers")
 GRANDS = {"citerne": 1.7, "camion": 1.6, "bus": 1.6, "train": 2.2, "avion": 2.4, "bateau": 2.4, "batiment": 2.0, "immeuble": 2.4, "entrepot": 2.6,
           "foule": 2.0, "personne": 1.4}
@@ -337,7 +344,7 @@ CADRES = {"large": "large", "cote": "heurter", "face": "se_coucher", "dessus": "
 PLANS_PLUS = {"maquette": ([-48, 52, 48], [-40, 44, 40]), "interieur": ([1.2, 2.1, 0], [1.2, 2.1, 0])}
 
 
-def plans_camera(actions, objets, principal, duree, cadres=None, dense=False):
+def plans_camera(actions, objets, principal, duree, cadres=None, dense=False, accroche=False):
     """Découpage en plans : (début, action) → 2 points de caméra ; plan de 1,4 s au moins, sinon le suivant attend.
     `cadres` = [(début, angle du scénario, objet suivi)] : ces plans-là passent avant les plans automatiques."""
     types = {o["id"]: o.get("type") for o in objets}
@@ -349,7 +356,7 @@ def plans_camera(actions, objets, principal, duree, cadres=None, dense=False):
         imposes = sorted((max(0.0, a - 0.1), CADRES.get(c, c), s) for a, c, s in cadres if c in CADRES or c in PLANS)
         auto = [x for x in plans_camera(actions, objets, principal, duree)[::2] if all(abs(x["a"] - i[0]) > 1.4 for i in imposes)]
         coupes = sorted(imposes + [(x["a"], x["_cle"], x["suivre"]) for x in auto])
-        return _cam(coupes, types, duree, dense, feux, principal)
+        return _cam(coupes, types, duree, dense, feux, principal, accroche)
     premier = min((x["a"] for x in actions), default=9.0)
     coupes, dernier = ([(0.0, "large", principal)], 0.0) if premier > 1.4 else ([], -9.0)
     force = {"exploser": 9, "heurter": 8, "tomber": 8, "couler": 7, "bruler": 6, "se_coucher": 5, "deverser": 4}
@@ -369,18 +376,46 @@ def plans_camera(actions, objets, principal, duree, cadres=None, dense=False):
             continue
         coupes.append((debut, cle, suivre)); dernier = debut
     coupes.sort(key=lambda c: c[0])
-    return _cam(coupes, types, duree, dense, feux, principal)
+    return _cam(coupes, types, duree, dense, feux, principal, accroche)
 
 
-def _cam(coupes, types, duree, dense=False, feux=None, principal=None):
+def _plans_larges(coupes, principal, accroche=False):
+    """Règles des plans : ouverture large, rapproché court sur le seul moment fort, le reste de loin."""
+    k, out = 0, []
+    for d, c, s_ in coupes:                              # feu, secours, fuite, après : large ou vu d'en haut, en alternance
+        if c in LOINTAINS:
+            c = ("large", "haut")[k % 2]; k += 1
+        out.append((d, c, s_))
+    if not accroche:                                     # (l'accroche, elle, est le moment fort lui-même)
+        # le choc qui arrive dans les 3 premières secondes garde son rapproché (sinon on ne le voit jamais de près),
+        # mais après au moins 1,2 s de plan large qui situe la scène
+        proche = next((x for x in out if x[1] in PROCHES and x[0] < OUVERTURE), None)
+        debut_proche = [(max(1.2, proche[0]), proche[1], proche[2])] if proche else []
+        out = [(0.0, "large", principal)] + debut_proche + [x for x in out if x[0] >= max(OUVERTURE, debut_proche[0][0] + DUREE_PROCHE if debut_proche else 0)]
+    plein = []
+    for i, (d, c, s_) in enumerate(out):
+        if plein and plein[-1][1:] == (c, s_):
+            continue
+        plein.append((d, c, s_))
+        fin = out[i + 1][0] if i + 1 < len(out) else 1e9
+        if c in PROCHES and fin - d > DUREE_PROCHE + 0.6:  # retour au plan large après le choc
+            plein.append((round(d + DUREE_PROCHE, 2), "large", s_))
+    return plein
+
+
+def _cam(coupes, types, duree, dense=False, feux=None, principal=None, accroche=False):
     # un objet DÉJÀ en feu n'est jamais filmé de près (Gizeh, 27/11 : plans de la fin au ras du brasier, illisibles)
     feux = feux or {}
     coupes = [(d, "bruler" if c in ("avancer", "heurter", "se_coucher", "interieur", "deraper", "tonneau") and s in feux
                and feux[s] < d - 0.5 else c, s) for d, c, s in coupes]
     if not coupes:                                      # jamais sans caméra (inondation du 27/11 : rendu planté)
         coupes = [(0.0, "large", principal or next(iter(types), None))]
+    coupes = _plans_larges(sorted(coupes, key=lambda c: c[0]), principal or coupes[0][2], accroche)
+    if feux:                                            # une fois le feu pris, les plans larges restent centrés sur lui
+        brasier = min(feux, key=feux.get)               # (Le Caire, 27/11 : plan large sur la police, feu hors de l'image)
+        coupes = [(d, c, brasier if c in ("large", "haut") and d >= feux[brasier] else s_) for d, c, s_ in coupes]
     # jamais plus de 6 s sur le même plan (Gizeh r2, 27/11 : 16 s figées) : on varie l'angle sur ce qu'on filmait
-    variantes, plein, k = ("large", "deverser", "secours"), [], 0   # (large, vu de dessus, rapproché)
+    variantes, plein, k = ("large", "haut", "large"), [], 0   # (large, vu d'en haut : jamais un rapproché de remplissage)
     for i, (d, c, s_) in enumerate(coupes):
         plein.append((d, c, s_))
         fin = coupes[i + 1][0] if i + 1 < len(coupes) else max(duree, d)
@@ -396,6 +431,10 @@ def _cam(coupes, types, duree, dense=False, feux=None, principal=None):
         if cle != "interieur" and dense:       # usine, ville : on recule et on monte (sinon la caméra entre dans un hangar)
             e *= 1.4
         extra = dict(regard=[30, -0.6, 0]) if cle == "interieur" else {}          # de l'intérieur : on regarde la route devant
+        if cle not in PROCHES:                          # jamais à moins de 15 m hors du moment fort
+            d1 = sum(v * v for v in p1) ** 0.5 * e
+            if d1 < DISTANCE_MIN:
+                e *= DISTANCE_MIN / max(d1, 0.1)
         cam.append(dict(a=round(debut, 2), pos=[round(v * e, 1) for v in p0], suivre=suivre, _cle=cle, **extra))
         cam.append(dict(a=round(max(fin, debut + 0.05), 2), pos=[round(v * e, 1) for v in p1], suivre=suivre, _cle=cle, **extra))
     return cam
@@ -487,7 +526,8 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
                 x = fort or (ici[0] if ici else None)
                 suivre = (x.get("cible") if x and x["faire"] == "heurter" else x["objet"]) if x else principal
                 cadres.append((quand(ph), fort["faire"] if fort else c, suivre))
-            s["camera"] = plans_camera(actions, objets, principal, total - a, cadres, dense=sc.get("decor") in ("usine", "ville", "port"))
+            s["camera"] = plans_camera(actions, objets, principal, total - a, cadres, dense=sc.get("decor") in ("usine", "ville", "port"),
+                                       accroche=bool(sc.get("accroche")))
             s["mention"] = "Reconstitution · plan simplifié · positions approximatives"   # la source est déjà en bas
         scenes.append(s)
     if scenes and scenes[0]["type"] not in BASES:        # jamais un encadré sur du vide : la carte du lieu dessous

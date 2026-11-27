@@ -815,11 +815,18 @@ le choquant), jamais un fait inventé ; chaque correction au journal (« 📐 r�
 voler, couler, fuir, arroser, percuter, fuir un liquide ; bâtiment = s'effondre, véhicule = se renverse), C chronologie (rien
 après la destruction, cause avant conséquence, secours / arrosage / fuite après le danger, pas de doublon), E espace
 (encombrement réel `TAILLE` des véhicules et bâtiments, rien sur la chaussée, décor du port / voie ferrée / campagne selon
-l'objet principal, secours garés à 18 m du feu), D décence (jamais de corps, de personne qui brûle, de personne percutée —
-la foule s'enfuit —, jamais d'arme), L lisibilité (4 débuts d'action par demi-seconde, 3 explosions, 12 grands feux
+l'objet principal, secours garés à 18 m du feu), L lisibilité (4 débuts d'action par demi-seconde, 3 explosions, 12 grands feux
 — limite aussi dans scenes3d.js —, 14 objets, durées 0,6-8 s), V vraisemblance (feu après explosion, fuite avant le feu d'une
 citerne, dégâts selon le poids, souffle). Essayé sur Le Caire / Iowa / catastrophes : 0 à 3 corrections justes, rien d'abîmé.
-Tests : `TestCodeReconstitution`. **Toute nouvelle action ou nouvel objet 3D doit être ajouté à `PEUT` / `TAILLE`.**
+Les 4 règles de DÉCENCE (D1 à D4 : corps, personne qui brûle, personne percutée, arme) ont été RETIRÉES à la demande de
+l'auteur (27/11) : 36 règles. Tests : `TestCodeReconstitution`. **Toute nouvelle action ou nouvel objet 3D doit être ajouté à `PEUT` / `TAILLE`.**
+
+## Plans larges (27/11, l'auteur : « avant, nous avions un plan vidéo bien plus large »)
+`realisateur._plans_larges` (toutes les reconstitutions) : ouverture en plan LARGE (3 s, ou 1,2 s si le choc arrive plus tôt),
+rapproché seulement pour le choc / l'explosion / la chute / la vue du conducteur (`PROCHES`, 2,2 s au plus puis retour au
+large), feu / fuite / secours / fuite de carburant en plan large ou vu d'en haut (`LOINTAINS`, nouveau plan « haut »), jamais
+à moins de 15 m hors du moment fort (`DISTANCE_MIN`), plans de remplissage larges ou d'en haut ; une fois le feu pris, les
+plans larges restent centrés sur le brasier. L'accroche (moment fort) commence directement sur le choc. Tests : `TestPlansLarges`.
 
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11

@@ -1679,6 +1679,7 @@ class TestCodeReconstitution(unittest.TestCase):
         codes = [c for c, _ in physique.REGLES]
         self.assertEqual(len(codes), len(set(codes)))
         self.assertGreaterEqual(len(codes), 35)
+        self.assertFalse(any(c.startswith("D") for c in codes))
 
     def test_physique(self):
         from robot import physique
@@ -1693,7 +1694,7 @@ class TestCodeReconstitution(unittest.TestCase):
         self.assertNotIn(("m", "avancer"), faits)             # P6
         self.assertIn(("m", "effondrer"), faits)              # P9 : un bâtiment s'effondre
         self.assertIn(("c", "se_coucher"), faits)             # P9 : un véhicule se renverse
-        self.assertFalse(any(o == "p" for o, _ in faits))     # D1 / D2
+        self.assertIn(("p", "se_coucher"), faits)             # règles de décence retirées (27/11, demande de l'auteur)
 
     def test_chronologie(self):
         from robot import physique
@@ -1715,15 +1716,14 @@ class TestCodeReconstitution(unittest.TestCase):
         arrivee = next(a for a in pomp if a["faire"] == "avancer")
         self.assertGreaterEqual(abs(arrivee["vers_position"] - (-40)), 16)   # E5 : à distance du feu
 
-    def test_decence_et_espace(self):
+    def test_espace(self):
         from robot import physique
         sc = self.sc([dict(id="v", type="voiture", voie=2, position=-40), dict(id="w", type="camion", voie=2, position=-40),
                       dict(id="foule", type="foule", position=0, z=8), dict(id="b1", type="immeuble", position=0, z=-26),
                       dict(id="b2", type="immeuble", position=10, z=-26)],
                      [dict(objet="v", faire="heurter", cible="foule", phrase=2)], decor="ville")
         physique.appliquer(sc, journal=lambda *a: None)
-        self.assertFalse(any(a["faire"] == "heurter" for a in sc["actions"]))          # D3
-        self.assertTrue(any(a["objet"] == "foule" and a["faire"] == "fuir" for a in sc["actions"]))
+        self.assertTrue(any(a["faire"] == "heurter" for a in sc["actions"]))           # (plus de règle D3)
         pos = {o["id"]: o["position"] for o in sc["objets"]}
         self.assertGreaterEqual(abs(pos["v"] - pos["w"]), 7)                           # E1
         self.assertGreaterEqual(abs(pos["b1"] - pos["b2"]), 24)                        # E2
@@ -1751,3 +1751,31 @@ class TestCodeReconstitution(unittest.TestCase):
             self.assertIn(x, faits)
         couche = next(a for a in sc["actions"] if a["faire"] == "se_coucher")
         self.assertGreaterEqual(couche["retard"], 2.2)                                 # C4 : après l'impact
+
+
+class TestPlansLarges(unittest.TestCase):
+    """27/11 : ouverture en plan large, rapproché court sur le seul choc, feu et secours de loin."""
+    def test_regles_des_plans(self):
+        from robot import realisateur as R
+        objets = [dict(id="c", type="citerne"), dict(id="v", type="voiture"), dict(id="amb", type="ambulance")]
+        actions = [dict(objet="c", faire="avancer", a=0.5, d=3), dict(objet="v", faire="heurter", cible="c", a=1.5, d=2.2),
+                   dict(objet="v", faire="heurter", cible="c", a=6.0, d=2.2), dict(objet="c", faire="bruler", a=12.0, d=1),
+                   dict(objet="amb", faire="avancer", a=18.0, d=3)]
+        cam = R.plans_camera(actions, objets, "c", 30)
+        self.assertEqual(cam[0]["a"], 0.0)
+        self.assertEqual(cam[0]["_cle"], "large")                                      # ouverture large
+        self.assertGreaterEqual(cam[2]["a"], 1.2)                                       # large au moins 1,2 s
+        self.assertTrue(all(c["a"] >= 3.0 or c["_cle"] in R.PROCHES for c in cam[2:]))  # sinon 3 s (sauf le choc)
+        coupes = [c for c in cam[::2]]
+        for i, c in enumerate(coupes):
+            if c["_cle"] in R.PROCHES and i + 1 < len(coupes):
+                self.assertLessEqual(coupes[i + 1]["a"] - c["a"], R.DUREE_PROCHE + 0.01)   # rapproché court
+            if c["_cle"] not in R.PROCHES:
+                self.assertGreaterEqual(sum(v * v for v in cam[2 * i + 1]["pos"]) ** 0.5, 15)
+        self.assertFalse(any(c["_cle"] in ("bruler", "secours") for c in cam))         # feu / secours : large ou d'en haut
+
+    def test_accroche_sans_ouverture(self):
+        from robot import realisateur as R
+        cam = R.plans_camera([dict(objet="v", faire="heurter", cible="c", a=0.2, d=1.4)],
+                             [dict(id="c", type="citerne"), dict(id="v", type="voiture")], "c", 4, accroche=True)
+        self.assertEqual(cam[0]["_cle"], "heurter")
