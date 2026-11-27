@@ -28,7 +28,7 @@ jobs:
       ZAI_API_KEY: ${{ secrets.ZAI_API_KEY }}   # facultatif
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
