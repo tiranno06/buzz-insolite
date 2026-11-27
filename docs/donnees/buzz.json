@@ -1,149 +1,149 @@
 {
- "maj": "2026-11-27T10:02:16+01:00",
+ "maj": "2026-11-27T12:01:52+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:00:26+01:00"
+   "le": "2026-11-27T11:59:50+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:00:29+01:00"
+   "le": "2026-11-27T11:59:54+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:00:33+01:00"
+   "le": "2026-11-27T11:59:57+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:00:36+01:00"
+   "le": "2026-11-27T12:00:01+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:00:39+01:00"
+   "le": "2026-11-27T12:00:04+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-27T10:00:42+01:00"
+   "le": "2026-11-27T12:00:07+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:00:45+01:00"
+   "le": "2026-11-27T12:00:10+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:00:49+01:00"
+   "le": "2026-11-27T12:00:14+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:00:52+01:00"
+   "le": "2026-11-27T12:00:18+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:00:56+01:00"
+   "le": "2026-11-27T12:00:21+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:00:59+01:00"
+   "le": "2026-11-27T12:00:25+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:03+01:00"
+   "le": "2026-11-27T12:00:29+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:06+01:00"
+   "le": "2026-11-27T12:00:32+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-27T10:01:09+01:00"
+   "le": "2026-11-27T12:00:35+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:12+01:00"
+   "le": "2026-11-27T12:00:39+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:16+01:00"
+   "le": "2026-11-27T12:00:42+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:19+01:00"
+   "le": "2026-11-27T12:00:46+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:23+01:00"
+   "le": "2026-11-27T12:00:50+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:27+01:00"
+   "le": "2026-11-27T12:00:54+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:30+01:00"
+   "le": "2026-11-27T12:00:57+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:33+01:00"
+   "le": "2026-11-27T12:01:01+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:37+01:00"
+   "le": "2026-11-27T12:01:04+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:40+01:00"
+   "le": "2026-11-27T12:01:08+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:44+01:00"
+   "le": "2026-11-27T12:01:11+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:47+01:00"
+   "le": "2026-11-27T12:01:14+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:51+01:00"
+   "le": "2026-11-27T12:01:18+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:54+01:00"
+   "le": "2026-11-27T12:01:22+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-27T10:01:58+01:00"
+   "le": "2026-11-27T12:01:25+01:00"
   }
  },
  "lues": 809,
- "retenues": 2,
+ "retenues": 1,
  "sujets": [
   {
    "titre": "Maresées exceptionnelles menacent l'Oregon et la Californie",
@@ -5032,6 +5032,62 @@
    "vu_le": "2026-11-26T17:23:54+01:00"
   },
   {
+   "titre": "New Jersey : table cède sous le repas",
+   "resume": "Une famille du New Jersey a vu sa table se briser sous le poids du repas de Thanksgiving. Malgré le désastre, ils ont pu sauver une partie de la nourriture.",
+   "mots_cles": [
+    "N",
+    "e",
+    "w",
+    " ",
+    "J",
+    "e"
+   ],
+   "mots_cles_en": [
+    "N",
+    "e",
+    "w",
+    " ",
+    "J",
+    "e"
+   ],
+   "hashtags": [
+    "newjersey",
+    "thanksgiving",
+    "incident"
+   ],
+   "insolite": 3,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712546664501808415",
+     "compte": "foxnews",
+     "url": "https://www.tiktok.com/@foxnews/video/7712546664501808415",
+     "vues": 2600000,
+     "jaime": 90700,
+     "commentaires": 2404,
+     "partages": 15000,
+     "date": 1795719600,
+     "texte": "Here’s hoping your table can handle the Thanksgiving feast today! Last Thanksgiving, a New Jersey family was wrapping up a holiday speech when their table suddenly gave way under the weight of all the food. Fortunately, the family managed to salvage enough food to carry on with their celebration. But the video has been pointed to as a host’s (and their guests’) worst nightmare.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712546664501808415?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "fe92ee2314",
+   "score": 62,
+   "derniere_vue": 1795777299.9896908,
+   "vues": 2600000,
+   "jaime": 90700,
+   "commentaires": 2404,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T12:01:52+01:00"
+  },
+  {
    "titre": "Jensen Huang revient diriger Nvidia après scandale",
    "resume": "Jensen Huang, PDG de Nvidia, est revenu à la tête de l’entreprise après sa démission liée à un scandale impliquant adultère, espionnage et contrebande. Son retour relance les débats éthiques dans la tech.",
    "mots_cles": [
@@ -5747,6 +5803,62 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
+   "titre": "Jamie Beaton : 13 diplômes à 31 ans",
+   "resume": "Jamie Beaton a obtenu treize diplômes dans des universités prestigieuses avant ses 31 ans. Il explique sa motivation à poursuivre sans cesse de nouveaux études.",
+   "mots_cles": [
+    "J",
+    "a",
+    "m",
+    "i",
+    "e",
+    " "
+   ],
+   "mots_cles_en": [
+    "J",
+    "a",
+    "m",
+    "i",
+    "e",
+    " "
+   ],
+   "hashtags": [
+    "education",
+    "prodigy",
+    "academia"
+   ],
+   "insolite": 6,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712487786397306126",
+     "compte": "cnn",
+     "url": "https://www.tiktok.com/@cnn/video/7712487786397306126",
+     "vues": 1300000,
+     "jaime": 137900,
+     "commentaires": 2161,
+     "partages": 13900,
+     "date": 1795703524,
+     "texte": "At just 31 years old, Jamie Beaton has earned 13 degrees from some of the world's most prestigious universities. CNN's Antoinette Radford asked him what keeps him going back for more.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712487786397306126?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "e5fa6696f5",
+   "score": 38,
+   "derniere_vue": 1795777299.9896908,
+   "vues": 1300000,
+   "jaime": 137900,
+   "commentaires": 2161,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T12:01:52+01:00"
+  },
+  {
    "titre": "Politique influenceurs : polémique",
    "resume": "Le gouvernement britannique a critiqué la politique d'influenceurs du 10. Les créateurs affirment qu'ils n'ont pas de malice.",
    "mots_cles": [
@@ -6023,6 +6135,62 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-26T19:24:57+01:00"
+  },
+  {
+   "titre": "Neuralink autorisé pour essai clinique aux USA",
+   "resume": "Les régulateurs américains ont donné le feu vert à Neuralink pour lancer un essai clinique majeur sur son implant cérébral. L’étude cible des patients paralysés par la SLA.",
+   "mots_cles": [
+    "N",
+    "e",
+    "u",
+    "r",
+    "a",
+    "l"
+   ],
+   "mots_cles_en": [
+    "N",
+    "e",
+    "u",
+    "r",
+    "a",
+    "l"
+   ],
+   "hashtags": [
+    "neuralink",
+    "biotech",
+    "clinicaltrial"
+   ],
+   "insolite": 8,
+   "categorie": "science",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712449014775483662",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712449014775483662",
+     "vues": 940500,
+     "jaime": 86600,
+     "commentaires": 4615,
+     "partages": 13900,
+     "date": 1795694540,
+     "texte": "Neuralink has received the green light from US regulators to begin a major clinical trial of its brain implant, which is designed to let people control digital devices using their thoughts. The study will focus on people with severe paralysis caused by ALS, assessing how effectively the implant works as well as its long-term safety. The approval marks a significant step towards potential wider use",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712449014775483662?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "010595f36a",
+   "score": 27,
+   "derniere_vue": 1795777299.9896908,
+   "vues": 940500,
+   "jaime": 86600,
+   "commentaires": 4615,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-27T12:01:52+01:00"
   },
   {
    "titre": "A new generation of drugs is for sale inside gas station convenience stores and smoke shop",
