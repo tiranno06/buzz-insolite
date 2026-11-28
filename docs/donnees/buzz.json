@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-28T08:01:39+01:00",
+ "maj": "2026-11-28T10:02:28+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T07:59:43+01:00"
+   "le": "2026-11-28T10:00:22+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T07:59:46+01:00"
+   "le": "2026-11-28T10:00:26+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T07:59:49+01:00"
+   "le": "2026-11-28T10:00:31+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T07:59:53+01:00"
+   "le": "2026-11-28T10:00:34+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T07:59:56+01:00"
+   "le": "2026-11-28T10:00:38+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-28T07:59:59+01:00"
+   "le": "2026-11-28T10:00:41+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:02+01:00"
+   "le": "2026-11-28T10:00:44+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:06+01:00"
+   "le": "2026-11-28T10:00:48+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:09+01:00"
+   "le": "2026-11-28T10:00:52+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:13+01:00"
+   "le": "2026-11-28T10:00:57+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:16+01:00"
+   "le": "2026-11-28T10:01:02+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:20+01:00"
+   "le": "2026-11-28T10:01:06+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:23+01:00"
+   "le": "2026-11-28T10:01:11+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-28T08:00:27+01:00"
+   "le": "2026-11-28T10:01:14+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:30+01:00"
+   "le": "2026-11-28T10:01:17+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:34+01:00"
+   "le": "2026-11-28T10:01:21+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:38+01:00"
+   "le": "2026-11-28T10:01:25+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:42+01:00"
+   "le": "2026-11-28T10:01:29+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:45+01:00"
+   "le": "2026-11-28T10:01:33+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:49+01:00"
+   "le": "2026-11-28T10:01:37+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:52+01:00"
+   "le": "2026-11-28T10:01:40+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:00:57+01:00"
+   "le": "2026-11-28T10:01:44+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:01:00+01:00"
+   "le": "2026-11-28T10:01:47+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:01:03+01:00"
+   "le": "2026-11-28T10:01:51+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:01:07+01:00"
+   "le": "2026-11-28T10:01:54+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:01:10+01:00"
+   "le": "2026-11-28T10:01:59+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:01:14+01:00"
+   "le": "2026-11-28T10:02:02+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T08:01:17+01:00"
+   "le": "2026-11-28T10:02:06+01:00"
   }
  },
  "lues": 809,
@@ -218,6 +218,78 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-28T00:43:42+01:00"
+  },
+  {
+   "titre": "Semi-remorque dérape sur rampes à Ohio",
+   "resume": "Un semi-remorque a perdu le contrôle en tentant de tourner sur une sortie d'autoroute dans l'Ohio, glissant entre deux rampes avant d'être remis sur la route. Aucun blessé n'a été signalé.",
+   "mots_cles": [
+    "semi-remorque",
+    "Ohio",
+    "accident"
+   ],
+   "mots_cles_en": [
+    "semi-truck",
+    "Ohio",
+    "accident"
+   ],
+   "hashtags": [
+    "semirremorque",
+    "ohio",
+    "accident"
+   ],
+   "insolite": 4,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712677404224834829",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7712677404224834829",
+     "vues": 24300000,
+     "jaime": 1500000,
+     "commentaires": 16400,
+     "partages": 164600,
+     "date": 1795747666,
+     "texte": "Video from the Ohio Department of Transportation shows the moment a semi-truck lost control while attempting to turn, skidding across the gap between two off-ramps. Authorities were able to pull the truck back onto the road and tow it away. No injuries were reported. #truck #ohio #accident #drive ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712677404224834829?description=1&music_info=1"
+    },
+    {
+     "id": "7712718110955932950",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7712718110955932950",
+     "vues": 1200000,
+     "jaime": 16000,
+     "commentaires": 265,
+     "partages": 1642,
+     "date": 1795757121,
+     "texte": "No injuries were reported during the incident in Ohio on Thanksgiving, and authorities were able to pull the truck back onto the road, according to the BBC's US partner, CBS News. #Thanksgiving #USNews #WeatherWarning #Ohio #BBCNews",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712718110955932950?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "58fbacdf85",
+   "score": 4645,
+   "derniere_vue": 1795856538.2157276,
+   "vues": 25500000,
+   "jaime": 1516000,
+   "commentaires": 16665,
+   "hashtags_viraux": [
+    "ohio",
+    "truck",
+    "accident",
+    "drive",
+    "thanksgiving",
+    "usnews",
+    "weatherwarning",
+    "bbcnews"
+   ],
+   "medias": 5,
+   "tendance": null,
+   "statut": "sans_source",
+   "vu_le": "2026-11-28T10:02:28+01:00"
   },
   {
    "titre": "Maresées exceptionnelles menacent l'Oregon et la Californie",
@@ -329,6 +401,55 @@
    "vu_le": "2026-11-25T21:39:33+01:00"
   },
   {
+   "titre": "Christ le Rédempteur flotte au-dessus des nuages",
+   "resume": "Une vidéo prise depuis un hélicoptère montre la statue du Christ le Rédempteur semblant flotter au-dessus d'un océan de nuages à Rio de Janeiro. Le cliché a rapidement fait le tour des réseaux sociaux.",
+   "mots_cles": [
+    "Christ le Rédempteur",
+    "Rio",
+    "nuages"
+   ],
+   "mots_cles_en": [
+    "Christ the Redeemer",
+    "Rio",
+    "clouds"
+   ],
+   "hashtags": [
+    "christredeemer",
+    "rio",
+    "nuages"
+   ],
+   "insolite": 7,
+   "categorie": "insolite",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712775661743557902",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712775661743557902",
+     "vues": 10900000,
+     "jaime": 2600000,
+     "commentaires": 14000,
+     "partages": 151100,
+     "date": 1795770583,
+     "texte": "Helicopter footage captures a breathtaking view of Christ the Redeemer seemingly floating above a sea of clouds in Rio de Janeiro, Brazil, as the aircraft flies high above the city. The iconic statue, which stands atop Mount Corcovado, overlooks Rio and is a symbol of Christianity. The person who shared the footage described the experience as witnessing ‘something divine’. 🎥 Instagtam / cheezewino",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712775661743557902?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "35c5cdeebb",
+   "score": 3358,
+   "derniere_vue": 1795856538.2157276,
+   "vues": 10900000,
+   "jaime": 2600000,
+   "commentaires": 14000,
+   "hashtags_viraux": [],
+   "medias": 11,
+   "tendance": null,
+   "statut": "sans_source",
+   "vu_le": "2026-11-28T10:02:28+01:00"
+  },
+  {
    "titre": "CAN 2025 : Sénégal vainqueur après arbitrage TAS",
    "resume": "Le Sénégal a été désigné vainqueur de la Coupe d’Afrique des Nations 2025 par le Tribunal Arbitral du Sport (TAS) après avoir perdu son titre initial. Le Maroc, initialement finaliste, a été disqualifié pour des raisons non précisées.",
    "mots_cles": [
@@ -393,84 +514,6 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T18:19:59+01:00",
    "video_id": "20261124-203224-1"
-  },
-  {
-   "titre": "Semi-remorque dérape entre deux bretelles en Ohio",
-   "resume": "Un camion lourd a perdu le contrôle en tentant de tourner, glissant entre deux rampes d’accès avant d’être remis sur la route. Aucun blessé n’a été signalé.",
-   "mots_cles": [
-    "s",
-    "e",
-    "m",
-    "i",
-    "-",
-    "r"
-   ],
-   "mots_cles_en": [
-    "s",
-    "e",
-    "m",
-    "i",
-    "-",
-    "t"
-   ],
-   "hashtags": [
-    "truck",
-    "ohio",
-    "accident"
-   ],
-   "insolite": 5,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712677404224834829",
-     "compte": "cbsnews",
-     "url": "https://www.tiktok.com/@cbsnews/video/7712677404224834829",
-     "vues": 23900000,
-     "jaime": 1500000,
-     "commentaires": 16200,
-     "partages": 163100,
-     "date": 1795747666,
-     "texte": "Video from the Ohio Department of Transportation shows the moment a semi-truck lost control while attempting to turn, skidding across the gap between two off-ramps. Authorities were able to pull the truck back onto the road and tow it away. No injuries were reported. #truck #ohio #accident #drive ",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712677404224834829?description=1&music_info=1"
-    },
-    {
-     "id": "7712718110955932950",
-     "compte": "bbcnews",
-     "url": "https://www.tiktok.com/@bbcnews/video/7712718110955932950",
-     "vues": 1200000,
-     "jaime": 15700,
-     "commentaires": 263,
-     "partages": 1627,
-     "date": 1795757121,
-     "texte": "No injuries were reported during the incident in Ohio on Thanksgiving, and authorities were able to pull the truck back onto the road, according to the BBC's US partner, CBS News. #Thanksgiving #USNews #WeatherWarning #Ohio #BBCNews",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712718110955932950?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "a53d428936",
-   "score": 1245,
-   "derniere_vue": 1795849290.278421,
-   "vues": 25100000,
-   "jaime": 1515700,
-   "commentaires": 16463,
-   "hashtags_viraux": [
-    "ohio",
-    "truck",
-    "accident",
-    "drive",
-    "thanksgiving",
-    "usnews",
-    "weatherwarning",
-    "bbcnews"
-   ],
-   "medias": 0,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-27T18:05:37+01:00"
   },
   {
    "titre": "Décret afghan impose surnoms aux femmes",
@@ -767,61 +810,6 @@
    "statut": "sans_source",
    "vu_le": "2026-11-26T13:26:29+01:00",
    "reserve_le": "2026-11-27T02:21:36+01:00"
-  },
-  {
-   "titre": "Christ le Rédempteur vu au-dessus des nuages",
-   "resume": "Une vidéo prise depuis un hélicoptère montre la statue emblématique de Rio flottant au-dessus d’un océan de nuages. Le cliché a rapidement fait le tour des réseaux sociaux.",
-   "mots_cles": [
-    "C",
-    "h",
-    "r",
-    "i",
-    "s",
-    "t"
-   ],
-   "mots_cles_en": [
-    "C",
-    "h",
-    "r",
-    "i",
-    "s",
-    "t"
-   ],
-   "hashtags": [
-    "christredeemer",
-    "rio",
-    "nuages"
-   ],
-   "insolite": 7,
-   "categorie": "culture",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712775661743557902",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712775661743557902",
-     "vues": 10200000,
-     "jaime": 2400000,
-     "commentaires": 13300,
-     "partages": 143500,
-     "date": 1795770583,
-     "texte": "Helicopter footage captures a breathtaking view of Christ the Redeemer seemingly floating above a sea of clouds in Rio de Janeiro, Brazil, as the aircraft flies high above the city. The iconic statue, which stands atop Mount Corcovado, overlooks Rio and is a symbol of Christianity. The person who shared the footage described the experience as witnessing ‘something divine’. 🎥 Instagtam / cheezewino",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712775661743557902?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "c093dd05c8",
-   "score": 829,
-   "derniere_vue": 1795849290.278421,
-   "vues": 10200000,
-   "jaime": 2400000,
-   "commentaires": 13300,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-28T06:00:55+01:00"
   },
   {
    "titre": "États-Unis : arrestation passagers à l’aéroport de Seattle",
@@ -2097,24 +2085,22 @@
    "vu_le": "2026-11-25T09:59:33+01:00"
   },
   {
-   "titre": "Bunker de cannabis à Grenade",
-   "resume": "Un bunker de 180 m² rempli de plants de cannabis a été découvert près de Grenade, en Andalousie, entraînant l'arrestation de cinq personnes.",
+   "titre": "Police saisissent 1 954 plants de cannabis à Grenade",
+   "resume": "Les forces de l'ordre espagnoles ont confisqué près de deux mille plants de cannabis dans une plantation de 180 m² à Grenade, découverte sous une aire de jeux. L'opération a conduit à plusieurs arrestations.",
    "mots_cles": [
-    "bunker",
     "cannabis",
     "Grenade",
-    "Andalousie"
+    "drogue"
    ],
    "mots_cles_en": [
-    "bunker",
     "cannabis",
-    "Grenada",
-    "Andalusia"
+    "Granada",
+    "seizure"
    ],
    "hashtags": [
     "cannabis",
-    "bunker",
-    "grenade"
+    "granada",
+    "drogue"
    ],
    "insolite": 7,
    "categorie": "societe",
@@ -2124,15 +2110,29 @@
      "id": "7712844214328970518",
      "compte": "bbcnews",
      "url": "https://www.tiktok.com/@bbcnews/video/7712844214328970518",
-     "vues": 1300000,
-     "jaime": 119100,
-     "commentaires": 1378,
-     "partages": 26300,
+     "vues": 1600000,
+     "jaime": 145300,
+     "commentaires": 1673,
+     "partages": 32700,
      "date": 1795786469,
      "texte": "The plantation stretched to approximately 180 square metres, with two rooms equipped with lighting, ventilation, and climate-control systems. A total of 1,954 plants were seized at the site. #Granada #Spain #Police #LawEnforcement #BBCNews",
      "sous_seuils": true,
      "indisponible": false,
      "lecteur": "https://www.tiktok.com/player/v1/7712844214328970518?description=1&music_info=1"
+    },
+    {
+     "id": "7712753246883925287",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7712753246883925287",
+     "vues": 1200000,
+     "jaime": 131800,
+     "commentaires": 617,
+     "partages": 20200,
+     "date": 1795765315,
+     "texte": "😮 Un bunker géant de culture de c*nn*bis a été découvert près de de Grenade en Espagne sous... une aire de jeux pour enfants ! ⤴️",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712753246883925287?description=1&music_info=1"
     },
     {
      "id": "7712124144191540502",
@@ -2147,29 +2147,15 @@
      "sous_seuils": true,
      "indisponible": false,
      "lecteur": "https://www.tiktok.com/player/v1/7712124144191540502?description=1&music_info=1"
-    },
-    {
-     "id": "7712753246883925287",
-     "compte": "tf1info",
-     "url": "https://www.tiktok.com/@tf1info/video/7712753246883925287",
-     "vues": 1100000,
-     "jaime": 121300,
-     "commentaires": 576,
-     "partages": 18400,
-     "date": 1795765315,
-     "texte": "😮 Un bunker géant de culture de c*nn*bis a été découvert près de de Grenade en Espagne sous... une aire de jeux pour enfants ! ⤴️",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712753246883925287?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
-   "id": "b552b2d94d",
-   "score": 378,
-   "derniere_vue": 1795823010.0572684,
-   "vues": 3500000,
-   "jaime": 271300,
-   "commentaires": 2131,
+   "id": "f1e36ff816",
+   "score": 408,
+   "derniere_vue": 1795856538.2157276,
+   "vues": 3900000,
+   "jaime": 308000,
+   "commentaires": 2467,
    "hashtags_viraux": [
     "granada",
     "spain",
@@ -2177,10 +2163,10 @@
     "lawenforcement",
     "bbcnews"
    ],
-   "medias": 7,
+   "medias": 6,
    "tendance": null,
    "statut": "nouveau",
-   "vu_le": "2026-11-28T00:43:42+01:00"
+   "vu_le": "2026-11-28T10:02:28+01:00"
   },
   {
    "titre": "Brigade suspendue Chile : vents violents",
@@ -2446,6 +2432,56 @@
    "medias": 10,
    "statut": "nouveau",
    "vu_le": "2026-11-25T09:59:33+01:00"
+  },
+  {
+   "titre": "Mirage supérieur fait flotter cargo à Ajman",
+   "resume": "Une vidéo montre un cargo apparaissant comme suspendu au-dessus de l'eau au large d'Ajman, aux Émirats arabes unis, à cause d'un mirage supérieur dû à des différences de température atmosphérique. Le phénomène a intrigué les observateurs.",
+   "mots_cles": [
+    "mirage",
+    "Ajman",
+    "cargo"
+   ],
+   "mots_cles_en": [
+    "mirage",
+    "Ajman",
+    "cargo"
+   ],
+   "hashtags": [
+    "mirage",
+    "ajman",
+    "cargo"
+   ],
+   "insolite": 7,
+   "categorie": "science",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712893684391480607",
+     "compte": "abcnews",
+     "url": "https://www.tiktok.com/@abcnews/video/7712893684391480607",
+     "vues": 2900000,
+     "jaime": 137300,
+     "commentaires": 1972,
+     "partages": 18000,
+     "date": 1795798021,
+     "texte": "Viral footage filmed off the coast of Ajman, United Arab Emirates, captures a cargo vessel appearing to float above the water due to a superior mirage, where temperature differences bend light in the atmosphere.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712893684391480607?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "696300c569",
+   "score": 329,
+   "derniere_vue": 1795856538.2157276,
+   "vues": 2900000,
+   "jaime": 137300,
+   "commentaires": 1972,
+   "hashtags_viraux": [],
+   "medias": 3,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T02:44:21+01:00"
   },
   {
    "titre": "Recherche Ark biblique : bois datés 4300 ans",
@@ -2917,6 +2953,56 @@
    "vu_le": "2026-11-26T03:01:44+01:00"
   },
   {
+   "titre": "Grand‑parents jouent à GTA en résidence",
+   "resume": "Des résidents d'une maison de retraite ont été filmés en train de jouer intensément à Grand Theft Auto, surprenant les visiteurs par leur enthousiasme. La séquence a rapidement fait le buzz sur les réseaux.",
+   "mots_cles": [
+    "seniors",
+    "GTA",
+    "résidence"
+   ],
+   "mots_cles_en": [
+    "seniors",
+    "GTA",
+    "senior residence"
+   ],
+   "hashtags": [
+    "seniors",
+    "gta",
+    "résidence"
+   ],
+   "insolite": 8,
+   "categorie": "insolite",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712936506985319719",
+     "compte": "konbini",
+     "url": "https://www.tiktok.com/@konbini/video/7712936506985319719",
+     "vues": 1700000,
+     "jaime": 175100,
+     "commentaires": 1299,
+     "partages": 79100,
+     "date": 1795807974,
+     "texte": "Qui a dit que les mamies et papis ne pouvaient pas jouer à GTA ? On a infiltré une résidence sénior et il s’y passe des trucs trèèèès chauds | Passion",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712936506985319719?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "2622b6175f",
+   "score": 278,
+   "derniere_vue": 1795856538.2157276,
+   "vues": 1700000,
+   "jaime": 175100,
+   "commentaires": 1299,
+   "hashtags_viraux": [],
+   "medias": 4,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T10:02:28+01:00"
+  },
+  {
    "titre": "Leçon antiraciste de Jane Elliott en 1968 toujours pertinente",
    "resume": "Jane Elliott, professeure ayant mené une expérience sur le racisme en 1968, revient sur son impact durable. Son exercice « Blue Eyes, Brown Eyes » reste une référence pour lutter contre les discriminations.",
    "mots_cles": [
@@ -3197,6 +3283,56 @@
    "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
+   "titre": "Enfant de 3 ans court chez grand-mère",
+   "resume": "Un petit garçon de trois ans a quitté sa maison en Idaho après qu'on lui ait interdit de rendre visite à sa grand-mère, parcourant près d'un kilomètre pour la rejoindre. Les caméras de sécurité ont capturé tout le trajet.",
+   "mots_cles": [
+    "enfant",
+    "Idaho",
+    "grand-mère"
+   ],
+   "mots_cles_en": [
+    "child",
+    "Idaho",
+    "grandmother"
+   ],
+   "hashtags": [
+    "enfant",
+    "idaho",
+    "grandmere"
+   ],
+   "insolite": 5,
+   "categorie": "people",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712881549607226638",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712881549607226638",
+     "vues": 1900000,
+     "jaime": 226500,
+     "commentaires": 1888,
+     "partages": 7890,
+     "date": 1795795213,
+     "texte": "This is the moment a three-year-old boy in Idaho set off on his own after being told he couldn’t visit his grandma, sneaking out of his home and running half a mile to her house. The little boy’s journey was captured on security cameras at both homes, with his grandmother alerting his mother once he arrived safely. She hopes the incident serves as a reminder of how quickly young children can wande",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712881549607226638?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "3e657033f3",
+   "score": 253,
+   "derniere_vue": 1795856538.2157276,
+   "vues": 1900000,
+   "jaime": 226500,
+   "commentaires": 1888,
+   "hashtags_viraux": [],
+   "medias": 4,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T10:02:28+01:00"
+  },
+  {
    "titre": "Escalator accéléré à l'université BRAC, Bangladesh",
    "resume": "Un escalateur de l'université BRAC a soudainement augmenté de vitesse, forçant les étudiants à sauter pour éviter d'être emportés. L'incident, filmé en décembre 2025, a circulé largement en ligne.",
    "mots_cles": [
@@ -3392,6 +3528,56 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-26T01:00:57+01:00"
+  },
+  {
+   "titre": "Explosion d’une maison à Owatonna, Minnesota",
+   "resume": "Une maison a explosé à Owatonna, Minnesota, le jour de Thanksgiving, endommageant plusieurs habitations voisines. Aucun blessé n'a été signalé selon les autorités locales.",
+   "mots_cles": [
+    "explosion",
+    "Owatonna",
+    "Minnesota"
+   ],
+   "mots_cles_en": [
+    "explosion",
+    "Owatonna",
+    "Minnesota"
+   ],
+   "hashtags": [
+    "explosion",
+    "owatonna",
+    "minnesota"
+   ],
+   "insolite": 6,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712920942359383309",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7712920942359383309",
+     "vues": 1600000,
+     "jaime": 163900,
+     "commentaires": 2014,
+     "partages": 16900,
+     "date": 1795804369,
+     "texte": "A neighbor’s security camera captured the moment a house apparently exploded in Owatonna, Minnesota, on Thanksgiving Day, damaging several nearby homes. Fire officials said the homeowner was not home at the time and there were no reported injuries.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712920942359383309?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "891d3dd559",
+   "score": 234,
+   "derniere_vue": 1795856538.2157276,
+   "vues": 1600000,
+   "jaime": 163900,
+   "commentaires": 2014,
+   "hashtags_viraux": [],
+   "medias": 9,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T06:00:55+01:00"
   },
   {
    "titre": "Arnaque consoles jeux en ligne",
@@ -5282,62 +5468,6 @@
    "video_id": "20261125-214937-1"
   },
   {
-   "titre": "Mirage supérieur fait flotter un cargo à Ajman",
-   "resume": "Une vidéo montre un navire cargo semblant léviter au-dessus de l’eau à cause d’un mirage supérieur. Le phénomène optique résulte de différences de température dans l’atmosphère.",
-   "mots_cles": [
-    "m",
-    "i",
-    "r",
-    "a",
-    "g",
-    "e"
-   ],
-   "mots_cles_en": [
-    "s",
-    "u",
-    "p",
-    "e",
-    "r",
-    "i"
-   ],
-   "hashtags": [
-    "mirage",
-    "cargo",
-    "ajman"
-   ],
-   "insolite": 8,
-   "categorie": "science",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712893684391480607",
-     "compte": "abcnews",
-     "url": "https://www.tiktok.com/@abcnews/video/7712893684391480607",
-     "vues": 2600000,
-     "jaime": 123700,
-     "commentaires": 1789,
-     "partages": 16300,
-     "date": 1795798021,
-     "texte": "Viral footage filmed off the coast of Ajman, United Arab Emirates, captures a cargo vessel appearing to float above the water due to a superior mirage, where temperature differences bend light in the atmosphere.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712893684391480607?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "696300c569",
-   "score": 83,
-   "derniere_vue": 1795849290.278421,
-   "vues": 2600000,
-   "jaime": 123700,
-   "commentaires": 1789,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-28T02:44:21+01:00"
-  },
-  {
    "titre": "Étudiante fait malaise devant Emmanuel Macron",
    "resume": "Une étudiante a perdu connaissance lors d’une visite d’Emmanuel Macron à Toulouse. Les causes du malaise restent à déterminer.",
    "mots_cles": [
@@ -5716,62 +5846,6 @@
    "vu_le": "2026-11-24T18:38:52+01:00"
   },
   {
-   "titre": "Explosion d’une maison à Owatonna, Minnesota",
-   "resume": "Une maison a explosé le jour de Thanksgiving à Owatonna, causant des dégâts aux habitations voisines. Aucun blessé n’a été signalé selon les autorités.",
-   "mots_cles": [
-    "e",
-    "x",
-    "p",
-    "l",
-    "o",
-    "s"
-   ],
-   "mots_cles_en": [
-    "e",
-    "x",
-    "p",
-    "l",
-    "o",
-    "s"
-   ],
-   "hashtags": [
-    "explosion",
-    "minnesota",
-    "thanksgiving"
-   ],
-   "insolite": 6,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712920942359383309",
-     "compte": "cbsnews",
-     "url": "https://www.tiktok.com/@cbsnews/video/7712920942359383309",
-     "vues": 1600000,
-     "jaime": 156100,
-     "commentaires": 1903,
-     "partages": 15800,
-     "date": 1795804369,
-     "texte": "A neighbor’s security camera captured the moment a house apparently exploded in Owatonna, Minnesota, on Thanksgiving Day, damaging several nearby homes. Fire officials said the homeowner was not home at the time and there were no reported injuries.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712920942359383309?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "891d3dd559",
-   "score": 64,
-   "derniere_vue": 1795849290.278421,
-   "vues": 1600000,
-   "jaime": 156100,
-   "commentaires": 1903,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-28T06:00:55+01:00"
-  },
-  {
    "titre": "GTA 6 rend hommage à l’orque Lolita",
    "resume": "Dans le jeu GTA 6, un oceanarium virtuel inclut une mission pour libérer une orque, rappelant le cas réel de Tokitae. Les joueurs ont remarqué ce clin d’œil au célèbre animal captif.",
    "mots_cles": [
@@ -5820,62 +5894,6 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-26T17:23:54+01:00"
-  },
-  {
-   "titre": "Enfant de trois ans court chez sa grand-mère",
-   "resume": "Un petit garçon de l’Idaho a quitté la maison en secret pour rejoindre sa grand-mère, parcourant près d’un kilomètre. Les caméras de sécurité ont capturé son périple.",
-   "mots_cles": [
-    "I",
-    "d",
-    "a",
-    "h",
-    "o",
-    ","
-   ],
-   "mots_cles_en": [
-    "I",
-    "d",
-    "a",
-    "h",
-    "o",
-    ","
-   ],
-   "hashtags": [
-    "enfant",
-    "idaho",
-    "fuite"
-   ],
-   "insolite": 4,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712881549607226638",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712881549607226638",
-     "vues": 1800000,
-     "jaime": 212200,
-     "commentaires": 1809,
-     "partages": 7532,
-     "date": 1795795213,
-     "texte": "This is the moment a three-year-old boy in Idaho set off on his own after being told he couldn’t visit his grandma, sneaking out of his home and running half a mile to her house. The little boy’s journey was captured on security cameras at both homes, with his grandmother alerting his mother once he arrived safely. She hopes the incident serves as a reminder of how quickly young children can wande",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712881549607226638?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "822fd678ba",
-   "score": 63,
-   "derniere_vue": 1795849290.278421,
-   "vues": 1800000,
-   "jaime": 212200,
-   "commentaires": 1809,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-28T06:00:55+01:00"
   },
   {
    "titre": "New Jersey : table cède sous le repas",
