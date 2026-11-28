@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-28T10:55:26+01:00",
+   "niveau": "erreur",
+   "texte": "🧪 Essai de la nuit : en panne : Tests du code (montage compris)"
+  },
+  {
    "date": "2026-11-28T10:14:11+01:00",
    "niveau": "info",
    "texte": "🔁 « Camion-citerne en feu, 31 morts » refaite (tout) : note 75/100, corrige : « Corrections après r4 : accroche avec le choc et le feu dans la 1re seconde, renversement visible avant le feu, « se renverse », feux qui s'éteignent quand la route rouvre » — l'ancienne version est remplacée"
@@ -994,11 +999,6 @@
    "date": "2026-11-24T23:36:45+01:00",
    "niveau": "info",
    "texte": "🗑️ « Leto et le débat sur Lucia » supprimée."
-  },
-  {
-   "date": "2026-11-24T23:36:39+01:00",
-   "niveau": "attention",
-   "texte": "🩺 Santé du robot : ⚠️ En panne : mistral, groq, openrouter ; 1 vidéo(s) en réparation"
   }
  ]
 }
