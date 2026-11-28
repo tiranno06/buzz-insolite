@@ -73,6 +73,7 @@ REGLES = [
     ("C7", "Les pompiers arrosent un feu qui existe : l'arrosage commence quand le feu a pris."),
     ("C8", "La foule s'enfuit après le danger (choc, feu, explosion, effondrement), jamais avant."),
     ("C9", "Une même action n'est pas répétée par le même objet dans la même phrase."),
+    ("C10", "Un véhicule accidenté (qui a percuté ou été percuté) ne repart plus : ni avancer, ni freiner, ni déraper ensuite."),
     ("E1", "Deux véhicules ne se chevauchent jamais au départ sur la même voie (selon leur longueur réelle, 1,5 m d'écart)."),
     ("E2", "Deux bâtiments ne se chevauchent jamais (selon leur largeur réelle) ; un bâtiment n'est jamais sur la chaussée."),
     ("E3", "Un piéton ou une foule n'est pas sur la chaussée au départ (trottoir), sauf s'il traverse."),
@@ -89,6 +90,8 @@ REGLES = [
     ("V3", "Une citerne qui brûle a d'abord perdu son carburant (flaque qui s'enflamme)."),
     ("V4", "Les dégâts d'un choc dépendent du poids : le plus léger encaisse le plus (moteur 3D, MASSES)."),
     ("V5", "Un objet dans le souffle d'une explosion (18 m) est repoussé et prend feu (moteur 3D)."),
+    ("V6", "Un feu s'ÉTEINT quand le texte le dit (feu maîtrisé, éteint, carcasses retirées, route rouverte) : flammes qui baissent, épave qui fume."),
+    ("V7", "Un véhicule qui se renverse ne prend feu qu'une fois couché : on voit le renversement, puis le feu."),
 ]
 
 
@@ -102,7 +105,11 @@ def _fin(a):
     return (p, r + float(a.get("duree") or 1.0))
 
 
-def appliquer(sc, journal=print, texte=""):
+EXTINCTION = (r"ma[îi]tris|[ée]teint|extinction|carcasses?|calcin[ée]+s? (?:sont|ont été|des)|d[ée]blay|bulldozer|d[ée]panneu"
+              r"|rouvert|r[ée]ouvert|circulation (?:a repris|reprend|r[ée]tablie)|trafic (?:a repris|reprend|r[ée]tabli)")
+
+
+def appliquer(sc, journal=print, texte="", phrases=None):
     """Applique toutes les règles à une scène 3D (modifiée sur place). Renvoie la liste des corrections faites."""
     if not isinstance(sc, dict) or sc.get("type") != "3d":
         return []
@@ -174,6 +181,10 @@ def appliquer(sc, journal=print, texte=""):
             note("C1", f"{a['objet']} « {a['faire']} » après sa destruction → retiré"); continue
         if a["faire"] in BOUGER and a["faire"] != "fuir" and any(x["faire"] == "se_coucher" for x in fins):
             note("C2", f"{a['objet']} « {a['faire']} » une fois renversé → retiré"); continue
+        if a["faire"] in BOUGER and a["faire"] != "heurter" and not sc.get("accroche") and any(
+                x["faire"] == "heurter" and (x["objet"] == a["objet"] or x.get("cible") == a["objet"]) and _fin(x) <= _t(a)
+                for x in actions):            # (Gizeh r4 : la voiture du choc « repartait » pendant les aveux du conducteur)
+            note("C10", f"{a['objet']} « {a['faire']} » après l'accident → retiré"); continue
         gardees.append(a)
     actions = gardees
 
@@ -212,13 +223,34 @@ def appliquer(sc, journal=print, texte=""):
             a["faire"] = "bruler"
         note("L2", f"{len(expl) - 3} explosion(s) de trop → feu")
 
+    # ---- V7 : le renversement se voit AVANT le feu (Gizeh r4 du 28/11 : feu et renversement au même instant, la boule de
+    # feu cachait la citerne qui bascule)
+    for c in [x for x in actions if x["faire"] == "se_coucher"]:
+        for a in actions:
+            if a["objet"] == c["objet"] and a["faire"] in ("bruler", "exploser") and a.get("phrase") == c.get("phrase"):
+                apres = float(c.get("retard") or 0) + float(c.get("duree") or 1.0) * (0.7 if sc.get("accroche") else 1.0) \
+                        + (0.1 if sc.get("accroche") else 0.8)
+                if float(a.get("retard") or 0) < apres:
+                    a["retard"] = round(apres, 2); note("V7", f"{a['objet']} prend feu une fois renversé")
+
+    # ---- V6 : le feu s'éteint quand le texte le dit (Gizeh r4 : « la route est rouverte » sur une épave toujours en flammes)
+    if phrases and not sc.get("accroche") and not any(a["faire"] == "eteindre" for a in actions):
+        feux = [a for a in actions if a["faire"] in ("bruler", "exploser")]
+        dernier = max((int(a.get("phrase") or 0) for a in feux), default=None)
+        ph = None if dernier is None else next((i for i, p in enumerate(phrases) if i > dernier
+                                                and re.search(EXTINCTION, str(p).lower())), None)
+        if ph is not None:
+            for k, oid in enumerate(sorted({a["objet"] for a in feux})):
+                actions.append(dict(objet=oid, faire="eteindre", phrase=ph, duree=3.0, retard=round(0.15 * k, 2)))
+            note("V6", f"feu éteint à la phrase {ph}")
+
     # ---- L1 / L4 : rythme
     par_phrase = {}
     for a in sorted(actions, key=_t):
         par_phrase.setdefault(a.get("phrase"), []).append(a)
     for p, liste in ([] if sc.get("accroche") else par_phrase.items()):   # (l'accroche a son propre rythme serré)
         debuts, etalees = [], 0
-        for a in sorted([a for a in liste if a["faire"] != "avancer"], key=_t):
+        for a in sorted([a for a in liste if a["faire"] not in ("avancer", "eteindre")], key=_t):
             r = float(a.get("retard") or 0)
             while sum(1 for d in debuts if abs(d - r) < 0.3) >= 4:          # 4 débuts au plus dans la même demi-seconde
                 r += 0.5; etalees += 1
@@ -299,8 +331,9 @@ def appliquer(sc, journal=print, texte=""):
 
 def appliquer_storyboard(anim, script, journal=print):
     """Toutes les scènes 3D d'un storyboard. Renvoie le nombre de corrections."""
-    texte = " ".join(p.get("ecrit", "") for p in (script or {}).get("phrases") or [])
+    phrases = [p.get("ecrit", "") for p in (script or {}).get("phrases") or []]
+    texte = " ".join(phrases)
     n = 0
     for sc in (anim or {}).get("scenes") or []:
-        n += len(appliquer(sc, journal, texte))
+        n += len(appliquer(sc, journal, texte, phrases))
     return n

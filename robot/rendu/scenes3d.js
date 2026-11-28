@@ -402,7 +402,7 @@ function decor(T, scene, sc) {
 
 // ------------------------------------------------------------------ état des objets à l'instant t (actions rejouées)
 function etat(o, actions, t, objets, profondeur = 0) {
-  const e = { x: o.x || 0, y: o.y || 0, z: o.z || 0, cap: (o.cap || 0) * Math.PI / 180, roulis: 0, tangage: 0, brule: -1, visible: o.a == null || t >= o.a, distance: 0, explose: -1, secousse: 0 };
+  const e = { x: o.x || 0, y: o.y || 0, z: o.z || 0, cap: (o.cap || 0) * Math.PI / 180, roulis: 0, tangage: 0, brule: -1, eteint: -1, visible: o.a == null || t >= o.a, distance: 0, explose: -1, secousse: 0 };
   for (const a of actions.filter(a => a.objet === o.id).sort((p, q) => p.a - q.a)) {
     if (t < a.a) break;
     const d = a.d || 1, p = prog(t, a.a, d),
@@ -430,6 +430,7 @@ function etat(o, actions, t, objets, profondeur = 0) {
     if (a.faire === "se_coucher") { e.roulis = (a.angle ?? 90) * Math.PI / 180 * ease.sortie(p); e.y += 0.6 * Math.sin(Math.PI * p); }
     if (a.faire === "couler") { e.roulis = (a.angle ?? 25) * Math.PI / 180 * k; e.y = mix(e.y, -(a.profondeur ?? 6), k); }
     if (a.faire === "bruler" && e.brule < 0) e.brule = a.a;
+    if (a.faire === "eteindre" && e.eteint < 0) e.eteint = a.a;          // le feu baisse puis s'éteint, l'épave fume (28/11)
     if (a.faire === "exploser" && e.explose < 0) e.explose = a.a;
     if (a.faire === "disparaitre") e.visible = t < a.a;
     if (a.faire === "apparaitre") e.visible = true;
@@ -447,7 +448,12 @@ function etat(o, actions, t, objets, profondeur = 0) {
       e.secousse = Math.max(e.secousse, Math.max(0, 1 - (t - a.a) * 2) * f);
       if (f > 0.35 && (e.brule < 0 || e.brule > a.a + 0.4)) e.brule = a.a + 0.4;
     }
-  // REBOND après le choc (27/11) : celui qui percute recule d'1,5 m et pivote ; la cible est poussée d'1 m et pivote un peu
+  // un objet qui a pris feu par le souffle s'éteint avec les autres (dernière extinction de la scène)
+  if (e.eteint < 0 && (e.brule >= 0 || e.explose >= 0)) {
+    const ext = actions.filter(a => a.faire === "eteindre").map(a => a.a);
+    if (ext.length && t >= Math.max(...ext)) e.eteint = Math.max(...ext);
+  }
+    // REBOND après le choc (27/11) : celui qui percute recule d'1,5 m et pivote ; la cible est poussée d'1 m et pivote un peu
   for (const a of actions) {
     if (a.faire !== "heurter") continue;
     const ti = a.a + (a.d || 1); if (t < ti) continue;
@@ -765,7 +771,8 @@ export async function creer3d(sc, couche, T) {
       if (sources.filter(s => !s.poussiere).length >= 12) continue;   // règle L2 : 12 grands feux au plus, les autres gardent les flammes simples
       const g = groupes[o.id], ta = g?.userData.taille || [4, 2, 2];
       const taille = Math.max(0.7, Math.min(2.6, Math.max(ta[0], ta[2]) / 6));
-      sources.push({ debut, taille, position: t => { const e = etat(o, actions, t, objets); return [e.x, Math.max(0, e.y) + 0.3, e.z]; } });
+      sources.push({ debut, taille, fin: fin.eteint >= 0 ? fin.eteint : null,
+                     position: t => { const e = etat(o, actions, t, objets); return [e.x, Math.max(0, e.y) + 0.3, e.z]; } });
       for (const q of particules[o.id] || []) if (!q.lueur && !q.flaque) q.quarks = true;   // les anciennes flammes s'effacent
     }
     if (sources.length) avancerEffets = QUARKS.creerEffets(T, scene, sources, { flamme: MATS.flamme.map, fumee: MATS.fumee.map }, (sc.graine || 3) * 7919);
@@ -895,7 +902,10 @@ export async function creer3d(sc, couche, T) {
       const ps = particules[o.id] || [];
       const debut = e.brule >= 0 ? e.brule : e.explose;
       for (const q of ps) {
-        const actif = debut >= 0 && t >= debut, ta = g.userData.taille || [4, 2, 2], force = borne(prog(t, debut, 1.2));
+        // extinction : les flammes baissent en 3 s ; il reste une fumée légère au-dessus de l'épave
+        const reste = e.eteint >= 0 ? 1 - borne(prog(t, e.eteint, 3)) : 1;
+        const actif = debut >= 0 && t >= debut && (reste > 0.02 || q.fumee), ta = g.userData.taille || [4, 2, 2],
+              force = borne(prog(t, debut, 1.2)) * (q.fumee ? Math.max(0.35, reste) : reste);
         if (q.lueur) {                         // lueur orange qui palpite au sol sous le feu
           q.lueur.visible = actif; if (!actif) continue;
           const r = Math.max(ta[0], ta[2]) * 2.2 * force * (1 + 0.08 * Math.sin(t * 9) + 0.05 * Math.sin(t * 23));
@@ -1073,7 +1083,7 @@ export async function creer3d(sc, couche, T) {
       const m = sc.reperes[i], g = groupes[m.objet]; if (!g) return;
       const ta = g.userData.taille || [4, 2, 2], v = new T.Vector3(g.position.x, g.position.y + ta[1] + 1.2, g.position.z).project(camera);
       e.style.left = ((v.x + 1) / 2 * W) + "px"; e.style.top = ((1 - v.y) / 2 * H) + "px"; e.dataset.base = "translate(-14px,-50%)";
-      if (m.fin != null && t >= m.fin) { e.style.opacity = 0; return; }
+      if ((m.fin != null && t >= m.fin) || !g.visible) { e.style.opacity = 0; return; }   // objet disparu : plus d'étiquette
       apparition(e, t, m.a ?? 0.5);
     });
     if (avancerEffets) avancerEffets(t);

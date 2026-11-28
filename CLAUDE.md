@@ -819,7 +819,7 @@ l'objet principal, secours garés à 18 m du feu), L lisibilité (4 débuts d'ac
 — limite aussi dans scenes3d.js —, 14 objets, durées 0,6-8 s), V vraisemblance (feu après explosion, fuite avant le feu d'une
 citerne, dégâts selon le poids, souffle). Essayé sur Le Caire / Iowa / catastrophes : 0 à 3 corrections justes, rien d'abîmé.
 Les 4 règles de DÉCENCE (D1 à D4 : corps, personne qui brûle, personne percutée, arme) ont été RETIRÉES à la demande de
-l'auteur (27/11) : 36 règles. Tests : `TestCodeReconstitution`. **Toute nouvelle action ou nouvel objet 3D doit être ajouté à `PEUT` / `TAILLE`.**
+l'auteur (27/11) : 36 règles, 39 depuis le 28/11 (C10, V6, V7). Tests : `TestCodeReconstitution`. **Toute nouvelle action ou nouvel objet 3D doit être ajouté à `PEUT` / `TAILLE`.**
 
 ## Plans larges (27/11, l'auteur : « avant, nous avions un plan vidéo bien plus large »)
 `realisateur._plans_larges` (toutes les reconstitutions) : ouverture en plan LARGE (3 s, ou 1,2 s si le choc arrive plus tôt),
@@ -842,6 +842,18 @@ carte) → motif « deverser » = vraie fuite seulement ; une action racontée p
 plus quand la circulation reprend (nouvel acteur) ; 7) règle C3 : un choc raconté après le feu / la fuite de sa cible est remis
 avant ; 8) plans larges successifs pris de côtés différents (`COTES`) ; 9) « Ring Road » et tout nom anglais de plusieurs mots
 dit à l'anglaise en entier (`prononciation._anglais`). Tests : `TestGizehR3`.
+
+## Analyse de Gizeh r4 (28/11) et corrections (l'auteur : « fait de 1 à 4 »)
+r4 : choc et brasier enfin montrés, mais 1) accroche « Flammes géantes… » sur une citerne qui roulait (feu à 1,9 s, la carte
+arrivait à 2,1 s) → `gabarits._accroche` : la voiture part à 14 m, choc en 0,5 s, renversement 0,5 s, feu ~1,2 s, voisins
+et file ensuite ; 2) feu et renversement au même instant (la boule de feu cachait la citerne qui bascule) → règle V7 (feu
+une fois couché, +0,8 s) ; 3) « un camion-citerne renverse sur » → `langue.pronominaux` (renverser, écraser, effondrer,
+embraser, propager… suivis d'un lieu sans « se ») dans `ecrire.normaliser` et `langue.corriger` ; 4) épaves toujours en
+flammes pendant « la route est rouverte » → action `eteindre` (règle V6 : 1re phrase après le dernier feu qui dit maîtrisé /
+éteint / carcasses / déblayage / rouvert / circulation reprend ; jamais inventée) : flammes qui baissent en 3 s, fumée légère
+12 s, systèmes three.quarks retirés (`lot.deleteSystem` : un débit nul laissait des braises) ; objet touché par le souffle
+éteint avec les autres. Aussi : règle C10 (un véhicule accidenté ne repart plus : la voiture « avançait » pendant les aveux
+du conducteur), étiquette d'un objet disparu masquée. Tests : `TestGizehR4`.
 
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11

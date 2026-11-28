@@ -343,19 +343,31 @@ def _accroche(scene3d):
         return None
     acc = copy.deepcopy(scene3d)
     garde = {a["objet"] for a in forts} | {a.get("cible") for a in forts if a.get("cible")}
-    # tout le drame en 3 à 4 secondes, dans l'ordre : le choc, le camion qui se couche, le feu, la file qui s'embrase
-    ordre = {"heurter": 0.0, "tomber": 0.0, "couler": 0.3, "se_coucher": 1.3, "exploser": 1.6, "bruler": 1.9}
+    # tout le drame dans la 1re SECONDE (Gizeh r4 du 28/11 : « Flammes géantes… » sur une citerne qui roule tranquillement,
+    # le feu arrivait à 1,9 s, quand la carte remplaçait déjà la 3D) : la voiture part tout près, le choc à 0,5 s, la citerne
+    # bascule aussitôt, le feu à 0,9 s, la file s'embrase ensuite
+    ordre = {"heurter": 0.0, "tomber": 0.0, "couler": 0.1, "se_coucher": 0.5, "deverser": 0.6, "exploser": 0.75, "bruler": 0.9}
+    chocs = {a["objet"]: a.get("cible") for a in forts if a["faire"] == "heurter"}
+    principaux = (set(chocs) | set(chocs.values())) or {forts[0]["objet"]}
     garde_ = []
     for a in acc["actions"]:
         if str(a["objet"]).startswith("bouchon"):
             if a["faire"] == "bruler":
-                garde_.append(dict(a, phrase=0, retard=2.2 + 0.25 * int(a["objet"][7:] or 0), duree=1.0))
+                garde_.append(dict(a, phrase=0, retard=1.5 + 0.12 * int(a["objet"][7:] or 0), duree=0.8))
             continue
         if a["faire"] in ordre:
-            garde_.append(dict(a, phrase=0, retard=ordre[a["faire"]], duree=min(float(a.get("duree") or 1.2), 1.4)))
-        elif a["faire"] == "avancer" and a["objet"] in garde:
-            garde_.append(dict(a, phrase=0, retard=0.0, duree=1.4))
+            d = 0.5 if a["faire"] == "heurter" else min(float(a.get("duree") or 1.0), 0.9)
+            r = ordre[a["faire"]]
+            if a["faire"] == "bruler" and a["objet"] not in principaux:
+                r = 1.4                                # les voisins s'embrasent APRÈS l'objet principal
+            garde_.append(dict(a, phrase=0, retard=r, duree=d))
+        elif a["faire"] == "avancer" and a["objet"] in garde and a["objet"] not in chocs:
+            garde_.append(dict(a, phrase=0, retard=0.0, duree=0.8))
     acc["actions"] = garde_
+    pos = {o["id"]: o for o in acc.get("objets") or []}
+    for qui, cible in chocs.items():                   # celui qui percute part à quelques mètres de sa cible
+        if qui in pos and cible in pos and pos[qui].get("voie") == pos[cible].get("voie"):
+            pos[qui]["position"] = float(pos[cible].get("position") or 0) - 14
     for o in acc.get("objets") or []:                  # la file est déjà là, arrêtée derrière l'accident
         if str(o["id"]).startswith("bouchon"):
             k = int(o["id"][7:] or 0); o["position"] = -18 - 9 * (k // 3) - 2 * (k % 3)

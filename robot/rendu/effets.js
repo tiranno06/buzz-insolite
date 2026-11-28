@@ -110,6 +110,23 @@ export function creerEffets(T, scene, sources, textures, graine = 7) {
           }
         }
         for (const s of actifs) {
+          // EXTINCTION (28/11) : à l'instant prévu, les flammes et les étincelles baissent en 3 s puis cessent ; la fumée
+          // devient légère (l'épave fume encore) puis s'arrête 12 s plus tard
+          if (s.fin != null && tSim >= s.fin && !s.poussiere) {
+            const k = Math.max(0, 1 - (tSim - s.fin) / 3), [fum, fl, et] = s.systemes;
+            const etape = Math.round(k * 10);
+            if (etape !== s.etapeExt) {
+              s.etapeExt = etape;
+              fl.emissionOverTime = new ConstantValue(110 * k);
+              et.emissionOverTime = new ConstantValue(28 * k * k);
+              fum.emissionOverTime = new ConstantValue(tSim - s.fin > 12 ? 0 : 28 * (0.3 + 0.7 * k));
+            }
+            if (!s.fumeeFinie && tSim - s.fin > 12) { s.fumeeFinie = true; fum.emissionOverTime = new ConstantValue(0); fum.endEmit(); }
+            // (essai du 28/11 : des braises orange restaient allumées malgré un débit nul) : les systèmes éteints sont retirés
+            if (!s.flammesFinies && tSim - s.fin > 3) { s.flammesFinies = true; fl.endEmit(); et.endEmit(); }
+            if (!s.flammesRetirees && tSim - s.fin > 4.5) { s.flammesRetirees = true; lot.deleteSystem(fl); lot.deleteSystem(et); }
+            if (!s.fumeeRetiree && tSim - s.fin > 20) { s.fumeeRetiree = true; lot.deleteSystem(fum); }
+          }
           const [x, y, z] = s.position(tSim);
           s.systemes.forEach((ps, i) => ps.emitter.position.set(x, y + (i === 0 ? 2.5 * (s.taille || 1) : 0.3), z));
         }

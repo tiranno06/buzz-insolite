@@ -27,9 +27,35 @@ def verifier_texte(texte, langue="fr"):
         return json.loads(r.read()).get("matches") or []
 
 
+# verbes qui, employés SANS complément (suivis d'un lieu : « sur », « dans »…), sont pronominaux : « le camion renverse sur
+# le périphérique » → « le camion SE renverse » (vidéo de Gizeh r4 du 28/11 : LanguageTool ne l'a pas vu)
+PRONOMINAUX = r"renvers|retourn|[ée]cras|effondr|embras|enflamm|propag|d[ée]vers|abatt|encastr"
+_MOT_AVANT = r"(?:se|s'|s’|me|m'|te|t'|nous|vous|le|la|les|l'|l’|lui|leur|en|y|un|une|des|du|de|d'|d’|au|aux)"
+
+
+def pronominaux(ecrit):
+    """Ajoute « se » / « s' » devant ces verbes quand il manque. Renvoie la phrase (inchangée si rien à faire)."""
+    def rep(m):
+        avant, verbe = m.group(1), m.group(2)
+        if re.fullmatch(_MOT_AVANT, avant.lower().strip()):
+            return m.group(0)                                   # déjà pronominal, ou c'est un nom (« une couche sur »)
+        se = "s'" if verbe[:1].lower() in "aeéèêiouy" else "se "
+        return f"{avant}{se}{verbe}"
+    motif = rf"(\b[\w'’-]+\s+)((?:{PRONOMINAUX})(?:e|ent)\b)(?=\s+(?:sur|dans|au|aux|à|en|contre|près|sous|devant|derrière)\b)"
+    return re.sub(motif, rep, ecrit, flags=re.I)
+
+
 def corriger(script, journal=print):
     """Relit les sous-titres de toutes les phrases (une seule demande) et corrige. Renvoie le nombre de phrases corrigées."""
     ph = script["phrases"]
+    for p in ph:                                            # verbes pronominaux sans « se » (sans réseau, avant LanguageTool)
+        avant = p.get("ecrit") or ""
+        apres = pronominaux(avant)
+        if apres != avant:
+            p["ecrit"] = apres
+            if p.get("voix") == avant:
+                p["voix"] = apres
+            journal(f"  orthographe : « {avant[:50]} » → « {apres[:50]} »")
     textes = [p.get("ecrit") or "" for p in ph]
     tout, debuts, pos = "", [], 0
     for t in textes:

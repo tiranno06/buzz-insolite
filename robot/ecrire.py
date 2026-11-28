@@ -168,9 +168,10 @@ def normaliser(d, sujet, format_, qui, journal=print):
                and (not phrase_absurde(str(p.get("ecrit") or p["voix"])) or "?" in str(p.get("ecrit") or ""))]
     if len(phrases) < 8:
         raise ValueError(f"texte trop court ({len(phrases)} phrases)")
+    from .langue import pronominaux                          # « le camion renverse sur » → « se renverse » (28/11)
     for p in phrases:
-        p["voix"] = str(p["voix"]).strip()
-        p["ecrit"] = str(p.get("ecrit") or p["voix"]).strip()
+        p["voix"] = pronominaux(str(p["voix"]).strip())
+        p["ecrit"] = pronominaux(str(p.get("ecrit") or p["voix"]).strip())
         p["ecran"] = str(p.get("ecran") or "").strip()[:24]
         p["image"] = str(p.get("image") or sujet["titre"]).strip()[:60]
         p["entite"] = str(p.get("entite") or "").strip()[:80]

@@ -1806,3 +1806,62 @@ class TestGizehR3(unittest.TestCase):
         choc = next(e for e in f["deroule"] if e["action"] == "heurter")
         self.assertLessEqual(choc["phrase"], 2)                          # collision dite à la fin = jouée avant le feu
         self.assertFalse(any(e["action"] == "deverser" and e["phrase"] == 1 for e in f["deroule"]))   # « transportait du carburant »
+
+
+class TestGizehR4(unittest.TestCase):
+    """28/11 : défauts de la vidéo de Gizeh r4 (accroche sans feu, feu qui cachait le renversement, « renverse » sans
+    « se », feux jamais éteints, voiture accidentée qui repartait)."""
+    def test_verbes_pronominaux(self):
+        from robot.langue import pronominaux as P
+        self.assertEqual(P("un camion-citerne chargé de carburant renverse sur le périphérique"),
+                         "un camion-citerne chargé de carburant se renverse sur le périphérique")
+        self.assertEqual(P("L'avion écrase dans un champ"), "L'avion s'écrase dans un champ")
+        for juste in ("Le camion se renverse sur la route", "le policier la renverse sur le sol",
+                      "il renverse un piéton sur le trottoir", "Le feu s'est propagé aux maisons"):
+            self.assertEqual(P(juste), juste)
+
+    def _scene(self):
+        return dict(type="3d", decor="autoroute",
+                    objets=[dict(id="c", type="citerne", voie=2, position=0), dict(id="v", type="voiture", voie=2, position=-30),
+                            dict(id="b", type="bus", voie=1, position=20)],
+                    actions=[dict(objet="v", faire="heurter", cible="c", phrase=2, duree=2.2),
+                             dict(objet="c", faire="se_coucher", phrase=2, duree=1.0, retard=2.5),
+                             dict(objet="c", faire="bruler", phrase=2, duree=1.0, retard=2.5),
+                             dict(objet="b", faire="bruler", phrase=4, duree=1.0),
+                             dict(objet="v", faire="avancer", phrase=8, duree=2.0, vers_position=0)])
+
+    def test_feu_apres_renversement_extinction_et_epave_immobile(self):
+        from robot import physique
+        sc = self._scene()
+        phrases = ["Flammes.", "Une citerne se renverse.", "Le choc allume un brasier.", "Fumée.", "Les bus brûlent.",
+                   "31 morts.", "Blessés.", "Ambulances.", "Le conducteur est arrêté.", "Enquête.",
+                   "Un bulldozer retire les carcasses.", "La route est rouverte.", "Et toi ?"]
+        faits = physique.appliquer(sc, lambda *a: None, " ".join(phrases), phrases)
+        a = {(x["objet"], x["faire"]): x for x in sc["actions"]}
+        self.assertGreaterEqual(a[("c", "bruler")]["retard"], 2.5 + 1.0 + 0.8)          # V7
+        self.assertEqual(a[("c", "eteindre")]["phrase"], 10)                            # V6 : carcasses retirées
+        self.assertIn(("b", "eteindre"), a)
+        self.assertNotIn(("v", "avancer"), a)                                           # C10
+        self.assertTrue(any(f.startswith("V6") for f in faits) and any(f.startswith("C10") for f in faits))
+
+    def test_pas_d_extinction_si_le_texte_ne_le_dit_pas(self):
+        from robot import physique
+        sc = self._scene()
+        phrases = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "Et toi ?"]
+        physique.appliquer(sc, lambda *a: None, "", phrases)
+        self.assertFalse(any(x["faire"] == "eteindre" for x in sc["actions"]))
+
+    def test_accroche_le_drame_dans_la_premiere_seconde(self):
+        from robot import gabarits, physique
+        sc = self._scene()
+        sc["actions"][0:0] = [dict(objet="c", faire="avancer", phrase=2, duree=3.0, vers_position=0)]
+        acc = gabarits._accroche(sc)
+        physique.appliquer(acc, lambda *a: None, "", ["x"] * 13)
+        a = {(x["objet"], x["faire"]): x for x in acc["actions"]}
+        self.assertLessEqual(a[("v", "heurter")]["duree"], 0.6)
+        self.assertLessEqual(a[("c", "bruler")]["retard"], 1.4)                         # le feu avant la fin de l'accroche
+        self.assertGreater(a[("c", "bruler")]["retard"], a[("c", "se_coucher")]["retard"])
+        self.assertGreaterEqual(a[("b", "bruler")]["retard"], a[("c", "bruler")]["retard"])   # les voisins après
+        v = next(o for o in acc["objets"] if o["id"] == "v")
+        self.assertGreaterEqual(v["position"], -15)                                     # la voiture part tout près
+        self.assertNotIn(("v", "avancer"), a)

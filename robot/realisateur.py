@@ -28,7 +28,7 @@ OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "
              "wagon_citerne", "palmier", "rocher", "maison", "immeuble", "gratte_ciel", "entrepot",
              "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau")
 ACTIONS_3D = ("avancer", "heurter", "changer_voie", "tourner", "se_coucher", "bruler", "exploser", "tomber", "voler", "couler",
-              "apparaitre", "disparaitre", "deverser", "freiner", "deraper", "tonneau", "effondrer", "arroser", "fuir",
+              "apparaitre", "disparaitre", "eteindre", "deverser", "freiner", "deraper", "tonneau", "effondrer", "arroser", "fuir",
               "inonder", "trembler", "tempete")
 DECORS = ("autoroute", "route", "ville", "place", "usine", "foret", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio")
 COULEURS = ("orange", "rouge", "jaune", "bleu", "vert", "violet", "gris")
