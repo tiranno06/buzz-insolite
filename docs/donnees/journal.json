@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-28T11:51:04+01:00",
+   "niveau": "info",
+   "texte": "🔁 « Incendie meurtrier sur le Ring Road » refaite (tout) : note 100/100, corrige : « foule a sa phrase, camera loin du feu, bulldozer, route rouverte, etiquette ACTUALITE » — l'ancienne version est remplacée"
+  },
+  {
    "date": "2026-11-28T10:55:26+01:00",
    "niveau": "erreur",
    "texte": "🧪 Essai de la nuit : en panne : Tests du code (montage compris)"
@@ -994,11 +999,6 @@
    "date": "2026-11-24T23:48:43+01:00",
    "niveau": "info",
    "texte": "🔁 « CAN 2025 : Le Sénégal récupère son titre » refaite (tout) : note 75/100, corrige : « Vidéo de l'ancien code : presque aucune image » — l'ancienne version est remplacée"
-  },
-  {
-   "date": "2026-11-24T23:36:45+01:00",
-   "niveau": "info",
-   "texte": "🗑️ « Leto et le débat sur Lucia » supprimée."
   }
  ]
 }
