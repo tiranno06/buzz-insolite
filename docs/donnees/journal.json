@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-28T14:04:16+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 103 sujet(s) au-dessus des seuils — en tête : « Camion perd le contrôle en Ohio »"
+  },
+  {
    "date": "2026-11-28T13:46:13+01:00",
    "niveau": "info",
    "texte": "🔁 « Camion-citerne en flammes à Gizeh » refaite (tout) : note 100/100, corrige : « camera jamais dans un vehicule, route rouverte propre, ambiances sonores » — l'ancienne version est remplacée"
@@ -994,11 +999,6 @@
    "date": "2026-11-25T00:52:15+01:00",
    "niveau": "info",
    "texte": "🔁 « Macron sauveur en urgence » refaite (tout) : note 15/100, corrige : « Vidéo de l'ancien code : presque aucune image » — l'ancienne version est remplacée"
-  },
-  {
-   "date": "2026-11-25T00:46:19+01:00",
-   "niveau": "info",
-   "texte": "🔁 « Macron et l'A320 : un futur qui décolle » refaite (tout) : note 10/100, corrige : « Vidéo de l'ancien code : presque aucune image » — l'ancienne version est remplacée"
   }
  ]
 }
