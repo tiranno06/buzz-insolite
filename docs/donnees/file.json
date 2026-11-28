@@ -1,11 +1,11 @@
 {
  "videos": [
   {
-   "id": "20261127-190259-1-r2",
-   "tag": "v-20261127-190259-1-r2",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-190259-1-r2/buzz-20261127-190259-1-r2.mp4",
-   "titre": "Camion-citerne : Incendie meurtrier",
-   "accroche": "CAMION-CITERNE : INCENDIE MEURTRIER",
+   "id": "20261127-190259-1-r3",
+   "tag": "v-20261127-190259-1-r3",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-190259-1-r3/buzz-20261127-190259-1-r3.mp4",
+   "titre": "TRAGÉDIE À GIZEH",
+   "accroche": "TRAGÉDIE À GIZEH",
    "sujet_id": "d6d8e1865b",
    "sujet": "Accident de camion-citerne à Gizeh, incendie meurtrier",
    "buzz": {
@@ -14,18 +14,19 @@
     "commentaires": 2169,
     "score": 133
    },
-   "description": "Incendie dévastateur à Gizeh 🚒. 31 morts, 21 blessés.",
-   "question": "Et toi, comment réagirais-tu si un tel brasier se produisait près de chez toi ? Dis-le en commentaire !",
+   "description": "Un camion-citerne a déclenché un feu meurtrier à Gizeh, Égypte. 🚒",
+   "question": "Et toi, comment réagirais-tu si un brasier se produisait près de chez toi ?",
    "hashtags": [
-    "#incendie",
+    "#incendiedeciterne",
     "#gizeh",
     "#tanker",
     "#giza",
+    "#incendie",
     "#insolite",
     "#actu",
     "#buzz"
    ],
-   "duree": 85.9,
+   "duree": 66.7,
    "sources": [
     {
      "media": "jeune-independant.net",
@@ -75,13 +76,19 @@
    ],
    "verification": {
     "par": "gemini:gemini-flash-lite-latest",
-    "corrigees": 3,
-    "retirees": 1,
+    "corrigees": 7,
+    "retirees": 4,
     "problemes": [
-     "Les articles indiquent plus de deux douzaines (donc plus de 24), pas exactement vingt-deux.",
-     "Les articles mentionnent le président Abdel Fattah al-Sissi et un porte-parole du gouvernement, mais pas le maire de Gizeh.",
-     "Le Ring Road n'explose pas, l'incident a déclenché un incendie.",
-     "Le texte mentionne « plusieurs véhicules », pas « dizaines de véhicules »."
+     "Les articles parlent d’un camion-citerne renversé, pas effondré.",
+     "Les articles indiquent plus de deux douzaines de voitures et de motos, pas exactement 24.",
+     "Les articles parlent d’une quarantaine d’ambulances et d’au moins 15 blessés transportés, pas de chiffres exacts.",
+     "Le total des blessés est 21 ; « 21 autres » ajouterait à tort 21 blessés aux 15 déjà mentionnés.",
+     "Les articles indiquent une réouverture à la circulation, pas après des travaux.",
+     "Les articles mentionnent une enquête et des analyses ADN, pas l’identification de responsables.",
+     "Le Premier ministre n'est pas cité pour avoir exigé des investigations dans les articles fournis.",
+     "L'agence nationale n'est pas explicitement nommée pour ce chiffre de 6000 dans les articles, information non vérifiable ici.",
+     "Le Premier ministre est mentionné de manière incomplète dans les articles (« un porte-parole du gouvernement a déclaré aux médias locaux que le Premier ministr.",
+     "Les articles mentionnent l'agence nationale mais ne précisent pas explicitement que c'est elle qui a rappelé le chiffre des 6 000 morts."
     ]
    },
    "verifie": true,
@@ -89,32 +96,36 @@
    "style": "anime",
    "extraits_perdus": 0,
    "regles_non_respectees": [],
-   "ecrans_illustres": 14,
-   "ecrans_total": 14,
+   "ecrans_illustres": 18,
+   "ecrans_total": 18,
    "format": "buzz",
    "voix": "kokoro-ff_siwis",
-   "lieu": "Gizeh, Egypt",
+   "lieu": "Gizeh, Égypte",
    "humeur": "tension",
    "categorie": "faits_divers",
    "texte": [
-    "Le camion s'effondre en Égypte, déclenchant un incendie sur le Ring Road.",
-    "Mercredi 25 novembre 2026, un camion chargé de carburant s'effondre sur la périphérique du Caire, déclenchant un incendie gigantesque.",
-    "Le liquide inflammable s'embrase instantanément, projetant un mur de flammes qui engloutit plusieurs véhicules.",
-    "Plus de deux douzaines de voitures et de motos sont réduites en cendres, les transports en commun bondés ne sont pas épargnés.",
-    "Un nuage de fumée noire s'élève, obscurcissant le ciel nocturne au-dessus de Warraq.",
-    "40 ambulances sont dépêchées, évacuant au moins 15 blessés vers les hôpitaux voisins.",
-    "Le ministère de la Santé a confirmé 31 décès, révisant la première estimation de 21 morts.",
-    "4 blessés se trouvent en état critique, les autres souffrent de brûlures et de traumatismes.",
-    "Un conducteur de voiture a été arrêté, accusé d'avoir percuté le camion à grande vitesse.",
-    "Les autorités ont ouvert une enquête, prévoyant des analyses ADN pour identifier les victimes.",
-    "Le Ring Road a été rouvert après que des bulldozers aient retiré les débris brûlés.",
-    "Le Premier ministre Mostafa Madbouly a exigé des investigations approfondies pour établir les responsabilités exactes.",
-    "Le gouvernement attend des conclusions complètes avant de durcir les règles sur le transport de matières dangereuses.",
-    "Cette tragédie relance le débat sur la sécurité routière en Égypte, où près de 6 000 personnes meurent chaque année sur les routes.",
-    "Et toi, comment réagirais-tu si un tel brasier se produisait près de chez toi ? Dis-le en commentaire !"
+    "Mercredi 25 novembre 2026, un camion-citerne s'est renversé.",
+    "À Warraq, Gizeh, le camion transportait du carburant.",
+    "Le choc a instantanément allumé un feu dévastateur.",
+    "Les flammes ont embrasé plus de deux douzaines de voitures et de motos.",
+    "Les nuages de fumée noire ont obscurci le ciel.",
+    "Une quarantaine d'ambulances sont arrivées, transportant au moins 15 blessés.",
+    "Le bilan humain a atteint 31 morts.",
+    "Au total, 21 personnes ont été blessées.",
+    "Quatre d'entre eux sont dans un état critique.",
+    "Les autorités ont arrêté le conducteur d'une voiture.",
+    "Des analyses ADN seront menées pour identifier les victimes.",
+    "Le Ring Road a été rouvert à la circulation.",
+    "Une enquête a été ouverte pour déterminer les circonstances.",
+    "Le parquet a annoncé l'arrestation d'un conducteur roulant à une vitesse excessive.",
+    "Une telle tragédie relance le débat crucial sur la sécurité routière dans le pays.",
+    "Près de 6000 personnes ont péri sur les routes égyptiennes l'an dernier.",
+    "Le conducteur a perdu le contrôle du véhicule après une collision.",
+    "Le Premier ministre Mostafa Madbouly a exigé des investigations approfondies.",
+    "Et toi, comment réagirais-tu si un brasier se produisait près de chez toi ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-27T23:18:55+01:00",
+   "cree_le": "2026-11-28T02:05:54+01:00",
    "ia_quotas": {
     "mistral": {
      "appels": 0,
@@ -123,23 +134,42 @@
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 2,
-     "refus": 3,
+     "appels": 1,
+     "refus": 4,
      "erreurs": 4,
-     "restant_demandes": "998",
+     "restant_demandes": "999",
      "limite_demandes": "1000",
-     "restant_mots": "504"
+     "restant_mots": "4327"
     },
     "gemini": {
-     "appels": 8,
+     "appels": 48,
      "refus": 1,
      "erreurs": 1
+    },
+    "github": {
+     "appels": 0,
+     "refus": 0,
+     "erreurs": 0
+    },
+    "openrouter": {
+     "appels": 1,
+     "refus": 0,
+     "erreurs": 0
     }
    },
-   "fabrication_s": 2031,
+   "fabrication_s": 3285,
    "controles": {
-    "note": 100,
+    "note": 90,
     "lignes": [
+     {
+      "niveau": "texte",
+      "ecran": 6,
+      "gravite": "info",
+      "probleme": "chiffres dans la phrase dite (la voix les lit mal)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
      {
       "niveau": "texte",
       "ecran": 0,
@@ -153,36 +183,74 @@
       "niveau": "texte",
       "ecran": null,
       "gravite": "moyen",
-      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
+      "probleme": "texte trop court (environ 52 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 2,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 15,
+      "gravite": "info",
+      "probleme": "titre d'écran trop long",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 54 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 16,
+      "gravite": "info",
+      "probleme": "titre d'écran trop long",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 58 s, il faut plus d'1 minute)",
       "corrige": true,
       "essais": 1,
       "solution": "phrase réécrite et revérifiée"
      }
     ],
-    "sautes": [],
-    "corriges": 2,
+    "sautes": [
+     "regard de l'IA sur la reconstitution 3D (mode secours)"
+    ],
+    "corriges": 7,
     "restants": 0,
-    "graves_restants": 0
+    "graves_restants": 1
    },
    "reprises": 0,
    "preuves": [],
    "couverture_ms": 800,
    "durees": {
-    "texte": 38,
+    "texte": 66,
     "images": 4,
-    "voix": 55,
-    "montage": 1846,
-    "controle_final": 71,
+    "voix": 52,
+    "montage": 2183,
+    "controle_final": 75,
     "regles": 1,
-    "rangement": 9
+    "rangement": 5
    },
    "refaite": {
-    "de": "20261127-190259-1-r1",
+    "de": "20261127-190259-1-r2",
     "etape": "tout",
-    "remarque": "nouvelle voix (atempo + finition), phonétique accordée, calendrier petit, citerne, carte du lieu"
+    "remarque": "Nouveau code : plans larges, choc en plan moyen, règles de reconstitution"
    },
-   "statut": "nouvelle",
-   "refaite_de": "20261127-190259-1-r1"
+   "statut": "a_verifier",
+   "refaite_de": "20261127-190259-1-r2"
   },
   {
    "id": "20261127-124839-1",

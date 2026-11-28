@@ -1,6 +1,26 @@
 {
  "evenements": [
   {
+   "date": "2026-11-28T02:05:54+01:00",
+   "niveau": "info",
+   "texte": "🔁 « TRAGÉDIE À GIZEH » refaite (tout) : note 90/100, corrige : « Nouveau code : plans larges, choc en plan moyen, règles de reconstitution » — l'ancienne version est remplacée"
+  },
+  {
+   "date": "2026-11-28T02:04:10+01:00",
+   "niveau": "attention",
+   "texte": "🔁 Refaire « Camion-citerne : Incendie meurtrier » : étape ratée ('<' not supported between instances of 'str' and 'int') — reprise 4/4"
+  },
+  {
+   "date": "2026-11-28T01:59:12+01:00",
+   "niveau": "attention",
+   "texte": "🔁 Refaire « Camion-citerne : Incendie meurtrier » : étape ratée ('<' not supported between instances of 'str' and 'int') — reprise 3/4"
+  },
+  {
+   "date": "2026-11-28T01:54:18+01:00",
+   "niveau": "attention",
+   "texte": "🔁 Refaire « Camion-citerne : Incendie meurtrier » : étape ratée ('<' not supported between instances of 'str' and 'int') — reprise 2/4"
+  },
+  {
    "date": "2026-11-28T00:43:51+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 93 sujet(s) au-dessus des seuils — en tête : « Camion perd le contrôle en Ohio »"
@@ -979,26 +999,6 @@
    "date": "2026-11-24T23:35:39+01:00",
    "niveau": "info",
    "texte": "🗑️ « Sénégal champion CAN 2025 ! » supprimée."
-  },
-  {
-   "date": "2026-11-24T23:35:35+01:00",
-   "niveau": "info",
-   "texte": "🗑️ « Sénégal champion CAN 2025 ! » supprimée."
-  },
-  {
-   "date": "2026-11-24T23:35:33+01:00",
-   "niveau": "info",
-   "texte": "🗑️ « Franco célébré : le retour du fascisme en Espagne » supprimée."
-  },
-  {
-   "date": "2026-11-24T22:40:02+01:00",
-   "niveau": "info",
-   "texte": "🎬 Nouvelle vidéo « Macron et le malaise qui buzz » (70 s, 3 écrans illustrés) — à regarder puis cocher « À publier »"
-  },
-  {
-   "date": "2026-11-24T22:29:03+01:00",
-   "niveau": "info",
-   "texte": "🎬 Nouvelle vidéo « Franco célébré : le retour du fascisme en Espagne » (101 s, 1 écrans illustrés) — à regarder puis cocher « À publier »"
   }
  ]
 }
