@@ -382,15 +382,19 @@ PLANS = {"avancer": ([-16, 6, 18], [-11, 4.5, 13]), "heurter": ([-27, 11, 25], [
 # feu, fuite, secours et après en plan large ou vu d'en haut ; jamais à moins de 15 m en dehors du moment fort.
 PROCHES = ("heurter", "exploser", "tomber", "interieur")
 LOINTAINS = ("bruler", "secours", "fuir", "arroser", "deverser")
-OUVERTURE, DUREE_PROCHE, DISTANCE_MIN = 3.0, 2.2, 15.0
+OUVERTURE, DUREE_PROCHE, DISTANCE_MIN = 3.0, 3.5, 40.0
+# (28/11, l'auteur après la r7 : « des micro-changements de plan complètement inutiles », « je ne veux plus de plan serré »)
+# un plan dure 3,5 s au moins ; TOUT plan est au moins un plan MOYEN (40 m d'un véhicule, proportionnel pour un petit sujet)
+DUREE_MIN_PLAN = 3.5
+DUREE_MAX_PLAN = 8.0
 COTES = ((1, 1), (-1, 1), (0.35, 1.25), (-1, 0.8))     # côtés successifs des plans larges (x, z) : devant, derrière, de face…
-DISTANCE_MIN_PROCHE = 25.0                            # même le moment fort n'est jamais filmé à moins de 25 m
+DISTANCE_MIN_PROCHE = 40.0                            # le moment fort aussi : plan moyen, jamais serré (28/11)
 SECOURS_3D = ("police", "ambulance", "pompiers")
 GRANDS = {"citerne": 1.7, "camion": 1.6, "bus": 1.6, "train": 2.2, "avion": 2.4, "bateau": 2.4, "batiment": 2.0, "immeuble": 2.4, "entrepot": 2.6,
           "foule": 2.0, "personne": 1.4, "baleine": 2.4}
 # petits sujets filmés de plus près (28/11 : un chien à 25 m n'était qu'un point) ; la distance aux feux reste garantie par
 # le moteur 3D (16 m d'un objet qui brûle)
-PETITS = {"chat": 0.25, "poussin": 0.25, "oiseau": 0.3, "poisson": 0.3, "piranha": 0.3, "chien": 0.35, "renard": 0.35,
+PETITS = {"personne": 0.45, "chat": 0.25, "poussin": 0.25, "oiseau": 0.3, "poisson": 0.3, "piranha": 0.3, "chien": 0.35, "renard": 0.35,
           "mouton": 0.45, "cochon": 0.45, "loup": 0.45, "aigle": 0.5, "cheval": 0.6, "vache": 0.6, "zebre": 0.6, "lama": 0.6}
 
 
@@ -400,7 +404,7 @@ CADRES = {"large": "large", "cote": "heurter", "face": "se_coucher", "dessus": "
 PLANS_PLUS = {"maquette": ([-48, 52, 48], [-40, 44, 40]), "interieur": ([1.2, 2.1, 0], [1.2, 2.1, 0])}
 
 
-def plans_camera(actions, objets, principal, duree, cadres=None, dense=False, accroche=False):
+def plans_camera(actions, objets, principal, duree, cadres=None, dense=False, accroche=False, phrases_t=None, decor=None):
     """Découpage en plans : (début, action) → 2 points de caméra ; plan de 1,4 s au moins, sinon le suivant attend.
     `cadres` = [(début, angle du scénario, objet suivi)] : ces plans-là passent avant les plans automatiques."""
     types = {o["id"]: o.get("type") for o in objets}
@@ -412,7 +416,7 @@ def plans_camera(actions, objets, principal, duree, cadres=None, dense=False, ac
         imposes = sorted((max(0.0, a - 0.1), CADRES.get(c, c), s) for a, c, s in cadres if c in CADRES or c in PLANS)
         auto = [x for x in plans_camera(actions, objets, principal, duree)[::2] if all(abs(x["a"] - i[0]) > 1.4 for i in imposes)]
         coupes = sorted(imposes + [(x["a"], x["_cle"], x["suivre"]) for x in auto])
-        return _cam(coupes, types, duree, dense, feux, principal, accroche)
+        return _cam(coupes, types, duree, dense, feux, principal, accroche, phrases_t, decor, actions)
     premier = min((x["a"] for x in actions), default=9.0)
     coupes, dernier = ([(0.0, "large", principal)], 0.0) if premier > 1.4 else ([], -9.0)
     force = {"exploser": 9, "heurter": 8, "tomber": 8, "couler": 7, "bruler": 6, "se_coucher": 5, "deverser": 4}
@@ -432,7 +436,7 @@ def plans_camera(actions, objets, principal, duree, cadres=None, dense=False, ac
             continue
         coupes.append((debut, cle, suivre)); dernier = debut
     coupes.sort(key=lambda c: c[0])
-    return _cam(coupes, types, duree, dense, feux, principal, accroche)
+    return _cam(coupes, types, duree, dense, feux, principal, accroche, phrases_t, decor, actions)
 
 
 def _plans_larges(coupes, principal, accroche=False):
@@ -459,13 +463,60 @@ def _plans_larges(coupes, principal, accroche=False):
     return plein
 
 
-def _cam(coupes, types, duree, dense=False, feux=None, principal=None, accroche=False):
+def _plans_stables(coupes, principal, accroche=False):
+    """(28/11) Pas de micro-plans : une coupure à moins de DUREE_MIN_PLAN de la précédente est retirée (le moment fort, lui,
+    remplace le plan d'avant) ; jamais deux plans identiques de suite ; l'accroche est UN seul plan."""
+    FORTS_ = ("heurter", "exploser", "tomber", "se_coucher", "couler", "effondrer")
+    if accroche:
+        fort = next((c for c in coupes if c[1] in FORTS_), None)
+        return [(0.0, fort[1] if fort else "large", fort[2] if fort else principal)]
+    out = []
+    for d, c, s_ in sorted(coupes, key=lambda x: x[0]):
+        if out and (c, s_) == out[-1][1:]:
+            continue
+        if out and d - out[-1][0] < DUREE_MIN_PLAN:
+            if c in FORTS_ and out[-1][1] not in FORTS_ and (len(out) == 1 or d - out[-2][0] >= DUREE_MIN_PLAN):
+                out[-1] = (d if len(out) > 1 else out[-1][0], c, s_)       # le moment fort prend la place du plan trop court
+            continue
+        out.append((d, c, s_))
+    return out or [(0.0, "large", principal)]
+
+
+LIEUX_FERMES = ("tribunal", "interieur")              # la caméra reste dans la pièce (pas de plan à 40 m)
+
+
+def _sur_la_parole(coupes, phrases_t, actions):
+    """(28/11) Une coupure tombe au DÉBUT de la phrase la plus proche (à 4 s près), jamais au milieu d'un mot ; aucune coupure pendant
+    un moment fort (choc, explosion, chute) sauf le plan de ce moment ; et toujours 3,5 s entre deux coupures."""
+    forts = [float(a.get("a") or 0) + (float(a.get("d") or 1) if a["faire"] == "heurter" else 0)
+             for a in actions or [] if a.get("faire") in ("heurter", "exploser", "tomber", "effondrer")]
+    FORTS_ = ("heurter", "exploser", "tomber", "se_coucher", "couler", "effondrer")
+    out = []
+    for i, (d, c, s_) in enumerate(coupes):
+        if i and phrases_t:
+            proche = min(phrases_t, key=lambda x: abs(x - d))
+            if abs(proche - d) <= 4.0 and c not in FORTS_:
+                d = proche
+        if i and c not in FORTS_ and any(f - 1.0 < d < f + 1.5 for f in forts):
+            continue                                       # on ne coupe pas en plein choc
+        if out and d - out[-1][0] < DUREE_MIN_PLAN:
+            continue
+        out.append((round(d, 2), c, s_))
+    return out or coupes[:1]
+
+
+def _cam(coupes, types, duree, dense=False, feux=None, principal=None, accroche=False, phrases_t=None, decor=None, actions=None):
     # un objet DÉJÀ en feu n'est jamais filmé de près (Gizeh, 27/11 : plans de la fin au ras du brasier, illisibles)
     feux = feux or {}
     coupes = [(d, "bruler" if c in ("avancer", "heurter", "se_coucher", "interieur", "deraper", "tonneau") and s in feux
                and feux[s] < d - 0.5 else c, s) for d, c, s in coupes]
     if not coupes:                                      # jamais sans caméra (inondation du 27/11 : rendu planté)
         coupes = [(0.0, "large", principal or next(iter(types), None))]
+    # on ne suit jamais une voiture de la circulation ni du bouchon (r7 : plan serré sur une petite voiture orange qui
+    # traversait la route rouverte) : la caméra reste sur le cœur de l'événement ; plus de vue « intérieur » (plan serré)
+    coeur = principal or coupes[0][2]
+    coupes = [(d, "large" if c == "interieur" else c,
+               coeur if str(s_).startswith(("bouchon", "circulation", "trafic")) else s_) for d, c, s_ in coupes]
     coupes = _plans_larges(sorted(coupes, key=lambda c: c[0]), principal or coupes[0][2], accroche)
     if feux:                                            # une fois le feu pris, les plans larges restent centrés sur lui
         brasier = min(feux, key=feux.get)               # (Le Caire, 27/11 : plan large sur la police, feu hors de l'image)
@@ -475,10 +526,15 @@ def _cam(coupes, types, duree, dense=False, feux=None, principal=None, accroche=
     for i, (d, c, s_) in enumerate(coupes):
         plein.append((d, c, s_))
         fin = coupes[i + 1][0] if i + 1 < len(coupes) else max(duree, d)
-        x = d + 6.0
-        while fin - x > 2.0:
-            plein.append((round(x, 2), variantes[k % 3] if variantes[k % 3] != c else variantes[(k + 1) % 3], s_)); k += 1; x += 6.0
-    coupes = plein
+        x, prec = d + DUREE_MAX_PLAN, c
+        while fin - x > DUREE_MIN_PLAN:                 # chaque plan de remplissage diffère du précédent (jamais 2 identiques)
+            v = variantes[k % 3] if variantes[k % 3] != prec else variantes[(k + 1) % 3]
+            if v == prec:
+                v = "haut" if prec != "haut" else "large"
+            plein.append((round(x, 2), v, s_)); prec = v; k += 1; x += DUREE_MAX_PLAN
+    coupes = _plans_stables(plein, principal or coupes[0][2], accroche)
+    if not accroche:
+        coupes = _sur_la_parole(coupes, phrases_t, actions)
     cam, n_large = [], 0
     for k, (debut, cle, suivre) in enumerate(coupes):
         fin = coupes[k + 1][0] - 0.04 if k + 1 < len(coupes) else max(debut + 1.5, duree)
@@ -488,6 +544,8 @@ def _cam(coupes, types, duree, dense=False, feux=None, principal=None, accroche=
             e *= 1.4
         extra = dict(regard=[30, -0.6, 0]) if cle == "interieur" else {}          # de l'intérieur : on regarde la route devant
         petit = PETITS.get(types.get(suivre)) if cle != "interieur" else None
+        if decor in LIEUX_FERMES:                       # salle de 60 × 40 m : on reste dedans, à 12-20 m de l'action
+            petit = min(petit or 1.0, 0.4)
         if petit:
             e *= petit
         if cle != "interieur":                          # 15 m au moins hors du moment fort, 25 m pendant
@@ -495,6 +553,8 @@ def _cam(coupes, types, duree, dense=False, feux=None, principal=None, accroche=
             d1 = sum(v * v for v in p1) ** 0.5 * e
             if d1 < mini:
                 e *= mini / max(d1, 0.1)
+        if decor in LIEUX_FERMES:                       # plafond : jamais plus de 24 m (sinon la caméra sort de la salle)
+            e = min(e, 24.0 / max(sum(v * v for v in p0) ** 0.5, 0.1))
         if cle in ("large", "haut"):                    # (Gizeh r3, 28/11 : 50 s sous le même angle) chaque plan large vient
             cote = COTES[n_large % len(COTES)]; n_large += 1   # d'un autre côté de la scène
             p0, p1 = [p0[0] * cote[0], p0[1], p0[2] * cote[1]], [p1[0] * cote[0], p1[1], p1[2] * cote[1]]
@@ -618,8 +678,9 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
                 x = fort or (ici[0] if ici else None)
                 suivre = (x.get("cible") if x and x["faire"] == "heurter" else x["objet"]) if x else principal
                 cadres.append((quand(ph), fort["faire"] if fort else c, suivre))
+            debuts_phrases = [round(x - a, 2) for x in debuts if 0 < x - a < total - a]       # coupes sur la parole
             s["camera"] = plans_camera(actions, objets, principal, total - a, cadres, dense=sc.get("decor") in ("usine", "ville", "port"),
-                                       accroche=bool(sc.get("accroche")))
+                                       accroche=bool(sc.get("accroche")), phrases_t=debuts_phrases, decor=sc.get("decor"))
             s["mention"] = "Reconstitution · plan simplifié · positions approximatives"   # la source est déjà en bas
         scenes.append(s)
     if scenes and scenes[0]["type"] not in BASES:        # jamais un encadré sur du vide : la carte du lieu dessous

@@ -7,6 +7,8 @@ qu'ils se sont déroulés.** Pour TOUT sujet (accident, crime, sauvetage, animal
 de la vidéo est une scène 3D du vrai lieu, des vrais acteurs et du vrai déroulé, fidèle aux articles (rien d'inventé, rien
 d'oublié) ; cartes, chiffres, échelles, avant / après ne sont que des COMPLÉMENTS posés par-dessus ou entre deux plans 3D.
 Toute nouvelle famille de sujet, tout nouveau décor ou objet sert ce but ; chaque défaut vu sur une vraie vidéo devient une règle.
+**CONSIGNE PERMANENTE DE L'AUTEUR (28/11, après la r7) : JAMAIS de plan serré (plan MOYEN au minimum) et JAMAIS de
+micro-changements de plan.** Code du cadreur (`realisateur._plans_stables`, `_sur_la_parole`, `scenes3d.correctionDuPlan`).
 
 Robot de vidéos TikTok « Buzz et insolite » : il repère les actualités du monde entier qui buzzent sur TikTok, écrit
 une vidéo ORIGINALE sur le sujet (articles de presse + vraies images libres de droits + voix de synthèse) et la publie par Buffer.
@@ -876,6 +878,28 @@ renverse » raconté deux fois → consigne d'écriture + règle « repetition �
 sauf « deuxième / encore / aussi » → phrase réécrite par l'IA, sinon retirée). Bug trouvé : une phrase retirée laissait le
 storyboard animé viser des phrases disparues (« list index out of range ») → `commun.retirer_phrase` renumérote tout le
 storyboard (règles, contrôle final, vérification). Tests : `TestGizehR5`. 42 règles de reconstitution (C11, V8, V9).
+
+## Code du cadreur (28/11, l'auteur après la r7 : « micro-changements de plan inutiles », « plus de plan serré »)
+Mesuré sur la r7 : 90 sauts d'image en 60 s (dont 40 en 2 s pendant « la route rouverte »), plans de 1,2 s, plan à 25 m
+sur une petite voiture de la circulation. Règles pour TOUTES les reconstitutions :
+1. **Plan moyen au minimum** : tout plan, moment fort compris, à 40 m au moins d'un véhicule (`DISTANCE_MIN`,
+   `DISTANCE_MIN_PROCHE`), proportionnel pour un petit sujet (`PETITS` : personne ×0,45, chien ×0,35…) ; plus de vue
+   « intérieur » du conducteur.
+2. **Un plan dure de 3,5 à 8 s** (`DUREE_MIN_PLAN`, `DUREE_MAX_PLAN`, `_plans_stables`) ; le moment fort remplace le plan
+   trop court d'avant ; jamais deux plans identiques de suite (remplissage alterné) ; l'accroche = UN seul plan.
+3. **On coupe sur la parole** (`_sur_la_parole`) : au début de la phrase la plus proche (4 s près), jamais pendant un choc,
+   une explosion ou une chute (sauf le plan de ce moment).
+4. **On ne suit que le cœur de l'événement** : jamais une voiture de la circulation, du bouchon ou « la circulation reprend ».
+5. **Caméra lissée** : elle suit la position CALCULÉE de l'objet (moyenne sur ±0,6 s, au sol), jamais ses secousses.
+6. **Corrections une fois par PLAN** (`correctionDuPlan`, 5 instants du plan, la plus grande gardée) : sortir d'un objet,
+   16 m d'un feu, objet de la scène au premier plan → la caméra monte ; mur du décor FIXE entre la caméra et le sujet → on
+   tourne autour. Avant, recalculées à chaque image : la caméra sautait dès qu'une voiture passait.
+7. **La circulation ne gêne jamais** : une voiture à moins de 25 m de la caméra, dans le champ devant l'action, sur la
+   ligne de vue ou sur un véhicule de la scène n'est pas montrée.
+8. **Règle des 180°** : tous les angles du même côté de l'action (z > 0), le spectateur ne perd jamais le sens.
+9. **Lieu fermé** (tribunal, intérieur) : la caméra reste dans la salle (12 à 24 m de l'action).
+Contrôle : `ffmpeg … select='gt(scene,0.12)'` sur la vidéo finie donne les vraies coupures (r7 refaite : une toutes les
+4 à 8 s, sur la parole). Tests : `TestPlansLarges`.
 
 ## Analyse de Gizeh r6 (28/11, 100/100, plus bloquée) et corrections
 Bons : foule au bord, bulldozer sur l'épave, circulation qui reprend, étiquette ACTUALITÉ. Défauts : la caméra se retrouvait

@@ -1019,13 +1019,86 @@ export async function creer3d(sc, couche, T) {
   const posCam = t => {                    // caméra : glisse d'un point à l'autre, et dérive toujours un peu
     let i = 0; while (i < cam.length - 1 && t >= cam[i + 1].a) i++;
     const A = cam[i], B = cam[Math.min(i + 1, cam.length - 1)], k = B === A ? 0 : ease.douce(prog(t, A.a, B.a - A.a));
-    const suivre = o => { const g = groupes[o]; return g ? [g.position.x, g.position.y, g.position.z] : null; };
+    // (28/11, l'auteur après la r7 : « des micro-changements de plan ») la caméra suit une position LISSÉE, calculée
+    // d'après t seulement : moyenne sur ±0,6 s, au sol (ni secousse, ni rebond, ni sautillement)
+    const suivre = id => { const o = objets.find(x => x.id === id); if (!o || !groupes[id]) return null;
+      let x = 0, z = 0; for (const dt of [-0.6, -0.3, 0, 0.3, 0.6]) { const e = etat(o, actions, Math.max(0, t + dt), objets); x += e.x; z += e.z; }
+      return [x / 5, 0, z / 5]; };
     const plus = (v, r) => r ? v.map((x, j) => x + r[j]) : v;
     const ca = plus((A.suivre && suivre(A.suivre)) || A.cible || [0, 0, 0], A.regard), cb = plus((B.suivre && suivre(B.suivre)) || B.cible || ca, B.regard);
     const pa = A.suivre && suivre(A.suivre) ? A.pos.map((v, j) => v + suivre(A.suivre)[j]) : A.pos;
     const pb = B.suivre && suivre(B.suivre) ? B.pos.map((v, j) => v + suivre(B.suivre)[j]) : B.pos;
     const d = 1 + 0.02 * Math.sin(t * 0.4);
     return { p: pa.map((v, j) => mix(v, pb[j], k) * (j === 1 ? 1 : d)), c: ca.map((v, j) => mix(v, cb[j], k)) };
+  };
+  const planCourant = t => {                  // un plan = 2 points de caméra (début, fin)
+    let i = 0; while (i < cam.length - 1 && t >= cam[i + 1].a) i++;
+    const j = i - (i % 2), A = cam[j], B = cam[Math.min(j + 1, cam.length - 1)];
+    return { id: j, debut: A.a, fin: B === A ? A.a + 8 : B.a, interieur: A._cle === "interieur" };
+  };
+  const dynamiques = new Set();               // ce qui bouge (véhicules, circulation) : jamais un « mur » pour la caméra
+  const R_FEU = sc.distance_feu ?? 16;
+  const corrige = (P, C, tt) => {             // point de caméra corrigé à l'instant tt (d'après t seulement : rendu identique)
+    const Q = P.clone();
+    for (const o of objets) {                 // jamais dans un objet (boîte à sa place calculée), jamais dans un feu
+      const g = groupes[o.id]; if (!g || ["foule", "personne"].includes(o.type)) continue;
+      const e = etat(o, actions, tt, objets); if (!e.visible) continue;
+      const ta = g.userData.taille || [4, 2, 2], r = Math.max(ta[0], ta[2]) / 2 + 2, dx = Q.x - e.x, dz = Q.z - e.z, d = Math.hypot(dx, dz);
+      const feuT = e.brule >= 0 ? e.brule : e.explose >= 0 ? e.explose : -1;
+      const enFeu = feuT >= 0 && tt >= feuT && !(e.eteint >= 0 && tt > e.eteint + 3);
+      const R = Math.max(enFeu ? R_FEU : 0, Q.y < e.y + ta[1] + 2 ? r : 0);
+      if (R > 0 && d < R) { const u = d > 0.1 ? R / d : 0; Q.x = e.x + (d > 0.1 ? dx * u : -R); Q.z = e.z + (d > 0.1 ? dz * u : 0); Q.y = Math.max(Q.y, enFeu ? 7 : e.y + ta[1] + 3); }
+    }
+    // un objet de la scène qui passe DEVANT l'objectif (r7 corrigée : camion rouge et bus jaune au premier plan) : on monte
+    for (let essai = 0; essai < 4; essai++) {
+      const L = C.clone().sub(Q), l2 = Math.max(1e-6, L.lengthSq()); let gene = false;
+      for (const o of objets) {
+        const g = groupes[o.id]; if (!g || ["foule", "personne"].includes(o.type)) continue;
+        const e = etat(o, actions, tt, objets); if (!e.visible) continue;
+        const ta = g.userData.taille || [4, 2, 2], X = new T.Vector3(e.x, e.y + ta[1] / 2, e.z);
+        if (C.distanceTo(X) < Math.max(ta[0], ta[2]) / 2 + 3) continue;                           // c'est le sujet lui-même
+        const u = X.clone().sub(Q).dot(L) / l2; if (u <= 0.02 || u >= 0.8) continue;           // entre la caméra et le sujet
+        const proj = Q.clone().add(L.clone().multiplyScalar(u));
+        // il cache l'action à l'écran : sur la ligne de vue, OU dans le champ et plus près que la moitié du sujet (un bus
+        // au premier plan qui mange le bas de l'image)
+        const angle = X.clone().sub(Q).angleTo(L);
+        if (X.distanceTo(proj) < Math.max(ta[0], ta[2]) / 2 + 2 + 0.1 * u * Math.sqrt(l2) || (angle < 0.55 && u < 0.7)) { gene = true; break; }
+      }
+      if (!gene) break;
+      Q.y += 10;
+    }
+    const rc = scene.userData.rayon || (scene.userData.rayon = new T.Raycaster());
+    const solides = scene.userData.solides || (scene.userData.solides = []);
+    if (!solides.length) {                    // seulement le décor FIXE (bâtiments, murs) : ce qui bouge ne compte pas
+      for (const g of Object.values(groupes)) g.traverse(m => dynamiques.add(m));
+      for (const x of trafic) x.g.traverse(m => dynamiques.add(m));
+      scene.traverse(m => { if (m.isMesh && !dynamiques.has(m) && !m.material?.transparent && m.geometry?.boundingSphere !== undefined) solides.push(m); });
+    }
+    const bouche = q => { const v = q.clone().sub(C), l = v.length(); if (l < 2) return false; rc.set(C, v.normalize()); rc.far = l;
+                          return rc.intersectObjects(solides, false).some(x => x.distance > 1.5); };
+    if (bouche(Q)) {                          // un mur entre la caméra et ce qu'on filme : on tourne autour, sinon on monte
+      const tourner = a => { const v = Q.clone().sub(C); return new T.Vector3(C.x + v.x * Math.cos(a) - v.z * Math.sin(a), Q.y, C.z + v.x * Math.sin(a) + v.z * Math.cos(a)); };
+      let libre = null;
+      for (const a of [0.5, -0.5, 1.0, -1.0, 1.6, -1.6, 2.4, -2.4]) { const X = tourner(a); if (!bouche(X)) { libre = X; break; } }
+      for (const m of [12, 25, 45]) { if (libre) break; const X = Q.clone(); X.y += m; if (!bouche(X)) libre = X; }
+      if (libre) Q.copy(libre);
+    }
+    return Q;
+  };
+  const corrections = new Map();
+  const correctionDuPlan = plan => {          // [écart au début, écart à la fin] du plan, calculés une seule fois
+    if (corrections.has(plan.id)) return corrections.get(plan.id);
+    let res = [[0, 0, 0], [0, 0, 0]];
+    if (!plan.interieur) {                    // 5 instants du plan ; on garde la PLUS GRANDE correction, la même tout le plan
+      const ecarts = [0, 0.25, 0.5, 0.75, 1].map(f => {
+        const tt = plan.debut + 0.02 + f * Math.max(0, plan.fin - plan.debut - 0.04);
+        const { p, c } = posCam(tt), P = new T.Vector3(...p), Q = corrige(P, new T.Vector3(...c), tt);
+        return [Q.x - P.x, Q.y - P.y, Q.z - P.z];
+      });
+      const max = ecarts.reduce((a, b) => Math.hypot(...b) > Math.hypot(...a) ? b : a);
+      res = [max, max];
+    }
+    corrections.set(plan.id, res); return res;
   };
   // inondation, séisme, tempête : préparés une fois (actions « inonder », « trembler », « tempete »)
   const aIn = actions.find(a => a.faire === "inonder");
@@ -1228,69 +1301,32 @@ export async function creer3d(sc, couche, T) {
       sol_.target.position.set(c[0], 0, c[2]); sol_.position.set(c[0] - 60, 120, c[2] + 40);
     }
     if (tremble > 0) { p[0] += Math.sin(t * 71) * 0.9 * tremble; p[1] += Math.sin(t * 53) * 0.7 * tremble; c[1] += Math.sin(t * 61) * 0.4 * tremble; }
-    // la caméra ne traverse JAMAIS un mur, un hangar ou un débris (Iowa du 27/11 : images noires, caméra dans les éclats) :
-    // si un objet solide est entre ce qu'on filme et la caméra, elle se place devant lui, un peu plus haut
-    // la caméra n'est jamais DANS un véhicule ou un bâtiment (Gizeh r6 du 28/11 : un grand mur jaune sur la moitié de
-    // l'écran pendant l'arrestation : la caméra était dans le bulldozer, et un rayon lancé de l'intérieur ne voit pas les murs)
-    if (!iso && sc.anti_collision !== false && !(cam.find(k => k.a <= t && k._cle === "interieur"))) {
-      const Pc = new T.Vector3(...p), boite_ = new T.Box3();
-      const corps = objets.filter(o => !["foule", "personne"].includes(o.type)).map(o => groupes[o.id]).concat(trafic.map(x => x.g));
-      for (const g of corps) {                  // (la circulation aussi : une voiture floue en gros plan à 28 s dans la r6)
-        if (!g || !g.visible) continue;
-        boite_.setFromObject(g).expandByScalar(1.5);
-        if (!boite_.containsPoint(Pc)) continue;
-        const cen = boite_.getCenter(new T.Vector3()), tai = boite_.getSize(new T.Vector3());
-        const v = new T.Vector3(Pc.x - cen.x, 0, Pc.z - cen.z); if (v.lengthSq() < 0.01) v.set(-1, 0, 1);
-        v.normalize().multiplyScalar(Math.max(tai.x, tai.z) / 2 + 4);
-        p[0] = cen.x + v.x; p[2] = cen.z + v.z; p[1] = Math.max(p[1], boite_.max.y + 3);
-        Pc.set(...p);
-      }
-    }
+    // CORRECTIONS DE LA CAMÉRA, UNE FOIS PAR PLAN (28/11 : la r7 sautait d'une image à l'autre dès qu'une voiture passait) :
+    // ne jamais être DANS un objet, rester à 16 m d'un feu, ne pas avoir un mur entre la caméra et ce qu'on filme. Calculées
+    // au début et à la fin du plan, puis appliquées en glissant doucement de l'une à l'autre : plus aucun saut.
     if (!iso && sc.anti_collision !== false) {
-      const C = new T.Vector3(...c), P = new T.Vector3(...p), dir = P.clone().sub(C), dist = dir.length();
-      if (dist > 2) {
-        dir.normalize();
-        const rc = scene.userData.rayon || (scene.userData.rayon = new T.Raycaster());
-        rc.set(C, dir); rc.far = dist;
-        const solides = scene.userData.solides || (scene.userData.solides = []);
-        if (!solides.length) scene.traverse(m => { if (m.isMesh && !m.material?.transparent && m.geometry?.boundingSphere !== undefined) solides.push(m); });
-        const obstacles = solides.filter(m => m.visible && !estDans(m, groupesSuivis(t)));
-        const bouche = (q) => { const v = q.clone().sub(C), l = v.length(); rc.set(C, v.normalize()); rc.far = l;
-                                return rc.intersectObjects(obstacles, false).find(x => x.distance > 1.5); };
-        // vue bouchée : on MONTE d'abord (plan en plongée, comme un drone) ; on ne s'approche qu'en dernier recours
-        // (avant : la caméra se collait au mur qui bouchait la vue, Iowa refaite du 27/11)
-        if (bouche(P)) {
-          // 1) tourner autour de ce qu'on filme (même distance, même hauteur) ; 2) monter ; 3) plongée en biais
-          // (jamais pile au-dessus : la caméra ne saurait plus où est le haut → image cassée, Iowa refaite du 27/11)
-          let libre = null;
-          const tourner = a => { const v = P.clone().sub(C); const x = v.x * Math.cos(a) - v.z * Math.sin(a), z = v.x * Math.sin(a) + v.z * Math.cos(a);
-                                 return new T.Vector3(C.x + x, P.y, C.z + z); };
-          for (const a of [0.5, -0.5, 1.0, -1.0, 1.6, -1.6, 2.4, -2.4, Math.PI]) { const Q = tourner(a); if (!bouche(Q)) { libre = Q; break; } }
-          for (const monte of [12, 25, 45]) { if (libre) break; const Q = P.clone(); Q.y += monte; if (!bouche(Q)) libre = Q; }
-          if (!libre) { const Q = C.clone().add(new T.Vector3(dist * 0.35, Math.max(30, dist * 0.8), dist * 0.35)); libre = bouche(Q) ? null : Q; }
-          if (libre) { p[0] = libre.x; p[1] = libre.y; p[2] = libre.z; }
-          // sinon : on garde le plan prévu (voir à travers un débris vaut mieux que d'entrer dans la boule de feu, Iowa du 27/11)
-        }
-      }
-    }
-    // jamais DANS un brasier (Gizeh r5 du 28/11 : les ambulances filmées au milieu des flammes, écran tout orange) :
-    // la caméra reste à 16 m au moins de tout objet qui brûle encore (sc.distance_feu pour régler, 0 pour couper)
-    const R_FEU = sc.distance_feu ?? 16;
-    if (!iso && R_FEU > 0) for (const o of objets) {
-      const g = groupes[o.id]; if (!g || !g.visible || ["foule", "personne"].includes(o.type)) continue;
-      const e = etat(o, actions, t, objets);
-      const feuT = e.brule >= 0 ? e.brule : e.explose >= 0 ? e.explose : -1;
-      if (feuT < 0 || t < feuT || (e.eteint >= 0 && t > e.eteint + 3)) continue;
-      const dx = p[0] - e.x, dz = p[2] - e.z, d = Math.hypot(dx, dz);
-      if (d >= R_FEU) continue;
-      if (d > 0.1) { p[0] = e.x + dx * R_FEU / d; p[2] = e.z + dz * R_FEU / d; } else { p[0] = e.x - R_FEU; }
-      p[1] = Math.max(p[1], 7);
+      const plan = planCourant(t), [d0, d1] = correctionDuPlan(plan), k = ease.douce(prog(t, plan.debut, Math.max(0.1, plan.fin - plan.debut)));
+      for (let j = 0; j < 3; j++) p[j] += mix(d0[j], d1[j], k);
     }
     if (iso) {                                // toujours le même angle (45°, en surplomb) ; on se rapproche doucement
       const z = mix(1, sc.iso_zoom ?? 1.25, ease.douce(prog(t, 0, Math.max(duree || 6, 1))));
       if (camera.zoom !== z) { camera.zoom = z; camera.updateProjectionMatrix(); }
       camera.position.set(c[0] - 140, c[1] + 150, c[2] + 140); camera.lookAt(...c);
     } else { camera.position.set(...p); camera.lookAt(...c); }
+    // la CIRCULATION ne gêne jamais (r7 du 28/11 : des voitures passaient à travers la voiture filmée et devant l'objectif) :
+    // une voiture trop près de la caméra, sur la ligne de vue, ou sur un véhicule de la scène n'est pas montrée
+    {
+      const P = camera.position, C = new T.Vector3(...c), L = C.clone().sub(P), l2 = Math.max(1e-6, L.lengthSq());
+      const vehicules = objets.filter(o => groupes[o.id]?.visible && !["foule", "personne"].includes(o.type)).map(o => groupes[o.id].position);
+      for (const x of trafic) {
+        if (!x.g.visible) continue;
+        const q = x.g.position, u = Math.max(0, Math.min(1, q.clone().sub(P).dot(L) / l2)), proj = P.clone().add(L.clone().multiplyScalar(u));
+        // (r7 corrigée : un bus et un camion de la circulation, sur l'autre sens, mangeaient le bas de l'image pendant le choc)
+        const devant = u > 0.02 && u < 0.85 && q.clone().sub(P).angleTo(L) < 0.6 && q.distanceTo(C) > 15;
+        if (q.distanceTo(P) < 25 || devant || (u > 0.05 && u < 0.98 && q.distanceTo(proj) < 5) || vehicules.some(v => Math.hypot(v.x - q.x, v.z - q.z) < 8))
+          x.g.visible = false;
+      }
+    }
     camera.updateMatrixWorld();
     // anneaux et étiquettes qui suivent leur objet
     anneaux.forEach(({ a, m }) => { const g = groupes[m.objet]; if (!g) return; const v = prog(t, m.a ?? 0.5, 0.4); a.visible = v > 0 && t < (m.fin ?? (m.a ?? 0.5) + 3.5);   // l'anneau désigne, puis s'efface

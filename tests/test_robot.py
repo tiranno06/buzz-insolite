@@ -1452,8 +1452,7 @@ class TestGabarits(unittest.TestCase):
         self.assertIn("LE CHOC", [e["texte"] for s_ in a["scenes"] for e in s_.get("etiquettes") or [] if isinstance(e, dict)])
         cam = realisateur.plans_camera([dict(x, a=x["phrase"] * 3.0) for x in trois["actions"]], trois["objets"], "c", 30,
                                        [(9.0, "cote", "c"), (12.0, "face", "c"), (15.0, "interieur", "v")])
-        self.assertIn("interieur", [c["_cle"] for c in cam])
-        self.assertTrue(any(c.get("regard") for c in cam))
+        self.assertNotIn("interieur", [c["_cle"] for c in cam])        # (28/11 : plus de plan serré, ni vue du conducteur)
         self.assertEqual(gabarits.type_du_texte("Explosion dans une usine de munitions"), "explosion")
 
     def test_explosion_toujours_montree(self):
@@ -1611,7 +1610,7 @@ class TestPhonetiqueEtBruitages(unittest.TestCase):
         from robot import realisateur, controle
         cam = realisateur.plans_camera([{"objet": "c", "faire": "bruler", "a": 1.0}], [{"id": "c", "type": "citerne"}], "c", 30)
         debuts = [c["a"] for c in cam[::2]]
-        self.assertTrue(all(b - a <= 6.5 for a, b in zip(debuts, debuts[1:])))
+        self.assertTrue(all(3.5 <= b - a <= 8.5 for a, b in zip(debuts, debuts[1:])))   # (28/11 : plans de 3,5 à 8 s)
         script = {"phrases": [{"ecrit": "a"}] * 4, "animation": {"scenes": [{"type": "3d", "phrases": [1, 2],
                   "actions": [{"objet": "c", "faire": "voler", "phrase": 2}, {"objet": "c", "faire": "bruler", "phrase": 2}],
                   "etiquettes": ["X"]}]}}
@@ -1756,26 +1755,35 @@ class TestCodeReconstitution(unittest.TestCase):
 class TestPlansLarges(unittest.TestCase):
     """27/11 : ouverture en plan large, rapproché court sur le seul choc, feu et secours de loin."""
     def test_regles_des_plans(self):
+        """28/11 (l'auteur après la r7 : « micro-changements de plan », « plus de plan serré ») : ouverture, plans de 3,5 s au
+        moins, tout plan au moins MOYEN (40 m d'un véhicule), feu et secours de loin."""
         from robot import realisateur as R
         objets = [dict(id="c", type="citerne"), dict(id="v", type="voiture"), dict(id="amb", type="ambulance")]
         actions = [dict(objet="c", faire="avancer", a=0.5, d=3), dict(objet="v", faire="heurter", cible="c", a=1.5, d=2.2),
                    dict(objet="v", faire="heurter", cible="c", a=6.0, d=2.2), dict(objet="c", faire="bruler", a=12.0, d=1),
                    dict(objet="amb", faire="avancer", a=18.0, d=3)]
         cam = R.plans_camera(actions, objets, "c", 30)
-        self.assertEqual(cam[0]["a"], 0.0)
-        self.assertEqual(cam[0]["_cle"], "large")                                      # ouverture large
-        self.assertGreaterEqual(cam[2]["a"], 1.2)                                       # large au moins 1,2 s
-        self.assertTrue(all(c["a"] >= 3.0 or c["_cle"] in R.PROCHES for c in cam[2:]))  # sinon 3 s (sauf le choc)
-        coupes = [c for c in cam[::2]]
-        for i, c in enumerate(coupes):
-            if c["_cle"] in R.PROCHES and i + 1 < len(coupes):
-                self.assertLessEqual(coupes[i + 1]["a"] - c["a"], R.DUREE_PROCHE + 0.01)   # rapproché court
-            if c["_cle"] not in R.PROCHES:
-                self.assertGreaterEqual(sum(v * v for v in cam[2 * i + 1]["pos"]) ** 0.5, 15)
-        self.assertFalse(any(c["_cle"] in ("bruler", "secours") for c in cam))         # feu / secours : large ou d'en haut
-        for c in cam:                                                                   # rapproché : plan moyen, 25 m au moins
-            if c["_cle"] in ("heurter", "exploser", "tomber"):
-                self.assertGreaterEqual(sum(v * v for v in c["pos"]) ** 0.5, 25)
+        coupes = cam[::2]
+        self.assertEqual(coupes[0]["a"], 0.0)
+        self.assertTrue(all(b["a"] - a["a"] >= R.DUREE_MIN_PLAN - 0.01 for a, b in zip(coupes, coupes[1:])))   # pas de micro-plan
+        for c in cam:
+            self.assertGreaterEqual(sum(v * v for v in c["pos"]) ** 0.5, 40 - 0.01)       # jamais serré
+        self.assertFalse(any(c["_cle"] in ("bruler", "secours", "interieur") for c in cam))
+
+    def test_coupes_sur_la_parole_et_pas_pendant_le_choc(self):
+        from robot import realisateur as R
+        objets = [dict(id="c", type="citerne"), dict(id="v", type="voiture")]
+        actions = [dict(objet="v", faire="heurter", cible="c", a=5.0, d=1.5), dict(objet="c", faire="bruler", a=9.0, d=1)]
+        phrases = [0.0, 3.2, 7.9, 12.6, 17.4, 22.0, 26.5]
+        cam = R.plans_camera(actions, objets, "c", 30, phrases_t=phrases)
+        for c in cam[2::2]:
+            self.assertTrue(any(abs(c["a"] - p) < 0.05 for p in phrases) or c["_cle"] in ("heurter", "exploser"), c)
+            self.assertFalse(c["_cle"] not in ("heurter",) and 4.0 < c["a"] < 8.0, c)   # pas de coupe en plein choc
+
+    def test_personne_et_salle(self):
+        from robot import realisateur as R
+        cam = R.plans_camera([dict(objet="p", faire="avancer", a=1.0, d=3)], [dict(id="p", type="personne")], "p", 12, decor="tribunal")
+        self.assertTrue(all(sum(v * v for v in c["pos"]) ** 0.5 <= 30 for c in cam))     # dans la salle, pas à 40 m
 
     def test_accroche_sans_ouverture(self):
         from robot import realisateur as R
