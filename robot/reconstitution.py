@@ -20,7 +20,7 @@ from . import ia
 OBJETS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "taxi", "police", "ambulance", "pompiers", "avion",
           "helico", "bateau", "train", "personne", "foule", "batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "arbre",
           "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau",
-          "muret", "mur", "bulldozer", "fusee", "satellite", "chien", "chat", "loup", "renard", "cheval", "vache", "mouton", "cochon", "lama", "zebre", "aigle", "oiseau", "poussin", "poisson", "piranha", "baleine")
+          "muret", "mur", "bulldozer", "barriere_chantier", "cloture_chantier", "benne", "poteau", "panneau_stop", "panneau_danger", "portique", "lampadaire", "pile_pont", "gyrophare_chantier", "usine_batiment", "cheminee", "cuve", "chateau_eau", "eolienne", "panneaux_solaires", "fusee", "satellite", "chien", "chat", "loup", "renard", "cheval", "vache", "mouton", "cochon", "lama", "zebre", "aigle", "oiseau", "poussin", "poisson", "piranha", "baleine")
 ACTIONS = ("avancer", "freiner", "changer_voie", "deraper", "tonneau", "heurter", "se_coucher", "deverser", "bruler",
            "exploser", "effondrer", "tomber", "voler", "couler", "arroser", "fuir", "apparaitre", "disparaitre",
            "inonder", "trembler", "tempete")
@@ -44,7 +44,9 @@ Règles :
   personne qui en parle de loin (président, ministre, agence, journaliste). Deux objets ne sont jamais au même endroit. Types : voiture, camion, citerne, bus, moto,
   camionnette, taxi, police, ambulance, pompiers, avion, helico, bateau, train, personne, foule, batiment, entrepot (dépôt,
   hangar, usine), immeuble, maison, hopital, banque, magasin, residence, feu_tricolore, panneau,
-  batiment_officiel, arbre, muret, mur, bulldozer (engin qui déblaie), fusee, satellite, et les ANIMAUX : chien, chat, loup, renard, cheval, vache,
+  batiment_officiel, arbre, muret, mur, bulldozer (engin qui déblaie), fusee, satellite, barriere_chantier, cloture_chantier, benne, poteau,
+  panneau_stop, panneau_danger, portique (autoroute), lampadaire, pile_pont, usine_batiment, cheminee, cuve, chateau_eau, eolienne,
+  et les ANIMAUX : chien, chat, loup, renard, cheval, vache,
   mouton, cochon, lama, zebre, aigle, oiseau, poussin, poisson, piranha, baleine. "voie" : 1 à 3 (sens de circulation de la caméra), "position" : mètres le long de la
   route (l'événement se passe vers 0 ; ce qui arrive plus tard part de -80 ou plus loin). Bâtiment, usine : "position" 0.
 - "plans" : un plan pour CHAQUE phrase qui raconte l'événement (du début à la fin des faits, dans l'ordre), avec l'action

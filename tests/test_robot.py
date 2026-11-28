@@ -2093,3 +2093,16 @@ class TestReconstitutionPourTousLesSujets(unittest.TestCase):
         finally:
             R.ecrire = ancien
         self.assertIn("ok", appels)                          # le scénario 3D a été demandé pour un sujet « animal »
+
+
+class TestSoleil(unittest.TestCase):
+    """28/11 : la vraie lumière du moment (date, heure, lieu)."""
+    def test_position_du_soleil(self):
+        from robot import soleil as S
+        nuit = S.lumiere(30.0, 31.2, "Mercredi 25 novembre, 17 h 40")              # Le Caire : la nuit tombe
+        self.assertEqual(nuit["moment"], "nuit"); self.assertLess(nuit["hauteur"], -5)
+        midi = S.lumiere(30.0, 31.2, "Mercredi 25 novembre à midi")
+        self.assertTrue(30 < midi["hauteur"] < 45 and 170 < midi["azimut"] < 210)  # plein sud, 38°
+        ete = S.lumiere(48.85, 2.35, "le 21 juin au soir")                         # Paris : soleil à l'ouest
+        self.assertTrue(250 < ete["azimut"] < 320 and ete["moment"] == "jour")
+        self.assertFalse(S.lumiere(48.85, 2.35, "un jour")["sure"])

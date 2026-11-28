@@ -879,6 +879,22 @@ sauf « deuxième / encore / aussi » → phrase réécrite par l'IA, sinon reti
 storyboard animé viser des phrases disparues (« list index out of range ») → `commun.retirer_phrase` renumérote tout le
 storyboard (règles, contrôle final, vérification). Tests : `TestGizehR5`. 42 règles de reconstitution (C11, V8, V9).
 
+## Outils trouvés par la recherche du 28/11 (choix de l'auteur : 1, 2, 3, 6 + tout 3D, voix, sons, IA, données, 720p, site)
+Écartés car payants ou interdits en usage commercial (consigne de l'auteur : « évite-les ») : Open-Meteo (gratuit seulement
+non commercial), TRELLIS.2 (carte graphique 24 Go), F5-TTS, Higgs Audio, VibeVoice (non commercial), Zonos (carte graphique).
+- **Vraie lumière** (`robot/soleil.py`) : position du soleil (formules NOAA) d'après la date, l'heure DITE et le lieu, fuseau par
+  timezonefinder (MIT) ; `realisateur.pour_rendu` → `sc.soleil` (hauteur, azimut) + moment réel si une heure est dite ;
+  moteur : soleil à la bonne place, doré quand il est bas, horizon orangé au coucher.
+- **Vrais ciels** Poly Haven (CC0, `modeles/ciels/`, 6 JPG légers : jour, jour_clair, couvert, coucher, crepuscule, nuit) choisis
+  d'après le soleil réel et la météo (`choixCiel`).
+- **Personnages animés** Quaternius Universal Animation Library (CC0, `modeles/humains/mannequin.glb`, 46 animations) : la
+  personne marche, sprinte quand elle fuit, tombe et reste au sol (geste unique joué depuis son début), « pose » au choix
+  (assis, soigne, parle, pousse, conduit…), couleur selon le rôle (police, pompiers, secours) ; la FOULE = 6 à 16 vrais
+  personnages qui discutent puis courent. (La 2e bibliothèque a un autre squelette et pas de marche simple : non utilisée.)
+- **Kenney City Kit Roads 2.2 et Industrial 2.0** (CC0) : barrières et clôtures de chantier, bennes, poteaux, panneaux stop et
+  danger, portiques d'autoroute (tous les 180 m), lampadaires, piles de pont, bâtiments industriels, cheminées, cuves,
+  château d'eau, éoliennes (campagne), panneaux solaires ; tous FIXES (physique.py).
+
 ## Code du cadreur (28/11, l'auteur après la r7 : « micro-changements de plan inutiles », « plus de plan serré »)
 Mesuré sur la r7 : 90 sauts d'image en 60 s (dont 40 en 2 s pendant « la route rouverte »), plans de 1,2 s, plan à 25 m
 sur une petite voiture de la circulation. Règles pour TOUTES les reconstitutions :

@@ -22,7 +22,8 @@ const MODELES = {
   tracteur: ["car-kit", ["tractor"], 4, "l"],
   debris: ["car-kit", ["debris-tire", "debris-door", "debris-bumper", "debris-plate-a"], 1.1, "l"],
   plot: ["car-kit", ["cone"], 0.8, "h"],
-  personne: ["mini-characters", ["character-male-a", "character-female-a", "character-male-b", "character-female-b", "character-male-c", "character-female-c", "character-worker"], 1.75, "h"],
+  // (28/11) un VRAI personnage animé (Quaternius, CC0, 46 animations) : modeles/humains/LICENCE.md
+  personne: ["humains", ["mannequin"], 1.75, "h"],
   soldat: ["mini-characters", ["character-soldier"], 1.8, "h"],
   bateau: ["watercraft-kit", ["boat-tug-a"], 18, "l"],
   vedette: ["watercraft-kit", ["boat-speed-a"], 9, "l"],
@@ -46,6 +47,16 @@ const MODELES = {
   banque: ["quaternius", ["bati-Bank"], 12, "h"],
   magasin: ["quaternius", ["bati-Shop"], 7, "h"],
   residence: ["quaternius", ["bati-Flat", "bati-Flat2"], 16, "h"],
+  // Kenney City Kit Roads 2.2 et Industrial 2.0 (CC0, 28/11) : chantier, signalisation, portiques, industrie
+  barriere_chantier: ["city-kit-roads", ["construction-barrier"], 2.0, "l"], cloture_chantier: ["city-kit-roads", ["construction-fence"], 2.6, "l"],
+  benne: ["city-kit-roads", ["dumpster"], 2.2, "l"], poteau: ["city-kit-roads", ["electricity-pole"], 9, "h"],
+  panneau_stop: ["city-kit-roads", ["road-sign-stop"], 2.4, "h"], panneau_danger: ["city-kit-roads", ["road-sign-warning"], 2.4, "h"],
+  portique: ["city-kit-roads", ["sign-highway-wide", "sign-highway"], 7, "h"], lampadaire: ["city-kit-roads", ["light-curved"], 8, "h"],
+  pile_pont: ["city-kit-roads", ["bridge-pillar"], 7, "h"], gyrophare_chantier: ["city-kit-roads", ["construction-light"], 1.2, "h"],
+  usine_batiment: ["city-kit-industrial", "abcdefghijklmnopqrst".split("").map(c => `building-${c}`), 14, "h"],
+  cheminee: ["city-kit-industrial", ["chimney-large", "chimney-medium"], 30, "h"], cuve: ["city-kit-industrial", ["detail-tank-large", "detail-tank"], 10, "h"],
+  chateau_eau: ["city-kit-industrial", ["water-tower"], 22, "h"], eolienne: ["city-kit-industrial", ["windmill"], 60, "h"],
+  panneaux_solaires: ["city-kit-industrial", ["solar-panel-landscape-group"], 10, "l"],
   // ANIMAUX Quaternius (CC0, 28/11), AVEC leurs animations (marche, course, vol, nage, repos) : voir modeles/animaux/LICENCE.md
   chien: ["animaux", ["dog", "pug"], 0.9, "l"], chat: ["animaux", ["cat"], 0.5, "l"], loup: ["animaux", ["wolf"], 1.4, "l"],
   renard: ["animaux", ["red_fox"], 0.9, "l"], cheval: ["animaux", ["horse"], 2.3, "l"], vache: ["animaux", ["cow"], 2.4, "l"],
@@ -115,21 +126,42 @@ function modele(T, type, o = {}, graine = 1) {
     // le croyait hors champ ; et les matières venues du FBX sont parfois transparentes ou sans face arrière
     brut.traverse(m => { if (m.isMesh) { m.frustumCulled = false; const ms = Array.isArray(m.material) ? m.material : [m.material];
       for (const x of ms) if (x) { x.transparent = false; x.opacity = 1; x.side = T.DoubleSide; x.depthWrite = true; } } });
-    const mixer = new T.AnimationMixer(brut), choisir = re => clips.find(c => re.test(c.name));
-    const etats = { repos: choisir(/idle/i), marche: choisir(/walk|swim|fly/i), course: choisir(/run|gallop|fly|swim/i) || choisir(/walk/i),
-                    vol: choisir(/fly/i), nage: choisir(/swim/i), saut: choisir(/jump/i), mort: choisir(/death/i) };
-    const defaut = clips.find(c => !/death|plane/i.test(c.name)) || clips[0];
+    const mixer = new T.AnimationMixer(brut), choisir = re => clips.find(c => re.test(c.name)), exact = n => clips.find(c => c.name === n);
+    let etats, boucles;
+    if (exact("Walk_Loop")) {                    // HUMAIN (Universal Animation Library) : chaque geste a son nom exact
+      etats = { repos: exact("Idle_Loop"), marche: exact("Walk_Loop"), course: exact("Sprint_Loop"), jogging: exact("Jog_Fwd_Loop"),
+                nage: exact("Swim_Fwd_Loop"), chute: exact("Death01"), assis: exact("Sitting_Idle_Loop"), parle: exact("Idle_Talking_Loop"),
+                soigne: exact("Fixing_Kneeling"), pousse: exact("Push_Loop"), conduit: exact("Driving_Loop"), accroupi: exact("Crouch_Idle_Loop"),
+                danse: exact("Dance_Loop"), frappe: exact("Punch_Jab"), ramasse: exact("PickUp_Table"), touche: exact("Hit_Chest"),
+                torche: exact("Idle_Torch_Loop"), saut: exact("Jump_Loop") };
+      boucles = new Set(Object.keys(etats).filter(k_ => /Loop/.test(etats[k_]?.name || "")));
+      // couleur des vêtements selon le rôle : police bleu foncé, pompiers rouge, secours blanc, sinon une couleur au hasard fixe
+      const r_ = `${o.id || ""} ${o.role || ""}`.toLowerCase();
+      const coul = /polic|gendarm|agent/.test(r_) ? "#22345e" : /pompier/.test(r_) ? "#b3261e" : /secour|ambul|m[ée]dec|soign|infirm/.test(r_) ? "#e8eef2"
+        : ["#3d5a80", "#9c6644", "#6a994e", "#bc4749", "#577590", "#8d6a9f", "#d4a373", "#4a4e69"][Math.abs(graine) % 8];
+      brut.traverse(m => { if (!m.isMesh) return; m.material = [].concat(m.material).map(x => { const n = x.clone();
+        if (x.name === "M_Main") n.color.set(coul); else if (x.name === "M_Joints") n.color.set("#2b2b2b"); return n; });
+        if (m.material.length === 1) m.material = m.material[0]; });
+    } else {                                     // animaux
+      etats = { repos: choisir(/idle/i), marche: choisir(/walk|swim|fly/i), course: choisir(/run|gallop|fly|swim/i) || choisir(/walk/i),
+                vol: choisir(/fly/i), nage: choisir(/swim/i), saut: choisir(/jump/i), mort: choisir(/death/i) };
+      boucles = new Set(Object.keys(etats).filter(k_ => k_ !== "mort"));
+    }
+    const defaut = clips.find(c => !/death|plane|tpose/i.test(c.name)) || clips[0];
     for (const k_ in etats) etats[k_] = mixer.clipAction(etats[k_] || defaut);
-    g.userData.animal = { mixer, etats, courant: null };
+    g.userData.animal = { mixer, etats, courant: null, boucles: new Set([...boucles].map(k_ => etats[k_])) };
   }
   return g;
 }
 // pose d'un animal à l'instant t : rien ne dépend de l'horloge (rendu en morceaux parallèles identique)
-function poseAnimal(g, etat_, t) {
+function poseAnimal(g, etat_, t, t0 = 0) {
   const A = g.userData.animal; if (!A) return;
   const a = A.etats[etat_] || A.etats.repos;
   if (A.courant !== a) { for (const x of Object.values(A.etats)) { x.stop(); x.enabled = false; } a.enabled = true; a.setEffectiveWeight(1); a.play(); A.courant = a; }
-  A.mixer.setTime(t);
+  // une animation en boucle suit le temps ; un geste unique (une chute) part de t0 et reste sur sa dernière image
+  const d = a.getClip().duration || 1;
+  a.time = A.boucles.has(a) ? ((t % d) + d) % d : Math.min(Math.max(0, t - t0), d - 0.001);
+  A.mixer.update(0);
 }
 export const TYPES_MODELES = Object.keys(MODELES);
 
@@ -373,17 +405,48 @@ function vehiculeUrgence(T, o, coul, bande, feux) {
 }
 
 // ------------------------------------------------------------------ décors
+// VRAIS CIELS (Poly Haven, CC0, modeles/ciels/LICENCE.md) : choisis d'après la position RÉELLE du soleil (soleil.py) et la météo
+function choixCiel(sc) {
+  if (["tribunal", "interieur", "espace", "studio"].includes(sc.decor)) return null;
+  const meteo = (sc.actions || []).some(a => ["inonder", "tempete"].includes(a.faire)) || sc.pluie;
+  const h = sc.soleil ? sc.soleil.hauteur : { jour: 35, soir: 3, nuit: -20 }[sc.moment || "soir"];
+  if (h < -6) return "nuit";
+  if (h < 1) return "crepuscule";
+  if (h < 10) return "coucher";
+  if (meteo) return "couvert";
+  return ["desert", "montagne", "plage", "mer"].includes(sc.decor) ? "jour_clair" : "jour";
+}
+async function chargerCiel(T, nom) {
+  if (!nom) return null;
+  try {
+    const t = await new T.TextureLoader().loadAsync(`./modeles/ciels/${nom}.jpg`);
+    t.mapping = T.EquirectangularReflectionMapping; t.colorSpace = T.SRGBColorSpace; return t;
+  } catch { return null; }                       // ciel introuvable : le dégradé dessiné reste
+}
+
 function decor(T, scene, sc) {
   const d = sc.decor || "autoroute", nuit = (sc.moment || "soir") !== "jour";
   const ciel = { jour: [0x9cc9ff, 0xdfeeff], soir: [0x1d2a4a, 0x3b4f7a], nuit: [0x070b16, 0x141d33] }[sc.moment || "soir"];
   // ciel en dégradé (horizon plus clair) et brume : la profondeur d'une vraie maquette filmée
   const degrade = { jour: ["#5d9be0", "#cfe4ff"], soir: ["#0f1a33", "#4a5d8c"], nuit: ["#03060f", "#1a2442"] }[sc.moment || "soir"];
+  if (sc.soleil && sc.soleil.hauteur > -8 && sc.soleil.hauteur < 8) { degrade[0] = "#2b3a6b"; degrade[1] = sc.soleil.hauteur > 0 ? "#f0a36a" : "#c9706a"; }   // coucher / aube : horizon orangé
   scene.background = texture(T, 4, 256, (c, w, h) => { const g = c.createLinearGradient(0, 0, 0, h); g.addColorStop(0, degrade[0]); g.addColorStop(0.75, degrade[1]); g.addColorStop(1, degrade[1]); c.fillStyle = g; c.fillRect(0, 0, w, h); });
   scene.background.wrapS = scene.background.wrapT = T.ClampToEdgeWrapping; scene.background.repeat.set(1, 1);
+  if (sc._ciel) scene.background = sc._ciel;     // (28/11) un VRAI ciel photographié, choisi d'après le soleil réel
   scene.fog = new T.Fog(ciel[1], 140, sc.brouillard || 480);
   const jour = sc.moment === "jour";          // plein jour : lumière franche, comme une maquette au soleil
   scene.add(new T.HemisphereLight(nuit && !jour ? 0x8fa6d6 : 0xffffff, nuit && !jour ? 0x1a1f2b : 0x8a8f7a, jour ? 2.4 : nuit ? 1.1 : 1.6));
   const soleil = new T.DirectionalLight(jour ? 0xfff2dd : nuit ? 0xb7c7ff : 0xffffff, jour ? 3.0 : nuit ? 1.2 : 2.2); soleil.position.set(-60, 120, 40); scene.add(soleil);
+  // la VRAIE position du soleil (soleil.py : date, heure, lieu) : hauteur et direction ; bas sur l'horizon = lumière dorée,
+  // ombres longues ; sous l'horizon = lumière de la lune, bleutée (le nord du lieu est vers -z)
+  if (sc.soleil) {
+    const h = sc.soleil.hauteur * Math.PI / 180, a = sc.soleil.azimut * Math.PI / 180;
+    const he = sc.soleil.hauteur > 2 ? h : Math.PI / 4;                    // la nuit : la lune, haute dans le ciel
+    scene.userData.dirSoleil = new T.Vector3(Math.sin(a) * Math.cos(he), Math.sin(he), -Math.cos(a) * Math.cos(he)).normalize();
+    if (sc.soleil.hauteur > 2 && sc.soleil.hauteur < 12) {               // soleil bas : doré, un peu moins fort
+      soleil.color.set(0xffb36b); soleil.intensity = 1.6 + 0.12 * sc.soleil.hauteur;
+    }
+  }
   // ombres portées : une zone de 120 m autour de l'action (la caméra de l'ombre suit ce qu'on filme)
   if (sc.ombres !== false) {
     soleil.castShadow = true; soleil.shadow.mapSize.set(2048, 2048); soleil.shadow.bias = -0.0004; soleil.shadow.normalBias = 0.04;
@@ -421,6 +484,13 @@ function decor(T, scene, sc) {
         const tache = new T.Mesh(new T.CircleGeometry(4, 24), new T.MeshBasicMaterial({ color: 0xffc977, transparent: true, opacity: 0.12, depthWrite: false }));
         tache.rotation.x = -Math.PI / 2; tache.position.set(x, 0.05, cote * (larg / 2 - 2)); scene.add(tache); }
     }
+    if (d === "autoroute" && modelePret("portique"))     // (28/11) portiques de signalisation, comme sur une vraie autoroute
+      for (let x = -260; x <= 260; x += 180) for (const cote of [-1, 1]) {
+        const pq = modele(T, "portique", {}, Math.abs(x)); pq.position.set(x + cote * 40, 0, cote * (larg / 2 + 2.5)); pq.rotation.y = cote > 0 ? Math.PI : 0; scene.add(pq); }
+    if ((d === "ville" || d === "route") && modelePret("poteau"))   // poteaux électriques le long de la route
+      for (let x = -280; x <= 280; x += 45) { const po = modele(T, "poteau", {}, 1); po.position.set(x + 7, 0, larg / 2 + 5 + (d === "ville" ? 0 : 3)); scene.add(po); }
+    if (d === "ville" && modelePret("benne"))
+      for (let x = -200; x <= 200; x += 70) { const be = modele(T, "benne", {}, Math.abs(x)); be.position.set(x + 13, 0, -(larg / 2 + 3.2)); scene.add(be); }
     if (d === "ville" && modelePret("feu_tricolore"))    // feux tricolores aux carrefours, des deux côtés
       for (let x = -240; x < 240; x += 60) for (const cote of [-1, 1]) {
         const f = modele(T, "feu_tricolore", {}, 1); f.position.set(x + cote * 3, 0, cote * (larg / 2 + 1.2)); f.rotation.y = cote > 0 ? Math.PI : 0; scene.add(f);
@@ -431,7 +501,13 @@ function decor(T, scene, sc) {
     const beton = new T.Mesh(new T.PlaneGeometry(260, 180), lambert(T, "#6f747c")); beton.rotation.x = -Math.PI / 2; beton.position.y = 0.01; scene.add(beton);
     const route = new T.Mesh(new T.PlaneGeometry(1200, 7.2), new T.MeshLambertMaterial({ map: texRoute(T, 2) })); route.rotation.x = -Math.PI / 2; route.position.set(0, 0.02, 30); scene.add(route);
     const toles = ["#9aa3ad", "#b7a98f", "#8c96a3", "#a3a7ab"];
-    for (let i = 0; i < 9; i++) {                // hangars à toit arrondi
+    if (modelePret("usine_batiment")) {           // (28/11) vrais bâtiments industriels Kenney, cheminées, cuves, château d'eau
+      for (let i = 0; i < 12; i++) { const x = -150 + (i % 6) * 60 + r() * 8, z = i < 6 ? -48 - r() * 12 : -105;
+        if (Math.abs(x) < 20 && z > -60) continue; const b = modele(T, "usine_batiment", { hauteur: 10 + r() * 10 }, i * 3 + 1); b.position.set(x, 0, z); scene.add(b); }
+      if (modelePret("cheminee")) for (let i = 0; i < 2; i++) { const c = modele(T, "cheminee", {}, i); c.position.set(95 + i * 14, 0, -80); scene.add(c); }
+      if (modelePret("chateau_eau")) { const w = modele(T, "chateau_eau", {}, 1); w.position.set(-120, 0, 10); scene.add(w); }
+    }
+    for (let i = 0; i < (modelePret("usine_batiment") ? 0 : 9); i++) {   // sinon : hangars dessinés à toit arrondi
       const l = 26 + r() * 18, pr = 16 + r() * 8, h = 7 + r() * 5, x = -110 + (i % 5) * 50 + r() * 6, z = i < 5 ? -40 - r() * 10 : -95;
       if (Math.abs(x) < 18 && z > -60) continue;   // le centre reste libre pour l'événement
       const g = new T.Group(); const mur = boite(T, l, h, pr, lambert(T, toles[i % 4])); mur.position.y = h / 2; g.add(mur);
@@ -566,7 +642,10 @@ function decor(T, scene, sc) {
       for (let i = 0; i < 40; i++) { c.beginPath(); c.ellipse((i * 97) % w, 40 + (i * 53) % (h - 80), 20 + (i % 5) * 9, 10 + (i % 3) * 8, i, 0, 7); c.fill(); }
       c.fillStyle = "rgba(255,255,255,.55)"; for (let i = 0; i < 60; i++) { c.beginPath(); c.ellipse((i * 71) % w, (i * 31) % h, 18, 5, i, 0, 7); c.fill(); } }) }));
     terre.position.set(0, -960, -300); scene.add(terre); scene.userData.terre = terre;
-  } else sol(0x3a4a35);                  // campagne
+  } else {                                // campagne (éoliennes au loin, 28/11)
+    sol(0x3a4a35);
+    if (modelePret("eolienne")) for (let i = 0; i < 5; i++) { const e = modele(T, "eolienne", {}, i); e.position.set(-300 + i * 140, 0, -260 - (i % 2) * 60); scene.add(e); }
+  }
 }
 
 // ------------------------------------------------------------------ état des objets à l'instant t (actions rejouées)
@@ -858,9 +937,11 @@ export async function creer3d(sc, couche, T) {
   if ((sc.actions || []).some(a => a.faire === "exploser")) await chargerFracture();
   const avecFeu = (sc.actions || []).some(a => ["bruler", "exploser", "effondrer"].includes(a.faire)) && sc.quarks !== false;
   if (avecFeu) await chargerQuarks();
-  await prechargerModeles([...(sc.objets || []).map(o => o.type), "rocher", "immeuble", "gratte_ciel", "maison", "arbre", "voiture", "camion", "camionnette", "personne",
+  await prechargerModeles([...(sc.objets || []).map(o => o.type), ...({ autoroute: ["portique"], usine: ["usine_batiment", "cheminee", "cuve", "chateau_eau"],
+                           ville: ["benne", "poteau"], route: ["poteau"], campagne: ["eolienne", "poteau"] }[sc.decor] || []), "rocher", "immeuble", "gratte_ciel", "maison", "arbre", "voiture", "camion", "camionnette", "personne",
                            "bus", "residence", "magasin", "hopital", "banque", "feu_tricolore", "debris"]);
   const cv = el("canvas", "", couche); cv.width = W; cv.height = H; const cx = cv.getContext("2d");
+  sc._ciel = await chargerCiel(T, choixCiel(sc));                 // vrai ciel en photo (Poly Haven, CC0)
   const scene = new T.Scene(); decor(T, scene, sc);
   // vue « maquette » vue d'en haut, sans perspective (comme les reconstitutions de bonnequestion.tv), sinon caméra classique
   const iso = sc.vue === "iso", HAUT_ISO = sc.iso_hauteur ?? 90;
@@ -876,6 +957,15 @@ export async function creer3d(sc, couche, T) {
         m.material = m.material.clone(); m.material.color.set("#f2b705"); } });
       const lame = boite(T, 0.4, 1.4, 3.4, lambert(T, "#9aa0a6")); lame.position.set(3.1, 0.7, 0); g.add(lame);
       g.userData.taille = [6.2, 2.6, 3.4];
+    } else if (o.type === "foule" && modelePret("personne")) {   // (28/11) une foule de VRAIS personnages animés
+      g = new T.Group(); const n = Math.min(16, Math.max(6, Math.round((o.nombre || 40) / 3))), rr = hasard(n * 13 + 5), R = o.rayon || 6;
+      g.userData.gens = [];
+      for (let i = 0; i < n; i++) {
+        const p_ = modele(T, "personne", { id: `${o.id}${i}`, role: o.role || "" }, i * 7 + 3), a = rr() * 6.28, d = Math.sqrt(rr()) * R;
+        p_.position.set(Math.cos(a) * d * 1.5, 0, Math.sin(a) * d); p_.rotation.y = rr() * 6.28; g.add(p_);
+        g.userData.gens.push({ g: p_, ph: rr() * 5, geste: ["parle", "repos", "parle", "torche", "repos"][i % 5] });
+      }
+      g.userData.taille = [R * 3, 1.8, R * 2];
     } else g = modelePret(o.type) ? modele(T, o.type, o, (o.id || "").length * 7 + objets.indexOf(o))
       : (FABRIQUES[o.type] || FABRIQUES.voiture)(T, o);
     scene.add(g); groupes[o.id] = g;
@@ -1131,6 +1221,7 @@ export async function creer3d(sc, couche, T) {
       g.visible = e.visible; g.userData.ombre.visible = e.visible && e.y < 3;
       const sx = e.secousse ? Math.sin(t * 60) * 0.15 * e.secousse : 0;
       g.position.set(e.x + sx, e.y, e.z); g.rotation.set(e.roulis, e.cap, e.tangage);
+      if (g.userData.animal && o.type === "personne") g.rotation.set(0, e.cap, 0);   // la chute est jouée par l'animation
       if (e.explose >= 0 && ["batiment", "entrepot", "immeuble", "maison"].includes(o.type))
         e.effondre = Math.max(e.effondre || 0, 0.55 * ease.sortie(prog(t, e.explose + 0.15, 0.8)));
       if (e.effondre != null) g.scale.y = 1 - 0.85 * e.effondre;
@@ -1138,11 +1229,17 @@ export async function creer3d(sc, couche, T) {
       for (const w of g.userData.roues || []) w.rotation.y = -e.distance / (g.userData.rayon || 0.4);
       if (g.userData.pale) g.userData.pale.rotation.y = t * 25;
       if (g.userData.anime) g.userData.anime(t);
+      if (g.userData.gens) {                       // la foule : chacun son geste ; tous courent quand elle fuit
+        const fuit = actions.some(a => a.objet === o.id && a.faire === "fuir" && t >= a.a && t <= a.a + (a.d ?? 1.2) + 0.2);
+        for (const x of g.userData.gens) { if (fuit) x.g.rotation.y = Math.PI / 2; poseAnimal(x.g, fuit ? "course" : x.geste, t + x.ph); }
+      }
       if (g.userData.animal) {                    // l'animal marche quand il avance, court quand il fuit, vole, nage
         const avant = etat(o, actions, Math.max(0, t - 0.1), objets), v = Math.abs(e.distance - avant.distance) / 0.1;
         const fuit = actions.some(a => a.objet === o.id && a.faire === "fuir" && t >= a.a && t <= a.a + (a.d ?? 1.2) + 0.2);
-        poseAnimal(g, AQUATIQUES.includes(o.type) ? "nage" : VOLANTS.includes(o.type) && e.y > 1 ? "vol"
-                      : (fuit || v > 4) ? "course" : v > 0.2 ? "marche" : "repos", t);
+        const chute = actions.find(a => a.objet === o.id && ["tomber", "se_coucher"].includes(a.faire) && t >= a.a);
+        if (o.type === "personne" && chute) poseAnimal(g, "chute", t, chute.a);          // une personne qui tombe reste à terre
+        else poseAnimal(g, AQUATIQUES.includes(o.type) ? "nage" : VOLANTS.includes(o.type) && e.y > 1 ? "vol"
+                      : (fuit || v > 4) ? "course" : v > 0.2 ? "marche" : (o.pose || "repos"), t + (o.id || "").length * 0.37);
       }
       if (g.userData.eau) { const n = borne(prog(t, o.remplir_a ?? 0.4, o.remplir_duree ?? 2.2)) * (o.niveau ?? 1); const c = g.userData.cote; g.userData.eau.scale.y = Math.max(0.001, n); g.userData.eau.position.y = c * n / 2; }
       // explosion d'un véhicule ou d'un bâtiment : il se désintègre (pièces + éclats projetés), l'épave brûle
@@ -1298,7 +1395,9 @@ export async function creer3d(sc, couche, T) {
         scene.traverse(m => { if (m.isMesh && !m.material?.transparent) { m.castShadow = true; m.receiveShadow = true; } });
         scene.userData.ombresPretes = true;
       }
-      sol_.target.position.set(c[0], 0, c[2]); sol_.position.set(c[0] - 60, 120, c[2] + 40);
+      const ds = scene.userData.dirSoleil;
+      sol_.target.position.set(c[0], 0, c[2]);
+      if (ds) sol_.position.set(c[0] + ds.x * 150, Math.max(8, ds.y * 150), c[2] + ds.z * 150); else sol_.position.set(c[0] - 60, 120, c[2] + 40);
     }
     if (tremble > 0) { p[0] += Math.sin(t * 71) * 0.9 * tremble; p[1] += Math.sin(t * 53) * 0.7 * tremble; c[1] += Math.sin(t * 61) * 0.4 * tremble; }
     // CORRECTIONS DE LA CAMÉRA, UNE FOIS PAR PLAN (28/11 : la r7 sautait d'une image à l'autre dès qu'une voiture passait) :

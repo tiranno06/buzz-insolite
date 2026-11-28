@@ -25,7 +25,7 @@ UNITES_FORTES = ("millions", "million", "milliards", "milliard", "mille", "%", "
 OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "bateau", "train", "batiment", "arbre", "personne",
              "muret", "mur", "cube_eau", "foule", "police", "pompiers", "ambulance", "batiment_officiel",
              # vrais modèles Kenney (CC0) depuis le 27/11
-             "taxi", "camionnette", "tracteur", "bulldozer", "fusee", "satellite", "chien", "chat", "loup", "renard", "cheval", "vache", "mouton", "cochon", "lama", "zebre", "aigle", "oiseau", "poussin", "poisson", "piranha", "baleine", "debris", "plot", "soldat", "vedette", "barque", "voilier", "conteneur", "tgv",
+             "taxi", "camionnette", "tracteur", "bulldozer", "barriere_chantier", "cloture_chantier", "benne", "poteau", "panneau_stop", "panneau_danger", "portique", "lampadaire", "pile_pont", "gyrophare_chantier", "usine_batiment", "cheminee", "cuve", "chateau_eau", "eolienne", "panneaux_solaires", "fusee", "satellite", "chien", "chat", "loup", "renard", "cheval", "vache", "mouton", "cochon", "lama", "zebre", "aigle", "oiseau", "poussin", "poisson", "piranha", "baleine", "debris", "plot", "soldat", "vedette", "barque", "voilier", "conteneur", "tgv",
              "wagon_citerne", "palmier", "rocher", "maison", "immeuble", "gratte_ciel", "entrepot",
              "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau")
 ACTIONS_3D = ("avancer", "heurter", "changer_voie", "tourner", "se_coucher", "bruler", "exploser", "tomber", "voler", "couler",
@@ -626,6 +626,15 @@ def evenements_sonores(sb):
 def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
     """Storyboard pour rendre.mjs : `debuts` = début de chaque phrase (s), `mots` = [{m, d, f, cle}] de toute la vidéo."""
     scenes = []
+    # la VRAIE lumière du moment (soleil.py, 28/11) : calculée d'après la date, l'heure et le lieu de l'événement
+    if anim.get("lieu") and "soleil" not in anim:
+        try:
+            from . import soleil
+            l_ = anim["lieu"]
+            anim["soleil"] = soleil.lumiere(float(l_["lat"]), float(l_["lon"]), " ".join(p["ecrit"] for p in script["phrases"]),
+                                            anim.get("date"), anim.get("chrono"))
+        except Exception:
+            anim["soleil"] = None
     for k, sc in enumerate(anim["scenes"]):
         a = debuts[sc["phrases"][0]]
         b = debuts[sc["phrases"][-1] + 1] if sc["phrases"][-1] + 1 < len(debuts) else total
@@ -643,6 +652,11 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
             s["mention"] = "Images : NASA · Carte : Natural Earth, IGN" + (f" · {mention_source}" if mention_source else "")
             s["nuit"] = bool(sc.get("nuit")) or bool(anim.get("nuit"))
         if sc["type"] == "3d":
+            sol = anim.get("soleil")
+            if sol and sc.get("decor") not in ("tribunal", "interieur", "espace", "studio"):
+                s["soleil"] = dict(hauteur=sol["hauteur"], azimut=sol["azimut"])
+                if sol.get("sure") or not sc.get("moment"):        # une heure DITE l'emporte sur le moment deviné
+                    s["moment"] = sol["moment"]
             voies = 6 if sc.get("decor") == "autoroute" else 2
             objets = []
             for o in sc["objets"]:

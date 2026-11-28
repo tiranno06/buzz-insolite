@@ -761,6 +761,7 @@ def realiser(script, articles, journal=print):
     brut = composer(f, script)
     anim = realisateur.valider(brut, script, articles, journal)
     anim["gabarit"] = f["type"]
+    anim["date"] = f.get("date") if isinstance(f.get("date"), dict) else None      # pour la lumière réelle (soleil.py)
     anim["chrono"] = _heures(f, len(script["phrases"]), [p["ecrit"] for p in script["phrases"]])
     if any(sc.get("accroche") for sc in anim["scenes"]):
         anim["viseur"] = ", ".join(x.strip() for x in str(f.get("lieu") or "").split(",")[:2]).upper()[:40]

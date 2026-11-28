@@ -4,3 +4,4 @@ Pillow>=11,<14
 numpy<3
 kokoro-onnx==0.6.1
 opencv-contrib-python-headless==4.14.0.94
+timezonefinder==9.2.0

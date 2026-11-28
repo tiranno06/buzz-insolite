@@ -18,8 +18,10 @@ import re
 ROUTIERS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "taxi", "police", "ambulance", "pompiers", "bulldozer")
 VEHICULES = ROUTIERS + ("train", "avion", "helico", "bateau")
 AERIENS = ("avion", "helico", "fusee", "satellite")
-BATIS = ("batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "hopital", "banque", "magasin", "residence")
-FIXES = BATIS + ("arbre", "muret", "mur", "feu_tricolore", "panneau")
+BATIS = ("batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "hopital", "banque", "magasin", "residence", "usine_batiment")
+FIXES = BATIS + ("arbre", "muret", "mur", "feu_tricolore", "panneau", "barriere_chantier", "cloture_chantier", "benne", "poteau",
+                 "panneau_stop", "panneau_danger", "portique", "lampadaire", "pile_pont", "gyrophare_chantier", "cheminee", "cuve",
+                 "chateau_eau", "eolienne", "panneaux_solaires")
 HUMAINS = ("personne", "foule")
 ANIMAUX = ("chien", "chat", "loup", "renard", "cheval", "vache", "mouton", "cochon", "lama", "zebre", "aigle", "oiseau", "poussin", "poisson", "piranha", "baleine")                  # animaux 3D animés (28/11)
 VOLANTS = ("aigle", "oiseau")
@@ -37,7 +39,7 @@ REOUVERT = r"rouvert|r[ée]ouvert|r[ée]ouverture|circulation (?:a |)(?:repris|r
 # encombrement au sol (m) : longueur d'un véhicule, largeur d'un bâtiment (règles E1, E2)
 TAILLE = {"voiture": 4.5, "taxi": 4.5, "police": 4.8, "moto": 2.2, "camionnette": 5.5, "bulldozer": 6.2, "ambulance": 6, "pompiers": 9, "camion": 10,
           "citerne": 12, "bus": 12, "train": 40, "bateau": 20, "batiment": 30, "entrepot": 46, "immeuble": 24, "residence": 24,
-          "hopital": 30, "banque": 20, "magasin": 18, "maison": 14, "batiment_officiel": 34,
+          "hopital": 30, "banque": 20, "magasin": 18, "maison": 14, "batiment_officiel": 34, "usine_batiment": 30,
           "chien": 0.9, "chat": 0.5, "loup": 1.4, "renard": 0.9, "cheval": 2.3, "vache": 2.4, "mouton": 1.3, "cochon": 1.3,
           "lama": 1.7, "zebre": 2.3, "fusee": 50, "satellite": 8, "aigle": 2.0, "oiseau": 0.4, "poussin": 0.25, "poisson": 0.6, "piranha": 0.4, "baleine": 25}
 
