@@ -1,11 +1,11 @@
 {
  "videos": [
   {
-   "id": "20261127-190259-1-r6",
-   "tag": "v-20261127-190259-1-r6",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-190259-1-r6/buzz-20261127-190259-1-r6.mp4",
-   "titre": "Incendie meurtrier sur le Ring Road",
-   "accroche": "INCENDIE MEURTRIER SUR LE",
+   "id": "20261127-190259-1-r7",
+   "tag": "v-20261127-190259-1-r7",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-190259-1-r7/buzz-20261127-190259-1-r7.mp4",
+   "titre": "Camion-citerne en flammes à Gizeh",
+   "accroche": "FLAMMES MORTELLES GIZEH",
    "sujet_id": "d6d8e1865b",
    "sujet": "Accident de camion-citerne à Gizeh, incendie meurtrier",
    "buzz": {
@@ -14,19 +14,18 @@
     "commentaires": 2169,
     "score": 133
    },
-   "description": "Un camion-citerne renversé a embrasé le Ring Road, faisant 31 victimes. 🚒",
-   "question": "Et toi, que ferais-tu face à un tel brasier ?",
+   "description": "Un camion-citerne s’est renversé, déclenchant un incendie qui a fait 31 victimes. 🔥",
+   "question": "Et toi, comment réagirais-tu face à ce brasier ? Dis-le en commentaire !",
    "hashtags": [
     "#egypte",
-    "#accident",
+    "#incendie",
     "#tanker",
     "#giza",
-    "#incendie",
     "#insolite",
     "#actu",
     "#buzz"
    ],
-   "duree": 73.2,
+   "duree": 64.9,
    "sources": [
     {
      "media": "jeune-independant.net",
@@ -76,11 +75,10 @@
    ],
    "verification": {
     "par": "gemini:gemini-flash-lite-latest",
-    "corrigees": 2,
+    "corrigees": 1,
     "retirees": 0,
     "problemes": [
-     "L'article indique que le ministre de la Santé a annoncé qu'il se rendrait sur place, non qu'il a déjà inspecté les lieux, et sa fonction précise doit être menti",
-     "L'affirmation « en une seconde » n'est pas confirmée par les articles et constitue une exagération non vérifiable"
+     "Le nom du premier ministre n'est pas mentionné dans les articles fournis."
     ]
    },
    "verifie": true,
@@ -88,35 +86,38 @@
    "style": "anime",
    "extraits_perdus": 0,
    "regles_non_respectees": [],
-   "ecrans_illustres": 17,
-   "ecrans_total": 17,
+   "ecrans_illustres": 18,
+   "ecrans_total": 18,
    "format": "buzz",
    "voix": "kokoro-ff_siwis",
    "lieu": "Warraq, Giza Governorate, Égypte",
    "humeur": "tension",
    "categorie": "faits_divers",
    "texte": [
-    "Flammes infernales dévorent le Ring Road.",
-    "Mercredi 25 novembre 2026, le camion-citerne s’est renversé à Warraq.",
-    "Le poids lourd transportait du carburant inflammable.",
-    "Le liquide s’est embrasé, créant un mur de feu qui a atteint les véhicules alentours.",
-    "Des colonnes de fumée noire ont obscurci le ciel au-dessus du quartier.",
-    "Plus de deux douzaines de voitures et motos ont été réduites en cendres.",
+    "Flammes gigantesques engloutissent le camion sur le Ring Road.",
+    "Mercredi 25 novembre 2026, renversement à Warraq, Gizeh.",
+    "Le poids lourd transportait du pétrole hautement inflammable.",
+    "Il a basculé sur l’autoroute périphérique très fréquentée.",
+    "Le carburant s’est immédiatement embrasé, formant un mur de feu.",
+    "Les flammes ont atteint plusieurs véhicules, dont des bus bondés.",
+    "Des colonnes épaisses de fumée noire ont obscurci le ciel.",
+    "Plus de deux douzaines de voitures et motos réduites en cendres.",
     "Le ministère de la Santé a annoncé 31 morts.",
     "21 personnes blessées, dont 4 en état critique.",
     "40 ambulances ont été dépêchées pour évacuer les blessés.",
-    "Un bulldozer a dégagé la carcasse calcinée d’une voiture au milieu de la foule.",
-    "La police a arrêté le conducteur d’une voiture suspectée d’avoir percuté le camion.",
-    "Une enquête a été ouverte, avec des analyses ADN prévues pour identifier les victimes.",
+    "Un bulldozer a retiré l’épave calcinée d’une voiture.",
+    "La police a arrêté un conducteur suspecté d’avoir percuté le camion.",
+    "Enquête ouverte, analyses ADN prévues pour identifier les victimes.",
     "Après plusieurs heures, le Ring Road a été rouvert à la circulation.",
-    "Le ministre de la Santé Khaled Abdel Ghaffar a annoncé qu’il se rendrait sur place.",
-    "Le président Abdel Fattah al-Sissi a exprimé ses condoléances aux familles.",
-    "Le conducteur imprudent a perdu le contrôle après avoir roulé à une vitesse excessive.",
-    "Le Premier ministre Mostafa Madbouly a exigé des investigations approfondies pour établir les responsabilités.",
-    "Et toi, que ferais-tu face à un tel brasier ? Dis-le en commentaire !"
+    "Le conducteur de la voiture a admis qu'il roulait à une vitesse excessive.",
+    "Le premier ministre a ordonné une enquête approfondie.",
+    "Plus de 6 000 personnes ont péri sur les routes égyptiennes l'an dernier.",
+    "Et toi, comment réagirais-tu face à ce brasier ? Dis-le en commentaire !"
    ],
+   "famille": "incendie_explosion",
+   "gabarit": "accident_route",
    "essai": false,
-   "cree_le": "2026-11-28T11:51:04+01:00",
+   "cree_le": "2026-11-28T13:46:12+01:00",
    "ia_quotas": {
     "mistral": {
      "appels": 0,
@@ -125,20 +126,20 @@
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 5,
-     "refus": 3,
+     "appels": 2,
+     "refus": 4,
      "erreurs": 4,
-     "restant_demandes": "997",
+     "restant_demandes": "998",
      "limite_demandes": "1000",
-     "restant_mots": "175"
+     "restant_mots": "3430"
     },
     "gemini": {
      "appels": 13,
      "refus": 1,
-     "erreurs": 6
+     "erreurs": 10
     }
    },
-   "fabrication_s": 3706,
+   "fabrication_s": 6227,
    "controles": {
     "note": 100,
     "lignes": [
@@ -146,14 +147,23 @@
       "niveau": "texte",
       "ecran": null,
       "gravite": "moyen",
-      "probleme": "texte trop court (environ 61 s, il faut plus d'1 minute)",
+      "probleme": "texte trop court (environ 52 s, il faut plus d'1 minute)",
       "corrige": true,
-      "essais": 5,
+      "essais": 1,
       "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": 17,
+      "gravite": "info",
+      "probleme": "titre d'écran trop long",
+      "corrige": true,
+      "essais": 1,
+      "solution": "corrigé automatiquement"
      }
     ],
     "sautes": [],
-    "corriges": 1,
+    "corriges": 2,
     "restants": 0,
     "graves_restants": 0
    },
@@ -161,22 +171,22 @@
    "preuves": [],
    "couverture_ms": 800,
    "durees": {
-    "texte": 212,
-    "images": 8,
-    "voix": 40,
-    "montage": 1648,
-    "controle_final": 1781,
+    "texte": 440,
+    "voix": 154,
+    "images": 578,
+    "montage": 2516,
+    "controle_final": 2668,
     "regles": 1,
-    "chef": 9,
+    "chef": 7,
     "rangement": 7
    },
    "refaite": {
-    "de": "20261127-190259-1-r5",
+    "de": "20261127-190259-1-r6",
     "etape": "tout",
-    "remarque": "foule a sa phrase, camera loin du feu, bulldozer, route rouverte, etiquette ACTUALITE"
+    "remarque": "camera jamais dans un vehicule, route rouverte propre, ambiances sonores"
    },
    "statut": "nouvelle",
-   "refaite_de": "20261127-190259-1-r5"
+   "refaite_de": "20261127-190259-1-r6"
   },
   {
    "id": "20261127-124839-1",
