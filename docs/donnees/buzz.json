@@ -1,150 +1,215 @@
 {
- "maj": "2026-11-28T14:04:13+01:00",
+ "maj": "2026-11-28T14:34:34+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:02:11+01:00"
+   "le": "2026-11-28T14:32:22+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:02:14+01:00"
+   "le": "2026-11-28T14:32:26+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:02:19+01:00"
+   "le": "2026-11-28T14:32:31+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:02:22+01:00"
+   "le": "2026-11-28T14:32:35+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:02:26+01:00"
+   "le": "2026-11-28T14:32:39+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-28T14:02:29+01:00"
+   "le": "2026-11-28T14:32:42+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:02:33+01:00"
+   "le": "2026-11-28T14:32:46+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:02:37+01:00"
+   "le": "2026-11-28T14:32:49+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:02:41+01:00"
+   "le": "2026-11-28T14:32:54+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:02:46+01:00"
+   "le": "2026-11-28T14:32:58+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:02:49+01:00"
+   "le": "2026-11-28T14:33:02+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:02:53+01:00"
+   "le": "2026-11-28T14:33:06+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:02:56+01:00"
+   "le": "2026-11-28T14:33:10+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-28T14:03:00+01:00"
+   "le": "2026-11-28T14:33:13+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:03+01:00"
+   "le": "2026-11-28T14:33:17+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:07+01:00"
+   "le": "2026-11-28T14:33:22+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:11+01:00"
+   "le": "2026-11-28T14:33:26+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:15+01:00"
+   "le": "2026-11-28T14:33:30+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:19+01:00"
+   "le": "2026-11-28T14:33:34+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:22+01:00"
+   "le": "2026-11-28T14:33:38+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:26+01:00"
+   "le": "2026-11-28T14:33:42+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:31+01:00"
+   "le": "2026-11-28T14:33:47+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:34+01:00"
+   "le": "2026-11-28T14:33:51+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:38+01:00"
+   "le": "2026-11-28T14:33:55+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:41+01:00"
+   "le": "2026-11-28T14:33:59+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:45+01:00"
+   "le": "2026-11-28T14:34:03+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:49+01:00"
+   "le": "2026-11-28T14:34:07+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T14:03:52+01:00"
+   "le": "2026-11-28T14:34:11+01:00"
   }
  },
  "lues": 809,
  "retenues": 3,
  "sujets": [
+  {
+   "titre": "Mirage : statue et navire flottants",
+   "resume": "Des images montrent un mirage où un monument et un navire semblent flotter.",
+   "mots_cles": [
+    "mirage",
+    "phénomène optique",
+    "ciel",
+    "illusion"
+   ],
+   "mots_cles_en": [
+    "mirage",
+    "optical illusion",
+    "sky",
+    "illusion"
+   ],
+   "hashtags": [
+    "mirage",
+    "optique",
+    "illusion"
+   ],
+   "insolite": 8,
+   "categorie": "science",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712775661743557902",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712775661743557902",
+     "vues": 12100000,
+     "jaime": 2900000,
+     "commentaires": 15200,
+     "partages": 166900,
+     "date": 1795770583,
+     "texte": "Helicopter footage captures a breathtaking view of Christ the Redeemer seemingly floating above a sea of clouds in Rio de Janeiro, Brazil, as the aircraft flies high above the city. The iconic statue, which stands atop Mount Corcovado, overlooks Rio and is a symbol of Christianity. The person who shared the footage described the experience as witnessing ‘something divine’. 🎥 Instagtam / cheezewino",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712775661743557902?description=1&music_info=1"
+    },
+    {
+     "id": "7712893684391480607",
+     "compte": "abcnews",
+     "url": "https://www.tiktok.com/@abcnews/video/7712893684391480607",
+     "vues": 3500000,
+     "jaime": 167900,
+     "commentaires": 2336,
+     "partages": 22400,
+     "date": 1795798021,
+     "texte": "Viral footage filmed off the coast of Ajman, United Arab Emirates, captures a cargo vessel appearing to float above the water due to a superior mirage, where temperature differences bend light in the atmosphere.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712893684391480607?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "1208202389",
+   "score": 5335,
+   "derniere_vue": 1795872859.423719,
+   "vues": 15600000,
+   "jaime": 3067900,
+   "commentaires": 17536,
+   "hashtags_viraux": [],
+   "medias": 8,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T14:34:34+01:00"
+  },
   {
    "titre": "Camion perd le contrôle en Ohio",
    "resume": "Un semi-truck a perdu le contrôle en essayant de tourner sur un échangeur en Ohio, dérapant entre deux sorties. Aucun blessé, le véhicule a été remorqué.",
@@ -2354,6 +2419,78 @@
    "vu_le": "2026-11-28T10:02:28+01:00"
   },
   {
+   "titre": "Grenada : saisie de plantes et bunker de cannabis",
+   "resume": "La police a saisi des plantes et découvert un bunker de cannabis à Grenade.",
+   "mots_cles": [
+    "Grenade",
+    "police",
+    "cannabis",
+    "saisie"
+   ],
+   "mots_cles_en": [
+    "Granada",
+    "police",
+    "cannabis",
+    "seizure"
+   ],
+   "hashtags": [
+    "grenade",
+    "cannabis",
+    "police"
+   ],
+   "insolite": 6,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712844214328970518",
+     "compte": "bbcnews",
+     "url": "https://www.tiktok.com/@bbcnews/video/7712844214328970518",
+     "vues": 1900000,
+     "jaime": 167000,
+     "commentaires": 1819,
+     "partages": 38100,
+     "date": 1795786469,
+     "texte": "The plantation stretched to approximately 180 square metres, with two rooms equipped with lighting, ventilation, and climate-control systems. A total of 1,954 plants were seized at the site. #Granada #Spain #Police #LawEnforcement #BBCNews",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712844214328970518?description=1&music_info=1"
+    },
+    {
+     "id": "7712753246883925287",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7712753246883925287",
+     "vues": 1300000,
+     "jaime": 147400,
+     "commentaires": 655,
+     "partages": 22300,
+     "date": 1795765315,
+     "texte": "😮 Un bunker géant de culture de c*nn*bis a été découvert près de de Grenade en Espagne sous... une aire de jeux pour enfants ! ⤴️",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712753246883925287?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "b163c8fe5f",
+   "score": 395,
+   "derniere_vue": 1795872859.423719,
+   "vues": 3200000,
+   "jaime": 314400,
+   "commentaires": 2474,
+   "hashtags_viraux": [
+    "granada",
+    "spain",
+    "police",
+    "lawenforcement",
+    "bbcnews"
+   ],
+   "medias": 7,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T14:34:34+01:00"
+  },
+  {
    "titre": "Brigade suspendue Chile : vents violents",
    "resume": "Un touriste allemand lutte pour rester debout sur un pont suspendu en Patagonie chilienne sous vents violents.",
    "mots_cles": [
@@ -2563,6 +2700,58 @@
    "medias": 10,
    "statut": "nouveau",
    "vu_le": "2026-11-25T02:05:25+01:00"
+  },
+  {
+   "titre": "Mamies et papis jouent à GTA",
+   "resume": "Des résidents seniors jouent à GTA dans une résidence.",
+   "mots_cles": [
+    "seniors",
+    "GTA",
+    "jeux vidéo",
+    "résidence"
+   ],
+   "mots_cles_en": [
+    "seniors",
+    "GTA",
+    "video games",
+    "retirement home"
+   ],
+   "hashtags": [
+    "seniors",
+    "gta",
+    "gaming"
+   ],
+   "insolite": 7,
+   "categorie": "people",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712936506985319719",
+     "compte": "konbini",
+     "url": "https://www.tiktok.com/@konbini/video/7712936506985319719",
+     "vues": 2600000,
+     "jaime": 277600,
+     "commentaires": 1830,
+     "partages": 120000,
+     "date": 1795807974,
+     "texte": "Qui a dit que les mamies et papis ne pouvaient pas jouer à GTA ? On a infiltré une résidence sénior et il s’y passe des trucs trèèèès chauds | Passion",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712936506985319719?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "c6c73fcc37",
+   "score": 340,
+   "derniere_vue": 1795872859.423719,
+   "vues": 2600000,
+   "jaime": 277600,
+   "commentaires": 1830,
+   "hashtags_viraux": [],
+   "medias": 7,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T14:34:34+01:00"
   },
   {
    "titre": "Chanteuse iranienne condamnée à 74 coups de fouet",
@@ -3660,6 +3849,63 @@
    "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
+   "titre": "Escalator saccadé à l'université bangladaise",
+   "resume": "Un escalator a commencé à se déplacer trop vite, obligeant les étudiants à sauter.",
+   "mots_cles": [
+    "escalator",
+    "accident",
+    "Bangladesh",
+    "BRAC"
+   ],
+   "mots_cles_en": [
+    "escalator",
+    "accident",
+    "Bangladesh",
+    "BRAC"
+   ],
+   "hashtags": [
+    "escalator",
+    "accident",
+    "bangladesh"
+   ],
+   "insolite": 6,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712510013171911949",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
+     "vues": 8400000,
+     "jaime": 542500,
+     "commentaires": 5569,
+     "partages": 40400,
+     "date": 1795708700,
+     "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712510013171911949?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "01ccb3782d",
+   "score": 240,
+   "derniere_vue": 1795872859.423719,
+   "vues": 8400000,
+   "jaime": 542500,
+   "commentaires": 5569,
+   "hashtags_viraux": [
+    "bangladesh",
+    "viral",
+    "escalator",
+    "hardnews",
+    "news"
+   ],
+   "medias": 1,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T14:34:34+01:00"
+  },
+  {
    "titre": "Gordon Ramsay pilote Top Gear",
    "resume": "Gordon Ramsay prend le volant sur Top Gear, accompagné de co-présentateurs non annoncés.",
    "mots_cles": [
@@ -4658,6 +4904,58 @@
    "vu_le": "2026-11-26T17:23:54+01:00"
   },
   {
+   "titre": "Femme condamnée pour pleurer sur banc",
+   "resume": "Une femme a été sanctionnée pour avoir pleuré sur un banc de parc.",
+   "mots_cles": [
+    "femme",
+    "sanction",
+    "banc",
+    "parc"
+   ],
+   "mots_cles_en": [
+    "woman",
+    "fine",
+    "bench",
+    "park"
+   ],
+   "hashtags": [
+    "femme",
+    "sanction",
+    "banc"
+   ],
+   "insolite": 4,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712836703819468045",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712836703819468045",
+     "vues": 1200000,
+     "jaime": 160500,
+     "commentaires": 2471,
+     "partages": 10900,
+     "date": 1795784800,
+     "texte": "A 31-year-old woman in Germany was fined €25 ($27) after sitting on a children’s playground bench and crying while overwhelmed by financial and academic pressures. Hana said she was speaking to her aunt when three municipal enforcement officers approached and issued the penalty because she was sitting there without a child. She said a simple warning would have been enough. The city defended the fi",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712836703819468045?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "791032957c",
+   "score": 127,
+   "derniere_vue": 1795872859.423719,
+   "vues": 1200000,
+   "jaime": 160500,
+   "commentaires": 2471,
+   "hashtags_viraux": [],
+   "medias": 8,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T14:34:34+01:00"
+  },
+  {
    "titre": "Gold price falls sharply",
    "resume": "Analysts discuss the recent decline in gold prices. Factors include market volatility and economic indicators.",
    "mots_cles": [
@@ -5513,58 +5811,6 @@
    "vu_le": "2026-11-27T20:06:45+01:00"
   },
   {
-   "titre": "Tanker pétrolier renversé à Gizeh",
-   "resume": "Un camion-citerne transportant des produits pétroliers s'est renversé à Gizeh, Égypte, provoquant un incendie mortel.",
-   "mots_cles": [
-    "tanker",
-    "Gizeh",
-    "Égypte",
-    "incendie"
-   ],
-   "mots_cles_en": [
-    "tanker",
-    "Giza",
-    "Egypt",
-    "fire"
-   ],
-   "hashtags": [
-    "tanker",
-    "giza",
-    "fire"
-   ],
-   "insolite": 6,
-   "categorie": "societe",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712401423127858471",
-     "compte": "leparisien",
-     "url": "https://www.tiktok.com/@leparisien/video/7712401423127858471",
-     "vues": 1300000,
-     "jaime": 122200,
-     "commentaires": 739,
-     "partages": 9738,
-     "date": 1795683391,
-     "texte": "Un camion-citerne transportant des produits pétroliers s'est renversé mercredi dans le gouvernorat de Gizeh, en Égypte, provoquant un violent incendie qui a fait au moins 31 morts et 21 blessés, selon les autorités égyptiennes. Le ministère égyptien du Pétrole avait indiqué plus tôt que le camion-citerne, exploité par une entreprise privée, avait fait une sortie de route et s’était écrasé avant d’",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712401423127858471?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "e232665fa4",
-   "score": 92,
-   "derniere_vue": 1795823010.0572684,
-   "vues": 1300000,
-   "jaime": 122200,
-   "commentaires": 739,
-   "hashtags_viraux": [],
-   "medias": 21,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-28T00:43:42+01:00"
-  },
-  {
    "titre": "Mouton handicapé apprend à se déplacer",
    "resume": "Un mouton de Dartmouth, Massachusetts, atteint de Cache Valley virus, apprend à utiliser un fauteuil roulant motorisé.",
    "mots_cles": [
@@ -5824,6 +6070,58 @@
    "statut": "utilise",
    "vu_le": "2026-11-25T09:59:33+01:00",
    "video_id": "20261125-225608-1"
+  },
+  {
+   "titre": "Tanker pétrolier renversé à Gizeh",
+   "resume": "Un camion-citerne a renversé, provoquant un incendie mortel à Gizeh.",
+   "mots_cles": [
+    "tanker",
+    "Gizeh",
+    "incendie",
+    "pétrole"
+   ],
+   "mots_cles_en": [
+    "tanker",
+    "Giza",
+    "fire",
+    "oil"
+   ],
+   "hashtags": [
+    "tanker",
+    "gizeh",
+    "incendie"
+   ],
+   "insolite": 8,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712401423127858471",
+     "compte": "leparisien",
+     "url": "https://www.tiktok.com/@leparisien/video/7712401423127858471",
+     "vues": 1300000,
+     "jaime": 125800,
+     "commentaires": 763,
+     "partages": 10100,
+     "date": 1795683391,
+     "texte": "Un camion-citerne transportant des produits pétroliers s'est renversé mercredi dans le gouvernorat de Gizeh, en Égypte, provoquant un violent incendie qui a fait au moins 31 morts et 21 blessés, selon les autorités égyptiennes. Le ministère égyptien du Pétrole avait indiqué plus tôt que le camion-citerne, exploité par une entreprise privée, avait fait une sortie de route et s’était écrasé avant d’",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712401423127858471?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "e232665fa4",
+   "score": 80,
+   "derniere_vue": 1795872859.423719,
+   "vues": 1300000,
+   "jaime": 125800,
+   "commentaires": 763,
+   "hashtags_viraux": [],
+   "medias": 8,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T00:43:42+01:00"
   },
   {
    "titre": "Policier vole vélo à cycliste à Toulouse",
@@ -6978,6 +7276,56 @@
    "medias": 2,
    "statut": "nouveau",
    "vu_le": "2026-11-25T09:59:33+01:00"
+  },
+  {
+   "titre": "Phénomène météorologique capturé",
+   "resume": "Un phénomène météorologique a été filmé par un réalisateur brésilien.",
+   "mots_cles": [
+    "phénomène météorologique",
+    "vidéo",
+    "Brésil"
+   ],
+   "mots_cles_en": [
+    "weather phenomenon",
+    "video",
+    "Brazil"
+   ],
+   "hashtags": [
+    "météo",
+    "phénomène",
+    "brésil"
+   ],
+   "insolite": 6,
+   "categorie": "science",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712817096714997025",
+     "compte": "hugodecrypte",
+     "url": "https://www.tiktok.com/@hugodecrypte/video/7712817096714997025",
+     "vues": 1200000,
+     "jaime": 264200,
+     "commentaires": 1496,
+     "partages": 14800,
+     "date": 1795780177,
+     "texte": "Ce phénomène météorologique a été capturé en vidéo par le réalisateur brésilien Marcio Amaro.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712817096714997025?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "43a468a3c3",
+   "score": 40,
+   "derniere_vue": 1795872859.423719,
+   "vues": 1200000,
+   "jaime": 264200,
+   "commentaires": 1496,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T14:34:34+01:00"
   },
   {
    "titre": "Leandro Paredes s’effondre après victoire Copa Sudamericana",
