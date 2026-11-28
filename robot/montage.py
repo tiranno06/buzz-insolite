@@ -361,6 +361,15 @@ def monter_anime(script, dossier, sortie, suivi=None):
             mots.append(dict(m=m, d=round(debuts[i] + tm[k][0], 3), f=round(debuts[i] + tm[k][1], 3),
                              cle=V.norm(m) in cles or bool(re.search(r"\d", m))))
     sb = realisateur.pour_rendu(anim, script, debuts, mots, total, script.get("source_courte", ""))
+    # (28/11) APERÇU EN DIRECT sur le site : le storyboard part tout de suite (avant le rendu) ; le site le fait jouer dans
+    # le navigateur avec le même moteur 3D, à la version exacte du code (GITHUB_SHA)
+    sb["moteur"] = os.environ.get("GITHUB_SHA", "main")
+    script["_storyboard"] = sb
+    try:
+        from . import avancement
+        avancement.publier_storyboard(sb)
+    except Exception:
+        pass
     images = os.path.join(dossier, "anime.mp4")
     def _cles_texte(x):                               # clés mêlées (3 et "3") : json ne sait pas les trier
         if isinstance(x, dict):

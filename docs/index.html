@@ -62,6 +62,9 @@ main, .carte, td, .petit, .muted { overflow-wrap: anywhere; }   /* longs message
 .btn.primaire { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
 .btn.ok { background: var(--ok); color: #fff; border-color: var(--ok); }
 .btn.mini { padding: 5px 10px; min-height: 34px; font-size: 13px; }
+.valider { display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-bottom: 10px; grid-column: 1 / -1; }
+.btn.grand { min-height: 56px; font-size: 17px; border-radius: 14px; }
+.btn.grand.vert { background: #1f8f4e; border-color: #1f8f4e; color: #fff; }
 .btn:disabled { opacity: .5; cursor: default; }
 /* Interrupteurs (comme jt-auto, demande de l'auteur du 25/11) : VIDES tant qu'ils ne sont pas activés, COLORÉS seulement
    une fois activés ; « en cours » pendant que l'ordre part au robot */
@@ -551,7 +554,13 @@ function carteVideo(v) {
   const boutons = boutonsVideo(v);
   const perdus = (v.extraits_perdus ? `<p class="petit"><b>🎞️ ${v.extraits_perdus} extrait(s) de l'événement perdu(s)</b> : publication bloquée, à refaire.</p>` : "")
     + ((v.regles_non_respectees || []).length ? `<p class="petit"><b>📏 Règle(s) non respectée(s)</b> (publication bloquée) : ${v.regles_non_respectees.map(esc).join(" ; ")}</p>` : "");
-  return `<div class="card video">
+  // (28/11) VALIDATION EN UN GESTE depuis le téléphone : deux grands boutons en tête de la carte d'une vidéo à valider
+  const aValider = ["nouvelle", "a_verifier"].includes(v.statut) && !attente(v.id);
+  const geste = aValider ? `<div class="valider">
+      <button class="btn grand vert" data-a="a_publier" data-id="${v.id}">✅ Valider et publier</button>
+      <button class="btn grand" data-a="voir_refaire" data-id="${v.id}">🔁 À refaire</button></div>` : "";
+  const apercu = v.apercu ? `<a class="btn mini" href="${lienApercu(v.apercu)}" target="_blank" rel="noopener">👁️ Aperçu 3D</a>` : "";
+  return `<div class="card video">${geste}
     <button class="vignette" style="background-image:url('${mini}')" data-play="${esc(v.url)}" aria-label="Regarder"></button>
     <div>
       <div class="rang"><span class="tag ${v.statut}">${LIB[v.statut] || v.statut}</span><span class="muted petit">${quand(v.cree_le)} · ${Math.round(v.duree || 0)} s</span>
@@ -560,7 +569,7 @@ function carteVideo(v) {
       <h3 style="margin-top:6px">${esc(v.titre)}</h3>
       <div class="muted petit">Sujet : ${esc(v.sujet)}${v.buzz?.vues ? ` · 👁️ ${nb(v.buzz.vues)} · 💬 ${nb(v.buzz.commentaires)}` : ""}</div>
       <div class="desc">${esc(v.description)}\n\n${esc(v.question)}\n\n${esc((v.hashtags || []).join(" "))}</div>
-      ${perdus}<div class="rang">${boutons}<button class="btn mini" data-a="copier" data-id="${v.id}">📋 Copier la description</button>
+      ${perdus}<div class="rang">${boutons}${apercu}<button class="btn mini" data-a="copier" data-id="${v.id}">📋 Copier la description</button>
         ${v.url ? `<a class="btn mini" href="${esc(v.url)}" target="_blank" rel="noopener">⬇️ Télécharger</a>` : ""}</div>
       ${v.echec_publication ? `<p class="petit" style="color:var(--accent)">❌ ${esc(v.echec_publication)}</p>` : ""}
       ${bulletin(v)}
@@ -703,18 +712,24 @@ $("#r-buffer").onclick = () => commande("buffer_test", "", "", "Test envoyé : l
 
 // ---------------- avancement de la fabrication (une barre par machine) ----------------
 let suiviActif = false, demandeLe = 0, avTaches = {}, avLu = 0, avMinuteur = 0; const vuesFinies = new Set(), avCache = {};
+let avStoryboards = new Set();
+const lienApercu = src => `apercu.html?sb=${encodeURIComponent(src)}&repo=${encodeURIComponent(conn().repo || "")}`;
 async function lireAvancements() {
   const c = conn(); if (!c.repo || !c.token) return [];
   const h = { Authorization: `Bearer ${c.token}` };
   const r = await fetch(`https://api.github.com/repos/${c.repo}/contents/?ref=avancement&t=${Date.now()}`, { headers: { ...h, Accept: "application/vnd.github+json" } });
   if (!r.ok) return [];
-  const fichiers = (await r.json()).filter(f => f.name.endsWith(".json"));
+  const tous = (await r.json()).filter(f => f.name.endsWith(".json"));
+  // storyboards des vidéos en construction (« sb-… », 28/11) : pas des barres ; ils donnent le bouton « 👁️ Aperçu 3D »
+  avStoryboards = new Set(tous.filter(f => f.name.startsWith("sb-")).map(f => f.name.slice(3)));
+  const fichiers = tous.filter(f => !f.name.startsWith("sb-"));
   // Relu toutes les 5 s (demande de l'auteur du 25/11) : seuls les fichiers qui ont CHANGÉ sont retéléchargés (mémoire par
   // empreinte « sha »), pour rester loin de la limite de GitHub (5 000 demandes par heure).
   const out = await Promise.all(fichiers.map(f => avCache[f.name]?.sha === f.sha ? avCache[f.name].d :
     fetch(`https://api.github.com/repos/${c.repo}/contents/${f.name}?ref=avancement&t=${Date.now()}`,
       { headers: { ...h, Accept: "application/vnd.github.raw+json" } }).then(x => x.ok ? x.json() : null)
-      .then(d => { if (d) avCache[f.name] = { sha: f.sha, d }; return d; }).catch(() => null)));
+      .then(d => { if (d) avCache[f.name] = { sha: f.sha, d }; return d; }).catch(() => null)
+      .then(d => d && Object.assign(d, { _fichier: f.name }))));
   // Une fabrication ANNULÉE ou plantée sur GitHub n'a pas pu effacer sa barre : on ne garde que celles dont la tâche GitHub
   // tourne vraiment (bug du 25/11 : 11 « en fabrication » affichées pour 4 réelles). Relu toutes les 30 s seulement.
   if (!avTaches.le || Date.now() - avTaches.le > 30e3) avTaches = { le: Date.now(), ids: await tachesActives(c, h) };
@@ -756,7 +771,8 @@ function barre(a) {
   const fini = a.etat !== "en_cours";
   return `<div style="margin-bottom:10px"><div class="rang"><b>${fini ? (a.etat === "fini" ? "✅ " : "⚠️ ") : "⏳ "}${esc(a.etape)}</b>
     <span class="muted petit">${fini ? "" : `${Math.round(a.pourcent)} % · encore ~${Math.max(1, Math.round(a.reste_s / 60))} min${finPrevue(a)}`}</span></div>
-    <div class="barre"><div style="width:${a.pourcent || 0}%"></div></div><div class="muted petit">🤖 machine ${esc(a.machine || "1")} · ${esc(a.titre || "")}</div></div>`;
+    <div class="barre"><div style="width:${a.pourcent || 0}%"></div></div><div class="muted petit">🤖 machine ${esc(a.machine || "1")} · ${esc(a.titre || "")}</div>
+    ${!fini && avStoryboards.has(a._fichier) ? `<a class="btn mini" style="margin-top:6px" href="${lienApercu(`https://raw.githubusercontent.com/${conn().repo}/avancement/sb-${a._fichier}`)}" target="_blank" rel="noopener">👁️ Aperçu 3D (pendant le rendu)</a>` : ""}</div>`;
 }
 async function suivre(nouvelle) {
   if (nouvelle) demandeLe = Date.now();
@@ -837,6 +853,11 @@ document.addEventListener("click", async e => {
   if (a === "refaire") {
     creer({ refaire: id, etape: $("#re-" + id).value, remarque: ($("#rm-" + id).value || "").trim().slice(0, 300), origine: "refaire" },
       "Le robot refait la vidéo en corrigeant (environ 20 à 40 min).");
+    return;
+  }
+  if (a === "voir_refaire") {                                // « 🔁 À refaire » : ouvre le formulaire et place le curseur
+    const d = b.closest(".card")?.querySelector(`#re-${CSS.escape(id)}`)?.closest("details");
+    if (d) { d.open = true; d.scrollIntoView({ behavior: "smooth", block: "center" }); setTimeout(() => $("#rm-" + id)?.focus(), 350); }
     return;
   }
   if (a === "lien") { const l = prompt("Lien de la vidéo sur TikTok :"); if (l) commande("publiee", id, l.trim()); return; }

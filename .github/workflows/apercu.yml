@@ -1,0 +1,25 @@
+name: Copie du moteur pour l'aperçu 3D
+# (28/11) À chaque changement du moteur de rendu, son code est recopié dans docs/rendu/ pour la page « Aperçu 3D » du site.
+on:
+  push:
+    branches: [main]
+    paths: ["robot/rendu/*.js", "robot/rendu/page.html", "robot/rendu/vendor/**", "outils/copier_moteur.sh"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: apercu-moteur
+jobs:
+  copier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copier le moteur et l'enregistrer s'il a changé
+        run: |
+          bash outils/copier_moteur.sh
+          git config user.name robot-buzz
+          git config user.email robot-buzz@users.noreply.github.com
+          git add docs/rendu
+          if git diff --cached --quiet; then echo "rien de nouveau"; exit 0; fi
+          git commit -q -m "Aperçu 3D : copie du moteur"
+          for i in 1 2 3 4; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep $((i * 5)); done

@@ -895,6 +895,23 @@ non commercial), TRELLIS.2 (carte graphique 24 Go), F5-TTS, Higgs Audio, VibeVoi
   danger, portiques d'autoroute (tous les 180 m), lampadaires, piles de pont, bâtiments industriels, cheminées, cuves,
   château d'eau, éoliennes (campagne), panneaux solaires ; tous FIXES (physique.py).
 
+- **Rendu RÉPARTI** (`realisateur._rendre_reparti`, `.github/workflows/rendu.yml`, réglage `video.rendu_machines` 4) : le
+  storyboard va dans une Release temporaire `rendu-…`, 3 machines GitHub (gratuites, dépôt public) dessinent chacune leur
+  morceau pendant que la machine de création dessine le 1er ; morceaux recollés SANS réencodage (coupes sur des images
+  entières : 435 images = 14,5 s × 30, vérifié) ; morceau en retard (temps du 1er × 2,5 + 5 min) ou en échec = dessiné sur
+  place ; Release supprimée ensuite ; tout souci = rendu entier sur place comme avant.
+- **3D aux 2/3 de la résolution** (`video.echelle_3d` 0,6667, `RENDU.setPixelRatio`) puis agrandie dans la page : textes nets,
+  rendu 23 % plus rapide (mesuré : 62 → 48 s).
+- **Aperçu 3D en direct sur le site** (`docs/apercu.html`) : le storyboard part sur la branche avancement AVANT le rendu
+  (`avancement.publier_storyboard`, fichier `sb-…`), puis est rangé avec la vidéo (`docs/donnees/storyboards/<id>.json`,
+  `principal.ranger_apercu`, seuls ceux des vidéos présentes). La page joue la reconstitution dans le navigateur (sans son) :
+  CODE du moteur copié dans `docs/rendu/` par `apercu.yml` (`outils/copier_moteur.sh`), modèles / polices / cartes lus sur
+  raw.githubusercontent.com à la version de la vidéo (`sb.moteur` = GITHUB_SHA) ; jsDelivr ÉCARTÉ (refuse les dépôts de plus
+  de 50 Mo) ; tuiles satellite prises directement chez la NASA (`TUILES_DIRECTES`). Boutons « 👁️ Aperçu 3D » sur la barre
+  d'avancement et sur chaque vidéo.
+- **Validation en un geste** : en tête de chaque vidéo à valider, « ✅ Valider et publier » (vert, grand) et « 🔁 À refaire »
+  (ouvre le formulaire et place le curseur).
+
 ## Code du cadreur (28/11, l'auteur après la r7 : « micro-changements de plan inutiles », « plus de plan serré »)
 Mesuré sur la r7 : 90 sauts d'image en 60 s (dont 40 en 2 s pendant « la route rouverte »), plans de 1,2 s, plan à 25 m
 sur une petite voiture de la circulation. Règles pour TOUTES les reconstitutions :

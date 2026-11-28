@@ -1,0 +1,70 @@
+name: Morceau de rendu 3D
+run-name: "Rendu ${{ inputs.etiquette }} · morceau ${{ inputs.morceau }}"
+
+# (28/11, choix de l'auteur dans la recherche d'outils : « 1 ») RENDU RÉPARTI : la machine qui fabrique une vidéo dépose son
+# storyboard dans une Release temporaire, puis lance cette tâche une fois par morceau de la vidéo. Chaque machine dessine
+# SON morceau (mêmes réglages : les morceaux se recollent sans réencodage) et le dépose dans la même Release. Le dépôt est
+# public : les machines de GitHub sont gratuites, 20 en même temps au plus.
+on:
+  workflow_dispatch:
+    inputs:
+      etiquette:
+        description: "Release temporaire qui contient storyboard.json"
+        required: true
+      morceau:
+        description: "Numéro du morceau"
+        required: true
+      debut:
+        description: "Début du morceau (secondes)"
+        required: true
+      fin:
+        description: "Fin du morceau (secondes)"
+        required: true
+
+permissions:
+  contents: write                # lire le storyboard et déposer le morceau dans la Release temporaire
+
+concurrency:
+  group: rendu-${{ inputs.etiquette }}-${{ inputs.morceau }}
+
+jobs:
+  morceau:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrouver ffmpeg et les tuiles de carte déjà téléchargés
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            ~/paquets-ffmpeg
+            ~/.cache/buzz-insolite
+          key: outils-v1-${{ hashFiles('requirements.txt') }}
+      - name: Installer ffmpeg
+        timeout-minutes: 25
+        run: bash outils/installer_ffmpeg.sh
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Retrouver le navigateur du rendu animé
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('robot/rendu/package.json') }}
+      - name: Installer le rendu animé
+        run: |
+          npm install --prefix robot/rendu --no-audit --no-fund --silent
+          sudo rm -f /etc/apt/sources.list.d/microsoft-prod.list /etc/apt/sources.list.d/microsoft-prod.sources || true
+          for i in 1 2 3; do npx --prefix robot/rendu playwright install --with-deps chromium && break; sleep 20; done
+          npx --prefix robot/rendu playwright install chromium
+          sudo apt-get install -y -qq fonts-noto-color-emoji >/dev/null
+      - name: Dessiner le morceau
+        run: |
+          set -e
+          mkdir -p /tmp/rendu
+          gh release download "${{ inputs.etiquette }}" --pattern storyboard.json --dir /tmp/rendu
+          node robot/rendu/rendre.mjs /tmp/rendu/storyboard.json "/tmp/rendu/morceau-${{ inputs.morceau }}.mp4" \
+            --debut "${{ inputs.debut }}" --fin "${{ inputs.fin }}"
+          gh release upload "${{ inputs.etiquette }}" "/tmp/rendu/morceau-${{ inputs.morceau }}.mp4" --clobber

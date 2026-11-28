@@ -59,7 +59,9 @@ REGLAGES_DEFAUT = {
     },
     "video": {"style": "anime", "voix": "chatterbox-bernard", "vitesse": 0.80, "duree_min": 62, "musique": True, "bruitages": False, "transitions": False, "carte": True,
               "images_generiques": False,
-              "citations": True, "citations_nombre": 12, "citations_photos": 6},  # courtes citations des vidéos d'origine (25/11)           # banques d'images (Pixabay…) : coupées, seulement les vrais sujets
+              "citations": True, "citations_nombre": 12, "citations_photos": 6,
+              "rendu_machines": 4,         # (28/11) rendu 3D réparti sur N machines GitHub (1 = tout sur la même machine)
+              "echelle_3d": 0.6667},       # 3D calculée aux 2/3 de la résolution puis agrandie (textes toujours nets)  # courtes citations des vidéos d'origine (25/11)           # banques d'images (Pixabay…) : coupées, seulement les vrais sujets
     "publication": {"mode": "cocher",                 # cocher = tu coches « À publier » ; auto = tout part sans toi
                     "auto": True, "heures": ["12:30", "19:00"], "compte": "",
                     "chaine": "",                     # pseudo TikTok de la chaîne (statistiques)

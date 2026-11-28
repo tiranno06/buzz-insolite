@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aperçu 3D</title>
+<!-- (28/11, choix de l'auteur dans la recherche d'outils) APERÇU EN DIRECT : la reconstitution est jouée ICI, dans le navigateur,
+     avec le même moteur 3D que les vraies vidéos (pris sur jsDelivr à la version exacte du code qui l'a fabriquée). On voit la
+     scène sans attendre la fin du rendu ; le son n'est pas joué (seulement les images et les sous-titres). -->
+<style>
+  :root { --fond: #0b1222; --carte: #16213a; --texte: #f4f6fb; --muted: #9aa6bd; --accent: #ffd600; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--fond); color: var(--texte); font: 15px/1.4 system-ui, sans-serif; }
+  #haut { display: flex; align-items: center; gap: 10px; padding: 10px 16px; }
+  #haut a { color: var(--accent); text-decoration: none; font-weight: 700; }
+  #titre { font-weight: 700; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #cadre { position: relative; margin: 0 auto; overflow: hidden; border-radius: 14px; background: #000; }
+  #cadre iframe { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; border: 0; transform-origin: 0 0; }
+  #etat { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 20px; color: var(--muted); z-index: 2; background: rgba(11,18,34,.85); }
+  #barre { display: flex; align-items: center; gap: 10px; padding: 10px 16px 16px; max-width: 560px; margin: 0 auto; }
+  button { background: var(--carte); color: var(--texte); border: 1px solid #2c3a5c; border-radius: 10px; padding: 10px 14px; font-size: 16px; min-width: 48px; min-height: 44px; }
+  #temps { font-variant-numeric: tabular-nums; color: var(--muted); min-width: 92px; text-align: right; }
+  progress { flex: 1; height: 10px; accent-color: var(--accent); }
+  .petit { color: var(--muted); font-size: 13px; text-align: center; padding: 0 16px 16px; }
+</style>
+</head>
+<body>
+<div id="haut"><a href="./">← Site</a><span id="titre">Aperçu 3D</span></div>
+<div id="cadre"><iframe id="f" title="Reconstitution 3D"></iframe><div id="etat">Chargement de la reconstitution…</div></div>
+<div id="barre"><button id="lecture" aria-label="Pause">⏸</button><button id="rejouer" aria-label="Rejouer">↺</button>
+  <progress id="pos" max="1" value="0"></progress><span id="temps">0 s</span></div>
+<p class="petit">Aperçu sans le son, dessiné par ton téléphone : la vraie vidéo est plus fluide. Ce que tu vois ici est exactement
+  la reconstitution que le robot est en train de filmer.</p>
+<script type="module">
+const q = new URLSearchParams(location.search), $ = s => document.querySelector(s);
+const etat = t => { $("#etat").style.display = t ? "grid" : "none"; $("#etat").textContent = t || ""; };
+const f = $("#f");
+function ajuster() {                       // la page 1080 × 1920 réduite à la taille de l'écran
+  const l = Math.min(window.innerWidth - 32, (window.innerHeight - 150) * 9 / 16, 560), k = l / 1080;
+  $("#cadre").style.width = l + "px"; $("#cadre").style.height = l * 16 / 9 + "px"; f.style.transform = `scale(${k})`;
+}
+addEventListener("resize", ajuster); ajuster();
+let SB, t0 = 0, pause = false, tPause = 0;
+async function demarrer() {
+  try {
+    etat("Chargement du storyboard…");
+    const src = q.get("sb");
+    if (!src) return etat("Aucun storyboard indiqué.");
+    SB = await (await fetch(src, { cache: "no-store" })).json();
+    $("#titre").textContent = (SB.titre || "Aperçu 3D").replace(/\*\*/g, "");
+    const repo = q.get("repo") || "tiranno06/buzz-insolite";
+    // le CODE du moteur vient du site (docs/rendu, copié par apercu.yml) ; les modèles 3D, polices et cartes, lourds, sont lus
+    // directement sur GitHub à la version exacte de la vidéo (jsDelivr refuse les dépôts de plus de 50 Mo)
+    const actifs = `https://raw.githubusercontent.com/${repo}/${SB.moteur || "main"}/robot/rendu/`;
+    const code = new URL("rendu/", location.href).href;
+    etat("Chargement du moteur 3D…");
+    let html = await (await fetch(code + "page.html", { cache: "no-store" })).text();
+    html = html.replaceAll('"./vendor/', `"${code}vendor/`).replace('src="./moteur.js"', `src="${code}moteur.js"`)
+               .replace("<head>", `<head><base href="${actifs}"><script>globalThis.TUILES_DIRECTES = true;<\/script>`);
+    f.srcdoc = html;
+    await new Promise(ok => f.onload = ok);
+    for (let i = 0; i < 200 && typeof f.contentWindow.charger !== "function"; i++) await new Promise(ok => setTimeout(ok, 100));
+    etat("Préparation des décors, des personnages et des véhicules…");
+    await f.contentWindow.charger(SB);
+    etat(""); t0 = performance.now(); pause = false; boucle();
+  } catch (e) { etat("Aperçu impossible : " + (e.message || e)); }
+}
+function boucle() {
+  if (pause) return;
+  const t = (performance.now() - t0) / 1000, d = SB.duree || 60;
+  if (t >= d) { $("#lecture").textContent = "▶"; pause = true; tPause = d; return; }
+  try { f.contentWindow.rendre(t); } catch {}
+  $("#pos").value = t / d; $("#temps").textContent = `${t.toFixed(0)} / ${d.toFixed(0)} s`;
+  requestAnimationFrame(boucle);
+}
+$("#lecture").onclick = () => {
+  if (pause) { if (tPause >= (SB?.duree || 0)) return demarrer(); pause = false; t0 = performance.now() - tPause * 1000; $("#lecture").textContent = "⏸"; boucle(); }
+  else { pause = true; tPause = (performance.now() - t0) / 1000; $("#lecture").textContent = "▶"; }
+};
+$("#rejouer").onclick = () => { pause = true; $("#lecture").textContent = "⏸"; demarrer(); };  // (le feu se rejoue depuis le début)
+demarrer();
+</script>
+</body>
+</html>

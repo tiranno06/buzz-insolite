@@ -726,16 +726,94 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
     return sb
 
 
-def rendre(sb, sortie, journal=print):
-    """Lance le rendu (Chromium + ffmpeg) ; vidéo SANS son, 30 images par seconde."""
-    fichier = sortie + ".json"
-    with open(fichier, "w", encoding="utf-8") as f:
-        json.dump(sb, f, ensure_ascii=False)
-    r = subprocess.run(["node", os.path.join(RACINE, "robot", "rendu", "rendre.mjs"), fichier, sortie],
-                       capture_output=True, text=True, timeout=3 * 3600)
+def _rendre_local(fichier, sortie, journal, debut=None, fin=None):
+    cmd = ["node", os.path.join(RACINE, "robot", "rendu", "rendre.mjs"), fichier, sortie]
+    if debut is not None:
+        cmd += ["--debut", f"{debut:.4f}", "--fin", f"{fin:.4f}"]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=3 * 3600)
     for ligne in (r.stdout or "").splitlines():
         if "terminé" in ligne:
             journal(f"  {ligne}")
     if r.returncode or not os.path.exists(sortie):
         raise RuntimeError(f"rendu animé impossible : {(r.stderr or r.stdout)[-400:]}")
     return sortie
+
+
+def _gh(*args, timeout=120):
+    return subprocess.run(["gh", *args], capture_output=True, text=True, timeout=timeout)
+
+
+def _rendre_reparti(fichier, sortie, n, duree, journal):
+    """(28/11) RENDU RÉPARTI sur n machines GitHub (gratuites : dépôt public) : storyboard déposé dans une Release
+    temporaire, une tâche rendu.yml par morceau, le 1er morceau dessiné ici pendant ce temps ; morceaux recollés SANS
+    réencodage ; un morceau en retard ou en échec est dessiné ici (la vidéo est toujours terminée)."""
+    import secrets
+    import shutil
+    import time
+    ips = 30
+    images = int(round(duree * ips))
+    bornes = [round(images * k / n) / ips for k in range(n + 1)]          # coupes sur des images entières
+    tag = f"rendu-{time.strftime('%Y%m%d-%H%M%S')}-{secrets.token_hex(3)}"
+    dossier = os.path.join(os.path.dirname(sortie) or ".", tag)
+    os.makedirs(dossier, exist_ok=True)
+    sbj = os.path.join(dossier, "storyboard.json")
+    shutil.copy(fichier, sbj)
+    r = _gh("release", "create", tag, sbj, "--prerelease", "--title", "rendu temporaire", "--notes", "morceaux d'un rendu en cours")
+    if r.returncode:
+        raise RuntimeError(f"Release temporaire impossible : {r.stderr[-200:]}")
+    try:
+        lances = []
+        for k in range(1, n):
+            r = _gh("workflow", "run", "rendu.yml", "-f", f"etiquette={tag}", "-f", f"morceau={k}",
+                    "-f", f"debut={bornes[k]:.4f}", "-f", f"fin={bornes[k + 1]:.4f}")
+            if not r.returncode:
+                lances.append(k)
+        journal(f"  rendu réparti : {len(lances) + 1} machine(s) pour {duree:.0f} s de vidéo")
+        t0 = time.time()
+        morceaux = {0: _rendre_local(fichier, os.path.join(dossier, "morceau-0.mp4"), journal, bornes[0], bornes[1])}
+        attente = max(600.0, (time.time() - t0) * 2.5 + 300)              # le temps du 1er morceau ×2,5 (+ installation)
+        while time.time() - t0 < attente and len(morceaux) < n:
+            r = _gh("release", "view", tag, "--json", "assets")
+            noms = {a["name"] for a in (json.loads(r.stdout).get("assets") if not r.returncode else [])}
+            for k in range(1, n):
+                if k not in morceaux and f"morceau-{k}.mp4" in noms:
+                    d = _gh("release", "download", tag, "--pattern", f"morceau-{k}.mp4", "--dir", dossier, "--clobber", timeout=600)
+                    if not d.returncode and os.path.exists(os.path.join(dossier, f"morceau-{k}.mp4")):
+                        morceaux[k] = os.path.join(dossier, f"morceau-{k}.mp4")
+            if len(morceaux) < n:
+                time.sleep(20)
+        for k in range(1, n):                                            # en retard ou en échec : dessiné ici
+            if k not in morceaux:
+                journal(f"  morceau {k} non reçu : dessiné sur cette machine")
+                morceaux[k] = _rendre_local(fichier, os.path.join(dossier, f"morceau-{k}.mp4"), journal, bornes[k], bornes[k + 1])
+        liste = os.path.join(dossier, "liste.txt")
+        with open(liste, "w", encoding="utf-8") as f:
+            f.writelines(f"file '{os.path.abspath(morceaux[k])}'\n" for k in range(n))
+        r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", liste, "-c", "copy",
+                            "-movflags", "+faststart", sortie], capture_output=True, text=True)
+        if r.returncode or not os.path.exists(sortie):
+            raise RuntimeError(f"morceaux impossibles à recoller : {r.stderr[-200:]}")
+        journal(f"  rendu réparti terminé en {time.time() - t0:.0f} s")
+        return sortie
+    finally:
+        _gh("release", "delete", tag, "--yes", "--cleanup-tag")
+
+
+def rendre(sb, sortie, journal=print):
+    """Lance le rendu (Chromium + ffmpeg) ; vidéo SANS son, 30 images par seconde. Sur GitHub, réparti sur plusieurs
+    machines (réglage video.rendu_machines) ; en cas de souci, tout est dessiné sur cette machine."""
+    from .commun import reglages
+    V_ = reglages()["video"]
+    sb = dict(sb, echelle_3d=float(V_.get("echelle_3d") or 0.6667))
+    fichier = sortie + ".json"
+    with open(fichier, "w", encoding="utf-8") as f:
+        json.dump(sb, f, ensure_ascii=False)
+    n = max(1, min(8, int(V_.get("rendu_machines") or 1)))
+    duree = float(sb.get("duree") or 0)
+    if n > 1 and duree >= 20 and os.environ.get("GITHUB_ACTIONS") and os.environ.get("GH_TOKEN") \
+            and any(s.get("type") == "3d" for s in sb.get("scenes") or []):
+        try:
+            return _rendre_reparti(fichier, sortie, n, duree, journal)
+        except Exception as e:                                         # secours : tout ici, comme avant
+            journal(f"  rendu réparti impossible ({str(e)[:120]}) : rendu sur cette machine")
+    return _rendre_local(fichier, sortie, journal)

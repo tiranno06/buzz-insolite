@@ -571,6 +571,8 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
 
     mode = R["publication"]["mode"]
     articles_ = E["articles"]
+    if script.get("_storyboard"):
+        STORYBOARDS[vid] = script["_storyboard"]
     return dict(id=vid, tag=f"v-{vid}", url=E["url"], titre=script["titre"], accroche=script.get("accroche", ""),
                 sujet_id=sujet["id"], sujet=sujet["titre"], buzz={k: sujet.get(k) for k in ("vues", "jaime", "commentaires", "score")},
                 description=montage.affichable(script.get("description", "")), question=montage.affichable(script.get("question", "")),
@@ -588,6 +590,27 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 durees=E.get("durees", {}), refaite=E.get("refaite"),
                 statut="a_verifier" if bulletin["graves_restants"] else
                        "a_publier" if (mode == "auto" and script.get("verifie")) else "nouvelle")
+
+
+STORYBOARDS = {}                                       # id de vidéo → storyboard (aperçu en direct sur le site)
+
+
+def ranger_apercu(v, file):
+    """(28/11) Storyboard de la vidéo rangé dans docs/donnees/storyboards/<id>.json : le site le fait jouer dans le navigateur
+    (« 👁️ Aperçu 3D »). Seuls ceux des vidéos encore dans la file sont gardés (le dépôt ne grossit pas sans fin)."""
+    import json as _json
+    dossier = os.path.join(os.path.dirname(MINIATURES), "donnees", "storyboards")
+    sb = STORYBOARDS.get(v["id"])
+    if sb:
+        os.makedirs(dossier, exist_ok=True)
+        with open(os.path.join(dossier, f"{v['id']}.json"), "w", encoding="utf-8") as f:
+            _json.dump(sb, f, ensure_ascii=False, separators=(",", ":"))
+        v["apercu"] = f"donnees/storyboards/{v['id']}.json"
+    if os.path.isdir(dossier):
+        gardes = {x["id"] for x in file.get("videos") or []}
+        for nom in os.listdir(dossier):
+            if nom.endswith(".json") and nom[:-5] not in gardes:
+                os.remove(os.path.join(dossier, nom))
 
 
 def scenes_de(ph, mini=5.0, maxi=10.0):
@@ -804,6 +827,7 @@ def creer(nombre=1, sujet_id="", libre="", journal=print, format_="buzz", attend
         def appliquer(v=v, s=s):
             file = lire("file.json") or {"videos": []}
             file["videos"].insert(0, v)
+            ranger_apercu(v, file)
             ecrire_donnees("file.json", file)
             _marquer_sujet(s["id"], "utilise", v["id"], ecrire_seul=True)
             noter(f"🎬 Nouvelle vidéo « {v['titre']} » ({v['duree']:.0f} s, {v['ecrans_illustres']} écrans illustrés)"
@@ -881,6 +905,7 @@ def refaire_video(vid, etape="auto", remarque="", journal=print):
         k = next((i for i, x in enumerate(F["videos"]) if x["id"] == vid), 0)
         F["videos"] = [x for x in F["videos"] if x["id"] != vid]
         F["videos"].insert(k, nv)
+        ranger_apercu(nv, F)
         ecrire_donnees("file.json", F)
         vieille = os.path.join(MINIATURES, f"{vid}.jpg")
         if os.path.exists(vieille):

@@ -93,7 +93,10 @@ function tuile(fond, z, x, y) {
   if (!TUILES.has(cle)) {
     const im = new Image(), { couche, ext } = SAT[fond];
     im._pret = new Promise(ok => { im.onload = ok; im.onerror = ok; });
-    im.src = `/tuile/${couche}/${z}/${y}/${x}.${ext}`;
+    // (28/11) aperçu en direct sur le site : pas de serveur local, les tuiles viennent directement de la NASA (GIBS)
+    im.src = globalThis.TUILES_DIRECTES
+      ? `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/${couche}/default/${couche === "VIIRS_Black_Marble" ? "2016-01-01/" : ""}GoogleMapsCompatible_Level8/${z}/${y}/${x}.${ext}`
+      : `/tuile/${couche}/${z}/${y}/${x}.${ext}`;
     TUILES.set(cle, im);
   }
   return TUILES.get(cle);
@@ -552,6 +555,7 @@ function soustitres(t) {
 }
 
 window.charger = async sb => {
+  globalThis.ECHELLE_3D = sb.echelle_3d ?? 2 / 3;          // 3D aux 2/3 de la résolution (vitesse, 28/11)
   SB = sb;
   $(".lieu").textContent = sb.lieu_date || "";
   $("#titre").innerHTML = marques(sb.titre || "");

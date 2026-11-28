@@ -217,11 +217,24 @@ def attendre_son_tour(limite, journal=print, attente_max_min=200):
         time.sleep(30)
 
 
-def _pousser(texte):
+def publier_storyboard(sb):
+    """(28/11) Le storyboard de la vidéo en construction, pour l'APERÇU EN DIRECT du site (fichier « sb-… » à part : le
+    fichier d'avancement, relu toutes les 5 s, reste léger)."""
+    if os.environ.get("GITHUB_ACTIONS") != "true" or not _etat:
+        return
+    d = dict(sb, maj=iso(), etat="storyboard", id=_etat.get("id", ""), titre_video=_etat.get("titre", ""))
+    with _VERROU:
+        try:
+            _pousser(json.dumps(d, ensure_ascii=False), nom="sb-" + _nom())
+        except subprocess.CalledProcessError:
+            pass
+
+
+def _pousser(texte, nom=None):
     """Remplace la branche « avancement » par un seul commit : notre fichier + ceux des autres machines encore actives
     (mis à jour il y a moins de 2 h). Deux machines qui envoient en même temps : l'une perd sa mise à jour pour 10 s."""
     import datetime
-    nom = _nom()
+    nom = nom or _nom()
     garde = []
     if subprocess.run(["git", "fetch", "-q", "origin", BRANCHE], cwd=RACINE, capture_output=True, timeout=30).returncode == 0:
         for ligne in _git("ls-tree", "FETCH_HEAD").splitlines():

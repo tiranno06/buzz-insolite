@@ -170,7 +170,9 @@ let RENDU = null;                         // un seul moteur WebGL pour toutes le
 function moteur(THREE) {
   if (!RENDU) {
     RENDU = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true, alpha: true });
-    RENDU.setPixelRatio(1); RENDU.setSize(W, H, false);
+    // (28/11) la 3D est calculée aux 2/3 de la résolution (720 × 1280, 2,25 fois moins de pixels) puis agrandie dans la page ;
+    // les textes, titres et sous-titres restent dessinés en pleine résolution, donc nets (sb.echelle_3d pour régler, 1 = plein)
+    RENDU.setPixelRatio(globalThis.ECHELLE_3D ?? 2 / 3); RENDU.setSize(W, H, false);
     RENDU.outputColorSpace = THREE.SRGBColorSpace;
     RENDU.toneMapping = THREE.ACESFilmicToneMapping; RENDU.toneMappingExposure = 1.05;
     RENDU.shadowMap.enabled = true; RENDU.shadowMap.type = THREE.PCFSoftShadowMap;   // vraies ombres portées (27/11)
@@ -1439,6 +1441,6 @@ export async function creer3d(sc, couche, T) {
     });
     if (avancerEffets) avancerEffets(t);
     const R = moteur(T); R.render(scene, camera);
-    cx.clearRect(0, 0, W, H); cx.drawImage(R.domElement, 0, 0);
+    cx.clearRect(0, 0, W, H); cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = "high"; cx.drawImage(R.domElement, 0, 0, W, H);
   };
 }
