@@ -1865,3 +1865,95 @@ class TestGizehR4(unittest.TestCase):
         v = next(o for o in acc["objets"] if o["id"] == "v")
         self.assertGreaterEqual(v["position"], -15)                                     # la voiture part tout près
         self.assertNotIn(("v", "avancer"), a)
+
+
+class TestGizehR5(unittest.TestCase):
+    """28/11 : défauts de la vidéo de Gizeh r5 (foule sur l'autoroute dès la 1re seconde, caméra dans le brasier, bulldozer
+    jamais montré, épaves restées après la réouverture, « BUZZ INSOLITE » pour 31 morts, même fait raconté deux fois)."""
+    PHRASES = ["Flammes géantes.", "Un camion-citerne se renverse à Warraq.", "La voiture percute la citerne.", "Le feu prend.",
+               "Les bus brûlent.", "31 morts.", "21 blessés.", "40 ambulances arrivent.",
+               "Un bulldozer dégage la carcasse devant la foule rassemblée.", "Le conducteur est arrêté.",
+               "Après plusieurs heures, la route est rouverte à la circulation.", "Le ministre se rend sur place.", "Et toi ?"]
+
+    def _scene(self, accroche=False):
+        return dict(type="3d", decor="autoroute", accroche=accroche,
+                    objets=[dict(id="c", type="citerne", voie=2, position=0), dict(id="v", type="voiture", voie=2, position=-30),
+                            dict(id="b", type="bus", voie=1, position=-160), dict(id="foule", type="foule", voie=3, position=-5),
+                            dict(id="amb", type="ambulance", voie=1, position=-200), dict(id="bull", type="bulldozer", voie=1, position=-10),
+                            dict(id="auto", type="voiture", voie=1, position=-140)],
+                    actions=[dict(objet="c", faire="avancer", phrase=2, duree=3, vers_position=0),
+                             dict(objet="v", faire="heurter", cible="c", phrase=2, duree=2.2),
+                             dict(objet="c", faire="bruler", phrase=3, duree=1.0),
+                             dict(objet="b", faire="avancer", phrase=2, duree=3, vers_position=-20),
+                             dict(objet="b", faire="bruler", phrase=4, duree=1.0),
+                             dict(objet="amb", faire="avancer", phrase=7, duree=3, vers_position=-22),
+                             dict(objet="bull", faire="avancer", phrase=8, duree=2, vers_position=0),
+                             dict(objet="auto", faire="avancer", phrase=10, duree=3, vers_position=80)])
+
+    def test_foule_bulldozer_secours_et_route_rouverte(self):
+        from robot import physique
+        sc = self._scene()
+        faits = physique.appliquer(sc, lambda *a: None, " ".join(self.PHRASES), self.PHRASES)
+        o = {x["id"]: x for x in sc["objets"]}
+        a = {(x["objet"], x["faire"]): x for x in sc["actions"]}
+        self.assertEqual(a[("foule", "apparaitre")]["phrase"], 8)                     # C11 : à sa phrase, pas avant
+        self.assertGreater(abs(o["foule"]["z"]), 6 * 3.6 / 2 + 4)                       # E3 : au bord, pas sur la chaussée
+        self.assertLessEqual(a[("amb", "avancer")]["vers_position"], -20 - 18)         # E5 : avant le bus en feu (place finale)
+        self.assertEqual(a[("bull", "apparaitre")]["phrase"], 8)
+        self.assertLess(abs(a[("bull", "avancer")]["vers_position"] - (-9.75)), 16)    # V8 : près de l'épave
+        for oid in ("c", "v", "b", "foule", "amb", "bull"):
+            self.assertEqual(a[(oid, "disparaitre")]["phrase"], 10)                    # V9 : route rouverte
+        self.assertNotIn(("auto", "disparaitre"), a)                                    # la circulation reprend
+        self.assertEqual(sc["rouvert"], 10)
+        self.assertTrue(any(f.startswith("V9") for f in faits))
+
+    def test_accroche_sans_foule(self):
+        from robot import physique
+        sc = self._scene(accroche=True)
+        for x in sc["actions"]:
+            x["phrase"] = 0
+        physique.appliquer(sc, lambda *a: None, " ".join(self.PHRASES), self.PHRASES)
+        self.assertNotIn("foule", {o["id"] for o in sc["objets"]})
+        self.assertNotIn("bull", {o["id"] for o in sc["objets"]})
+        self.assertNotIn("rouvert", sc)
+
+    def test_manifestation_garde_sa_foule(self):
+        from robot import physique
+        sc = dict(type="3d", decor="place", objets=[dict(id="foule", type="foule", position=0, z=8), dict(id="p", type="police", voie=1, position=-20)],
+                  actions=[dict(objet="p", faire="avancer", phrase=2, duree=2, vers_position=0)])
+        physique.appliquer(sc, lambda *a: None, "Une manifestation devant le parlement.", ["a", "Manifestation.", "La police arrive.", "Et toi ?"])
+        self.assertFalse(any(x["faire"] == "apparaitre" for x in sc["actions"]))
+
+    def test_etiquette_drame(self):
+        from robot import ecrire, realisateur
+        self.assertEqual(ecrire.etiquette({"phrases": [{"ecrit": "Le ministère confirme 31 morts."}]}), "ACTUALITÉ")
+        self.assertEqual(ecrire.etiquette({"phrases": [{"ecrit": "Un chat grimpe sur la tour Eiffel."}]}), "INSOLITE")
+        self.assertEqual(realisateur._etiquette({"phrases": [{"ecrit": "Un chat grimpe."}]}), "BUZZ INSOLITE")
+        self.assertEqual(ecrire.etiquette({"etiquette": "LE CHIFFRE DU LUNDI", "phrases": [{"ecrit": "3 morts"}]}), "LE CHIFFRE DU LUNDI")
+
+    def test_meme_fait_raconte_deux_fois(self):
+        from robot import regles
+        ph = [{"ecrit": x} for x in ("Flammes géantes.", "Mercredi, un camion-citerne se renverse à Warraq.",
+                                     "Le camion se renverse directement sur cette voie rapide.", "Une explosion secoue le quartier.",
+                                     "Une deuxième explosion suit.", "Et toi ?")]
+        self.assertEqual(regles.repetitions(ph), [(2, 1)])
+
+    def test_phrase_retiree_aussi_du_storyboard(self):
+        from robot import commun
+        s = {"phrases": [{"ecrit": str(k)} for k in range(5)],
+             "animation": {"cles": {"0": ["a"], "3": ["c"]},
+                           "scenes": [{"phrases": [0]}, {"phrases": [2], "actions": [{"phrase": 2}]},
+                                      {"phrases": [1, 3], "rouvert": 3, "cadres": {"3": "large", "1": "face"}}, {"phrases": [4]}]}}
+        commun.retirer_phrase(s, 2)
+        a = s["animation"]
+        self.assertEqual(len(s["phrases"]), 4)
+        self.assertEqual([x["phrases"] for x in a["scenes"]], [[0], [1, 2], [3]])
+        self.assertEqual(a["scenes"][1], {"phrases": [1, 2], "rouvert": 2, "cadres": {"2": "large", "1": "face"}})
+        self.assertEqual(a["cles"], {"0": ["a"], "2": ["c"]})
+
+    def test_bulldozer_reconnu(self):
+        from robot import reconstitution
+        script = {"phrases": [{"ecrit": x} for x in self.PHRASES]}
+        sc = reconstitution.valider({"decor": "autoroute", "objets": [dict(id="bulldozer", type="camionnette", role="le bulldozer")],
+                                     "plans": [dict(phrase=8, actions=[dict(objet="bulldozer", faire="avancer")])]}, script, lambda *a: None)
+        self.assertEqual(sc["objets"][0]["type"], "bulldozer")

@@ -15,7 +15,7 @@ La liste complète, numérotée, est dans REGLES (en bas) : c'est elle que lisen
 """
 import re
 
-ROUTIERS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "taxi", "police", "ambulance", "pompiers")
+ROUTIERS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "taxi", "police", "ambulance", "pompiers", "bulldozer")
 VEHICULES = ROUTIERS + ("train", "avion", "helico", "bateau")
 AERIENS = ("avion", "helico")
 BATIS = ("batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "hopital", "banque", "magasin", "residence")
@@ -27,8 +27,12 @@ BOUGER = ("avancer", "freiner", "deraper", "changer_voie", "tonneau", "fuir", "v
 DETRUIT = ("exploser", "couler", "effondrer")                            # après : l'objet ne fait plus rien (sauf brûler)
 FORTS = ("heurter", "exploser", "bruler", "tomber", "couler", "se_coucher", "effondrer", "deverser")
 DECORS_EAU = ("mer", "port", "plage")
+DECORS_ROUTE = ("autoroute", "route", "ville")
+# ce que le texte dit des témoins / de la foule (règle C11), et de la route qui rouvre (règle V9)
+FOULE = r"foule|rassembl|badaud|t[ée]moin|passant|curieux|spectateur|habitant|riverain|famille|proche|personnes? (?:pr[ée]sentes|sur place)"
+REOUVERT = r"rouvert|r[ée]ouvert|r[ée]ouverture|circulation (?:a |)(?:repris|reprend|r[ée]tablie)|trafic (?:a |)(?:repris|reprend|r[ée]tabli)"
 # encombrement au sol (m) : longueur d'un véhicule, largeur d'un bâtiment (règles E1, E2)
-TAILLE = {"voiture": 4.5, "taxi": 4.5, "police": 4.8, "moto": 2.2, "camionnette": 5.5, "ambulance": 6, "pompiers": 9, "camion": 10,
+TAILLE = {"voiture": 4.5, "taxi": 4.5, "police": 4.8, "moto": 2.2, "camionnette": 5.5, "bulldozer": 6.2, "ambulance": 6, "pompiers": 9, "camion": 10,
           "citerne": 12, "bus": 12, "train": 40, "bateau": 20, "batiment": 30, "entrepot": 46, "immeuble": 24, "residence": 24,
           "hopital": 30, "banque": 20, "magasin": 18, "maison": 14, "batiment_officiel": 34}
 
@@ -76,7 +80,7 @@ REGLES = [
     ("C10", "Un véhicule accidenté (qui a percuté ou été percuté) ne repart plus : ni avancer, ni freiner, ni déraper ensuite."),
     ("E1", "Deux véhicules ne se chevauchent jamais au départ sur la même voie (selon leur longueur réelle, 1,5 m d'écart)."),
     ("E2", "Deux bâtiments ne se chevauchent jamais (selon leur largeur réelle) ; un bâtiment n'est jamais sur la chaussée."),
-    ("E3", "Un piéton ou une foule n'est pas sur la chaussée au départ (trottoir), sauf s'il traverse."),
+    ("E3", "Un piéton ou une foule n'est jamais sur la chaussée (trottoir, foule resserrée au bord de la route), sauf s'il traverse."),
     ("E4", "Un bateau seul sur une route : le décor devient un port ; un train : la voie ferrée ; un avion qui s'écrase : la campagne."),
     ("E5", "Les secours se garent sur la voie de droite, à distance du feu ou de l'explosion (jamais dedans)."),
     ("E6", "Les positions restent dans la scène filmée (entre -400 m et +200 m)."),
@@ -92,6 +96,9 @@ REGLES = [
     ("V5", "Un objet dans le souffle d'une explosion (18 m) est repoussé et prend feu (moteur 3D)."),
     ("V6", "Un feu s'ÉTEINT quand le texte le dit (feu maîtrisé, éteint, carcasses retirées, route rouverte) : flammes qui baissent, épave qui fume."),
     ("V7", "Un véhicule qui se renverse ne prend feu qu'une fois couché : on voit le renversement, puis le feu."),
+    ("C11", "Une foule, un témoin, un engin de chantier n'apparaissent qu'au moment où le texte en parle (jamais dans l'accroche)."),
+    ("V8", "Un bulldozer qui dégage les carcasses va jusqu'à l'épave principale."),
+    ("V9", "Route ROUVERTE (quand le texte le dit) : épaves, foule, engins et secours sont enlevés, la circulation reprend sur toutes les voies."),
 ]
 
 
@@ -244,13 +251,90 @@ def appliquer(sc, journal=print, texte="", phrases=None):
                 actions.append(dict(objet=oid, faire="eteindre", phrase=ph, duree=3.0, retard=round(0.15 * k, 2)))
             note("V6", f"feu éteint à la phrase {ph}")
 
+    # ---- C11 : la foule, les témoins, le bulldozer n'apparaissent qu'à leur phrase (Gizeh r5 du 28/11 : la « foule rassemblée »
+    # de la phrase 9 était sur l'autoroute dès la 1re seconde, pendant le choc)
+    danger = [a for a in actions if a["faire"] in FORTS and types[a["objet"]] not in SECOURS]
+    if danger and not re.search(r"manifest|rassemblement de|cort[èe]ge|marche", texte.lower()):
+        ph_danger = min(int(a.get("phrase") or 0) for a in danger)
+        acteurs_drame = {a["objet"] for a in danger} | {a.get("cible") for a in danger if a.get("cible")} | \
+                        {a["objet"] for a in actions if a["faire"] == "fuir"}
+        for o in list(objets):
+            if o.get("type") not in HUMAINS + ("bulldozer",) or o["id"] in acteurs_drame:
+                continue
+            if any(a["objet"] == o["id"] and a["faire"] == "apparaitre" for a in actions):
+                continue
+            if sc.get("accroche"):
+                objets.remove(o); actions = [a for a in actions if a["objet"] != o["id"]]
+                note("C11", f"{o['id']} retiré de l'accroche"); continue
+            motif = FOULE if o.get("type") in HUMAINS else r"bulldozer|engin|pelleteuse|d[ée]blai|d[ée]gag|carcasse|grue"
+            parle = next((i for i, p in enumerate(phrases or []) if i >= ph_danger and re.search(motif, str(p).lower())), None)
+            siennes = [int(a.get("phrase") or 0) for a in actions if a["objet"] == o["id"]]
+            # sa propre 1re action d'abord (les techniciens arrivent à LEUR phrase), sinon la phrase qui en parle
+            ph = min(siennes) if siennes else (parle if parle is not None else ph_danger + 1)
+            actions.append(dict(objet=o["id"], faire="apparaitre", phrase=ph, duree=0.6, retard=0.0))
+            note("C11", f"{o['id']} apparaît à la phrase {ph}")
+
+    # ---- V8 : le bulldozer va jusqu'à l'épave principale (r5 : il « dégageait » une carcasse à 30 m de lui)
+    par_id = {o["id"]: o for o in objets}
+
+    def fin_x(o):
+        x = float(o.get("position") or 0)
+        for a in sorted(actions, key=_t):
+            if a["objet"] == o["id"] and a["faire"] == "avancer" and a.get("vers_position") is not None:
+                x = float(a["vers_position"])
+        return x
+    # l'épave la plus en arrière sur la voie de l'accident : celui qui a percuté (collé derrière sa cible), sinon la 1re touchée
+    choc = next((a for a in sorted(danger, key=_t) if a["faire"] == "heurter" and a.get("cible") in par_id and a["objet"] in par_id), None)
+    if choc:
+        c, f = par_id[choc["cible"]], par_id[choc["objet"]]
+        epave, pos = f, fin_x(c) - (TAILLE.get(c.get("type"), 6) + TAILLE.get(f.get("type"), 6)) / 2 - 1.5
+        voie = c.get("voie")
+    else:
+        e = next((par_id[a["objet"]] for a in sorted(danger, key=_t) if types[a["objet"]] in VEHICULES + BATIS), None)
+        epave, pos, voie = e, fin_x(e) if e else 0.0, (e or {}).get("voie")
+    if epave and voie is not None and epave.get("z") is None:
+        # places prises à la fin (véhicules de la route) : l'engin apparaît sur une place LIBRE près de l'épave, puis avance
+        # doucement de 4 m vers elle (r5 : il traversait les voitures du bouchon pour venir de loin)
+        prises = [(voie, pos, TAILLE.get(o.get("type"), 6)) if o is epave and choc else (o.get("voie"), fin_x(o), TAILLE.get(o.get("type"), 6))
+                  for o in objets if o.get("type") in ROUTIERS and o.get("type") != "bulldozer" and o.get("z") is None]
+        libre = lambda v, x: not any(vo == v and abs(x - xo) < (6.2 + lo) / 2 + 1 for vo, xo, lo in prises)
+        bout = pos - TAILLE.get(epave.get("type"), 6) / 2
+        candidats = [(voie, bout - 3.2 - d) for d in (0, 2, 4)] + [(v, pos - d) for d in range(0, 16, 3) for v in (1, 2, 3) if v != voie] + \
+                    [(voie, bout - 3.2 - d) for d in range(6, 40, 3)]
+        for o in [o for o in objets if o.get("type") == "bulldozer"]:
+            mes = [a for a in actions if a["objet"] == o["id"] and a["faire"] == "avancer"]
+            v, x = next(((v, x) for v, x in candidats if libre(v, x)), (voie, bout - 3.2))
+            o.update(voie=v, position=round(x - 4, 1))
+            if mes:
+                mes[0].update(vers_position=round(x, 1), duree=4.0); mes[0].pop("vers_voie", None)
+                for a in mes[1:]:
+                    actions.remove(a)
+            prises.append((v, x, 6.2))
+            note("V8", f"{o['id']} près de l'épave {epave['id']} (voie {v})")
+
+    # ---- V9 : la route ROUVERTE (r5 : épaves, foule et secours toujours sur la chaussée, aucune circulation)
+    if phrases and not sc.get("accroche") and danger and sc.get("decor") in DECORS_ROUTE:
+        dernier = max(int(a.get("phrase") or 0) for a in danger)
+        ph = next((i for i, p in enumerate(phrases) if i > dernier and re.search(REOUVERT, str(p).lower())), None)
+        if ph is not None:
+            nouveaux = []
+            for o in objets:
+                mes = [a for a in actions if a["objet"] == o["id"]]
+                if o.get("type") in FIXES or any(int(a.get("phrase") or 0) >= ph for a in mes):
+                    continue                     # bâtiments, ou ce qui agit encore (la circulation qui reprend)
+                if mes or o.get("type") in HUMAINS + SECOURS + ("bulldozer",):
+                    nouveaux.append(dict(objet=o["id"], faire="disparaitre", phrase=ph, duree=0.6, retard=0.05))
+            if nouveaux:
+                actions += nouveaux; sc["rouvert"] = ph
+                note("V9", f"route rouverte à la phrase {ph} : {len(nouveaux)} objet(s) enlevé(s), la circulation reprend")
+
     # ---- L1 / L4 : rythme
     par_phrase = {}
     for a in sorted(actions, key=_t):
         par_phrase.setdefault(a.get("phrase"), []).append(a)
     for p, liste in ([] if sc.get("accroche") else par_phrase.items()):   # (l'accroche a son propre rythme serré)
         debuts, etalees = [], 0
-        for a in sorted([a for a in liste if a["faire"] not in ("avancer", "eteindre")], key=_t):
+        for a in sorted([a for a in liste if a["faire"] not in ("avancer", "eteindre", "apparaitre", "disparaitre")], key=_t):
             r = float(a.get("retard") or 0)
             while sum(1 for d in debuts if abs(d - r) < 0.3) >= 4:          # 4 débuts au plus dans la même demi-seconde
                 r += 0.5; etalees += 1
@@ -290,8 +374,17 @@ def appliquer(sc, journal=print, texte="", phrases=None):
             if pos != float(o.get("position") or 0):
                 note("E1", f"{o['id']} n'est plus sur un autre véhicule"); o["position"] = pos
             prises.append((pos, l))
-        elif t in HUMAINS and o.get("z") is None and o.get("voie") is not None:
-            if not any(a["objet"] == o["id"] and a["faire"] in ("avancer",) for a in actions):
+        elif t in HUMAINS and not any(a["objet"] == o["id"] and a["faire"] in ("avancer", "fuir") for a in actions):
+            if sc.get("decor") in DECORS_ROUTE:
+                # (Gizeh r5 du 28/11 : une foule de 9 m de rayon au milieu de l'autoroute pendant toute la vidéo)
+                demi = (6 if sc.get("decor") == "autoroute" else 2) * 3.6 / 2
+                if t == "foule":
+                    o["rayon"] = min(float(o.get("rayon") or 9), 4.5); o["nombre"] = min(int(o.get("nombre") or 50), 40)
+                bord = demi + 1.8 + (o["rayon"] if t == "foule" else 0)
+                z = o.get("z")
+                if z is None or abs(float(z)) < bord:
+                    o["z"] = round(bord if z is None or float(z) >= 0 else -bord, 1); note("E3", f"{o['id']} au bord de la route")
+            elif o.get("z") is None and o.get("voie") is not None:
                 o["z"] = 9 if t == "personne" else 10; note("E3", f"{o['id']} sur le trottoir")
     present = set(types.values())
     decor = sc.get("decor")
@@ -302,14 +395,22 @@ def appliquer(sc, journal=print, texte="", phrases=None):
         sc["decor"] = "voie_ferree"; note("E4", "train : voie ferrée")
     elif principal == "avion" and decor in ("autoroute", "route", "ville") and any(a["faire"] == "tomber" for a in actions):
         sc["decor"] = "campagne"; note("E4", "avion qui s'écrase : campagne")
-    danger_pos = [float(o.get("position") or 0) for o in objets
+    def place_finale(o):                 # (Gizeh r5 du 28/11 : le bouchon partait de -160 mais brûlait vers -20 → les
+        x = float(o.get("position") or 0)  # ambulances s'arrêtaient en plein feu)
+        for a in sorted(actions, key=_t):
+            if a["objet"] == o["id"] and a["faire"] == "avancer" and a.get("vers_position") is not None:
+                x = float(a["vers_position"])
+        return x
+    danger_pos = [place_finale(o) for o in objets
                   if any(a["objet"] == o["id"] and a["faire"] in ("exploser", "bruler") for a in actions) and o.get("type") not in SECOURS]
     for a in actions:                                                    # E5
         if types[a["objet"]] in SECOURS and a["faire"] == "avancer" and a.get("vers_position") is not None and danger_pos:
-            vp = float(a["vers_position"])
-            proche = min(danger_pos, key=lambda x: abs(x - vp))
-            if abs(vp - proche) < 16:
-                a["vers_position"] = proche - 18; note("E5", f"{a['objet']} s'arrête à distance du feu")
+            vp, depart = float(a["vers_position"]), float(next(o for o in objets if o["id"] == a["objet"]).get("position") or 0)
+            # les secours arrivent de derrière : ils s'arrêtent 18 m avant le PREMIER feu qu'ils rencontrent
+            devant = [x for x in danger_pos if x > depart]
+            limite = (min(devant) if devant else min(danger_pos, key=lambda x: abs(x - vp))) - 18
+            if vp > limite or any(abs(vp - x) < 16 for x in danger_pos):
+                a["vers_position"] = round(limite, 1); note("E5", f"{a['objet']} s'arrête à distance du feu")
 
     # ---- L3 / L5 : pas trop d'objets, repères utiles
     actifs = {a["objet"] for a in actions} | {a.get("cible") for a in actions if a.get("cible")}

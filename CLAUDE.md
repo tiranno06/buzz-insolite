@@ -819,7 +819,7 @@ l'objet principal, secours garés à 18 m du feu), L lisibilité (4 débuts d'ac
 — limite aussi dans scenes3d.js —, 14 objets, durées 0,6-8 s), V vraisemblance (feu après explosion, fuite avant le feu d'une
 citerne, dégâts selon le poids, souffle). Essayé sur Le Caire / Iowa / catastrophes : 0 à 3 corrections justes, rien d'abîmé.
 Les 4 règles de DÉCENCE (D1 à D4 : corps, personne qui brûle, personne percutée, arme) ont été RETIRÉES à la demande de
-l'auteur (27/11) : 36 règles, 39 depuis le 28/11 (C10, V6, V7). Tests : `TestCodeReconstitution`. **Toute nouvelle action ou nouvel objet 3D doit être ajouté à `PEUT` / `TAILLE`.**
+l'auteur (27/11) : 36 règles, 42 depuis le 28/11 (C10, V6, V7, puis C11, V8, V9). Tests : `TestCodeReconstitution`. **Toute nouvelle action ou nouvel objet 3D doit être ajouté à `PEUT` / `TAILLE`.** Toute phrase retirée passe par `commun.retirer_phrase`.
 
 ## Plans larges (27/11, l'auteur : « avant, nous avions un plan vidéo bien plus large »)
 `realisateur._plans_larges` (toutes les reconstitutions) : ouverture en plan LARGE (3 s, ou 1,2 s si le choc arrive plus tôt),
@@ -854,6 +854,22 @@ flammes pendant « la route est rouverte » → action `eteindre` (règle V6 : 1
 12 s, systèmes three.quarks retirés (`lot.deleteSystem` : un débit nul laissait des braises) ; objet touché par le souffle
 éteint avec les autres. Aussi : règle C10 (un véhicule accidenté ne repart plus : la voiture « avançait » pendant les aveux
 du conducteur), étiquette d'un objet disparu masquée. Tests : `TestGizehR4`.
+
+## Analyse de Gizeh r5 (28/11) et corrections (l'auteur : « fait tout »)
+r5 : accroche, choc → renversement → feu, « se renverse » et extinction enfin bons, mais : 1) une foule à pied au milieu de
+l'autoroute pendant TOUTE la vidéo (« foule rassemblée » de la phrase 9) → règle C11 (foule, témoins, engins apparaissent à
+leur phrase, jamais dans l'accroche ; sauf manifestation) et E3 revue (foule resserrée, rayon 4,5 m, au bord de la route) ;
+2) ambulances filmées au milieu des flammes → E5 mesure la place FINALE des véhicules en feu (le bouchon partait de -160 m)
+et les secours s'arrêtent 18 m avant le 1er feu ; caméra toujours à 16 m au moins d'un objet qui brûle (`sc.distance_feu`) ;
+3) bulldozer jamais vu (c'était une camionnette) → type `bulldozer` (tracteur Kenney jaune + lame), reconnu dans le scénario
+(`reconstitution.valider`), règle V8 (il apparaît sur une place libre à côté de l'épave et avance vers elle) ; route
+« rouverte » → règle V9 (épaves, foule, engins, secours enlevés ; `sc.rouvert` → la circulation reprend sur toutes les voies ;
+flammes et fumée retirées avec l'objet) ; 4) « BUZZ INSOLITE » pour 31 morts (rédacteur en chef : « à vérifier ») →
+`ecrire.etiquette` : « ACTUALITÉ » dès que le texte parle de morts / victimes (vidéos animées et classiques) ; 5) « se
+renverse » raconté deux fois → consigne d'écriture + règle « repetition » (`regles.repetitions` : même fait dans 2 phrases,
+sauf « deuxième / encore / aussi » → phrase réécrite par l'IA, sinon retirée). Bug trouvé : une phrase retirée laissait le
+storyboard animé viser des phrases disparues (« list index out of range ») → `commun.retirer_phrase` renumérote tout le
+storyboard (règles, contrôle final, vérification). Tests : `TestGizehR5`. 42 règles de reconstitution (C11, V8, V9).
 
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11

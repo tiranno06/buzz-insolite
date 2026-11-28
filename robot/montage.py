@@ -11,7 +11,7 @@ import subprocess
 
 from PIL import Image, ImageDraw, ImageFont
 
-from . import carte, sons
+from . import carte, ecrire, sons
 from . import voix as V
 from .commun import POLICES
 
@@ -239,19 +239,19 @@ def faire_ecran(script, i, d, dossier):
     derniere = i == len(ph) - 1
     if p.get("reponse"):                                  # « Vrai ou faux ? » : la réponse en grand, vert ou rouge
         vrai = p["reponse"] == "vrai"
-        calque(png, etiquette=script.get("etiquette") or "INSOLITE", grand="VRAI !" if vrai else "FAUX !", petit=(p.get("ecran") or "").upper(),
+        calque(png, etiquette=ecrire.etiquette(script), grand="VRAI !" if vrai else "FAUX !", petit=(p.get("ecran") or "").upper(),
                coul=(80, 220, 120) if vrai else (255, 80, 90))
     elif p.get("media") and not derniere:
         m = p["media"]
         titre = (p.get("ecran") or "").upper()
         if i > 0 and titre and titre == (ph[i - 1].get("ecran") or "").upper():
             titre = ""                                        # même titre que l'écran d'avant (« INCIDENT » 2 fois de suite)
-        calque(png, etiquette=script.get("etiquette") or "INSOLITE", titre=titre,
+        calque(png, etiquette=ecrire.etiquette(script), titre=titre,
                source=(m.get("bandeau") or f"@{m.get('compte', 'source')}") if m.get("citation") else "")
     else:
         grand = "ET TOI ?" if derniere else (p.get("ecran") or "").upper()
         petit = "dis-le en commentaire" if derniere else ""
-        calque(png, etiquette=script.get("etiquette") or "INSOLITE", grand=grand, petit=petit, bas=script.get("sources_ecran", "") if derniere else "")
+        calque(png, etiquette=ecrire.etiquette(script), grand=grand, petit=petit, bas=script.get("sources_ecran", "") if derniere else "")
     m = os.path.join(dossier, f"ecran{i:02d}.mp4")
     ecran(p.get("media"), d, png, m, dossier)
     return m

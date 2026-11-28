@@ -106,3 +106,36 @@ def rejouer_journal():
 
 def simulation():
     return os.environ.get("SIMULATION", "0") == "1"
+
+
+def _decaler(x, i):
+    """Numéros de phrases d'un storyboard après le retrait de la phrase i (ce qui s'y passait passe à la phrase d'avant)."""
+    nv = lambda v: v if v < i else (v - 1 if v > i else max(0, i - 1))
+    if isinstance(x, list):
+        return [_decaler(v, i) for v in x]
+    if not isinstance(x, dict):
+        return x
+    if x and all(str(k).isdigit() for k in x):                   # cadres, mots clés… rangés par numéro de phrase
+        return {type(k)(nv(int(k))): _decaler(v, i) for k, v in x.items() if int(k) != i}
+    out = {}
+    for k, v in x.items():
+        if k in ("phrase", "rouvert") and isinstance(v, int) and not isinstance(v, bool):
+            out[k] = nv(v)
+        elif k in ("phrase", "rouvert") and isinstance(v, str) and v.isdigit():
+            out[k] = str(nv(int(v)))
+        elif k == "phrases" and isinstance(v, list) and all(isinstance(n, int) for n in v):
+            out[k] = [n - (n > i) for n in v if n != i]
+        else:
+            out[k] = _decaler(v, i)
+    return out
+
+
+def retirer_phrase(script, i):
+    """Retire la phrase i ET la retire du storyboard animé (sinon il visait des phrases qui n'existent plus : plantage
+    « list index out of range » au montage, essai du 28/11)."""
+    script["phrases"].pop(i)
+    anim = script.get("animation")
+    if isinstance(anim, dict):
+        anim = _decaler(anim, i)
+        anim["scenes"] = [sc for sc in anim.get("scenes") or [] if not isinstance(sc.get("phrases"), list) or sc["phrases"]]
+        script["animation"] = anim

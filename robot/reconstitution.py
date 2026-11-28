@@ -20,7 +20,7 @@ from . import ia
 OBJETS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "taxi", "police", "ambulance", "pompiers", "avion",
           "helico", "bateau", "train", "personne", "foule", "batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "arbre",
           "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau",
-          "muret", "mur")
+          "muret", "mur", "bulldozer")
 ACTIONS = ("avancer", "freiner", "changer_voie", "deraper", "tonneau", "heurter", "se_coucher", "deverser", "bruler",
            "exploser", "effondrer", "tomber", "voler", "couler", "arroser", "fuir", "apparaitre", "disparaitre",
            "inonder", "trembler", "tempete")
@@ -42,7 +42,7 @@ Règles :
   personne qui en parle de loin (président, ministre, agence, journaliste). Deux objets ne sont jamais au même endroit. Types : voiture, camion, citerne, bus, moto,
   camionnette, taxi, police, ambulance, pompiers, avion, helico, bateau, train, personne, foule, batiment, entrepot (dépôt,
   hangar, usine), immeuble, maison, hopital, banque, magasin, residence, feu_tricolore, panneau,
-  batiment_officiel, arbre, muret, mur. "voie" : 1 à 3 (sens de circulation de la caméra), "position" : mètres le long de la
+  batiment_officiel, arbre, muret, mur, bulldozer (engin qui déblaie). "voie" : 1 à 3 (sens de circulation de la caméra), "position" : mètres le long de la
   route (l'événement se passe vers 0 ; ce qui arrive plus tard part de -80 ou plus loin). Bâtiment, usine : "position" 0.
 - "plans" : un plan pour CHAQUE phrase qui raconte l'événement (du début à la fin des faits, dans l'ordre), avec l'action
   que cette phrase raconte. Actions : avancer {vers_position}, freiner {vers_position}, changer_voie {vers_voie}, deraper,
@@ -81,6 +81,9 @@ def valider(d, script, journal=print):
         if not isinstance(o, dict) or o.get("type") not in OBJETS or not o.get("id") or str(o["id"]) in vus:
             continue
         vus.add(str(o["id"]))
+        if re.search(r"bulldozer|pelleteuse|engin|d[ée]blai|grue", f"{o['id']} {o.get('role') or ''}".lower()) and o["type"] in (
+                "camion", "camionnette", "voiture"):
+            o["type"] = "bulldozer"                     # (Gizeh r5 du 28/11 : le « bulldozer » était une camionnette)
         objets.append(dict(id=str(o["id"])[:20], type=o["type"], role=str(o.get("role") or "")[:28],
                            voie=int(min(3, max(1, _num(o.get("voie"), 1)))), position=max(-400.0, min(200.0, _num(o.get("position"), 0)))))
     # ni les personnes qui ne sont PAS sur place (président qui « salue », agence qui annonce : Iowa du 27/11)…

@@ -24,7 +24,7 @@ UNITES_FORTES = ("millions", "million", "milliards", "milliard", "mille", "%", "
 OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "bateau", "train", "batiment", "arbre", "personne",
              "muret", "mur", "cube_eau", "foule", "police", "pompiers", "ambulance", "batiment_officiel",
              # vrais modèles Kenney (CC0) depuis le 27/11
-             "taxi", "camionnette", "tracteur", "debris", "plot", "soldat", "vedette", "barque", "voilier", "conteneur", "tgv",
+             "taxi", "camionnette", "tracteur", "bulldozer", "debris", "plot", "soldat", "vedette", "barque", "voilier", "conteneur", "tgv",
              "wagon_citerne", "palmier", "rocher", "maison", "immeuble", "gratte_ciel", "entrepot",
              "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau")
 ACTIONS_3D = ("avancer", "heurter", "changer_voie", "tourner", "se_coucher", "bruler", "exploser", "tomber", "voler", "couler",
@@ -313,6 +313,13 @@ def realiser(script, articles, journal=print):
 
 
 # ------------------------------------------------------------------ numéros de phrases → secondes (après la voix)
+def _etiquette(script):
+    """« BUZZ INSOLITE », ou « ACTUALITÉ » pour un drame (des morts, des victimes)."""
+    from . import ecrire
+    e = ecrire.etiquette(script, "BUZZ INSOLITE")
+    return e
+
+
 def _voie_z(voie, voies=6):
     return round(-voies * 3.6 / 2 + (min(max(int(voie or 1), 1), voies) - 0.5) * 3.6, 2)
 
@@ -521,6 +528,8 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
                 if ap is not None:
                     o["a"] = ap
             s.update(objets=objets, actions=actions, voies=voies)
+            if str(sc.get("rouvert", "")).isdigit():           # route rouverte (règle V8) : la circulation reprend partout
+                s["rouvert"] = quand(sc["rouvert"])
             s["reperes"] = [dict(objet=r.get("objet"), texte=str(r.get("texte", ""))[:30], a=quand(r.get("phrase"), 0.4))
                             for r in sc.get("reperes") or [] if any(o["id"] == r.get("objet") for o in objets)][:4]
             principal = next((a_["objet"] for a_ in actions if a_["faire"] in ("avancer", "voler", "tomber")), objets[0]["id"])
@@ -546,7 +555,7 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
                               depart_zoom=8 if lieu else 1.4, zoom_duree=4.0, marge=6 if lieu else 1.2,
                               mention="Images : NASA (Blue Marble)"))
     sb = dict(ips=30, duree=round(total, 3), titre=anim["titre"], lieu_date=anim["lieu_date"], source=anim["source"],
-              etiquette=script.get("etiquette") or "BUZZ INSOLITE", mots=mots, scenes=scenes)
+              etiquette=_etiquette(script), mots=mots, scenes=scenes)
     # horloge des faits et chapitres (d'après bonnequestion.tv) : l'heure s'affiche quand la phrase qui la dit commence
     chrono = [dict(a=round(debuts[c["phrase"]], 3), heure=c["heure"], chapitre=c.get("chapitre") or "")
               for c in anim.get("chrono") or [] if isinstance(c.get("phrase"), int) and c["phrase"] < len(debuts)]

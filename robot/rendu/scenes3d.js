@@ -542,7 +542,7 @@ function ecraser(T, g, versImpact, force, graine) {
 }
 // masses en tonnes (ordre de grandeur) : qui encaisse le plus dans un choc
 const MASSES = { moto: 0.2, personne: 0.08, voiture: 1.4, taxi: 1.4, police: 1.6, camionnette: 2.5, ambulance: 3.5, pompiers: 14,
-                 camion: 12, citerne: 20, bus: 12, tracteur: 4, train: 400, tgv: 400, wagon_citerne: 60, avion: 60, helico: 5, bateau: 200 };
+                 camion: 12, citerne: 20, bus: 12, tracteur: 4, bulldozer: 15, train: 400, tgv: 400, wagon_citerne: 60, avion: 60, helico: 5, bateau: 200 };
 
 // RUPTURE d'une citerne percutée (27/11, l'auteur : « l'arrière doit subir d'énormes dégâts ») : trou noir au point d'impact,
 // lambeaux de tôle arrachés et retournés vers l'extérieur, jet de carburant. Fixé à l'objet (il reste attaché s'il bouge).
@@ -700,7 +700,14 @@ export async function creer3d(sc, couche, T) {
   const objets = sc.objets || [], actions = sc.actions || [], MATS = feu(T);
   const groupes = {};
   for (const o of objets) {
-    const g = modelePret(o.type) ? modele(T, o.type, o, (o.id || "").length * 7 + objets.indexOf(o))
+    let g;
+    if (o.type === "bulldozer") {           // engin de déblaiement (Gizeh r5 du 28/11 : jamais montré) : tracteur jaune + lame
+      g = modelePret("tracteur") ? modele(T, "tracteur", { longueur: 5.5 }, 1) : FABRIQUES.camion(T, { couleur: "jaune" });
+      g.traverse(m => { if (m.isMesh && m.material && !/glass|vitre|window|tire|wheel|pneu/i.test(m.material.name || "")) {
+        m.material = m.material.clone(); m.material.color.set("#f2b705"); } });
+      const lame = boite(T, 0.4, 1.4, 3.4, lambert(T, "#9aa0a6")); lame.position.set(3.1, 0.7, 0); g.add(lame);
+      g.userData.taille = [6.2, 2.6, 3.4];
+    } else g = modelePret(o.type) ? modele(T, o.type, o, (o.id || "").length * 7 + objets.indexOf(o))
       : (FABRIQUES[o.type] || FABRIQUES.voiture)(T, o);
     scene.add(g); groupes[o.id] = g;
     const ombre = new T.Mesh(new T.CircleGeometry(1, 24), new T.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.35, depthWrite: false }));
@@ -716,14 +723,16 @@ export async function creer3d(sc, couche, T) {
     for (let v = 0; v < n; v++) {
       const z = -larg / 2 + (v + 0.5) * 3.6;
       // jamais à travers l'accident : ni sur une voie de la reconstitution, ni sur sa chaussée (autoroute : l'autre sens roule)
-      if (zObjets.some(zo => Math.abs(zo - z) < 2.6 || (n > 2 && Math.sign(zo || -1) === Math.sign(z)))) continue;
+      // (route ROUVERTE, Gizeh r5 du 28/11 : la circulation reprend aussi sur les voies de l'accident, une fois les épaves enlevées)
+      const bloquee = zObjets.some(zo => Math.abs(zo - z) < 2.6 || (n > 2 && Math.sign(zo || -1) === Math.sign(z)));
+      if (bloquee && sc.rouvert == null) continue;
       const sens = n > 2 ? (z < 0 ? 1 : -1) : (v ? -1 : 1);
       for (let k = 0; k < 4; k++) {
         const type = rr() < 0.15 ? "camion" : rr() < 0.15 ? "bus" : "voiture";
         const typeM = type === "bus" && !modelePret("bus") ? "camionnette" : type, n_ = Math.floor(rr() * 99);
         const g = modelePret(typeM) ? modele(T, typeM, {}, n_) : FABRIQUES[type](T, { couleur: COUL[Math.floor(rr() * COUL.length)] });
         g.rotation.y = sens > 0 ? 0 : Math.PI; scene.add(g);
-        trafic.push({ g, z, sens, x0: -300 + rr() * 600, v: (sens > 0 ? 1 : -1) * (14 + rr() * 10) });
+        trafic.push({ g, z, sens, x0: -300 + rr() * 600, v: (sens > 0 ? 1 : -1) * (14 + rr() * 10), des: bloquee ? sc.rouvert : null });
       }
     }
   }
@@ -771,7 +780,8 @@ export async function creer3d(sc, couche, T) {
       if (sources.filter(s => !s.poussiere).length >= 12) continue;   // règle L2 : 12 grands feux au plus, les autres gardent les flammes simples
       const g = groupes[o.id], ta = g?.userData.taille || [4, 2, 2];
       const taille = Math.max(0.7, Math.min(2.6, Math.max(ta[0], ta[2]) / 6));
-      sources.push({ debut, taille, fin: fin.eteint >= 0 ? fin.eteint : null,
+      const enleve = actions.find(x => x.objet === o.id && x.faire === "disparaitre");
+      sources.push({ debut, taille, fin: fin.eteint >= 0 ? fin.eteint : null, disparait: enleve ? enleve.a : null,
                      position: t => { const e = etat(o, actions, t, objets); return [e.x, Math.max(0, e.y) + 0.3, e.z]; } });
       for (const q of particules[o.id] || []) if (!q.lueur && !q.flaque) q.quarks = true;   // les anciennes flammes s'effacent
     }
@@ -904,7 +914,7 @@ export async function creer3d(sc, couche, T) {
       for (const q of ps) {
         // extinction : les flammes baissent en 3 s ; il reste une fumée légère au-dessus de l'épave
         const reste = e.eteint >= 0 ? 1 - borne(prog(t, e.eteint, 3)) : 1;
-        const actif = debut >= 0 && t >= debut && (reste > 0.02 || q.fumee), ta = g.userData.taille || [4, 2, 2],
+        const actif = e.visible && debut >= 0 && t >= debut && (reste > 0.02 || q.fumee), ta = g.userData.taille || [4, 2, 2],
               force = borne(prog(t, debut, 1.2)) * (q.fumee ? Math.max(0.35, reste) : reste);
         if (q.lueur) {                         // lueur orange qui palpite au sol sous le feu
           q.lueur.visible = actif; if (!actif) continue;
@@ -926,6 +936,7 @@ export async function creer3d(sc, couche, T) {
     }
     for (const c of trafic) {                 // ralentit puis s'arrête près d'un accident (feu, véhicule couché)
       let x = ((c.x0 + c.v * t) % 600 + 900) % 600 - 300;
+      c.g.visible = c.des == null || t >= c.des;
       c.g.position.set(x, 0, c.z); for (const w of c.g.userData.roues || []) w.rotation.y = -c.v * t / 0.4;
     }
     if (scene.userData.eau) scene.userData.eau.position.y = -0.02 + Math.sin(t) * 0.05;
@@ -1069,6 +1080,19 @@ export async function creer3d(sc, couche, T) {
           // sinon : on garde le plan prévu (voir à travers un débris vaut mieux que d'entrer dans la boule de feu, Iowa du 27/11)
         }
       }
+    }
+    // jamais DANS un brasier (Gizeh r5 du 28/11 : les ambulances filmées au milieu des flammes, écran tout orange) :
+    // la caméra reste à 16 m au moins de tout objet qui brûle encore (sc.distance_feu pour régler, 0 pour couper)
+    const R_FEU = sc.distance_feu ?? 16;
+    if (!iso && R_FEU > 0) for (const o of objets) {
+      const g = groupes[o.id]; if (!g || !g.visible || ["foule", "personne"].includes(o.type)) continue;
+      const e = etat(o, actions, t, objets);
+      const feuT = e.brule >= 0 ? e.brule : e.explose >= 0 ? e.explose : -1;
+      if (feuT < 0 || t < feuT || (e.eteint >= 0 && t > e.eteint + 3)) continue;
+      const dx = p[0] - e.x, dz = p[2] - e.z, d = Math.hypot(dx, dz);
+      if (d >= R_FEU) continue;
+      if (d > 0.1) { p[0] = e.x + dx * R_FEU / d; p[2] = e.z + dz * R_FEU / d; } else { p[0] = e.x - R_FEU; }
+      p[1] = Math.max(p[1], 7);
     }
     if (iso) {                                // toujours le même angle (45°, en surplomb) ; on se rapproche doucement
       const z = mix(1, sc.iso_zoom ?? 1.25, ease.douce(prog(t, 0, Math.max(duree || 6, 1))));

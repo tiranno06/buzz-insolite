@@ -6,7 +6,7 @@ Le texte est écrit UNIQUEMENT à partir des articles trouvés (sources.py). Cha
 """
 import re
 
-from . import ia
+from . import commun, ia
 
 REGLES_SUJET = """Règles à respecter quel que soit le sujet :
 - uniquement des faits présents dans les articles ; si un point n'est pas sûr, ne le dis pas ;
@@ -19,6 +19,8 @@ Public : francophones de 15 à 40 ans. Style : rythmé, phrases courtes, langage
 On TUTOIE toujours le spectateur (« tu », « imagine », « et toi ? »), jamais « vous » ni « imaginez ».
 Reste centré sur le SUJET qui buzze : chaque phrase doit en parler (pas de digression sur un autre thème).
 Chaque chiffre, score ou date n'est dit qu'UNE fois (vidéo CAN du 25/11 : « 1-0 » répété dans 3 phrases).
+Chaque FAIT n'est raconté qu'une fois : jamais deux phrases qui disent la même chose (« le camion se renverse à Warraq. Le
+camion se renverse sur la voie rapide. ») ; la phrase suivante apporte un fait NOUVEAU.
 Phrases simples et correctes, sans tournure administrative (pas « cette sanction a été prise, invoquant les articles… »).
 Rassemble les informations de TOUS les articles (chacun apporte souvent un détail différent), sans jamais répéter deux fois
 la même information.
@@ -153,6 +155,18 @@ def refaire_texte(sujet, articles, ancien, problemes, remarque, tout=False, jour
     return normaliser(d, sujet, format_, qui, journal)
 
 
+DRAME = r"\bmorts?\b|\bmortes?\b|tu[ée]s?\b|tu[ée]es\b|d[ée]c[èe]s|d[ée]c[ée]d|victimes?|bless[ée]s? graves?|p[ée]ri|noy[ée]|disparus?\b"
+
+
+def etiquette(script, defaut="INSOLITE"):
+    """Étiquette en haut de l'écran. Un DRAME (des morts, des victimes) n'est jamais « insolite » : « ACTUALITÉ »
+    (Gizeh r5 du 28/11, accident à 31 morts sous « BUZZ INSOLITE » : bloqué à juste titre par le rédacteur en chef)."""
+    if script.get("etiquette"):
+        return script["etiquette"]
+    texte = " ".join(str(p.get("ecrit") or "") for p in script.get("phrases") or []) + " " + str(script.get("titre") or "")
+    return "ACTUALITÉ" if re.search(DRAME, texte.lower()) else defaut
+
+
 def normaliser(d, sujet, format_, qui, journal=print):
     """Texte de l'IA mis au propre (champs de chaque phrase, réponse d'un vrai / faux, humeur, hashtags)."""
     from .montage import affichable                         # tirets que la police n'a pas (« 1‑0 » → « 1-0 »)
@@ -220,7 +234,7 @@ def verifier(script, articles, journal=print, seulement=None):
         if corr and i != len(script["phrases"]) - 1:
             script["phrases"][i].update(voix=nombres.dire_les_nombres(corr), ecrit=corr); corrigees += 1
         elif i not in (0, len(script["phrases"]) - 1) and not script["phrases"][i].get("reponse"):
-            script["phrases"].pop(i); retirees += 1
+            commun.retirer_phrase(script, i); retirees += 1
     script["verifie"] = True
     avant = script.get("verification") or {"corrigees": 0, "retirees": 0, "problemes": []}
     script["verification"] = {"par": qui, "corrigees": avant["corrigees"] + corrigees, "retirees": avant["retirees"] + retirees,

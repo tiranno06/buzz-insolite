@@ -127,6 +127,11 @@ export function creerEffets(T, scene, sources, textures, graine = 7) {
             if (!s.flammesRetirees && tSim - s.fin > 4.5) { s.flammesRetirees = true; lot.deleteSystem(fl); lot.deleteSystem(et); }
             if (!s.fumeeRetiree && tSim - s.fin > 20) { s.fumeeRetiree = true; lot.deleteSystem(fum); }
           }
+          // l'objet est ENLEVÉ (route rouverte, Gizeh r5 du 28/11) : sa fumée et ses flammes disparaissent avec lui
+          if (s.disparait != null && tSim >= s.disparait && !s.toutRetire) {
+            s.toutRetire = s.flammesRetirees = s.fumeeRetiree = s.fumeeFinie = s.flammesFinies = true; s.etapeExt = -1;
+            for (const ps of s.systemes) { try { ps.endEmit(); lot.deleteSystem(ps); } catch (e) { /* déjà retiré */ } }
+          }
           const [x, y, z] = s.position(tSim);
           s.systemes.forEach((ps, i) => ps.emitter.position.set(x, y + (i === 0 ? 2.5 * (s.taille || 1) : 0.3), z));
         }

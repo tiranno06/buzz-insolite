@@ -22,7 +22,7 @@ import shutil
 import subprocess
 import urllib.request
 
-from . import ia, images, nombres
+from . import commun, ia, images, nombres
 from . import voix as V
 
 NIVEAUX = ("texte", "voix", "images", "video", "publication")
@@ -125,7 +125,7 @@ def corriger_sans_ia(script, pb):
         elif probleme == "titre d'écran trop long":
             ph[i]["ecran"] = " ".join(ph[i]["ecran"].split()[:3])[:24]
         elif probleme == "phrase en double" and 0 < i < len(ph) - 1:
-            ph.pop(i)
+            commun.retirer_phrase(script, i)
 
 
 def couper_en_deux(phrase):
@@ -722,7 +722,7 @@ def corriger_ecrans(script, fautifs, dossier, B, journal=print, nom_voix="", vit
                 except ia.AucuneIA:
                     pass
             if n >= 3 and 0 < i < len(ph) - 1 and duree_estimee(ph[:i] + ph[i + 1:]) >= 62:
-                ph.pop(i)                                  # dernier recours : la phrase est retirée (vidéo assez longue)
+                commun.retirer_phrase(script, i)         # dernier recours : la phrase est retirée (vidéo assez longue)
                 l.update(solution="phrase retirée", corrige=True)
                 continue
             p.pop("mots", None); p.pop("_voix_defaut", None)

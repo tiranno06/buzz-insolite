@@ -36,7 +36,8 @@ Liste vide s'il n'y a rien à corriger."""
 CONSIGNE_CHEF = """Tu es rédacteur en chef d'une chaîne TikTok d'actualité. Voici le texte dit dans une vidéo et 6 images prises
 dans l'ordre. Dis s'il y a un défaut GRAVE qui empêche de publier : fait faux ou absurde dans le texte, image vide / noire / cassée,
 objet qui flotte en l'air, image qui contredit clairement le texte, texte illisible ou qui cache tout, contenu choquant (corps,
-sang). Une maquette 3D simple et colorée est NORMALE. Réponds uniquement en JSON :
+sang). Une maquette 3D simple et colorée est NORMALE. Le nom de la chaîne et son logo en haut ne sont jamais un défaut.
+Réponds uniquement en JSON :
 {"verdict": "publiable" | "a_revoir", "defauts": [{"gravite": "grave" | "mineur", "explication": "..."}]}"""
 
 

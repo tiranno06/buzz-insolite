@@ -13,7 +13,7 @@ description.
 """
 import re
 
-from . import controle, ecrire, ia, nombres
+from . import commun, controle, ecrire, ia, nombres
 
 MOIS = "janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|septembre|octobre|novembre|décembre|decembre"
 _VOUS = re.compile(r"\b(vous|votre|vos|imaginez|découvrez|regardez|dites|pensez-vous|saviez-vous)\b", re.I)
@@ -129,6 +129,9 @@ def verifier(script, articles, hashtags=None, duree=None, description=None, ques
             if douteuses:
                 pb.append(dict(regle="date", ecran=i, dates=douteuses,
                                message=f"écran {i + 1} : date absente des articles ({', '.join(douteuses)})"))
+    for i, j in repetitions(ph):
+        pb.append(dict(regle="repetition", ecran=i, avant=j,
+                       message=f"écran {i + 1} : redit le fait de l'écran {j + 1} (« {(ph[i].get('ecrit') or '')[:40]} »)"))
     for i, p in enumerate(ph):
         if controle.phrase_absurde(p.get("ecrit")):
             pb.append(dict(regle="phrase_absurde", ecran=i, message=f"écran {i + 1} : phrase absurde (« {(p.get('ecrit') or '')[:30]} »)"))
@@ -155,6 +158,34 @@ def verifier(script, articles, hashtags=None, duree=None, description=None, ques
 
 CONSIGNE_TUTOIEMENT = """Réécris cette phrase d'une vidéo TikTok en TUTOYANT le spectateur (« tu », « imagine », « et toi ? »),
 sans changer le sens ni les faits, même longueur. Réponds uniquement en JSON : {"ecrit": "phrase (nombres en chiffres)"}"""
+
+CONSIGNE_REPETITION = """Cette phrase d'une vidéo TikTok redit un fait déjà raconté dans une phrase précédente (donnée aussi).
+Réécris-la pour qu'elle ne garde QUE ce qu'elle apporte de nouveau (lieu, détail, conséquence), sans redire le fait déjà dit
+ni réutiliser son verbe. Même sens, faits inchangés, phrase simple au présent, 8 mots au moins. Réponds uniquement en JSON :
+{"ecrit": "phrase (nombres en chiffres)"}"""
+
+# un même événement raconté deux fois (Gizeh r5 du 28/11 : « se renverse à Warraq. » puis « Le camion se renverse
+# directement sur cette voie rapide ») ; « une deuxième explosion », « encore » = un nouveau fait, pas une répétition
+FAITS = (r"renvers", r"explos", r"effondr", r"percut", r"chavir", r"prend(?:s|nent)? feu|s'enflamm|s'embras", r"d[ée]raill",
+         r"s'[ée]cras", r"\bcoul(?:e|ent)\b")
+NOUVEAU_FAIT = r"deuxi[èe]me|seconde?|nouvelle?|autres?|encore|[àa] (?:son|leur) tour|aussi|[ée]galement|puis"
+
+
+def repetitions(ph):
+    """Indices des phrases (ni l'accroche, ni la question finale) qui redisent un fait d'une phrase d'avant : [(i, j)]."""
+    out = []
+    for i in range(2, len(ph) - 1):
+        t = (ph[i].get("ecrit") or "").lower()
+        if re.search(NOUVEAU_FAIT, t):
+            continue
+        for motif in FAITS:
+            if not re.search(motif, t):
+                continue
+            j = next((j for j in range(1, i) if re.search(motif, (ph[j].get("ecrit") or "").lower())), None)
+            if j is not None:
+                out.append((i, j)); break
+    return out
+
 
 CONSIGNE_DATE = """Cette phrase d'une vidéo TikTok contient une date qui n'apparaît dans aucun article. Corrige-la d'après les
 extraits d'articles donnés (la date exacte qu'ils citent). Si les articles ne donnent pas la date, retire seulement la date
@@ -217,8 +248,19 @@ def reparer(script, problemes, articles, R, journal=print, sujet=None):
         elif r == "phrase_absurde" and i is not None and 0 < i < len(ph) - 1:
             # la phrase est retirée (le reste de la vidéo ne bouge pas) ; écran remonté : la durée est revérifiée ensuite
             journal(f"  règle « phrase absurde » : écran {i + 1} retiré (« {ph[i].get('ecrit', '')[:40]} »)")
-            ph.pop(i)
+            commun.retirer_phrase(script, i)
             return textes, images_ | {-1}, champs              # indices décalés : on revérifie tout au tour suivant
+        elif r == "repetition" and i is not None and 0 < i < len(ph) - 1:
+            j = pb.get("avant") if isinstance(pb.get("avant"), int) and pb["avant"] < len(ph) else max(0, i - 1)
+            nouveau = _demander(CONSIGNE_REPETITION, f"PHRASE D'AVANT : {ph[j]['ecrit']}\nPHRASE À RÉÉCRIRE : {ph[i]['ecrit']}", journal)
+            if nouveau and len(nouveau.split()) >= 6 and (i, j) not in repetitions(ph[:i] + [dict(ph[i], ecrit=nouveau)] + ph[i + 1:]) \
+                    and not controle.phrase_absurde(nouveau):
+                journal(f"  règle « répétition », écran {i + 1} : « {ph[i]['ecrit']} » → « {nouveau} »")
+                _changer(ph[i], nouveau); textes.add(i)
+            else:                                                 # sûr : la phrase qui redit est retirée
+                journal(f"  règle « répétition » : écran {i + 1} retiré (« {ph[i].get('ecrit', '')[:40]} »)")
+                commun.retirer_phrase(script, i)
+                return textes, images_ | {-1}, champs
         elif r == "unites" and i is not None:
             nouveau = convertir_unites(ph[i]["ecrit"])
             if ph[i].get("ecran"):
