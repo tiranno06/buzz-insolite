@@ -1,11 +1,11 @@
 {
  "videos": [
   {
-   "id": "20261127-190259-1-r4",
-   "tag": "v-20261127-190259-1-r4",
-   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-190259-1-r4/buzz-20261127-190259-1-r4.mp4",
-   "titre": "Incendie meurtrier sur le Ring Road",
-   "accroche": "FEU SUR L'AUTOROUTE",
+   "id": "20261127-190259-1-r5",
+   "tag": "v-20261127-190259-1-r5",
+   "url": "https://github.com/tiranno06/buzz-insolite/releases/download/v-20261127-190259-1-r5/buzz-20261127-190259-1-r5.mp4",
+   "titre": "Camion-citerne en feu, 31 morts",
+   "accroche": "FLAMMES SUR LE RING",
    "sujet_id": "d6d8e1865b",
    "sujet": "Accident de camion-citerne à Gizeh, incendie meurtrier",
    "buzz": {
@@ -14,10 +14,10 @@
     "commentaires": 2169,
     "score": 133
    },
-   "description": "Un camion-citerne renversé a embrasé le périphérique du Caire, faisant 31 morts. 🚒🔥",
-   "question": "Et toi, que ferais-tu face à un tel incendie ?",
+   "description": "Un camion chargé de carburant bascule, le feu dévore tout sur le Ring Road. 🚒",
+   "question": "Et toi, que ferais-tu face à un tel brasier ? Dis-le en commentaire !",
    "hashtags": [
-    "#égypte",
+    "#egypte",
     "#accident",
     "#tanker",
     "#giza",
@@ -26,7 +26,7 @@
     "#actu",
     "#buzz"
    ],
-   "duree": 64.9,
+   "duree": 68.8,
    "sources": [
     {
      "media": "jeune-independant.net",
@@ -76,14 +76,19 @@
    ],
    "verification": {
     "par": "gemini:gemini-flash-lite-latest",
-    "corrigees": 5,
-    "retirees": 0,
+    "corrigees": 4,
+    "retirees": 7,
     "problemes": [
-     "Le texte affirme qu'il s'agit du bilan le plus lourd de l'année, ce qui n'est pas mentionné dans les articles.",
-     "la durée « en une minute » n’est pas mentionnée dans les articles",
-     "La phrase affirme que le conducteur a admis rouler à une vitesse excessive, mais les articles précisent que c'est le conducteur d'une voiture qui a été arrêté e",
-     "Le prénom du Premier ministre n'est pas mentionné dans les articles fournis.",
-     "La phrase est factuelle selon les articles, mais on peut préciser la source ou l'ajuster légèrement pour coller strictement au texte."
+     "Les articles indiquent que le camion s'est renversé sur le périphérique, et non qu'un réservoir a été projeté.",
+     "Il s'agit de colonnes de fumée et non de colonies.",
+     "Le bulldozer dégage une carcasse calcinée après l'incendie au milieu de la foule et des secours, pas « au milieu des flammes ».",
+     "Exagération non confirmée par les articles, aucune source ne mentionne que les flammes ont dévoré le Ring Road en une seconde",
+     "Le nom du Premier ministre est mentionné de manière incomplète dans les articles et non vérifiable précisément comme ayant exigé une enquête approfondie.",
+     "Présent dans un seul article mais sans précision contextuelle formelle sur le fait qu'il ait présenté ses condoléances directement de cette manière.",
+     "Aucun article ne mentionne l'utilisation de lances à haute pression pendant 1 heure.",
+     "Aucun article ne mentionne la hauteur exacte des flammes.",
+     "Le nom du Premier ministre Mostafa Madbouly n'est pas présent dans les articles fournis.",
+     "Le conducteur arrêté a admis qu'il roulait à une vitesse excessive selon les procureurs, mais l'enquête n'a pas encore révélé cela comme conclusion définitive d"
     ]
    },
    "verifie": true,
@@ -95,30 +100,30 @@
    "ecrans_total": 16,
    "format": "buzz",
    "voix": "kokoro-ff_siwis",
-   "lieu": "Warraq, Gizeh, Egypt",
+   "lieu": "Warraq, Giza Governorate, Egypt",
    "humeur": "tension",
    "categorie": "faits_divers",
    "texte": [
-    "Flammes géantes engloutissent le Ring Road.",
-    "Mercredi, 25 novembre, un camion-citerne chargé de carburant renverse sur le périphérique du Caire à Warraq.",
-    "Le choc déclenche immédiatement un brasier qui avale les voitures autour.",
-    "Des colonnes de fumée noire s’élèvent au-dessus du quartier populaire.",
+    "Flammes géantes dévorent le Ring Road en une seconde.",
+    "Mercredi, 25 novembre, un camion-citerne transportant du carburant se renverse à Warraq.",
+    "Le camion se renverse directement sur cette voie rapide très fréquentée.",
+    "En quelques secondes, le carburant s’enflamme, créant un mur de feu.",
+    "D'épaisses colonnes de fumée noire s'élèvent au-dessus du quartier.",
     "Plus de deux douzaines de véhicules, dont des bus bondés, sont consumés.",
-    "Le ministère de la Santé annonce 31 morts.",
-    "21 personnes blessées, dont 4 en état critique, sont transportées.",
-    "Une quarantaine d’ambulances arrivent en urgence pour évacuer les victimes.",
-    "Le parquet arrête le conducteur d’une voiture qui aurait percuté le camion à grande vitesse.",
-    "Les autorités ouvrent une enquête et prévoient des analyses ADN pour identifier les défunts.",
-    "Un bulldozer retire les carcasses calcinées des voitures sur le site.",
+    "Le ministère de la Santé confirme 31 morts sur le site.",
+    "21 personnes sont blessées, dont 4 en état critique.",
+    "40 ambulances arrivent, transportant les blessés vers les hôpitaux voisins.",
+    "Un bulldozer dégage la carcasse calcinée d'une voiture devant la foule rassemblée.",
+    "Le parquet arrête le conducteur d’une voiture suspectée d’avoir percuté le camion.",
+    "Les autorités ouvrent une enquête et prévoient des analyses ADN pour identifier les victimes.",
     "Après plusieurs heures, le Ring Road est rouvert à la circulation.",
-    "Ce drame relance le débat sur la sécurité routière en Égypte.",
-    "Le conducteur de la voiture a admis qu'il roulait à une vitesse excessive",
-    "Le Premier ministre a ordonné une enquête",
-    "L'an dernier, près de 6000 personnes ont perdu la vie sur les routes égyptiennes",
-    "Et toi, que ferais-tu face à un tel incendie ? Dis-le en commentaire !"
+    "Le ministre de la Santé, Khaled Abdel Ghaffar, se rend sur place pour superviser les secours.",
+    "Le président Abdel Fattah al-Sissi a présenté ses condoléances aux familles des victimes.",
+    "Le conducteur arrêté a admis qu'il roulait à une vitesse excessive avant la collision.",
+    "Et toi, que ferais-tu face à un tel brasier ? Dis-le en commentaire !"
    ],
    "essai": false,
-   "cree_le": "2026-11-28T03:36:05+01:00",
+   "cree_le": "2026-11-28T10:14:10+01:00",
    "ia_quotas": {
     "mistral": {
      "appels": 0,
@@ -127,58 +132,84 @@
      "restant_minute": "0"
     },
     "groq": {
-     "appels": 3,
+     "appels": 6,
      "refus": 3,
      "erreurs": 4,
      "restant_demandes": "998",
      "limite_demandes": "1000",
-     "restant_mots": "823"
+     "restant_mots": "340"
     },
     "gemini": {
-     "appels": 14,
+     "appels": 15,
      "refus": 1,
      "erreurs": 1
     }
    },
-   "fabrication_s": 4422,
+   "fabrication_s": 4636,
    "controles": {
-    "note": 100,
+    "note": 75,
     "lignes": [
      {
       "niveau": "texte",
       "ecran": null,
       "gravite": "moyen",
-      "probleme": "texte trop court (environ 52 s, il faut plus d'1 minute)",
+      "probleme": "texte trop court (environ 57 s, il faut plus d'1 minute)",
       "corrige": true,
-      "essais": 2,
+      "essais": 1,
       "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 57 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 1,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "texte",
+      "ecran": null,
+      "gravite": "moyen",
+      "probleme": "texte trop court (environ 62 s, il faut plus d'1 minute)",
+      "corrige": true,
+      "essais": 3,
+      "solution": "phrase réécrite et revérifiée"
+     },
+     {
+      "niveau": "video",
+      "ecran": "redacteur_en_chef",
+      "gravite": "grave",
+      "probleme": "Rédacteur en chef : Le texte indique 'BUZZ INSOLITE' pour un accident mortel tragique impliquant 31 morts, ce qui est in",
+      "corrige": false,
+      "essais": 1
      }
     ],
     "sautes": [],
-    "corriges": 1,
-    "restants": 0,
-    "graves_restants": 0
+    "corriges": 3,
+    "restants": 1,
+    "graves_restants": 1
    },
    "reprises": 0,
    "preuves": [],
    "couverture_ms": 800,
    "durees": {
-    "texte": 30,
+    "texte": 208,
     "images": 5,
-    "voix": 47,
-    "montage": 2097,
-    "controle_final": 2218,
-    "regles": 1,
-    "chef": 7,
-    "rangement": 8
+    "voix": 44,
+    "montage": 2133,
+    "controle_final": 2222,
+    "regles": 8,
+    "chef": 6,
+    "rangement": 6
    },
    "refaite": {
-    "de": "20261127-190259-1-r3",
+    "de": "20261127-190259-1-r4",
     "etape": "tout",
-    "remarque": "Corrections après r3 : collision montrée, bouchon en feu, angles variés, rendu qui ne plante plus"
+    "remarque": "Corrections après r4 : accroche avec le choc et le feu dans la 1re seconde, renversement visible avant le feu, « se renverse », feux qui s'éteignent quand la route rouvre"
    },
-   "statut": "nouvelle",
-   "refaite_de": "20261127-190259-1-r3"
+   "statut": "a_verifier",
+   "refaite_de": "20261127-190259-1-r4"
   },
   {
    "id": "20261127-124839-1",
