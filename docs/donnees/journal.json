@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-28T12:43:33+01:00",
+   "niveau": "attention",
+   "texte": "🩺 Santé du robot : ⚠️ En panne : mistral, github, cerebras, cloudflare, zai"
+  },
+  {
    "date": "2026-11-28T12:03:22+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 103 sujet(s) au-dessus des seuils — en tête : « Camion perd le contrôle en Ohio »"
@@ -994,11 +999,6 @@
    "date": "2026-11-25T00:44:12+01:00",
    "niveau": "info",
    "texte": "🔁 « Fascistes en Espagne : un hommage choc à Franco » refaite (tout) : note 55/100, corrige : « Vidéo de l'ancien code : presque aucune image » — l'ancienne version est remplacée"
-  },
-  {
-   "date": "2026-11-24T23:53:30+01:00",
-   "niveau": "attention",
-   "texte": "🩺 Santé du robot : ⚠️ En panne : gemini ; 1 vidéo(s) en réparation"
   }
  ]
 }

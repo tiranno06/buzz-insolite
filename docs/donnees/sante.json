@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-27T13:10:15+01:00",
+ "maj": "2026-11-28T12:43:32+01:00",
  "ia": [
   {
    "nom": "mistral",
@@ -115,43 +115,44 @@
   "foxnews": 0
  },
  "durees": {
-  "controle_final": 170,
-  "articles": 0,
-  "montage": 978,
-  "images": 16,
   "regles": 1,
-  "texte": 108,
+  "controle_final": 396,
+  "montage": 1303,
+  "texte": 98,
+  "images": 16,
   "rangement": 6,
-  "voix": 49,
-  "ecriture": 17,
-  "total": 1378
+  "articles": 0,
+  "ecriture": 15,
+  "voix": 42,
+  "chef": 1,
+  "total": 1877
  },
  "creations_24h": {
-  "reussies": 12,
-  "ratees": 0,
+  "reussies": 14,
+  "ratees": 1,
   "en_cours": 1
  },
  "quotas": {
   "mistral": {
    "appels": 0,
    "refus": 0,
-   "erreurs": 25,
+   "erreurs": 15,
    "restant_minute": "0",
    "sature": false
   },
   "groq": {
-   "appels": 15,
-   "refus": 11,
-   "erreurs": 22,
+   "appels": 10,
+   "refus": 4,
+   "erreurs": 11,
    "restant_demandes": "999",
    "limite_demandes": "1000",
-   "restant_mots": "7751",
-   "sature": true
+   "restant_mots": "7679",
+   "sature": false
   },
   "gemini": {
-   "appels": 49,
-   "refus": 4,
-   "erreurs": 22,
+   "appels": 15,
+   "refus": 2,
+   "erreurs": 8,
    "sature": false
   },
   "github": {
@@ -179,10 +180,10 @@
    "sature": false
   },
   "openrouter": {
-   "appels": 5,
-   "refus": 13,
+   "appels": 0,
+   "refus": 0,
    "erreurs": 0,
-   "sature": true
+   "sature": false
   }
  },
  "reparations": [
@@ -257,60 +258,6 @@
    "le": "2026-11-24T23:33:25+01:00"
   }
  ],
- "sujets_remis": 1,
- "resume": "⚠️ En panne : mistral, github, cerebras, cloudflare, zai",
- "essai_nuit": {
-  "le": "2026-11-28T10:55:25+01:00",
-  "resultats": [
-   {
-    "nom": "Tests du code (montage compris)",
-    "ok": false,
-    "detail": "Command '['/opt/hostedtoolcache/Python/3.12.16/x64/bin/python', '-m', 'unittest', 'discover', '-s', 'tests']' timed out after 1200 seconds",
-    "duree_s": 1200.1
-   },
-   {
-    "nom": "Voix d'homme (Chatterbox)",
-    "ok": true,
-    "detail": "3.6 s de voix",
-    "duree_s": 80.8
-   },
-   {
-    "nom": "Calage des mots (Whisper)",
-    "ok": true,
-    "detail": "7 mots entendus",
-    "duree_s": 0.4
-   },
-   {
-    "nom": "Téléchargement d'une vidéo TikTok d'origine",
-    "ok": true,
-    "detail": "@franceinfo : 74 s",
-    "duree_s": 35.6
-   },
-   {
-    "nom": "Recadrage et agrandissement (OpenCV)",
-    "ok": true,
-    "detail": "visage : 0.5899999737739563, photo agrandie",
-    "duree_s": 1.5
-   },
-   {
-    "nom": "Orthographe (LanguageTool)",
-    "ok": true,
-    "detail": "1 faute(s) vue(s)",
-    "duree_s": 0.7
-   },
-   {
-    "nom": "IA qui écrit",
-    "ok": true,
-    "detail": "groq:openai/gpt-oss-20b",
-    "duree_s": 2.9
-   },
-   {
-    "nom": "IA qui voit",
-    "ok": true,
-    "detail": "gemini:gemini-flash-latest",
-    "duree_s": 191.6
-   }
-  ],
-  "ok": false
- }
+ "sujets_remis": 0,
+ "resume": "⚠️ En panne : mistral, github, cerebras, cloudflare, zai"
 }
