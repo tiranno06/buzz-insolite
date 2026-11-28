@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-28T10:02:28+01:00",
+ "maj": "2026-11-28T12:03:17+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:00:22+01:00"
+   "le": "2026-11-28T12:01:17+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:00:26+01:00"
+   "le": "2026-11-28T12:01:21+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:00:31+01:00"
+   "le": "2026-11-28T12:01:26+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:00:34+01:00"
+   "le": "2026-11-28T12:01:29+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:00:38+01:00"
+   "le": "2026-11-28T12:01:33+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-28T10:00:41+01:00"
+   "le": "2026-11-28T12:01:36+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:00:44+01:00"
+   "le": "2026-11-28T12:01:40+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:00:48+01:00"
+   "le": "2026-11-28T12:01:44+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:00:52+01:00"
+   "le": "2026-11-28T12:01:48+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:00:57+01:00"
+   "le": "2026-11-28T12:01:51+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:02+01:00"
+   "le": "2026-11-28T12:01:55+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:06+01:00"
+   "le": "2026-11-28T12:01:58+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:11+01:00"
+   "le": "2026-11-28T12:02:03+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-28T10:01:14+01:00"
+   "le": "2026-11-28T12:02:07+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:17+01:00"
+   "le": "2026-11-28T12:02:12+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:21+01:00"
+   "le": "2026-11-28T12:02:16+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:25+01:00"
+   "le": "2026-11-28T12:02:20+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:29+01:00"
+   "le": "2026-11-28T12:02:24+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:33+01:00"
+   "le": "2026-11-28T12:02:28+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:37+01:00"
+   "le": "2026-11-28T12:02:32+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:40+01:00"
+   "le": "2026-11-28T12:02:36+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:44+01:00"
+   "le": "2026-11-28T12:02:41+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:47+01:00"
+   "le": "2026-11-28T12:02:44+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:51+01:00"
+   "le": "2026-11-28T12:02:48+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:54+01:00"
+   "le": "2026-11-28T12:02:51+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:01:59+01:00"
+   "le": "2026-11-28T12:02:55+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:02:02+01:00"
+   "le": "2026-11-28T12:02:58+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T10:02:06+01:00"
+   "le": "2026-11-28T12:03:02+01:00"
   }
  },
  "lues": 809,
@@ -448,6 +448,66 @@
    "tendance": null,
    "statut": "sans_source",
    "vu_le": "2026-11-28T10:02:28+01:00"
+  },
+  {
+   "titre": "Semi-truck loses control in Ohio",
+   "resume": "A semi-truck skidded across a gap between off-ramps in Ohio, but was recovered without injuries. The incident was captured by the Ohio Department of Transportation.",
+   "mots_cles": [
+    "truck accident",
+    "Ohio",
+    "semi-truck",
+    "off-ramps",
+    "no injuries"
+   ],
+   "mots_cles_en": [
+    "truck accident",
+    "Ohio",
+    "semi-truck",
+    "off-ramps",
+    "no injuries"
+   ],
+   "hashtags": [
+    "truck",
+    "ohio",
+    "accident",
+    "transportation",
+    "safety"
+   ],
+   "insolite": 4,
+   "categorie": "sante",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712677404224834829",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7712677404224834829",
+     "vues": 24700000,
+     "jaime": 1500000,
+     "commentaires": 16600,
+     "partages": 166100,
+     "date": 1795747666,
+     "texte": "Video from the Ohio Department of Transportation shows the moment a semi-truck lost control while attempting to turn, skidding across the gap between two off-ramps. Authorities were able to pull the truck back onto the road and tow it away. No injuries were reported. #truck #ohio #accident #drive ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712677404224834829?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "55e0e56310",
+   "score": 3317,
+   "derniere_vue": 1795863790.8728197,
+   "vues": 24700000,
+   "jaime": 1500000,
+   "commentaires": 16600,
+   "hashtags_viraux": [
+    "truck",
+    "ohio",
+    "accident",
+    "drive"
+   ],
+   "medias": 7,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T12:03:17+01:00"
   },
   {
    "titre": "CAN 2025 : Sénégal vainqueur après arbitrage TAS",
@@ -1117,6 +1177,61 @@
    "video_id": "20261127-024127-1"
   },
   {
+   "titre": "Christ the Redeemer: aerial view above clouds",
+   "resume": "A helicopter filmed Christ the Redeemer floating above a sea of clouds in Rio de Janeiro. The iconic statue remains a symbol of Christianity.",
+   "mots_cles": [
+    "Christ the Redeemer",
+    "Rio de Janeiro",
+    "aerial footage",
+    "statue",
+    "clouds"
+   ],
+   "mots_cles_en": [
+    "Christ the Redeemer",
+    "Rio de Janeiro",
+    "aerial footage",
+    "statue",
+    "clouds"
+   ],
+   "hashtags": [
+    "christtheredeemer",
+    "rio",
+    "aerial",
+    "clouds",
+    "landmark"
+   ],
+   "insolite": 3,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712775661743557902",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712775661743557902",
+     "vues": 11400000,
+     "jaime": 2700000,
+     "commentaires": 14600,
+     "partages": 158000,
+     "date": 1795770583,
+     "texte": "Helicopter footage captures a breathtaking view of Christ the Redeemer seemingly floating above a sea of clouds in Rio de Janeiro, Brazil, as the aircraft flies high above the city. The iconic statue, which stands atop Mount Corcovado, overlooks Rio and is a symbol of Christianity. The person who shared the footage described the experience as witnessing ‘something divine’. 🎥 Instagtam / cheezewino",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712775661743557902?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "90a68b5b09",
+   "score": 723,
+   "derniere_vue": 1795863790.8728197,
+   "vues": 11400000,
+   "jaime": 2700000,
+   "commentaires": 14600,
+   "hashtags_viraux": [],
+   "medias": 2,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T12:03:17+01:00"
+  },
+  {
    "titre": "Afghanistan : les femmes privées de nom officiel",
    "resume": "Un nouveau décret impose aux femmes afghanes des surnoms au lieu de leurs prénoms. Cette mesure suscite de vives critiques au niveau international.",
    "mots_cles": [
@@ -1329,6 +1444,76 @@
    "vu_le": "2026-11-27T02:13:07+01:00",
    "reserve_le": "2026-11-27T09:01:27+01:00",
    "video_id": "20261127-090511-1"
+  },
+  {
+   "titre": "Mirage makes cargo vessel appear floating",
+   "resume": "A cargo vessel off Ajman UAE seemed to float above water due to a superior mirage. The phenomenon was captured on video by a filmmaker.",
+   "mots_cles": [
+    "mirage",
+    "cargo vessel",
+    "Ajman",
+    "UAE",
+    "superior mirage"
+   ],
+   "mots_cles_en": [
+    "mirage",
+    "cargo vessel",
+    "Ajman",
+    "UAE",
+    "superior mirage"
+   ],
+   "hashtags": [
+    "mirage",
+    "cargo",
+    "ajman",
+    "uae",
+    "phenomenon"
+   ],
+   "insolite": 6,
+   "categorie": "science",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712893684391480607",
+     "compte": "abcnews",
+     "url": "https://www.tiktok.com/@abcnews/video/7712893684391480607",
+     "vues": 3100000,
+     "jaime": 151100,
+     "commentaires": 2155,
+     "partages": 20100,
+     "date": 1795798021,
+     "texte": "Viral footage filmed off the coast of Ajman, United Arab Emirates, captures a cargo vessel appearing to float above the water due to a superior mirage, where temperature differences bend light in the atmosphere.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712893684391480607?description=1&music_info=1"
+    },
+    {
+     "id": "7712817096714997025",
+     "compte": "hugodecrypte",
+     "url": "https://www.tiktok.com/@hugodecrypte/video/7712817096714997025",
+     "vues": 1100000,
+     "jaime": 244200,
+     "commentaires": 1525,
+     "partages": 13600,
+     "date": 1795780177,
+     "texte": "Ce phénomène météorologique a été capturé en vidéo par le réalisateur brésilien Marcio Amaro.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712817096714997025?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "b9ac2aa33e",
+   "score": 621,
+   "derniere_vue": 1795863790.8728197,
+   "vues": 4200000,
+   "jaime": 395300,
+   "commentaires": 3680,
+   "hashtags_viraux": [],
+   "medias": 3,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T12:03:17+01:00"
   },
   {
    "titre": "80 ans, proteste contre le gouvernement albanais",
@@ -3580,6 +3765,67 @@
    "vu_le": "2026-11-28T06:00:55+01:00"
   },
   {
+   "titre": "Escalator accident forces students to jump",
+   "resume": "At BRAC University in Bangladesh, an escalator accelerated unexpectedly, causing students to leap to safety. The incident was captured on video and raised safety concerns.",
+   "mots_cles": [
+    "escalator accident",
+    "BRAC University",
+    "Bangladesh",
+    "students",
+    "safety"
+   ],
+   "mots_cles_en": [
+    "escalator accident",
+    "BRAC University",
+    "Bangladesh",
+    "students",
+    "safety"
+   ],
+   "hashtags": [
+    "escalator",
+    "accident",
+    "bangladesh",
+    "safety",
+    "university"
+   ],
+   "insolite": 4,
+   "categorie": "sante",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712510013171911949",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
+     "vues": 8300000,
+     "jaime": 534100,
+     "commentaires": 5475,
+     "partages": 39600,
+     "date": 1795708700,
+     "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712510013171911949?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "5b0c560d2b",
+   "score": 230,
+   "derniere_vue": 1795863790.8728197,
+   "vues": 8300000,
+   "jaime": 534100,
+   "commentaires": 5475,
+   "hashtags_viraux": [
+    "bangladesh",
+    "viral",
+    "escalator",
+    "hardnews",
+    "news"
+   ],
+   "medias": 1,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T12:03:17+01:00"
+  },
+  {
    "titre": "Arnaque consoles jeux en ligne",
    "resume": "Des annonces sur les plateformes de seconde main vendent des consoles de jeux fictives. Les victimes reçoivent uniquement une photo du produit.",
    "mots_cles": [
@@ -4410,6 +4656,62 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-26T17:23:54+01:00"
+  },
+  {
+   "titre": "Gold price falls sharply",
+   "resume": "Analysts discuss the recent decline in gold prices. Factors include market volatility and economic indicators.",
+   "mots_cles": [
+    "gold price",
+    "decline",
+    "market volatility",
+    "economic indicators",
+    "analysts"
+   ],
+   "mots_cles_en": [
+    "gold price",
+    "decline",
+    "market volatility",
+    "economic indicators",
+    "analysts"
+   ],
+   "hashtags": [
+    "gold",
+    "price",
+    "decline",
+    "economy",
+    "market"
+   ],
+   "insolite": 3,
+   "categorie": "economie",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712432953673927969",
+     "compte": "hugodecrypte",
+     "url": "https://www.tiktok.com/@hugodecrypte/video/7712432953673927969",
+     "vues": 2300000,
+     "jaime": 218900,
+     "commentaires": 862,
+     "partages": 25100,
+     "date": 1795690736,
+     "texte": "(25/11) 🚨Comment expliquer la chute du cours de l’or ? ",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712432953673927969?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "70ba2719c5",
+   "score": 127,
+   "derniere_vue": 1795863790.8728197,
+   "vues": 2300000,
+   "jaime": 218900,
+   "commentaires": 862,
+   "hashtags_viraux": [],
+   "medias": 11,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T12:03:17+01:00"
   },
   {
    "titre": "Espagne : rassemblement fasciste célébrant Franco",
@@ -5894,6 +6196,62 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-26T17:23:54+01:00"
+  },
+  {
+   "titre": "Three-year-old boy sneaks to grandma",
+   "resume": "A three-year-old boy in Idaho ran half a mile to visit his grandmother after being told he couldn't. The journey was recorded by security cameras.",
+   "mots_cles": [
+    "child",
+    "Idaho",
+    "grandmother",
+    "security cameras",
+    "sneak"
+   ],
+   "mots_cles_en": [
+    "child",
+    "Idaho",
+    "grandmother",
+    "security cameras",
+    "sneak"
+   ],
+   "hashtags": [
+    "child",
+    "idaho",
+    "grandma",
+    "security",
+    "sneak"
+   ],
+   "insolite": 5,
+   "categorie": "societe",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712881549607226638",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712881549607226638",
+     "vues": 2100000,
+     "jaime": 242300,
+     "commentaires": 1969,
+     "partages": 8351,
+     "date": 1795795213,
+     "texte": "This is the moment a three-year-old boy in Idaho set off on his own after being told he couldn’t visit his grandma, sneaking out of his home and running half a mile to her house. The little boy’s journey was captured on security cameras at both homes, with his grandmother alerting his mother once he arrived safely. She hopes the incident serves as a reminder of how quickly young children can wande",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712881549607226638?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "3c30c383c9",
+   "score": 63,
+   "derniere_vue": 1795863790.8728197,
+   "vues": 2100000,
+   "jaime": 242300,
+   "commentaires": 1969,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T12:03:17+01:00"
   },
   {
    "titre": "New Jersey : table cède sous le repas",

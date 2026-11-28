@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-28T12:03:22+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 103 sujet(s) au-dessus des seuils — en tête : « Camion perd le contrôle en Ohio »"
+  },
+  {
    "date": "2026-11-28T11:51:04+01:00",
    "niveau": "info",
    "texte": "🔁 « Incendie meurtrier sur le Ring Road » refaite (tout) : note 100/100, corrige : « foule a sa phrase, camera loin du feu, bulldozer, route rouverte, etiquette ACTUALITE » — l'ancienne version est remplacée"
@@ -994,11 +999,6 @@
    "date": "2026-11-24T23:53:30+01:00",
    "niveau": "attention",
    "texte": "🩺 Santé du robot : ⚠️ En panne : gemini ; 1 vidéo(s) en réparation"
-  },
-  {
-   "date": "2026-11-24T23:48:43+01:00",
-   "niveau": "info",
-   "texte": "🔁 « CAN 2025 : Le Sénégal récupère son titre » refaite (tout) : note 75/100, corrige : « Vidéo de l'ancien code : presque aucune image » — l'ancienne version est remplacée"
   }
  ]
 }
