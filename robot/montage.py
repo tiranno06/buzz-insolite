@@ -362,7 +362,11 @@ def monter_anime(script, dossier, sortie, suivi=None):
                              cle=V.norm(m) in cles or bool(re.search(r"\d", m))))
     sb = realisateur.pour_rendu(anim, script, debuts, mots, total, script.get("source_courte", ""))
     images = os.path.join(dossier, "anime.mp4")
-    signature = json.dumps(sb, sort_keys=True, ensure_ascii=False)
+    def _cles_texte(x):                               # clés mêlées (3 et "3") : json ne sait pas les trier
+        if isinstance(x, dict):
+            return {str(k): _cles_texte(v) for k, v in x.items()}
+        return [_cles_texte(v) for v in x] if isinstance(x, list) else x
+    signature = json.dumps(_cles_texte(sb), sort_keys=True, ensure_ascii=False, default=str)
     if script.get("_sig_anime") != signature or not os.path.exists(images):
         realisateur.rendre(sb, images)
         script["_sig_anime"] = signature

@@ -830,6 +830,19 @@ plans larges restent centrés sur le brasier. L'accroche (moment fort) commence 
 Le moment fort est en plan MOYEN (28/11, l'auteur : « pas trop rapproché, assez large sans l'être trop ») : choc filmé
 plus haut et plus loin, jamais à moins de 25 m (`DISTANCE_MIN_PROCHE`, sauf la vue du conducteur).
 
+## Analyse de Gizeh r3 (28/11) et corrections
+Vidéo r3 : 50 s sous le même angle, collision jamais montrée, « deux douzaines de voitures » jamais en feu, caméra dans le
+brasier. Causes et corrections : 1) `corriger_anime` mélangeait les clés 3 et "3" des cadres → `json.dumps(sort_keys)` plantait
+→ 7 reprises (36 min de rendu perdues) et la vidéo publiée était celle d'AVANT correction : clés en texte + `montage._cles_texte` ;
+2) le réalisateur critique avait retiré la collision → il ne retire jamais le cœur du récit (choc, feu, explosion,
+renversement, fuite) ; `corriger_anime` non plus ; 3) « transportait du carburant » pris pour une fuite (phrase 1, sur une
+carte) → motif « deverser » = vraie fuite seulement ; une action racontée pendant une carte / un encadré est jouée à la phrase
+3D la plus proche (`_scene_3d`, plus jamais perdue) ; 4) la 1re phrase (« s'est renversé ») est jouée au 1er moment fort ;
+5) « douzaines / dizaines / voitures et motos / véhicules en feu » = le bouchon qui brûle ; 6) la voiture du choc ne « repart »
+plus quand la circulation reprend (nouvel acteur) ; 7) règle C3 : un choc raconté après le feu / la fuite de sa cible est remis
+avant ; 8) plans larges successifs pris de côtés différents (`COTES`) ; 9) « Ring Road » et tout nom anglais de plusieurs mots
+dit à l'anglaise en entier (`prononciation._anglais`). Tests : `TestGizehR3`.
+
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
 vidéos de l'ANCIEN style non publiées sont « écartées » (`ecartee_pause`, réversibles depuis le site) ; la santé de la nuit

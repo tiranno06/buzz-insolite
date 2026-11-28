@@ -72,9 +72,10 @@ def critique_storyboard(script, anim, journal=print, exclure=()):
             if sc.get("type") != "3d" or sc.get("accroche"):
                 continue
             acts = sc.get("actions") or []
-            if "retirer" in c:
-                avant = len(acts)
-                sc["actions"] = [a for a in acts if a.get("_n") != c.get("retirer")]
+            if "retirer" in c:                          # jamais le cœur du récit (choc, feu, explosion, renversement, fuite) :
+                avant = len(acts)                         # le critique avait retiré la collision (Gizeh r3, 28/11)
+                sc["actions"] = [a for a in acts if a.get("_n") != c.get("retirer")
+                                 or a.get("faire") in ("heurter", "bruler", "exploser", "se_coucher", "deverser", "effondrer", "couler")]
                 faites += avant != len(sc["actions"])
             elif "deplacer" in c and str(c.get("phrase", "")).isdigit() and 0 < int(c["phrase"]) < n_phrases - 1:
                 for a in acts:

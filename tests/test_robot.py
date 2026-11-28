@@ -1782,3 +1782,27 @@ class TestPlansLarges(unittest.TestCase):
         cam = R.plans_camera([dict(objet="v", faire="heurter", cible="c", a=0.2, d=1.4)],
                              [dict(id="c", type="citerne"), dict(id="v", type="voiture")], "c", 4, accroche=True)
         self.assertEqual(cam[0]["_cle"], "heurter")
+
+
+class TestGizehR3(unittest.TestCase):
+    """28/11 : défauts de la vidéo de Gizeh r3 (rendu planté 7 fois, collision perdue, 27 véhicules absents)."""
+    def test_cles_melangees_ne_plantent_plus(self):
+        from robot import controle
+        script = {"animation": {"scenes": [dict(type="3d", cadres={3: "cote"}, actions=[], phrases=[3])]}}
+        controle.corriger_anime(script, {4: ("x", "anime")}, 0, journal=lambda *a: None)
+        cad = script["animation"]["scenes"][0]["cadres"]
+        self.assertTrue(all(isinstance(k, str) for k in cad))
+        import json
+        json.dumps(script, sort_keys=True)
+
+    def test_bouchon_en_mots(self):
+        from robot import gabarits
+        phrases = ["Un camion-citerne s'est renversé.", "Il transportait du carburant.", "Le choc a allumé un feu.",
+                   "Les flammes ont embrasé plus de deux douzaines de voitures et de motos.", "Le bilan est lourd.",
+                   "Le conducteur a perdu le contrôle après une collision.", "Et toi ?"]
+        f = {"type": "accident_route", "acteurs": [dict(id="c", type="citerne")], "deroule": [dict(phrase=2, qui="c", action="bruler")]}
+        gabarits._completer(f, {"phrases": [{"ecrit": p} for p in phrases]})
+        self.assertIn("_bouchon", f)                                     # « deux douzaines » = le feu gagne d'autres véhicules
+        choc = next(e for e in f["deroule"] if e["action"] == "heurter")
+        self.assertLessEqual(choc["phrase"], 2)                          # collision dite à la fin = jouée avant le feu
+        self.assertFalse(any(e["action"] == "deverser" and e["phrase"] == 1 for e in f["deroule"]))   # « transportait du carburant »

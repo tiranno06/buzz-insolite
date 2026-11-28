@@ -632,11 +632,13 @@ def corriger_anime(script, fautifs, tour, journal=print):
         for sc in anim.get("scenes") or []:
             if sc.get("type") != "3d":
                 continue
-            if tour == 0:
-                sc.setdefault("cadres", {})[str(i)] = "large"; n += 1
+            if tour == 0:                               # clés toujours en texte : un mélange 3 / "3" faisait planter le
+                cad = {str(k): v for k, v in (sc.get("cadres") or {}).items()}   # rendu 7 fois (Gizeh r3, 28/11)
+                cad[str(i)] = "large"; sc["cadres"] = cad; n += 1
             else:
                 avant = len(sc.get("actions") or [])
-                sc["actions"] = [a for a in sc.get("actions") or [] if str(a.get("phrase")) != str(i) or a.get("faire") in ("bruler", "exploser")]
+                sc["actions"] = [a for a in sc.get("actions") or [] if str(a.get("phrase")) != str(i)
+                                 or a.get("faire") in ("bruler", "exploser", "heurter", "se_coucher", "deverser")]
                 n += avant != len(sc["actions"])
         for sc in anim.get("scenes") or []:
             if i in (sc.get("phrases") or []) and tour > 0:

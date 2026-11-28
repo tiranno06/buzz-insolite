@@ -20,6 +20,7 @@ FICHIER = "prononciation.json"
 # Mots dont la prononciation est sûre (le reste vient de l'auteur et de l'apprentissage du robot)
 BASE = {
     "Mme": "madame", "Mlle": "mademoiselle", "Dr": "docteur", "Pr": "professeur",
+    "Ring Road": "rinng rôde",                     # (périphérique du Caire, vidéo de Gizeh du 27/11 : mal dit 2 fois)
 }
 # Sigles qui se lisent comme un mot (les autres sont épelés)
 COMME_UN_MOT = {"NASA", "OTAN", "ONU", "UNESCO", "UNICEF", "FIFA", "UEFA", "CAF", "OPEP", "SIDA", "COVID", "OVNI", "NATO",
@@ -100,6 +101,18 @@ def _anglais(t):
             return w                                    # nom connu du Wiktionnaire (Washington…) : la voix le connaît aussi
         api = ipa(w)
         return ipa_vers_francais(api) if api else w
+    # un NOM ANGLAIS de plusieurs mots (« Ring Road », « Main Street ») se dit en entier à l'anglaise, même le mot qui
+    # existe aussi en français (« ring ») — sinon « ringue rôde »
+    def groupe(m):
+        mots = m.group(0).split()
+        if not any(len(w) >= 3 and ANGLAIS.search(w) and not phonetique.mot_courant(w) and not phonetique.api_fr(w) for w in mots):
+            return m.group(0)
+        out = []
+        for w in mots:
+            api = None if phonetique.api_fr(w) else ipa(w)
+            out.append(ipa_vers_francais(api) if api else w)
+        return " ".join(out)
+    t = re.sub(r"(?<![\wÀ-ÿ'])[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+(?![\wÀ-ÿ'])", groupe, t)
     return re.sub(r"(?<![\wÀ-ÿ'])[A-Z][a-z]+(?![\wÀ-ÿ'])", un, t)
 
 

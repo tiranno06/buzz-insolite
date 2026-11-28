@@ -95,7 +95,8 @@ FORTS = ("heurter", "exploser", "bruler", "tomber", "couler", "se_coucher")
 # l'auteur : « tu ne reconstitues pas entièrement les faits »). Chaque étape dite = une action montrée.
 MOTS_ACTIONS = (("heurter", r"percut|heurt|collision|collisionn|accroch|perd(?:u)? le contr[ôo]le|fonce sur|perc[ée]"),
                 ("se_coucher", r"renvers|retourn|bascul|se couche|couch[ée]|d[ée]raill|sur le flanc|sur le toit|s'effondr|chavir"),
-                ("deverser", r"fuite|carburant|essence|gazole|hydrocarbure|d[ée]vers|se r[ée]pand|s'[ée]coul"),
+                # (« le camion transportait du carburant » n'est pas une fuite : Gizeh r3 du 28/11)
+                ("deverser", r"fuite|d[ée]vers|se r[ée]pand|r[ée]pandu|s'[ée]coul|nappe|flaque"),
                 ("bruler", r"prend feu|pris feu|en feu|flamm|incendi|br[ûu]l|embras|brasier"),
                 ("exploser", r"explos|d[ée]flagration|d[ée]tonation|souffle|fait sauter|d[ée]truit par"),
                 ("tomber", r"s'[ée]cras|chute|pique|plonge|tomb"),
@@ -239,6 +240,21 @@ def _completer(f, script):
             if re.search(motif, t) and not any(a.get("type") == typ_s for a in acteurs) and i > 1:
                 acteurs.append(dict(id=typ_s, type=typ_s, role={"pompiers": "les pompiers", "ambulance": "les secours", "police": "la police"}[typ_s]))
                 deroule.append(dict(phrase=i, qui=typ_s, action="arriver"))
+    # la 1re phrase (accroche) résume souvent le fait principal (« un camion-citerne s'est renversé », Gizeh r3 du 28/11 :
+    # jamais montré) : ce qu'elle dit et que le récit ne redit pas est joué au 1er moment fort du récit (ou phrase 1)
+    t0 = script["phrases"][0]["ecrit"].lower() if n else ""
+    forts_ph = [_phrase(e.get("phrase"), n) or 99 for e in deroule if ACTIONS.get(str(e.get("action") or "").lower()) in FORTS]
+    ph0 = max(1, min(forts_ph, default=1))
+    for action, motif in MOTS_ACTIONS:
+        if action in deja or action not in ("heurter", "se_coucher") or not re.search(motif, t0):
+            continue
+        e = dict(phrase=ph0, qui=principal["id"], action=action)
+        if action == "heurter":
+            autre = next((a for a in acteurs if a is not principal and a.get("type") in VEHICULES), None)
+            if not autre:
+                autre = dict(id="autre", type="voiture", role="une voiture"); acteurs.append(autre)
+            e.update(qui=autre["id"], cible=principal["id"], _avant=True)
+        deroule.append(e); deja.add(action)
     # évacuation, fuite des passants : une foule qui s'éloigne en courant
     if "fuir" not in deja:
         ph = next((i for i, p in enumerate(script["phrases"][1:n - 1], start=1)
@@ -262,7 +278,10 @@ def _completer(f, script):
         ph = next((i for i, p in enumerate(script["phrases"][1:n - 1], start=1) if re.search(motif, p["ecrit"].lower())), None)
         if ph is None or any(e.get("qui") == nom for e in deroule):
             continue
-        a = next((x for x in acteurs if x.get("type") == type_), None)
+        # jamais un acteur du drame (la voiture du choc qui « repart » quand la circulation reprend, Gizeh r3 du 28/11)
+        dans_drame = {e.get("qui") for e in deroule if ACTIONS.get(str(e.get("action") or "").lower()) in FORTS} | \
+                     {e.get("cible") for e in deroule if e.get("cible")}
+        a = next((x for x in acteurs if x.get("type") == type_ and x["id"] not in dans_drame), None)
         if not a:
             pos = {"muret": 14, "pompiers": -70, "helico": -60, "personne": 26, "police": -90, "camion": -110, "voiture": -140}[type_]
             a = dict(id=nom, type=type_, role={"muret": "barrières de terre", "pompiers": "les pompiers", "helico": "le drone",
@@ -294,7 +313,9 @@ def _completer(f, script):
     feu = next((e["phrase"] for e in deroule if ACTIONS.get(str(e.get("action")).lower()) == "bruler"), None)
     if feu is not None and typ in ("accident_route", "incendie", "explosion"):
         k = next((i for i, p in enumerate(script["phrases"][:n - 1]) if i >= feu and re.search(
-            r"\d+\s+(?:autres\s+)?(?:véhicules|voitures|camions)|propag|d'autres véhicules|bouchon|embouteill|gagne", p["ecrit"].lower())), None)
+            r"\d+\s+(?:autres\s+)?(?:véhicules|voitures|camions)|propag|d'autres véhicules|bouchon|embouteill|gagne"
+            r"|douzaines?|dizaines?|centaines?|plusieurs (?:véhicules|voitures)|voitures et (?:de |des )?motos|véhicules (?:en feu|embras|calcin)",
+            p["ecrit"].lower())), None)
         if k is not None:
             f["_bouchon"] = dict(phrase_arrivee=max(1, feu - 1), phrase_feu=k)
     # ORDRE RÉEL des faits (Gizeh, 27/11 : « un conducteur… accusé d'avoir PERCUTÉ le camion » est dit à la fin → la voiture
@@ -400,8 +421,10 @@ def _scene_3d(f, phrases_3d, script):
         if not isinstance(e, dict):
             continue
         faire, qui, ph = ACTIONS.get(str(e.get("action") or "").lower()), e.get("qui"), _phrase(e.get("phrase"), n)
-        if not faire or qui not in places or ph is None or ph not in phrases_3d:
+        if not faire or qui not in places or ph is None or not phrases_3d:
             continue
+        if ph not in phrases_3d:                        # raconté pendant une carte ou un encadré : joué à la phrase 3D la
+            ph = min(phrases_3d, key=lambda x: (abs(x - ph), -x))   # plus proche (rien de raconté ne se perd)
         act = dict(objet=qui, faire=faire, phrase=ph, duree=DUREES.get(faire, 1.0))
         if faire == "avancer":
             act["vers_position"] = 0 if places[qui]["type"] not in ("police", "ambulance", "pompiers") else -22

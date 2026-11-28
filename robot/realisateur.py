@@ -335,6 +335,7 @@ PLANS = {"avancer": ([-16, 6, 18], [-11, 4.5, 13]), "heurter": ([-27, 11, 25], [
 PROCHES = ("heurter", "exploser", "tomber", "interieur")
 LOINTAINS = ("bruler", "secours", "fuir", "arroser", "deverser")
 OUVERTURE, DUREE_PROCHE, DISTANCE_MIN = 3.0, 2.2, 15.0
+COTES = ((1, 1), (-1, 1), (0.35, 1.25), (-1, 0.8))     # côtés successifs des plans larges (x, z) : devant, derrière, de face…
 DISTANCE_MIN_PROCHE = 25.0                            # même le moment fort n'est jamais filmé à moins de 25 m
 SECOURS_3D = ("police", "ambulance", "pompiers")
 GRANDS = {"citerne": 1.7, "camion": 1.6, "bus": 1.6, "train": 2.2, "avion": 2.4, "bateau": 2.4, "batiment": 2.0, "immeuble": 2.4, "entrepot": 2.6,
@@ -426,7 +427,7 @@ def _cam(coupes, types, duree, dense=False, feux=None, principal=None, accroche=
         while fin - x > 2.0:
             plein.append((round(x, 2), variantes[k % 3] if variantes[k % 3] != c else variantes[(k + 1) % 3], s_)); k += 1; x += 6.0
     coupes = plein
-    cam = []
+    cam, n_large = [], 0
     for k, (debut, cle, suivre) in enumerate(coupes):
         fin = coupes[k + 1][0] - 0.04 if k + 1 < len(coupes) else max(debut + 1.5, duree)
         p0, p1 = PLANS.get(cle) or PLANS_PLUS[cle]
@@ -439,6 +440,9 @@ def _cam(coupes, types, duree, dense=False, feux=None, principal=None, accroche=
             d1 = sum(v * v for v in p1) ** 0.5 * e
             if d1 < mini:
                 e *= mini / max(d1, 0.1)
+        if cle in ("large", "haut"):                    # (Gizeh r3, 28/11 : 50 s sous le même angle) chaque plan large vient
+            cote = COTES[n_large % len(COTES)]; n_large += 1   # d'un autre côté de la scène
+            p0, p1 = [p0[0] * cote[0], p0[1], p0[2] * cote[1]], [p1[0] * cote[0], p1[1], p1[2] * cote[1]]
         cam.append(dict(a=round(debut, 2), pos=[round(v * e, 1) for v in p0], suivre=suivre, _cle=cle, **extra))
         cam.append(dict(a=round(max(fin, debut + 0.05), 2), pos=[round(v * e, 1) for v in p1], suivre=suivre, _cle=cle, **extra))
     return cam

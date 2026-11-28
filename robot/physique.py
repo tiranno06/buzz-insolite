@@ -66,7 +66,7 @@ REGLES = [
     ("P11", "Un objet ne se percute pas lui-même ; une cible doit exister dans la scène."),
     ("C1", "Rien n'agit après sa destruction : un objet explosé, coulé ou effondré ne roule plus, ne freine plus, ne percute plus."),
     ("C2", "Un objet renversé ne roule plus (il peut encore fuir, brûler ou exploser)."),
-    ("C3", "Une cause avant sa conséquence : un choc raconté après la destruction de sa cible est remis juste avant."),
+    ("C3", "Une cause avant sa conséquence : un choc raconté après que sa cible a brûlé, fui, s'est renversée ou a été détruite est remis juste avant."),
     ("C4", "Dans la même phrase, la conséquence (renversement, fuite, feu, explosion) commence APRÈS l'impact."),
     ("C5", "Un objet n'explose qu'une fois, ne coule qu'une fois, ne s'effondre qu'une fois."),
     ("C6", "Les secours n'arrivent pas avant l'événement : ils arrivent au moment du premier fait marquant, ou après."),
@@ -154,7 +154,8 @@ def appliquer(sc, journal=print, texte=""):
 
     # ---- C3 / C4 : la cause avant la conséquence
     for h in [a for a in actions if a["faire"] == "heurter"]:
-        fin_cible = [a for a in actions if a["objet"] == h["cible"] and a["faire"] in DETRUIT + ("se_coucher",) and _t(a) < _t(h)]
+        fin_cible = [a for a in actions if a["objet"] == h["cible"] and a["faire"] in DETRUIT + ("se_coucher", "bruler", "deverser")
+                     and _t(a) < _t(h)]                   # (Gizeh r3 : collision racontée à la fin, citerne déjà en feu)
         if fin_cible:
             premier = min(fin_cible, key=_t)
             note("C3", f"choc de {h['objet']} remis avant « {premier['faire']} » de {h['cible']}")
