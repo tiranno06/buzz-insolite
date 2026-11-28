@@ -2,6 +2,12 @@
 
 **LANGUE OBLIGATOIRE : toujours répondre à l'auteur EN FRANÇAIS** (messages, explications, résumés, questions), sans exception, même après une reprise de conversation ou un résumé automatique (exigence de l'auteur du 27/11).
 
+**CONSIGNE PERMANENTE DE L'AUTEUR (28/11) : les vidéos doivent être des RECONSTITUTIONS 3D PARFAITES des vrais événements, tels
+qu'ils se sont déroulés.** Pour TOUT sujet (accident, crime, sauvetage, animal, sport, procès, découverte, science…) : la base
+de la vidéo est une scène 3D du vrai lieu, des vrais acteurs et du vrai déroulé, fidèle aux articles (rien d'inventé, rien
+d'oublié) ; cartes, chiffres, échelles, avant / après ne sont que des COMPLÉMENTS posés par-dessus ou entre deux plans 3D.
+Toute nouvelle famille de sujet, tout nouveau décor ou objet sert ce but ; chaque défaut vu sur une vraie vidéo devient une règle.
+
 Robot de vidéos TikTok « Buzz et insolite » : il repère les actualités du monde entier qui buzzent sur TikTok, écrit
 une vidéo ORIGINALE sur le sujet (articles de presse + vraies images libres de droits + voix de synthèse) et la publie par Buffer.
 Projet frère de `jt-auto` (@petitsdramas) et `grok-tiktok`. Le propriétaire est débutant : tout en français (code,
@@ -819,7 +825,7 @@ l'objet principal, secours garés à 18 m du feu), L lisibilité (4 débuts d'ac
 — limite aussi dans scenes3d.js —, 14 objets, durées 0,6-8 s), V vraisemblance (feu après explosion, fuite avant le feu d'une
 citerne, dégâts selon le poids, souffle). Essayé sur Le Caire / Iowa / catastrophes : 0 à 3 corrections justes, rien d'abîmé.
 Les 4 règles de DÉCENCE (D1 à D4 : corps, personne qui brûle, personne percutée, arme) ont été RETIRÉES à la demande de
-l'auteur (27/11) : 36 règles, 42 depuis le 28/11 (C10, V6, V7, puis C11, V8, V9). Tests : `TestCodeReconstitution`. **Toute nouvelle action ou nouvel objet 3D doit être ajouté à `PEUT` / `TAILLE`.** Toute phrase retirée passe par `commun.retirer_phrase`.
+l'auteur (27/11) : 36 règles, 43 depuis le 28/11 (C10, V6, V7, puis C11, V8, V9, E7). Tests : `TestCodeReconstitution`. **Toute nouvelle action ou nouvel objet 3D doit être ajouté à `PEUT` / `TAILLE`.** Toute phrase retirée passe par `commun.retirer_phrase`.
 
 ## Plans larges (27/11, l'auteur : « avant, nous avions un plan vidéo bien plus large »)
 `realisateur._plans_larges` (toutes les reconstitutions) : ouverture en plan LARGE (3 s, ou 1,2 s si le choc arrive plus tôt),
@@ -870,6 +876,39 @@ renverse » raconté deux fois → consigne d'écriture + règle « repetition �
 sauf « deuxième / encore / aussi » → phrase réécrite par l'IA, sinon retirée). Bug trouvé : une phrase retirée laissait le
 storyboard animé viser des phrases disparues (« list index out of range ») → `commun.retirer_phrase` renumérote tout le
 storyboard (règles, contrôle final, vérification). Tests : `TestGizehR5`. 42 règles de reconstitution (C11, V8, V9).
+
+## Règles pour TOUS les sujets futurs (28/11, l'auteur : « fait tout », puis consigne permanente de la 3D)
+- **Familles de sujets** (`robot/familles.py`) : catastrophe, accident, incendie / explosion, sauvetage, crime, procès,
+  disparition, manifestation, découverte, science / espace, santé, record, sport, économie, décision, techno, animal,
+  célébrité, insolite (par défaut) ; reconnues dans le texte (`famille_du_texte`, plus de mots = plus de poids, les drames
+  physiques d'abord) ; le type extrait par l'IA ne l'emporte que s'il colle aux mots (`famille_de`). `script["famille"]`.
+- **Trames de récit en 5 temps** (`RECITS` : minute par minute, avant / après, enquête, portrait, chiffre fou, explication)
+  ajoutées à la consigne d'écriture (`familles.consigne`, aussi pour « refaire »). Ton de la famille ; un DRAME (morts,
+  victimes) : jamais de musique joyeuse (`familles.humeur`), étiquette « ACTUALITÉ » au moins (`familles.etiquette`) ;
+  étiquettes SCIENCE, JUSTICE, RECORD, SPORT, ANIMAUX, ÇA CHANGE…
+- **Tout sujet est une RECONSTITUTION 3D** (consigne permanente) : `gabarits.realiser` → une famille sans type 3D devient
+  le type (`TYPES_EVENEMENT` élargi), décor d'après les LIEUX du texte (`decor_du_texte`, `MOTS_DECOR`, sinon `DECOR_FAMILLE`) →
+  scénario plan par plan (`reconstitution.ecrire`, consigne élargie à tout événement réel) ; sans lieu : reconstitution
+  sans carte (plus d'abandon).
+- **Nouveaux décors** (scenes3d.js `decor`) : stade (pelouse rayée, tribunes pleines, projecteurs), montagne (sommets
+  enneigés), désert (dunes), rivière (eau, berges, pont), aéroport (piste, aérogare, tour), gare (quais, voies, verrière),
+  tribunal et intérieur (salle à 3 murs, mobilier), ferme (champs, grange, clôture), espace (Terre, étoiles). Objets
+  `fusee` (flamme qui vibre) et `satellite`. Règle E7 : dans une salle, tout reste dans la pièce, aucun véhicule ; sur un
+  stade, sur le terrain.
+- **Animaux 3D ANIMÉS** (Quaternius CC0, `modeles/animaux/*.fbx`, `LICENCE.md`) : chien, chat, loup, renard, cheval,
+  vache, mouton, cochon, lama, zèbre, aigle, oiseau, poussin, poisson, piranha, baleine. Gardés en FBX (la conversion en .glb
+  abîmait le squelette : animaux réduits à un point) et lus par le FBXLoader de Three.js (vendor/addons, MIT) ; copiés avec
+  leur squelette (`SkeletonUtils`), couleurs par partie (`COULEURS_ANIMAUX`), sens vérifié de profil (`A_L_ENVERS` : renard,
+  aigle). L'animation suit l'action (`poseAnimal` : repos, marche, course pour une fuite, vol, nage), calculée d'après t
+  seulement. Règles : un oiseau vole, un animal peut fuir, une vache ne vole pas ; caméra plus proche des petits sujets
+  (`realisateur.PETITS`).
+- **Scènes d'explication** = COMPLÉMENTS posés sur la 3D ou entre deux plans (moteur.js) : `echelle` (deux colonnes, la
+  référence et sa taille viennent du ROBOT : `familles.REFERENCES`, tour Eiffel, Everest, baleine bleue, TGV…, « × 12 »),
+  `avant_apres` (rideau AVANT → APRÈS), `courbe` (évolution point par point), `fond` (fond animé aux couleurs de la famille
+  quand il n'y a ni carte ni 3D). Extraites par l'IA (`gabarits.CONSIGNE` : comparaisons, avant_apres, evolutions, citations,
+  pictos) et validées (`realisateur.valider` : chiffre absent du texte / référence inconnue = scène refusée). Accroche
+  toujours illustrée (chiffre géant ou pictogramme) ; jamais 2 phrases de suite sans visuel ; emoji 📅 (« July 17 » en
+  anglais) → 🗓️. Tests : `TestFamillesEtExplications`, `TestReconstitutionPourTousLesSujets`.
 
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11

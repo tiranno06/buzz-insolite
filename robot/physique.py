@@ -17,16 +17,19 @@ import re
 
 ROUTIERS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "taxi", "police", "ambulance", "pompiers", "bulldozer")
 VEHICULES = ROUTIERS + ("train", "avion", "helico", "bateau")
-AERIENS = ("avion", "helico")
+AERIENS = ("avion", "helico", "fusee", "satellite")
 BATIS = ("batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "hopital", "banque", "magasin", "residence")
 FIXES = BATIS + ("arbre", "muret", "mur", "feu_tricolore", "panneau")
 HUMAINS = ("personne", "foule")
+ANIMAUX = ("chien", "chat", "loup", "renard", "cheval", "vache", "mouton", "cochon", "lama", "zebre", "aigle", "oiseau", "poussin", "poisson", "piranha", "baleine")                  # animaux 3D animés (28/11)
+VOLANTS = ("aigle", "oiseau")
+AQUATIQUES = ("poisson", "piranha", "baleine")
 LIQUIDES = ("citerne", "camion", "bateau", "train", "entrepot")          # ce qui peut perdre un liquide (fuite, flaque)
 SECOURS = ("police", "ambulance", "pompiers")
 BOUGER = ("avancer", "freiner", "deraper", "changer_voie", "tonneau", "fuir", "voler", "heurter")
 DETRUIT = ("exploser", "couler", "effondrer")                            # après : l'objet ne fait plus rien (sauf brûler)
 FORTS = ("heurter", "exploser", "bruler", "tomber", "couler", "se_coucher", "effondrer", "deverser")
-DECORS_EAU = ("mer", "port", "plage")
+DECORS_EAU = ("mer", "port", "plage", "riviere")
 DECORS_ROUTE = ("autoroute", "route", "ville")
 # ce que le texte dit des témoins / de la foule (règle C11), et de la route qui rouvre (règle V9)
 FOULE = r"foule|rassembl|badaud|t[ée]moin|passant|curieux|spectateur|habitant|riverain|famille|proche|personnes? (?:pr[ée]sentes|sur place)"
@@ -34,14 +37,16 @@ REOUVERT = r"rouvert|r[ée]ouvert|r[ée]ouverture|circulation (?:a |)(?:repris|r
 # encombrement au sol (m) : longueur d'un véhicule, largeur d'un bâtiment (règles E1, E2)
 TAILLE = {"voiture": 4.5, "taxi": 4.5, "police": 4.8, "moto": 2.2, "camionnette": 5.5, "bulldozer": 6.2, "ambulance": 6, "pompiers": 9, "camion": 10,
           "citerne": 12, "bus": 12, "train": 40, "bateau": 20, "batiment": 30, "entrepot": 46, "immeuble": 24, "residence": 24,
-          "hopital": 30, "banque": 20, "magasin": 18, "maison": 14, "batiment_officiel": 34}
+          "hopital": 30, "banque": 20, "magasin": 18, "maison": 14, "batiment_officiel": 34,
+          "chien": 0.9, "chat": 0.5, "loup": 1.4, "renard": 0.9, "cheval": 2.3, "vache": 2.4, "mouton": 1.3, "cochon": 1.3,
+          "lama": 1.7, "zebre": 2.3, "fusee": 50, "satellite": 8, "aigle": 2.0, "oiseau": 0.4, "poussin": 0.25, "poisson": 0.6, "piranha": 0.4, "baleine": 25}
 
 # qui peut faire quoi (règles P1 à P11)
 PEUT = {
-    "voler": lambda t: t in AERIENS,
-    "tomber": lambda t: t in AERIENS or t in HUMAINS or t in ("arbre", "panneau", "feu_tricolore"),
+    "voler": lambda t: t in AERIENS or t in VOLANTS,
+    "tomber": lambda t: t in AERIENS or t in HUMAINS or t in ANIMAUX or t in ("arbre", "panneau", "feu_tricolore"),
     "couler": lambda t: t == "bateau",
-    "fuir": lambda t: t in HUMAINS,
+        "fuir": lambda t: t in HUMAINS or t in ANIMAUX,
     "arroser": lambda t: t in ("pompiers", "helico"),
     "freiner": lambda t: t in ROUTIERS or t == "train",
     "deraper": lambda t: t in ROUTIERS,
@@ -51,15 +56,15 @@ PEUT = {
     "heurter": lambda t: t in VEHICULES,
     "deverser": lambda t: t in LIQUIDES,
     "effondrer": lambda t: t in BATIS,
-    "se_coucher": lambda t: t in VEHICULES or t in HUMAINS or t in ("arbre", "panneau", "feu_tricolore"),
+    "se_coucher": lambda t: t in VEHICULES or t in HUMAINS or t in ANIMAUX or t in ("arbre", "panneau", "feu_tricolore"),
 }
 REMPLACE = {("effondrer", "v"): "se_coucher", ("se_coucher", "b"): "effondrer", ("tomber", "v"): "se_coucher",
             ("effondrer", "h"): "se_coucher"}
 
 REGLES = [
-    ("P1", "Seuls l'avion et l'hélicoptère volent ; aucun véhicule, bâtiment ou personne ne monte en l'air."),
+    ("P1", "Seuls l'avion, l'hélicoptère et les oiseaux volent ; aucun véhicule, bâtiment, personne ou animal terrestre ne monte en l'air."),
     ("P2", "Seul un bateau coule ; une voiture emportée par l'eau flotte (inondation), elle ne « coule » pas."),
-    ("P3", "Seules les personnes et la foule s'enfuient en courant."),
+    ("P3", "Seules les personnes, la foule et les animaux s'enfuient en courant."),
     ("P4", "Seuls les pompiers (ou un hélicoptère bombardier d'eau) arrosent."),
     ("P5", "Freiner, déraper, changer de voie, faire des tonneaux : seulement les véhicules de la route (freiner : le train aussi)."),
     ("P6", "Un bâtiment, un arbre, un mur, un panneau ne se déplacent jamais."),
@@ -84,6 +89,7 @@ REGLES = [
     ("E4", "Un bateau seul sur une route : le décor devient un port ; un train : la voie ferrée ; un avion qui s'écrase : la campagne."),
     ("E5", "Les secours se garent sur la voie de droite, à distance du feu ou de l'explosion (jamais dedans)."),
     ("E6", "Les positions restent dans la scène filmée (entre -400 m et +200 m)."),
+    ("E7", "Dans une salle (tribunal, intérieur), tout reste dans la pièce ; sur un stade, sur le terrain ; aucun véhicule dans une salle."),
     ("L1", "Au plus 4 actions fortes en même temps dans une phrase : les autres sont étalées d'une demi-seconde chacune."),
     ("L2", "Au plus 3 explosions par scène (les autres deviennent des feux), au plus 12 grands feux (les autres ont des flammes simples)."),
     ("L3", "Au plus 14 objets à l'écran ; on retire d'abord ceux qui ne font rien et n'ont pas de rôle."),
@@ -147,7 +153,7 @@ def appliquer(sc, journal=print, texte="", phrases=None):
     actions = propres
     for o in objets:                                                     # P10
         t = o.get("type")
-        if t not in AERIENS and float(o.get("altitude") or 0) != 0:
+        if t not in AERIENS + VOLANTS + AQUATIQUES and float(o.get("altitude") or 0) != 0:
             note("P10", f"{t} posé au sol (altitude {o.get('altitude')})"); o["altitude"] = 0
     for a in actions:
         if a.get("faire") == "voler" and a.get("altitude") is not None and float(a["altitude"]) < 15:
@@ -386,6 +392,22 @@ def appliquer(sc, journal=print, texte="", phrases=None):
                     o["z"] = round(bord if z is None or float(z) >= 0 else -bord, 1); note("E3", f"{o['id']} au bord de la route")
             elif o.get("z") is None and o.get("voie") is not None:
                 o["z"] = 9 if t == "personne" else 10; note("E3", f"{o['id']} sur le trottoir")
+    # E7 : un lieu fermé a des murs (28/11 : les nouveaux décors salle, tribunal, stade)
+    LIMITES = {"tribunal": (24, 14), "interieur": (24, 14), "stade": (48, 30)}
+    if sc.get("decor") in LIMITES:
+        lx, lz = LIMITES[sc["decor"]]
+        for o in list(objets):
+            if sc["decor"] in ("tribunal", "interieur") and o.get("type") in ROUTIERS:
+                objets.remove(o); actions = [a for a in actions if a["objet"] != o["id"] and a.get("cible") != o["id"]]
+                note("E7", f"{o['id']} : pas de véhicule dans une salle"); continue
+            x = float(o.get("position") or 0)
+            if abs(x) > lx:
+                o["position"] = max(-lx, min(lx, x)); note("E7", f"{o['id']} ramené dans le lieu")
+            if o.get("z") is not None and abs(float(o["z"])) > lz:
+                o["z"] = max(-lz, min(lz, float(o["z"])))
+        for a in actions:
+            if a.get("vers_position") is not None:
+                a["vers_position"] = max(-lx, min(lx, float(a["vers_position"])))
     present = set(types.values())
     decor = sc.get("decor")
     principal = next((types[a["objet"]] for a in sorted(actions, key=_t) if a["faire"] in FORTS), None)

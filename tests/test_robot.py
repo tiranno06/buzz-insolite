@@ -1927,8 +1927,9 @@ class TestGizehR5(unittest.TestCase):
     def test_etiquette_drame(self):
         from robot import ecrire, realisateur
         self.assertEqual(ecrire.etiquette({"phrases": [{"ecrit": "Le ministère confirme 31 morts."}]}), "ACTUALITÉ")
-        self.assertEqual(ecrire.etiquette({"phrases": [{"ecrit": "Un chat grimpe sur la tour Eiffel."}]}), "INSOLITE")
-        self.assertEqual(realisateur._etiquette({"phrases": [{"ecrit": "Un chat grimpe."}]}), "BUZZ INSOLITE")
+        self.assertEqual(ecrire.etiquette({"phrases": [{"ecrit": "Un homme mange 40 croissants."}]}), "INSOLITE")
+        self.assertEqual(ecrire.etiquette({"phrases": [{"ecrit": "Un chat grimpe sur la tour Eiffel."}]}), "ANIMAUX")
+        self.assertEqual(realisateur._etiquette({"phrases": [{"ecrit": "Un homme mange 40 croissants."}]}), "BUZZ INSOLITE")
         self.assertEqual(ecrire.etiquette({"etiquette": "LE CHIFFRE DU LUNDI", "phrases": [{"ecrit": "3 morts"}]}), "LE CHIFFRE DU LUNDI")
 
     def test_meme_fait_raconte_deux_fois(self):
@@ -1957,3 +1958,130 @@ class TestGizehR5(unittest.TestCase):
         sc = reconstitution.valider({"decor": "autoroute", "objets": [dict(id="bulldozer", type="camionnette", role="le bulldozer")],
                                      "plans": [dict(phrase=8, actions=[dict(objet="bulldozer", faire="avancer")])]}, script, lambda *a: None)
         self.assertEqual(sc["objets"][0]["type"], "bulldozer")
+
+
+class TestFamillesEtExplications(unittest.TestCase):
+    """28/11 (l'auteur : « des règles pour toutes les futures vidéos, même des événements totalement différents ») : familles
+    de sujets, trames de récit, scènes d'explication pour les sujets sans action à reconstituer."""
+    PHRASES = ["4 000 mètres de haut.", "Des chercheurs ont découvert un volcan géant sous l'océan Pacifique.",
+               "Il mesure 4000 mètres.", "Avant, on pensait qu'il n'y avait que des plaines.", "Maintenant, on sait qu'il y a des montagnes.",
+               "Le nombre de volcans connus est passé de 1000 en 2010 à 5000 en 2024.", "« C'est une découverte majeure », dit la chercheuse.",
+               "Le volcan est éteint.", "Il a 2 millions d'années.", "Il abrite des poissons inconnus.", "La NASA va l'étudier.",
+               "Une mission partira en 2027.", "Et toi, tu irais l'explorer ? Dis-le en commentaire !"]
+
+    def test_familles(self):
+        from robot import familles as F
+        self.assertEqual(F.famille_du_texte("Un camion-citerne se renverse et prend feu, 31 morts"), "accident")
+        self.assertEqual(F.famille_du_texte("Le tribunal a condamné l'escroc à 5 ans de prison ferme"), "proces")
+        self.assertEqual(F.famille_du_texte("Un chien retrouve son maître après 3 ans"), "animal")
+        self.assertEqual(F.famille_du_texte("La NASA découvre une planète géante"), "science_espace")
+        self.assertEqual(F.famille_du_texte("Le gouvernement interdit les trottinettes à partir de lundi"), "decision")
+        self.assertEqual(F.famille_du_texte("Un homme mange 40 croissants"), "insolite")
+        for nom, f in F.FAMILLES.items():
+            self.assertIn(f["recit"], F.RECITS, nom)
+            self.assertEqual(len(F.RECITS[f["recit"]]), 5)
+            self.assertIn("5 temps", F.consigne(nom))
+
+    def test_ton_d_un_drame(self):
+        from robot import familles as F
+        self.assertEqual(F.humeur("animal", "Un chien sauvé, 3 morts dans l'incendie", "joie"), "tension")
+        self.assertEqual(F.etiquette("animal", "3 morts"), "ACTUALITÉ")
+        self.assertEqual(F.etiquette("science_espace", "une planète"), "SCIENCE")
+        self.assertEqual(F.humeur("record", "le plus grand gâteau", None), "epique")
+
+    def test_recette_explication_sans_lieu(self):
+        from robot import gabarits, realisateur, familles
+        script = {"titre": "Un volcan géant", "phrases": [{"ecrit": p} for p in self.PHRASES], "question": self.PHRASES[-1]}
+        f = {"type": "autre", "famille": familles.famille_de(script),
+             "comparaisons": [{"phrase": 2, "valeur": "4000", "nom": "le volcan", "emoji": "🌋", "reference": "tour_eiffel"}],
+             "avant_apres": [{"phrase": 3, "avant": "Que des plaines", "apres": "Des montagnes"}],
+             "evolutions": [{"phrase": 5, "points": [["2010", 1000], ["2024", 5000]], "unite": "volcans"}],
+             "citations": [{"phrase": 6, "texte": "C'est une découverte majeure", "auteur": "la chercheuse"}],
+             "pictos": [{"phrase": i, "emoji": e, "valeur": "X"} for i, e in ((0, "🌋"), (1, "🔬"), (4, "⛰️"), (7, "💤"), (8, "📅"), (9, "🐟"))]}
+        anim = realisateur.valider(gabarits.composer(f, script), script, [{"titre": "", "texte": " ".join(self.PHRASES)}], lambda *a: None)
+        types = [s["type"] for s in anim["scenes"]]
+        for t in ("chiffre", "echelle", "avant_apres", "courbe", "citation", "question"):
+            self.assertIn(t, types)
+        ech = next(s for s in anim["scenes"] if s["type"] == "echelle")
+        self.assertEqual((ech["ref_valeur"], ech["rapport"]), (330, "× 12"))         # la taille vient du robot
+        self.assertNotIn("carte", types)                                              # pas de lieu : un fond animé
+        self.assertFalse(any("📅" in str(s.get("emoji")) for s in anim["scenes"]))   # « July 17 » en anglais
+        vides = 0
+        for s in anim["scenes"]:                                                      # jamais 2 phrases de suite sans visuel
+            vides = vides + len(s["phrases"]) if s["type"] == "fond" else 0
+            self.assertLessEqual(vides, 2)
+
+    def test_rien_d_invente(self):
+        from robot import realisateur
+        script = {"titre": "t", "phrases": [{"ecrit": p} for p in self.PHRASES], "question": "?"}
+        d = {"scenes": [{"phrases": [0], "type": "chiffre", "valeur": "4000"},
+                        {"phrases": [1], "type": "echelle", "valeur": "99999", "reference": "tour_eiffel"},
+                        {"phrases": [2], "type": "echelle", "valeur": "4000", "reference": "lune"},
+                        {"phrases": [3], "type": "courbe", "points": [["2010", 1000], ["2024", 7777]]},
+                        {"phrases": [4], "type": "avant_apres", "avant": "12 €", "apres": "plus cher"},
+                        {"phrases": [5], "type": "question"}]}
+        anim = realisateur.valider(d, script, [], lambda *a: None)
+        types = [s["type"] for s in anim["scenes"]]
+        for t in ("echelle", "courbe", "avant_apres"):
+            self.assertNotIn(t, types)
+
+    def test_consigne_d_ecriture_avec_trame(self):
+        from robot import ecrire
+        self.assertEqual(ecrire.famille_du_sujet({"titre": "Record du monde du plus grand gâteau"}), "record")
+
+
+class TestReconstitutionPourTousLesSujets(unittest.TestCase):
+    """28/11, consigne permanente : TOUT sujet est une reconstitution 3D du vrai événement (décors, animaux, lieux fermés)."""
+    def test_decor_d_apres_le_texte(self):
+        from robot import gabarits as G
+        self.assertEqual(G.decor_du_texte("Le PSG gagne le match au Parc des Princes, les supporters exultent"), "stade")
+        self.assertEqual(G.decor_du_texte("Le procès s'ouvre devant la cour d'assises"), "tribunal")
+        self.assertEqual(G.decor_du_texte("Un randonneur secouru en montagne"), "montagne")
+        self.assertEqual(G.decor_du_texte("Braquage d'une bijouterie à Nice"), "interieur")
+        self.assertEqual(G.decor_du_texte("La fusée a décollé", "ville"), "espace")
+        self.assertEqual(G.decor_du_texte("rien de précis", "campagne"), "campagne")
+
+    def test_animaux_physique(self):
+        from robot import physique as P
+        sc = dict(type="3d", decor="campagne",
+                  objets=[dict(id="c", type="chien", voie=1, position=0), dict(id="v", type="vache", voie=2, position=5),
+                          dict(id="a", type="aigle", voie=1, position=0, altitude=15)],
+                  actions=[dict(objet="c", faire="fuir", phrase=1, duree=2), dict(objet="v", faire="voler", phrase=1, duree=2),
+                           dict(objet="a", faire="voler", phrase=2, duree=2, altitude=15)])
+        P.appliquer(sc, lambda *a: None, "", ["a", "b", "c", "d"])
+        faits = {(a["objet"], a["faire"]) for a in sc["actions"]}
+        self.assertIn(("c", "fuir"), faits)                  # un chien s'enfuit
+        self.assertNotIn(("v", "voler"), faits)              # une vache ne vole pas
+        self.assertIn(("a", "voler"), faits)                 # un aigle vole
+        self.assertEqual(next(o for o in sc["objets"] if o["id"] == "a")["altitude"], 15)
+
+    def test_lieu_ferme(self):
+        from robot import physique as P
+        sc = dict(type="3d", decor="tribunal", objets=[dict(id="juge", type="personne", position=80), dict(id="v", type="voiture", position=0)],
+                  actions=[dict(objet="v", faire="avancer", phrase=1, duree=2, vers_position=60)])
+        P.appliquer(sc, lambda *a: None, "", ["a", "b", "c"])
+        self.assertEqual([o["id"] for o in sc["objets"]], ["juge"])
+        self.assertLessEqual(abs(sc["objets"][0]["position"]), 24)
+
+    def test_tout_sujet_passe_par_la_3d(self):
+        from robot import gabarits as G
+        appels = {}
+        import robot.reconstitution as R
+        ancien = R.ecrire
+        R.ecrire = lambda script, articles, journal: appels.setdefault("ok", None)
+        try:
+            ph = ["Un chien sauve un enfant.", "Il se jette dans la rivière.", "Il le ramène sur la berge.", "Les pompiers arrivent.",
+                  "L'enfant va bien.", "Le chien est un héros.", "Il reçoit une médaille.", "Et toi ?"]
+            script = {"titre": "Un chien héros", "phrases": [{"ecrit": p} for p in ph], "question": "Et toi ?"}
+            import robot.gabarits as mod
+            ext = mod.extraire
+            mod.extraire = lambda *a, **k: {"type": "autre"}             # (sans lieu : aucun appel réseau)
+            try:
+                G.realiser(script, [], lambda *a: None)
+            except Exception:
+                pass
+            finally:
+                mod.extraire = ext
+        finally:
+            R.ecrire = ancien
+        self.assertIn("ok", appels)                          # le scénario 3D a été demandé pour un sujet « animal »

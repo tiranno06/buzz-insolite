@@ -20,19 +20,21 @@ from . import ia
 OBJETS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "taxi", "police", "ambulance", "pompiers", "avion",
           "helico", "bateau", "train", "personne", "foule", "batiment", "entrepot", "immeuble", "maison", "batiment_officiel", "arbre",
           "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau",
-          "muret", "mur", "bulldozer")
+          "muret", "mur", "bulldozer", "fusee", "satellite", "chien", "chat", "loup", "renard", "cheval", "vache", "mouton", "cochon", "lama", "zebre", "aigle", "oiseau", "poussin", "poisson", "piranha", "baleine")
 ACTIONS = ("avancer", "freiner", "changer_voie", "deraper", "tonneau", "heurter", "se_coucher", "deverser", "bruler",
            "exploser", "effondrer", "tomber", "voler", "couler", "arroser", "fuir", "apparaitre", "disparaitre",
            "inonder", "trembler", "tempete")
-DECORS = ("autoroute", "route", "ville", "place", "usine", "foret", "mer", "port", "plage", "piste", "voie_ferree", "campagne")
+DECORS = ("autoroute", "route", "ville", "place", "usine", "foret", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "stade", "montagne", "desert", "riviere", "aeroport", "gare", "tribunal", "interieur", "ferme", "espace")
 CADRES = ("large", "cote", "face", "dessus", "suivi", "interieur", "maquette")
 MOMENTS = ("jour", "soir", "nuit")
 
-CONSIGNE = """Tu es le réalisateur d'une RECONSTITUTION 3D d'un fait divers (comme les reconstitutions des journaux télévisés).
+CONSIGNE = """Tu es le réalisateur d'une RECONSTITUTION 3D d'un événement RÉEL (fait divers, sauvetage, animal, sport, procès,
+découverte, exploit…), comme les reconstitutions des journaux télévisés : on doit voir ce qui s'est VRAIMENT passé, tel quel.
 On te donne les phrases numérotées de la vidéo et les articles. Écris le scénario de la reconstitution, de A à Z, PLAN PAR
 PLAN, en suivant EXACTEMENT les faits des articles (ordre, qui fait quoi, où). N'invente aucun fait : si un détail n'est pas
 dit (voie, couleur), choisis le plus simple. Réponds uniquement en JSON :
-{"decor": "autoroute" | "route" | "ville" | "place" | "usine" | "mer" | "port" | "plage" | "piste" | "voie_ferree" | "campagne",
+{"decor": "autoroute" | "route" | "ville" | "place" | "usine" | "mer" | "port" | "plage" | "piste" | "voie_ferree" | "campagne" |
+           "stade" | "montagne" | "desert" | "riviere" | "aeroport" | "gare" | "tribunal" | "interieur" | "ferme" | "espace",
  "moment": "jour" | "soir" | "nuit",
  "objets": [{"id": "citerne", "type": "citerne", "role": "le camion-citerne", "voie": 2, "position": -40}],
  "plans": [{"phrase": 2, "cadre": "suivi", "actions": [{"objet": "citerne", "faire": "avancer", "vers_position": 0}],
@@ -42,7 +44,8 @@ Règles :
   personne qui en parle de loin (président, ministre, agence, journaliste). Deux objets ne sont jamais au même endroit. Types : voiture, camion, citerne, bus, moto,
   camionnette, taxi, police, ambulance, pompiers, avion, helico, bateau, train, personne, foule, batiment, entrepot (dépôt,
   hangar, usine), immeuble, maison, hopital, banque, magasin, residence, feu_tricolore, panneau,
-  batiment_officiel, arbre, muret, mur, bulldozer (engin qui déblaie). "voie" : 1 à 3 (sens de circulation de la caméra), "position" : mètres le long de la
+  batiment_officiel, arbre, muret, mur, bulldozer (engin qui déblaie), fusee, satellite, et les ANIMAUX : chien, chat, loup, renard, cheval, vache,
+  mouton, cochon, lama, zebre, aigle, oiseau, poussin, poisson, piranha, baleine. "voie" : 1 à 3 (sens de circulation de la caméra), "position" : mètres le long de la
   route (l'événement se passe vers 0 ; ce qui arrive plus tard part de -80 ou plus loin). Bâtiment, usine : "position" 0.
 - "plans" : un plan pour CHAQUE phrase qui raconte l'événement (du début à la fin des faits, dans l'ordre), avec l'action
   que cette phrase raconte. Actions : avancer {vers_position}, freiner {vers_position}, changer_voie {vers_voie}, deraper,
@@ -52,6 +55,8 @@ Règles :
 - "cadre" : large (vue d'ensemble), cote (au ras du sol, de côté : un choc), face (un véhicule qui se renverse), dessus
   (vu du ciel : une fuite, une foule), suivi (on suit un véhicule qui roule), interieur (vue du conducteur), maquette (vue
   d'en haut, en biais, d'un bâtiment ou d'un quartier).
+- "decor" : le VRAI lieu (stade pour un match, tribunal pour un procès, montagne, désert, rivière, aéroport, gare, ferme,
+  intérieur = magasin / restaurant / classe / maison, espace = en orbite) ; un animal se montre avec son espèce exacte.
 - "etiquette" : 3 à 24 signes en majuscules, un fait de la phrase (« 120 KM/H », « LA FUITE », « 22 H 40 ») ou "".
 Exemple (accident) : objets citerne (voie 2, -40) et voiture (voie 3, -60) ; plans : phrase 2 suivi avancer citerne ;
 phrase 3 cote voiture heurter citerne ; phrase 4 face citerne se_coucher ; phrase 5 dessus citerne deverser ; phrase 6
@@ -118,7 +123,7 @@ def valider(d, script, journal=print):
             if a["faire"] in ("heurter", "arroser") and a.get("cible") not in ids - {a["objet"]}:
                 continue
             typ_o = next((o["type"] for o in objets if o["id"] == a["objet"]), "")
-            if a["faire"] in ("voler", "tomber") and typ_o not in ("avion", "helico"):
+            if a["faire"] in ("voler", "tomber") and typ_o not in ("avion", "helico", "aigle", "oiseau", "fusee", "satellite"):
                 journal(f"  reconstitution, phrase {ph} : « {typ_o} » ne vole pas → action retirée")
                 continue                                # (Gizeh, 27/11 : « la fumée s'élève » → le camion-citerne montait à 20 m)
             x = dict(objet=a["objet"], faire=a["faire"], phrase=ph)

@@ -6,7 +6,7 @@ Le texte est écrit UNIQUEMENT à partir des articles trouvés (sources.py). Cha
 """
 import re
 
-from . import commun, ia
+from . import commun, familles, ia
 
 REGLES_SUJET = """Règles à respecter quel que soit le sujet :
 - uniquement des faits présents dans les articles ; si un point n'est pas sûr, ne le dis pas ;
@@ -130,8 +130,18 @@ début : « Les 3 actus les plus folles de la semaine ! ». Question finale : la
 def ecrire(sujet, articles, journal=print, format_="buzz"):
     """Texte de la vidéo (dict) ; lève ia.AucuneIA si aucune IA ne répond."""
     texte = f"SUJET : {sujet['titre']}\nCE QU'ON SAIT : {sujet.get('resume', '')}\n\nARTICLES :\n{_articles_texte(articles)}"
-    d, qui = ia.demander_json(CONSIGNE + FORMATS.get(format_, ""), texte, temperature=0.8, max_tokens=6000, journal=journal)
+    fam = famille_du_sujet(sujet, articles)
+    journal(f"  famille du sujet : {fam} (récit « {familles.info(fam)['recit']} »)")
+    trame = familles.consigne(fam) if format_ in ("buzz", "region") else ""
+    d, qui = ia.demander_json(CONSIGNE + FORMATS.get(format_, "") + trame, texte, temperature=0.8, max_tokens=6000, journal=journal)
+    d["famille"] = fam
     return normaliser(d, sujet, format_, qui, journal)
+
+
+def famille_du_sujet(sujet, articles=()):
+    """Famille d'un sujet (familles.py) d'après son titre, son résumé et les titres des articles."""
+    titres = " ".join(str(a.get("titre") or "") for a in articles or [])
+    return familles.famille_du_texte(f"{sujet.get('titre', '')} {sujet.get('resume', '')} {titres}")
 
 
 CONSIGNE_REFAIRE = """
@@ -150,21 +160,24 @@ def refaire_texte(sujet, articles, ancien, problemes, remarque, tout=False, jour
              "ANCIEN TEXTE :\n" + "\n".join(f"{i + 1}. {p['ecrit']}" for i, p in enumerate(ancien["phrases"])) +
              "\n\nPROBLÈMES RELEVÉS :\n" + ("\n".join(f"- {x}" for x in problemes) or "- (aucun noté)") +
              f"\n\nREMARQUE DE L'AUTEUR : {remarque or '(aucune)'}")
-    d, qui = ia.demander_json(CONSIGNE + FORMATS.get(format_, "") + CONSIGNE_REFAIRE.format(mode=mode), texte,
+    fam = ancien.get("famille") if ancien.get("famille") in familles.FAMILLES else famille_du_sujet(sujet, articles)
+    trame = familles.consigne(fam) if format_ in ("buzz", "region") else ""
+    d, qui = ia.demander_json(CONSIGNE + FORMATS.get(format_, "") + trame + CONSIGNE_REFAIRE.format(mode=mode), texte,
                               temperature=0.9 if tout else 0.5, max_tokens=6000, journal=journal)
+    d["famille"] = fam
     return normaliser(d, sujet, format_, qui, journal)
 
 
-DRAME = r"\bmorts?\b|\bmortes?\b|tu[ée]s?\b|tu[ée]es\b|d[ée]c[èe]s|d[ée]c[ée]d|victimes?|bless[ée]s? graves?|p[ée]ri|noy[ée]|disparus?\b"
-
-
 def etiquette(script, defaut="INSOLITE"):
-    """Étiquette en haut de l'écran. Un DRAME (des morts, des victimes) n'est jamais « insolite » : « ACTUALITÉ »
-    (Gizeh r5 du 28/11, accident à 31 morts sous « BUZZ INSOLITE » : bloqué à juste titre par le rédacteur en chef)."""
+    """Étiquette en haut de l'écran, selon la FAMILLE du sujet (familles.py : SCIENCE, JUSTICE, RECORD…). Un DRAME (des
+    morts, des victimes) n'est jamais « insolite » : « ACTUALITÉ » au moins (Gizeh r5 du 28/11, accident à 31 morts sous
+    « BUZZ INSOLITE » : bloqué à juste titre par le rédacteur en chef). Une série (« LE CHIFFRE DU LUNDI ») garde la sienne."""
     if script.get("etiquette"):
         return script["etiquette"]
     texte = " ".join(str(p.get("ecrit") or "") for p in script.get("phrases") or []) + " " + str(script.get("titre") or "")
-    return "ACTUALITÉ" if re.search(DRAME, texte.lower()) else defaut
+    fam = script.get("famille") if script.get("famille") in familles.FAMILLES else familles.famille_de(script)
+    e = familles.etiquette(fam, texte)
+    return defaut if e == "INSOLITE" else e
 
 
 def normaliser(d, sujet, format_, qui, journal=print):
@@ -199,7 +212,9 @@ def normaliser(d, sujet, format_, qui, journal=print):
                 p["reponse"] = m.group(1); break
     d["phrases"] = phrases
     d["format"] = format_
-    d["humeur"] = d.get("humeur") if d.get("humeur") in ("neutre", "tension", "joie", "epique", "emotion") else "neutre"
+    texte_dit = " ".join(p["ecrit"] for p in phrases)
+    d["famille"] = d.get("famille") if d.get("famille") in familles.FAMILLES else familles.famille_de(d)
+    d["humeur"] = familles.humeur(d["famille"], texte_dit, d.get("humeur"))   # jamais de musique joyeuse sur un drame
     d["auteur_ia"] = qui
     d["hashtags"] = liste_hashtags(d.get("hashtags"))
     journal(f"  texte écrit par {qui} : {len(phrases)} phrases")

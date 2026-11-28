@@ -20,9 +20,13 @@ from . import ia
 
 TYPES_EVENEMENT = ("accident_route", "incendie", "explosion", "crash_avion", "naufrage", "deraillement", "manifestation",
                    "meteo", "catastrophe_naturelle", "police_justice", "politique", "autre",
-                   "inondation", "seisme", "feu_foret", "tempete")
+                   "inondation", "seisme", "feu_foret", "tempete",
+                   # familles reconstituées en 3D depuis le 28/11 (familles.py)
+                   "crime", "sauvetage", "animal", "sport", "proces", "science_espace", "record", "decision", "economie",
+                   "techno", "celebrite", "decouverte", "disparition", "sante", "insolite")
 ACTEURS = ("voiture", "camion", "citerne", "bus", "moto", "camionnette", "police", "ambulance", "pompiers", "avion", "helico",
-           "bateau", "train", "personne", "foule", "batiment", "maison", "immeuble", "entrepot", "muret", "mur", "arbre", "taxi", "bulldozer",
+           "bateau", "train", "personne", "foule", "batiment", "maison", "immeuble", "entrepot", "muret", "mur", "arbre", "taxi", "bulldozer", "fusee", "satellite",
+           "chien", "chat", "loup", "renard", "cheval", "vache", "mouton", "cochon", "lama", "zebre", "aigle", "oiseau", "poussin", "poisson", "piranha", "baleine",
            "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau")
 ACTIONS = {"avancer": "avancer", "rouler": "avancer", "arriver": "avancer", "heurter": "heurter", "percuter": "heurter",
            "se_coucher": "se_coucher", "renverser": "se_coucher", "bruler": "bruler", "bruler_feu": "bruler", "exploser": "exploser",
@@ -50,6 +54,11 @@ sans rien inventer. Réponds uniquement en JSON :
  "chiffres": [{"phrase": 1, "valeur": "31", "unite": "morts", "texte": "selon le ministère"}],
  "date": {"phrase": 0, "jour": "22", "mois": "NOVEMBRE"},
  "heures": [{"phrase": 2, "heure": "21 h 40", "etape": "L'ATTAQUE"}],
+ "comparaisons": [{"phrase": 4, "valeur": "990", "nom": "le volcan", "emoji": "🌋", "reference": "tour_eiffel"}],
+ "avant_apres": [{"phrase": 3, "avant": "Ticket à 2,10 €", "apres": "Ticket à 2,50 €"}],
+ "evolutions": [{"phrase": 5, "points": [["2020", 12], ["2024", 45]], "unite": "€"}],
+ "citations": [{"phrase": 6, "texte": "phrase EXACTE copiée des articles", "auteur": "qui l'a dite"}],
+ "pictos": [{"phrase": 2, "emoji": "🐕", "valeur": "1 ou 2 NOMS"}],
  "titre": "titre court, 40 signes au plus, le mot le plus fort entre **astérisques**",
  "lieu_date": "LE CAIRE · MERCREDI SOIR",
  "source": "Source : qui l'a annoncé (parquet, préfecture, Météo-France…)"}
@@ -59,13 +68,23 @@ comment le texte l'appelle (5 mots au plus). "deroule" : ce qui se passe, DANS L
 raconte (actions : avancer, arriver, heurter, se_coucher, bruler, exploser, tomber, couler, derailler). "chiffres" : 3 au
 plus, les plus frappants, copiés tels quels du texte. "heures" : chaque heure précise DITE dans une phrase (copiée telle
 quelle), dans l'ordre, avec un nom d'étape court (2 mots, en majuscules : « LE DÉPART », « L'ALERTE », « LES SECOURS ») ;
-plusieurs heures peuvent avoir la même étape. Mets [] ou {} quand tu ne sais pas."""
+plusieurs heures peuvent avoir la même étape. "comparaisons" : une TAILLE, un POIDS, une SURFACE ou une VITESSE dite dans
+une phrase, comparée à une référence PARMI : {REFS} ("valeur" dans l'unité de la référence). "avant_apres" : une décision,
+une loi, un prix qui change (8 mots au plus de chaque côté). "evolutions" : une évolution dans le temps avec au moins 2 points
+donnés par le texte ou les articles. "citations" : une phrase vraiment prononcée, copiée telle quelle des articles. "pictos" :
+pour CHAQUE phrase (la 1re comprise), un emoji qui montre de quoi elle parle (chaque emoji une fois) et 1 ou 2 noms.
+Mets [] ou {} quand tu ne sais pas."""
+
+
+def _consigne():
+    from .familles import REFERENCES
+    return CONSIGNE.replace("{REFS}", ", ".join(f"{k} ({v['valeur']} {v['unite']})" for k, v in REFERENCES.items()))
 
 
 def extraire(script, articles, journal=print):
     phrases = "\n".join(f"{i}. {p['ecrit']}" for i, p in enumerate(script["phrases"]))
     faits = " ".join(f"{a.get('titre', '')} {a.get('texte') or ''}" for a in articles or [])[:6000]
-    d, qui = ia.demander_json(CONSIGNE, f"PHRASES :\n{phrases}\n\nARTICLES :\n{faits}", temperature=0.2, max_tokens=2500, journal=journal)
+    d, qui = ia.demander_json(_consigne(), f"PHRASES :\n{phrases}\n\nARTICLES :\n{faits}", temperature=0.2, max_tokens=2500, journal=journal)
     journal(f"  faits extraits par {qui} : {d.get('type')} · {len(d.get('acteurs') or [])} acteur(s) · "
             f"{len(d.get('deroule') or [])} étape(s) · {len(d.get('chiffres') or [])} chiffre(s)")
     return d
@@ -83,6 +102,32 @@ def _phrase(x, n):
 NATURELS = ("inondation", "seisme", "feu_foret", "tempete")
 DECOR = {"inondation": "ville", "seisme": "ville", "feu_foret": "foret", "tempete": "foret", "accident_route": "autoroute", "incendie": "ville", "explosion": "ville", "crash_avion": "campagne", "naufrage": "mer",
          "deraillement": "voie_ferree", "manifestation": "place", "police_justice": "place"}
+
+
+# (28/11, consigne permanente de l'auteur : « des reconstitutions 3D parfaites des vrais événements », pour TOUT sujet)
+# décor d'après les LIEUX dits dans le texte (le 1er motif trouvé l'emporte), sinon le décor habituel de la famille
+MOTS_DECOR = (("espace", r"\bespace\b|orbite|fus[ée]e|satellite|station spatiale|astronaute|\blune\b|\bmars\b"),
+              ("stade", r"stade|\bmatch\b|terrain de (?:foot|rugby)|tribunes?\b|supporters"),
+              ("tribunal", r"tribunal|proc[èe]s|cour d'assises|audience|\bjuges?\b"),
+              ("aeroport", r"a[ée]roport|tarmac|piste d'atterrissage"),
+              ("gare", r"\bgare\b|\bquai\b|m[ée]tro"),
+              ("montagne", r"montagne|sommet|alpin|randonn|avalanche|falaise|glacier"),
+              ("desert", r"d[ée]sert|\bdunes?\b|sahara"),
+              ("riviere", r"rivi[èe]re|fleuve|\bcanal\b|\bseine\b|rh[ôo]ne|\bloire\b"),
+              ("plage", r"\bplage\b"), ("mer", r"\bmer\b|oc[ée]an|au large"), ("port", r"\bport\b"),
+              ("ferme", r"\bferme\b|agricult|\bchamp\b|[ée]leveur|troupeau|[ée]table"),
+              ("foret", r"for[êe]t|\bbois\b"),
+              ("interieur", r"magasin|supermarch|boutique|restaurant|\bclasse\b|[ée]cole|appartement|\bsalle\b|mus[ée]e|bijouterie|\bbar\b"),
+              ("usine", r"\busine\b|entrep[ôo]t"), ("place", r"\bplace\b|mairie|parlement|palais|minist[èe]re"),
+              ("autoroute", r"autoroute|p[ée]riph[ée]rique|voie rapide"), ("ville", r"\brue\b|\bville\b|quartier|avenue|boulevard"))
+DECOR_FAMILLE = {"crime": "ville", "sauvetage": "ville", "animal": "campagne", "sport": "stade", "proces": "tribunal",
+                 "science_espace": "espace", "record": "ville", "decision": "place", "economie": "ville", "techno": "interieur",
+                 "celebrite": "ville", "decouverte": "campagne", "disparition": "foret", "sante": "interieur", "insolite": "ville"}
+
+
+def decor_du_texte(texte, defaut="ville"):
+    t = (texte or "").lower()
+    return next((d for d, motif in MOTS_DECOR if re.search(motif, t)), defaut)
 
 
 # vue « maquette » vue d'en haut (bonnequestion.tv, Bataclan : 1,1 million de vues) : lieux, foules, bâtiments
@@ -495,8 +540,76 @@ def _scene_3d(f, phrases_3d, script):
     vue = {"vue": "iso"} if typ in VUE_MAQUETTE and not f.get("_cadres") else {}   # le scénario choisit ses angles
     if f.get("_cadres"):
         vue["cadres"] = {k: v for k, v in f["_cadres"].items() if k in phrases_3d}
-    return dict(type="3d", **vue, decor=f.get("_decor") or DECOR.get(typ, "ville"), moment=moment, objets=objets, actions=actions, reperes=reperes[:3],
+    return dict(type="3d", **vue, decor=f.get("_decor") or DECOR.get(typ) or f.get("_decor_famille") or "ville", moment=moment, objets=objets, actions=actions, reperes=reperes[:3],
                 etiquettes=[])                         # (la source est écrite en bas ; l'étiquette cachait les chiffres)
+
+
+def _explications(f, script, encadres):
+    """Scènes d'EXPLICATION (28/11, sujets sans action à reconstituer : record, science, décision, économie…) : échelle,
+    avant / après, courbe, citation passent AVANT les chiffres ; elles sont validées ensuite (realisateur.valider : rien
+    d'inventé). Jamais sur la 1re ni la dernière phrase."""
+    n = len(script["phrases"])
+    def place(x):
+        ph = _phrase((x or {}).get("phrase"), n) if isinstance(x, dict) else None
+        return ph if ph not in (None, 0, n - 1) and ph not in encadres else None
+    for c in (f.get("comparaisons") or [])[:2]:
+        ph = place(c)
+        if ph is not None and c.get("reference") and str(c.get("valeur") or "").strip():
+            encadres[ph] = dict(type="echelle", valeur=str(c["valeur"]).strip(), nom=str(c.get("nom") or "")[:18],
+                                emoji=str(c.get("emoji") or "📏")[:8], reference=str(c["reference"]))
+    for c in (f.get("avant_apres") or [])[:1]:
+        ph = place(c)
+        if ph is not None and str(c.get("avant") or "").strip() and str(c.get("apres") or "").strip():
+            encadres[ph] = dict(type="avant_apres", avant=str(c["avant"])[:70], apres=str(c["apres"])[:70])
+    for c in (f.get("evolutions") or [])[:1]:
+        ph = place(c)
+        pts = [q for q in c.get("points") or [] if isinstance(q, (list, tuple)) and len(q) >= 2][:8] if isinstance(c, dict) else []
+        if ph is not None and len(pts) >= 2:
+            encadres[ph] = dict(type="courbe", points=[[str(q[0])[:10], q[1]] for q in pts], unite=str(c.get("unite") or "")[:10])
+    for c in (f.get("citations") or [])[:1]:
+        ph = place(c)
+        if ph is not None and len(str(c.get("texte") or "")) >= 8:
+            encadres[ph] = dict(type="citation", texte=str(c["texte"])[:140], auteur=str(c.get("auteur") or "")[:40])
+
+
+PETITS_MOTS = ("de", "d'", "du", "des", "le", "la", "les", "et", "en", "à", "au")
+
+
+def _pictos(f, script, role, encadres):
+    """Sans reconstitution, le décor (carte ou fond animé) reste à l'écran au moins la MOITIÉ du temps : des pictogrammes
+    s'ajoutent sur une phrase sur deux restée sans encadré (règle « jamais de diapositive figée »)."""
+    n = len(script["phrases"])
+    sans_lieu = not (f.get("lieu") or f.get("pays") or f.get("departements"))
+    deja = {e.get("emoji") for e in encadres.values()}
+    pictos = {_phrase(p.get("phrase"), n): p for p in f.get("pictos") or [] if isinstance(p, dict)}
+    # l'ACCROCHE (phrase 0) : le chiffre qu'elle dit en géant, sinon son pictogramme (jamais un fond vide au départ)
+    m = re.search(r"\d[\d  ]*(?:[.,]\d+)?", script["phrases"][0]["ecrit"]) if n else None
+    if n and 0 not in encadres and role.get(0) != "3d":
+        if m:
+            reste = script["phrases"][0]["ecrit"][m.end():].strip(" .!").split()
+            unite = reste[0] if reste else ""
+            if len(reste) > 1 and reste[0].lower() in ("millions", "milliards", "mille") and reste[1].lower() not in PETITS_MOTS:
+                unite = " ".join(reste[:2])
+            encadres[0] = dict(type="chiffre", valeur=m.group(0).strip(), unite=unite.strip(",;:")[:20],
+                               emoji=str((pictos.get(0) or {}).get("emoji") or "")[:8])
+            role[0] = "encadre"
+        elif pictos.get(0) and str(pictos[0].get("emoji") or "").strip():
+            encadres[0] = dict(type="icone", emoji=str(pictos[0]["emoji"])[:8], valeur=str(pictos[0].get("valeur") or "")[:24].upper())
+            role[0] = "encadre"; deja.add(encadres[0]["emoji"])
+    libres = [i for i in range(1, n - 1) if role.get(i) in ("carte", "bilan", "fond")]
+    occupes = sum(1 for i in range(1, n - 1) if role.get(i) == "encadre")
+    # sur une carte, elle reste visible la moitié du temps ; sur un simple fond animé, chaque phrase a son visuel
+    # sauf une sur trois (le fond respire), et jamais 2 phrases de suite sans rien
+    limite = (n - 2) if sans_lieu else (n - 2) // 2
+    for k, i in enumerate(libres):
+        garder_vide = (k % 3 == 2) if sans_lieu else (k % 2 == 0)
+        if occupes >= limite or garder_vide or i not in pictos:
+            continue
+        p = pictos[i]
+        emoji = str(p.get("emoji") or "").strip()[:8]
+        if emoji and emoji not in deja:
+            encadres[i] = dict(type="icone", emoji=emoji, valeur=str(p.get("valeur") or "")[:24].upper())
+            role[i] = "encadre"; deja.add(emoji); occupes += 1
 
 
 def composer(f, script):
@@ -519,13 +632,14 @@ def composer(f, script):
                                 texte=str(c.get("texte") or "")[:50])
             if re.search(r"km\s*/?\s*h|kilomètres?[- ]heure|nœuds", str(c.get("unite") or "").lower()):
                 encadres[ph].update(type="jauge", unite="km/h" if "km" in str(c.get("unite")).lower() else "nœuds")
+    _explications(f, script, encadres)
     d = f.get("date") or {}
     ph = _phrase(d.get("phrase"), n) if isinstance(d, dict) else None
     if ph not in (None, 0, n - 1) and ph not in encadres and str(d.get("jour") or "").isdigit():
         encadres[ph] = dict(type="calendrier", jour=str(d["jour"]), mois=str(d.get("mois") or "").upper()[:12], annee="")
     # décors : carte d'accroche → 3D de l'événement → carte du bilan (météo / catastrophe : la carte tout du long)
     deroule = sorted(p for p in (_phrase((e or {}).get("phrase"), n) for e in f.get("deroule") or []) if p is not None)
-    avec_3d = typ in DECOR and (deroule or typ in ("manifestation", "police_justice")) and n >= 6
+    avec_3d = (typ in DECOR or bool(f.get("_decor_famille"))) and (deroule or typ in ("manifestation", "police_justice")) and n >= 6
     debut_3d = min(max(1, deroule[0] if deroule else 2), 3) if avec_3d else n
     fin_3d = min(n - 2, max((deroule[-1] if deroule else debut_3d) + 2, debut_3d + 3)) if avec_3d else n
     forts = avec_3d and n >= 8 and any(str((e or {}).get("action") or "").lower() in ACTIONS and
@@ -564,6 +678,11 @@ def composer(f, script):
             role[i] = "carte"
             if e["type"] in ("chiffre", "jauge"):
                 carte = dict(carte, etiquettes=(carte.get("etiquettes") or [])[:1] + [f"{e['valeur']} {e.get('unite') or ''}".strip().upper()])
+    if not avec_3d:
+        _pictos(f, script, role, encadres)
+    if not (f.get("lieu") or f.get("pays") or f.get("departements")):
+        # sans lieu (une découverte scientifique, une appli, un record en ligne) : un FOND ANIMÉ aux couleurs de la famille
+        carte = dict(type="fond", famille=str(f.get("famille") or "insolite"))
     scenes, i = [], 0
     while i < n:
         r = role[i]
@@ -588,7 +707,7 @@ def composer(f, script):
         elif r == "bilan" and avec_3d:
             scenes.append(dict(carte, phrases=ph, etiquettes=["LE BILAN"]))
         else:
-            if scenes and scenes[-1].get("type") == "carte" and r == "carte":
+            if scenes and scenes[-1].get("type") == carte["type"] and r == "carte":
                 scenes[-1]["phrases"] += ph
             else:
                 scenes.append(dict(carte, phrases=ph))
@@ -626,10 +745,17 @@ def realiser(script, articles, journal=print):
     if lieu_s and (not f.get("lieu") or (len(lieu_s) > len(str(f["lieu"])) and
                                           lieu_s.lower().startswith(str(f["lieu"]).split(",")[0].strip().lower()))):
         f["lieu"] = lieu_s                             # le lieu le plus PRÉCIS (« Middletown, Iowa » plutôt que « Middletown »)
+    from . import familles
+    f["famille"] = script.get("famille") if script.get("famille") in familles.FAMILLES else familles.famille_de(script, f.get("type"))
     if not (f.get("lieu") or f.get("pays") or f.get("departements")):
-        journal("  faits sans lieu : modèle fixe impossible")
-        return None
-    if f["type"] in DECOR and f["type"] not in ("manifestation",):
+        # (avant le 28/11 : abandon → infographie de l'IA) un lieu inconnu n'empêche pas la reconstitution : pas de carte, c'est tout
+        journal("  faits sans lieu : reconstitution sans carte")
+    if f["type"] not in DECOR and f["famille"] in DECOR_FAMILLE:
+        # tout sujet est RECONSTITUÉ en 3D (consigne permanente du 28/11) : la famille devient le type, son décor vient du texte
+        f["type"] = f["famille"]
+        f["_decor_famille"] = decor_du_texte(texte, DECOR_FAMILLE[f["famille"]])
+        journal(f"  reconstitution 3D « {f['famille']} » dans le décor « {f['_decor_famille']} »")
+    if (f["type"] in DECOR or f.get("_decor_famille")) and f["type"] not in ("manifestation",):
         from . import reconstitution                    # scénario plan par plan, de A à Z (27/11)
         f["_scenario"] = reconstitution.ecrire(script, articles, journal)
     brut = composer(f, script)

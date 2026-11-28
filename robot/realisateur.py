@@ -18,19 +18,20 @@ import subprocess
 from . import ia
 from .commun import RACINE
 
-BASES = ("carte", "3d", "photo")                    # décors qui restent à l'écran (le moteur pose le reste par-dessus)
-TYPES = ("suite", "carte", "chiffre", "frise", "citation", "barres", "3d", "question", "mot", "icone", "document", "calendrier", "personnes", "jauge")
+BASES = ("carte", "3d", "photo", "fond")                    # décors qui restent à l'écran (le moteur pose le reste par-dessus)
+TYPES = ("suite", "carte", "chiffre", "frise", "citation", "barres", "3d", "question", "mot", "icone", "document", "calendrier", "personnes", "jauge",
+         "echelle", "avant_apres", "courbe", "fond")
 UNITES_FORTES = ("millions", "million", "milliards", "milliard", "mille", "%", "pour cent")
 OBJETS_3D = ("voiture", "camion", "citerne", "bus", "moto", "avion", "helico", "bateau", "train", "batiment", "arbre", "personne",
              "muret", "mur", "cube_eau", "foule", "police", "pompiers", "ambulance", "batiment_officiel",
              # vrais modèles Kenney (CC0) depuis le 27/11
-             "taxi", "camionnette", "tracteur", "bulldozer", "debris", "plot", "soldat", "vedette", "barque", "voilier", "conteneur", "tgv",
+             "taxi", "camionnette", "tracteur", "bulldozer", "fusee", "satellite", "chien", "chat", "loup", "renard", "cheval", "vache", "mouton", "cochon", "lama", "zebre", "aigle", "oiseau", "poussin", "poisson", "piranha", "baleine", "debris", "plot", "soldat", "vedette", "barque", "voilier", "conteneur", "tgv",
              "wagon_citerne", "palmier", "rocher", "maison", "immeuble", "gratte_ciel", "entrepot",
              "hopital", "banque", "magasin", "residence", "feu_tricolore", "panneau")
 ACTIONS_3D = ("avancer", "heurter", "changer_voie", "tourner", "se_coucher", "bruler", "exploser", "tomber", "voler", "couler",
               "apparaitre", "disparaitre", "eteindre", "deverser", "freiner", "deraper", "tonneau", "effondrer", "arroser", "fuir",
               "inonder", "trembler", "tempete")
-DECORS = ("autoroute", "route", "ville", "place", "usine", "foret", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio")
+DECORS = ("autoroute", "route", "ville", "place", "usine", "foret", "mer", "port", "plage", "piste", "voie_ferree", "campagne", "studio", "stade", "montagne", "desert", "riviere", "aeroport", "gare", "tribunal", "interieur", "ferme", "espace")
 COULEURS = ("orange", "rouge", "jaune", "bleu", "vert", "violet", "gris")
 
 CONSIGNE = """Tu es le réalisateur d'une vidéo TikTok d'actualité où TOUT est fabriqué en animation, comme les chaînes
@@ -75,6 +76,13 @@ change d'image souvent : une scène dure 3 à 8 secondes). Types de scènes :
   (foule + police + batiment_officiel), en illustration ;
   actions : avancer, heurter, changer_voie, tourner, se_coucher, bruler, exploser, tomber, voler, couler, apparaitre, disparaitre ;
   "voie" = numéro de voie (1 à 6), "position" = mètres le long de la route ; "phrase" = numéro de la phrase où l'action commence ;
+- "echelle" : {"valeur": "990", "nom": "le volcan", "emoji": "🌋", "reference": "tour_eiffel", "texte": "..."} — pour se
+  rendre compte d'une TAILLE, d'un POIDS, d'une SURFACE ou d'une VITESSE dite dans le texte : deux colonnes côte à côte ;
+  "reference" PARMI : {REFS} ; "valeur" = la valeur du sujet DANS L'UNITÉ de la référence ;
+- "avant_apres" : {"avant": "Ticket à 2,10 €", "apres": "Ticket à 2,50 €", "texte": "..."} — une décision, une loi, un prix,
+  des travaux : ce qui était, puis ce qui change (8 mots au plus chacun) ;
+- "courbe" : {"points": [["2020", 12], ["2022", 30], ["2024", 45]], "unite": "€", "texte": "..."} — une évolution dans le
+  temps (2 à 8 points, tous dans le texte ou les articles) ;
 - "question" : {"texte": "la question finale"} — OBLIGATOIRE pour la dernière phrase.
 Les DÉCORS doivent occuper la moitié de la vidéo au moins (les encadrés sont des moments courts, pas l'essentiel).
 "icone" / "mot" : "valeur" = 1 ou 2 NOMS (jamais un verbe, jamais « d'… » ni « le … ») ; chaque emoji UNE fois par vidéo.
@@ -87,6 +95,14 @@ Donne aussi : "titre" (le titre affiché en haut, 45 signes au plus, le mot le p
 (ex. "LE CAIRE · MERCREDI SOIR"), "source" (ex. "Source : parquet égyptien, ministère de la Santé"), et "cles" : pour chaque
 numéro de phrase, 1 ou 2 mots importants à surligner dans les sous-titres (copiés tels quels de la phrase).
 Réponds uniquement en JSON : {"titre": "", "lieu_date": "", "source": "", "cles": {"0": ["mot"]}, "scenes": [{"phrases": [0, 1], "type": "carte", ...}]}"""
+
+
+def _refs_texte():
+    from .familles import REFERENCES
+    return ", ".join(f"{k} ({v['valeur']} {v['unite']})" for k, v in REFERENCES.items())
+
+
+CONSIGNE = CONSIGNE.replace("{REFS}", _refs_texte())
 
 
 def _texte_articles(articles):
@@ -189,6 +205,27 @@ def valider(d, script, articles, journal=print):
             raison = "citation introuvable dans les articles"
         elif t == "barres" and not all(_chiffres(str(b.get("valeur"))) <= connus for b in sc.get("barres") or [{}]):
             raison = "barres : chiffre inventé"
+        elif t == "echelle":                            # la référence vient du robot (familles.REFERENCES), jamais de l'IA
+            from . import familles
+            ref = familles.REFERENCES.get(str(sc.get("reference") or ""))
+            if not (_chiffres(str(sc.get("valeur"))) and _chiffres(str(sc.get("valeur"))) <= connus):
+                raison = f"échelle : « {sc.get('valeur')} » absent du texte et des articles"
+            elif not ref:
+                raison = f"échelle : référence inconnue « {sc.get('reference')} »"
+            else:
+                sc.update(ref_nom=ref["nom"], ref_valeur=ref["valeur"], ref_emoji=ref["emoji"], unite=ref["unite"])
+                v = float(str(sc["valeur"]).replace(",", ".").replace(" ", "").rstrip(".") or 0) if re.match(r"^[\d\s.,]+$", str(sc["valeur"])) else 0
+                if v and ref["valeur"]:
+                    k = v / ref["valeur"]
+                    sc["rapport"] = f"× {k:.0f}" if k >= 1.5 else (f"÷ {1 / k:.0f}" if 0 < k <= 0.67 else "")
+        elif t == "avant_apres" and not (str(sc.get("avant") or "").strip() and str(sc.get("apres") or "").strip()):
+            raison = "avant / après incomplet"
+        elif t == "avant_apres" and not (_chiffres(f"{sc.get('avant')} {sc.get('apres')}") <= connus):
+            raison = "avant / après : chiffre inventé"
+        elif t == "courbe" and not (len(sc.get("points") or []) >= 2 and all(
+                isinstance(q, (list, tuple)) and len(q) >= 2 and _chiffres(str(q[1])) and _chiffres(str(q[1])) <= connus
+                for q in sc.get("points") or [])):
+            raison = "courbe : points absents ou inventés"
         elif t == "3d":
             sc["objets"] = [o for o in sc.get("objets") or [] if isinstance(o, dict) and o.get("type") in OBJETS_3D and o.get("id")][:12]
             ids = {o["id"] for o in sc["objets"]}
@@ -244,7 +281,11 @@ def valider(d, script, articles, journal=print):
         if not raison and t == "chiffre":                # unité reprise du texte : « 21,7 » + « millions »
             sc["unite"] = _unite_du_texte(str(sc.get("valeur")), " ".join(script["phrases"][x]["ecrit"] for x in sc["phrases"]),
                                           str(sc.get("unite") or ""))
-        for cle, n_ in (("texte", 60), ("valeur", 24), ("titre", 40), ("entete", 40), ("tampon", 14), ("emoji", 8)):
+        for cle in ("emoji", "ref_emoji"):              # 📅 de la police Noto affiche « July 17 » en anglais (28/11)
+            if isinstance(sc.get(cle), str):
+                sc[cle] = sc[cle].replace("📅", "🗓️").replace("📆", "🗓️")
+        for cle, n_ in (("texte", 60), ("valeur", 24), ("titre", 40), ("entete", 40), ("tampon", 14), ("emoji", 8),
+                        ("avant", 70), ("apres", 70), ("nom", 18)):
             if isinstance(sc.get(cle), str) and len(sc[cle]) > n_:
                 sc[cle] = sc[cle][:n_].rsplit(" ", 1)[0] + ("…" if cle == "texte" else "")
         if not raison and t == "mot" and sum(1 for x in scenes if x["type"] == "mot") >= 2:
@@ -346,7 +387,11 @@ COTES = ((1, 1), (-1, 1), (0.35, 1.25), (-1, 0.8))     # côtés successifs des 
 DISTANCE_MIN_PROCHE = 25.0                            # même le moment fort n'est jamais filmé à moins de 25 m
 SECOURS_3D = ("police", "ambulance", "pompiers")
 GRANDS = {"citerne": 1.7, "camion": 1.6, "bus": 1.6, "train": 2.2, "avion": 2.4, "bateau": 2.4, "batiment": 2.0, "immeuble": 2.4, "entrepot": 2.6,
-          "foule": 2.0, "personne": 1.4}
+          "foule": 2.0, "personne": 1.4, "baleine": 2.4}
+# petits sujets filmés de plus près (28/11 : un chien à 25 m n'était qu'un point) ; la distance aux feux reste garantie par
+# le moteur 3D (16 m d'un objet qui brûle)
+PETITS = {"chat": 0.25, "poussin": 0.25, "oiseau": 0.3, "poisson": 0.3, "piranha": 0.3, "chien": 0.35, "renard": 0.35,
+          "mouton": 0.45, "cochon": 0.45, "loup": 0.45, "aigle": 0.5, "cheval": 0.6, "vache": 0.6, "zebre": 0.6, "lama": 0.6}
 
 
 # angles choisis par le scénario (reconstitution.py) → plans de la bibliothèque
@@ -442,8 +487,11 @@ def _cam(coupes, types, duree, dense=False, feux=None, principal=None, accroche=
         if cle != "interieur" and dense:       # usine, ville : on recule et on monte (sinon la caméra entre dans un hangar)
             e *= 1.4
         extra = dict(regard=[30, -0.6, 0]) if cle == "interieur" else {}          # de l'intérieur : on regarde la route devant
+        petit = PETITS.get(types.get(suivre)) if cle != "interieur" else None
+        if petit:
+            e *= petit
         if cle != "interieur":                          # 15 m au moins hors du moment fort, 25 m pendant
-            mini = DISTANCE_MIN_PROCHE if cle in PROCHES else DISTANCE_MIN
+            mini = (DISTANCE_MIN_PROCHE if cle in PROCHES else DISTANCE_MIN) * (petit or 1.0)
             d1 = sum(v * v for v in p1) ** 0.5 * e
             if d1 < mini:
                 e *= mini / max(d1, 0.1)
@@ -550,7 +598,14 @@ def pour_rendu(anim, script, debuts, mots, total, mention_source=""):
     if scenes and scenes[0]["type"] not in BASES:        # jamais un encadré sur du vide : la carte du lieu dessous
         fin_ = next((x["debut"] for x in scenes if x["type"] in BASES), total)
         lieu = anim.get("lieu")
-        scenes.insert(0, dict(type="carte", debut=0, fin=round(fin_, 3), implicite=True, nuit=bool(anim.get("nuit")),
+        if not lieu:                                     # sans lieu : un fond animé, pas une planète vide (28/11)
+            from . import familles
+            fam = script.get("famille") if script.get("famille") in familles.FAMILLES else familles.famille_de(script)
+            scenes.insert(0, dict(type="fond", debut=0, fin=round(fin_, 3), implicite=True, famille=fam))
+    if scenes and scenes[0]["type"] not in BASES:
+        lieu = anim.get("lieu")
+        scenes.insert(0, dict(type="carte", debut=0, fin=round(next((x["debut"] for x in scenes if x["type"] in BASES), total), 3),
+                              implicite=True, nuit=bool(anim.get("nuit")),
                               zone="monde" if not lieu else None, points=[dict(lieu, a=1.0)] if lieu else [],
                               depart_zoom=8 if lieu else 1.4, zoom_duree=4.0, marge=6 if lieu else 1.2,
                               mention="Images : NASA (Blue Marble)"))

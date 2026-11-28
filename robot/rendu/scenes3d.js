@@ -4,6 +4,9 @@
 // Les actions sont rejouées depuis le début à chaque image : la même seconde donne toujours la même image.
 import { ZONE, borne, prog, ease, mix, hasard, el, echapper, couleur, apparition } from "./moteur.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import * as THREE_ from "three";
+import * as SkeletonUtils from "three/addons/utils/SkeletonUtils.js";
+import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
 
 // ------------------------------------------------------------------ vrais modèles 3D (Kenney, CC0 : usage commercial permis)
 // type d'objet → [dossier, variantes], taille réelle en mètres, mesurée sur la longueur ("l") ou la hauteur ("h").
@@ -43,13 +46,48 @@ const MODELES = {
   banque: ["quaternius", ["bati-Bank"], 12, "h"],
   magasin: ["quaternius", ["bati-Shop"], 7, "h"],
   residence: ["quaternius", ["bati-Flat", "bati-Flat2"], 16, "h"],
+  // ANIMAUX Quaternius (CC0, 28/11), AVEC leurs animations (marche, course, vol, nage, repos) : voir modeles/animaux/LICENCE.md
+  chien: ["animaux", ["dog", "pug"], 0.9, "l"], chat: ["animaux", ["cat"], 0.5, "l"], loup: ["animaux", ["wolf"], 1.4, "l"],
+  renard: ["animaux", ["red_fox"], 0.9, "l"], cheval: ["animaux", ["horse"], 2.3, "l"], vache: ["animaux", ["cow"], 2.4, "l"],
+  mouton: ["animaux", ["sheep"], 1.3, "l"], cochon: ["animaux", ["pig"], 1.3, "l"], lama: ["animaux", ["llama"], 1.7, "l"],
+  zebre: ["animaux", ["zebra"], 2.3, "l"], aigle: ["animaux", ["eagle"], 2.0, "l"], oiseau: ["animaux", ["bird"], 0.4, "l"],
+  poussin: ["animaux", ["chick"], 0.25, "l"], poisson: ["animaux", ["fish"], 0.6, "l"], piranha: ["animaux", ["piranha"], 0.4, "l"],
+  baleine: ["animaux", ["whale"], 25, "l"],
 };
+export const ANIMAUX = ["chien", "chat", "loup", "renard", "cheval", "vache", "mouton", "cochon", "lama", "zebre", "aigle", "oiseau",
+                        "poussin", "poisson", "piranha", "baleine"];
+const AQUATIQUES = ["poisson", "piranha", "baleine"], VOLANTS = ["aigle", "oiseau"];
+const A_L_ENVERS = new Set(["red_fox", "eagle"]);   // vus de profil le 28/11 : tête vers -x
+const ANIMS = new Map();                       // clé du modèle → ses animations
+// couleurs des parties des animaux (le FBX garde souvent un gris uniforme) : nom de la partie → couleur
+const COULEURS_ANIMAUX = {
+  _: { Grey: "#8a8f98", Pink: "#f2a7b0", White: "#f4f1ea", Black: "#2b2b2b", Brown: "#7a4a2a", Beige: "#d9b98a",
+       LightYellow: "#f3e08a", Beak: "#f2b705", Claws: "#3a3a3a", Head: "#f4f1ea", Wings: "#5a3c22" },
+  dog: { Dog: "#c8955a" }, wolf: { Wolf: "#8a8f98" }, cat: { Grey: "#e59a4a" },
+  chick: { "Material.001": "#ffd84a", "Material.002": "#f28a1a" }, fish: { "Material.001": "#ff8c3a" },
+  red_fox: { "Material.001": "#e0742a", "Material.002": "#f4f1ea" }, whale: { "Material.001": "#3c5f8a", "Material.002": "#dfe6ee" },
+  bird: { "Material.002": "#4a90d9", "Material.006": "#f2b705" }, horse: { "Material.003": "#8a5a33", "Material.006": "#2b2b2b" },
+  pig: { Material: "#7a3a2a", "Material.003": "#f2a7b0" },
+};
+const chargeurFBX = new FBXLoader();
 const GLTF = new Map(), chargeur = new GLTFLoader();
 async function prechargerModeles(types) {
   const a_charger = [];
   for (const t of new Set(types)) for (const v of (MODELES[t] || [null, []])[1]) {
     const cle = `${MODELES[t][0]}/${v}`;
-    if (!GLTF.has(cle)) { GLTF.set(cle, null); a_charger.push(chargeur.loadAsync(`./modeles/${cle}.glb`).then(g => GLTF.set(cle, g.scene)).catch(() => GLTF.delete(cle))); }
+    if (GLTF.has(cle)) continue;
+    GLTF.set(cle, null);
+    if (MODELES[t][0] === "animaux")             // animaux : FBX lu tel quel (squelette + animations), couleurs par partie
+      a_charger.push(chargeurFBX.loadAsync(`./modeles/${cle}.fbx`).then(o => {
+        const nom = cle.split("/")[1], pal = { ...COULEURS_ANIMAUX._, ...(COULEURS_ANIMAUX[nom] || {}) };
+        o.traverse(m => { if (!m.isMesh) return;
+          m.material = [].concat(m.material).map(x => { const c = pal[x.name];
+            const n = new THREE_.MeshLambertMaterial({ color: c || (x.color ? x.color.getHex() : 0xbbbbbb), side: THREE_.DoubleSide });
+            n.name = x.name; return n; });
+          if (m.material.length === 1) m.material = m.material[0]; });
+        GLTF.set(cle, o); ANIMS.set(cle, o.animations || []);
+      }).catch(() => GLTF.delete(cle)));
+    else a_charger.push(chargeur.loadAsync(`./modeles/${cle}.glb`).then(g => { GLTF.set(cle, g.scene); ANIMS.set(cle, g.animations || []); }).catch(() => GLTF.delete(cle)));
   }
   await Promise.all(a_charger);
 }
@@ -57,9 +95,12 @@ const modelePret = t => MODELES[t] && MODELES[t][1].some(v => GLTF.get(`${MODELE
 function modele(T, type, o = {}, graine = 1) {
   const [kit, variantes, taille, mesure] = MODELES[type];
   const dispo = variantes.filter(v => GLTF.get(`${kit}/${v}`)), nom = o.variante && dispo.includes(o.variante) ? o.variante : dispo[Math.abs(graine) % dispo.length];
-  const brut = GLTF.get(`${kit}/${nom}`).clone(true), g = new T.Group(), pivot = new T.Group();
+  const clips = ANIMS.get(`${kit}/${nom}`) || [];
+  // un modèle ARTICULÉ (animal) se copie avec son squelette, sinon il resterait figé dans la pose de l'original
+  const brut = clips.length ? SkeletonUtils.clone(GLTF.get(`${kit}/${nom}`)) : GLTF.get(`${kit}/${nom}`).clone(true), g = new T.Group(), pivot = new T.Group();
   let b = new T.Box3().setFromObject(brut), d = b.getSize(new T.Vector3());
   if (mesure === "l" && d.z > d.x) brut.rotation.y = Math.PI / 2;        // l'avant du véhicule vers +x (le sens de la marche)
+  if (A_L_ENVERS.has(nom)) brut.rotation.y += Math.PI;                    // modèles dessinés tête vers l'arrière (vérifiés de profil)
   b = new T.Box3().setFromObject(brut); d = b.getSize(new T.Vector3());
   const voulu = o.longueur && mesure === "l" ? o.longueur : o.hauteur && mesure === "h" ? o.hauteur : taille;
   const k = voulu / (mesure === "l" ? Math.max(d.x, d.z) : d.y);
@@ -69,7 +110,26 @@ function modele(T, type, o = {}, graine = 1) {
   brut.traverse(m => { if (m.isMesh) { m.castShadow = false; if (o.couleur && m.material && /body|carrosserie/i.test(m.material.name || "")) { m.material = m.material.clone(); m.material.color.set(couleur(o.couleur)); } } });
   g.add(pivot);
   g.userData.taille = [d.x * k, d.y * k, d.z * k];
+  if (clips.length) {                            // animaux : une animation par état (repos, marche, course, vol, nage)
+    // (28/11 : animaux invisibles, seules leurs ombres) un maillage articulé garde la boîte de sa pose d'origine → Three.js
+    // le croyait hors champ ; et les matières venues du FBX sont parfois transparentes ou sans face arrière
+    brut.traverse(m => { if (m.isMesh) { m.frustumCulled = false; const ms = Array.isArray(m.material) ? m.material : [m.material];
+      for (const x of ms) if (x) { x.transparent = false; x.opacity = 1; x.side = T.DoubleSide; x.depthWrite = true; } } });
+    const mixer = new T.AnimationMixer(brut), choisir = re => clips.find(c => re.test(c.name));
+    const etats = { repos: choisir(/idle/i), marche: choisir(/walk|swim|fly/i), course: choisir(/run|gallop|fly|swim/i) || choisir(/walk/i),
+                    vol: choisir(/fly/i), nage: choisir(/swim/i), saut: choisir(/jump/i), mort: choisir(/death/i) };
+    const defaut = clips.find(c => !/death|plane/i.test(c.name)) || clips[0];
+    for (const k_ in etats) etats[k_] = mixer.clipAction(etats[k_] || defaut);
+    g.userData.animal = { mixer, etats, courant: null };
+  }
   return g;
+}
+// pose d'un animal à l'instant t : rien ne dépend de l'horloge (rendu en morceaux parallèles identique)
+function poseAnimal(g, etat_, t) {
+  const A = g.userData.animal; if (!A) return;
+  const a = A.etats[etat_] || A.etats.repos;
+  if (A.courant !== a) { for (const x of Object.values(A.etats)) { x.stop(); x.enabled = false; } a.enabled = true; a.setEffectiveWeight(1); a.play(); A.courant = a; }
+  A.mixer.setTime(t);
 }
 export const TYPES_MODELES = Object.keys(MODELES);
 
@@ -168,6 +228,27 @@ const FABRIQUES = {
     const s = boite(T, 1.2, 0.14, 4.6, m); s.position.set(-l / 2 + 1, 0.4, 0); g.add(s);
     for (const z of [-1.6, 1.6]) { const r = new T.Mesh(new T.CylinderGeometry(0.45, 0.45, 2, 12), lambert(T, "#9aa3ad")); r.rotation.z = Math.PI / 2; r.position.set(-l / 2 + 3.2, 0.7, z); g.add(r); }
     g.userData.taille = [l, 3, l]; return g;
+  },
+  fusee(T, o) {                             // (28/11) fusée : corps blanc, coiffe, ailerons, tuyère ; l'avant vers +x
+    const g = new T.Group(), L = o.longueur || 50, R = L / 18;
+    const corps = new T.Mesh(new T.CylinderGeometry(R, R, L * 0.72, 24), lambert(T, "#eef1f4")); corps.rotation.z = -Math.PI / 2; g.add(corps);
+    const coiffe = new T.Mesh(new T.ConeGeometry(R, L * 0.18, 24), lambert(T, "#d0d6dc")); coiffe.rotation.z = -Math.PI / 2; coiffe.position.x = L * 0.45; g.add(coiffe);
+    const bande = new T.Mesh(new T.CylinderGeometry(R * 1.01, R * 1.01, L * 0.05, 24), lambert(T, "#1a1a1a")); bande.rotation.z = -Math.PI / 2; bande.position.x = L * 0.2; g.add(bande);
+    for (let k = 0; k < 4; k++) { const a = boite(T, L * 0.1, 0.2, R * 1.6, lambert(T, "#c0392b")); const q = k * Math.PI / 2;
+      a.position.set(-L * 0.32, Math.sin(q) * R * 1.3, Math.cos(q) * R * 1.3); a.rotation.x = q; g.add(a); }
+    const tuyere = new T.Mesh(new T.CylinderGeometry(R * 0.6, R * 0.9, L * 0.06, 16), lambert(T, "#333")); tuyere.rotation.z = -Math.PI / 2; tuyere.position.x = -L * 0.39; g.add(tuyere);
+    const flamme = new T.Mesh(new T.ConeGeometry(R * 0.8, L * 0.25, 16), new T.MeshBasicMaterial({ color: 0xffb347, transparent: true, opacity: 0.85, depthWrite: false }));
+    flamme.rotation.z = Math.PI / 2; flamme.position.x = -L * 0.55; g.add(flamme);
+    g.userData.anime = t => { flamme.scale.set(1 + 0.15 * Math.sin(t * 40), 1 + 0.25 * Math.sin(t * 31), 1 + 0.15 * Math.sin(t * 37)); };
+    g.userData.taille = [L, R * 2, R * 2]; return g;
+  },
+  satellite(T, o) {                         // satellite : corps doré, deux grands panneaux solaires, antenne
+    const g = new T.Group(), L = o.longueur || 8;
+    const corps = boite(T, L * 0.3, L * 0.3, L * 0.3, lambert(T, "#d4a72c")); g.add(corps);
+    for (const s_ of [-1, 1]) {
+      const pan = boite(T, L * 0.28, L * 0.02, L * 0.42, lambert(T, "#22427a", "#0a1530")); pan.position.set(0, 0, s_ * L * 0.38); g.add(pan); }
+    const ant = new T.Mesh(new T.ConeGeometry(L * 0.12, L * 0.1, 16, 1, true), lambert(T, "#f4f4f4")); ant.position.set(L * 0.2, 0, 0); ant.rotation.z = -Math.PI / 2; g.add(ant);
+    g.userData.taille = [L * 0.4, L * 0.3, L]; return g;
   },
   helico(T, o) {
     const g = new T.Group(), m = lambert(T, o.couleur || "#e74c3c");
@@ -397,6 +478,94 @@ function decor(T, scene, sc) {
       const a = modelePret("arbre") ? modele(T, "arbre", { hauteur: 6 + r() * 8 }, Math.floor(r() * 99)) : FABRIQUES.arbre(T, {});
       a.position.set(x, 0, z); a.userData.arbre = true; scene.add(a); (scene.userData.arbres ||= []).push(a);
     }
+  } else if (d === "stade") {              // (28/11) sport : pelouse rayée et lignes, tribunes pleines, projecteurs
+    sol(0x23402a);
+    const pel = new T.Mesh(new T.PlaneGeometry(105, 68), new T.MeshLambertMaterial({ map: texture(T, 512, 330, (c, w, h) => {
+      for (let i = 0; i < 12; i++) { c.fillStyle = i % 2 ? "#3f8f3f" : "#479d47"; c.fillRect(i * w / 12, 0, w / 12 + 1, h); }
+      c.strokeStyle = "#fff"; c.lineWidth = 3; c.strokeRect(6, 6, w - 12, h - 12); c.beginPath(); c.moveTo(w / 2, 6); c.lineTo(w / 2, h - 6); c.stroke();
+      c.beginPath(); c.arc(w / 2, h / 2, 45, 0, 7); c.stroke(); c.strokeRect(6, h / 2 - 80, 80, 160); c.strokeRect(w - 86, h / 2 - 80, 80, 160); }) }));
+    pel.rotation.x = -Math.PI / 2; pel.position.y = 0.01; scene.add(pel);
+    const foule = texture(T, 256, 64, (c, w, h) => { c.fillStyle = "#2a2f3a"; c.fillRect(0, 0, w, h);
+      const C = ["#e74c3c", "#f1c40f", "#3498db", "#ecf0f1", "#2ecc71", "#e67e22"]; for (let i = 0; i < 900; i++) { c.fillStyle = C[i % 6]; c.fillRect((i * 37) % w, (i * 53) % h, 3, 4); } }, [6, 1]);
+    for (const [x, z, l, ry] of [[0, -50, 130, 0], [0, 50, 130, Math.PI], [-68, 0, 86, Math.PI / 2], [68, 0, 86, -Math.PI / 2]]) {
+      const g = new T.Group();
+      for (let k = 0; k < 6; k++) { const m = new T.Mesh(new T.BoxGeometry(l, 1.6, 3), new T.MeshLambertMaterial({ map: foule })); m.position.set(0, 1 + k * 1.6, -k * 3); g.add(m); }
+      g.position.set(x, 0, z); g.rotation.y = ry; scene.add(g);
+    }
+    for (const [x, z] of [[-60, -55], [60, -55], [-60, 55], [60, 55]]) { const p_ = boite(T, 0.8, 34, 0.8, lambert(T, "#9aa0a8")); p_.position.set(x, 17, z); scene.add(p_);
+      const l_ = boite(T, 6, 3, 1, new T.MeshBasicMaterial({ color: 0xfff8dd })); l_.position.set(x, 34, z); scene.add(l_); }
+  } else if (d === "montagne") {           // sauvetage en montagne, avalanche, randonnée : sommets enneigés, sentier
+    sol(0x6b6a5e); scene.fog.far = Math.max(scene.fog.far, 900);   // les sommets restent visibles au loin
+    for (let i = 0; i < 14; i++) {
+      const h = 60 + r() * 140, R = h * (0.6 + r() * 0.3), x = -400 + r() * 800, z = -90 - r() * 200;
+      const m = new T.Mesh(new T.ConeGeometry(R, h, 7), new T.MeshLambertMaterial({ color: 0x7d7a6e, flatShading: true })); m.position.set(x, h / 2 - 2, z); scene.add(m);
+      const ne = new T.Mesh(new T.ConeGeometry(R * 0.32, h * 0.32, 7), new T.MeshLambertMaterial({ color: 0xf4f6f8, flatShading: true })); ne.position.set(x, h - h * 0.16 - 2, z); scene.add(ne);
+    }
+    for (let i = 0; i < 60; i++) { const ro = modelePret("rocher") ? modele(T, "rocher", { hauteur: 1 + r() * 3 }, i) : boite(T, 2, 2, 2, lambert(T, "#77756b")); ro.position.set(-150 + r() * 300, 0, -120 + r() * 160); if (Math.abs(ro.position.z) > 6) scene.add(ro); }
+    const sentier = new T.Mesh(new T.PlaneGeometry(1200, 3), lambert(T, "#a08f72")); sentier.rotation.x = -Math.PI / 2; sentier.position.y = 0.02; scene.add(sentier);
+  } else if (d === "desert") {             // désert : sable, dunes, rochers
+    sol(0xd9b77a);
+    for (let i = 0; i < 26; i++) { const du = new T.Mesh(new T.SphereGeometry(30 + r() * 40, 16, 8), lambert(T, i % 2 ? "#d2ad6d" : "#e0c186"));
+      du.scale.set(1.6, 0.18 + r() * 0.12, 1); du.position.set(-500 + r() * 1000, -2, -60 - r() * 400); scene.add(du); }
+    for (let i = 0; i < 20; i++) { const ro = modelePret("rocher") ? modele(T, "rocher", { hauteur: 1 + r() * 4 }, i) : boite(T, 2, 2, 2, lambert(T, "#9b7b52")); ro.position.set(-150 + r() * 300, 0, -100 + r() * 140); if (Math.abs(ro.position.z) > 8) scene.add(ro); }
+  } else if (d === "riviere") {            // rivière ou fleuve : l'eau traverse la scène, berges boisées, un pont
+    sol(0x3f5a33);
+    const eau = new T.Mesh(new T.PlaneGeometry(1600, 34), new T.MeshLambertMaterial({ color: 0x2b6a8f, emissive: 0x08263a })); eau.rotation.x = -Math.PI / 2; eau.position.set(0, 0.05, 0); scene.add(eau);
+    scene.userData.eau = eau;
+    for (const cote of [-1, 1]) for (let x = -300; x < 300; x += 9 + r() * 12) { const a = modelePret("arbre") ? modele(T, "arbre", { hauteur: 6 + r() * 6 }, Math.floor(r() * 99)) : FABRIQUES.arbre(T, {}); a.position.set(x, 0, cote * (22 + r() * 30)); scene.add(a); }
+    const pont = boite(T, 8, 1.2, 46, lambert(T, "#8a8f98")); pont.position.set(60, 3.5, 0); scene.add(pont);
+    for (const z of [-12, 12]) { const pi = boite(T, 2, 4, 2, lambert(T, "#6f747c")); pi.position.set(60, 1.5, z); scene.add(pi); }
+  } else if (d === "aeroport") {           // aéroport : piste et marquages, aérogare vitrée, tour de contrôle
+    sol(0x3c5a3a);
+    const piste = new T.Mesh(new T.PlaneGeometry(1600, 45), new T.MeshLambertMaterial({ map: texRoute(T, 2) })); piste.rotation.x = -Math.PI / 2; piste.material.map.repeat.set(80, 1); piste.position.y = 0.01; scene.add(piste);
+    const tarmac = new T.Mesh(new T.PlaneGeometry(400, 90), lambert(T, "#5d636b")); tarmac.rotation.x = -Math.PI / 2; tarmac.position.set(0, 0.015, -75); scene.add(tarmac);
+    const ter = boite(T, 160, 16, 30, lambert(T, "#c9d3dd")); ter.position.set(0, 8, -135); scene.add(ter);
+    const vitres = boite(T, 158, 8, 0.4, lambert(T, "#4b7fa6", "#0c2236")); vitres.position.set(0, 10, -119.8); scene.add(vitres);
+    const tour = new T.Mesh(new T.CylinderGeometry(3, 4, 46, 12), lambert(T, "#d6dade")); tour.position.set(110, 23, -110); scene.add(tour);
+    const cab = new T.Mesh(new T.CylinderGeometry(7, 5, 6, 12), lambert(T, "#3d6f93", "#0a2030")); cab.position.set(110, 49, -110); scene.add(cab);
+  } else if (d === "gare") {               // gare : quais, voies, grande verrière
+    sol(0x4a4f57);
+    for (const zv of [-6, 6]) { for (const dz of [-0.75, 0.75]) { const rail = boite(T, 1600, 0.15, 0.12, lambert(T, "#c8c8c8")); rail.position.set(0, 0.3, zv + dz); scene.add(rail); } }
+    for (const zq of [-14, 0, 14]) { const q = boite(T, 260, 1.1, 6, lambert(T, "#9a9ea6")); q.position.set(0, 0.55, zq); scene.add(q);
+      const bord = boite(T, 260, 0.05, 0.4, lambert(T, "#f1c40f")); bord.position.set(0, 1.12, zq + (zq >= 0 ? -2.8 : 2.8)); scene.add(bord); }
+    const verriere = new T.Mesh(new T.CylinderGeometry(26, 26, 240, 24, 1, true, 0, Math.PI), new T.MeshLambertMaterial({ color: 0x9fb6c8, transparent: true, opacity: 0.35, side: T.DoubleSide, depthWrite: false }));
+    verriere.rotation.z = Math.PI / 2; verriere.position.set(0, 12, 0); scene.add(verriere);
+    for (let x = -110; x <= 110; x += 22) for (const z of [-24, 24]) { const p_ = boite(T, 0.6, 12, 0.6, lambert(T, "#5b6270")); p_.position.set(x, 6, z); scene.add(p_); }
+  } else if (d === "tribunal" || d === "interieur") {   // une SALLE (tribunal, magasin, classe…) : sol, 3 murs, mobilier
+    scene.fog = null; scene.background = new T.Color(0x1b1712);
+    const parquet = new T.Mesh(new T.PlaneGeometry(60, 40), new T.MeshLambertMaterial({ map: texture(T, 256, 256, (c, w, h) => {
+      for (let i = 0; i < 16; i++) { c.fillStyle = i % 2 ? "#8a5a33" : "#7a4e2c"; c.fillRect(0, i * h / 16, w, h / 16); } }, [4, 4]) }));
+    parquet.rotation.x = -Math.PI / 2; scene.add(parquet);
+    const mur = lambert(T, d === "tribunal" ? "#c9b48f" : "#d9dde2");
+    const fond = boite(T, 60, 12, 0.5, mur); fond.position.set(0, 6, -20); scene.add(fond);
+    for (const x of [-30, 30]) { const m = boite(T, 0.5, 12, 40, mur); m.position.set(x, 6, 0); scene.add(m); }
+    for (let x = -24; x <= 24; x += 12) { const f = boite(T, 6, 5, 0.2, new T.MeshBasicMaterial({ color: 0xbcd6ef })); f.position.set(x, 7, -19.6); scene.add(f); }
+    if (d === "tribunal") {
+      const estrade = boite(T, 18, 1.2, 5, lambert(T, "#5a3a22")); estrade.position.set(0, 0.6, -15); scene.add(estrade);
+      const bureau = boite(T, 16, 2.4, 2, lambert(T, "#6b4426")); bureau.position.set(0, 2.4, -13.5); scene.add(bureau);
+      for (let k = 0; k < 4; k++) { const banc = boite(T, 22, 1, 1.4, lambert(T, "#6b4426")); banc.position.set(0, 0.5, 2 + k * 4); scene.add(banc); }
+      const barre = boite(T, 3, 1.2, 0.5, lambert(T, "#5a3a22")); barre.position.set(6, 0.6, -6); scene.add(barre);
+    } else for (let k = 0; k < 6; k++) { const t_ = boite(T, 3, 0.9, 1.6, lambert(T, "#9a7b5a")); t_.position.set(-15 + (k % 3) * 15, 0.45, -6 + Math.floor(k / 3) * 9); scene.add(t_); }
+  } else if (d === "ferme") {              // ferme : champs en bandes, grange rouge, clôtures
+    sol(0x4f6b35);
+    for (let i = 0; i < 8; i++) { const ch = new T.Mesh(new T.PlaneGeometry(80, 30), lambert(T, ["#7a8f3e", "#b49a4a", "#5f7f32", "#a88d45"][i % 4]));
+      ch.rotation.x = -Math.PI / 2; ch.position.set(-160 + (i % 4) * 85, 0.01, -60 - Math.floor(i / 4) * 34); scene.add(ch); }
+    const grange = new T.Group(); const m_ = boite(T, 18, 9, 12, lambert(T, "#a63a2b")); m_.position.y = 4.5; grange.add(m_);
+    const toit = new T.Mesh(new T.CylinderGeometry(7.5, 7.5, 18.4, 3, 1), lambert(T, "#4a4f57")); toit.rotation.z = Math.PI / 2; toit.position.y = 10.5; grange.add(toit);
+    grange.position.set(-30, 0, -30); scene.add(grange);
+    const bois = lambert(T, "#8a6a45");
+    for (let x = -80; x <= 80; x += 3) { const p_ = boite(T, 0.2, 1.3, 0.2, bois); p_.position.set(x, 0.65, 18); scene.add(p_); }
+    const lisse = boite(T, 160, 0.12, 0.12, bois); lisse.position.set(0, 1.1, 18); scene.add(lisse);
+  } else if (d === "espace") {             // espace : la Terre en bas, étoiles, aucun sol
+    scene.fog = null; scene.background = new T.Color(0x02030a);
+    const pos = []; for (let i = 0; i < 2500; i++) { const a = r() * 6.28, b = Math.acos(2 * r() - 1), R = 1500; pos.push(R * Math.sin(b) * Math.cos(a), R * Math.cos(b), R * Math.sin(b) * Math.sin(a)); }
+    const g = new T.BufferGeometry(); g.setAttribute("position", new T.Float32BufferAttribute(pos, 3));
+    scene.add(new T.Points(g, new T.PointsMaterial({ color: 0xffffff, size: 2.2, sizeAttenuation: false })));
+    const terre = new T.Mesh(new T.SphereGeometry(900, 64, 48), new T.MeshLambertMaterial({ map: texture(T, 512, 256, (c, w, h) => {
+      c.fillStyle = "#1f5f9e"; c.fillRect(0, 0, w, h); c.fillStyle = "#3e7d3a";
+      for (let i = 0; i < 40; i++) { c.beginPath(); c.ellipse((i * 97) % w, 40 + (i * 53) % (h - 80), 20 + (i % 5) * 9, 10 + (i % 3) * 8, i, 0, 7); c.fill(); }
+      c.fillStyle = "rgba(255,255,255,.55)"; for (let i = 0; i < 60; i++) { c.beginPath(); c.ellipse((i * 71) % w, (i * 31) % h, 18, 5, i, 0, 7); c.fill(); } }) }));
+    terre.position.set(0, -960, -300); scene.add(terre); scene.userData.terre = terre;
   } else sol(0x3a4a35);                  // campagne
 }
 
@@ -689,7 +858,7 @@ export async function creer3d(sc, couche, T) {
   if ((sc.actions || []).some(a => a.faire === "exploser")) await chargerFracture();
   const avecFeu = (sc.actions || []).some(a => ["bruler", "exploser", "effondrer"].includes(a.faire)) && sc.quarks !== false;
   if (avecFeu) await chargerQuarks();
-  await prechargerModeles([...(sc.objets || []).map(o => o.type), "immeuble", "gratte_ciel", "maison", "arbre", "voiture", "camion", "camionnette", "personne",
+  await prechargerModeles([...(sc.objets || []).map(o => o.type), "rocher", "immeuble", "gratte_ciel", "maison", "arbre", "voiture", "camion", "camionnette", "personne",
                            "bus", "residence", "magasin", "hopital", "banque", "feu_tricolore", "debris"]);
   const cv = el("canvas", "", couche); cv.width = W; cv.height = H; const cx = cv.getContext("2d");
   const scene = new T.Scene(); decor(T, scene, sc);
@@ -896,6 +1065,12 @@ export async function creer3d(sc, couche, T) {
       for (const w of g.userData.roues || []) w.rotation.y = -e.distance / (g.userData.rayon || 0.4);
       if (g.userData.pale) g.userData.pale.rotation.y = t * 25;
       if (g.userData.anime) g.userData.anime(t);
+      if (g.userData.animal) {                    // l'animal marche quand il avance, court quand il fuit, vole, nage
+        const avant = etat(o, actions, Math.max(0, t - 0.1), objets), v = Math.abs(e.distance - avant.distance) / 0.1;
+        const fuit = actions.some(a => a.objet === o.id && a.faire === "fuir" && t >= a.a && t <= a.a + (a.d ?? 1.2) + 0.2);
+        poseAnimal(g, AQUATIQUES.includes(o.type) ? "nage" : VOLANTS.includes(o.type) && e.y > 1 ? "vol"
+                      : (fuit || v > 4) ? "course" : v > 0.2 ? "marche" : "repos", t);
+      }
       if (g.userData.eau) { const n = borne(prog(t, o.remplir_a ?? 0.4, o.remplir_duree ?? 2.2)) * (o.niveau ?? 1); const c = g.userData.cote; g.userData.eau.scale.y = Math.max(0.001, n); g.userData.eau.position.y = c * n / 2; }
       // explosion d'un véhicule ou d'un bâtiment : il se désintègre (pièces + éclats projetés), l'épave brûle
       // séisme : l'immeuble qui s'effondre tombe en morceaux, sur place

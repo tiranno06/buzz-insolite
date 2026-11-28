@@ -112,7 +112,7 @@ function dessinerSatellite(cx, fond, cx0, cy0, s) {
 
 // ------------------------------------------------------------------ les scènes
 const TYPES = {};
-export const BASES = new Set(["carte", "3d", "photo"]);   // le « monde » qui reste à l'écran ; le reste s'affiche PAR-DESSUS
+export const BASES = new Set(["carte", "3d", "photo", "fond"]);   // le « monde » qui reste à l'écran ; le reste s'affiche PAR-DESSUS
 
 // ---- CARTE : pays / départements colorés, villes, flèche, pluie / neige, zoom lent
 TYPES.carte = async (sc, couche) => {
@@ -372,6 +372,116 @@ TYPES.barres = async (sc, couche) => {
       cx.font = "900 64px Poppins"; cx.fillStyle = "#fff"; cx.fillText(Math.round(+b.valeur * p).toLocaleString("fr-FR") + (b.unite ? " " + b.unite : ""), 120 + Math.max(w, 8), y + 88);
       cx.globalAlpha = 1;
     });
+  };
+};
+
+// ---- FOND ANIMÉ (28/11) : sujet sans lieu (découverte, appli, record en ligne) — jamais un fond figé : un dégradé aux
+// couleurs de la famille qui respire, une grille en perspective qui défile, des points lumineux qui flottent
+const FONDS = { science_espace: ["#071233", "#1b2f7a", "#7fb2ff"], sante: ["#06231f", "#0f5a50", "#7fe0cf"],
+                techno: ["#0b0b24", "#30186b", "#b48cff"], economie: ["#0a1d12", "#185c34", "#8fe3a8"],
+                record: ["#24100a", "#7a2a10", "#ffb36b"], sport: ["#0a1d12", "#11592f", "#ffd600"],
+                animal: ["#14210b", "#3f6a1c", "#d8f08a"], celebrite: ["#24081d", "#7a1760", "#ff9ad8"],
+                decision: ["#0b1222", "#25365e", "#ffd600"], proces: ["#160f0a", "#4a3420", "#e3c38f"] };
+TYPES.fond = async (sc, couche) => {
+  const cv = el("canvas", "", couche); cv.width = W; cv.height = H; const cx = cv.getContext("2d");
+  const [c1, c2, c3] = FONDS[sc.famille] || ["#0b1222", "#2a1240", "#ffd600"];
+  const r = (k => () => (k = (k * 16807) % 2147483647) / 2147483647)(97), points = Array.from({ length: 46 }, () => [r() * W, r() * H, 2 + r() * 5, r()]);
+  return t => {
+    const g = cx.createLinearGradient(0, 0, W * (0.6 + 0.2 * Math.sin(t * 0.2)), H);
+    g.addColorStop(0, c1); g.addColorStop(0.55 + 0.1 * Math.sin(t * 0.3), c2); g.addColorStop(1, c1);
+    cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+    cx.strokeStyle = c3 + "4d"; cx.lineWidth = 3;                       // grille en perspective qui avance vers nous
+    const hz = H * 0.62;
+    for (let k = 0; k < 14; k++) { const u = ((k + (t * 0.6) % 1) / 14) ** 2, y = hz + (H - hz) * u; cx.beginPath(); cx.moveTo(0, y); cx.lineTo(W, y); cx.stroke(); }
+    for (let k = -8; k <= 8; k++) { cx.beginPath(); cx.moveTo(W / 2 + k * 40, hz); cx.lineTo(W / 2 + k * 260, H); cx.stroke(); }
+    for (const [x, y, rr, ph] of points) {                              // poussière lumineuse qui flotte
+      const yy = (y - t * (12 + ph * 20)) % H, a = 0.45 + 0.4 * Math.sin(t * 1.5 + ph * 9);
+      cx.fillStyle = c3; cx.globalAlpha = Math.max(0, a); cx.beginPath(); cx.arc(x + Math.sin(t + ph * 6) * 14, yy < 0 ? yy + H : yy, rr, 0, 7); cx.fill();
+    }
+    cx.globalAlpha = 1;
+  };
+};
+
+// ---- ÉCHELLE (28/11, sujets sans action à reconstituer : record, science, découverte) : deux colonnes qui montent côte à
+// côte, le sujet et une référence connue (« 3 fois la tour Eiffel »), avec leur pictogramme au sommet et leur taille
+TYPES.echelle = async (sc, couche) => {
+  const cv = el("canvas", "", couche); cv.width = W; cv.height = H; const cx = cv.getContext("2d");
+  const a = +String(sc.valeur).replace(",", ".").replace(/[^\d.]/g, "") || 1, b = +String(sc.ref_valeur).replace(",", ".").replace(/[^\d.]/g, "") || 1;
+  const max = Math.max(a, b), HAUT = 600, BAS = (sc.y ?? 1260);
+  const tx = sc.texte ? el("div", "jauge-texte", couche, marques(sc.texte)) : null; if (tx) tx.style.top = (BAS + 30) + "px";
+  const colonnes = [{ v: a, nom: sc.nom || "", emoji: sc.emoji || "📏", unite: sc.unite || "", coul: "#ffd600", x: W / 2 - 250 },
+                    { v: b, nom: sc.ref_nom || "", emoji: sc.ref_emoji || "🗼", unite: sc.unite || "", coul: "#8fa3c8", x: W / 2 + 110 }];
+  return t => {
+    cx.clearRect(0, 0, W, H); voile(cx, BAS - HAUT / 2, t);
+    colonnes.forEach((c, i) => {
+      const p = ease.sortie(prog(t, 0.2 + i * 0.6, 1.1)), h = Math.max(10, HAUT * (c.v / max) * p), x = c.x, w = 200;
+      cx.globalAlpha = borne(prog(t, i * 0.6, 0.3));
+      cx.fillStyle = c.coul; cx.beginPath(); cx.roundRect(x, BAS - h, w, h, [18, 18, 0, 0]); cx.fill();
+      cx.font = "110px 'Noto Color Emoji'"; cx.textAlign = "center"; cx.textBaseline = "alphabetic";
+      cx.fillText(c.emoji, x + w / 2, BAS - h - 18 + Math.sin(t * 2 + i) * 6);
+      cx.font = "900 60px Poppins"; cx.fillStyle = "#fff"; cx.shadowColor = "#000"; cx.shadowBlur = 14;
+      cx.fillText(Math.round(c.v * p).toLocaleString("fr-FR") + (c.unite ? " " + c.unite : ""), x + w / 2, Math.max(ZONE.haut + 150, BAS - h - 140));
+      cx.font = "900 46px Poppins"; cx.fillStyle = i ? "#cfd8ea" : "#ffd600"; cx.fillText(c.nom.toUpperCase().slice(0, 16), x + w / 2, BAS + 58);
+      cx.shadowBlur = 0; cx.globalAlpha = 1;
+    });
+    cx.fillStyle = "rgba(255,255,255,.35)"; cx.fillRect(110, BAS, W - 300, 4);
+    if (sc.rapport && t > 1.8) {                       // « × 3 » qui apparaît entre les deux colonnes
+      cx.globalAlpha = borne(prog(t, 1.8, 0.4)); cx.font = "900 92px Poppins"; cx.fillStyle = "#ff5a64"; cx.textAlign = "center";
+      cx.fillText(sc.rapport, W / 2 + 30, BAS - HAUT * 0.75); cx.globalAlpha = 1;
+    }
+    if (tx) apparition(tx, t, 1.2, { echelle: false });
+  };
+};
+
+// ---- AVANT / APRÈS (décision, loi, prix, travaux) : deux cartes, un rideau glisse de AVANT vers APRÈS
+TYPES.avant_apres = async (sc, couche) => {
+  const Y = sc.y ?? 520;
+  const bloc = el("div", "", couche); bloc.style.cssText = `position:absolute;left:70px;right:150px;top:${Y}px;height:560px`;
+  const carte = (titre, texte, fond, coul) => {
+    const c = el("div", "", bloc, `<div style="font:900 46px Poppins;color:${coul};letter-spacing:.06em">${titre}</div>` +
+      `<div style="font:900 78px Poppins;color:#fff;line-height:1.1;margin-top:40px">${marques(texte || "")}</div>`);
+    c.style.cssText = `position:absolute;inset:0;border-radius:32px;padding:60px 60px;background:${fond};box-shadow:0 20px 60px #0009;display:flex;flex-direction:column;justify-content:center`;
+    return c;
+  };
+  const av = carte("AVANT", sc.avant, "rgba(40,52,80,.96)", "#9fb3d9"), ap = carte("APRÈS", sc.apres, "rgba(150,20,32,.96)", "#ffd600");
+  const tx = sc.texte ? el("div", "jauge-texte", couche, marques(sc.texte)) : null; if (tx) tx.style.top = (Y + 600) + "px";
+  return t => {
+    apparition(bloc, t, 0, { echelle: true });
+    const k = ease.douce(prog(t, sc.bascule ?? 1.6, 0.9));              // le rideau découvre APRÈS de gauche à droite
+    ap.style.clipPath = `inset(0 ${100 - k * 100}% 0 0 round 32px)`;
+    av.style.opacity = String(1 - 0.35 * k);
+    bloc.style.transform += ` rotate(${Math.sin(t * 1.4) * 0.6}deg)`;
+    if (tx) apparition(tx, t, 2.4, { echelle: false });
+  };
+};
+
+// ---- COURBE (évolution : prix, températures, nombre de cas) : la ligne se dessine point par point, la dernière valeur grossit
+TYPES.courbe = async (sc, couche) => {
+  const cv = el("canvas", "", couche); cv.width = W; cv.height = H; const cx = cv.getContext("2d");
+  const pts = (sc.points || []).map(p => ({ l: String(p[0] ?? p.label ?? ""), v: +String(p[1] ?? p.valeur).replace(",", ".").replace(/[^\d.-]/g, "") || 0 })).slice(0, 8);
+  const X0 = 150, X1 = W - 360, Y0 = (sc.y ?? 1150), Y1 = Y0 - 520;
+  const vmin = Math.min(0, ...pts.map(p => p.v)), vmax = Math.max(...pts.map(p => p.v), 1);
+  const xy = (i, v) => [mix(X0, X1, pts.length > 1 ? i / (pts.length - 1) : 0.5), mix(Y0, Y1, (v - vmin) / (vmax - vmin || 1))];
+  const tx = sc.texte ? el("div", "jauge-texte", couche, marques(sc.texte)) : null; if (tx) tx.style.top = (Y0 + 80) + "px";
+  return t => {
+    cx.clearRect(0, 0, W, H); voile(cx, (Y0 + Y1) / 2, t);
+    const p = ease.douce(prog(t, 0.3, 1.8)) * (pts.length - 1);
+    cx.strokeStyle = "rgba(255,255,255,.18)"; cx.lineWidth = 3; cx.beginPath(); cx.moveTo(X0, Y0); cx.lineTo(X1, Y0); cx.stroke();
+    cx.strokeStyle = couleur(sc.couleur || "jaune"); cx.lineWidth = 12; cx.lineJoin = cx.lineCap = "round"; cx.shadowColor = "#000"; cx.shadowBlur = 16;
+    cx.beginPath();
+    for (let i = 0; i <= Math.floor(p) && i < pts.length; i++) { const [x, y] = xy(i, pts[i].v); i ? cx.lineTo(x, y) : cx.moveTo(x, y); }
+    const i0 = Math.floor(p), f = p - i0;
+    if (i0 + 1 < pts.length) { const [a, b] = [xy(i0, pts[i0].v), xy(i0 + 1, pts[i0 + 1].v)]; cx.lineTo(mix(a[0], b[0], f), mix(a[1], b[1], f)); }
+    cx.stroke(); cx.shadowBlur = 0;
+    pts.forEach((q, i) => {
+      if (i > p + 0.01) return;
+      const [x, y] = xy(i, q.v), dernier = i === pts.length - 1;
+      cx.fillStyle = "#fff"; cx.beginPath(); cx.arc(x, y, dernier ? 16 : 10, 0, 7); cx.fill();
+      cx.font = "800 40px Poppins"; cx.textAlign = "center"; cx.fillStyle = "rgba(255,255,255,.85)"; cx.fillText(q.l.slice(0, 10), x, Y0 + 56);
+      cx.font = (dernier ? "900 76px" : "800 48px") + " Poppins"; cx.fillStyle = dernier ? "#ffd600" : "#fff";
+      cx.fillText(q.v.toLocaleString("fr-FR") + (dernier && sc.unite ? " " + sc.unite : ""), x, y - (dernier ? 34 : 22));
+    });
+    if (tx) apparition(tx, t, 1.6, { echelle: false });
   };
 };
 
