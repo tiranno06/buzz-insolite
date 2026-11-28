@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-28T03:58:39+01:00",
+ "maj": "2026-11-28T06:00:55+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:56:33+01:00"
+   "le": "2026-11-28T05:58:43+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:56:37+01:00"
+   "le": "2026-11-28T05:58:47+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:56:41+01:00"
+   "le": "2026-11-28T05:58:50+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:56:45+01:00"
+   "le": "2026-11-28T05:58:54+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:56:50+01:00"
+   "le": "2026-11-28T05:58:57+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-28T03:56:53+01:00"
+   "le": "2026-11-28T05:59:00+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:56:57+01:00"
+   "le": "2026-11-28T05:59:05+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:01+01:00"
+   "le": "2026-11-28T05:59:09+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:05+01:00"
+   "le": "2026-11-28T05:59:19+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:10+01:00"
+   "le": "2026-11-28T05:59:23+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:14+01:00"
+   "le": "2026-11-28T05:59:27+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:18+01:00"
+   "le": "2026-11-28T05:59:31+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:22+01:00"
+   "le": "2026-11-28T05:59:37+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-28T03:57:25+01:00"
+   "le": "2026-11-28T05:59:41+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:29+01:00"
+   "le": "2026-11-28T05:59:44+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:33+01:00"
+   "le": "2026-11-28T05:59:47+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:37+01:00"
+   "le": "2026-11-28T05:59:51+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:41+01:00"
+   "le": "2026-11-28T05:59:55+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:45+01:00"
+   "le": "2026-11-28T05:59:59+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:49+01:00"
+   "le": "2026-11-28T06:00:03+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:53+01:00"
+   "le": "2026-11-28T06:00:06+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:57:57+01:00"
+   "le": "2026-11-28T06:00:11+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:58:00+01:00"
+   "le": "2026-11-28T06:00:14+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:58:04+01:00"
+   "le": "2026-11-28T06:00:18+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:58:08+01:00"
+   "le": "2026-11-28T06:00:21+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:58:12+01:00"
+   "le": "2026-11-28T06:00:25+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:58:16+01:00"
+   "le": "2026-11-28T06:00:28+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T03:58:19+01:00"
+   "le": "2026-11-28T06:00:32+01:00"
   }
  },
  "lues": 809,
@@ -677,6 +677,62 @@
    "video_id": "20261126-163041-1"
   },
   {
+   "titre": "Christ le Rédempteur vu au-dessus des nuages",
+   "resume": "Des images prises depuis un hélicoptère montrent la statue de Christ le Rédempteur semblant flotter au-dessus d'un océan de nuages à Rio de Janeiro. Le cliché a rapidement fait le tour des réseaux sociaux.",
+   "mots_cles": [
+    "C",
+    "h",
+    "r",
+    "i",
+    "s",
+    "t"
+   ],
+   "mots_cles_en": [
+    "C",
+    "h",
+    "r",
+    "i",
+    "s",
+    "t"
+   ],
+   "hashtags": [
+    "christredeemer",
+    "rio",
+    "nuages",
+    "helicopter"
+   ],
+   "insolite": 8,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712775661743557902",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712775661743557902",
+     "vues": 9500000,
+     "jaime": 2300000,
+     "commentaires": 12600,
+     "partages": 134000,
+     "date": 1795770583,
+     "texte": "Helicopter footage captures a breathtaking view of Christ the Redeemer seemingly floating above a sea of clouds in Rio de Janeiro, Brazil, as the aircraft flies high above the city. The iconic statue, which stands atop Mount Corcovado, overlooks Rio and is a symbol of Christianity. The person who shared the footage described the experience as witnessing ‘something divine’. 🎥 Instagtam / cheezewino",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712775661743557902?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "c093dd05c8",
+   "score": 866,
+   "derniere_vue": 1795842045.5989084,
+   "vues": 9500000,
+   "jaime": 2300000,
+   "commentaires": 12600,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "sans_source",
+   "vu_le": "2026-11-28T06:00:55+01:00"
+  },
+  {
    "titre": "GTA 6 : buzz autour du jeu",
    "resume": "Des vidéos virales autour de GTA 6 circulent, dont un caméraman salué comme Oscar et un hommage à l’orque Tokitae dans le jeu. Certains joueurs refusent même d’y jouer.",
    "mots_cles": [
@@ -765,61 +821,6 @@
    "statut": "sans_source",
    "vu_le": "2026-11-26T13:26:29+01:00",
    "reserve_le": "2026-11-27T02:21:36+01:00"
-  },
-  {
-   "titre": "Christ le Rédempteur flotte au-dessus des nuages",
-   "resume": "Une vidéo prise depuis un hélicoptère montre la statue du Christ le Rédempteur semblant flotter au-dessus d’un océan de nuages à Rio de Janeiro. Le phénomène a été filmé depuis les hauteurs du mont Corcovado.",
-   "mots_cles": [
-    "C",
-    "h",
-    "r",
-    "i",
-    "s",
-    "t"
-   ],
-   "mots_cles_en": [
-    "C",
-    "h",
-    "r",
-    "i",
-    "s",
-    "t"
-   ],
-   "hashtags": [
-    "christredeemer",
-    "rio",
-    "mirage"
-   ],
-   "insolite": 7,
-   "categorie": "insolite",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712775661743557902",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712775661743557902",
-     "vues": 8600000,
-     "jaime": 2100000,
-     "commentaires": 11800,
-     "partages": 122800,
-     "date": 1795770583,
-     "texte": "Helicopter footage captures a breathtaking view of Christ the Redeemer seemingly floating above a sea of clouds in Rio de Janeiro, Brazil, as the aircraft flies high above the city. The iconic statue, which stands atop Mount Corcovado, overlooks Rio and is a symbol of Christianity. The person who shared the footage described the experience as witnessing ‘something divine’. 🎥 Instagtam / cheezewino",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712775661743557902?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "35c5cdeebb",
-   "score": 824,
-   "derniere_vue": 1795834711.592049,
-   "vues": 8600000,
-   "jaime": 2100000,
-   "commentaires": 11800,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-27T22:42:52+01:00"
   },
   {
    "titre": "États-Unis : arrestation passagers à l’aéroport de Seattle",
@@ -3196,6 +3197,67 @@
    "vu_le": "2026-11-24T20:46:45+01:00"
   },
   {
+   "titre": "Escalator accéléré à l'université BRAC, Bangladesh",
+   "resume": "Un escalateur de l'université BRAC a soudainement augmenté de vitesse, forçant les étudiants à sauter pour éviter d'être emportés. L'incident, filmé en décembre 2025, a circulé largement en ligne.",
+   "mots_cles": [
+    "e",
+    "s",
+    "c",
+    "a",
+    "l",
+    "a"
+   ],
+   "mots_cles_en": [
+    "e",
+    "s",
+    "c",
+    "a",
+    "l",
+    "a"
+   ],
+   "hashtags": [
+    "escalator",
+    "bangladesh",
+    "accident"
+   ],
+   "insolite": 5,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712510013171911949",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
+     "vues": 7900000,
+     "jaime": 516000,
+     "commentaires": 5242,
+     "partages": 38200,
+     "date": 1795708700,
+     "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712510013171911949?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "eed80ebbea",
+   "score": 253,
+   "derniere_vue": 1795842045.5989084,
+   "vues": 7900000,
+   "jaime": 516000,
+   "commentaires": 5242,
+   "hashtags_viraux": [
+    "bangladesh",
+    "viral",
+    "escalator",
+    "hardnews",
+    "news"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T06:00:55+01:00"
+  },
+  {
    "titre": "Son mystérieux naissance étoiles captivant internautes",
    "resume": "Une vidéo du son émis lors de la naissance d’étoiles fascine les internautes. Ce phénomène rare, capté par des télescopes, offre un aperçu des mécanismes cosmiques.",
    "mots_cles": [
@@ -3821,69 +3883,6 @@
    "vu_le": "2026-11-26T17:23:54+01:00"
   },
   {
-   "titre": "Escalator accéléré force évacuation à l'université du Bangladesh",
-   "resume": "Un escalateur de la BRAC University a soudainement augmenté sa vitesse, obligeant les étudiants à sauter pour éviter les blessures. L'incident a été filmé en décembre 2025.",
-   "mots_cles": [
-    "e",
-    "s",
-    "c",
-    "a",
-    "l",
-    "a"
-   ],
-   "mots_cles_en": [
-    "e",
-    "s",
-    "c",
-    "a",
-    "l",
-    "a"
-   ],
-   "hashtags": [
-    "escalator",
-    "bangladesh",
-    "université",
-    "accident"
-   ],
-   "insolite": 5,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712510013171911949",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
-     "vues": 5100000,
-     "jaime": 347300,
-     "commentaires": 3464,
-     "partages": 23700,
-     "date": 1795708700,
-     "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712510013171911949?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "16be21b1a5",
-   "score": 153,
-   "derniere_vue": 1795763702.5509403,
-   "vues": 5100000,
-   "jaime": 347300,
-   "commentaires": 3464,
-   "hashtags_viraux": [
-    "bangladesh",
-    "viral",
-    "escalator",
-    "hardnews",
-    "news"
-   ],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-27T04:14:05+01:00"
-  },
-  {
    "titre": "Disney : accident scooter blesse enfant en Floride",
    "resume": "Une vidéo montre une femme sur un scooter écrasant accidentellement la jambe d’un enfant à Disney. L’incident, survenu en 2025, a été rendu public récemment et soulève des questions sur la sécurité dans les parcs.",
    "mots_cles": [
@@ -4072,64 +4071,6 @@
    "hashtags_viraux": [],
    "statut": "nouveau",
    "vu_le": "2026-11-24T18:38:52+01:00"
-  },
-  {
-   "titre": "Escalator défectueux à l'Université BRAC",
-   "resume": "Un escalator à l'Université BRAC au Bangladesh a commencé à se déplacer à grande vitesse, obligeant les passagers à sauter pour éviter d'être emportés.",
-   "mots_cles": [
-    "escalator",
-    "BRAC",
-    "Bangladesh",
-    "accident"
-   ],
-   "mots_cles_en": [
-    "escalator",
-    "BRAC",
-    "Bangladesh",
-    "accident"
-   ],
-   "hashtags": [
-    "escalator",
-    "brac",
-    "bangladesh"
-   ],
-   "insolite": 6,
-   "categorie": "faits_divers",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712510013171911949",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
-     "vues": 7600000,
-     "jaime": 490100,
-     "commentaires": 4998,
-     "partages": 36200,
-     "date": 1795708700,
-     "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712510013171911949?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "0fcab500e1",
-   "score": 139,
-   "derniere_vue": 1795823010.0572684,
-   "vues": 7600000,
-   "jaime": 490100,
-   "commentaires": 4998,
-   "hashtags_viraux": [
-    "bangladesh",
-    "viral",
-    "escalator",
-    "hardnews",
-    "news"
-   ],
-   "medias": 2,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-28T00:43:42+01:00"
   },
   {
    "titre": "Massachusetts : femme poursuivie par des dindes sauvages",
@@ -4862,6 +4803,66 @@
    "video_id": "20261124-190104-1"
   },
   {
+   "titre": "Enfant de trois ans court chez sa grand-mère",
+   "resume": "Un petit garçon de trois ans a quitté sa maison en Idaho après qu'on lui ait interdit de rendre visite à sa grand-mère, parcourant près d'un kilomètre. Les caméras de sécurité ont enregistré son périple.",
+   "mots_cles": [
+    "e",
+    "n",
+    "f",
+    "a",
+    "n",
+    "t"
+   ],
+   "mots_cles_en": [
+    "c",
+    "h",
+    "i",
+    "l",
+    "d",
+    ","
+   ],
+   "hashtags": [
+    "enfant",
+    "idaho",
+    "fuite"
+   ],
+   "insolite": 4,
+   "categorie": "people",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712881549607226638",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712881549607226638",
+     "vues": 1700000,
+     "jaime": 198900,
+     "commentaires": 1722,
+     "partages": 7125,
+     "date": 1795795213,
+     "texte": "This is the moment a three-year-old boy in Idaho set off on his own after being told he couldn’t visit his grandma, sneaking out of his home and running half a mile to her house. The little boy’s journey was captured on security cameras at both homes, with his grandmother alerting his mother once he arrived safely. She hopes the incident serves as a reminder of how quickly young children can wande",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712881549607226638?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "822fd678ba",
+   "score": 98,
+   "derniere_vue": 1795842045.5989084,
+   "vues": 1700000,
+   "jaime": 198900,
+   "commentaires": 1722,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": {
+    "recherche": "père",
+    "pays": "FR",
+    "trafic": "2000+"
+   },
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T06:00:55+01:00"
+  },
+  {
    "titre": "Nouveaux drogues vape gas stations",
    "resume": "Des produits hallucinogènes sont vendus dans les stations-service. Le New York Times a testé 28 articles pour vérifier leur contenu.",
    "mots_cles": [
@@ -5342,7 +5343,7 @@
   },
   {
    "titre": "Mirage supérieur fait flotter un cargo à Ajman",
-   "resume": "Une vidéo montre un cargo semblant flotter au-dessus de l’eau au large d’Ajman, aux Émirats arabes unis, à cause d’un mirage supérieur. Le phénomène optique résulte de différences de température dans l’atmosphère.",
+   "resume": "Une vidéo montre un cargo semblant flotter au-dessus de l'eau au large d'Ajman, aux Émirats arabes unis, à cause d'un mirage supérieur. Le phénomène optique résulte de différences de température dans l'atmosphère.",
    "mots_cles": [
     "m",
     "i",
@@ -5372,10 +5373,10 @@
      "id": "7712893684391480607",
      "compte": "abcnews",
      "url": "https://www.tiktok.com/@abcnews/video/7712893684391480607",
-     "vues": 2100000,
-     "jaime": 98300,
-     "commentaires": 1495,
-     "partages": 12600,
+     "vues": 2400000,
+     "jaime": 111800,
+     "commentaires": 1660,
+     "partages": 14600,
      "date": 1795798021,
      "texte": "Viral footage filmed off the coast of Ajman, United Arab Emirates, captures a cargo vessel appearing to float above the water due to a superior mirage, where temperature differences bend light in the atmosphere.",
      "sous_seuils": true,
@@ -5385,11 +5386,11 @@
    ],
    "sous_seuils": true,
    "id": "696300c569",
-   "score": 82,
-   "derniere_vue": 1795834711.592049,
-   "vues": 2100000,
-   "jaime": 98300,
-   "commentaires": 1495,
+   "score": 83,
+   "derniere_vue": 1795842045.5989084,
+   "vues": 2400000,
+   "jaime": 111800,
+   "commentaires": 1660,
    "hashtags_viraux": [],
    "medias": 0,
    "tendance": null,
@@ -5451,58 +5452,6 @@
    "statut": "utilise",
    "vu_le": "2026-11-25T09:59:33+01:00",
    "video_id": "20261125-225608-1"
-  },
-  {
-   "titre": "Enfant court chez grand-mère en Idaho",
-   "resume": "Un garçon de trois ans a quitté sa maison pour rejoindre sa grand-mère en Idaho, parcourant une demi-mile.",
-   "mots_cles": [
-    "enfant",
-    "Idaho",
-    "grand-mère",
-    "course"
-   ],
-   "mots_cles_en": [
-    "child",
-    "Idaho",
-    "grandmother",
-    "run"
-   ],
-   "hashtags": [
-    "child",
-    "idaho",
-    "grandmother"
-   ],
-   "insolite": 5,
-   "categorie": "societe",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712881549607226638",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712881549607226638",
-     "vues": 1400000,
-     "jaime": 159500,
-     "commentaires": 1384,
-     "partages": 5697,
-     "date": 1795795213,
-     "texte": "This is the moment a three-year-old boy in Idaho set off on his own after being told he couldn’t visit his grandma, sneaking out of his home and running half a mile to her house. The little boy’s journey was captured on security cameras at both homes, with his grandmother alerting his mother once he arrived safely. She hopes the incident serves as a reminder of how quickly young children can wande",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712881549607226638?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "3f084423e6",
-   "score": 79,
-   "derniere_vue": 1795823010.0572684,
-   "vues": 1400000,
-   "jaime": 159500,
-   "commentaires": 1384,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-28T00:43:42+01:00"
   },
   {
    "titre": "Policier vole vélo à cycliste à Toulouse",
@@ -5875,6 +5824,62 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-26T17:23:54+01:00"
+  },
+  {
+   "titre": "Explosion d’une maison à Owatonna, Minnesota",
+   "resume": "Une maison a explosé le jour de Thanksgiving à Owatonna, Minnesota, causant des dégâts aux habitations voisines. Aucun habitant n'était présent et aucune blessure n'a été signalée.",
+   "mots_cles": [
+    "e",
+    "x",
+    "p",
+    "l",
+    "o",
+    "s"
+   ],
+   "mots_cles_en": [
+    "e",
+    "x",
+    "p",
+    "l",
+    "o",
+    "s"
+   ],
+   "hashtags": [
+    "explosion",
+    "minnesota",
+    "thanksgiving"
+   ],
+   "insolite": 5,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712920942359383309",
+     "compte": "cbsnews",
+     "url": "https://www.tiktok.com/@cbsnews/video/7712920942359383309",
+     "vues": 1400000,
+     "jaime": 143800,
+     "commentaires": 1754,
+     "partages": 14000,
+     "date": 1795804369,
+     "texte": "A neighbor’s security camera captured the moment a house apparently exploded in Owatonna, Minnesota, on Thanksgiving Day, damaging several nearby homes. Fire officials said the homeowner was not home at the time and there were no reported injuries.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712920942359383309?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "891d3dd559",
+   "score": 62,
+   "derniere_vue": 1795842045.5989084,
+   "vues": 1400000,
+   "jaime": 143800,
+   "commentaires": 1754,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T06:00:55+01:00"
   },
   {
    "titre": "New Jersey : table cède sous le repas",
@@ -7025,19 +7030,23 @@
    "vu_le": "2026-11-25T12:43:45+01:00"
   },
   {
-   "titre": "Livreur DHL jette PS5 au Mexique",
-   "resume": "Un livreur DHL a été filmé en train de jeter une PlayStation 5 sur un mur résidentiel au Mexique, avant de la récupérer.",
+   "titre": "Livreur DHL jette une PS5 au Mexique",
+   "resume": "Un livreur de DHL au Mexique a été filmé en train de lancer une boîte contenant une PlayStation 5 par-dessus le mur d'une résidence. Après un premier lancer raté, il a tenté un second jet.",
    "mots_cles": [
-    "DHL",
-    "PS5",
-    "Mexique",
-    "livraison"
+    "l",
+    "i",
+    "v",
+    "r",
+    "e",
+    "u"
    ],
    "mots_cles_en": [
-    "DHL",
-    "PS5",
-    "Mexico",
-    "delivery"
+    "d",
+    "e",
+    "l",
+    "i",
+    "v",
+    "e"
    ],
    "hashtags": [
     "dhl",
@@ -7052,10 +7061,10 @@
      "id": "7712517168361049358",
      "compte": "dailymail",
      "url": "https://www.tiktok.com/@dailymail/video/7712517168361049358",
-     "vues": 1200000,
-     "jaime": 80200,
-     "commentaires": 1851,
-     "partages": 7875,
+     "vues": 1300000,
+     "jaime": 83600,
+     "commentaires": 1929,
+     "partages": 8182,
      "date": 1795710363,
      "texte": "A DHL delivery driver has been filmed throwing a package containing a PlayStation 5 over a residential wall in Mexico. CCTV footage from November 16 shows the worker attempting to toss the box into the property’s courtyard, before retrieving it and making a second throw after his first attempt failed. The customer said the parcel was marked as fragile and arrived with visible damage to its packagi",
      "sous_seuils": true,
@@ -7065,13 +7074,13 @@
    ],
    "sous_seuils": true,
    "id": "9cc4566304",
-   "score": 24,
-   "derniere_vue": 1795823010.0572684,
-   "vues": 1200000,
-   "jaime": 80200,
-   "commentaires": 1851,
+   "score": 23,
+   "derniere_vue": 1795842045.5989084,
+   "vues": 1300000,
+   "jaime": 83600,
+   "commentaires": 1929,
    "hashtags_viraux": [],
-   "medias": 1,
+   "medias": 0,
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-28T00:43:42+01:00"

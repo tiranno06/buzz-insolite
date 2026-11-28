@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-28T06:00:59+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 95 sujet(s) au-dessus des seuils — en tête : « Camion perd le contrôle en Ohio »"
+  },
+  {
    "date": "2026-11-28T03:58:41+01:00",
    "niveau": "info",
    "texte": "🔥 Buzz : 95 sujet(s) au-dessus des seuils — en tête : « Camion perd le contrôle en Ohio »"
@@ -994,11 +999,6 @@
    "date": "2026-11-24T23:35:47+01:00",
    "niveau": "info",
    "texte": "🗑️ « Macron et l'A320 : un bond historique » supprimée."
-  },
-  {
-   "date": "2026-11-24T23:35:46+01:00",
-   "niveau": "info",
-   "texte": "🗑️ « Macron et le malaise qui buzz » supprimée."
   }
  ]
 }
