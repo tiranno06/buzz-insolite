@@ -1,149 +1,149 @@
 {
- "maj": "2026-11-28T00:43:42+01:00",
+ "maj": "2026-11-28T02:44:21+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:41:30+01:00"
+   "le": "2026-11-28T02:42:18+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:41:34+01:00"
+   "le": "2026-11-28T02:42:21+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:41:38+01:00"
+   "le": "2026-11-28T02:42:25+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:41:42+01:00"
+   "le": "2026-11-28T02:42:29+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:41:47+01:00"
+   "le": "2026-11-28T02:42:32+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-28T00:41:50+01:00"
+   "le": "2026-11-28T02:42:35+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:41:54+01:00"
+   "le": "2026-11-28T02:42:39+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:41:57+01:00"
+   "le": "2026-11-28T02:42:43+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:42:02+01:00"
+   "le": "2026-11-28T02:42:47+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:42:05+01:00"
+   "le": "2026-11-28T02:42:50+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:42:10+01:00"
+   "le": "2026-11-28T02:42:54+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:42:14+01:00"
+   "le": "2026-11-28T02:42:58+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:42:18+01:00"
+   "le": "2026-11-28T02:43:01+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-28T00:42:22+01:00"
+   "le": "2026-11-28T02:43:05+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:42:26+01:00"
+   "le": "2026-11-28T02:43:09+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:42:30+01:00"
+   "le": "2026-11-28T02:43:13+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:42:34+01:00"
+   "le": "2026-11-28T02:43:17+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:42:38+01:00"
+   "le": "2026-11-28T02:43:21+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:42:43+01:00"
+   "le": "2026-11-28T02:43:25+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:42:47+01:00"
+   "le": "2026-11-28T02:43:28+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:42:51+01:00"
+   "le": "2026-11-28T02:43:33+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:42:55+01:00"
+   "le": "2026-11-28T02:43:36+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:43:00+01:00"
+   "le": "2026-11-28T02:43:40+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:43:04+01:00"
+   "le": "2026-11-28T02:43:44+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:43:08+01:00"
+   "le": "2026-11-28T02:43:47+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:43:13+01:00"
+   "le": "2026-11-28T02:43:52+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:43:18+01:00"
+   "le": "2026-11-28T02:43:55+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T00:43:21+01:00"
+   "le": "2026-11-28T02:43:59+01:00"
   }
  },
  "lues": 809,
- "retenues": 2,
+ "retenues": 3,
  "sujets": [
   {
    "titre": "Semi-remorque dérape entre deux bretelles en Ohio",
@@ -294,87 +294,6 @@
    "tendance": null,
    "statut": "nouveau",
    "vu_le": "2026-11-28T00:43:42+01:00"
-  },
-  {
-   "titre": "Christ le Rédempteur flotte au-dessus des nuages",
-   "resume": "Des images prises depuis un hélicoptère montrent la statue du Christ le Rédempteur semblant flotter au-dessus d’un épais manteau de nuages à Rio de Janeiro. La séquence a été filmée avec un smartphone et a rapidement fait le tour des réseaux.",
-   "mots_cles": [
-    "Christ le Rédempteur",
-    "Rio",
-    "nuages",
-    "hélicoptère",
-    "vidéo virale"
-   ],
-   "mots_cles_en": [
-    "Christ the Redeemer",
-    "Rio",
-    "clouds",
-    "helicopter",
-    "viral video"
-   ],
-   "hashtags": [
-    "christredeemer",
-    "rio",
-    "nuages",
-    "viral"
-   ],
-   "insolite": 7,
-   "categorie": "culture",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712775661743557902",
-     "compte": "dailymail",
-     "url": "https://www.tiktok.com/@dailymail/video/7712775661743557902",
-     "vues": 6300000,
-     "jaime": 1500000,
-     "commentaires": 9103,
-     "partages": 89600,
-     "date": 1795770583,
-     "texte": "Helicopter footage captures a breathtaking view of Christ the Redeemer seemingly floating above a sea of clouds in Rio de Janeiro, Brazil, as the aircraft flies high above the city. The iconic statue, which stands atop Mount Corcovado, overlooks Rio and is a symbol of Christianity. The person who shared the footage described the experience as witnessing ‘something divine’. 🎥 Instagtam / cheezewino",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712775661743557902?description=1&music_info=1"
-    },
-    {
-     "id": "7712836377909447967",
-     "compte": "foxnews",
-     "url": "https://www.tiktok.com/@foxnews/video/7712836377909447967",
-     "vues": 1500000,
-     "jaime": 280700,
-     "commentaires": 3959,
-     "partages": 22800,
-     "date": 1795784700,
-     "texte": "Christ the Redeemer appears to float in the heavens as a thick blanket of clouds swallows Rio de Janeiro below. Breathtaking footage captured on an iPhone shows mist cascading down the Brazilian mountains like a waterfall, creating an almost surreal scene around one of the Seven Wonders of the Modern World.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712836377909447967?description=1&music_info=1"
-    },
-    {
-     "id": "7712210525609889054",
-     "compte": "foxnews",
-     "url": "https://www.tiktok.com/@foxnews/video/7712210525609889054",
-     "vues": 5600000,
-     "jaime": 1300000,
-     "commentaires": 10100,
-     "partages": 127600,
-     "date": 1795647600,
-     "texte": "WATCH: Brazil’s Christ the Redeemer appears to float above the clouds as a massive wave of mist cascades down Corcovado mountain in Rio de Janeiro. Photographer Marcio Amaro filmed the euphoric moment on his iPhone, capturing what looks like a waterfall of clouds pouring around the landmark. The rare visual comes from a weather phenomenon called orographic lift, where moist ocean air pushes over t",
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712210525609889054?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": false,
-   "id": "35c5cdeebb",
-   "score": 5058,
-   "derniere_vue": 1795815766.4740217,
-   "vues": 13400000,
-   "jaime": 3080700,
-   "commentaires": 23162,
-   "hashtags_viraux": [],
-   "medias": 3,
-   "tendance": null,
-   "statut": "sans_source",
-   "vu_le": "2026-11-27T22:42:52+01:00"
   },
   {
    "titre": "Maresées exceptionnelles menacent l'Oregon et la Californie",
@@ -846,6 +765,62 @@
    "statut": "sans_source",
    "vu_le": "2026-11-26T13:26:29+01:00",
    "reserve_le": "2026-11-27T02:21:36+01:00"
+  },
+  {
+   "titre": "Christ le Rédempteur flotte au-dessus des nuages",
+   "resume": "Une prise de vue depuis un hélicoptère montre la statue de Rio semblant flotter au-dessus d’un océan de nuages. Le cliché a rapidement fait le tour des réseaux.",
+   "mots_cles": [
+    "C",
+    "h",
+    "r",
+    "i",
+    "s",
+    "t"
+   ],
+   "mots_cles_en": [
+    "C",
+    "h",
+    "r",
+    "i",
+    "s",
+    "t"
+   ],
+   "hashtags": [
+    "christredeemer",
+    "rio",
+    "nuages",
+    "aerial"
+   ],
+   "insolite": 8,
+   "categorie": "culture",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712775661743557902",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712775661743557902",
+     "vues": 8100000,
+     "jaime": 1900000,
+     "commentaires": 11300,
+     "partages": 115700,
+     "date": 1795770583,
+     "texte": "Helicopter footage captures a breathtaking view of Christ the Redeemer seemingly floating above a sea of clouds in Rio de Janeiro, Brazil, as the aircraft flies high above the city. The iconic statue, which stands atop Mount Corcovado, overlooks Rio and is a symbol of Christianity. The person who shared the footage described the experience as witnessing ‘something divine’. 🎥 Instagtam / cheezewino",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712775661743557902?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "35c5cdeebb",
+   "score": 824,
+   "derniere_vue": 1795830252.2336338,
+   "vues": 8100000,
+   "jaime": 1900000,
+   "commentaires": 11300,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "sans_source",
+   "vu_le": "2026-11-27T22:42:52+01:00"
   },
   {
    "titre": "États-Unis : arrestation passagers à l’aéroport de Seattle",
@@ -2171,15 +2146,29 @@
      "sous_seuils": true,
      "indisponible": false,
      "lecteur": "https://www.tiktok.com/player/v1/7712124144191540502?description=1&music_info=1"
+    },
+    {
+     "id": "7712753246883925287",
+     "compte": "tf1info",
+     "url": "https://www.tiktok.com/@tf1info/video/7712753246883925287",
+     "vues": 1100000,
+     "jaime": 121300,
+     "commentaires": 576,
+     "partages": 18400,
+     "date": 1795765315,
+     "texte": "😮 Un bunker géant de culture de c*nn*bis a été découvert près de de Grenade en Espagne sous... une aire de jeux pour enfants ! ⤴️",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712753246883925287?description=1&music_info=1"
     }
    ],
    "sous_seuils": true,
    "id": "b552b2d94d",
    "score": 378,
    "derniere_vue": 1795823010.0572684,
-   "vues": 2400000,
-   "jaime": 150000,
-   "commentaires": 1555,
+   "vues": 3500000,
+   "jaime": 271300,
+   "commentaires": 2131,
    "hashtags_viraux": [
     "granada",
     "spain",
@@ -2977,6 +2966,68 @@
    "medias": 11,
    "statut": "nouveau",
    "vu_le": "2026-11-24T20:46:45+01:00"
+  },
+  {
+   "titre": "Escalateur de l'Université BRAC s'emballe",
+   "resume": "Des étudiants ont dû sauter lorsqu’un escalier mécanique a accéléré brutalement à l’université BRAC au Bangladesh. L’incident, filmé en décembre 2025, a circulé largement en ligne.",
+   "mots_cles": [
+    "e",
+    "s",
+    "c",
+    "a",
+    "l",
+    "a"
+   ],
+   "mots_cles_en": [
+    "e",
+    "s",
+    "c",
+    "a",
+    "l",
+    "a"
+   ],
+   "hashtags": [
+    "escalator",
+    "bangladesh",
+    "accident",
+    "université"
+   ],
+   "insolite": 6,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712510013171911949",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712510013171911949",
+     "vues": 7700000,
+     "jaime": 500900,
+     "commentaires": 5095,
+     "partages": 37000,
+     "date": 1795708700,
+     "texte": "Students at BRAC University in Bangladesh were forced to jump clear after an escalator suddenly began moving at an alarming speed. Footage from December 2025 shows passengers leaping off at the bottom before rushing out of the way as others came hurtling down behind them. One viewer joked: ‘Stairway to heaven for a reason.’ #bangladesh #viral #escalator #hardnews #news ",
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712510013171911949?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": false,
+   "id": "1be704c41d",
+   "score": 272,
+   "derniere_vue": 1795830252.2336338,
+   "vues": 7700000,
+   "jaime": 500900,
+   "commentaires": 5095,
+   "hashtags_viraux": [
+    "bangladesh",
+    "viral",
+    "escalator",
+    "hardnews",
+    "news"
+   ],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T02:44:21+01:00"
   },
   {
    "titre": "Son TikTok contre le surmenage mental viral",
@@ -5291,6 +5342,63 @@
    "video_id": "20261125-214937-1"
   },
   {
+   "titre": "Mirage supérieur fait flotter un cargo à Ajman",
+   "resume": "Un cargo a semblé léviter au-dessus de l’eau au large d’Ajman aux Émirats, à cause d’un mirage supérieur provoqué par des différences de température. Le phénomène a été filmé et partagé en ligne.",
+   "mots_cles": [
+    "m",
+    "i",
+    "r",
+    "a",
+    "g",
+    "e"
+   ],
+   "mots_cles_en": [
+    "m",
+    "i",
+    "r",
+    "a",
+    "g",
+    "e"
+   ],
+   "hashtags": [
+    "mirage",
+    "cargo",
+    "ajman",
+    "émirats"
+   ],
+   "insolite": 7,
+   "categorie": "science",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712893684391480607",
+     "compte": "abcnews",
+     "url": "https://www.tiktok.com/@abcnews/video/7712893684391480607",
+     "vues": 1900000,
+     "jaime": 90000,
+     "commentaires": 1377,
+     "partages": 11300,
+     "date": 1795798021,
+     "texte": "Viral footage filmed off the coast of Ajman, United Arab Emirates, captures a cargo vessel appearing to float above the water due to a superior mirage, where temperature differences bend light in the atmosphere.",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712893684391480607?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "696300c569",
+   "score": 82,
+   "derniere_vue": 1795830252.2336338,
+   "vues": 1900000,
+   "jaime": 90000,
+   "commentaires": 1377,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T02:44:21+01:00"
+  },
+  {
    "titre": "Étudiante fait malaise devant Emmanuel Macron",
    "resume": "Une étudiante a perdu connaissance lors d’une visite d’Emmanuel Macron à Toulouse. Les causes du malaise restent à déterminer.",
    "mots_cles": [
@@ -5455,58 +5563,6 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T16:44:03+01:00",
    "video_id": "20261125-224006-1"
-  },
-  {
-   "titre": "Mirage maritime à Ajman",
-   "resume": "Une embarcation de cargo semble flotter au-dessus de l'eau à Ajman, aux Émirats arabes unis, à cause d'un mirage atmosphérique.",
-   "mots_cles": [
-    "mirage",
-    "Ajman",
-    "maritime",
-    "cargaison"
-   ],
-   "mots_cles_en": [
-    "mirage",
-    "Ajman",
-    "maritime",
-    "cargo"
-   ],
-   "hashtags": [
-    "mirage",
-    "ajman",
-    "maritime"
-   ],
-   "insolite": 5,
-   "categorie": "science",
-   "ville_france": "",
-   "videos": [
-    {
-     "id": "7712893684391480607",
-     "compte": "abcnews",
-     "url": "https://www.tiktok.com/@abcnews/video/7712893684391480607",
-     "vues": 1600000,
-     "jaime": 72600,
-     "commentaires": 1186,
-     "partages": 8755,
-     "date": 1795798021,
-     "texte": "Viral footage filmed off the coast of Ajman, United Arab Emirates, captures a cargo vessel appearing to float above the water due to a superior mirage, where temperature differences bend light in the atmosphere.",
-     "sous_seuils": true,
-     "indisponible": false,
-     "lecteur": "https://www.tiktok.com/player/v1/7712893684391480607?description=1&music_info=1"
-    }
-   ],
-   "sous_seuils": true,
-   "id": "828f989210",
-   "score": 76,
-   "derniere_vue": 1795823010.0572684,
-   "vues": 1600000,
-   "jaime": 72600,
-   "commentaires": 1186,
-   "hashtags_viraux": [],
-   "medias": 0,
-   "tendance": null,
-   "statut": "nouveau",
-   "vu_le": "2026-11-28T00:43:42+01:00"
   },
   {
    "titre": "Incendie de camion-citerne en Égypte fait 31 morts",

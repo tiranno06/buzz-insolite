@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-28T02:44:25+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 94 sujet(s) au-dessus des seuils — en tête : « Camion perd le contrôle en Ohio »"
+  },
+  {
    "date": "2026-11-28T02:05:54+01:00",
    "niveau": "info",
    "texte": "🔁 « TRAGÉDIE À GIZEH » refaite (tout) : note 90/100, corrige : « Nouveau code : plans larges, choc en plan moyen, règles de reconstitution » — l'ancienne version est remplacée"
@@ -994,11 +999,6 @@
    "date": "2026-11-24T23:35:42+01:00",
    "niveau": "info",
    "texte": "🗑️ « Macron et le malaise qui buzz » supprimée."
-  },
-  {
-   "date": "2026-11-24T23:35:39+01:00",
-   "niveau": "info",
-   "texte": "🗑️ « Sénégal champion CAN 2025 ! » supprimée."
   }
  ]
 }
