@@ -1163,13 +1163,14 @@ export async function creer3d(sc, couche, T) {
     }
     for (const f of flaques) {
       const g = groupes[f.a.objet], k = ease.sortie(prog(t, f.a.a, f.a.d || 3));
-      f.m.visible = k > 0 && !!g; if (!f.m.visible) continue;
+      // (Gizeh r6 du 28/11 : taches noires sur la route rouverte) la flaque disparaît avec son épave, et quand la route rouvre
+      f.m.visible = k > 0 && !!g && g.visible && !(sc.rouvert != null && t >= sc.rouvert); if (!f.m.visible) continue;
       f.m.scale.set(f.rayon * k, f.rayon * k * 0.8, 1); f.m.position.set(g.position.x, 0.05, g.position.z);
     }
     for (const x of boules) {
       const g = groupes[x.a.objet], dt = t - x.a.a, actif = dt >= 0 && dt < 2.6 && !!g;
       for (const d of x.debris) {                // débris projetés tout autour, qui retombent et restent au sol
-        d.m.visible = dt >= 0 && !!g; if (!d.m.visible) continue;
+        d.m.visible = dt >= 0 && !!g && !(sc.rouvert != null && t >= sc.rouvert); if (!d.m.visible) continue;
         const u = Math.min(dt, (d.vy + Math.sqrt(d.vy * d.vy + 2 * 9.8 * 1.8)) / 9.8), y = Math.max(0.2, 2 + d.vy * u - 9.8 * u * u / 2);
         d.m.position.set(g.position.x + d.vx * u, y, g.position.z + d.vz * u); d.m.rotation.set(d.rx * u, d.rx * u * 0.7, 0);
       }
@@ -1229,6 +1230,22 @@ export async function creer3d(sc, couche, T) {
     if (tremble > 0) { p[0] += Math.sin(t * 71) * 0.9 * tremble; p[1] += Math.sin(t * 53) * 0.7 * tremble; c[1] += Math.sin(t * 61) * 0.4 * tremble; }
     // la caméra ne traverse JAMAIS un mur, un hangar ou un débris (Iowa du 27/11 : images noires, caméra dans les éclats) :
     // si un objet solide est entre ce qu'on filme et la caméra, elle se place devant lui, un peu plus haut
+    // la caméra n'est jamais DANS un véhicule ou un bâtiment (Gizeh r6 du 28/11 : un grand mur jaune sur la moitié de
+    // l'écran pendant l'arrestation : la caméra était dans le bulldozer, et un rayon lancé de l'intérieur ne voit pas les murs)
+    if (!iso && sc.anti_collision !== false && !(cam.find(k => k.a <= t && k._cle === "interieur"))) {
+      const Pc = new T.Vector3(...p), boite_ = new T.Box3();
+      const corps = objets.filter(o => !["foule", "personne"].includes(o.type)).map(o => groupes[o.id]).concat(trafic.map(x => x.g));
+      for (const g of corps) {                  // (la circulation aussi : une voiture floue en gros plan à 28 s dans la r6)
+        if (!g || !g.visible) continue;
+        boite_.setFromObject(g).expandByScalar(1.5);
+        if (!boite_.containsPoint(Pc)) continue;
+        const cen = boite_.getCenter(new T.Vector3()), tai = boite_.getSize(new T.Vector3());
+        const v = new T.Vector3(Pc.x - cen.x, 0, Pc.z - cen.z); if (v.lengthSq() < 0.01) v.set(-1, 0, 1);
+        v.normalize().multiplyScalar(Math.max(tai.x, tai.z) / 2 + 4);
+        p[0] = cen.x + v.x; p[2] = cen.z + v.z; p[1] = Math.max(p[1], boite_.max.y + 3);
+        Pc.set(...p);
+      }
+    }
     if (!iso && sc.anti_collision !== false) {
       const C = new T.Vector3(...c), P = new T.Vector3(...p), dir = P.clone().sub(C), dist = dir.length();
       if (dist > 2) {

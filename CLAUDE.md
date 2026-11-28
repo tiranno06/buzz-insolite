@@ -877,6 +877,12 @@ sauf « deuxième / encore / aussi » → phrase réécrite par l'IA, sinon reti
 storyboard animé viser des phrases disparues (« list index out of range ») → `commun.retirer_phrase` renumérote tout le
 storyboard (règles, contrôle final, vérification). Tests : `TestGizehR5`. 42 règles de reconstitution (C11, V8, V9).
 
+## Analyse de Gizeh r6 (28/11, 100/100, plus bloquée) et corrections
+Bons : foule au bord, bulldozer sur l'épave, circulation qui reprend, étiquette ACTUALITÉ. Défauts : la caméra se retrouvait
+DANS un véhicule (mur jaune pendant l'arrestation : un rayon lancé de l'intérieur ne voit pas les murs ; voiture floue de
+la circulation en gros plan) → la caméra est sortie de toute boîte d'objet visible, circulation comprise (scenes3d.js) ;
+taches noires de carburant sur la route rouverte → flaques et débris retirés avec leur épave et à `sc.rouvert`.
+
 ## Règles pour TOUS les sujets futurs (28/11, l'auteur : « fait tout », puis consigne permanente de la 3D)
 - **Familles de sujets** (`robot/familles.py`) : catastrophe, accident, incendie / explosion, sauvetage, crime, procès,
   disparition, manifestation, découverte, science / espace, santé, record, sport, économie, décision, techno, animal,
