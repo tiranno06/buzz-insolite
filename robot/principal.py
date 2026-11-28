@@ -582,6 +582,7 @@ def fabriquer(sujet, R, n=1, total=1, journal=print, format_="buzz", secours=Fal
                 extraits_perdus=E.get("extraits_perdus", 0), regles_non_respectees=E.get("regles", []),
                 ecrans_illustres=controle.part_illustree(script)[0], ecrans_total=controle.part_illustree(script)[1], format=format_, voix=script.get("voix_utilisee", ""), lieu=script.get("lieu", ""),
                 humeur=script.get("humeur", ""), categorie=sujet.get("categorie") or script.get("categorie") or "actualite", texte=[p["ecrit"] for p in script["phrases"]],
+                famille=script.get("famille", ""), gabarit=(script.get("animation") or {}).get("gabarit", ""),
                 essai=simulation(), cree_le=iso(), ia_quotas={k: dict(v) for k, v in ia.QUOTAS.items()}, fabrication_s=round(time.time() - E["t0"]), controles=bulletin,
                 reprises=E.get("reprises", 0), preuves=preuves_licences(script), couverture_ms=couverture_ms(script),
                 durees=E.get("durees", {}), refaite=E.get("refaite"),

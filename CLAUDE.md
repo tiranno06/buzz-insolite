@@ -909,6 +909,13 @@ storyboard (règles, contrôle final, vérification). Tests : `TestGizehR5`. 42 
   pictos) et validées (`realisateur.valider` : chiffre absent du texte / référence inconnue = scène refusée). Accroche
   toujours illustrée (chiffre géant ou pictogramme) ; jamais 2 phrases de suite sans visuel ; emoji 📅 (« July 17 » en
   anglais) → 🗓️. Tests : `TestFamillesEtExplications`, `TestReconstitutionPourTousLesSujets`.
+- **Son de chaque décor et de chaque animal** (`realisateur.AMBIANCES`, `CRIS`, sons CC0 dans `sons/reconstitution`) :
+  foule au stade / sur une place, oiseaux à la campagne, à la ferme, en forêt, rivière, vent en montagne et au désert,
+  marteau du juge au tribunal, moteur de la fusée ; aboiement, miaulement, bêlement, meuglement, trot quand l'animal entre
+  en scène (jamais deux cris en même temps) ; pas d'oiseaux sur un brasier.
+- **Apprendre des résultats** : la fiche de chaque vidéo garde `famille` et `gabarit` ; stats.json → `familles` ;
+  `buzz.facteur_famille` : une famille qui fait plus de vues sur NOTRE chaîne passe devant (×0,6 à ×1,8). Courbe de
+  rétention : l'auteur envoie la capture de TikTok Studio, on cale les règles sur l'instant où les gens partent.
 
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11

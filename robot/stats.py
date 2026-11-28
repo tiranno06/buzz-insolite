@@ -79,7 +79,9 @@ def analyser(videos, now=None):
             "vues_mediane": round(statistics.median(toutes)) if toutes else 0,
             "heures": heures, "meilleures_heures": sorted(meilleures) if len(meilleures) == 2 else [],
             "formats": groupe(lambda v: [v.get("format") or "buzz"]),
-            "categories": groupe(lambda v: [v.get("categorie") or ""]), "humeurs": groupe(lambda v: [v.get("humeur") or "neutre"]),
+            "categories": groupe(lambda v: [v.get("categorie") or ""]),
+            "familles": groupe(lambda v: [v.get("famille") or ""]),   # (28/11) quelles familles de sujets marchent
+            "humeurs": groupe(lambda v: [v.get("humeur") or "neutre"]),
             "hashtags": groupe(lambda v: [h.lower() for h in v.get("hashtags") or []])[:15],
             "top": [{"id": v["id"], "titre": v["titre"], **v["stats"]} for v in sorted(mures, key=lambda v: -v["stats"]["vues"])[:5]]}
 

@@ -505,7 +505,17 @@ def _cam(coupes, types, duree, dense=False, feux=None, principal=None, accroche=
 
 # ------------------------------------------------------------------ bruitages des reconstitutions (sons/reconstitution, CC0)
 EFFETS = {"choc": ("choc.mp3", 0.85), "explosion": ("explosion.mp3", 1.0), "debris": ("debris.mp3", 0.5),
-          "feu": ("feu.mp3", 0.30), "sirene": ("sirene.mp3", 0.22)}
+          "feu": ("feu.mp3", 0.30), "sirene": ("sirene.mp3", 0.22),
+          # (28/11) ambiances des décors et cris des animaux, tous CC0 (sons/reconstitution/LICENCES.md)
+          "foule": ("foule.mp3", 0.16), "applaudissements": ("applaudissements.mp3", 0.2), "oiseaux": ("oiseaux.mp3", 0.12),
+          "riviere": ("riviere.mp3", 0.14), "vent": ("vent.mp3", 0.12), "marteau": ("marteau.mp3", 0.6), "fusee": ("fusee.mp3", 0.6),
+          "chien": ("chien.mp3", 0.45), "chat": ("chat.mp3", 0.45), "mouton": ("mouton.mp3", 0.4), "vache": ("vache.mp3", 0.4),
+          "cheval": ("cheval.mp3", 0.3)}
+# ambiance continue de chaque décor (très basse, sous la voix) et cri de chaque animal (une fois, quand il entre en scène)
+AMBIANCES = {"stade": "foule", "place": "foule", "campagne": "oiseaux", "ferme": "oiseaux", "foret": "oiseaux",
+             "riviere": "riviere", "montagne": "vent", "desert": "vent", "plage": "vent"}
+CRIS = {"chien": "chien", "loup": "chien", "renard": "chien", "chat": "chat", "mouton": "mouton", "lama": "mouton",
+        "vache": "vache", "cheval": "cheval", "zebre": "cheval"}
 
 
 def evenements_sonores(sb):
@@ -533,6 +543,23 @@ def evenements_sonores(sb):
                 out.append(dict(son="sirene", t=round(t, 2), duree=round(min(8.0, fin_decor - t), 2)))
         if feux:
             out.append(dict(son="feu", t=round(min(feux), 2), duree=round(fin_decor - min(feux), 2)))
+        if sc.get("decor") in AMBIANCES and not sc.get("accroche") and not feux:   # (un brasier couvre les oiseaux)
+            out.append(dict(son=AMBIANCES[sc["decor"]], t=round(sc["debut"], 2), duree=round(fin_decor - sc["debut"], 2)))
+        cris = set()
+        for o in sc.get("objets") or []:
+            cri = CRIS.get(o.get("type"))
+            if not cri or cri in cris:
+                continue
+            premier = min([float(a.get("a") or 0) for a in sc.get("actions") or [] if a["objet"] == o["id"]] + [float(o.get("a") or 0.6)])
+            t = sc["debut"] + premier + 0.2 + 0.8 * len(cris)          # jamais deux cris en même temps
+            if t < fin_decor:
+                out.append(dict(son=cri, t=round(t, 2))); cris.add(cri)
+        for a in sc.get("actions") or []:
+            t = sc["debut"] + float(a.get("a") or 0)
+            if t < fin_decor and types.get(a["objet"]) == "fusee" and a["faire"] in ("voler", "avancer"):
+                out.append(dict(son="fusee", t=round(t, 2)))
+        if sc.get("decor") == "tribunal" and not sc.get("accroche"):
+            out.append(dict(son="marteau", t=round(sc["debut"] + 0.4, 2)))
     return [e for e in out if 0 <= e["t"] < total and e.get("duree", 1) > 0.3]
 
 

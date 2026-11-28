@@ -235,6 +235,17 @@ def facteur_categorie(categorie):
     return 1.0
 
 
+def facteur_famille(sujet):
+    """(28/11) Même règle par FAMILLE de sujet (familles.py : animal, procès, record…), d'après les vues de nos vidéos."""
+    from .familles import famille_du_texte
+    S = lire("stats.json") or {}
+    med, fam = S.get("vues_mediane") or 0, famille_du_texte(f"{sujet.get('titre', '')} {sujet.get('resume', '')}")
+    for c in S.get("familles") or []:
+        if c.get("nom") == fam and med:
+            return max(0.6, min(1.8, c["vues_mediane"] / med))
+    return 1.0
+
+
 def relever(journal=print):
     R = reglages(); B = R["buzz"]
     toutes, etat = [], {}
@@ -278,7 +289,7 @@ def relever(journal=print):
         s["medias"] = sources.nombre_de_medias(s["titre"], s.get("mots_cles") or [], s.get("mots_cles_en") or [])
         if s["medias"] is not None and s["medias"] < 3:
             s["score"] //= 4
-        s["score"] = round(s["score"] * facteur_categorie(s.get("categorie")))   # ce qui marche sur NOTRE chaîne
+        s["score"] = round(s["score"] * facteur_categorie(s.get("categorie")) * facteur_famille(s))   # ce qui marche sur NOTRE chaîne
         s["tendance"] = sources.en_tendance(s, tendances)
         if s["tendance"]:                                     # le sujet monte aussi sur Google : vrai buzz, plus sûr
             s["score"] = round(s["score"] * 1.5)
