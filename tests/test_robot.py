@@ -1773,6 +1773,9 @@ class TestPlansLarges(unittest.TestCase):
             if c["_cle"] not in R.PROCHES:
                 self.assertGreaterEqual(sum(v * v for v in cam[2 * i + 1]["pos"]) ** 0.5, 15)
         self.assertFalse(any(c["_cle"] in ("bruler", "secours") for c in cam))         # feu / secours : large ou d'en haut
+        for c in cam:                                                                   # rapproché : plan moyen, 25 m au moins
+            if c["_cle"] in ("heurter", "exploser", "tomber"):
+                self.assertGreaterEqual(sum(v * v for v in c["pos"]) ** 0.5, 25)
 
     def test_accroche_sans_ouverture(self):
         from robot import realisateur as R

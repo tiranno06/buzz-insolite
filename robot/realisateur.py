@@ -319,7 +319,9 @@ def _voie_z(voie, voies=6):
 
 # un PLAN par étape de l'événement, comme un vrai montage (bonnequestion.tv, curioverse) : la caméra COUPE vers le bon
 # angle juste avant chaque action, puis se rapproche doucement. Positions relatives à l'objet suivi (x, hauteur, z).
-PLANS = {"avancer": ([-16, 6, 18], [-11, 4.5, 13]), "heurter": ([-20, 5, 17], [-13, 3.5, 11]),
+# (28/11, l'auteur : « pas vraiment trop rapprochés, un plan assez large sans être trop large ») : le choc est filmé en plan
+# MOYEN, un peu plus haut, et la caméra s'approche à peine pendant le plan
+PLANS = {"avancer": ([-16, 6, 18], [-11, 4.5, 13]), "heurter": ([-27, 11, 25], [-22, 9, 20]),
          "se_coucher": ([12, 7, 20], [8, 5, 15]), "deverser": ([-6, 24, 16], [-4, 18, 12]), "bruler": ([-28, 15, 30], [-20, 11, 23]),
          "exploser": ([-48, 26, 52], [-40, 22, 44]), "tomber": ([-34, 12, 32], [-24, 8, 24]), "couler": ([-30, 12, 30], [-22, 9, 22]),
          "secours": ([-30, 16, 30], [-22, 12, 22]), "large": ([-55, 42, 52], [-40, 32, 42]),
@@ -333,6 +335,7 @@ PLANS = {"avancer": ([-16, 6, 18], [-11, 4.5, 13]), "heurter": ([-20, 5, 17], [-
 PROCHES = ("heurter", "exploser", "tomber", "interieur")
 LOINTAINS = ("bruler", "secours", "fuir", "arroser", "deverser")
 OUVERTURE, DUREE_PROCHE, DISTANCE_MIN = 3.0, 2.2, 15.0
+DISTANCE_MIN_PROCHE = 25.0                            # même le moment fort n'est jamais filmé à moins de 25 m
 SECOURS_3D = ("police", "ambulance", "pompiers")
 GRANDS = {"citerne": 1.7, "camion": 1.6, "bus": 1.6, "train": 2.2, "avion": 2.4, "bateau": 2.4, "batiment": 2.0, "immeuble": 2.4, "entrepot": 2.6,
           "foule": 2.0, "personne": 1.4}
@@ -431,10 +434,11 @@ def _cam(coupes, types, duree, dense=False, feux=None, principal=None, accroche=
         if cle != "interieur" and dense:       # usine, ville : on recule et on monte (sinon la caméra entre dans un hangar)
             e *= 1.4
         extra = dict(regard=[30, -0.6, 0]) if cle == "interieur" else {}          # de l'intérieur : on regarde la route devant
-        if cle not in PROCHES:                          # jamais à moins de 15 m hors du moment fort
+        if cle != "interieur":                          # 15 m au moins hors du moment fort, 25 m pendant
+            mini = DISTANCE_MIN_PROCHE if cle in PROCHES else DISTANCE_MIN
             d1 = sum(v * v for v in p1) ** 0.5 * e
-            if d1 < DISTANCE_MIN:
-                e *= DISTANCE_MIN / max(d1, 0.1)
+            if d1 < mini:
+                e *= mini / max(d1, 0.1)
         cam.append(dict(a=round(debut, 2), pos=[round(v * e, 1) for v in p0], suivre=suivre, _cle=cle, **extra))
         cam.append(dict(a=round(max(fin, debut + 0.05), 2), pos=[round(v * e, 1) for v in p1], suivre=suivre, _cle=cle, **extra))
     return cam

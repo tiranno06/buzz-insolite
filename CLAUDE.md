@@ -827,6 +827,8 @@ rapproché seulement pour le choc / l'explosion / la chute / la vue du conducteu
 large), feu / fuite / secours / fuite de carburant en plan large ou vu d'en haut (`LOINTAINS`, nouveau plan « haut »), jamais
 à moins de 15 m hors du moment fort (`DISTANCE_MIN`), plans de remplissage larges ou d'en haut ; une fois le feu pris, les
 plans larges restent centrés sur le brasier. L'accroche (moment fort) commence directement sur le choc. Tests : `TestPlansLarges`.
+Le moment fort est en plan MOYEN (28/11, l'auteur : « pas trop rapproché, assez large sans l'être trop ») : choc filmé
+plus haut et plus loin, jamais à moins de 25 m (`DISTANCE_MIN_PROCHE`, sauf la vue du conducteur).
 
 ## PAUSE de l'ancien modèle (27/11, demande de l'auteur)
 En attendant que le nouveau style soit validé : `publication.auto` et `creation.auto` = false (reglages.json) ; les 11
