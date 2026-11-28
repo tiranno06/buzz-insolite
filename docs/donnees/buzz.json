@@ -1,145 +1,145 @@
 {
- "maj": "2026-11-28T02:44:21+01:00",
+ "maj": "2026-11-28T03:58:39+01:00",
  "comptes": {
   "hugodecrypte": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:42:18+01:00"
+   "le": "2026-11-28T03:56:33+01:00"
   },
   "brutofficiel": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:42:21+01:00"
+   "le": "2026-11-28T03:56:37+01:00"
   },
   "franceinfo": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:42:25+01:00"
+   "le": "2026-11-28T03:56:41+01:00"
   },
   "leparisien": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:42:29+01:00"
+   "le": "2026-11-28T03:56:45+01:00"
   },
   "20minutesfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:42:32+01:00"
+   "le": "2026-11-28T03:56:50+01:00"
   },
   "euronewsfr": {
    "ok": true,
    "videos": 7,
-   "le": "2026-11-28T02:42:35+01:00"
+   "le": "2026-11-28T03:56:53+01:00"
   },
   "bfmtv": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:42:39+01:00"
+   "le": "2026-11-28T03:56:57+01:00"
   },
   "lemondefr": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:42:43+01:00"
+   "le": "2026-11-28T03:57:01+01:00"
   },
   "konbini": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:42:47+01:00"
+   "le": "2026-11-28T03:57:05+01:00"
   },
   "tf1info": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:42:50+01:00"
+   "le": "2026-11-28T03:57:10+01:00"
   },
   "loopsider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:42:54+01:00"
+   "le": "2026-11-28T03:57:14+01:00"
   },
   "ouestfrance": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:42:58+01:00"
+   "le": "2026-11-28T03:57:18+01:00"
   },
   "lefigaro": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:01+01:00"
+   "le": "2026-11-28T03:57:22+01:00"
   },
   "le.huffpost": {
    "ok": true,
    "videos": 22,
-   "le": "2026-11-28T02:43:05+01:00"
+   "le": "2026-11-28T03:57:25+01:00"
   },
   "bbcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:09+01:00"
+   "le": "2026-11-28T03:57:29+01:00"
   },
   "cnn": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:13+01:00"
+   "le": "2026-11-28T03:57:33+01:00"
   },
   "dailymail": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:17+01:00"
+   "le": "2026-11-28T03:57:37+01:00"
   },
   "unilad": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:21+01:00"
+   "le": "2026-11-28T03:57:41+01:00"
   },
   "ladbible": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:25+01:00"
+   "le": "2026-11-28T03:57:45+01:00"
   },
   "washingtonpost": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:28+01:00"
+   "le": "2026-11-28T03:57:49+01:00"
   },
   "nytimes": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:33+01:00"
+   "le": "2026-11-28T03:57:53+01:00"
   },
   "cbsnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:36+01:00"
+   "le": "2026-11-28T03:57:57+01:00"
   },
   "skynews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:40+01:00"
+   "le": "2026-11-28T03:58:00+01:00"
   },
   "abcnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:44+01:00"
+   "le": "2026-11-28T03:58:04+01:00"
   },
   "insider": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:47+01:00"
+   "le": "2026-11-28T03:58:08+01:00"
   },
   "aljazeeraenglish": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:52+01:00"
+   "le": "2026-11-28T03:58:12+01:00"
   },
   "reuters": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:55+01:00"
+   "le": "2026-11-28T03:58:16+01:00"
   },
   "foxnews": {
    "ok": true,
    "videos": 30,
-   "le": "2026-11-28T02:43:59+01:00"
+   "le": "2026-11-28T03:58:19+01:00"
   }
  },
  "lues": 809,
@@ -768,7 +768,7 @@
   },
   {
    "titre": "Christ le Rédempteur flotte au-dessus des nuages",
-   "resume": "Une prise de vue depuis un hélicoptère montre la statue de Rio semblant flotter au-dessus d’un océan de nuages. Le cliché a rapidement fait le tour des réseaux.",
+   "resume": "Une vidéo prise depuis un hélicoptère montre la statue du Christ le Rédempteur semblant flotter au-dessus d’un océan de nuages à Rio de Janeiro. Le phénomène a été filmé depuis les hauteurs du mont Corcovado.",
    "mots_cles": [
     "C",
     "h",
@@ -788,21 +788,20 @@
    "hashtags": [
     "christredeemer",
     "rio",
-    "nuages",
-    "aerial"
+    "mirage"
    ],
-   "insolite": 8,
-   "categorie": "culture",
+   "insolite": 7,
+   "categorie": "insolite",
    "ville_france": "",
    "videos": [
     {
      "id": "7712775661743557902",
      "compte": "dailymail",
      "url": "https://www.tiktok.com/@dailymail/video/7712775661743557902",
-     "vues": 8100000,
-     "jaime": 1900000,
-     "commentaires": 11300,
-     "partages": 115700,
+     "vues": 8600000,
+     "jaime": 2100000,
+     "commentaires": 11800,
+     "partages": 122800,
      "date": 1795770583,
      "texte": "Helicopter footage captures a breathtaking view of Christ the Redeemer seemingly floating above a sea of clouds in Rio de Janeiro, Brazil, as the aircraft flies high above the city. The iconic statue, which stands atop Mount Corcovado, overlooks Rio and is a symbol of Christianity. The person who shared the footage described the experience as witnessing ‘something divine’. 🎥 Instagtam / cheezewino",
      "indisponible": false,
@@ -812,10 +811,10 @@
    "sous_seuils": false,
    "id": "35c5cdeebb",
    "score": 824,
-   "derniere_vue": 1795830252.2336338,
-   "vues": 8100000,
-   "jaime": 1900000,
-   "commentaires": 11300,
+   "derniere_vue": 1795834711.592049,
+   "vues": 8600000,
+   "jaime": 2100000,
+   "commentaires": 11800,
    "hashtags_viraux": [],
    "medias": 0,
    "tendance": null,
@@ -5343,7 +5342,7 @@
   },
   {
    "titre": "Mirage supérieur fait flotter un cargo à Ajman",
-   "resume": "Un cargo a semblé léviter au-dessus de l’eau au large d’Ajman aux Émirats, à cause d’un mirage supérieur provoqué par des différences de température. Le phénomène a été filmé et partagé en ligne.",
+   "resume": "Une vidéo montre un cargo semblant flotter au-dessus de l’eau au large d’Ajman, aux Émirats arabes unis, à cause d’un mirage supérieur. Le phénomène optique résulte de différences de température dans l’atmosphère.",
    "mots_cles": [
     "m",
     "i",
@@ -5363,8 +5362,7 @@
    "hashtags": [
     "mirage",
     "cargo",
-    "ajman",
-    "émirats"
+    "ajman"
    ],
    "insolite": 7,
    "categorie": "science",
@@ -5374,10 +5372,10 @@
      "id": "7712893684391480607",
      "compte": "abcnews",
      "url": "https://www.tiktok.com/@abcnews/video/7712893684391480607",
-     "vues": 1900000,
-     "jaime": 90000,
-     "commentaires": 1377,
-     "partages": 11300,
+     "vues": 2100000,
+     "jaime": 98300,
+     "commentaires": 1495,
+     "partages": 12600,
      "date": 1795798021,
      "texte": "Viral footage filmed off the coast of Ajman, United Arab Emirates, captures a cargo vessel appearing to float above the water due to a superior mirage, where temperature differences bend light in the atmosphere.",
      "sous_seuils": true,
@@ -5388,10 +5386,10 @@
    "sous_seuils": true,
    "id": "696300c569",
    "score": 82,
-   "derniere_vue": 1795830252.2336338,
-   "vues": 1900000,
-   "jaime": 90000,
-   "commentaires": 1377,
+   "derniere_vue": 1795834711.592049,
+   "vues": 2100000,
+   "jaime": 98300,
+   "commentaires": 1495,
    "hashtags_viraux": [],
    "medias": 0,
    "tendance": null,
@@ -5563,6 +5561,62 @@
    "statut": "utilise",
    "vu_le": "2026-11-24T16:44:03+01:00",
    "video_id": "20261125-224006-1"
+  },
+  {
+   "titre": "Garçon de trois ans court à Idaho",
+   "resume": "Un petit garçon de trois ans a quitté sa maison en Idaho après qu’on lui ait interdit de rendre visite à sa grand-mère, parcourant près d’un kilomètre. Les caméras de sécurité ont suivi son périple jusqu’à la maison de la grand‑mère.",
+   "mots_cles": [
+    "e",
+    "n",
+    "f",
+    "a",
+    "n",
+    "t"
+   ],
+   "mots_cles_en": [
+    "c",
+    "h",
+    "i",
+    "l",
+    "d",
+    ","
+   ],
+   "hashtags": [
+    "enfant",
+    "idaho",
+    "fuite"
+   ],
+   "insolite": 5,
+   "categorie": "faits_divers",
+   "ville_france": "",
+   "videos": [
+    {
+     "id": "7712881549607226638",
+     "compte": "dailymail",
+     "url": "https://www.tiktok.com/@dailymail/video/7712881549607226638",
+     "vues": 1600000,
+     "jaime": 184800,
+     "commentaires": 1617,
+     "partages": 6650,
+     "date": 1795795213,
+     "texte": "This is the moment a three-year-old boy in Idaho set off on his own after being told he couldn’t visit his grandma, sneaking out of his home and running half a mile to her house. The little boy’s journey was captured on security cameras at both homes, with his grandmother alerting his mother once he arrived safely. She hopes the incident serves as a reminder of how quickly young children can wande",
+     "sous_seuils": true,
+     "indisponible": false,
+     "lecteur": "https://www.tiktok.com/player/v1/7712881549607226638?description=1&music_info=1"
+    }
+   ],
+   "sous_seuils": true,
+   "id": "e3ba2b484f",
+   "score": 71,
+   "derniere_vue": 1795834711.592049,
+   "vues": 1600000,
+   "jaime": 184800,
+   "commentaires": 1617,
+   "hashtags_viraux": [],
+   "medias": 0,
+   "tendance": null,
+   "statut": "nouveau",
+   "vu_le": "2026-11-28T03:58:39+01:00"
   },
   {
    "titre": "Incendie de camion-citerne en Égypte fait 31 morts",

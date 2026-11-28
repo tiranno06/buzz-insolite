@@ -1,6 +1,11 @@
 {
  "evenements": [
   {
+   "date": "2026-11-28T03:58:41+01:00",
+   "niveau": "info",
+   "texte": "🔥 Buzz : 95 sujet(s) au-dessus des seuils — en tête : « Camion perd le contrôle en Ohio »"
+  },
+  {
    "date": "2026-11-28T03:36:05+01:00",
    "niveau": "info",
    "texte": "🔁 « Incendie meurtrier sur le Ring Road » refaite (tout) : note 100/100, corrige : « Corrections après r3 : collision montrée, bouchon en feu, angles variés, rendu qui ne plante plus » — l'ancienne version est remplacée"
@@ -994,11 +999,6 @@
    "date": "2026-11-24T23:35:46+01:00",
    "niveau": "info",
    "texte": "🗑️ « Macron et le malaise qui buzz » supprimée."
-  },
-  {
-   "date": "2026-11-24T23:35:43+01:00",
-   "niveau": "info",
-   "texte": "🗑️ « Macron et l'A320 : un bond historique » supprimée."
   }
  ]
 }
